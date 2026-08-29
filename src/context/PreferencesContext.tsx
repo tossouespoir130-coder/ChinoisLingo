@@ -50,9 +50,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   const [dailyGoalMinutes, setDailyGoalMinutesState] = useState('20');
   const [dailyReminder, setDailyReminderState] = useState(true);
   const [publicLeaderboard, setPublicLeaderboardState] = useState(true);
-  const [userAvatar, setUserAvatarState] = useState<string>(
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80'
-  );
+  const [userAvatar, setUserAvatarState] = useState<string>('/espoir-chinois.jpg');
   const [userName, setUserNameState] = useState<string>('Espoir Chinois');
 
   // Load from localStorage on mount

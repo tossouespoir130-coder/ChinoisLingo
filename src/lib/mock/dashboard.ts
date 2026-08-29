@@ -11,7 +11,7 @@ export const mockCurrentUser: UserProfile = {
   id: 'usr_espoir_001',
   email: 'espoir@business-chine.com',
   display_name: 'Espoir Chinois',
-  avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  avatar_url: '/espoir-chinois.jpg',
   role: 'admin',
   timezone: 'Africa/Lome',
   leaderboard_opt_in: true,
@@ -99,7 +99,7 @@ export const mockLeaderboard: CommunityLeaderboardEntry[] = [
   {
     id: 'lead_2',
     display_name: 'Espoir Chinois',
-    avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    avatar_url: '/espoir-chinois.jpg',
     progress_pct: 88,
     streak_days: 18,
     words_mastered: 440,

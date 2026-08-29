@@ -36,7 +36,7 @@ const initialNotifications: NotificationItem[] = [
     source: 'founder',
     founderName: 'Espoir Chinois',
     founderRole: 'Fondateur de ChinoisLingo',
-    founderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    founderAvatar: '/espoir-chinois.jpg',
     title: '13 Vérités Brutales sur le Chinois Découvertes Trop Tard 🎬',
     message: 'Une masterclass vidéo exclusive pour déconstruire les illusions, corriger les erreurs de méthode et progresser rapidement en mandarin.',
     timestamp: 'Il y a 10 min',
@@ -49,7 +49,7 @@ const initialNotifications: NotificationItem[] = [
     source: 'founder',
     founderName: 'Espoir Chinois',
     founderRole: 'Fondateur de ChinoisLingo',
-    founderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    founderAvatar: '/espoir-chinois.jpg',
     title: 'Nouvelle Formation : Maîtriser les Tons en Chinois 🎯',
     message: 'Domptez les 4 intonations et le ton neutre avec ma méthode pas à pas pour vous faire comprendre naturellement par les natifs.',
     timestamp: 'Il y a 30 min',
@@ -62,7 +62,7 @@ const initialNotifications: NotificationItem[] = [
     source: 'founder',
     founderName: 'Espoir Chinois',
     founderRole: 'Fondateur de ChinoisLingo',
-    founderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    founderAvatar: '/espoir-chinois.jpg',
     title: 'Nouvelle Formation : Vocabulaire HSK 1 Mot par Mot 📚',
     message: 'Une formation évolutive animée par Espoir Chinois dont le but est de couvrir l’intégralité des 150 mots et expressions clés du HSK 1 avec des ajouts réguliers.',
     timestamp: 'Aujourd’hui',
@@ -75,7 +75,7 @@ const initialNotifications: NotificationItem[] = [
     source: 'founder',
     founderName: 'Espoir Chinois',
     founderRole: 'Fondateur de ChinoisLingo',
-    founderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    founderAvatar: '/espoir-chinois.jpg',
     title: 'Bienvenue sur ChinoisLingo ! 🌟',
     message: 'Heureux de vous accompagner dans votre apprentissage du mandarin. La méthode par immersion et répétition espacée est prête pour vous.',
     timestamp: 'Récemment',
@@ -120,7 +120,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
           source: (n.source === 'founder' ? 'founder' : 'system') as 'founder' | 'system',
           founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
           founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
-          founderAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+          founderAvatar: '/espoir-chinois.jpg',
           title: n.title,
           message: n.message,
           timestamp: 'Récemment',
@@ -295,7 +295,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                 /* ========================================================
                    EXCLUSIVE VIOLET/PURPLE STYLING FOR ESPOIR CHINOIS (FOUNDER)
                    ======================================================== */
-                const founderImage = userAvatar || notif.founderAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80';
+                const founderImage = userAvatar || notif.founderAvatar || '/espoir-chinois.jpg';
 
                 return (
                   <div

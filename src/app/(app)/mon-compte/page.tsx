@@ -100,7 +100,7 @@ function MonCompteContent() {
     firstName: profile?.first_name || 'Espoir',
     lastName: profile?.last_name || 'Chinois',
     email: profile?.email || user?.email || 'contact@chinoislingo.com',
-    avatarUrl: profile?.avatar_url || userAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+    avatarUrl: profile?.avatar_url || userAvatar || '/espoir-chinois.jpg',
     bio: 'Passionné par l’apprentissage du mandarin et les opportunités commerciales avec la Chine.',
     country: 'France',
     city: 'Paris',
@@ -118,7 +118,7 @@ function MonCompteContent() {
         firstName: profile.first_name || '',
         lastName: profile.last_name || '',
         email: profile.email || user?.email || 'contact@chinoislingo.com',
-        avatarUrl: profile.avatar_url || userAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+        avatarUrl: profile.avatar_url || userAvatar || '/espoir-chinois.jpg',
         bio: 'Passionné par l’apprentissage du mandarin et les opportunités commerciales avec la Chine.',
         country: 'France',
         city: 'Paris',
@@ -168,7 +168,7 @@ function MonCompteContent() {
 
   // Avatars de Personnages / Membres de la Communauté
   const communityAvatars = [
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80',
+    '/espoir-chinois.jpg',
     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
     'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&auto=format&fit=crop&q=80',
     'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',

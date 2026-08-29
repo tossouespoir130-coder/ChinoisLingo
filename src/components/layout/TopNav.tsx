@@ -133,43 +133,49 @@ export function TopNav() {
 
           {/* User Profile Avatar / Dropdown Menu (Toujours visible et accessible) */}
           <div className="relative" ref={profileMenuRef}>
-            <button
-              type="button"
-              onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-xs ring-2 ring-transparent hover:ring-[#6200EE] cursor-pointer"
-              title={`Profil : ${profile?.username || profile?.full_name || userName || 'Espoir Chinois'}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={profile?.avatar_url || userAvatar || mockCurrentUser.avatar_url}
-                alt={profile?.username || profile?.full_name || userName || 'Profil'}
-                className="w-full h-full object-cover"
-              />
-            </button>
+            {(() => {
+              const displayAvatar = (profile?.avatar_url && !profile.avatar_url.includes('photo-1534528741775')) 
+                ? profile.avatar_url 
+                : (userAvatar || '/espoir-chinois.jpg');
+              return (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-xs ring-2 ring-transparent hover:ring-[#6200EE] cursor-pointer"
+                    title={`Profil : ${profile?.username || profile?.full_name || userName || 'Espoir Chinois'}`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={displayAvatar}
+                      alt={profile?.username || profile?.full_name || userName || 'Profil'}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
 
-            {/* Profile Dropdown Card */}
-            {isProfileMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-2xl shadow-black/10 p-3.5 space-y-3 z-50 animate-slideUp">
-                {/* User Info Header */}
-                <div className="flex items-center gap-3 pb-3 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={profile?.avatar_url || userAvatar || mockCurrentUser.avatar_url}
-                    alt={profile?.username || 'Profil'}
-                    className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/20 shadow-xs"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
-                      {profile?.username || profile?.full_name || userName || 'Espoir Chinois'}
-                    </h4>
-                    <p className="text-[10px] text-[#757575] dark:text-[#A0A0A0] truncate">
-                      {profile?.email || user?.email || 'espoirchinois@gmail.com'}
-                    </p>
-                  </div>
-                </div>
+                  {/* Profile Dropdown Card */}
+                  {isProfileMenuOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-2xl shadow-black/10 p-3.5 space-y-3 z-50 animate-slideUp">
+                      {/* User Info Header */}
+                      <div className="flex items-center gap-3 pb-3 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={displayAvatar}
+                          alt={profile?.username || 'Profil'}
+                          className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/20 shadow-xs"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
+                            {profile?.username || profile?.full_name || userName || 'Espoir Chinois'}
+                          </h4>
+                          <p className="text-[10px] text-[#757575] dark:text-[#A0A0A0] truncate">
+                            {profile?.email || user?.email || 'espoirchinois@gmail.com'}
+                          </p>
+                        </div>
+                      </div>
 
-                {/* Navigation Links : 1. Profil -> 2. Abonnement -> 3. Préférences */}
-                <div className="space-y-1">
+                      {/* Navigation Links : 1. Profil -> 2. Abonnement -> 3. Préférences */}
+                      <div className="space-y-1">
                   <Link
                     href="/mon-compte?tab=profile"
                     onClick={() => setIsProfileMenuOpen(false)}
@@ -212,9 +218,12 @@ export function TopNav() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-      </header>
+          </>
+        );
+      })()}
+    </div>
+  </div>
+</header>
 
       {/* Global Interactive Modals */}
       <GlobalSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
