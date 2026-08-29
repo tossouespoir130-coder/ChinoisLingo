@@ -44,9 +44,11 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
    - **Découpage Fin à Chaque Pause / Virgule (Saut de Ligne Obligatoire)** :
      - Chaque vers ou pause musicale de respiration (marquée par une virgule ou une suspension de chant) DOIT constituer **une ligne distincte et indépendante**.
      - **Bannir les lignes longues ou les vers combinés** (ex: ne pas mettre `夜空中最亮的星 能否听清` sur une seule ligne, mais scinder en Ligne 1 : `夜空中最亮的星` et Ligne 2 : `能否听清`).
-     - Ce découpage court et naturel permet à l'apprenant de chanter, répéter et synchroniser sa lecture sans être submergé par des blocs de texte interminables.
-   - **Triptyque Complet par Ligne** : Chaque segment découpé possède obligatoirement son Hanzi authentique, son Pinyin complet avec tons et sa traduction française fidèle.
-   - **Balisage Explicite des Refrains (`🎵 Refrain`)** : Pour TOUTE chanson ajoutée, chaque début de refrain DOIT comporter obligatoirement la propriété `section: 'Refrain'` pour afficher dans le lecteur immersif le badge distinctif rose néon `🎵 Refrain`, offrant ainsi un repérage immédiat et une lecture fluide à l'apprenant.
+     - Ce découpage court et naturel permet à l'apprenant de chanter,     - **Balisage Explicite des Refrains & Pré-refrains (`🎵 Refrain` / `🎵 Pré-refrain`)** : Pour TOUTE chanson ajoutée, chaque début de refrain DOIT comporter obligatoirement la propriété `section: 'Refrain'` (badge rose) et chaque pré-refrain `section: 'Pré-refrain'` (badge ambré/orange), offrant un repérage immédiat et une lecture fluide à l'apprenant.
+    - **Règle Phonologique Chinoise des Changements de Tons de 不 et 一** :
+      - **不** : Devant un mot au **4ème ton** (ton descendant), **不** se prononce et s'écrit obligatoirement en pinyin **`bú`** (au 2ème ton) (ex: `bú shì`, `bú yòng`, `bú pà`, `bú huì`, `bú zài`, `zhǎo bú dào`). Devant les 1er, 2ème et 3ème tons, il reste `bù`.
+      - **一** : Devant un mot au **4ème ton**, **一** se prononce et s'écrit obligatoirement **`yí`** (au 2ème ton) (ex: `yí cì`, `yí jù`, `yí bèizi`, `yí yàng`, `yí gè`, `yí dìng`). Devant les 1er, 2ème et 3ème tons, il s'écrit **`yì`** (au 4ème ton) (ex: `yì shēng`, `yì bēi`, `yì tiān`, `yì duǒ`, `yì qǐ`).
+    - **Règle de Comparaison Multi-Sources & Synchronisation Audio Stricte** : Toujours comparer les paroles sur plusieurs sources et bases musicales chinoises de référence (QQ Music, NetEase Cloud, Baidu) pour garantir une transcription 100% fidèle à la piste audio intégrée sans omission de strophe ni vers fantôme.
 5. **Charte des Couleurs Normalisées pour les Niveaux HSK (HSK 1 à HSK 6)** :
    - Chaque niveau HSK possède une **couleur officielle fixe et unique** sur TOUS les contenus et toutes les pages de l'application :
      - **HSK 1** : **Turquoise / Vert Émeraude** (`#00BFA5` / `#00897B`)
@@ -59,9 +61,12 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
 6. **Présentation Visuelle du Lecteur Immersif Écoute & Lecture** :
    - **En-tête de lecture (Ligne 1)** : Afficher le **Titre en français**, suivi du **Titre en caractères chinois (Hanzi)**, puis du **Badge [HSK X]** (`Titre Français (Hanzi) [HSK X]`).
    - **Sous-titres (Lignes 2 & 3)** : Le **Pinyin** est positionné sur la ligne juste en dessous, suivi du **nom de l'artiste** ou de l'auteur sur la ligne suivante.
-   - **Bouton d'action rapide en en-tête** :
-     - **Bouton unique `Pinyin`** : Afficher uniquement l'intitulé court `Pinyin` (bannir `Pinyin On / Off`). L'état actif/inactif est signalé visuellement par la couleur du bouton (allumé/éteint).
+   - **Boutons d'action rapide en en-tête (Pinyin & Traduction)** :
+     - Positionnés **à droite** de l'en-tête, compacts et épurés sur mobile (`text-[10.5px] sm:text-xs`).
+     - L'état actif/inactif est signalé visuellement par la couleur du bouton (allumé/éteint).
      - **Épuration maximale** : Ne pas ajouter de bouton de synchronisation ou de lecteur TTS global dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
+   - **Lecteur Vidéo Direct 1-Clic Sans Double-Clic** : Sur toute la plateforme (Écoute & Lecture, Formations), les vidéos sont directement intégrées et jouables en un seul clic immédiat.
+   - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.bal dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
    - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.
 7. **Contrôle Systématique, Visuel et Obligatoire dans le Navigateur de Toute Vidéo YouTube** :
    - Pour TOUTE vidéo ou chanson ajoutée ou modifiée, **interdiction formelle de valider sans avoir effectué une vérification visuelle directe dans le navigateur (`browser_subagent`)**.

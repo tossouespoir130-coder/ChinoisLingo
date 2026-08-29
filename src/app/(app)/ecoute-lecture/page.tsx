@@ -1106,7 +1106,7 @@ export const readingCatalog: ReadingItem[] = [
       { id: 'st_6', speaker: 'Chorale des Jeunes', hanzi: '能否记起', pinyin: 'Néng fǒu jì qǐ', french: 'Te souviens-tu ?' },
       { id: 'st_7', speaker: 'Chorale des Jeunes', hanzi: '曾与我同行', pinyin: 'Céng yǔ wǒ tóngxíng', french: 'De cette silhouette qui marchait avec moi' },
       { id: 'st_8', speaker: 'Chorale des Jeunes', hanzi: '消失在风里的身影', pinyin: 'Xiāoshī zài fēng lǐ de shēnyǐng', french: 'Avant de disparaître dans le vent' },
-      { id: 'st_9', speaker: 'Chorale des Jeunes', hanzi: '我祈祷拥有一颗透明的心灵', pinyin: 'Wǒ qǐdǎo yōngyǒu yì kē tòumíng de xīnlíng', french: 'Je prie pour garder un cœur pur et transparent' },
+      { id: 'st_9', section: 'Pré-refrain', speaker: 'Chorale des Jeunes', hanzi: '我祈祷拥有一颗透明的心灵', pinyin: 'Wǒ qǐdǎo yōngyǒu yì kē tòumíng de xīnlíng', french: 'Je prie pour garder un cœur pur et transparent' },
       { id: 'st_10', speaker: 'Chorale des Jeunes', hanzi: '和会流泪的眼睛', pinyin: 'Hé huì liúlèi de yǎnjing', french: 'Et des yeux capables de s’émouvoir' },
       { id: 'st_11', speaker: 'Chorale des Jeunes', hanzi: '给我再去相信的勇气', pinyin: 'Gěi wǒ zài qù xiāngxìn de yǒngqì', french: 'Donne-moi le courage de croire à nouveau' },
       { id: 'st_12', speaker: 'Chorale des Jeunes', hanzi: '越过谎言去拥抱你', pinyin: 'Yuèguò huǎngyán qù yōngbào nǐ', french: 'Et de dépasser les faux-semblants pour t’embrasser' },
@@ -1114,34 +1114,15 @@ export const readingCatalog: ReadingItem[] = [
       { id: 'st_14', speaker: 'Chorale des Jeunes', hanzi: '每当我迷失在黑夜里', pinyin: 'Měi dāng wǒ míshī zài hēiyè lǐ', french: 'Chaque fois que je m’égare dans l’obscurité' },
       { id: 'st_15', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du ciel nocturne' },
       { id: 'st_16', speaker: 'Chorale des Jeunes', hanzi: '请指引我靠近你', pinyin: 'Qǐng zhǐyǐn wǒ kàojìn nǐ', french: 'Guide mes pas pour me rapprocher de toi' },
-      { id: 'st_17', section: 'Couplet 2', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du firmament' },
-      { id: 'st_18', speaker: 'Chorale des Jeunes', hanzi: '是否知道', pinyin: 'Shìfǒu zhīdào', french: 'Sais-tu' },
-      { id: 'st_19', speaker: 'Chorale des Jeunes', hanzi: '那曾与我同心的身影', pinyin: 'Nà céng yǔ wǒ tóngxīn de shēnyǐng', french: 'Où se trouve cette âme qui partageait mes rêves' },
-      { id: 'st_20', speaker: 'Chorale des Jeunes', hanzi: '如今在哪里', pinyin: 'Rújīn zài nǎlǐ', french: 'Où est-elle aujourd’hui ?' },
-      { id: 'st_21', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du ciel nocturne' },
-      { id: 'st_22', speaker: 'Chorale des Jeunes', hanzi: '是否在意', pinyin: 'Shìfǒu zàiyì', french: 'T’en soucies-tu ?' },
-      { id: 'st_23', speaker: 'Chorale des Jeunes', hanzi: '是等太阳升起', pinyin: 'Shì děng tàiyáng shēngqǐ', french: 'D’attendre le lever du soleil' },
-      { id: 'st_24', speaker: 'Chorale des Jeunes', hanzi: '还是意外先来临', pinyin: 'Háishì yìwài xiān láilín', french: 'Ou de voir arriver les imprévus ?' },
-      { id: 'st_25', speaker: 'Chorale des Jeunes', hanzi: '我宁愿所有痛苦都留在心里', pinyin: 'Wǒ nìngyuàn suǒyǒu tòngkǔ dōu liú zài xīn lǐ', french: 'Je préfère garder toute la souffrance en mon cœur' },
-      { id: 'st_26', speaker: 'Chorale des Jeunes', hanzi: '也不愿忘记你的眼睛', pinyin: 'Yě bú yuàn wàngjì nǐ de yǎnjing', french: 'Plutôt que d’oublier la lumière de ton regard' },
-      { id: 'st_27', speaker: 'Chorale des Jeunes', hanzi: '给我再去相信的勇气', pinyin: 'Gěi wǒ zài qù xiāngxìn de yǒngqì', french: 'Donne-moi le courage de croire' },
-      { id: 'st_28', speaker: 'Chorale des Jeunes', hanzi: '越过谎言去拥抱你', pinyin: 'Yuèguò huǎngyán qù yōngbào nǐ', french: 'Et d’aller vers toi avec sincérité' },
-      { id: 'st_29', section: 'Refrain', speaker: 'Chorale des Jeunes', hanzi: '每当我找不到存在的意义', pinyin: 'Měi dāng wǒ zhǎo bú dào cúnzài de yìyì', french: 'Quand je cherche le sens de ma vie' },
-      { id: 'st_30', speaker: 'Chorale des Jeunes', hanzi: '每当我迷失在黑夜里', pinyin: 'Měi dāng wǒ míshī zài hēiyè lǐ', french: 'Quand je suis perdu dans la nuit sombre' },
-      { id: 'st_31', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du ciel nocturne' },
-      { id: 'st_32', speaker: 'Chorale des Jeunes', hanzi: '请照亮我前行', pinyin: 'Qǐng zhàoliàng wǒ qiánxíng', french: 'Illumine mon chemin vers l’avant' },
-      { id: 'st_33', section: 'Couplet 3', speaker: 'Chorale des Jeunes', hanzi: '我祈祷拥有一颗透明的心灵', pinyin: 'Wǒ qǐdǎo yōngyǒu yì kē tòumíng de xīnlíng', french: 'Je prie pour préserver la pureté de mon âme' },
-      { id: 'st_34', speaker: 'Chorale des Jeunes', hanzi: '和会流泪的眼睛', pinyin: 'Hé huì liúlèi de yǎnjing', french: 'Et mon empathie' },
-      { id: 'st_35', speaker: 'Chorale des Jeunes', hanzi: '给我再去相信的勇气', pinyin: 'Gěi wǒ zài qù xiāngxìn de yǒngqì', french: 'Donne-moi l’audace d’aimer' },
-      { id: 'st_36', speaker: 'Chorale des Jeunes', hanzi: '越过谎言去拥抱你', pinyin: 'Yuèguò huǎngyán qù yōngbào nǐ', french: 'Au-delà de toute désillusion' },
-      { id: 'st_37', section: 'Refrain', speaker: 'Chorale des Jeunes', hanzi: '每当我找不到存在的意义', pinyin: 'Měi dāng wǒ zhǎo bú dào cúnzài de yìyì', french: 'Quand s’efface le sens' },
-      { id: 'st_38', speaker: 'Chorale des Jeunes', hanzi: '每当我迷失在黑夜里', pinyin: 'Měi dāng wǒ míshī zài hēiyè lǐ', french: 'Et que vient l’obscurité' },
-      { id: 'st_39', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du firmament' },
-      { id: 'st_40', speaker: 'Chorale des Jeunes', hanzi: '请照亮我前行', pinyin: 'Qǐng zhàoliàng wǒ qiánxíng', french: 'Guide mes pas vers la lumière' },
-      { id: 'st_41', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile dans la nuit' },
-      { id: 'st_42', speaker: 'Chorale des Jeunes', hanzi: '能否听清', pinyin: 'Néng fǒu tīng qīng', french: 'Entends-tu' },
-      { id: 'st_43', speaker: 'Chorale des Jeunes', hanzi: '那仰望的人', pinyin: 'Nà yǎngwàng de rén', french: 'La voix de celui qui regarde le ciel' },
-      { id: 'st_44', speaker: 'Chorale des Jeunes', hanzi: '心底的孤独和叹息', pinyin: 'Xīndǐ de gūdú hé tànxī', french: 'Et les soupirs au fond de son cœur ?' },
+      { id: 'st_17', section: 'Pré-refrain', speaker: 'Chorale des Jeunes', hanzi: '我祈祷拥有一颗透明的心灵', pinyin: 'Wǒ qǐdǎo yōngyǒu yì kē tòumíng de xīnlíng', french: 'Je prie pour préserver la pureté de mon âme' },
+      { id: 'st_18', speaker: 'Chorale des Jeunes', hanzi: '和会流泪的眼睛', pinyin: 'Hé huì liúlèi de yǎnjing', french: 'Et mon empathie' },
+      { id: 'st_19', speaker: 'Chorale des Jeunes', hanzi: '给我再去相信的勇气', pinyin: 'Gěi wǒ zài qù xiāngxìn de yǒngqì', french: 'Donne-moi l’audace d’aimer' },
+      { id: 'st_20', speaker: 'Chorale des Jeunes', hanzi: '越过谎言去拥抱你', pinyin: 'Yuèguò huǎngyán qù yōngbào nǐ', french: 'Au-delà de toute désillusion' },
+      { id: 'st_21', section: 'Refrain', speaker: 'Chorale des Jeunes', hanzi: '每当我找不到存在的意义', pinyin: 'Měi dāng wǒ zhǎo bú dào cúnzài de yìyì', french: 'Quand s’efface le sens' },
+      { id: 'st_22', speaker: 'Chorale des Jeunes', hanzi: '每当我迷失在黑夜里', pinyin: 'Měi dāng wǒ míshī zài hēiyè lǐ', french: 'Et que vient l’obscurité' },
+      { id: 'st_23', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile la plus brillante du firmament' },
+      { id: 'st_24', speaker: 'Chorale des Jeunes', hanzi: '请照亮我前行', pinyin: 'Qǐng zhàoliàng wǒ qiánxíng', french: 'Guide mes pas vers la lumière' },
+      { id: 'st_25', section: 'Outro', speaker: 'Chorale des Jeunes', hanzi: '夜空中最亮的星', pinyin: 'Yè kōng zhōng zuì liàng de xīng', french: 'Étoile dans la nuit' },
     ],
   },
   {
@@ -1897,121 +1878,95 @@ function EcouteLectureContent() {
       {activeReading ? (
         <div className="space-y-6 animate-fadeIn">
           {/* Top Bar: Back Button, Bilingual Title with Hanzi & Pinyin, Audio Actions ONLY */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
-            <div className="flex items-center gap-3 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+            <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
               <button
                 onClick={closeReading}
                 type="button"
-                className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer mt-0.5 sm:mt-0"
                 title="Retour au catalogue Écoute & Lecture"
               >
-                <ArrowLeft className="w-5 h-5" />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 {/* Detail View Title: French Title (H1) + Chinese Title (Hanzi) + HSK Badge */}
-                <h1 className="font-display font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] tracking-tight flex flex-wrap items-center gap-2.5">
-                  <span>{displayedTitleFr}</span>
-                  <span className="font-hanzi text-base sm:text-xl font-bold text-[#00796B] dark:text-[#03DAC5]">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="font-display font-black text-base sm:text-xl text-[#212121] dark:text-[#F5F5F5] tracking-tight">
+                    {displayedTitleFr}
+                  </h1>
+                  <span className="font-hanzi text-sm sm:text-lg font-bold text-[#00796B] dark:text-[#03DAC5]">
                     ({displayedTitleZh})
                   </span>
-                  <span className={`text-[11px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shrink-0 ${getLevelBadgeStyle(activeReading.level)}`}>
+                  <span className={`text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-2 sm:px-2.5 py-0.5 rounded-full shrink-0 ${getLevelBadgeStyle(activeReading.level)}`}>
                     {activeReading.level}
                   </span>
-                </h1>
+                </div>
 
                 {/* Pinyin Subtitle under the title (obeying Pinyin On/Off toggle) */}
                 {isPinyinVisible && displayedTitlePinyin && (
-                  <p className="font-pinyin text-xs sm:text-sm font-semibold text-[#00796B] dark:text-[#03DAC5] mt-1">
+                  <p className="font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B] dark:text-[#03DAC5] mt-0.5">
                     {displayedTitlePinyin}
                   </p>
                 )}
 
                 {activeReading.artist && (
-                  <p className="text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5">
+                  <p className="text-[11px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                     Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
                   </p>
                 )}
 
                 {activeReading.author && (
-                  <p className="text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5">
+                  <p className="text-[11px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                     Par <span className="font-bold text-[#6200EE] dark:text-[#BB86FC]">{activeReading.author}</span>
                   </p>
                 )}
               </div>
             </div>
 
-            {/* Quick Action Toggles: Pinyin & Traduction Buttons */}
-            <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0">
+            {/* Quick Action Toggles: Pinyin & Traduction Buttons (Positioned to the Right & Compact on Mobile) */}
+            <div className="flex items-center gap-1.5 self-end sm:self-center shrink-0 ml-auto">
               <button
                 onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
                 type="button"
-                className={`inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border text-[11px] sm:text-xs font-bold transition-all btn-press ${
+                className={`inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border text-[10.5px] sm:text-xs font-bold transition-all btn-press ${
                   isPinyinVisible
                     ? 'bg-[#00897B] text-white border-[#00897B] shadow-xs'
                     : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
                 }`}
                 title={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
               >
-                {isPinyinVisible ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                {isPinyinVisible ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
                 <span>Pinyin</span>
               </button>
 
               <button
                 onClick={() => setLocalFrenchOverride(!isFrenchVisible)}
                 type="button"
-                className={`inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border text-[11px] sm:text-xs font-bold transition-all btn-press ${
+                className={`inline-flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border text-[10.5px] sm:text-xs font-bold transition-all btn-press ${
                   isFrenchVisible
                     ? 'bg-[#6200EE] text-white border-[#6200EE] shadow-xs'
                     : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
                 }`}
                 title={isFrenchVisible ? 'Masquer la traduction française' : 'Afficher la traduction française'}
               >
-                <Languages className="w-3.5 h-3.5" />
+                <Languages className="w-3 h-3" />
                 <span>Traduction</span>
               </button>
             </div>
           </div>
 
-          {/* Custom Branded Video Player for Songs (Exact Match with Formations style) */}
+          {/* Direct 1-Click Video Player for Songs & Media */}
           {activeReading.youtubeId && (
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-black aspect-video w-full max-w-4xl mx-auto relative flex items-center justify-center">
-              {isPlayingSongVideo ? (
-                <iframe
-                  key={activeReading.youtubeId}
-                  src={`https://www.youtube-nocookie.com/embed/${activeReading.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
-                  title={`${displayedTitleFr} - ${displayedTitleZh}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full border-0 animate-fadeIn"
-                />
-              ) : (
-                <div
-                  onClick={() => setIsPlayingSongVideo(true)}
-                  className="relative w-full h-full group cursor-pointer overflow-hidden flex items-center justify-center bg-black select-none"
-                >
-                  {/* High Quality Thumbnail Cover Image */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={
-                      activeReading.imageUrl ||
-                      `https://img.youtube.com/vi/${activeReading.youtubeId}/hqdefault.jpg`
-                    }
-                    alt={displayedTitleFr}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                  />
-
-                  {/* Subtle Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-all duration-300" />
-
-                  {/* Centered ChinoisLingo Brand Play Button (Ultra-Transparent, No White Border) */}
-                  <div className="absolute inset-0 flex items-center justify-center z-10">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE]/20 hover:bg-[#6200EE]/35 backdrop-blur-[2px] flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300">
-                      <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white/65 text-white/65 group-hover:fill-white/90 group-hover:text-white/90 ml-1 transition-colors" />
-                    </div>
-                  </div>
-                </div>
-              )}
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-black aspect-video w-full max-w-4xl mx-auto relative">
+              <iframe
+                key={activeReading.youtubeId}
+                src={`https://www.youtube.com/embed/${activeReading.youtubeId}?rel=0&playsinline=1`}
+                title={`${displayedTitleFr} - ${displayedTitleZh}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full border-0 animate-fadeIn"
+              />
             </div>
           )}
 
@@ -2194,10 +2149,17 @@ function EcouteLectureContent() {
                   }`}
                 >
                   <div className="flex flex-col gap-1 w-full">
-                    {/* Section Marker (Couplet / Refrain) for Songs */}
+                    {/* Section Marker (Couplet / Pré-refrain / Refrain / Outro) for Songs */}
                     {activeReading.type === 'chansons' && sent.section && (
                       <div className="flex items-center gap-2 mb-1.5 mt-0.5">
-                        {sent.section.toLowerCase().includes('refrain') ? (
+                        {sent.section.toLowerCase().includes('pré-refrain') || sent.section.toLowerCase().includes('pre-refrain') ? (
+                          <>
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF9800]/15 dark:bg-[#FF9800]/25 text-[#E65100] dark:text-[#FFB74D] text-[11px] font-black uppercase tracking-wider border border-[#FF9800]/30 shadow-2xs">
+                              🎵 {sent.section}
+                            </span>
+                            <div className="flex-1 h-px bg-gradient-to-r from-[#FF9800]/40 via-[#FF9800]/15 to-transparent" />
+                          </>
+                        ) : sent.section.toLowerCase().includes('refrain') ? (
                           <>
                             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E91E63]/15 dark:bg-[#E91E63]/25 text-[#E91E63] dark:text-[#F48FB1] text-[11px] font-black uppercase tracking-wider border border-[#E91E63]/30 shadow-2xs">
                               🎵 {sent.section}

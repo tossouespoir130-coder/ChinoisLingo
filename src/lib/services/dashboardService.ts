@@ -132,29 +132,35 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     completedLessonKeys.slice(0, 2).forEach((lessonId) => {
       recentActivities.push({
         id: `course-${lessonId}`,
-        title: `Leçon Vidéo Validée`,
+        title: `Formation Vidéo`,
         category: 'Formation',
         categoryBadge: 'FORMATION VIDÉO',
         hskLevel: 'Tous Niveaux',
         progressPercentage: 100,
         duration: '15 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
-        href: '/formation',
+        href: `/formation?lesson=${lessonId}`,
         isCompleted: true,
       });
     });
 
     completedContentKeys.slice(0, 2).forEach((contentId) => {
+      let targetType = 'chansons';
+      if (contentId.startsWith('dialogue_')) targetType = 'dialogues';
+      else if (contentId.startsWith('article_')) targetType = 'articles';
+      else if (contentId.startsWith('histoire_')) targetType = 'histoires';
+      else if (contentId.startsWith('podcast_')) targetType = 'podcasts';
+
       recentActivities.push({
         id: `content-${contentId}`,
         title: `Ressource Écoute & Lecture`,
-        category: 'Écoute & Lecture',
+        category: targetType === 'chansons' ? 'Chanson' : targetType === 'dialogues' ? 'Dialogue' : 'Article',
         categoryBadge: 'IMMERSION',
         hskLevel: 'HSK 1',
         progressPercentage: 100,
         duration: '5 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&auto=format&fit=crop&q=80',
-        href: '/ecoute-lecture',
+        href: `/ecoute-lecture?type=${targetType}&id=${contentId}`,
         isCompleted: true,
       });
     });
@@ -172,7 +178,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
         progressPercentage: completedLessonKeys.length > 0 ? 100 : 35,
         duration: '18 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
-        href: '/formation',
+        href: '/formation?course=prononciation-tons',
         isCompleted: completedLessonKeys.length > 0,
       },
       {
@@ -180,11 +186,11 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
         title: 'Chanson : L’Étoile la Plus Brillante',
         category: 'Chanson',
         categoryBadge: 'CHANSON IMMERSIVE',
-        hskLevel: 'HSK 2',
+        hskLevel: 'HSK 3',
         progressPercentage: completedContentKeys.length > 0 ? 100 : 60,
         duration: '4 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80',
-        href: '/ecoute-lecture',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=400&auto=format&fit=crop&q=80',
+        href: '/ecoute-lecture?type=chansons&id=chanson_star',
         isCompleted: completedContentKeys.length > 0,
       },
       {
@@ -196,7 +202,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
         progressPercentage: 10,
         duration: '6 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80',
-        href: '/ecoute-lecture',
+        href: '/ecoute-lecture?type=dialogues&id=dialogue_restaurant',
         isCompleted: false,
       }
     );

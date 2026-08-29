@@ -365,45 +365,18 @@ function FormationContent() {
               {/* Video Player Card */}
               <div className="nixtio-card overflow-hidden bg-black text-white relative rounded-3xl border border-neutral-800 shadow-xl">
                 <div className="aspect-video w-full relative flex items-center justify-center bg-black">
-                  {isPlayingVideo && currentLesson.youtubeId ? (
+                  {currentLesson.youtubeId ? (
                     <iframe
                       key={currentLesson.youtubeId}
-                      src={`https://www.youtube-nocookie.com/embed/${currentLesson.youtubeId}?rel=0&autoplay=1`}
+                      src={`https://www.youtube.com/embed/${currentLesson.youtubeId}?rel=0&playsinline=1`}
                       title={currentLesson.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                       className="w-full h-full border-0 animate-fadeIn"
                     />
                   ) : (
-                    <div
-                      onClick={() => {
-                        if (currentLesson.youtubeId) {
-                          setIsPlayingVideo(true);
-                        }
-                      }}
-                      className="relative w-full h-full group cursor-pointer overflow-hidden flex items-center justify-center bg-black select-none"
-                    >
-                      {/* Cover Thumbnail Image */}
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={
-                          currentLesson.youtubeId
-                            ? `https://img.youtube.com/vi/${currentLesson.youtubeId}/hqdefault.jpg`
-                            : activeCourse.thumbnailUrl
-                        }
-                        alt={currentLesson.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                      />
-
-                      {/* Subtle Dark Gradient Overlay */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-all duration-300" />
-
-                      {/* Centered ChinoisLingo Brand Play Button (Ultra-Transparent, No White Border) */}
-                      <div className="absolute inset-0 flex items-center justify-center z-10">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE]/20 hover:bg-[#6200EE]/35 backdrop-blur-[2px] flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300">
-                          <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white/65 text-white/65 group-hover:fill-white/90 group-hover:text-white/90 ml-1 transition-colors" />
-                        </div>
-                      </div>
+                    <div className="w-full h-full flex items-center justify-center text-neutral-500 text-sm">
+                      Vidéo bientôt disponible
                     </div>
                   )}
                 </div>

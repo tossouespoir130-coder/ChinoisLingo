@@ -67,8 +67,13 @@ Comprend 4 sous-sections fondamentales :
 ### 4.3. Écoute & Lecture (`/ecoute-lecture`)
 - **5 Catégories** : Chansons, Articles, Histoires, Dialogues, Podcasts.
 - **Règles des Cartes du Catalogue** : Titre 100% en français, nom d'artiste 100% en alphabet latin, badge HSK coloré (aucun caractère chinois sur la carte extérieure ; les Hanzi et Pinyin sont réservés à l'intérieur du lecteur immersif).
-- **Lecteur Immersif** :
-   - **Chansons** : Paroles synchronisées découpées à chaque pause musicale / virgule (saut de ligne obligatoire), triptyque Hanzi + Pinyin + Traduction française, vidéo YouTube intégrée et vérifiée.
+- **Lecteur Immersif & Multimédia** :
+   - **Lecteur Vidéo Direct 1-Clic Sans Double-Clic** : La vidéo démarre immédiatement dès le 1er clic sur Play sans aucune surcouche ni bouton parasite.
+   - **Chansons** : Paroles synchronisées découpées à chaque pause musicale / virgule (saut de ligne obligatoire), triptyque Hanzi + Pinyin complet avec tons + Traduction française soignée, balisage explicite des `🎵 Pré-refrain` (orange) et `🎵 Refrain` (rose).
+   - **Règle Phonologique Chinoise des Tons (不 & 一)** :
+     - **不** : devient **`bú`** (2ème ton) devant un mot au 4ème ton (ex: `bú shì`, `bú yòng`, `bú pà`, `bú huì`).
+     - **一** : devient **`yí`** (2ème ton) devant un mot au 4ème ton (ex: `yí cì`, `yí jù`, `yí bèizi`), et **`yì`** (4ème ton) devant les 1er, 2ème et 3ème tons (ex: `yì shēng`, `yì bēi`).
+   - **Vérification Multi-Sources** : Comparaison systématique des lyrics sur plusieurs sources chinoises certifiées pour garantir l'exactitude audio.
    - **Dialogues** : Section *Les Personnages du Dialogue* intercalée en en-tête avec rôles et portraits, puis répliques immersives avec lecture audio et pinyin commutable.
    - **Articles & Histoires** : Paragraphes bilingues avec synthèse vocale phrase par phrase.
 
