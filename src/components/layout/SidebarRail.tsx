@@ -40,12 +40,15 @@ export function SidebarRail() {
       <div className="flex flex-col items-center gap-6">
         <Link 
           href="/tableau-de-bord"
-          className="w-12 h-12 rounded-2xl bg-[#6200EE] hover:bg-[#3700B3] flex items-center justify-center shadow-md shadow-[#6200EE]/30 transition-transform hover:scale-105 active:scale-95"
+          className="w-12 h-12 rounded-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 select-none"
           title="ChinoisLingo"
         >
-          <span className="font-hanzi font-black text-white text-xl tracking-tight">
-            华
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/chinoislingo-icon.png"
+            alt="ChinoisLingo"
+            className="w-11 h-11 object-contain drop-shadow-sm"
+          />
         </Link>
 
         {/* Navigation Items */}
