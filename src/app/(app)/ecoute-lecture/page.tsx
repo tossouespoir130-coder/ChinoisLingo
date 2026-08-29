@@ -1764,6 +1764,19 @@ function EcouteLectureContent() {
     };
   }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, setCurrentSentenceIndex]);
 
+  // Auto-scroll synchronized with audio reading sequence
+  useEffect(() => {
+    if (isPlayingAll && typeof document !== 'undefined') {
+      const sentence = displayedSentences[currentSentenceIndex];
+      if (sentence) {
+        const el = document.getElementById(`sentence-${sentence.id}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }
+  }, [isPlayingAll, currentSentenceIndex, displayedSentences]);
+
   const toggleSaveSentence = (id: string) => {
     setSavedSentenceIds((prev) => {
       const next = new Set(prev);
@@ -1832,8 +1845,42 @@ function EcouteLectureContent() {
               </div>
             </div>
 
-            {/* Quick Action Toggles: Pinyin & Traduction Buttons */}
-            <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0">
+            {/* Quick Action Toggles: Audio Global, Pinyin & Traduction */}
+            <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0 flex-wrap">
+              {/* Bouton de Lecture Audio Global Unique */}
+              <button
+                onClick={() => {
+                  if (isPlayingAll) {
+                    setIsPlayingAll(false);
+                    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                      window.speechSynthesis.cancel();
+                    }
+                    setPlayingSentenceId(null);
+                  } else {
+                    setIsPlayingAll(true);
+                  }
+                }}
+                type="button"
+                className={`inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full border text-[11px] sm:text-xs font-bold transition-all btn-press shadow-xs cursor-pointer ${
+                  isPlayingAll
+                    ? 'bg-[#E53935] text-white border-[#E53935] animate-pulse shadow-[#E53935]/30'
+                    : 'bg-[#00897B] text-white border-[#00897B] shadow-[#00897B]/25 hover:bg-[#00796B]'
+                }`}
+                title={isPlayingAll ? 'Mettre en pause la lecture audio' : 'Écouter toute la transcription'}
+              >
+                {isPlayingAll ? (
+                  <>
+                    <Pause className="w-3.5 h-3.5 fill-white" />
+                    <span>Pause</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-white" />
+                    <span>Écouter l’Audio</span>
+                  </>
+                )}
+              </button>
+
               <button
                 onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
                 type="button"
@@ -1997,12 +2044,45 @@ function EcouteLectureContent() {
           )}
 
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
-          <div className="nixtio-card p-6 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
-            <div className="pb-4 mb-2 flex items-center justify-between">
+          <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
+            <div className="pb-3.5 mb-2 flex items-center justify-between gap-3 flex-wrap">
               <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#00796B] dark:text-[#03DAC5] flex items-center gap-2">
                 {activeReading.type === 'chansons' ? <Music className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
                 <span>{activeReading.type === 'chansons' ? 'Paroles & Traduction (Lyrics)' : 'Texte & Transcription Synchronisée'}</span>
               </h3>
+
+              {/* Bouton de Lecture Audio Global Unique */}
+              <button
+                onClick={() => {
+                  if (isPlayingAll) {
+                    setIsPlayingAll(false);
+                    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                      window.speechSynthesis.cancel();
+                    }
+                    setPlayingSentenceId(null);
+                  } else {
+                    setIsPlayingAll(true);
+                  }
+                }}
+                type="button"
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs btn-press cursor-pointer ${
+                  isPlayingAll
+                    ? 'bg-[#E53935] text-white animate-pulse shadow-[#E53935]/30'
+                    : 'bg-[#00897B] hover:bg-[#00796B] text-white shadow-[#00897B]/25'
+                }`}
+              >
+                {isPlayingAll ? (
+                  <>
+                    <Pause className="w-3.5 h-3.5 fill-white" />
+                    <span>Pause Audio</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-white" />
+                    <span>Écouter l’Audio</span>
+                  </>
+                )}
+              </button>
             </div>
 
             {displayedSentences.map((sent, idx) => {
@@ -2095,35 +2175,19 @@ function EcouteLectureContent() {
                       )}
                     </div>
 
-                    {/* Audio & Bookmark Actions - Compact, rattachés en haut à droite sans aucun vide vertical */}
-                    <div className="flex items-center gap-1 shrink-0 pt-0.5">
+                    {/* Bookmark Action - Super Compact, Discreet & Space-Saving */}
+                    <div className="shrink-0 pt-1">
                       <button
                         onClick={() => toggleSaveSentence(sent.id)}
                         type="button"
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-lg flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSaved
                             ? 'bg-[#00897B] text-white shadow-2xs'
                             : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#757575] hover:text-[#212121] dark:hover:text-white'
                         }`}
                         title={isSaved ? 'Enregistré dans vos favoris' : 'Enregistrer ce vers'}
                       >
-                        {isSaved ? <Check className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setIsPlayingAll(false);
-                          playSentenceAudio(sent.id, sent.hanzi);
-                        }}
-                        type="button"
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
-                          isSentencePlaying
-                            ? 'bg-[#00897B] text-white animate-pulse shadow-xs shadow-[#00897B]/30'
-                            : 'bg-[#00897B]/10 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white'
-                        }`}
-                        title="Écouter la prononciation de ce vers"
-                      >
-                        <Volume2 className="w-3.5 h-3.5" />
+                        {isSaved ? <Check className="w-3 h-3" /> : <Bookmark className="w-3 h-3" />}
                       </button>
                     </div>
                   </div>
