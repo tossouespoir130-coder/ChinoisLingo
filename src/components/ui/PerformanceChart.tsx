@@ -31,23 +31,23 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
     };
   }, [chartData]);
 
-  const defaultWeekData = [
-    { label: 'Lun', masteredWords: 15, studyTimeHours: 0.3, retentionRate: 85 },
-    { label: 'Mar', masteredWords: 22, studyTimeHours: 0.5, retentionRate: 88 },
-    { label: 'Mer', masteredWords: 28, studyTimeHours: 0.4, retentionRate: 90 },
-    { label: 'Jeu', masteredWords: 35, studyTimeHours: 0.6, retentionRate: 92 },
-    { label: 'Ven', masteredWords: 42, studyTimeHours: 0.5, retentionRate: 94 },
-    { label: 'Sam', masteredWords: 48, studyTimeHours: 0.8, retentionRate: 95 },
-    { label: 'Dim', masteredWords: 55, studyTimeHours: 0.7, retentionRate: 96 },
+  const emptyWeekData = [
+    { label: 'Lun', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Mar', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Mer', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Jeu', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Ven', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Sam', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Dim', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
   ];
-  const defaultMonthData = [
-    { label: 'Sem 1', masteredWords: 25, studyTimeHours: 2.2, retentionRate: 82 },
-    { label: 'Sem 2', masteredWords: 45, studyTimeHours: 3.5, retentionRate: 89 },
-    { label: 'Sem 3', masteredWords: 70, studyTimeHours: 4.8, retentionRate: 93 },
-    { label: 'Sem 4', masteredWords: 95, studyTimeHours: 6.2, retentionRate: 96 },
+  const emptyMonthData = [
+    { label: 'Sem 1', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Sem 2', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Sem 3', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Sem 4', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
   ];
 
-  const points = realStats?.[timeframe] || (timeframe === 'week' ? defaultWeekData : defaultMonthData);
+  const points = realStats?.[timeframe] || (timeframe === 'week' ? emptyWeekData : emptyMonthData);
   const n = points.length;
 
   // Dynamic axis scaling adapted to user actual numbers

@@ -47,12 +47,35 @@ export default function DashboardPage() {
   const { profile, isLoading: authLoading } = useAuth();
   const { userName } = usePreferences();
   const [isLoading, setIsLoading] = useState(true);
-  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [dashboardData, setDashboardData] = useState<any>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const cached = localStorage.getItem('chinoislingo_user_dashboard_stats');
+        return cached ? JSON.parse(cached) : null;
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [isTipsOpen, setIsTipsOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [motivationalMessage, setMotivationalMessage] = useState(motivationalQuotes[0]);
-  const [realActivities, setRealActivities] = useState<any[]>([]);
+  const [realActivities, setRealActivities] = useState<any[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const cached = localStorage.getItem('chinoislingo_user_dashboard_stats');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          return parsed.recentActivities || [];
+        }
+      } catch {
+        // ignore
+      }
+    }
+    return [];
+  });
 
   useEffect(() => {
     let isMounted = true;
@@ -64,6 +87,11 @@ export default function DashboardPage() {
           setDashboardData(res);
           if (res.recentActivities) {
             setRealActivities(res.recentActivities);
+          }
+          try {
+            localStorage.setItem('chinoislingo_user_dashboard_stats', JSON.stringify(res));
+          } catch {
+            // ignore
           }
         }
       })
@@ -87,7 +115,8 @@ export default function DashboardPage() {
     setMotivationalMessage(motivationalQuotes[randomIndex]);
   }, []);
 
-  if (isLoading && (!profile || authLoading)) {
+  // Strict Skeleton Lock: Never display without real user data
+  if ((isLoading && !dashboardData) || authLoading) {
     return <DashboardSkeleton />;
   }
 
