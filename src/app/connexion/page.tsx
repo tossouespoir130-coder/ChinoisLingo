@@ -266,32 +266,18 @@ export default function ConnexionPage() {
             
             {/* Header Mobile Exclusif en Mode Inscription */}
             {mode === 'signup' && (
-              <div className="lg:hidden flex items-center justify-between pb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D3D]/60">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-xl bg-[#6200EE] text-white flex items-center justify-center font-hanzi font-black text-sm shadow-xs">
-                    华
-                  </div>
-                  <div>
-                    <span className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] block leading-tight">
-                      ChinoisLingo
-                    </span>
-                    <span className="text-[8.5px] font-bold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider block">
-                      « Le chinois devient facile »
-                    </span>
-                  </div>
+              <div className="lg:hidden flex items-center gap-2 pb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D3D]/60">
+                <div className="w-7 h-7 rounded-xl bg-[#6200EE] text-white flex items-center justify-center font-hanzi font-black text-sm shadow-xs">
+                  华
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMode('signin');
-                    setErrorMessage(null);
-                    setSuccessMessage(null);
-                  }}
-                  className="text-[11px] font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline"
-                >
-                  Se connecter
-                </button>
+                <div>
+                  <span className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] block leading-tight">
+                    ChinoisLingo
+                  </span>
+                  <span className="text-[8.5px] font-bold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider block">
+                    « Le chinois devient facile »
+                  </span>
+                </div>
               </div>
             )}
             
