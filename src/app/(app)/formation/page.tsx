@@ -787,13 +787,13 @@ function FormationContent() {
             </div>
           </div>
 
-          {/* Formations Grid Cards (2 columns on mobile, 3 on desktop) */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          {/* Formations Grid Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((course) => (
               <div
                 key={course.id}
                 onClick={() => handleSelectCourse(course)}
-                className="nixtio-card overflow-hidden bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE] transition-all flex flex-col justify-between group cursor-pointer shadow-xs hover:shadow-lg rounded-2xl sm:rounded-3xl"
+                className="nixtio-card overflow-hidden bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE] transition-all flex flex-col justify-between group cursor-pointer shadow-xs hover:shadow-lg rounded-3xl"
               >
                 <div>
                   {/* Cover Image with Bottom Metadata Bar */}
@@ -806,26 +806,26 @@ function FormationContent() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
-                      {/* Bottom Overlay: Niveau + Domaine/Sujet + Compteur de leçons */}
-                      <div className="absolute bottom-1.5 sm:bottom-2.5 left-1.5 sm:left-2.5 right-1.5 sm:right-2.5 flex items-center justify-between gap-1 z-10 flex-nowrap pointer-events-none">
-                        <div className="flex items-center gap-1 flex-nowrap shrink min-w-0 overflow-hidden">
-                          <span className="text-[8px] sm:text-[10px] font-extrabold uppercase tracking-wider px-1.5 sm:px-2.5 py-0.5 rounded-full bg-[#03DAC5] text-[#004D40] font-black shadow-xs shrink-0 whitespace-nowrap">
+                      {/* Bottom Overlay: Niveau + Domaine/Sujet + Compteur de leçons (Strictly single horizontal line, flex-nowrap) */}
+                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1.5 z-10 flex-nowrap pointer-events-none">
+                        <div className="flex items-center gap-1.5 flex-nowrap shrink min-w-0 overflow-hidden">
+                          <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#03DAC5] text-[#004D40] font-black shadow-xs shrink-0 whitespace-nowrap">
                             {course.level}
                           </span>
-                          <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white/95 border border-white/20 shadow-xs truncate whitespace-nowrap hidden sm:inline">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white/95 border border-white/20 shadow-xs truncate whitespace-nowrap">
                             {course.category}
                           </span>
                         </div>
 
-                        <span className="text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-white border border-white/15 flex items-center gap-0.5 sm:gap-1 shadow-xs shrink-0 whitespace-nowrap">
-                          <Play className="w-2 sm:w-2.5 h-2 sm:h-2.5 fill-white text-white shrink-0" />
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-black/75 backdrop-blur-md text-white border border-white/15 flex items-center gap-1 shadow-xs shrink-0 whitespace-nowrap">
+                          <Play className="w-2.5 h-2.5 fill-white text-white shrink-0" />
                           <span>{course.totalLessons} {course.totalLessons > 1 ? 'leçons' : 'cours'}</span>
                         </span>
                       </div>
                     </div>
                   )}
 
-                  <div className="p-3 sm:p-6">
+                  <div className="p-6">
                     {!course.thumbnailUrl && (
                       <div className="flex items-center justify-between gap-2 flex-wrap mb-2">
                         <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20">
@@ -837,25 +837,25 @@ function FormationContent() {
                       </div>
                     )}
 
-                    <h3 className="font-display font-black text-xs sm:text-lg text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug line-clamp-2">
+                    <h3 className="font-display font-black text-lg text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug">
                       {course.title}
                     </h3>
-                    <p className="text-[10px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] mt-1 sm:mt-2 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-2 line-clamp-2 leading-relaxed">
                       {course.description}
                     </p>
 
-                    <div className="flex items-center gap-1.5 mt-2 sm:mt-4 text-[10px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
-                      <UserCheck className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#6200EE] shrink-0" />
-                      <span className="font-semibold truncate">Espoir Chinois</span>
+                    <div className="flex items-center gap-2 mt-4 text-xs text-[#757575] dark:text-[#A0A0A0]">
+                      <UserCheck className="w-3.5 h-3.5 text-[#6200EE]" />
+                      <span className="font-semibold">Formateur : {course.instructor}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="px-3 sm:px-6 pb-3 sm:pb-6 pt-2 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D] space-y-2 sm:space-y-3">
+                <div className="px-6 pb-6 pt-2 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D] space-y-3">
                   <div>
-                    <div className="flex items-center justify-between text-[10px] sm:text-xs font-semibold mb-1">
+                    <div className="flex items-center justify-between text-xs font-semibold mb-1">
                       <span className="text-[#757575] dark:text-[#A0A0A0]">
-                        {course.completedLessons}/{course.totalLessons}
+                        {course.completedLessons} / {course.totalLessons} leçons
                       </span>
                       <span className="text-[#6200EE] dark:text-[#BB86FC] font-bold font-display">
                         {course.progress}%
@@ -871,10 +871,10 @@ function FormationContent() {
 
                   <button
                     type="button"
-                    className="w-full py-1.5 sm:py-2.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-[10px] sm:text-xs font-bold flex items-center justify-center gap-1 shadow-sm shadow-[#6200EE]/25 transition-all btn-press"
+                    className="w-full py-2.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm shadow-[#6200EE]/25 transition-all btn-press"
                   >
-                    <Play className="w-2.5 sm:w-3.5 h-2.5 sm:h-3.5 fill-white" />
-                    <span>{course.progress > 0 ? 'Continuer' : 'Commencer'}</span>
+                    <Play className="w-3.5 h-3.5 fill-white" />
+                    <span>{course.progress > 0 ? 'Continuer la formation' : 'Commencer la formation'}</span>
                   </button>
                 </div>
               </div>
