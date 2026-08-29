@@ -103,29 +103,32 @@ Comprend 4 sous-sections fondamentales :
 Espoir Chinois SAAS/
 ├── AGENTS.md                  # Règles et instructions permanentes du projet
 ├── GEMINI.md                  # Documentation de référence globale (ce fichier)
-└── app/
-    ├── src/
-    │   ├── app/
-    │   │   ├── (app)/
-    │   │   │   ├── layout.tsx         # Layout principal avec Sidebar et Header
-    │   │   │   ├── tableau-de-bord/   # Page Dashboard
-    │   │   │   ├── vocabulaire/       # Page Vocabulaire (HSK, Combinaison, Mes Mots, Dictionnaire)
-    │   │   │   ├── ecoute-lecture/    # Page Écoute & Lecture (Chansons, Articles, Podcasts...)
-    │   │   │   ├── formation/         # Page Formations vidéo
-    │   │   │   ├── livres/            # Page Livres & Programmes
-    │   │   │   ├── abonnement/        # Page Plans d'abonnement
-    │   │   │   ├── mon-compte/        # Page Profil
-    │   │   │   └── parametres/        # Page Paramètres
-    │   │   └── layout.tsx             # Root layout Next.js
-    │   ├── components/
-    │   │   ├── layout/                # Sidebar, Header, GlobalSearchModal, NotificationsModal
-    │   │   ├── vocabulary/            # CombinationMethod, FlashcardSession, WordDetailModal, AddWordModal
-    │   │   └── ui/                    # Composants génériques et modaux
-    │   ├── lib/
-    │   │   ├── data/                  # hskSentencesDatabase.ts (corpus de phrases vérifiées Tatoeba)
-    │   │   ├── mock/                  # combinationData.ts, coursesData.ts, vocabData.ts
-    │   │   └── utils.ts
-    │   └── content/                   # vocabulaire-hsk1.json à vocabulaire-hsk6.json
+├── package.json               # Dépendances et scripts Next.js à la racine
+├── next.config.ts             # Configuration Next.js (Turbopack, images)
+├── tsconfig.json              # Configuration TypeScript
+├── src/
+│   ├── app/
+│   │   ├── (app)/
+│   │   │   ├── layout.tsx         # Layout principal avec Sidebar et Header
+│   │   │   ├── tableau-de-bord/   # Page Dashboard
+│   │   │   ├── vocabulaire/       # Page Vocabulaire (HSK, Combinaison, Mes Mots, Dictionnaire)
+│   │   │   ├── ecoute-lecture/    # Page Écoute & Lecture (Chansons, Articles, Podcasts...)
+│   │   │   ├── formation/         # Page Formations vidéo
+│   │   │   ├── livres/            # Page Livres & Programmes
+│   │   │   ├── abonnement/        # Page Plans d'abonnement
+│   │   │   ├── mon-compte/        # Page Profil
+│   │   │   └── parametres/        # Page Paramètres
+│   │   └── layout.tsx             # Root layout Next.js
+│   ├── components/
+│   │   ├── layout/                # Sidebar, Header, GlobalSearchModal, NotificationsModal
+│   │   ├── vocabulary/            # CombinationMethod, FlashcardSession, WordDetailModal, AddWordModal
+│   │   └── ui/                    # Composants génériques et modaux
+│   ├── lib/
+│   │   ├── data/                  # hskSentencesDatabase.ts (corpus de phrases vérifiées Tatoeba)
+│   │   ├── mock/                  # combinationData.ts, coursesData.ts, vocabData.ts
+│   │   └── utils.ts
+│   └── content/                   # vocabulaire-hsk1.json à vocabulaire-hsk6.json
+└── public/                    # Fichiers statiques et médias
 ```
 
 ---
