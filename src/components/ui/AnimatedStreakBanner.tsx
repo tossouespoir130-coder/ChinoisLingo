@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
-import { Flame, Trophy } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Flame, Trophy, Check } from 'lucide-react';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { useAuth } from '@/lib/auth/AuthContext';
 import confetti from 'canvas-confetti';
@@ -18,24 +18,29 @@ const WEEK_DAYS = [
 
 export function AnimatedStreakBanner() {
   const { profile } = useAuth();
-  const [bandProgress, setBandProgress] = useState(0);
+  const [animated, setAnimated] = useState(false);
 
   // Real user streak and true record (never simulated)
   const realStreak = profile?.streak_days || 1;
   const bestStreak = Math.max(realStreak, (profile as any)?.longest_streak || realStreak);
 
-  // Exact synchronization with streak days count (1 to 7 cycle)
-  const streakInCycle = realStreak <= 0 ? 0 : ((realStreak - 1) % 7) + 1;
-  const targetPct = Math.min(100, Math.round((streakInCycle / 7) * 100));
+  // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
+  const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
+  const todayDayIndex = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
+
+  // Real active days of the streak during current week (e.g. if today is Samedi (6) and streak is 2 => Ven (5) & Sam (6) are active)
+  const startActiveIndex = Math.max(1, todayDayIndex - realStreak + 1);
+  const isDayInActiveStreak = (dayNum: number) => {
+    return dayNum >= startActiveIndex && dayNum <= todayDayIndex;
+  };
 
   useEffect(() => {
-    // Gentle delay, then a majestic continuous fill matching exact streak count
     const timer = setTimeout(() => {
-      setBandProgress(targetPct);
-    }, 450);
+      setAnimated(true);
+    }, 200);
 
     return () => clearTimeout(timer);
-  }, [targetPct]);
+  }, []);
 
   const triggerConfetti = () => {
     confetti({
@@ -76,44 +81,49 @@ export function AnimatedStreakBanner() {
         </div>
       </div>
 
-      {/* Right: Clean Continuous Animated Progress Band (Fusion Jaune et Rouge) */}
+      {/* Right: Modern Streak Days Track with Real Active Days Lighting */}
       <div className="w-full lg:w-96 bg-[#FAFAFA] dark:bg-[#181818] p-3 sm:p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xs flex flex-col justify-center gap-2">
-        {/* Day labels of current streak cycle (1 to 7) */}
-        <div className="flex justify-between items-center px-1">
-          {WEEK_DAYS.map((day, idx) => {
-            const dayIndex = idx + 1;
-            const isCompletedInStreak = dayIndex <= streakInCycle;
-            const isCurrentHead = dayIndex === streakInCycle;
+        {/* 7 Days Grid with Active Fire Pills */}
+        <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
+          {WEEK_DAYS.map((day) => {
+            const isActiveInStreak = isDayInActiveStreak(day.dayNum);
+            const isToday = day.dayNum === todayDayIndex;
+            const isFuture = day.dayNum > todayDayIndex;
 
             return (
-              <span
-                key={day.dayNum}
-                className={`text-[10px] sm:text-[11px] transition-colors duration-500 ${
-                  isCurrentHead
-                    ? 'text-[#FF3D00] dark:text-[#FF8A65] font-black underline underline-offset-2'
-                    : isCompletedInStreak
-                    ? 'text-[#FF9800] dark:text-[#FFB74D] font-bold'
-                    : 'text-[#9E9E9E] dark:text-[#616161] font-medium'
-                }`}
-              >
-                {day.label}
-              </span>
+              <div key={day.dayNum} className="flex flex-col items-center gap-1">
+                {/* Day Label */}
+                <span
+                  className={`text-[10px] sm:text-[11px] transition-colors duration-300 ${
+                    isToday
+                      ? 'text-[#FF3D00] dark:text-[#FF8A65] font-black'
+                      : isActiveInStreak
+                      ? 'text-[#FF9800] dark:text-[#FFB74D] font-bold'
+                      : 'text-[#9E9E9E] dark:text-[#616161] font-medium'
+                  }`}
+                >
+                  {day.label}
+                </span>
+
+                {/* Day Indicator Pill */}
+                <div
+                  className={`w-full h-6 sm:h-7 rounded-xl flex items-center justify-center transition-all duration-500 ${
+                    isActiveInStreak
+                      ? 'bg-gradient-to-tr from-[#FFD54F] via-[#FF9800] to-[#FF3D00] text-white shadow-xs shadow-[#FF9800]/40 scale-100'
+                      : isFuture
+                      ? 'bg-[#E0E0E0]/50 dark:bg-[#2D2D2D]/50 text-transparent'
+                      : 'bg-[#E0E0E0] dark:bg-[#2D2D2D] text-[#9E9E9E] dark:text-[#757575]'
+                  } ${isToday ? 'ring-2 ring-[#FF3D00] ring-offset-1 dark:ring-offset-[#181818]' : ''}`}
+                >
+                  {isActiveInStreak ? (
+                    <Flame className="w-3.5 h-3.5 fill-white text-white drop-shadow-xs" />
+                  ) : (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#9E9E9E]/40 dark:bg-[#616161]/40" />
+                  )}
+                </div>
+              </div>
             );
           })}
-        </div>
-
-        {/* The Continuous Progress Track */}
-        <div className="relative w-full h-3.5 sm:h-4 bg-[#E0E0E0] dark:bg-[#2D2D2D] rounded-full p-0.5 overflow-hidden shadow-inner">
-          {/* Animated Glowing Fill Ribbon */}
-          <div
-            className="h-full rounded-full bg-gradient-to-r from-[#FFD54F] via-[#FF9800] via-[#FF5722] to-[#DD2C00] shadow-sm shadow-[#FF5722]/40 relative"
-            style={{
-              width: `${bandProgress}%`,
-              transition: 'width 2.5s cubic-bezier(0.22, 1, 0.36, 1)',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-          </div>
         </div>
       </div>
     </div>
