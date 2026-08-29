@@ -337,10 +337,10 @@ function FormationContent() {
                       {/* Subtle Dark Gradient Overlay */}
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-all duration-300" />
 
-                      {/* Centered ChinoisLingo Brand Play Button (Transparent Glassmorphism) */}
+                      {/* Centered ChinoisLingo Brand Play Button (Ultra-Transparent, No White Border) */}
                       <div className="absolute inset-0 flex items-center justify-center z-10">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE]/35 backdrop-blur-md border border-white/40 text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/40 group-hover:bg-[#6200EE]/60 group-hover:border-white/60 group-hover:scale-110 active:scale-95 transition-all duration-300">
-                          <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white text-white ml-1 drop-shadow-md" />
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE]/20 hover:bg-[#6200EE]/35 backdrop-blur-[2px] flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300">
+                          <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white/65 text-white/65 group-hover:fill-white/90 group-hover:text-white/90 ml-1 transition-colors" />
                         </div>
                       </div>
                     </div>
