@@ -126,7 +126,7 @@ export default function ConnexionPage() {
   };
 
   return (
-    <div className="min-h-screen w-full relative flex items-center justify-center p-3 sm:p-6 lg:p-10 overflow-hidden bg-[#ECEFF8] dark:bg-[#111218]">
+    <div className="min-h-[100dvh] w-full relative flex items-center justify-center p-2.5 sm:p-6 lg:p-10 overflow-hidden bg-[#ECEFF8] dark:bg-[#111218]">
       
       {/* ================= ARRIÈRE-PLAN SUBTILEMENT ASSOMBRI AVEC CARACTÈRES CHINOIS VARIÉS ET PORTEURS DE SENS ================= */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
@@ -183,10 +183,10 @@ export default function ConnexionPage() {
       </div>
 
       {/* ================= CARTE CENTRALE SPLIT MODERNE ================= */}
-      <div className="relative z-10 w-full max-w-lg lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn">
+      <div className="relative z-10 w-full max-w-sm sm:max-w-md lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn my-auto">
         
-        {/* ================= GAUCHE : VITRINE PÉDAGOGIQUE ÉPURÉE ================= */}
-        <div className="lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-5 sm:p-7 lg:p-10 flex flex-col justify-between relative overflow-hidden">
+        {/* ================= GAUCHE : VITRINE PÉDAGOGIQUE (VISIBLE SUR GRAND ÉCRAN) ================= */}
+        <div className="hidden lg:flex lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-7 lg:p-10 flex-col justify-between relative overflow-hidden">
           {/* Subtle Background Glows */}
           <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#03DAC5]/15 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#E91E63]/20 blur-3xl pointer-events-none" />
@@ -194,21 +194,21 @@ export default function ConnexionPage() {
           {/* Top Brand Header */}
           <div className="relative z-10 space-y-3 sm:space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center font-hanzi font-black text-lg sm:text-xl text-white shadow-sm">
+              <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center font-hanzi font-black text-xl text-white shadow-sm">
                 华
               </div>
               <div>
-                <span className="font-display font-black text-lg sm:text-2xl text-white tracking-tight block">
+                <span className="font-display font-black text-2xl text-white tracking-tight block">
                   ChinoisLingo
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-bold text-[#03DAC5] uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-[#03DAC5] uppercase tracking-wider block">
                   « Le chinois devient facile »
                 </span>
               </div>
             </div>
 
             <div className="pt-2 sm:pt-3">
-              <h1 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-white leading-tight">
+              <h1 className="font-display font-black text-2xl lg:text-3xl text-white leading-tight">
                 Maîtrisez le mandarin par immersion active.
               </h1>
               <p className="text-xs sm:text-sm text-white/80 mt-2 leading-relaxed">
@@ -218,83 +218,98 @@ export default function ConnexionPage() {
           </div>
 
           {/* 3 Core Highlights (Synthesized & Clean) */}
-          <div className="relative z-10 space-y-2.5 sm:space-y-3 my-5 sm:my-6">
-            <div className="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
-                <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <div className="relative z-10 space-y-2.5 sm:space-y-3 my-5">
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
+                <BookOpen className="w-4 h-4" />
               </div>
               <div className="min-w-0">
                 <h3 className="font-bold text-xs text-white">Vocabulaire HSK & Flashcards 3D</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-white/70">Mémorisation durable par répétition espacée</p>
+                <p className="text-[10.5px] text-white/70">Mémorisation durable par répétition espacée</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
-                <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
+                <Headphones className="w-4 h-4" />
               </div>
               <div className="min-w-0">
                 <h3 className="font-bold text-xs text-white">Écoute & Paroles Synchronisées</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
+                <p className="text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
-                <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
+                <Video className="w-4 h-4" />
               </div>
               <div className="min-w-0">
                 <h3 className="font-bold text-xs text-white">Formations Vidéos Pratiques</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Culture • Carrière • Business</p>
+                <p className="text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Culture • Carrière • Business</p>
               </div>
             </div>
           </div>
 
           {/* Bottom Trust Note */}
-          <div className="relative z-10 pt-3 border-t border-white/10 flex items-center justify-between text-[10.5px] sm:text-[11px] text-white/60">
+          <div className="relative z-10 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-white/60">
             <span>Plateforme d’apprentissage</span>
             <span className="font-bold text-[#03DAC5]">100% Francophone</span>
           </div>
         </div>
 
-        {/* ================= DROITE : FORMULAIRE PROPRE & ÉPURÉ SANS ONGLETS ================= */}
-        <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-white dark:bg-[#1E1E28]">
-          <div className="space-y-6 w-full my-auto">
+        {/* ================= DROITE : FORMULAIRE COMPACT (100% VIEWPORT SANS SCROLL SUR MOBILE) ================= */}
+        <div className="lg:col-span-6 p-4 sm:p-7 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#1E1E28]">
+          <div className="space-y-4 sm:space-y-5 w-full">
             
+            {/* Logo & Slogan Header visible uniquement sur mobile */}
+            <div className="lg:hidden flex items-center justify-center gap-2.5 pb-1">
+              <div className="w-9 h-9 rounded-2xl bg-[#6200EE] flex items-center justify-center font-hanzi font-black text-lg text-white shadow-xs">
+                华
+              </div>
+              <div className="text-left">
+                <span className="font-display font-black text-lg text-[#212121] dark:text-[#F5F5F5] leading-none block">
+                  ChinoisLingo
+                </span>
+                <span className="text-[9px] font-bold text-[#6200EE] dark:text-[#03DAC5] uppercase tracking-wider block mt-0.5">
+                  « Le chinois devient facile »
+                </span>
+              </div>
+            </div>
+
             {/* Header Formulaire */}
-            <div className="text-left space-y-1">
-              <h2 className="font-display font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5]">
+            <div className="text-center sm:text-left space-y-0.5 sm:space-y-1">
+              <h2 className="font-display font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5]">
                 {mode === 'signin' ? 'Connexion' : 'Créer un compte'}
               </h2>
-              <p className="text-xs text-[#757575] dark:text-[#A0A0A0]">
+              <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
                 {mode === 'signin' 
-                  ? 'Accédez à votre espace d’apprentissage ChinoisLingo.'
-                  : 'Rejoignez ChinoisLingo pour maîtriser le mandarin.'}
+                  ? 'Accédez à votre espace d’apprentissage.'
+                  : 'Rejoignez ChinoisLingo pour apprendre le chinois.'}
               </p>
             </div>
 
             {/* Error or Success Alerts */}
             {errorMessage && (
-              <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
             )}
 
             {successMessage && (
-              <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                 <span>{successMessage}</span>
               </div>
             )}
 
-            {/* Formulaire avec les 3 éléments clés centrés */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Formulaire avec font-size 16px sur mobile pour éliminer le zoom iOS */}
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               
               {/* Champ Pseudo (uniquement en mode inscription) */}
               {mode === 'signup' && (
-                <div className="space-y-1.5 animate-fadeIn">
-                  <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                <div className="space-y-1 animate-fadeIn">
+                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
                     Pseudo *
                   </label>
                   <div className="relative">
@@ -305,15 +320,15 @@ export default function ConnexionPage() {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="Espoir Chinois"
-                      className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                      className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs font-bold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                     />
                   </div>
                 </div>
               )}
 
               {/* 1. Champ Adresse E-mail */}
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
                   Adresse e-mail *
                 </label>
                 <div className="relative">
@@ -324,14 +339,14 @@ export default function ConnexionPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                   />
                 </div>
               </div>
 
               {/* 2. Champ Mot de Passe */}
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+              <div className="space-y-1">
+                <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
                   Mot de passe *
                 </label>
                 <div className="relative">
@@ -342,7 +357,7 @@ export default function ConnexionPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
                   />
                   <button
                     type="button"
@@ -357,8 +372,8 @@ export default function ConnexionPage() {
 
               {/* Champ Confirmation du Mot de Passe (uniquement en mode inscription) */}
               {mode === 'signup' && (
-                <div className="space-y-1.5 animate-fadeIn">
-                  <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                <div className="space-y-1 animate-fadeIn">
+                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
                     Confirmer le mot de passe *
                   </label>
                   <div className="relative">
@@ -369,7 +384,7 @@ export default function ConnexionPage() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
+                      className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
                     />
                     <button
                       type="button"
@@ -384,11 +399,11 @@ export default function ConnexionPage() {
               )}
 
               {/* 3. Bouton Se Connecter / Créer mon compte */}
-              <div className="pt-2">
+              <div className="pt-1 sm:pt-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 sm:py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs sm:text-sm font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>{isSubmitting ? 'Validation...' : mode === 'signin' ? 'Se connecter' : 'Créer mon compte'}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -396,8 +411,8 @@ export default function ConnexionPage() {
               </div>
             </form>
 
-            {/* Liens en bas : Mot de passe oublié (rouge au survol) & Créer un compte / Se connecter */}
-            <div className="pt-4 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex items-center justify-between gap-2 text-xs">
+            {/* Liens en bas : Mot de passe oublié & Créer un compte / Se connecter */}
+            <div className="pt-3 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex items-center justify-between gap-2 text-[11px] sm:text-xs">
               <button
                 type="button"
                 onClick={() => {
@@ -485,7 +500,7 @@ export default function ConnexionPage() {
                     value={forgotEmail}
                     onChange={(e) => setForgotEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                   />
                 </div>
               </div>
