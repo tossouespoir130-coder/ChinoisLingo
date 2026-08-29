@@ -252,35 +252,35 @@ function FormationContent() {
       {activeCourse && currentLesson ? (
         <div className="space-y-6 animate-fadeIn">
           {/* Top Bar with Back Button & Formation Title */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
-            <div className="flex items-center gap-3.5 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <button
                 onClick={() => {
                   setActiveCourseId(null);
                 }}
                 type="button"
-                className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#6200EE] hover:text-white transition-colors btn-press shrink-0 shadow-2xs"
+                className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#6200EE] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
                 title="Retour au catalogue des formations"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
 
-              <div className="min-w-0">
-                <h1 className="font-display font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate">
+              <div className="min-w-0 flex-1">
+                <h1 className="font-display font-black text-base sm:text-xl lg:text-2xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-snug break-words">
                   {activeCourse.title}
                 </h1>
               </div>
             </div>
 
             {/* Course Progress Indicator */}
-            <div className="flex items-center gap-3 self-start sm:self-auto shrink-0">
-              <div className="text-right">
+            <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
+              <div className="text-left sm:text-right">
                 <span className="text-[10px] font-bold uppercase text-[#757575] dark:text-[#A0A0A0] block">Progression</span>
                 <span className="text-xs font-black text-[#6200EE] dark:text-[#BB86FC] font-display">
                   {activeCourse.completedLessons} / {activeCourse.totalLessons} leçons ({activeCourse.progress}%)
                 </span>
               </div>
-              <div className="w-20 h-2 rounded-full bg-[#E0E0E0] dark:bg-[#2D2D2D] overflow-hidden">
+              <div className="w-24 sm:w-20 h-2.5 sm:h-2 rounded-full bg-[#E0E0E0] dark:bg-[#2D2D2D] overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-[#6200EE] to-[#00897B] rounded-full transition-all duration-500"
                   style={{ width: `${activeCourse.progress}%` }}
@@ -341,12 +341,12 @@ function FormationContent() {
                 </div>
 
                 {/* Video Info Bottom Bar */}
-                <div className="p-4 bg-[#181818] border-t border-neutral-800 flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <span className="text-xs font-bold text-white truncate block">
+                <div className="p-4 bg-[#181818] border-t border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-xs sm:text-sm font-bold text-white leading-snug break-words block">
                       {currentLesson.title}
                     </span>
-                    <span className="text-[11px] text-[#A0A0A0]">
+                    <span className="text-[11px] text-[#A0A0A0] mt-0.5 block">
                       Durée : {currentLesson.duration}
                     </span>
                   </div>
@@ -354,7 +354,7 @@ function FormationContent() {
                   <button
                     onClick={() => handleToggleLessonComplete(currentLesson.id)}
                     type="button"
-                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all btn-press shrink-0 ${currentLesson.isCompleted
+                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all btn-press shrink-0 self-start sm:self-auto cursor-pointer ${currentLesson.isCompleted
                         ? 'bg-[#E53935] text-white shadow-xs hover:bg-[#D32F2F]'
                         : 'bg-[#6200EE] hover:bg-[#3700B3] text-white shadow-xs'
                       }`}
