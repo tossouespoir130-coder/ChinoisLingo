@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { 
   Volume2, 
-  Dices, 
+  Shuffle, 
   Bookmark, 
   Check, 
   Copy, 
@@ -358,59 +358,62 @@ export function CombinationMethod({
             {pattern.pivotWord}
           </div>
 
-          {/* Top Quick Actions Bar (Boutons d'action épurés avec wrapping responsive mobile) */}
-          <div className="flex flex-wrap items-center justify-start sm:justify-end gap-2 w-full">
+          {/* Top Quick Actions Bar (Single Responsive Line) */}
+          <div className="flex items-center justify-between gap-2 w-full pb-1">
             {/* Random Button */}
             <button
               onClick={handleRandomize}
               type="button"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white text-xs font-bold transition-all btn-press shadow-2xs"
-              title="Générer une combinaison surprise"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white text-xs font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0"
+              title="Générer une combinaison aléatoire"
             >
-              <Dices className="w-3.5 h-3.5" />
+              <Shuffle className="w-3.5 h-3.5" />
               <span>Phrase aléatoire</span>
             </button>
 
-            {/* Audio Button */}
-            <button
-              onClick={handlePlayAudio}
-              type="button"
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all btn-press shadow-2xs ${
-                isPlayingAudio
-                  ? 'bg-[#6200EE] text-white animate-pulse'
-                  : 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] hover:bg-[#6200EE] hover:text-white'
-              }`}
-              title="Écouter la prononciation vocale"
-            >
-              <Volume2 className="w-3.5 h-3.5" />
-              <span>Écouter</span>
-            </button>
+            {/* Actions: Icon-only on mobile for single line perfection, icon+label on desktop */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              {/* Audio Button */}
+              <button
+                onClick={handlePlayAudio}
+                type="button"
+                className={`inline-flex items-center justify-center gap-1.5 w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-full text-xs font-bold transition-all btn-press shadow-2xs cursor-pointer ${
+                  isPlayingAudio
+                    ? 'bg-[#6200EE] text-white animate-pulse'
+                    : 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] hover:bg-[#6200EE] hover:text-white'
+                }`}
+                title="Écouter la prononciation vocale"
+              >
+                <Volume2 className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Écouter</span>
+              </button>
 
-            {/* Copy Button */}
-            <button
-              onClick={handleCopy}
-              type="button"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FAFAFA] dark:bg-[#252525] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D] text-xs font-bold transition-all btn-press"
-              title="Copier la phrase"
-            >
-              {hasCopied ? <Check className="w-3.5 h-3.5 text-[#00897B]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{hasCopied ? 'Copié !' : 'Copier'}</span>
-            </button>
+              {/* Copy Button */}
+              <button
+                onClick={handleCopy}
+                type="button"
+                className="inline-flex items-center justify-center gap-1.5 w-8 h-8 sm:w-auto sm:px-3 sm:py-1.5 rounded-full bg-[#FAFAFA] dark:bg-[#252525] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D] text-xs font-bold transition-all btn-press cursor-pointer"
+                title="Copier la phrase"
+              >
+                {hasCopied ? <Check className="w-3.5 h-3.5 text-[#00897B]" /> : <Copy className="w-3.5 h-3.5" />}
+                <span className="hidden sm:inline">{hasCopied ? 'Copié !' : 'Copier'}</span>
+              </button>
 
-            {/* Save to Mes Mots Button */}
-            <button
-              onClick={handleSaveToMyWords}
-              type="button"
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all btn-press shadow-xs ${
-                recentlySaved
-                  ? 'bg-[#E91E63] text-white'
-                  : 'bg-[#E91E63]/10 dark:bg-[#E91E63]/20 text-[#E91E63] dark:text-[#F06292] hover:bg-[#E91E63] hover:text-white'
-              }`}
-              title="Enregistrer cette phrase dans Mes Mots"
-            >
-              {recentlySaved ? <Check className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
-              <span>{recentlySaved ? 'Enregistré dans Mes Mots' : 'Sauvegarder'}</span>
-            </button>
+              {/* Save to Mes Mots Button */}
+              <button
+                onClick={handleSaveToMyWords}
+                type="button"
+                className={`inline-flex items-center justify-center gap-1.5 w-8 h-8 sm:w-auto sm:px-3.5 sm:py-1.5 rounded-full text-xs font-bold transition-all btn-press shadow-xs cursor-pointer ${
+                  recentlySaved
+                    ? 'bg-[#E91E63] text-white'
+                    : 'bg-[#E91E63]/10 dark:bg-[#E91E63]/20 text-[#E91E63] dark:text-[#F06292] hover:bg-[#E91E63] hover:text-white'
+                }`}
+                title="Enregistrer cette phrase dans Mes Mots"
+              >
+                {recentlySaved ? <Check className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
+                <span className="hidden sm:inline">{recentlySaved ? 'Enregistré' : 'Sauvegarder'}</span>
+              </button>
+            </div>
           </div>
 
           {/* Live Sentence Display Area */}
