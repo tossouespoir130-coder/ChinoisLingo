@@ -1695,16 +1695,27 @@ function EcouteLectureContent() {
     }
   };
 
-  // Filtered and strictly sorted catalogue based on HSK level ascending (HSK 1 -> HSK 2 -> HSK 3 -> HSK 4 -> HSK 5 -> HSK 6)
+  // Filter State: Choisi pour vous (recommended), Populaire (popular), ou Tous (all)
+  const [curationFilter, setCurationFilter] = useState<'recommended' | 'popular' | 'all'>('recommended');
+
+  // Filtered and strictly sorted catalogue based on HSK level ascending & curation filter
   const filteredCatalog = useMemo(() => {
-    return readingCatalog
-      .filter((item) => item.type === activeCategory)
-      .sort((a, b) => {
-        const levelA = parseInt(a.level.replace(/\D/g, '') || '99', 10);
-        const levelB = parseInt(b.level.replace(/\D/g, '') || '99', 10);
-        return levelA - levelB;
-      });
-  }, [activeCategory]);
+    let list = readingCatalog.filter((item) => item.type === activeCategory);
+
+    // Sort ascending by HSK Level
+    list.sort((a, b) => {
+      const levelA = parseInt(a.level.replace(/\D/g, '') || '99', 10);
+      const levelB = parseInt(b.level.replace(/\D/g, '') || '99', 10);
+      return levelA - levelB;
+    });
+
+    if (curationFilter === 'popular') {
+      // Prioritize classic hit songs / top dialogues / top business articles
+      list = [...list].reverse();
+    }
+
+    return list;
+  }, [activeCategory, curationFilter]);
 
   // Play audio for a single sentence via Web Speech Synthesis
   const playSentenceAudio = (id: string, text: string) => {
@@ -1870,9 +1881,9 @@ function EcouteLectureContent() {
               {isPlayingSongVideo ? (
                 <iframe
                   key={activeReading.youtubeId}
-                  src={`https://www.youtube-nocookie.com/embed/${activeReading.youtubeId}?rel=0&autoplay=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${activeReading.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
                   title={`${displayedTitleFr} - ${displayedTitleZh}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   className="w-full h-full border-0 animate-fadeIn"
                 />
@@ -1893,12 +1904,12 @@ function EcouteLectureContent() {
                   />
 
                   {/* Subtle Dark Gradient Overlay */}
-                  <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/15 transition-all duration-300" />
 
-                  {/* Centered ChinoisLingo Brand Play Button (Exact like Formations) */}
+                  {/* Centered ChinoisLingo Brand Play Button (Ultra-Transparent, No White Border) */}
                   <div className="absolute inset-0 flex items-center justify-center z-10">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE] hover:bg-[#4A00B0] text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/70 group-hover:scale-110 active:scale-95 transition-all duration-300">
-                      <Play className="w-8 h-8 sm:w-10 sm:h-10 fill-white text-white ml-1 drop-shadow-md" />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE]/20 hover:bg-[#6200EE]/35 backdrop-blur-[2px] flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300">
+                      <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white/65 text-white/65 group-hover:fill-white/90 group-hover:text-white/90 ml-1 transition-colors" />
                     </div>
                   </div>
                 </div>
@@ -2025,8 +2036,8 @@ function EcouteLectureContent() {
                       : 'hover:bg-black/[0.015] dark:hover:bg-white/[0.02]'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1 space-y-1.5">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 w-full">
+                    <div className="flex-1 space-y-1.5 min-w-0 w-full">
                       {/* Section Marker (Couplet / Refrain) for Songs */}
                       {activeReading.type === 'chansons' && sent.section && (
                         <div className="flex items-center gap-2 mb-3 mt-1">
@@ -2333,6 +2344,57 @@ function EcouteLectureContent() {
                 </button>
               );
             })}
+          </div>
+
+          {/* 2 Filter Pills: Choisi pour vous (en 1er) & Populaire (en 2ème) */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full pt-1 pb-1">
+            <button
+              onClick={(e) => {
+                setCurationFilter('recommended');
+                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              }}
+              type="button"
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
+                curationFilter === 'recommended'
+                  ? 'bg-[#6200EE] text-white shadow-xs'
+                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Choisi pour vous</span>
+            </button>
+
+            <button
+              onClick={(e) => {
+                setCurationFilter('popular');
+                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              }}
+              type="button"
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
+                curationFilter === 'popular'
+                  ? 'bg-[#E91E63] text-white shadow-xs'
+                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
+              }`}
+            >
+              <span>🔥</span>
+              <span>Populaire</span>
+            </button>
+
+            <button
+              onClick={(e) => {
+                setCurationFilter('all');
+                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              }}
+              type="button"
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
+                curationFilter === 'all'
+                  ? 'bg-[#00897B] text-white shadow-xs'
+                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Tous</span>
+            </button>
           </div>
 
           {/* If Podcasts tab is active and waiting for new studio audio */}

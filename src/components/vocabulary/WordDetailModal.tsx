@@ -38,22 +38,22 @@ export interface DetailedExample {
 }
 
 /**
- * Calcule l'intitulé de niveau progressif en fonction du nombre total de phrases certifiées (jusqu'à 5).
+ * Calcule l'intitulé de niveau progressif épuré (Débutant, Intermédiaire, Avancé).
  */
 function getProgressiveLevelLabel(idx: number, total: number): string {
-  if (total === 1) return 'Exemple Certifié';
-  if (total === 2) return idx === 0 ? 'HSK 1–2 • Débutant' : 'HSK 4–6 • Avancé';
-  if (total === 3) return idx === 0 ? 'HSK 1–2 • Débutant' : idx === 1 ? 'HSK 3–4 • Intermédiaire' : 'HSK 5–6 • Avancé';
-  if (total === 4) return idx === 0 ? 'HSK 1 • Débutant' : idx === 1 ? 'HSK 2–3 • Élémentaire' : idx === 2 ? 'HSK 4 • Intermédiaire' : 'HSK 5–6 • Avancé';
+  if (total === 1) return 'DÉBUTANT';
+  if (total === 2) return idx === 0 ? 'DÉBUTANT' : 'AVANCÉ';
+  if (total === 3) return idx === 0 ? 'DÉBUTANT' : idx === 1 ? 'INTERMÉDIAIRE' : 'AVANCÉ';
+  if (total === 4) return idx === 0 ? 'DÉBUTANT' : idx === 1 ? 'ÉLÉMENTAIRE' : idx === 2 ? 'INTERMÉDIAIRE' : 'AVANCÉ';
   
   const labels = [
-    'HSK 1 • Débutant',
-    'HSK 2 • Élémentaire',
-    'HSK 3 • Intermédiaire',
-    'HSK 4 • Intermédiaire Sup.',
-    'HSK 5–6 • Avancé & Business',
+    'DÉBUTANT',
+    'ÉLÉMENTAIRE',
+    'INTERMÉDIAIRE',
+    'INTERMÉDIAIRE SUP.',
+    'AVANCÉ',
   ];
-  return labels[idx] || `Niveau ${idx + 1}`;
+  return labels[idx] || 'DÉBUTANT';
 }
 
 /**
