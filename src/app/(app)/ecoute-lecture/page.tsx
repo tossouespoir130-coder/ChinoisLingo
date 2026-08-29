@@ -2025,8 +2025,9 @@ function EcouteLectureContent() {
                       : 'hover:bg-black/[0.015] dark:hover:bg-white/[0.02]'
                   }`}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4 w-full">
-                    <div className="flex-1 space-y-1 min-w-0 w-full">
+                  <div className="flex items-start justify-between gap-2.5 sm:gap-4 w-full">
+                    {/* Text Block (Hanzi + Pinyin + French) */}
+                    <div className="flex-1 space-y-1 min-w-0">
                       {/* Section Marker (Couplet / Refrain) for Songs */}
                       {activeReading.type === 'chansons' && sent.section && (
                         <div className="flex items-center gap-2 mb-2 mt-0.5">
@@ -2074,32 +2075,32 @@ function EcouteLectureContent() {
                         </div>
                       )}
 
-                      {/* Hanzi Text - 100% Full Width */}
-                      <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug break-words w-full">
+                      {/* Hanzi Text */}
+                      <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug">
                         {sent.hanzi}
                       </div>
 
-                      {/* Pinyin with Tone Coloring - 100% Full Width Without Unnecessary Wrapping */}
+                      {/* Pinyin with Tone Coloring */}
                       {isPinyinVisible && (
-                        <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug break-words w-full pt-0.5">
+                        <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug pt-0.5">
                           {sent.pinyin}
                         </div>
                       )}
 
                       {/* French Translation */}
                       {isFrenchVisible && (
-                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-snug break-words w-full">
+                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-snug">
                           {sent.french}
                         </div>
                       )}
                     </div>
 
-                    {/* Audio & Bookmark Actions - Directement rattachés sans vide */}
-                    <div className="flex items-center justify-end gap-1.5 shrink-0 self-end sm:self-start pt-1 sm:pt-0 w-full sm:w-auto">
+                    {/* Audio & Bookmark Actions - Compact, rattachés en haut à droite sans aucun vide vertical */}
+                    <div className="flex items-center gap-1 shrink-0 pt-0.5">
                       <button
                         onClick={() => toggleSaveSentence(sent.id)}
                         type="button"
-                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSaved
                             ? 'bg-[#00897B] text-white shadow-2xs'
                             : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#757575] hover:text-[#212121] dark:hover:text-white'
@@ -2115,7 +2116,7 @@ function EcouteLectureContent() {
                           playSentenceAudio(sent.id, sent.hanzi);
                         }}
                         type="button"
-                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSentencePlaying
                             ? 'bg-[#00897B] text-white animate-pulse shadow-xs shadow-[#00897B]/30'
                             : 'bg-[#00897B]/10 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white'
