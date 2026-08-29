@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "title": "Bible des Personnages Récurrents — ChinoisLingo",
+    "description": "Fichier de référence officiel pour la rédaction des histoires, dialogues, podcasts et articles de la rubrique Écoute & Lecture.",
+    "version": "1.0.0",
+    "guidelines": {
+      "continuite": "Réutiliser ces 7 personnages en priorité pour créer de la familiarité et un attachement émotionnel à travers le contenu.",
+      "personnagesSecondaires": "Des personnages secondaires ponctuels (vendeur de marché, chauffeur de taxi, douanier, collègue d'usine, serveur...) peuvent être créés librement selon les besoins spécifiques de chaque leçon.",
+      "exactitudeLinguistique": "Tous les dialogues et textes doivent s'appuyer sur un chinois standard naturel, avec pinyin balisé et traduction française fidèle."
+    }
+  },
+  "personnages": [
+    {
+      "id": "espoir_chinois",
+      "nom": "Espoir Chinois",
+      "nomChinois": "希望老师 / 埃斯普瓦尔",
+      "paysOrigine": "Bénin",
+      "nationalite": "Béninoise",
+      "statut": "Fondateur & Personnage Principal",
+      "role": "Fondateur de ChinoisLingo, interprète professionnel français-chinois, coach en langue chinoise depuis plusieurs années.",
+      "traitsCaractere": [
+        "Bienveillant",
+        "Pédagogue patient",
+        "Encourageant",
+        "Pragmatique",
+        "Visionnaire"
+      ],
+      "contexteApparition": "Apparaît souvent comme narrateur ou mentor qui introduit une leçon, corrige gentiment une erreur, ou donne un conseil pratique tiré de sa propre expérience de terrain en Chine et en Afrique.",
+      "couleurUI": "#6200EE",
+      "couleurTexteDark": "#BB86FC",
+      "badgeRole": "Fondateur & Mentor"
+    },
+    {
+      "id": "katia",
+      "nom": "Katia",
+      "nomChinois": "卡佳",
+      "paysOrigine": "France",
+      "nationalite": "Française",
+      "statut": "Personnage Récurrent",
+      "role": "Femme d'affaires française qui voyage régulièrement en Chine pour développer des partenariats commerciaux.",
+      "traitsCaractere": [
+        "Douce",
+        "Intelligente",
+        "Brillante",
+        "Méthodique",
+        "Toujours bien préparée avant ses rendez-vous"
+      ],
+      "contexteApparition": "Apparaît dans des situations de négociation de partenariats, de réunions professionnelles de haut niveau ou de découverte culturelle raffinée en Chine.",
+      "couleurUI": "#00897B",
+      "couleurTexteDark": "#03DAC5",
+      "badgeRole": "Femme d'Affaires"
+    },
+    {
+      "id": "brice",
+      "nom": "Brice",
+      "nomChinois": "布里斯",
+      "paysOrigine": "Côte d'Ivoire",
+      "nationalite": "Ivoirienne",
+      "statut": "Personnage Récurrent",
+      "role": "Entrepreneur et chef d'entreprise ivoirien, importe et exporte des marchandises avec des fournisseurs chinois.",
+      "traitsCaractere": [
+        "Courageux",
+        "Ambitieux",
+        "Déterminé",
+        "Travailleur acharné",
+        "Négociateur terrain"
+      ],
+      "contexteApparition": "Apparaît dans des scènes de négociation de prix en usine, de visites d'ateliers de fabrication, de salons de sourcing ou de gestion logistique portuaire.",
+      "couleurUI": "#0288D1",
+      "couleurTexteDark": "#29B6F6",
+      "badgeRole": "Entrepreneur Import-Export"
+    },
+    {
+      "id": "anthony",
+      "nom": "Anthony",
+      "nomChinois": "安东尼",
+      "paysOrigine": "Burkina Faso",
+      "nationalite": "Burkinabè",
+      "statut": "Personnage Récurrent",
+      "role": "Businessman actif à la fois en Chine et dans son pays d'origine.",
+      "traitsCaractere": [
+        "Bienveillant",
+        "Compréhensif",
+        "Très persévérant",
+        "Constance quotidienne",
+        "Positif"
+      ],
+      "contexteApparition": "Apparaît dans des scènes d'apprentissage progressif du mandarin, de petites victoires quotidiennes et d'efforts constants qui finissent par payer sur la durée.",
+      "couleurUI": "#3F51B5",
+      "couleurTexteDark": "#9FA8DA",
+      "badgeRole": "Businessman & Apprenant"
+    },
+    {
+      "id": "lily",
+      "nom": "Lily",
+      "nomChinois": "莉莉",
+      "paysOrigine": "Chine",
+      "nationalite": "Chinoise",
+      "statut": "Personnage Récurrent (Guide Locale)",
+      "role": "Jeune femme chinoise dynamique, point de vue local qui aide les autres personnages à comprendre la culture chinoise de l'intérieur.",
+      "traitsCaractere": [
+        "Énergique",
+        "Curieuse",
+        "Sociable",
+        "Accueillante",
+        "Spontanée"
+      ],
+      "contexteApparition": "Apparaît dans des scènes de vie quotidienne, d'amitié interculturelle, de recommandations locales, ou de petites explications culturelles glissées naturellement dans le dialogue.",
+      "couleurUI": "#E91E63",
+      "couleurTexteDark": "#F06292",
+      "badgeRole": "Guide Locale & Amie"
+    },
+    {
+      "id": "claire",
+      "nom": "Claire",
+      "nomChinois": "克莱尔",
+      "paysOrigine": "France",
+      "nationalite": "Française",
+      "statut": "Héroïne de la Série Dédiée",
+      "role": "Personnage principal de la série narrative « L'histoire de Claire en Chine », installée en Chine où elle vit des aventures professionnelles et personnelles.",
+      "traitsCaractere": [
+        "Aventureuse",
+        "Curieuse",
+        "Expérimentée",
+        "Débrouillarde",
+        "Observatrice"
+      ],
+      "contexteApparition": "Apparaît dans des scènes de vie quotidienne en immersion chinoise : bureau, transports (TGV, métro), restaurants, démarches du quotidien et imprévus enrichissants.",
+      "couleurUI": "#8E24AA",
+      "couleurTexteDark": "#CE93D8",
+      "badgeRole": "Expatriée en Immersion"
+    },
+    {
+      "id": "monsieur_li",
+      "nom": "Monsieur Li",
+      "nomChinois": "李老师",
+      "paysOrigine": "Chine",
+      "nationalite": "Chinoise",
+      "statut": "Figure Magistrale Pédagogique",
+      "role": "Professeur de chinois expérimenté, figure pédagogique traditionnelle et garante de la pureté de la langue.",
+      "traitsCaractere": [
+        "Patient",
+        "Exigeant mais toujours juste",
+        "Passionné",
+        "Érudit",
+        "Respectueux des traditions"
+      ],
+      "contexteApparition": "Apparaît dans des scènes de cours magistraux, d'explications de points grammaticaux subtils, de calligraphie ou de dialogues formels enseignant-élève.",
+      "couleurUI": "#D81B60",
+      "couleurTexteDark": "#FF80AB",
+      "badgeRole": "Professeur Émérite"
+    }
+  ]
+}
