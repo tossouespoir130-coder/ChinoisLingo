@@ -140,8 +140,15 @@ function FormationContent() {
           return l;
         });
 
-        // Global Celebration rule: confetti & glitter animation on completion
+        // Global Celebration rule: confetti, haptics & glitter animation on completion
         if (justCompleted) {
+          if (typeof window !== 'undefined' && 'vibrate' in navigator) {
+            try {
+              navigator.vibrate([40, 60, 40]);
+            } catch {
+              // ignore
+            }
+          }
           try {
             confetti({
               particleCount: 85,
@@ -398,6 +405,65 @@ function FormationContent() {
               </div>
 
               {/* ================================================================= */}
+              {/* MODULES DE FORMATION SUR MOBILE (VISIBLE DIRECTEMENT SOUS LA VIDÉO) */}
+              {/* ================================================================= */}
+              <div className="lg:hidden nixtio-card p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-3 shadow-xs">
+                <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-[#6200EE]" />
+                    <span className="text-xs font-black text-[#212121] dark:text-[#F5F5F5] uppercase tracking-wider">
+                      Toutes les Leçons ({activeCourse.totalLessons})
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-bold text-[#6200EE] dark:text-[#03DAC5]">
+                    {activeCourse.completedLessons} / {activeCourse.totalLessons} terminées
+                  </span>
+                </div>
+
+                <div className="space-y-2 max-h-[380px] overflow-y-auto pr-1">
+                  {activeCourse.lessons.map((lesson) => {
+                    const isActive = lesson.id === currentLesson.id;
+
+                    return (
+                      <button
+                        key={lesson.id}
+                        onClick={() => {
+                          if (!lesson.isLocked) {
+                            handleSelectLesson(lesson.id);
+                          }
+                        }}
+                        type="button"
+                        disabled={lesson.isLocked}
+                        className={`w-full p-3 rounded-2xl flex items-center justify-between text-left transition-all btn-press cursor-pointer ${isActive
+                            ? 'bg-[#6200EE] text-white shadow-md shadow-[#6200EE]/20'
+                            : lesson.isCompleted
+                              ? 'bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5]'
+                              : 'bg-black/[0.02] dark:bg-white/[0.02] text-[#757575] hover:bg-black/[0.05] dark:hover:bg-white/[0.05]'
+                          }`}
+                      >
+                        <div className="flex items-center gap-2.5 pr-2 min-w-0 flex-1">
+                          {lesson.isCompleted ? (
+                            <CheckCircle className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-[#00897B] dark:text-[#03DAC5]'}`} />
+                          ) : lesson.isLocked ? (
+                            <Lock className="w-4 h-4 shrink-0 text-[#757575]" />
+                          ) : (
+                            <Play className={`w-4 h-4 shrink-0 ${isActive ? 'text-white fill-white' : 'text-[#6200EE]'}`} />
+                          )}
+                          <span className="text-xs font-bold leading-snug break-words">
+                            {lesson.title}
+                          </span>
+                        </div>
+
+                        <span className={`text-[10px] font-mono shrink-0 ml-2 ${isActive ? 'text-white/90' : 'text-[#757575]'}`}>
+                          {lesson.duration}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* ================================================================= */}
               {/* SECTION COMMENTAIRES ÉPURÉE                                        */}
               {/* ================================================================= */}
               <div className="nixtio-card p-4 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-4 shadow-xs">
@@ -606,7 +672,7 @@ function FormationContent() {
             </div>
 
             {/* Right 1 Col: Curriculum Chapters */}
-            <div>
+            <div className="hidden lg:block">
               <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-4 shadow-xs">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-black text-[#212121] dark:text-[#F5F5F5] uppercase tracking-wider">

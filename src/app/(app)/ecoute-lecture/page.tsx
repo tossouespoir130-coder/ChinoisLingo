@@ -1627,7 +1627,18 @@ function EcouteLectureContent() {
   }, [searchParams, setCurrentSentenceIndex]);
 
   // Trigger Celebration Confetti / Paillettes on completion!
+  const triggerHapticFeedback = () => {
+    if (typeof window !== 'undefined' && 'vibrate' in navigator) {
+      try {
+        navigator.vibrate([40, 60, 40]);
+      } catch {
+        // ignore
+      }
+    }
+  };
+
   const triggerCelebration = () => {
+    triggerHapticFeedback();
     try {
       confetti({
         particleCount: 80,
@@ -2063,39 +2074,39 @@ function EcouteLectureContent() {
                         </div>
                       )}
 
-                      {/* Hanzi Text */}
-                      <div className="font-hanzi font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-relaxed">
+                      {/* Hanzi Text - 100% Full Width */}
+                      <div className="font-hanzi font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-relaxed break-words w-full">
                         {sent.hanzi}
                       </div>
 
-                      {/* Pinyin with Tone Coloring */}
+                      {/* Pinyin with Tone Coloring - 100% Full Width Without Unnecessary Wrapping */}
                       {isPinyinVisible && (
-                        <div className="font-pinyin font-bold text-sm sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide">
+                        <div className="font-pinyin font-bold text-sm sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-relaxed break-words w-full pt-0.5">
                           {sent.pinyin}
                         </div>
                       )}
 
                       {/* French Translation */}
                       {isFrenchVisible && (
-                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5">
+                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-relaxed break-words w-full">
                           {sent.french}
                         </div>
                       )}
                     </div>
 
-                    {/* Audio & Bookmark Actions */}
-                    <div className="flex items-center gap-1.5 shrink-0 self-start pt-1">
+                    {/* Audio & Bookmark Actions - Positioned cleanly with generous touch zone */}
+                    <div className="flex items-center justify-end gap-2 shrink-0 self-end sm:self-start pt-2 sm:pt-1 border-t sm:border-t-0 border-black/[0.04] dark:border-white/[0.04] w-full sm:w-auto">
                       <button
                         onClick={() => toggleSaveSentence(sent.id)}
                         type="button"
-                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press ${
+                        className={`w-9 h-9 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSaved
                             ? 'bg-[#00897B] text-white shadow-2xs'
                             : 'bg-black/[0.03] dark:bg-white/[0.05] text-[#757575] hover:text-[#212121] dark:hover:text-white'
                         }`}
                         title={isSaved ? 'Enregistré dans vos favoris' : 'Enregistrer ce vers'}
                       >
-                        {isSaved ? <Check className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
+                        {isSaved ? <Check className="w-4 h-4 sm:w-3.5 sm:h-3.5" /> : <Bookmark className="w-4 h-4 sm:w-3.5 sm:h-3.5" />}
                       </button>
 
                       <button
@@ -2104,14 +2115,14 @@ function EcouteLectureContent() {
                           playSentenceAudio(sent.id, sent.hanzi);
                         }}
                         type="button"
-                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press ${
+                        className={`w-9 h-9 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSentencePlaying
                             ? 'bg-[#00897B] text-white animate-pulse shadow-xs shadow-[#00897B]/30'
                             : 'bg-[#00897B]/10 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white'
                         }`}
                         title="Écouter la prononciation de ce vers"
                       >
-                        <Volume2 className="w-3.5 h-3.5" />
+                        <Volume2 className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
                       </button>
                     </div>
                   </div>
