@@ -150,6 +150,17 @@ La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et 
      - **Ligne 4 (Pleine largeur)** : `Note` (champ pour les astuces, mnémotechniques ou précisions d'usage).
    - Bannissement des sélecteurs superflus de pack/niveau HSK lors de l'ajout d'un mot personnalisé.
 
+6. **Normes des Sessions de Flashcards 3D & Système de Répétition Espacée (SRS)** :
+   - **Abréviations grammaticales courtes** : Utiliser exclusivement les formes abrégées normalisées (`adv.`, `adj.`, `n.`, `v.`, `pron.`, `prép.`, `conj.`, `part.`, `num.`, `cl.`).
+   - **Épuration des textes méta** : Bannissement de la mention « Référentiel HSK X » et du texte « Évaluez votre niveau de maîtrise » au-dessus des boutons.
+   - **Centrage Absolu & Design Glassmorphism** : Recto et Verso utilisent un fond glassmorphism élégant aux reflets violet / turquoise de la charte. Le caractère Hanzi géant, le Pinyin, la traduction française et l'exemple sont tous **parfaitement centrés verticalement et horizontalement au cœur de la carte**.
+   - **Échelle d'Intervalles SRS Normalisée** :
+     - 🔴 **`À Revoir`** : **10 min** (quelques dizaines de minutes)
+     - 🟠 **`Difficile`** : **2 h** (quelques heures)
+     - 🟢 **`Je Sais`** : **4 j** (entre 3 et 5 jours)
+     - ⚡ **`Facile`** : **7 j** (maximum 7 jours)
+   - **Vibration Haptique & Confettis** : Déclenchement d'un retour haptique léger (`navigator.vibrate`) à chaque notation et célébration festive en fin de session.
+
 ## Règles de Contenu & Design de la Rubrique Formations
 1. **Structure des Cartes de Formation** :
    - **Couverture Haute Définition** : Image ou miniature vidéo en haut au ratio 16:9 (`aspect-video sm:h-52`, `object-fit: cover`).
