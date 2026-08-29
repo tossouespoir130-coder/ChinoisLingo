@@ -233,6 +233,41 @@ body {
   background: rgba(0, 0, 0, 0.12);
   border-radius: 9999px;
 }
+
+/* 3D Flashcard Flip Cross-Browser Fix (iOS Safari / WebKit & Android) */
+.perspective-container {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.transform-3d-card {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.flashcard-face {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased;
+}
+
+.flashcard-front {
+  transform: rotateY(0deg) translateZ(1px);
+  -webkit-transform: rotateY(0deg) translateZ(1px);
+}
+
+.flashcard-back {
+  transform: rotateY(180deg) translateZ(1px);
+  -webkit-transform: rotateY(180deg) translateZ(1px);
+}
+
 .dark ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
 }

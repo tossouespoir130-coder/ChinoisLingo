@@ -345,30 +345,24 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
         />
       </div>
 
-      {/* 3D Flip Card Container (Glassmorphism & Couleurs de Marque) */}
+      {/* 3D Flip Card Container (Mobile & Desktop Cross-Browser Guaranteed) */}
       <div
-        className="relative w-full h-[360px] sm:h-[390px] cursor-pointer select-none"
-        style={{ perspective: '1200px' }}
+        className="perspective-container relative w-full h-[350px] sm:h-[390px] cursor-pointer select-none touch-manipulation"
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div
-          className="w-full h-full relative transition-transform duration-600 ease-out"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          }}
+          className={`transform-3d-card w-full h-full relative ${
+            isFlipped ? '[transform:rotateY(180deg)]' : '[transform:rotateY(0deg)]'
+          }`}
         >
           {/* ================= RECTO (FRONT) ================= */}
           <div
-            className="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between bg-gradient-to-br from-white/95 via-[#6200EE]/[0.03] to-[#03DAC5]/[0.05] dark:from-[#1E1E28]/95 dark:via-[#6200EE]/[0.08] dark:to-[#03DAC5]/[0.06] backdrop-blur-md border border-[#6200EE]/25 dark:border-[#6200EE]/35 shadow-xl shadow-[#6200EE]/08 backface-hidden relative overflow-hidden"
-            style={{ backfaceVisibility: 'hidden' }}
+            className={`flashcard-face flashcard-front absolute inset-0 w-full h-full rounded-3xl p-5 sm:p-8 flex flex-col justify-between bg-white dark:bg-[#1E1E28] border border-[#6200EE]/25 dark:border-[#6200EE]/35 shadow-xl shadow-[#6200EE]/08 ${
+              isFlipped ? 'pointer-events-none opacity-0 sm:opacity-100' : 'pointer-events-auto opacity-100 z-10'
+            }`}
           >
-            {/* Subtle Glowing Aura */}
-            <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-[#6200EE]/15 blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-16 -left-16 w-40 h-40 rounded-full bg-[#03DAC5]/15 blur-2xl pointer-events-none" />
-
             {/* Top Bar : Abréviation grammaticale épurée & Bouton Audio */}
-            <div className="relative z-10 flex items-center justify-between">
+            <div className="flex items-center justify-between">
               {grammarAbbr ? (
                 <span className="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/25 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20 shadow-2xs">
                   {grammarAbbr}
@@ -395,50 +389,44 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
             </div>
 
             {/* Center Display (100% Perfectly Centered) */}
-            <div className="relative z-10 text-center my-auto flex flex-col items-center justify-center">
+            <div className="text-center my-auto flex flex-col items-center justify-center">
               {isFrontHanzi ? (
                 <>
-                  <h2 className="font-hanzi font-black text-6xl sm:text-7xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-none drop-shadow-xs">
+                  <h2 className="font-hanzi font-black text-5xl sm:text-7xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-none drop-shadow-xs">
                     {currentWord.hanzi}
                   </h2>
-                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-5 font-medium flex items-center justify-center gap-1.5">
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-4 sm:mt-5 font-medium flex items-center justify-center gap-1.5">
                     <RotateCw className="w-3.5 h-3.5 animate-spin-slow text-[#6200EE] dark:text-[#03DAC5]" />
-                    <span>Cliquez pour révéler le verso</span>
+                    <span>Touchez pour révéler le verso</span>
                   </p>
                 </>
               ) : (
                 <>
-                  <h2 className="font-display font-black text-3xl sm:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-tight text-center">
+                  <h2 className="font-display font-black text-2xl sm:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-tight text-center">
                     {currentWord.french}
                   </h2>
-                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-5 font-medium flex items-center justify-center gap-1.5">
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-4 sm:mt-5 font-medium flex items-center justify-center gap-1.5">
                     <RotateCw className="w-3.5 h-3.5 animate-spin-slow text-[#6200EE] dark:text-[#03DAC5]" />
-                    <span>Cliquez pour révéler le caractère chinois</span>
+                    <span>Touchez pour révéler le caractère chinois</span>
                   </p>
                 </>
               )}
             </div>
 
             {/* Bottom Subtle Flip Hint */}
-            <div className="relative z-10 flex items-center justify-center text-[11px] font-bold text-[#6200EE] dark:text-[#03DAC5] opacity-80">
+            <div className="flex items-center justify-center text-[11px] font-bold text-[#6200EE] dark:text-[#03DAC5] opacity-80">
               <span>Retourner la carte ➔</span>
             </div>
           </div>
 
           {/* ================= VERSO (BACK) ================= */}
           <div
-            className="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between bg-gradient-to-br from-white/95 via-[#03DAC5]/[0.03] to-[#6200EE]/[0.05] dark:from-[#1E1E28]/95 dark:via-[#03DAC5]/[0.08] dark:to-[#6200EE]/[0.06] backdrop-blur-md border border-[#03DAC5]/35 dark:border-[#03DAC5]/45 shadow-xl shadow-[#03DAC5]/08 backface-hidden relative overflow-hidden"
-            style={{
-              backfaceVisibility: 'hidden',
-              transform: 'rotateY(180deg)',
-            }}
+            className={`flashcard-face flashcard-back absolute inset-0 w-full h-full rounded-3xl p-5 sm:p-8 flex flex-col justify-between bg-white dark:bg-[#1E1E28] border border-[#03DAC5]/35 dark:border-[#03DAC5]/45 shadow-xl shadow-[#03DAC5]/08 ${
+              isFlipped ? 'pointer-events-auto opacity-100 z-10' : 'pointer-events-none opacity-0 sm:opacity-100'
+            }`}
           >
-            {/* Subtle Glowing Aura */}
-            <div className="absolute -top-16 -left-16 w-40 h-40 rounded-full bg-[#03DAC5]/15 blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-16 -right-16 w-40 h-40 rounded-full bg-[#6200EE]/15 blur-2xl pointer-events-none" />
-
             {/* Top Bar with Audio */}
-            <div className="relative z-10 flex items-center justify-between">
+            <div className="flex items-center justify-between">
               {grammarAbbr ? (
                 <span className="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#03DAC5]/25 shadow-2xs">
                   {grammarAbbr}
@@ -466,29 +454,29 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
             </div>
 
             {/* Center Content (100% Perfectly Centered) */}
-            <div className="relative z-10 space-y-2.5 my-auto flex flex-col items-center justify-center text-center">
+            <div className="space-y-2 my-auto flex flex-col items-center justify-center text-center">
               {/* Hanzi */}
-              <h3 className="font-hanzi font-black text-4xl sm:text-5xl text-[#212121] dark:text-[#F5F5F5] leading-none">
+              <h3 className="font-hanzi font-black text-3xl sm:text-5xl text-[#212121] dark:text-[#F5F5F5] leading-none">
                 {currentWord.hanzi}
               </h3>
 
               {/* Pinyin */}
               {showPinyin && (
-                <span className="font-pinyin font-bold text-xl sm:text-2xl text-[#6200EE] dark:text-[#03DAC5] tracking-wide">
+                <span className="font-pinyin font-bold text-lg sm:text-2xl text-[#6200EE] dark:text-[#03DAC5] tracking-wide">
                   {currentWord.pinyin}
                 </span>
               )}
 
               {/* French Translation */}
               {showFrenchTranslation && (
-                <p className="font-bold text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5] leading-snug">
+                <p className="font-bold text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] leading-snug">
                   {currentWord.french}
                 </p>
               )}
 
               {/* Verified Example Sentence */}
               {showExampleSentence && verifiedExample && (
-                <div className="p-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/5 dark:border-white/5 space-y-0.5 max-w-md mx-auto mt-1">
+                <div className="p-2.5 sm:p-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/5 dark:border-white/5 space-y-0.5 max-w-md mx-auto mt-0.5">
                   <div className="font-hanzi text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
                     {verifiedExample.hanzi}
                   </div>
@@ -498,7 +486,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
                     </div>
                   )}
                   {showFrenchTranslation && verifiedExample.french && (
-                    <div className="text-[11px] text-[#757575] dark:text-[#A0A0A0] italic">
+                    <div className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] italic">
                       « {verifiedExample.french} »
                     </div>
                   )}
@@ -507,8 +495,8 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
             </div>
 
             {/* Bottom Flip Hint */}
-            <div className="relative z-10 flex items-center justify-center text-[10px] font-bold text-[#757575] dark:text-[#9E9E9E] opacity-70">
-              <span>Cliquez pour retourner</span>
+            <div className="flex items-center justify-center text-[10px] font-bold text-[#757575] dark:text-[#9E9E9E] opacity-70">
+              <span>Touchez pour retourner</span>
             </div>
           </div>
         </div>
