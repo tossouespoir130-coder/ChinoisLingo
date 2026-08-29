@@ -1695,27 +1695,16 @@ function EcouteLectureContent() {
     }
   };
 
-  // Filter State: Choisi pour vous (recommended), Populaire (popular), ou Tous (all)
-  const [curationFilter, setCurationFilter] = useState<'recommended' | 'popular' | 'all'>('recommended');
-
-  // Filtered and strictly sorted catalogue based on HSK level ascending & curation filter
+  // Filtered and strictly sorted catalogue based on HSK level ascending (HSK 1 -> HSK 2 -> HSK 3 -> HSK 4 -> HSK 5 -> HSK 6)
   const filteredCatalog = useMemo(() => {
-    let list = readingCatalog.filter((item) => item.type === activeCategory);
-
-    // Sort ascending by HSK Level
-    list.sort((a, b) => {
-      const levelA = parseInt(a.level.replace(/\D/g, '') || '99', 10);
-      const levelB = parseInt(b.level.replace(/\D/g, '') || '99', 10);
-      return levelA - levelB;
-    });
-
-    if (curationFilter === 'popular') {
-      // Prioritize classic hit songs / top dialogues / top business articles
-      list = [...list].reverse();
-    }
-
-    return list;
-  }, [activeCategory, curationFilter]);
+    return readingCatalog
+      .filter((item) => item.type === activeCategory)
+      .sort((a, b) => {
+        const levelA = parseInt(a.level.replace(/\D/g, '') || '99', 10);
+        const levelB = parseInt(b.level.replace(/\D/g, '') || '99', 10);
+        return levelA - levelB;
+      });
+  }, [activeCategory]);
 
   // Play audio for a single sentence via Web Speech Synthesis
   const playSentenceAudio = (id: string, text: string) => {
@@ -2030,17 +2019,17 @@ function EcouteLectureContent() {
                 <div
                   key={sent.id}
                   id={`sentence-${sent.id}`}
-                  className={`py-4 sm:py-5 px-3 sm:px-4 rounded-2xl transition-all duration-200 ${
+                  className={`py-3 sm:py-4 px-2.5 sm:px-4 rounded-2xl transition-all duration-200 ${
                     isHighlighted
                       ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 border border-[#6200EE]/30 shadow-xs -mx-1 sm:-mx-2'
                       : 'hover:bg-black/[0.015] dark:hover:bg-white/[0.02]'
                   }`}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 w-full">
-                    <div className="flex-1 space-y-1.5 min-w-0 w-full">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4 w-full">
+                    <div className="flex-1 space-y-1 min-w-0 w-full">
                       {/* Section Marker (Couplet / Refrain) for Songs */}
                       {activeReading.type === 'chansons' && sent.section && (
-                        <div className="flex items-center gap-2 mb-3 mt-1">
+                        <div className="flex items-center gap-2 mb-2 mt-0.5">
                           {sent.section.toLowerCase().includes('refrain') ? (
                             <>
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E91E63]/15 dark:bg-[#E91E63]/25 text-[#E91E63] dark:text-[#F48FB1] text-[11px] font-black uppercase tracking-wider border border-[#E91E63]/30 shadow-2xs">
@@ -2061,7 +2050,7 @@ function EcouteLectureContent() {
 
                       {/* Differentiated Speaker Badges with Distinct Colors */}
                       {sent.speaker && activeReading.type !== 'chansons' && (
-                        <div className="flex items-center gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 mb-1">
                           <span className={`text-xs font-black ${
                             isViolet
                               ? 'text-[#6200EE] dark:text-[#BB86FC]'
@@ -2086,38 +2075,38 @@ function EcouteLectureContent() {
                       )}
 
                       {/* Hanzi Text - 100% Full Width */}
-                      <div className="font-hanzi font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-relaxed break-words w-full">
+                      <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug break-words w-full">
                         {sent.hanzi}
                       </div>
 
                       {/* Pinyin with Tone Coloring - 100% Full Width Without Unnecessary Wrapping */}
                       {isPinyinVisible && (
-                        <div className="font-pinyin font-bold text-sm sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-relaxed break-words w-full pt-0.5">
+                        <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug break-words w-full pt-0.5">
                           {sent.pinyin}
                         </div>
                       )}
 
                       {/* French Translation */}
                       {isFrenchVisible && (
-                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-relaxed break-words w-full">
+                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-snug break-words w-full">
                           {sent.french}
                         </div>
                       )}
                     </div>
 
-                    {/* Audio & Bookmark Actions - Positioned cleanly with generous touch zone */}
-                    <div className="flex items-center justify-end gap-2 shrink-0 self-end sm:self-start pt-2 sm:pt-1 border-t sm:border-t-0 border-black/[0.04] dark:border-white/[0.04] w-full sm:w-auto">
+                    {/* Audio & Bookmark Actions - Directement rattachés sans vide */}
+                    <div className="flex items-center justify-end gap-1.5 shrink-0 self-end sm:self-start pt-1 sm:pt-0 w-full sm:w-auto">
                       <button
                         onClick={() => toggleSaveSentence(sent.id)}
                         type="button"
-                        className={`w-9 h-9 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSaved
                             ? 'bg-[#00897B] text-white shadow-2xs'
-                            : 'bg-black/[0.03] dark:bg-white/[0.05] text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                            : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#757575] hover:text-[#212121] dark:hover:text-white'
                         }`}
                         title={isSaved ? 'Enregistré dans vos favoris' : 'Enregistrer ce vers'}
                       >
-                        {isSaved ? <Check className="w-4 h-4 sm:w-3.5 sm:h-3.5" /> : <Bookmark className="w-4 h-4 sm:w-3.5 sm:h-3.5" />}
+                        {isSaved ? <Check className="w-3.5 h-3.5" /> : <Bookmark className="w-3.5 h-3.5" />}
                       </button>
 
                       <button
@@ -2126,14 +2115,14 @@ function EcouteLectureContent() {
                           playSentenceAudio(sent.id, sent.hanzi);
                         }}
                         type="button"
-                        className={`w-9 h-9 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all btn-press cursor-pointer ${
                           isSentencePlaying
                             ? 'bg-[#00897B] text-white animate-pulse shadow-xs shadow-[#00897B]/30'
                             : 'bg-[#00897B]/10 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] hover:bg-[#00897B] hover:text-white'
                         }`}
                         title="Écouter la prononciation de ce vers"
                       >
-                        <Volume2 className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+                        <Volume2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
@@ -2344,57 +2333,6 @@ function EcouteLectureContent() {
                 </button>
               );
             })}
-          </div>
-
-          {/* 2 Filter Pills: Choisi pour vous (en 1er) & Populaire (en 2ème) */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth w-full pt-1 pb-1">
-            <button
-              onClick={(e) => {
-                setCurationFilter('recommended');
-                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-              }}
-              type="button"
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
-                curationFilter === 'recommended'
-                  ? 'bg-[#6200EE] text-white shadow-xs'
-                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Choisi pour vous</span>
-            </button>
-
-            <button
-              onClick={(e) => {
-                setCurationFilter('popular');
-                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-              }}
-              type="button"
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
-                curationFilter === 'popular'
-                  ? 'bg-[#E91E63] text-white shadow-xs'
-                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
-              }`}
-            >
-              <span>🔥</span>
-              <span>Populaire</span>
-            </button>
-
-            <button
-              onClick={(e) => {
-                setCurationFilter('all');
-                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-              }}
-              type="button"
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press flex items-center gap-1.5 cursor-pointer ${
-                curationFilter === 'all'
-                  ? 'bg-[#00897B] text-white shadow-xs'
-                  : 'bg-white dark:bg-[#1E1E1E] text-[#757575] hover:text-[#212121] dark:hover:text-white border border-[#E0E0E0] dark:border-[#2D2D2D]'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>Tous</span>
-            </button>
           </div>
 
           {/* If Podcasts tab is active and waiting for new studio audio */}
