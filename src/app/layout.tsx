@@ -7,6 +7,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#6200EE',
 };
 
 const outfit = Outfit({
@@ -41,6 +43,14 @@ export const metadata: Metadata = {
   title: 'ChinoisLingo — Le chinois devient facile',
   description:
     'Avec ChinoisLingo, le chinois devient facile. Plateforme d’apprentissage complète du mandarin pour les francophones : vocabulaire, répétition espacée, écoute & lecture audio synchronisée, formations et livres.',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'ChinoisLingo',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 import { AuthProvider } from '@/lib/auth/AuthContext';
