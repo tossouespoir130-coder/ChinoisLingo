@@ -1611,20 +1611,123 @@ function EcouteLectureContent() {
     loadProgress();
   }, [user]);
 
-  // Handle direct navigation via URL query params (?id=...) e.g. from Dashboard "Continuer"
+  // Unified Open / Close functions with URL persistence (F5 / Reload preserves the reading page)
+  const openReading = (item: ReadingItem, episodeIdx = 0) => {
+    setActiveReading(item);
+    setActiveCategory(item.type);
+    setActiveEpisodeIndex(episodeIdx);
+    setCurrentSentenceIndex(0);
+    setIsPlayingAll(false);
+
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('type', item.type);
+      url.searchParams.set('id', item.id);
+      if (episodeIdx > 0) {
+        url.searchParams.set('ep', String(episodeIdx));
+      } else {
+        url.searchParams.delete('ep');
+      }
+      window.history.pushState({ readingId: item.id, episodeIdx }, '', url.toString());
+      try {
+        sessionStorage.setItem('chinoislingo_active_reading_id', item.id);
+        sessionStorage.setItem('chinoislingo_active_ep_idx', String(episodeIdx));
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const closeReading = () => {
+    setIsPlayingAll(false);
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setActiveReading(null);
+    setActiveSeries(null);
+
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('id');
+      url.searchParams.delete('ep');
+      url.searchParams.set('type', activeCategory);
+      window.history.pushState({}, '', url.toString());
+      try {
+        sessionStorage.removeItem('chinoislingo_active_reading_id');
+        sessionStorage.removeItem('chinoislingo_active_ep_idx');
+      } catch {
+        // ignore
+      }
+    }
+  };
+
+  const handleCategoryChange = (newCat: ContentType) => {
+    setActiveCategory(newCat);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('type', newCat);
+      if (!activeReading) {
+        url.searchParams.delete('id');
+        url.searchParams.delete('ep');
+      }
+      window.history.pushState({}, '', url.toString());
+    }
+  };
+
+  // Restore active reading from URL query params or sessionStorage on page reload (F5 / Refresh)
   useEffect(() => {
-    const directId = searchParams.get('id');
+    if (typeof window === 'undefined') return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const directId = urlParams.get('id') || searchParams.get('id') || sessionStorage.getItem('chinoislingo_active_reading_id');
+    const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
+    const directEp = parseInt(urlParams.get('ep') || sessionStorage.getItem('chinoislingo_active_ep_idx') || '0', 10);
+
+    if (directType && ['chansons', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(directType)) {
+      setActiveCategory(directType);
+    }
+
     if (directId) {
       const matched = readingCatalog.find((item) => item.id === directId);
       if (matched) {
         setActiveCategory(matched.type);
         setActiveReading(matched);
-        setActiveEpisodeIndex(0);
+        setActiveEpisodeIndex(isNaN(directEp) ? 0 : directEp);
         setCurrentSentenceIndex(0);
         setIsPlayingAll(false);
       }
     }
   }, [searchParams, setCurrentSentenceIndex]);
+
+  // Handle browser Back / Forward buttons without reloading
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const type = params.get('type') as ContentType | null;
+      const ep = parseInt(params.get('ep') || '0', 10);
+
+      if (type && ['chansons', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(type)) {
+        setActiveCategory(type);
+      }
+
+      if (id) {
+        const matched = readingCatalog.find((item) => item.id === id);
+        if (matched) {
+          setActiveReading(matched);
+          setActiveEpisodeIndex(isNaN(ep) ? 0 : ep);
+        }
+      } else {
+        setActiveReading(null);
+        setActiveSeries(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Trigger Celebration Confetti / Paillettes on completion!
   const triggerHapticFeedback = () => {
@@ -1798,15 +1901,9 @@ function EcouteLectureContent() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
             <div className="flex items-center gap-3 min-w-0">
               <button
-                onClick={() => {
-                  setIsPlayingAll(false);
-                  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                  }
-                  setActiveReading(null);
-                }}
+                onClick={closeReading}
                 type="button"
-                className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs"
+                className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
                 title="Retour au catalogue Écoute & Lecture"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -2371,12 +2468,12 @@ function EcouteLectureContent() {
                 <button
                   key={sub.id}
                   onClick={(e) => {
-                    setActiveCategory(sub.id as ContentType);
+                    handleCategoryChange(sub.id as ContentType);
                     // Auto-align clicked tab to start of horizontal scroll
                     e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
                   }}
                   type="button"
-                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press ${
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap shrink-0 transition-all btn-press cursor-pointer ${
                     isActive
                       ? 'bg-[#00897B] text-white shadow-xs'
                       : 'text-[#757575] hover:text-[#212121] dark:hover:text-white hover:bg-black/[0.02] dark:hover:bg-white/[0.02]'
@@ -2425,9 +2522,7 @@ function EcouteLectureContent() {
                       if (hasSeriesEpisodes) {
                         setActiveSeries(item);
                       } else {
-                        setActiveReading(item);
-                        setCurrentSentenceIndex(0);
-                        setIsPlayingAll(false);
+                        openReading(item);
                       }
                     }}
                     className={`nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square ${

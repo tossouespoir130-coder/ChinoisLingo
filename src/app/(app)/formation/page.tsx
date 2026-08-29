@@ -87,9 +87,13 @@ function FormationContent() {
     loadProgress();
   }, [user]);
 
+  // Restore selected course & lesson from URL params or sessionStorage on F5 / Refresh
   useEffect(() => {
-    const courseParam = searchParams.get('course');
-    const lessonParam = searchParams.get('lesson');
+    if (typeof window === 'undefined') return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseParam = urlParams.get('course') || searchParams.get('course') || sessionStorage.getItem('chinoislingo_active_course_id');
+    const lessonParam = urlParams.get('lesson') || searchParams.get('lesson') || sessionStorage.getItem('chinoislingo_active_lesson_id');
 
     if (courseParam) {
       const found = courses.find((c) => c.id === courseParam);
@@ -104,6 +108,30 @@ function FormationContent() {
     }
   }, [searchParams, courses]);
 
+  // Handle browser Back / Forward buttons without reloading
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const courseId = params.get('course');
+      const lessonId = params.get('lesson');
+
+      if (courseId) {
+        const found = courses.find((c) => c.id === courseId);
+        if (found) {
+          setActiveCourseId(found.id);
+          setActiveLessonId(lessonId && found.lessons.some((l) => l.id === lessonId) ? lessonId : found.lessons[0].id);
+        }
+      } else {
+        setActiveCourseId(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [courses]);
+
   const activeCourse = courses.find((c) => c.id === activeCourseId) || null;
   const currentLesson = activeCourse?.lessons.find((l) => l.id === activeLessonId) || activeCourse?.lessons[0];
 
@@ -113,11 +141,46 @@ function FormationContent() {
     setIsPlayingVideo(false);
     setSelectedQuizOption(null);
     setQuizSubmitted(false);
+
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('course', course.id);
+      url.searchParams.set('lesson', course.lessons[0].id);
+      window.history.pushState({ courseId: course.id, lessonId: course.lessons[0].id }, '', url.toString());
+      try {
+        sessionStorage.setItem('chinoislingo_active_course_id', course.id);
+        sessionStorage.setItem('chinoislingo_active_lesson_id', course.lessons[0].id);
+      } catch {}
+    }
   };
 
   const handleSelectLesson = (lessonId: string) => {
     setActiveLessonId(lessonId);
     setIsPlayingVideo(false);
+
+    if (typeof window !== 'undefined' && activeCourse) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('course', activeCourse.id);
+      url.searchParams.set('lesson', lessonId);
+      window.history.pushState({ courseId: activeCourse.id, lessonId }, '', url.toString());
+      try {
+        sessionStorage.setItem('chinoislingo_active_lesson_id', lessonId);
+      } catch {}
+    }
+  };
+
+  const handleBackToCatalogue = () => {
+    setActiveCourseId(null);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('course');
+      url.searchParams.delete('lesson');
+      window.history.pushState({}, '', url.toString());
+      try {
+        sessionStorage.removeItem('chinoislingo_active_course_id');
+        sessionStorage.removeItem('chinoislingo_active_lesson_id');
+      } catch {}
+    }
   };
 
   const handleToggleLessonComplete = async (lessonId: string) => {
@@ -262,9 +325,7 @@ function FormationContent() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
             <div className="flex items-center gap-3 min-w-0 flex-1">
               <button
-                onClick={() => {
-                  setActiveCourseId(null);
-                }}
+                onClick={handleBackToCatalogue}
                 type="button"
                 className="w-10 h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#6200EE] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
                 title="Retour au catalogue des formations"
