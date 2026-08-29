@@ -1533,7 +1533,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
 function EcouteLectureContent() {
-  const { showPinyin, showFrenchTranslation, audioSpeed } = usePreferences();
+  const { showPinyin, showFrenchTranslation, audioSpeed, setAudioSpeed } = usePreferences();
   const { user } = useAuth();
   const searchParams = useSearchParams();
 
@@ -1845,42 +1845,8 @@ function EcouteLectureContent() {
               </div>
             </div>
 
-            {/* Quick Action Toggles: Audio Global, Pinyin & Traduction */}
-            <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0 flex-wrap">
-              {/* Bouton de Lecture Audio Global Unique */}
-              <button
-                onClick={() => {
-                  if (isPlayingAll) {
-                    setIsPlayingAll(false);
-                    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-                      window.speechSynthesis.cancel();
-                    }
-                    setPlayingSentenceId(null);
-                  } else {
-                    setIsPlayingAll(true);
-                  }
-                }}
-                type="button"
-                className={`inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full border text-[11px] sm:text-xs font-bold transition-all btn-press shadow-xs cursor-pointer ${
-                  isPlayingAll
-                    ? 'bg-[#E53935] text-white border-[#E53935] animate-pulse shadow-[#E53935]/30'
-                    : 'bg-[#00897B] text-white border-[#00897B] shadow-[#00897B]/25 hover:bg-[#00796B]'
-                }`}
-                title={isPlayingAll ? 'Mettre en pause la lecture audio' : 'Écouter toute la transcription'}
-              >
-                {isPlayingAll ? (
-                  <>
-                    <Pause className="w-3.5 h-3.5 fill-white" />
-                    <span>Pause</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-3.5 h-3.5 fill-white" />
-                    <span>Écouter l’Audio</span>
-                  </>
-                )}
-              </button>
-
+            {/* Quick Action Toggles: Pinyin & Traduction Buttons */}
+            <div className="flex items-center gap-1.5 sm:gap-2 self-start sm:self-auto shrink-0">
               <button
                 onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
                 type="button"
@@ -2045,44 +2011,66 @@ function EcouteLectureContent() {
 
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
           <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
-            <div className="pb-3.5 mb-2 flex items-center justify-between gap-3 flex-wrap">
+            {/* Header: Title + Transparent Interactive Audio Controller with Speed Control */}
+            <div className="pb-4 mb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#00796B] dark:text-[#03DAC5] flex items-center gap-2">
                 {activeReading.type === 'chansons' ? <Music className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
                 <span>{activeReading.type === 'chansons' ? 'Paroles & Traduction (Lyrics)' : 'Texte & Transcription Synchronisée'}</span>
               </h3>
 
-              {/* Bouton de Lecture Audio Global Unique */}
-              <button
-                onClick={() => {
-                  if (isPlayingAll) {
-                    setIsPlayingAll(false);
-                    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-                      window.speechSynthesis.cancel();
+              {/* Single Transparent Audio Controller */}
+              <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                {/* Speed Toggle (0.75x / 1.0x / 1.25x) */}
+                <div className="inline-flex items-center p-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-[10.5px] font-bold">
+                  {(['0.75', '1.0', '1.25'] as const).map((speed) => (
+                    <button
+                      key={speed}
+                      onClick={() => setAudioSpeed(speed)}
+                      type="button"
+                      className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                        audioSpeed === speed
+                          ? 'bg-[#00897B] text-white shadow-2xs'
+                          : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                      }`}
+                    >
+                      {speed}x
+                    </button>
+                  ))}
+                </div>
+
+                {/* Main Play / Pause Audio Button */}
+                <button
+                  onClick={() => {
+                    if (isPlayingAll) {
+                      setIsPlayingAll(false);
+                      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                      }
+                      setPlayingSentenceId(null);
+                    } else {
+                      setIsPlayingAll(true);
                     }
-                    setPlayingSentenceId(null);
-                  } else {
-                    setIsPlayingAll(true);
-                  }
-                }}
-                type="button"
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs btn-press cursor-pointer ${
-                  isPlayingAll
-                    ? 'bg-[#E53935] text-white animate-pulse shadow-[#E53935]/30'
-                    : 'bg-[#00897B] hover:bg-[#00796B] text-white shadow-[#00897B]/25'
-                }`}
-              >
-                {isPlayingAll ? (
-                  <>
-                    <Pause className="w-3.5 h-3.5 fill-white" />
-                    <span>Pause Audio</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-3.5 h-3.5 fill-white" />
-                    <span>Écouter l’Audio</span>
-                  </>
-                )}
-              </button>
+                  }}
+                  type="button"
+                  className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs btn-press cursor-pointer ${
+                    isPlayingAll
+                      ? 'bg-[#E53935] text-white animate-pulse shadow-[#E53935]/30'
+                      : 'bg-[#00897B] hover:bg-[#00796B] text-white shadow-[#00897B]/25'
+                  }`}
+                >
+                  {isPlayingAll ? (
+                    <>
+                      <Pause className="w-3.5 h-3.5 fill-white" />
+                      <span>Pause Audio</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-3.5 h-3.5 fill-white" />
+                      <span>Écouter l’Audio</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
             {displayedSentences.map((sent, idx) => {
@@ -2099,91 +2087,97 @@ function EcouteLectureContent() {
                 <div
                   key={sent.id}
                   id={`sentence-${sent.id}`}
-                  className={`py-3 sm:py-4 px-2.5 sm:px-4 rounded-2xl transition-all duration-200 ${
+                  onClick={() => {
+                    setCurrentSentenceIndex(idx);
+                    playSentenceAudio(sent.id, sent.hanzi);
+                  }}
+                  className={`py-3 sm:py-4 px-2.5 sm:px-4 rounded-2xl transition-all duration-200 cursor-pointer group ${
                     isHighlighted
                       ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 border border-[#6200EE]/30 shadow-xs -mx-1 sm:-mx-2'
-                      : 'hover:bg-black/[0.015] dark:hover:bg-white/[0.02]'
+                      : 'hover:bg-black/[0.02] dark:hover:bg-white/[0.02]'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-2.5 sm:gap-4 w-full">
-                    {/* Text Block (Hanzi + Pinyin + French) */}
-                    <div className="flex-1 space-y-1 min-w-0">
-                      {/* Section Marker (Couplet / Refrain) for Songs */}
-                      {activeReading.type === 'chansons' && sent.section && (
-                        <div className="flex items-center gap-2 mb-2 mt-0.5">
-                          {sent.section.toLowerCase().includes('refrain') ? (
-                            <>
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E91E63]/15 dark:bg-[#E91E63]/25 text-[#E91E63] dark:text-[#F48FB1] text-[11px] font-black uppercase tracking-wider border border-[#E91E63]/30 shadow-2xs">
-                                🎵 {sent.section}
-                              </span>
-                              <div className="flex-1 h-px bg-gradient-to-r from-[#E91E63]/40 via-[#E91E63]/15 to-transparent" />
-                            </>
-                          ) : (
-                            <>
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#6200EE]/15 dark:bg-[#6200EE]/25 text-[#6200EE] dark:text-[#BB86FC] text-[11px] font-black uppercase tracking-wider border border-[#6200EE]/30 shadow-2xs">
-                                📖 {sent.section}
-                              </span>
-                              <div className="flex-1 h-px bg-gradient-to-r from-[#6200EE]/40 via-[#6200EE]/15 to-transparent" />
-                            </>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Differentiated Speaker Badges with Distinct Colors */}
-                      {sent.speaker && activeReading.type !== 'chansons' && (
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className={`text-xs font-black ${
-                            isViolet
-                              ? 'text-[#6200EE] dark:text-[#BB86FC]'
-                              : isTurquoise
-                              ? 'text-[#00796B] dark:text-[#03DAC5]'
-                              : 'text-[#616161] dark:text-[#BDBDBD]'
-                          }`}>
-                            {sent.speaker}
-                          </span>
-                          {sent.speakerRole && (
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
-                              isViolet
-                                ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20'
-                                : isTurquoise
-                                ? 'bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/20'
-                                : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E] border border-black/10 dark:border-white/10'
-                            }`}>
-                              {sent.speakerRole}
+                  <div className="flex flex-col gap-1 w-full">
+                    {/* Section Marker (Couplet / Refrain) for Songs */}
+                    {activeReading.type === 'chansons' && sent.section && (
+                      <div className="flex items-center gap-2 mb-1.5 mt-0.5">
+                        {sent.section.toLowerCase().includes('refrain') ? (
+                          <>
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E91E63]/15 dark:bg-[#E91E63]/25 text-[#E91E63] dark:text-[#F48FB1] text-[11px] font-black uppercase tracking-wider border border-[#E91E63]/30 shadow-2xs">
+                              🎵 {sent.section}
                             </span>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Hanzi Text */}
-                      <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug">
-                        {sent.hanzi}
+                            <div className="flex-1 h-px bg-gradient-to-r from-[#E91E63]/40 via-[#E91E63]/15 to-transparent" />
+                          </>
+                        ) : (
+                          <>
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#6200EE]/15 dark:bg-[#6200EE]/25 text-[#6200EE] dark:text-[#BB86FC] text-[11px] font-black uppercase tracking-wider border border-[#6200EE]/30 shadow-2xs">
+                              📖 {sent.section}
+                            </span>
+                            <div className="flex-1 h-px bg-gradient-to-r from-[#6200EE]/40 via-[#6200EE]/15 to-transparent" />
+                          </>
+                        )}
                       </div>
+                    )}
 
-                      {/* Pinyin with Tone Coloring */}
-                      {isPinyinVisible && (
-                        <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug pt-0.5">
-                          {sent.pinyin}
-                        </div>
-                      )}
+                    {/* Differentiated Speaker Badges with Distinct Colors */}
+                    {sent.speaker && activeReading.type !== 'chansons' && (
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className={`text-xs font-black ${
+                          isViolet
+                            ? 'text-[#6200EE] dark:text-[#BB86FC]'
+                            : isTurquoise
+                            ? 'text-[#00796B] dark:text-[#03DAC5]'
+                            : 'text-[#616161] dark:text-[#BDBDBD]'
+                        }`}>
+                          {sent.speaker}
+                        </span>
+                        {sent.speakerRole && (
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
+                            isViolet
+                              ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20'
+                              : isTurquoise
+                              ? 'bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/20'
+                              : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E] border border-black/10 dark:border-white/10'
+                          }`}>
+                            {sent.speakerRole}
+                          </span>
+                        )}
+                      </div>
+                    )}
 
-                      {/* French Translation */}
-                      {isFrenchVisible && (
-                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] pt-0.5 leading-snug">
-                          {sent.french}
-                        </div>
-                      )}
+                    {/* Hanzi Text - 100% Full Width (No Constraint on Top) */}
+                    <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug w-full">
+                      {sent.hanzi}
                     </div>
 
-                    {/* Bookmark Action - Super Compact, Discreet & Space-Saving */}
-                    <div className="shrink-0 pt-1">
+                    {/* Pinyin with Tone Coloring - 100% Full Width */}
+                    {isPinyinVisible && (
+                      <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug pt-0.5 w-full">
+                        {sent.pinyin}
+                      </div>
+                    )}
+
+                    {/* French Translation on Left & Bookmark in Bottom-Right Corner */}
+                    <div className="flex items-center justify-between gap-2 pt-1 w-full min-w-0">
+                      {isFrenchVisible ? (
+                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] leading-snug flex-1 min-w-0">
+                          {sent.french}
+                        </div>
+                      ) : (
+                        <div className="flex-1" />
+                      )}
+
+                      {/* Bookmark Action - Placed in the Bottom-Right Corner (Super Compact & Discreet) */}
                       <button
-                        onClick={() => toggleSaveSentence(sent.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSaveSentence(sent.id);
+                        }}
                         type="button"
-                        className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-lg flex items-center justify-center transition-all btn-press cursor-pointer ${
+                        className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-lg flex items-center justify-center transition-all btn-press cursor-pointer shrink-0 ${
                           isSaved
                             ? 'bg-[#00897B] text-white shadow-2xs'
-                            : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                            : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#9E9E9E] hover:text-[#212121] dark:hover:text-white'
                         }`}
                         title={isSaved ? 'Enregistré dans vos favoris' : 'Enregistrer ce vers'}
                       >
