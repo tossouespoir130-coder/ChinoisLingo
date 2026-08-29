@@ -398,41 +398,20 @@ function FormationContent() {
               </div>
 
               {/* ================================================================= */}
-              {/* SECTION COMMENTAIRES & QUESTIONS DES APPRENANTS                    */}
+              {/* SECTION COMMENTAIRES ÉPURÉE                                        */}
               {/* ================================================================= */}
-              <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-6 shadow-xs">
-                {/* Section Header */}
-                <div className="flex items-center justify-between gap-3 pb-4 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center">
-                      <MessageSquare className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-black text-base text-[#212121] dark:text-[#F5F5F5]">
-                        Questions & Échanges
-                      </h3>
-                      <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
-                        Posez vos questions sur cette leçon, échangez avec la communauté et recevez les réponses d'Espoir Chinois.
-                      </p>
-                    </div>
-                  </div>
-
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#757575] dark:text-[#A0A0A0] shrink-0">
-                    {currentLessonComments.length} {currentLessonComments.length > 1 ? 'commentaires' : 'commentaire'}
-                  </span>
-                </div>
-
-                {/* New Comment / Question Input Box */}
+              <div className="nixtio-card p-4 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-4 shadow-xs">
+                {/* New Comment Input Box */}
                 <form onSubmit={handleAddComment} className="space-y-3">
-                  <div className="flex gap-3">
+                  <div className="flex items-start gap-2.5 sm:gap-3">
                     {userAvatar ? (
                       <img
                         src={userAvatar}
                         alt="Votre profil"
-                        className="w-10 h-10 rounded-full object-cover border border-[#6200EE]/30 shrink-0 shadow-2xs"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-[#6200EE]/30 shrink-0 shadow-2xs mt-0.5"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center font-bold text-sm shrink-0">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
                         {userName ? userName.charAt(0).toUpperCase() : <User className="w-4 h-4" />}
                       </div>
                     )}
@@ -441,19 +420,19 @@ function FormationContent() {
                       <textarea
                         value={newCommentText}
                         onChange={(e) => setNewCommentText(e.target.value)}
-                        placeholder="Posez une question, partagez votre avis ou votre retour sur cette leçon..."
+                        placeholder="Commentaire..."
                         rows={2}
-                        className="w-full px-4 py-3 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] placeholder-[#9E9E9E] focus:outline-none focus:border-[#6200EE] dark:focus:border-[#BB86FC] transition-all resize-none"
+                        className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] placeholder-[#9E9E9E] focus:outline-none focus:border-[#6200EE] dark:focus:border-[#BB86FC] transition-all resize-none"
                       />
 
                       <div className="flex justify-end">
                         <button
                           type="submit"
                           disabled={!newCommentText.trim()}
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#6200EE] hover:bg-[#3700B3] disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-bold transition-all shadow-xs btn-press"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#6200EE] hover:bg-[#3700B3] disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-bold transition-all shadow-xs btn-press cursor-pointer"
                         >
                           <Send className="w-3.5 h-3.5" />
-                          <span>Publier votre commentaire</span>
+                          <span>Publier</span>
                         </button>
                       </div>
                     </div>

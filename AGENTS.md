@@ -168,9 +168,12 @@ La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et 
 2. **Grille Harmonisée à 3 Formations par Ligne sur Grand Écran (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`)** :
    - Sur grand écran (Desktop / Web), afficher **systématiquement 3 formations par ligne** (`lg:grid-cols-3`), identique aux rubriques Vocabulaire et Écoute & Lecture, pour offrir un repérage visuel homogène et harmonieux.
    - Sur mobile, conserver l'affichage responsive fluide sur une seule colonne.
-3. **Espace Interactif de Commentaires & Questions sous Chaque Leçon** :
-   - Sous chaque leçon vidéo dans le lecteur immersif de formation, afficher l'espace **« Questions & Échanges »** permettant aux apprenants de poser une question directe sur la leçon.
-   - Affichage avec avatar, nom d'utilisateur, horodatage, bouton « J'aime », fil de réponses imbriquées et badge distinctif **`Formateur`** violet pour les réponses d'**Espoir Chinois**.
+3. **Espace Interactif de Commentaires Épuré sous Chaque Leçon** :
+   - Sous chaque leçon vidéo dans le lecteur immersif de formation, afficher un espace commentaire **100% épuré sans en-tête ni titres superflus** :
+     - Avatar de l'apprenant à gauche.
+     - Champ de saisie avec le placeholder direct **`Commentaire...`** (sans phrases longues, police minimale 16px sur mobile).
+     - Bouton d'action standardisé et court : **`Publier`** (avec icône `Send`).
+     - Fil de commentaires avec nom d'utilisateur, horodatage, bouton « J'aime », fil de réponses imbriquées et badge distinctif **`Formateur`** violet pour les réponses d'**Espoir Chinois**.
 
 ## Règle de Distinction des 3 Rôles et Appellations d'« Espoir Chinois »
 Pour assurer une cohérence parfaite et ne jamais mélanger les casquettes dans toute l'application :
