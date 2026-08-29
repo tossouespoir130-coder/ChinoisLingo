@@ -81,14 +81,42 @@ export function AnimatedStreakBanner() {
         </div>
       </div>
 
-      {/* Right: Modern Streak Days Track with Real Active Days Lighting */}
+      {/* Right: Modern Streak Days Track with Real Active Days Lighting & Flame Crescendo */}
       <div className="w-full lg:w-96 bg-[#FAFAFA] dark:bg-[#181818] p-3 sm:p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xs flex flex-col justify-center gap-2">
-        {/* 7 Days Grid with Active Fire Pills */}
+        {/* 7 Days Grid with Active Fire Pills and Crescendo Flame Effect */}
         <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
           {WEEK_DAYS.map((day) => {
             const isActiveInStreak = isDayInActiveStreak(day.dayNum);
             const isToday = day.dayNum === todayDayIndex;
             const isFuture = day.dayNum > todayDayIndex;
+
+            // Calculate streak position for crescendo progression (from 0 to 1)
+            const activeDaysCount = Math.max(1, todayDayIndex - startActiveIndex + 1);
+            const currentStep = day.dayNum - startActiveIndex + 1;
+            const crescendoRatio = isActiveInStreak ? currentStep / activeDaysCount : 0;
+
+            // Dynamic Crescendo Gradients & Flame Styles
+            let pillBg = 'bg-[#E0E0E0] dark:bg-[#2D2D2D] text-[#9E9E9E] dark:text-[#757575]';
+            let flameFill = 'fill-[#FFE082] text-[#FF3D00]';
+            let animationDelay = `${(day.dayNum - 1) * 0.18}s`;
+
+            if (isActiveInStreak) {
+              if (crescendoRatio >= 0.85) {
+                // Maximum Vivid Fire: identical to the main flame
+                pillBg = 'bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white shadow-md shadow-[#FF9800]/50 scale-100';
+                flameFill = 'fill-[#FFE082] text-[#FF3D00]';
+              } else if (crescendoRatio >= 0.5) {
+                // Medium Warm Orange
+                pillBg = 'bg-gradient-to-tr from-[#FFCA28] via-[#FF9800] to-[#FF7043] text-white shadow-sm shadow-[#FF9800]/30 scale-100';
+                flameFill = 'fill-[#FFF3E0] text-[#FF5722]';
+              } else {
+                // Soft Amber / Gold (Start of Streak)
+                pillBg = 'bg-gradient-to-tr from-[#FFE082] via-[#FFCA28] to-[#FFA726] text-[#212121] shadow-2xs shadow-[#FFA726]/20 scale-100';
+                flameFill = 'fill-white text-[#FF9800]';
+              }
+            } else if (isFuture) {
+              pillBg = 'bg-[#E0E0E0]/50 dark:bg-[#2D2D2D]/50 text-transparent';
+            }
 
             return (
               <div key={day.dayNum} className="flex flex-col items-center gap-1">
@@ -105,18 +133,17 @@ export function AnimatedStreakBanner() {
                   {day.label}
                 </span>
 
-                {/* Day Indicator Pill */}
+                {/* Day Indicator Pill with Living Fire & Crescendo */}
                 <div
-                  className={`w-full h-6 sm:h-7 rounded-xl flex items-center justify-center transition-all duration-500 ${
-                    isActiveInStreak
-                      ? 'bg-gradient-to-tr from-[#FFD54F] via-[#FF9800] to-[#FF3D00] text-white shadow-xs shadow-[#FF9800]/40 scale-100'
-                      : isFuture
-                      ? 'bg-[#E0E0E0]/50 dark:bg-[#2D2D2D]/50 text-transparent'
-                      : 'bg-[#E0E0E0] dark:bg-[#2D2D2D] text-[#9E9E9E] dark:text-[#757575]'
-                  } ${isToday ? 'ring-2 ring-[#FF3D00] ring-offset-1 dark:ring-offset-[#181818]' : ''}`}
+                  className={`w-full h-6 sm:h-7 rounded-xl flex items-center justify-center transition-all duration-500 overflow-hidden relative ${pillBg} ${
+                    isToday ? 'ring-2 ring-[#FF3D00] ring-offset-1 dark:ring-offset-[#181818]' : ''
+                  }`}
                 >
                   {isActiveInStreak ? (
-                    <Flame className="w-3.5 h-3.5 fill-white text-white drop-shadow-xs" />
+                    <Flame
+                      className={`w-3.5 h-3.5 ${flameFill} flame-burn-vivid drop-shadow-sm`}
+                      style={{ animationDelay }}
+                    />
                   ) : (
                     <span className="w-1.5 h-1.5 rounded-full bg-[#9E9E9E]/40 dark:bg-[#616161]/40" />
                   )}

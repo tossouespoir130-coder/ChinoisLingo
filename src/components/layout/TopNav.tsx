@@ -51,7 +51,7 @@ export function TopNav() {
   return (
     <>
       <header className="w-full flex items-center justify-between gap-3 py-1">
-        {/* Brand Logo (Visible on All Devices) */}
+        {/* Brand Logo (Visible on All Devices - Compact & Elegant) */}
         <div className="flex items-center shrink-0">
           <Link
             href="/tableau-de-bord"
@@ -62,7 +62,7 @@ export function TopNav() {
             <img
               src="/logo.png"
               alt="ChinoisLingo"
-              className="h-8 sm:h-9 w-auto object-contain drop-shadow-2xs"
+              className="h-5.5 sm:h-6.5 w-auto object-contain drop-shadow-2xs"
             />
           </Link>
         </div>
