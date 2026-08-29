@@ -9,7 +9,7 @@ interface PerformanceChartProps {
 }
 
 export function PerformanceChart({ chartData }: PerformanceChartProps) {
-  const [timeframe, setTimeframe] = useState<'week' | 'month'>('month');
+  const [timeframe, setTimeframe] = useState<'week' | 'month'>('week');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isAnimated, setIsAnimated] = useState(false);
   const [realStats, setRealStats] = useState<RealDashboardStats['chartData'] | null>(chartData || null);

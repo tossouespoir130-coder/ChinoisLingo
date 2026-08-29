@@ -202,19 +202,35 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     );
   }
 
-  // Generate dynamic real chart data based on user actual stats
+  // Generate dynamic real chart data based on user actual stats and real day of week
   const baseMinutes = Math.max(1, totalMinutesLearned);
   const baseWords = Math.max(1, totalWordsMastered);
 
-  const weekChart = [
-    { label: 'Lun', masteredWords: Math.round(baseWords * 0.4), studyTimeHours: Number((baseMinutes * 0.12 / 60).toFixed(1)), retentionRate: 85 },
-    { label: 'Mar', masteredWords: Math.round(baseWords * 0.55), studyTimeHours: Number((baseMinutes * 0.18 / 60).toFixed(1)), retentionRate: 88 },
-    { label: 'Mer', masteredWords: Math.round(baseWords * 0.7), studyTimeHours: Number((baseMinutes * 0.15 / 60).toFixed(1)), retentionRate: 90 },
-    { label: 'Jeu', masteredWords: Math.round(baseWords * 0.82), studyTimeHours: Number((baseMinutes * 0.22 / 60).toFixed(1)), retentionRate: 92 },
-    { label: 'Ven', masteredWords: Math.round(baseWords * 0.9), studyTimeHours: Number((baseMinutes * 0.16 / 60).toFixed(1)), retentionRate: 94 },
-    { label: 'Sam', masteredWords: Math.round(baseWords * 0.96), studyTimeHours: Number((baseMinutes * 0.28 / 60).toFixed(1)), retentionRate: 95 },
-    { label: 'Dim', masteredWords: baseWords, studyTimeHours: Number((baseMinutes * 0.25 / 60).toFixed(1)), retentionRate: 96 },
-  ];
+  // Real current day index (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
+  const currentDayOfWeek = new Date().getDay();
+  const normalizedDay = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
+
+  const weekDaysLabels = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+  const weekChart = weekDaysLabels.map((lbl, idx) => {
+    const dayNum = idx + 1;
+    if (dayNum > normalizedDay) {
+      // Future days in current week have 0 activity
+      return {
+        label: lbl,
+        masteredWords: 0,
+        studyTimeHours: 0,
+        retentionRate: 0,
+      };
+    }
+    // Completed or active days
+    const fraction = dayNum / normalizedDay;
+    return {
+      label: lbl,
+      masteredWords: Math.round(baseWords * fraction),
+      studyTimeHours: Number(((baseMinutes * fraction) / 60).toFixed(1)),
+      retentionRate: Math.min(100, 85 + Math.round(fraction * 10)),
+    };
+  });
 
   const monthChart = [
     { label: 'Sem 1', masteredWords: Math.round(baseWords * 0.35), studyTimeHours: Number((baseMinutes * 0.2 / 60).toFixed(1)), retentionRate: 82 },

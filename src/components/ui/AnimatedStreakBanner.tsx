@@ -1,27 +1,36 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Flame, Trophy } from 'lucide-react';
-import { mockUserStreak } from '@/lib/mock/dashboard';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { useAuth } from '@/lib/auth/AuthContext';
 import confetti from 'canvas-confetti';
+
+const WEEK_DAYS = [
+  { label: 'Lun', dayNum: 1 },
+  { label: 'Mar', dayNum: 2 },
+  { label: 'Mer', dayNum: 3 },
+  { label: 'Jeu', dayNum: 4 },
+  { label: 'Ven', dayNum: 5 },
+  { label: 'Sam', dayNum: 6 },
+  { label: 'Dim', dayNum: 7 },
+];
 
 export function AnimatedStreakBanner() {
   const { profile } = useAuth();
   const [bandProgress, setBandProgress] = useState(0);
 
+  // Real user streak and true record (never simulated)
   const realStreak = profile?.streak_days || 1;
-  const bestStreak = Math.max(realStreak, mockUserStreak.best);
+  const bestStreak = Math.max(realStreak, (profile as any)?.longest_streak || realStreak);
 
-  const totalDays = mockUserStreak.history.length;
-  // Calculate percentage of the week completed
-  const currentDayOfWeek = new Date().getDay(); // 0 is Sunday, 1 is Monday...
+  // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
+  const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
   const normalizedDay = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
-  const targetPct = Math.round((normalizedDay / 7) * 100);
+  const targetPct = Math.min(100, Math.round((normalizedDay / 7) * 100));
 
   useEffect(() => {
-    // Gentle delay, then a majestic ~6.8s continuous fill across the week
+    // Gentle delay, then a majestic continuous fill across the active week
     const timer = setTimeout(() => {
       setBandProgress(targetPct);
     }, 450);
@@ -46,7 +55,7 @@ export function AnimatedStreakBanner() {
         <button
           onClick={triggerConfetti}
           type="button"
-          className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white flex items-center justify-center shadow-lg shadow-[#FF9800]/40 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 btn-press relative overflow-hidden"
+          className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white flex items-center justify-center shadow-lg shadow-[#FF9800]/40 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 btn-press relative overflow-hidden cursor-pointer"
           title="Cliquez pour célébrer votre série !"
         >
           <Flame className="w-6 h-6 fill-[#FFE082] text-[#FF3D00] flame-burn-vivid" />
@@ -55,13 +64,13 @@ export function AnimatedStreakBanner() {
         <div className="min-w-0">
           <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
             <span className="font-display font-black text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5] whitespace-nowrap tracking-tight">
-              Série de <AnimatedCounter value={realStreak} duration={380} /> jours
+              Série de <AnimatedCounter value={realStreak} duration={380} /> {realStreak > 1 ? 'jours' : 'jour'}
             </span>
             <span className="text-[#E0E0E0] dark:text-[#333333] hidden sm:inline">•</span>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] font-bold text-xs shrink-0">
               <Trophy className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
               <span>
-                Battez votre record (<AnimatedCounter value={bestStreak} duration={380} /> j)
+                Record : <AnimatedCounter value={bestStreak} duration={380} /> j
               </span>
             </div>
           </div>
@@ -70,20 +79,24 @@ export function AnimatedStreakBanner() {
 
       {/* Right: Clean Continuous Animated Progress Band (Fusion Jaune et Rouge) */}
       <div className="w-full lg:w-96 bg-[#FAFAFA] dark:bg-[#181818] p-3 sm:p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xs flex flex-col justify-center gap-2">
-        {/* Day labels above the track */}
+        {/* Day labels of current week */}
         <div className="flex justify-between items-center px-1">
-          {mockUserStreak.history.map((day, idx) => {
-            const isCovered = (idx / (totalDays - 1)) * 100 <= bandProgress;
+          {WEEK_DAYS.map((day) => {
+            const isToday = day.dayNum === normalizedDay;
+            const isPassedOrToday = day.dayNum <= normalizedDay;
+
             return (
               <span
-                key={day.date}
-                className={`text-[10px] sm:text-[11px] font-bold transition-colors duration-1000 ${
-                  isCovered
-                    ? 'text-[#FF3D00] dark:text-[#FF8A65] font-extrabold'
-                    : 'text-[#757575] dark:text-[#6E6E6E]'
+                key={day.dayNum}
+                className={`text-[10px] sm:text-[11px] transition-colors duration-500 ${
+                  isToday
+                    ? 'text-[#FF3D00] dark:text-[#FF8A65] font-black underline underline-offset-2'
+                    : isPassedOrToday
+                    ? 'text-[#FF9800] dark:text-[#FFB74D] font-bold'
+                    : 'text-[#9E9E9E] dark:text-[#616161] font-medium'
                 }`}
               >
-                {day.dayLabel}
+                {day.label}
               </span>
             );
           })}
@@ -96,15 +109,13 @@ export function AnimatedStreakBanner() {
             className="h-full rounded-full bg-gradient-to-r from-[#FFD54F] via-[#FF9800] via-[#FF5722] to-[#DD2C00] shadow-sm shadow-[#FF5722]/40 relative"
             style={{
               width: `${bandProgress}%`,
-              transition: 'width 6.8s cubic-bezier(0.22, 1, 0.36, 1)',
+              transition: 'width 2.5s cubic-bezier(0.22, 1, 0.36, 1)',
             }}
           >
-            {/* Glowing Leading Edge */}
-            <div className="absolute right-0 top-0 bottom-0 w-3.5 bg-white/80 rounded-full blur-[1px] animate-pulse" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
           </div>
         </div>
       </div>
-
     </div>
   );
 }
