@@ -729,15 +729,16 @@ function FormationContent() {
           </div>
 
           {/* DÉTAILS DE LA FORMATION (POSITIONNÉS COMPLÈTEMENT EN BAS) */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs space-y-3">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/25">
+          <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs space-y-3">
+            {/* 3 Badges on a Single Responsive Line */}
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar pb-0.5">
+              <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/25 shrink-0 whitespace-nowrap">
                 {activeCourse.category}
               </span>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#03DAC5]/15 text-[#00897B] dark:text-[#03DAC5]">
+              <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#03DAC5]/15 text-[#00897B] dark:text-[#03DAC5] shrink-0 whitespace-nowrap">
                 {activeCourse.level}
               </span>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC]">
+              <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] shrink-0 whitespace-nowrap">
                 Formateur : {activeCourse.instructor}
               </span>
             </div>
