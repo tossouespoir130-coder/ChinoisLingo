@@ -51,18 +51,18 @@ export function TopNav() {
   return (
     <>
       <header className="w-full flex items-center justify-between gap-3 py-1">
-        {/* Brand Logo (Visible on All Devices - Compact & Elegant) */}
+        {/* Brand Logo (Visible on All Devices - Extra Compact & Refined) */}
         <div className="flex items-center shrink-0">
           <Link
             href="/tableau-de-bord"
-            className="inline-flex items-center hover:opacity-90 active:scale-95 transition-all btn-press select-none"
+            className="inline-flex items-center hover:opacity-85 active:scale-95 transition-all btn-press select-none py-1"
             title="ChinoisLingo"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.png"
               alt="ChinoisLingo"
-              className="h-5.5 sm:h-6.5 w-auto object-contain drop-shadow-2xs"
+              className="h-4 sm:h-5 w-auto max-w-[90px] sm:max-w-[110px] object-contain drop-shadow-2xs"
             />
           </Link>
         </div>

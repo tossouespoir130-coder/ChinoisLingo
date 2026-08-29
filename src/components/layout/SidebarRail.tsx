@@ -40,14 +40,14 @@ export function SidebarRail() {
       <div className="flex flex-col items-center gap-6">
         <Link 
           href="/tableau-de-bord"
-          className="w-12 h-12 rounded-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 select-none"
+          className="w-10 h-10 rounded-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 select-none"
           title="ChinoisLingo"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/chinoislingo-icon.png"
             alt="ChinoisLingo"
-            className="w-11 h-11 object-contain drop-shadow-sm"
+            className="w-8.5 h-8.5 object-contain drop-shadow-sm"
           />
         </Link>
 
