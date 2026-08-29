@@ -631,20 +631,20 @@ function VocabulaireContent() {
         </div>
       )}
 
-      {/* TAB 1: VOCABULAIRE HSK (6 MODULES OFFICIELS HSK 1 À HSK 6) */}
+      {/* TAB 1: THEMES / PACKS HSK 1 - HSK 6 (2 columns on mobile, 3 on desktop) */}
       {!isSessionActive && !selectedLevelForList && activeTab === 'themes' && (
         <div className="space-y-5 animate-fadeIn">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
             {mockVocabThemes.map((theme, idx) => {
               const pct = Math.round((theme.masteredCount / theme.cardCount) * 100);
 
               return (
                 <div
                   key={theme.id}
-                  className="nixtio-card bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE]/40 rounded-3xl overflow-hidden transition-all flex flex-col justify-between group shadow-xs hover:shadow-lg"
+                  className="nixtio-card bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE]/40 rounded-2xl sm:rounded-3xl overflow-hidden transition-all flex flex-col justify-between group shadow-xs hover:shadow-lg"
                 >
                   {/* Top: Compact High Definition Image with Floating Badges */}
-                  <div className="relative h-32 sm:h-36 w-full overflow-hidden bg-black/5">
+                  <div className="relative h-24 sm:h-36 w-full overflow-hidden bg-black/5">
                     <img
                       src={theme.imageUrl}
                       alt={theme.title}
@@ -655,7 +655,7 @@ function VocabulaireContent() {
 
                     {/* Floating Level / Domain Badge (Top Right) */}
                     <span
-                      className={`absolute top-3 right-3 text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-md ${getLevelBadgeStyle(
+                      className={`absolute top-2 right-2 sm:top-3 sm:right-3 text-[8.5px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2.5 py-0.5 rounded-full shadow-md ${getLevelBadgeStyle(
                         theme.levelBadge
                       )}`}
                     >
@@ -663,35 +663,35 @@ function VocabulaireContent() {
                     </span>
 
                     {/* Floating Word Count Badge (Bottom Left) */}
-                    <span className="absolute bottom-2.5 left-2.5 text-[10px] font-extrabold bg-black/60 backdrop-blur-md text-white px-2 py-0.5 rounded-full border border-white/20 shadow-xs flex items-center gap-1">
-                      <Layers className="w-3 h-3 text-[#03DAC5]" />
+                    <span className="absolute bottom-1.5 left-1.5 sm:bottom-2.5 sm:left-2.5 text-[8px] sm:text-[10px] font-extrabold bg-black/60 backdrop-blur-md text-white px-1.5 sm:px-2 py-0.5 rounded-full border border-white/20 shadow-xs flex items-center gap-1">
+                      <Layers className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-[#03DAC5]" />
                       <span>{theme.cardCount} mots</span>
                     </span>
                   </div>
 
                   {/* Bottom: Title, Single Concise Description, Progress Bar & Actions */}
-                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                  <div className="p-2.5 sm:p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="font-display font-black text-base text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug">
+                      <h3 className="font-display font-black text-xs sm:text-base text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug">
                         {theme.title}
                       </h3>
-                      <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-1.5 line-clamp-2 leading-relaxed">
+                      <p className="text-[10px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] mt-1 sm:mt-1.5 line-clamp-2 leading-relaxed">
                         {theme.description}
                       </p>
                     </div>
 
                     {/* Progress & Dual Actions */}
-                    <div className="mt-4 pt-3 border-t border-[#E0E0E0]/70 dark:border-[#2D2D2D] space-y-3">
+                    <div className="mt-2.5 sm:mt-4 pt-2 sm:pt-3 border-t border-[#E0E0E0]/70 dark:border-[#2D2D2D] space-y-2 sm:space-y-3">
                       <div>
-                        <div className="flex items-center justify-between text-xs font-semibold mb-1">
+                        <div className="flex items-center justify-between text-[10px] sm:text-xs font-semibold mb-1">
                           <span className="text-[#757575] dark:text-[#A0A0A0]">
-                            {theme.masteredCount} / {theme.cardCount} maîtrisés
+                            {theme.masteredCount}/{theme.cardCount}
                           </span>
                           <span className="text-[#6200EE] dark:text-[#BB86FC] font-bold font-display">
                             {pct}%
                           </span>
                         </div>
-                        <div className="w-full h-2 rounded-full bg-[#E0E0E0] dark:bg-[#2D2D2D] overflow-hidden">
+                        <div className="w-full h-1.5 sm:h-2 rounded-full bg-[#E0E0E0] dark:bg-[#2D2D2D] overflow-hidden">
                           <div
                             className="h-full rounded-full bg-gradient-to-r from-[#6200EE] to-[#03DAC5]"
                             style={{
@@ -703,24 +703,24 @@ function VocabulaireContent() {
                       </div>
 
                       {/* Dual Action: View Full List + Launch Flashcards */}
-                      <div className="grid grid-cols-2 gap-2 pt-1">
+                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 pt-1">
                         <button
                           onClick={() => setSelectedLevelForList(theme.levelBadge as HSKLevel)}
                           type="button"
-                          className="py-2.5 px-3 rounded-full bg-[#FAFAFA] dark:bg-[#252525] hover:bg-[#6200EE]/10 text-[#212121] dark:text-[#F5F5F5] hover:text-[#6200EE] dark:hover:text-[#BB86FC] border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold flex items-center justify-center gap-1.5 transition-all btn-press"
+                          className="py-1.5 sm:py-2.5 px-1.5 sm:px-3 rounded-full bg-[#FAFAFA] dark:bg-[#252525] hover:bg-[#6200EE]/10 text-[#212121] dark:text-[#F5F5F5] hover:text-[#6200EE] dark:hover:text-[#BB86FC] border border-[#E0E0E0] dark:border-[#333333] text-[9.5px] sm:text-xs font-bold flex items-center justify-center gap-1 transition-all btn-press"
                           title={`Voir la liste complète des mots`}
                         >
-                          <ListOrdered className="w-3.5 h-3.5" />
-                          <span>Voir la liste</span>
+                          <ListOrdered className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+                          <span className="truncate">Liste</span>
                         </button>
 
                         <button
                           onClick={() => setSelectedThemeSlug(theme.slug)}
                           type="button"
-                          className="py-2.5 px-3 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm shadow-[#6200EE]/25 active:scale-95 transition-all btn-press"
+                          className="py-1.5 sm:py-2.5 px-1.5 sm:px-3 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-[9.5px] sm:text-xs font-bold flex items-center justify-center gap-1 shadow-sm shadow-[#6200EE]/25 active:scale-95 transition-all btn-press"
                         >
-                          <Play className="w-3.5 h-3.5 fill-white" />
-                          <span>Réviser</span>
+                          <Play className="w-3 sm:w-3.5 h-3 sm:h-3.5 fill-white" />
+                          <span className="truncate">Réviser</span>
                         </button>
                       </div>
                     </div>

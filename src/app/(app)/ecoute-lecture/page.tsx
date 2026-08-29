@@ -2416,7 +2416,7 @@ function EcouteLectureContent() {
             /* ========================================================================= */
             /* SQUARE RATIO (1:1) CARD GRID WITH TOP HALF IMAGE & COVER FIT              */
             /* ========================================================================= */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {filteredCatalog.map((item) => {
                 const isCompleted = completedItemIds.has(item.id);
                 const hasSeriesEpisodes = !!(item.seriesEpisodes && item.seriesEpisodes.length > 0);
@@ -2433,7 +2433,7 @@ function EcouteLectureContent() {
                         setIsPlayingAll(false);
                       }
                     }}
-                    className={`nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square ${
+                    className={`nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-2xl sm:rounded-3xl overflow-hidden aspect-square ${
                       isCompleted 
                         ? 'border-[#E53935]/40 dark:border-[#E53935]/30' 
                         : hasSeriesEpisodes
@@ -2455,25 +2455,25 @@ function EcouteLectureContent() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
                       {/* Floating HSK Level Badge on Top-Right */}
-                      <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(item.level)}`}>
+                      <span className={`absolute top-2 right-2 sm:top-2.5 sm:right-2.5 text-[8.5px] sm:text-[9.5px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(item.level)}`}>
                         {item.level}
                       </span>
 
                       {/* Unified Badge on Bottom-Left: "Série d'articles • Par Espoir Chinois" */}
                       {hasSeriesEpisodes && (
-                        <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
-                          <span className="text-[#03DAC5] font-black">Série d’articles</span>
-                          <span className="text-white/40">•</span>
-                          <span>Par {item.author || 'Espoir Chinois'}</span>
+                        <span className="absolute bottom-2 left-2 sm:bottom-2.5 sm:left-2.5 text-[8px] sm:text-[9.5px] font-bold px-1.5 sm:px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1 shadow-sm">
+                          <span className="text-[#03DAC5] font-black">Série</span>
+                          <span className="text-white/40 hidden sm:inline">•</span>
+                          <span className="hidden sm:inline">Par {item.author || 'Espoir Chinois'}</span>
                         </span>
                       )}
                     </div>
 
                     {/* BOTTOM HALF OF THE SQUARE (TITLE, DESCRIPTION, DURATION, ACTION) */}
-                    <div className="p-3.5 sm:p-4 h-1/2 flex flex-col justify-between min-w-0">
+                    <div className="p-2.5 sm:p-4 h-1/2 flex flex-col justify-between min-w-0">
                       <div className="min-w-0">
                         {/* Title Clean in French */}
-                        <h3 className={`font-display font-black text-xs sm:text-[13.5px] transition-colors leading-snug truncate ${
+                        <h3 className={`font-display font-black text-[11px] sm:text-[13.5px] transition-colors leading-snug truncate ${
                           hasSeriesEpisodes 
                             ? 'group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] text-[#212121] dark:text-[#F5F5F5]' 
                             : 'group-hover:text-[#00796B] dark:group-hover:text-[#03DAC5] text-[#212121] dark:text-[#F5F5F5]'
@@ -2482,48 +2482,48 @@ function EcouteLectureContent() {
                         </h3>
 
                         {item.artist && (
-                          <p className="text-[10.5px] font-bold text-[#00796B] dark:text-[#03DAC5] mt-0.5 truncate">
-                            Artiste : {item.artist}
+                          <p className="text-[9.5px] sm:text-[10.5px] font-bold text-[#00796B] dark:text-[#03DAC5] mt-0.5 truncate">
+                            {item.artist}
                           </p>
                         )}
                         
                         {/* Description */}
-                        <p className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0] mt-1 line-clamp-2 leading-relaxed font-medium">
+                        <p className="text-[9.5px] sm:text-[10.5px] text-[#757575] dark:text-[#A0A0A0] mt-0.5 sm:mt-1 line-clamp-2 leading-relaxed font-medium">
                           {item.description}
                         </p>
                       </div>
 
                       {/* Card Footer: Duration on Left & Action Button on Right */}
-                      <div className="pt-2.5 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D] flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5 text-[10px] text-[#757575] dark:text-[#A0A0A0] font-semibold">
-                          <Clock className={`w-3 h-3 ${hasSeriesEpisodes ? 'text-[#6200EE] dark:text-[#BB86FC]' : 'text-[#00897B] dark:text-[#03DAC5]'}`} />
-                          <span>{item.duration}</span>
+                      <div className="pt-1.5 sm:pt-2.5 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D] flex items-center justify-between gap-1.5">
+                        <div className="flex items-center gap-1 text-[9px] sm:text-[10px] text-[#757575] dark:text-[#A0A0A0] font-semibold">
+                          <Clock className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${hasSeriesEpisodes ? 'text-[#6200EE] dark:text-[#BB86FC]' : 'text-[#00897B] dark:text-[#03DAC5]'}`} />
+                          <span className="truncate">{item.duration}</span>
                         </div>
 
                         {isCompleted ? (
                           <button
                             type="button"
-                            className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#E53935] text-white transition-all btn-press"
+                            className="inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold shadow-xs bg-[#E53935] text-white transition-all btn-press shrink-0"
                           >
                             <span>✓ Terminé</span>
                           </button>
                         ) : hasSeriesEpisodes ? (
                           <button
                             type="button"
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold shadow-xs bg-[#6200EE] group-hover:bg-[#4A00B0] text-white transition-all btn-press"
+                            className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-extrabold shadow-xs bg-[#6200EE] group-hover:bg-[#4A00B0] text-white transition-all btn-press shrink-0"
                           >
-                            <BookOpen className="w-3 h-3" />
-                            <span>Explorer (3)</span>
+                            <BookOpen className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                            <span>Explorer</span>
                           </button>
                         ) : (
                           <button
                             type="button"
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#00897B] group-hover:bg-[#00695C] text-white transition-all btn-press"
+                            className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold shadow-xs bg-[#00897B] group-hover:bg-[#00695C] text-white transition-all btn-press shrink-0"
                           >
                             {item.type === 'chansons' || item.type === 'podcasts' ? (
-                              <Play className="w-3 h-3 fill-white" />
+                              <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-white" />
                             ) : (
-                              <BookOpen className="w-3 h-3" />
+                              <BookOpen className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                             )}
                             <span>{item.type === 'chansons' || item.type === 'podcasts' ? 'Écouter' : 'Lire'}</span>
                           </button>

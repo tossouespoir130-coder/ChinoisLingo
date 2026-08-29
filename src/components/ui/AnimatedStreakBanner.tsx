@@ -24,13 +24,12 @@ export function AnimatedStreakBanner() {
   const realStreak = profile?.streak_days || 1;
   const bestStreak = Math.max(realStreak, (profile as any)?.longest_streak || realStreak);
 
-  // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
-  const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
-  const normalizedDay = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
-  const targetPct = Math.min(100, Math.round((normalizedDay / 7) * 100));
+  // Exact synchronization with streak days count (1 to 7 cycle)
+  const streakInCycle = realStreak <= 0 ? 0 : ((realStreak - 1) % 7) + 1;
+  const targetPct = Math.min(100, Math.round((streakInCycle / 7) * 100));
 
   useEffect(() => {
-    // Gentle delay, then a majestic continuous fill across the active week
+    // Gentle delay, then a majestic continuous fill matching exact streak count
     const timer = setTimeout(() => {
       setBandProgress(targetPct);
     }, 450);
@@ -79,19 +78,20 @@ export function AnimatedStreakBanner() {
 
       {/* Right: Clean Continuous Animated Progress Band (Fusion Jaune et Rouge) */}
       <div className="w-full lg:w-96 bg-[#FAFAFA] dark:bg-[#181818] p-3 sm:p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xs flex flex-col justify-center gap-2">
-        {/* Day labels of current week */}
+        {/* Day labels of current streak cycle (1 to 7) */}
         <div className="flex justify-between items-center px-1">
-          {WEEK_DAYS.map((day) => {
-            const isToday = day.dayNum === normalizedDay;
-            const isPassedOrToday = day.dayNum <= normalizedDay;
+          {WEEK_DAYS.map((day, idx) => {
+            const dayIndex = idx + 1;
+            const isCompletedInStreak = dayIndex <= streakInCycle;
+            const isCurrentHead = dayIndex === streakInCycle;
 
             return (
               <span
                 key={day.dayNum}
                 className={`text-[10px] sm:text-[11px] transition-colors duration-500 ${
-                  isToday
+                  isCurrentHead
                     ? 'text-[#FF3D00] dark:text-[#FF8A65] font-black underline underline-offset-2'
-                    : isPassedOrToday
+                    : isCompletedInStreak
                     ? 'text-[#FF9800] dark:text-[#FFB74D] font-bold'
                     : 'text-[#9E9E9E] dark:text-[#616161] font-medium'
                 }`}
