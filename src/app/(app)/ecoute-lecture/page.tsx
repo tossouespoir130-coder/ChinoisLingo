@@ -119,15 +119,15 @@ export const readingCatalog: ReadingItem[] = [
   // ================= 0. VIDÉOS IMMERSIVES & DESSINS ANIMÉS (HSK 1) =================
   {
     id: 'video_xiaoli_ep1',
-    titleFr: 'Les Aventures de Xiao Li : Épisode 1',
-    titleZh: '小李历险记 第一集',
-    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì Dì-yī Jí',
+    titleFr: 'Les Aventures de Xiao Li',
+    titleZh: '小李历险记',
+    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì',
     type: 'videos',
     level: 'HSK 1',
     duration: '1 min 30',
     description: 'Faites la connaissance de Xiao Li, un chat curieux et attachant qui commence ses aventures à Pékin pour apprendre le chinois.',
-    imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#00BFA5] to-[#004D40]',
+    imageUrl: 'https://img.youtube.com/vi/amw1Dr7hpD0/hqdefault.jpg',
+    iconBg: 'from-[#6200EE] to-[#3700B3]',
     youtubeId: 'amw1Dr7hpD0',
     characters: [
       {
@@ -2077,13 +2077,13 @@ function EcouteLectureContent() {
             </div>
           )}
 
-          {/* Continuous Description Banner (Full Width) */}
-          <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#00897B]/5 dark:bg-[#00897B]/10 border border-[#00897B]/15 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
+          {/* Continuous Description & Timer Banner (Couleur principale violette ChinoisLingo) */}
+          <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
             <p className="flex-1 mr-4 leading-relaxed font-medium">
               {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
             </p>
-            <div className="flex items-center gap-1.5 font-bold text-[#00796B] dark:text-[#03DAC5] shrink-0">
-              <Clock className="w-4 h-4" />
+            <div className="flex items-center gap-1.5 font-bold text-[#6200EE] dark:text-[#BB86FC] shrink-0 bg-[#6200EE]/10 dark:bg-[#6200EE]/20 px-3 py-1.5 rounded-full border border-[#6200EE]/25">
+              <Clock className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC]" />
               <span>{displayedDuration}</span>
             </div>
           </div>
