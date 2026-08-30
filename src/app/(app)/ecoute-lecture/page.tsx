@@ -179,7 +179,7 @@ export const readingCatalog: ReadingItem[] = [
     ],
     vocabulary: [
       { hanzi: '小李', pinyin: 'Xiǎo Lǐ', french: '(nom du personnage — le chat)', role: 'Nom propre' },
-      { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour les animaux', role: 'Classificateur (量词)' },
+      { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour les animaux (chat, chien, oiseau, lapin, canard...)', role: 'Classificateur (量词)' },
       { hanzi: '北京', pinyin: 'Běijīng', french: 'Pékin', role: 'Nom propre (lieu)' },
       { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
       { hanzi: '高兴', pinyin: 'gāoxìng', french: 'content(e), heureux(se)', role: 'Adjectif' },
