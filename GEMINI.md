@@ -86,9 +86,10 @@ Comprend 4 sous-sections fondamentales :
 ### 4.5. Livres & Programmes VIP (`/livres`)
 - Ouvrages de négociation commerciale (Guangzhou & Yiwu), lexiques de fret maritime & transit douanier, coaching immersif.
 
-### 4.6. Recherche Globale & Notifications
+### 4.6. Recherche Globale, Notifications & Pop-up Toasts
 - **Recherche Globale (`GlobalSearchModal.tsx`)** : Barre de recherche instantanée avec état vide épuré et filtrage par onglets de résultats (Vocabulaire, Écoute & Lecture, Formations...).
-- **Notifications (`NotificationsModal.tsx`)** : Filtres *Tous*, *Espoir Chinois (Fondateur)* et *Système* avec auto-scroll au clic.
+- **Notifications (`NotificationsModal.tsx` & `notificationsData.ts`)** : Filtres *Tous*, *Espoir Chinois (Fondateur)* et *Système* avec auto-scroll au clic et persistance.
+- **Pop-up Toast Automatique de Nouveau Contenu (`NewContentToast.tsx`)** : Dès qu'un nouveau contenu (vidéo, formation, dialogue, chanson) est publié, le pop-up toast apparaît automatiquement en bas à droite après 2.5 secondes avec la photo d'Espoir Chinois pour inviter l'apprenant à le découvrir en 1 clic.
 
 ---
 

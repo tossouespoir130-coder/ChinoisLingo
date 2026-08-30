@@ -96,6 +96,12 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
 12. **Règle du Plan Général par Défaut sur Écoute & Lecture (Onglet Chansons Actif)** :
    - Lors de la navigation vers la rubrique **Écoute & Lecture** (`/ecoute-lecture`), afficher systématiquement le **plan général du catalogue** avec l'onglet **Chansons** coché et visible par défaut. L'apprenant visualise immédiatement les chansons et peut ensuite switcher librement vers les autres sous-menus (*Articles*, *Histoires*, *Dialogues*, *Podcasts*, *Vidéos*). Ne jamais forcer la réouverture d'une session terminée sans paramètre d'URL explicite.
 
+13. **Règle Permanente de Notification et Pop-up Toast pour TOUT Nouveau Contenu Ajouté** :
+   - Pour TOUT nouveau contenu ajouté sur la plateforme (vidéo, épisode de série, formation, chanson, dialogue, article, podcast, cours) :
+     1. **Notification Cloche** : Ajouter systématiquement la notification dans `src/lib/data/notificationsData.ts` (affichée au niveau de la cloche de notification en haut avec badge non lu).
+     2. **Pop-up Toast Automatique (`NewContentToast`)** : Le dernier ajout non vu apparaît automatiquement sous forme de pop-up discret en bas à droite après 2.5 secondes avec la photo d'Espoir Chinois (ou icône), le titre, et le bouton direct `Regarder / Découvrir` pour rediriger l'apprenant en 1 clic.
+     3. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
+
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :
 - **Onglet 1 : Vocabulaire HSK** (les 6 modules officiels HSK 1, HSK 2, HSK 3, HSK 4, HSK 5, HSK 6).

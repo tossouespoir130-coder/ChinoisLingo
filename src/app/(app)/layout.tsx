@@ -6,6 +6,7 @@ import { PreferencesProvider } from '@/context/PreferencesContext';
 import { TopNav } from '@/components/layout/TopNav';
 import { MobileTabBar } from '@/components/layout/MobileTabBar';
 import { SrsReminderToast } from '@/components/layout/SrsReminderToast';
+import { NewContentToast } from '@/components/layout/NewContentToast';
 import { Sun, Moon } from 'lucide-react';
 
 function ContainerThemeSwitch() {
@@ -60,6 +61,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
             {/* Discreet Daily SRS Reminder Toast */}
             <SrsReminderToast />
+
+            {/* Pop-up Toast Nouveau Contenu Ajouté (Xiao Li, Formations, etc.) */}
+            <NewContentToast />
 
             {/* Theme Switcher */}
             <ContainerThemeSwitch />
