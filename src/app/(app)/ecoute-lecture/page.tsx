@@ -2040,7 +2040,7 @@ function EcouteLectureContent() {
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-black aspect-video w-full max-w-4xl mx-auto relative">
               <iframe
                 key={activeReading.youtubeId}
-                src={`https://www.youtube.com/embed/${activeReading.youtubeId}?rel=0&playsinline=1`}
+                src={`https://www.youtube.com/embed/${activeReading.youtubeId}?modestbranding=1&rel=0&playsinline=1&controls=1&enablejsapi=1`}
                 title={`${displayedTitleFr} - ${displayedTitleZh}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -2052,7 +2052,7 @@ function EcouteLectureContent() {
           {/* Continuous Description Banner (Full Width) */}
           <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#00897B]/5 dark:bg-[#00897B]/10 border border-[#00897B]/15 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
             <p className="flex-1 mr-4 leading-relaxed font-medium">
-              {activeReading.type === 'chansons' ? '🎶' : '📖'} {displayedDescription}
+              {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
             </p>
             <div className="flex items-center gap-1.5 font-bold text-[#00796B] dark:text-[#03DAC5] shrink-0">
               <Clock className="w-4 h-4" />
@@ -2135,61 +2135,6 @@ function EcouteLectureContent() {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          )}
-
-          {/* Section Vocabulaire / Nouveaux Mots (生词) */}
-          {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
-            <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
-              <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
-                <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#FFD700]" />
-                  <span>📝 生词 — Nouveaux Mots & Vocabulaire Clé</span>
-                </h3>
-                <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
-                  {activeReading.vocabulary.length} mots clés
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {activeReading.vocabulary.map((vocab, vIdx) => (
-                  <div
-                    key={vIdx}
-                    className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex flex-col justify-between gap-2 group hover:border-[#00897B] transition-all shadow-2xs"
-                  >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-hanzi font-black text-lg text-[#212121] dark:text-[#F5F5F5]">
-                            {vocab.hanzi}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => playSentenceAudio(`voc_${vIdx}`, vocab.hanzi)}
-                            className="w-6 h-6 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00796B] hover:text-white flex items-center justify-center transition-colors btn-press cursor-pointer"
-                            title="Écouter la prononciation"
-                          >
-                            <Volume2 className="w-3 h-3" />
-                          </button>
-                        </div>
-                        <span className="font-pinyin font-bold text-xs text-[#00897B] dark:text-[#03DAC5]">
-                          {vocab.pinyin}
-                        </span>
-                      </div>
-
-                      {vocab.role && (
-                        <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20 shrink-0">
-                          {vocab.role}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-xs font-medium text-[#757575] dark:text-[#CCCCCC] leading-snug">
-                      {vocab.french}
-                    </p>
-                  </div>
-                ))}
               </div>
             </div>
           )}
@@ -2382,6 +2327,63 @@ function EcouteLectureContent() {
             })}
           </div>
 
+          {/* ========================================================================= */}
+          {/* SECTION 📝 生词 — NOUVEAUX MOTS & VOCABULAIRE CLÉ (EN BAS DE L'HISTOIRE) */}
+          {/* ========================================================================= */}
+          {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
+            <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
+              <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
+                <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#FFD700]" />
+                  <span>📝 生词 — Nouveaux Mots & Vocabulaire Clé</span>
+                </h3>
+                <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
+                  {activeReading.vocabulary.length} mots clés
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {activeReading.vocabulary.map((vocab, vIdx) => (
+                  <div
+                    key={vIdx}
+                    className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex flex-col justify-between gap-2 group hover:border-[#00897B] transition-all shadow-2xs"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-hanzi font-black text-lg text-[#212121] dark:text-[#F5F5F5]">
+                            {vocab.hanzi}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => playSentenceAudio(`voc_${vIdx}`, vocab.hanzi)}
+                            className="w-6 h-6 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00796B] hover:text-white flex items-center justify-center transition-colors btn-press cursor-pointer"
+                            title="Écouter la prononciation"
+                          >
+                            <Volume2 className="w-3 h-3" />
+                          </button>
+                        </div>
+                        <span className="font-pinyin font-bold text-xs text-[#00897B] dark:text-[#03DAC5]">
+                          {vocab.pinyin}
+                        </span>
+                      </div>
+
+                      {vocab.role && (
+                        <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20 shrink-0">
+                          {vocab.role}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="text-xs font-medium text-[#757575] dark:text-[#CCCCCC] leading-snug">
+                      {vocab.french}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Bottom Completion Card: Prominent "Marquer comme terminé" Button with Paillettes Celebration */}
           <div className="nixtio-card p-6 sm:p-7 bg-gradient-to-r from-[#00897B] via-[#00796B] to-[#004D40] text-white rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-lg shadow-[#00897B]/25">
             <div>
@@ -2547,15 +2549,15 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* 6 SUB-MENUS (Chansons, Vidéos, Articles, Histoires, Dialogues, Podcasts) - FLUIDE & RESPONSIVE MOBILE */}
+          {/* 6 SUB-MENUS (Chansons, Articles, Histoires, Dialogues, Podcasts, Vidéos) - FLUIDE & RESPONSIVE MOBILE */}
           <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] overflow-x-auto no-scrollbar scroll-smooth w-full">
             {[
               { id: 'chansons', label: 'Chansons', icon: Music, count: readingCatalog.filter(r => r.type === 'chansons').length },
-              { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos').length },
               { id: 'articles', label: 'Articles', icon: Newspaper, count: readingCatalog.filter(r => r.type === 'articles').length },
               { id: 'histoires', label: 'Histoires', icon: BookMarked, count: readingCatalog.filter(r => r.type === 'histoires').length },
               { id: 'dialogues', label: 'Dialogues', icon: MessagesSquare, count: readingCatalog.filter(r => r.type === 'dialogues').length },
               { id: 'podcasts', label: 'Podcasts', icon: Radio, count: readingCatalog.filter(r => r.type === 'podcasts').length },
+              { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos').length },
             ].map((sub) => {
               const Icon = sub.icon;
               const isActive = activeCategory === sub.id;
@@ -2647,14 +2649,20 @@ function EcouteLectureContent() {
                         {item.level}
                       </span>
 
-                      {/* Unified Badge on Bottom-Left: "Série d'articles • Par Espoir Chinois" */}
-                      {hasSeriesEpisodes && (
+                      {/* Unified Badge on Bottom-Left */}
+                      {hasSeriesEpisodes ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
                           <span className="text-[#03DAC5] font-black">Série d’articles</span>
                           <span className="text-white/40">•</span>
                           <span>Par {item.author || 'Espoir Chinois'}</span>
                         </span>
-                      )}
+                      ) : item.type === 'videos' ? (
+                        <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
+                          <span className="text-[#03DAC5] font-black">Série de vidéos</span>
+                          <span className="text-white/40">•</span>
+                          <span>{item.level}</span>
+                        </span>
+                      ) : null}
                     </div>
 
                     {/* BOTTOM HALF OF THE SQUARE (TITLE, DESCRIPTION, DURATION, ACTION) */}
