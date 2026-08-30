@@ -68,7 +68,7 @@ Comprend 4 sous-sections fondamentales :
 - **5 Catégories** : Chansons, Articles, Histoires, Dialogues, Podcasts.
 - **Règles des Cartes du Catalogue** : Titre 100% en français, nom d'artiste 100% en alphabet latin, badge HSK coloré (aucun caractère chinois sur la carte extérieure ; les Hanzi et Pinyin sont réservés à l'intérieur du lecteur immersif).
 - **Lecteur Immersif & Multimédia** :
-   - **Lecteur Vidéo Direct 1-Clic Sans Double-Clic** : La vidéo démarre immédiatement dès le 1er clic sur Play sans aucune surcouche ni bouton parasite.
+   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo** : Pour toute vidéo sur la plateforme (Vidéos, Chansons, Formations), affichage de la miniature avec le bouton circulaire Play violet `#6200EE`. Dès le clic, la vidéo démarre immédiatement en lecture fluide (`autoplay=1`) au sein de l'application sans redirection.
    - **Chansons** : Paroles synchronisées découpées à chaque pause musicale / virgule (saut de ligne obligatoire), triptyque Hanzi + Pinyin complet avec tons + Traduction française soignée, balisage explicite des `🎵 Pré-refrain` (orange) et `🎵 Refrain` (rose).
    - **Règle Phonologique Chinoise des Tons (不 & 一)** :
      - **不** : devient **`bú`** (2ème ton) devant un mot au 4ème ton (ex: `bú shì`, `bú yòng`, `bú pà`, `bú huì`).

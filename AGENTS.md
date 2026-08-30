@@ -68,8 +68,7 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - Positionnés **à droite** de l'en-tête, compacts et épurés sur mobile (`text-[10.5px] sm:text-xs`).
      - L'état actif/inactif est signalé visuellement par la couleur du bouton (allumé/éteint).
      - **Épuration maximale** : Ne pas ajouter de bouton de synchronisation ou de lecteur TTS global dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
-   - **Lecteur Vidéo Direct 1-Clic Sans Double-Clic** : Sur toute la plateforme (Écoute & Lecture, Formations), les vidéos sont directement intégrées et jouables en un seul clic immédiat.
-   - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.bal dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
+   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo** : Sur TOUTE la plateforme (Écoute & Lecture, Vidéos, Chansons, Formations), les vidéos affichent la miniature avec le **bouton Play circulaire personnalisé couleur violette signature ChinoisLingo (`#6200EE`)**. Au clic, la vidéo se lance immédiatement en lecture fluide (`autoplay=1`) au sein de l'application sans redirection.
    - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.
 7. **Contrôle Systématique, Visuel et Obligatoire dans le Navigateur de Toute Vidéo YouTube** :
    - Pour TOUTE vidéo ou chanson ajoutée ou modifiée, **interdiction formelle de valider sans avoir effectué une vérification visuelle directe dans le navigateur (`browser_subagent`)**.

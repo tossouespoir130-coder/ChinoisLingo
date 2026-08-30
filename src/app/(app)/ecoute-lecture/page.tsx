@@ -2035,17 +2035,45 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* Direct 1-Click Video Player for Songs & Media */}
+          {/* Custom Branded Video Player with Signature Purple Play Button */}
           {activeReading.youtubeId && (
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-black aspect-video w-full max-w-4xl mx-auto relative">
-              <iframe
-                key={activeReading.youtubeId}
-                src={`https://www.youtube.com/embed/${activeReading.youtubeId}?modestbranding=1&rel=0&playsinline=1&controls=1&enablejsapi=1`}
-                title={`${displayedTitleFr} - ${displayedTitleZh}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full border-0 animate-fadeIn"
-              />
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-black aspect-video w-full max-w-4xl mx-auto relative flex items-center justify-center">
+              {isPlayingSongVideo ? (
+                <iframe
+                  key={activeReading.youtubeId}
+                  src={`https://www.youtube.com/embed/${activeReading.youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&controls=1&enablejsapi=1`}
+                  title={`${displayedTitleFr} - ${displayedTitleZh}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full border-0 animate-fadeIn"
+                />
+              ) : (
+                <div
+                  onClick={() => setIsPlayingSongVideo(true)}
+                  className="relative w-full h-full group cursor-pointer overflow-hidden flex items-center justify-center bg-black select-none"
+                >
+                  {/* High Quality Thumbnail Cover Image */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={
+                      activeReading.imageUrl ||
+                      `https://img.youtube.com/vi/${activeReading.youtubeId}/hqdefault.jpg`
+                    }
+                    alt={displayedTitleFr}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  />
+
+                  {/* Subtle Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300" />
+
+                  {/* Centered ChinoisLingo Brand Play Button (Signature Violet #6200EE) */}
+                  <div className="absolute inset-0 flex items-center justify-center z-10">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE] hover:bg-[#4A00B0] text-white flex items-center justify-center group-hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl shadow-[#6200EE]/45 border-2 border-white/40 cursor-pointer btn-press">
+                      <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white text-white ml-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
