@@ -90,11 +90,11 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - La description est **100% en français**.
      - **Les caractères chinois (Hanzi) et le Pinyin sont réservés exclusivement à l'intérieur du Lecteur Immersif** (affichés uniquement lorsque l'apprenant clique sur la carte pour lancer la leçon).
 
-10. **Protocole de Vérification Systématique et Autonome pour l'Ajout de Chansons & Médias** :
-   Pour TOUTE nouvelle chanson ou ressource multimédia ajoutée dans l'application :
-   - **Étape 1 — Rigueur des Paroles (Lyrics) & Découpage Rythmique** : Comparer scrupuleusement la transcription avec la piste audio réelle, découper chaque vers à chaque pause musicale / virgule (saut de ligne obligatoire), et fournir le triptyque complet sans omission (Hanzi authentique, Pinyin complet avec tons, Traduction 100% française soignée).
-   - **Étape 2 — Image Haute Définition Dédiée & Conformité de la Carte** : Sélectionner une image haute définition exclusive (non dupliquée dans le projet), vérifier le titre 100% en français, le nom de l'artiste 100% en alphabet latin et le badge HSK coloré sur la carte.
-   - **Étape 3 — Contrôle & Auto-Checking Visuel Obligatoire dans le Navigateur** : Lancer le serveur dev si nécessaire, ouvrir le navigateur (`browser_subagent`), ouvrir la ressource dans le lecteur immersif, vérifier que la vidéo est active, publique et immédiatement jouable sans accroc. Ne jamais valider sans cette preuve visuelle.
+11. **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** :
+   - Pour TOUTE nouvelle série de vidéos, vidéo individuelle, formation ou masterclass ajoutée sur la plateforme (que ce soit dans la sous-rubrique *Vidéos* d'*Écoute & Lecture* ou dans la rubrique *Formations*), l'image d'illustration/couverture de la carte et du lecteur DOIT obligatoirement être la **miniature officielle originale de la première vidéo** (`https://img.youtube.com/vi/<ID>/hqdefault.jpg` ou `maxresdefault.jpg`). Ne jamais utiliser d'image abstraite ou déconnectée du dessin animé/de la vidéo réelle.
+
+12. **Règle du Plan Général par Défaut sur Écoute & Lecture (Onglet Chansons Actif)** :
+   - Lors de la navigation vers la rubrique **Écoute & Lecture** (`/ecoute-lecture`), afficher systématiquement le **plan général du catalogue** avec l'onglet **Chansons** coché et visible par défaut. L'apprenant visualise immédiatement les chansons et peut ensuite switcher librement vers les autres sous-menus (*Articles*, *Histoires*, *Dialogues*, *Podcasts*, *Vidéos*). Ne jamais forcer la réouverture d'une session terminée sans paramètre d'URL explicite.
 
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :

@@ -1733,17 +1733,19 @@ function EcouteLectureContent() {
     }
   };
 
-  // Restore active reading from URL query params or sessionStorage on page reload (F5 / Refresh)
+  // Restore active reading from URL query params (Plan général avec Chansons par défaut si aucun ID dans l'URL)
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const directId = urlParams.get('id') || searchParams.get('id') || sessionStorage.getItem('chinoislingo_active_reading_id');
+    const directId = urlParams.get('id') || searchParams.get('id');
     const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
-    const directEp = parseInt(urlParams.get('ep') || sessionStorage.getItem('chinoislingo_active_ep_idx') || '0', 10);
+    const directEp = parseInt(urlParams.get('ep') || '0', 10);
 
-    if (directType && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(directType)) {
+    if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos'].includes(directType)) {
       setActiveCategory(directType);
+    } else if (!directId) {
+      setActiveCategory('chansons');
     }
 
     if (directId) {
@@ -1755,6 +1757,9 @@ function EcouteLectureContent() {
         setCurrentSentenceIndex(0);
         setIsPlayingAll(false);
       }
+    } else {
+      setActiveReading(null);
+      setActiveSeries(null);
     }
   }, [searchParams, setCurrentSentenceIndex]);
 

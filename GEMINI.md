@@ -65,8 +65,9 @@ Comprend 4 sous-sections fondamentales :
    - Fiche détaillée du mot avec **jusqu'à 5 phrases d'exemples progressives issues du corpus vérifié Tatoeba** ordonnées du niveau débutant au niveau avancé (HSK 1 à HSK 5-6), avec audio et pastille certifiée `✓`.
 
 ### 4.3. Écoute & Lecture (`/ecoute-lecture`)
-- **5 Catégories** : Chansons, Articles, Histoires, Dialogues, Podcasts.
+- **6 Catégories dans l'ordre officiel** : Chansons (coché par défaut à l'ouverture du catalogue général), Articles, Histoires, Dialogues, Podcasts, Vidéos.
 - **Règles des Cartes du Catalogue** : Titre 100% en français, nom d'artiste 100% en alphabet latin, badge HSK coloré (aucun caractère chinois sur la carte extérieure ; les Hanzi et Pinyin sont réservés à l'intérieur du lecteur immersif).
+- **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** : Pour toute série de vidéos ou formation (Vidéos, Formations), l'image de couverture DOIT obligatoirement être la miniature originale de la première vidéo (`https://img.youtube.com/vi/<ID>/hqdefault.jpg`).
 - **Lecteur Immersif & Multimédia** :
    - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo** : Pour toute vidéo sur la plateforme (Vidéos, Chansons, Formations), affichage de la miniature avec le bouton circulaire Play violet `#6200EE`. Dès le clic, la vidéo démarre immédiatement en lecture fluide (`autoplay=1`) au sein de l'application sans redirection.
    - **Chansons** : Paroles synchronisées découpées à chaque pause musicale / virgule (saut de ligne obligatoire), triptyque Hanzi + Pinyin complet avec tons + Traduction française soignée, balisage explicite des `🎵 Pré-refrain` (orange) et `🎵 Refrain` (rose).
