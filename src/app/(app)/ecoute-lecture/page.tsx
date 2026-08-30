@@ -18,6 +18,7 @@ import {
   BookMarked, 
   MessagesSquare,
   Music,
+  Video,
   CheckCircle2,
   Sparkles,
   Users,
@@ -29,7 +30,7 @@ import { usePreferences } from '@/context/PreferencesContext';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { fetchContentProgress, toggleContentCompletedInDb } from '@/lib/services/progressService';
 
-export type ContentType = 'podcasts' | 'histoires' | 'articles' | 'dialogues' | 'chansons';
+export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts';
 
 export interface DialogueCharacter {
   name: string;
@@ -38,6 +39,13 @@ export interface DialogueCharacter {
   role: string;
   description: string;
   color?: 'violet' | 'turquoise' | 'neutral';
+}
+
+export interface VocabularyWord {
+  hanzi: string;
+  pinyin: string;
+  french: string;
+  role?: string;
 }
 
 export interface ReadingSentence {
@@ -80,6 +88,7 @@ export interface ReadingItem {
   author?: string; // Pour les articles exclusifs rédigés par Espoir Chinois
   seriesEpisodes?: ArticleEpisode[]; // Série d'articles regroupés (3 articles complets)
   characters?: DialogueCharacter[]; // Liste des personnages du dialogue ou de l'histoire
+  vocabulary?: VocabularyWord[]; // Nouveaux mots (生词) de la leçon ou vidéo
   sentences: ReadingSentence[];
 }
 
@@ -107,6 +116,76 @@ export function getLevelBadgeStyle(level: string) {
 }
 
 export const readingCatalog: ReadingItem[] = [
+  // ================= 0. VIDÉOS IMMERSIVES & DESSINS ANIMÉS (HSK 1) =================
+  {
+    id: 'video_xiaoli_ep1',
+    titleFr: 'Les Aventures de Xiao Li : Épisode 1',
+    titleZh: '小李历险记 第一集',
+    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì Dì-yī Jí',
+    type: 'videos',
+    level: 'HSK 1',
+    duration: '1 min 30',
+    description: 'Faites la connaissance de Xiao Li, un chat curieux et attachant qui commence ses aventures à Pékin pour apprendre le chinois.',
+    imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00BFA5] to-[#004D40]',
+    youtubeId: 'amw1Dr7hpD0',
+    characters: [
+      {
+        name: '小李',
+        nameZh: '小李',
+        pinyin: 'Xiǎo Lǐ',
+        role: 'Personnage principal',
+        description: 'Un chat roux tigré mignon et curieux qui vit dans une salle de classe à Pékin. C’est le compagnon de 李老师 (Monsieur Li), et il "assiste" à tous les cours — certains élèves plaisantent en disant qu’il comprend le chinois mieux qu’eux ! Dans 小李历险记, il part à la découverte du monde, rencontre des personnages, et vit de petites aventures qui l’aident (et vous aident !) à apprendre le chinois pas à pas.',
+        color: 'violet',
+      }
+    ],
+    sentences: [
+      {
+        id: 'xl1_1',
+        speaker: '小李',
+        speakerRole: 'Le Chat Curieux',
+        speakerColor: 'violet',
+        hanzi: '大家好，我叫小李。',
+        pinyin: 'Dàjiā hǎo, wǒ jiào Xiǎo Lǐ.',
+        french: 'Bonjour tout le monde, je m’appelle Xiǎo Lǐ.',
+      },
+      {
+        id: 'xl1_2',
+        speaker: '小李',
+        speakerRole: 'Le Chat Curieux',
+        speakerColor: 'violet',
+        hanzi: '我是一只猫，我住在北京。',
+        pinyin: 'Wǒ shì yì zhī māo, wǒ zhù zài Běijīng.',
+        french: 'Je suis un chat, j’habite à Pékin.',
+      },
+      {
+        id: 'xl1_3',
+        speaker: '小李',
+        speakerRole: 'Le Chat Curieux',
+        speakerColor: 'violet',
+        hanzi: '我喜欢学中文，也喜欢旅游。',
+        pinyin: 'Wǒ xǐhuan xué Zhōngwén, yě xǐhuan lǚyóu.',
+        french: 'J’aime apprendre le chinois, et j’aime aussi voyager.',
+      },
+      {
+        id: 'xl1_4',
+        speaker: '小李',
+        speakerRole: 'Le Chat Curieux',
+        speakerColor: 'violet',
+        hanzi: '我很高兴认识你们！',
+        pinyin: 'Wǒ hěn gāoxìng rènshi nǐmen!',
+        french: 'Je suis très content de vous rencontrer !',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '小李', pinyin: 'Xiǎo Lǐ', french: '(nom du personnage — le chat)', role: 'Nom propre' },
+      { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour les animaux', role: 'Classificateur (量词)' },
+      { hanzi: '北京', pinyin: 'Běijīng', french: 'Pékin', role: 'Nom propre (lieu)' },
+      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
+      { hanzi: '高兴', pinyin: 'gāoxìng', french: 'content(e), heureux(se)', role: 'Adjectif' },
+    ]
+  },
+
   // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
   {
     id: 'article_podcast_2',
@@ -1663,7 +1742,7 @@ function EcouteLectureContent() {
     const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
     const directEp = parseInt(urlParams.get('ep') || sessionStorage.getItem('chinoislingo_active_ep_idx') || '0', 10);
 
-    if (directType && ['chansons', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(directType)) {
+    if (directType && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(directType)) {
       setActiveCategory(directType);
     }
 
@@ -1689,7 +1768,7 @@ function EcouteLectureContent() {
       const type = params.get('type') as ContentType | null;
       const ep = parseInt(params.get('ep') || '0', 10);
 
-      if (type && ['chansons', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(type)) {
+      if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(type)) {
         setActiveCategory(type);
       }
 
@@ -2060,6 +2139,61 @@ function EcouteLectureContent() {
             </div>
           )}
 
+          {/* Section Vocabulaire / Nouveaux Mots (生词) */}
+          {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
+            <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
+              <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
+                <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-[#FFD700]" />
+                  <span>📝 生词 — Nouveaux Mots & Vocabulaire Clé</span>
+                </h3>
+                <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
+                  {activeReading.vocabulary.length} mots clés
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {activeReading.vocabulary.map((vocab, vIdx) => (
+                  <div
+                    key={vIdx}
+                    className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex flex-col justify-between gap-2 group hover:border-[#00897B] transition-all shadow-2xs"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-hanzi font-black text-lg text-[#212121] dark:text-[#F5F5F5]">
+                            {vocab.hanzi}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => playSentenceAudio(`voc_${vIdx}`, vocab.hanzi)}
+                            className="w-6 h-6 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00796B] hover:text-white flex items-center justify-center transition-colors btn-press cursor-pointer"
+                            title="Écouter la prononciation"
+                          >
+                            <Volume2 className="w-3 h-3" />
+                          </button>
+                        </div>
+                        <span className="font-pinyin font-bold text-xs text-[#00897B] dark:text-[#03DAC5]">
+                          {vocab.pinyin}
+                        </span>
+                      </div>
+
+                      {vocab.role && (
+                        <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20 shrink-0">
+                          {vocab.role}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="text-xs font-medium text-[#757575] dark:text-[#CCCCCC] leading-snug">
+                      {vocab.french}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
           <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
             {/* Header: Title + Transparent Interactive Audio Controller with Speed Control */}
@@ -2413,10 +2547,11 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* 5 SUB-MENUS (Chansons, Articles, Histoires, Dialogues, Podcasts) - FLUIDE & RESPONSIVE MOBILE */}
+          {/* 6 SUB-MENUS (Chansons, Vidéos, Articles, Histoires, Dialogues, Podcasts) - FLUIDE & RESPONSIVE MOBILE */}
           <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] overflow-x-auto no-scrollbar scroll-smooth w-full">
             {[
               { id: 'chansons', label: 'Chansons', icon: Music, count: readingCatalog.filter(r => r.type === 'chansons').length },
+              { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos').length },
               { id: 'articles', label: 'Articles', icon: Newspaper, count: readingCatalog.filter(r => r.type === 'articles').length },
               { id: 'histoires', label: 'Histoires', icon: BookMarked, count: readingCatalog.filter(r => r.type === 'histoires').length },
               { id: 'dialogues', label: 'Dialogues', icon: MessagesSquare, count: readingCatalog.filter(r => r.type === 'dialogues').length },
@@ -2573,12 +2708,12 @@ function EcouteLectureContent() {
                             type="button"
                             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#00897B] group-hover:bg-[#00695C] text-white transition-all btn-press shrink-0"
                           >
-                            {item.type === 'chansons' || item.type === 'podcasts' ? (
+                            {item.type === 'chansons' || item.type === 'podcasts' || item.type === 'videos' ? (
                               <Play className="w-3 h-3 fill-white" />
                             ) : (
                               <BookOpen className="w-3 h-3" />
                             )}
-                            <span>{item.type === 'chansons' || item.type === 'podcasts' ? 'Écouter' : 'Lire'}</span>
+                            <span>{item.type === 'chansons' || item.type === 'podcasts' ? 'Écouter' : item.type === 'videos' ? 'Regarder' : 'Lire'}</span>
                           </button>
                         )}
                       </div>
