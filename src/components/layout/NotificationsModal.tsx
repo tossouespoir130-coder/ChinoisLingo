@@ -31,25 +31,34 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
   const [notifications, setNotifications] = useState<NotificationItem[]>(initialNotifications);
   const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'system'>('all');
 
-  // Load live notifications from Supabase
+  // Load live notifications and merge with fresh initial notifications
   useEffect(() => {
     async function loadNotifs() {
-      const dbNotifs = await fetchNotifications();
-      if (dbNotifs.length > 0) {
-        const formatted: NotificationItem[] = dbNotifs.map((n) => ({
-          id: n.id,
-          source: (n.source === 'founder' ? 'founder' : 'system') as 'founder' | 'system',
-          founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
-          founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
-          founderAvatar: '/espoir-chinois.jpg',
-          title: n.title,
-          message: n.message,
-          timestamp: 'Récemment',
-          isRead: !!n.is_read,
-          actionUrl: n.action_url || '/tableau-de-bord',
-          actionLabel: 'Consulter',
-        }));
-        setNotifications(formatted);
+      try {
+        const dbNotifs = await fetchNotifications();
+        if (dbNotifs && dbNotifs.length > 0) {
+          const dbIds = new Set(initialNotifications.map(n => n.id));
+          const additionalNotifs: NotificationItem[] = dbNotifs
+            .filter(n => !dbIds.has(n.id))
+            .map((n) => ({
+              id: n.id,
+              source: (n.source === 'founder' ? 'founder' : 'system') as 'founder' | 'system',
+              founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
+              founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
+              founderAvatar: '/espoir-chinois.jpg',
+              title: n.title,
+              message: n.message,
+              timestamp: 'Récemment',
+              isRead: !!n.is_read,
+              actionUrl: n.action_url || '/tableau-de-bord',
+              actionLabel: 'Consulter',
+            }));
+          setNotifications([...initialNotifications, ...additionalNotifs]);
+        } else {
+          setNotifications(initialNotifications);
+        }
+      } catch {
+        setNotifications(initialNotifications);
       }
     }
 

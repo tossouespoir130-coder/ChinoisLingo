@@ -62,7 +62,7 @@ export function TopNav() {
             <img
               src="/logo.png"
               alt="ChinoisLingo"
-              className="h-4 sm:h-5 w-auto max-w-[90px] sm:max-w-[110px] object-contain drop-shadow-2xs"
+              className="h-6 sm:h-7 md:h-8 w-auto max-w-[135px] sm:max-w-[165px] object-contain drop-shadow-xs"
             />
           </Link>
         </div>
