@@ -68,8 +68,10 @@ Comprend 4 sous-sections fondamentales :
 - **6 Catégories dans l'ordre officiel** : Chansons (coché par défaut à l'ouverture du catalogue général), Articles, Histoires, Dialogues, Podcasts, Vidéos.
 - **Règles des Cartes du Catalogue** : Titre 100% en français, nom d'artiste 100% en alphabet latin, badge HSK coloré (aucun caractère chinois sur la carte extérieure ; les Hanzi et Pinyin sont réservés à l'intérieur du lecteur immersif).
 - **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** : Pour toute série de vidéos ou formation (Vidéos, Formations), l'image de couverture DOIT obligatoirement être la miniature originale de la première vidéo (`https://img.youtube.com/vi/<ID>/hqdefault.jpg`).
-- **Lecteur Immersif & Multimédia** :
-   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo** : Pour toute vidéo sur la plateforme (Vidéos, Chansons, Formations), affichage de la miniature avec le bouton circulaire Play violet `#6200EE`. Dès le clic, la vidéo démarre immédiatement en lecture fluide (`autoplay=1`) au sein de l'application sans redirection.
+- **Lecteur Immersif & Multimédia (Responsivité & Ergonomie Mobile Maximale)** :
+   - **Absence de Badge HSK à l'Intérieur du Lecteur** : Le badge HSK est affiché sur la carte extérieure du catalogue et totalement supprimé de l'en-tête de lecture pour une clarté et un confort visuel absolu.
+   - **En-tête Mobile & Desktop 100% Aligné** : Le Titre bilingue `Titre Français (Hanzi)` est complété à droite par les boutons d'action rapide `[👁 Pinyin]` et `[🌐 Traduction]` en **micro-pills ultra-compacts**, tenant sur une seule ligne horizontale sur tous les smartphones.
+   - **Lecteur Vidéo avec Bouton Signature Violet (1-Clic Direct Garanti)** : Pour toute vidéo sur la plateforme (Vidéos, Chansons, Formations), affichage de la miniature avec le bouton circulaire Play violet `#6200EE`. Pré-initialisé en arrière-plan pour un lancement instantané dès le premier tap tactile.
    - **Chansons** : Paroles synchronisées découpées à chaque pause musicale / virgule (saut de ligne obligatoire), triptyque Hanzi + Pinyin complet avec tons + Traduction française soignée, balisage explicite des `🎵 Pré-refrain` (orange) et `🎵 Refrain` (rose).
    - **Règle Phonologique Chinoise des Tons (不 & 一)** :
      - **不** : devient **`bú`** (2ème ton) devant un mot au 4ème ton (ex: `bú shì`, `bú yòng`, `bú pà`, `bú huì`).

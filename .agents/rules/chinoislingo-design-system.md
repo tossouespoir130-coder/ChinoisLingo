@@ -138,9 +138,18 @@ Tous les modals (Guides, À Propos, Ajout de mot, SRS) doivent obligatoirement :
 1. **Barre de Navigation Supérieure (`TopNav`)** :
    - Logo **华 ChinoisLingo**
    - Onglets principaux : `Accueil`, `Vocabulaire`, `Écoute & Lecture`, `Formations`, `Livres & Programmes`.
-   - Série de jours avec flamme ardente 🔥, loupe de recherche, notification et avatar utilisateur.
+   - Série de jours avec flamme ardente 🔥, loupe de recherche, notification persistante (cloche épurée si 0 non-lue) et avatar utilisateur.
 2. **Hub d'Accès Rapide Inférieur (Pied de Page / Accueil)** :
    - 👤 `Mon Compte` (`/mon-compte`)
    - 💳 `Abonnement` (`/abonnement`)
    - ⚙️ `Préférences` (`/parametres`)
    - ℹ️ `À Propos` (`ChinoisLingo`)
+
+---
+
+## 7. Normes du Lecteur Immersif & Multimédia (`Écoute & Lecture`)
+
+1. **Absence de Badge HSK à l'Intérieur du Lecteur** : Le niveau HSK est affiché sur la miniature dans le catalogue. À l'intérieur du lecteur, le badge HSK est totalement retiré pour maximiser la clarté et l'espace.
+2. **En-tête Mobile & Desktop Épuré** : Le titre bilingue (`Titre Français (Hanzi)`) est positionné à gauche avec son sous-titre Pinyin, et les boutons d'action rapide `[👁 Pinyin]` et `[🌐 Traduction]` sont en **micro-pills ultra-compacts** (`text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full`) alignés à droite sur une seule ligne.
+3. **Lecteur Vidéo 1-Clic Direct (`ChinoisLingoVideoPlayer`)** : Pré-initialisation de l'iframe YouTube dès le montage (`autoplay: 0`), permettant un lancement immédiat au 1er tap sur mobile sans latence ni multi-clics.
+

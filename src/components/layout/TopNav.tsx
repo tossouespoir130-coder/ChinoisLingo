@@ -10,6 +10,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { GlobalSearchModal } from './GlobalSearchModal';
 import { NotificationsModal } from './NotificationsModal';
 import { AuthModal } from '@/components/auth/AuthModal';
+import { fetchMergedNotifications } from '@/lib/services/notificationService';
 
 const topTabs = [
   { name: 'Accueil', href: '/tableau-de-bord' },
@@ -28,8 +29,32 @@ export function TopNav() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(2);
+  const [unreadCount, setUnreadCount] = useState(0);
   const profileMenuRef = useRef<HTMLDivElement>(null);
+
+  // Sync and update unread count persistently
+  useEffect(() => {
+    async function updateCount() {
+      try {
+        const notifs = await fetchMergedNotifications();
+        const unread = notifs.filter(n => !n.isRead).length;
+        setUnreadCount(unread);
+      } catch {
+        setUnreadCount(0);
+      }
+    }
+
+    updateCount();
+
+    const handleNotificationsUpdated = () => {
+      updateCount();
+    };
+
+    window.addEventListener('chinoislingo_notifications_updated', handleNotificationsUpdated);
+    return () => {
+      window.removeEventListener('chinoislingo_notifications_updated', handleNotificationsUpdated);
+    };
+  }, []);
 
   // Close profile menu upon clicking outside
   useEffect(() => {

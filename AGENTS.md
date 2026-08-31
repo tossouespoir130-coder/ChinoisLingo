@@ -61,14 +61,16 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - **HSK 5** : **Pourpre / Violet Profond** (`#8E24AA`)
      - **HSK 6** : **Rubis Impérial / Magenta** (`#D81B60` / `#D32F2F`)
    - Cette cohérence chromatique absolue permet à l'apprenant d'identifier instantanément le niveau de difficulté au premier coup d'œil.
-6. **Présentation Visuelle du Lecteur Immersif Écoute & Lecture** :
-   - **En-tête de lecture (Ligne 1)** : Afficher le **Titre en français**, suivi du **Titre en caractères chinois (Hanzi)**, puis du **Badge [HSK X]** (`Titre Français (Hanzi) [HSK X]`).
-   - **Sous-titres (Lignes 2 & 3)** : Le **Pinyin** est positionné sur la ligne juste en dessous, suivi du **nom de l'artiste** ou de l'auteur sur la ligne suivante.
+6. **Présentation Visuelle du Lecteur Immersif Écoute & Lecture (Responsivité Mobile & Épuration Maximale)** :
+   - **Absence Totale de Badge HSK à l'Intérieur du Lecteur** : Le badge HSK est réservé exclusivement à l'extérieur (sur les miniatures et cartes du catalogue). Dès que l'apprenant ouvre une ressource (chanson, vidéo, dialogue, histoire, article, podcast), **aucun badge HSK n'est affiché dans l'en-tête**, évitant toute redondance et libérant l'espace.
+   - **En-tête de lecture** : Affiche directement le **Titre en français (H1)** suivi du **Titre en caractères chinois (Hanzi)** (`Titre Français (Hanzi)`).
+   - **Sous-titres** : Le **Pinyin** est positionné sur la ligne juste en dessous, suivi du **nom de l'artiste** ou de l'auteur.
    - **Boutons d'action rapide en en-tête (Pinyin & Traduction)** :
-     - Positionnés **à droite** de l'en-tête, compacts et épurés sur mobile (`text-[10.5px] sm:text-xs`).
+     - Positionnés **à droite** de l'en-tête, stylisés en **micro-pills ultra-compacts** (`text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full`).
+     - Alignement garanti sur **une seule ligne horizontale** avec le titre sur smartphone (iPhone 13 Pro, iPhone XR, etc.) et sur ordinateur.
      - L'état actif/inactif est signalé visuellement par la couleur du bouton (allumé/éteint).
      - **Épuration maximale** : Ne pas ajouter de bouton de synchronisation ou de lecteur TTS global dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
-   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo** : Sur TOUTE la plateforme (Écoute & Lecture, Vidéos, Chansons, Formations), les vidéos affichent la miniature avec le **bouton Play circulaire personnalisé couleur violette signature ChinoisLingo (`#6200EE`)**. Au clic, la vidéo se lance immédiatement en lecture fluide (`autoplay=1`) au sein de l'application sans redirection.
+   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo (1-Clic Direct Garanti sur Mobile)** : Sur TOUTE la plateforme (Écoute & Lecture, Vidéos, Chansons, Formations), les vidéos affichent la miniature avec le **bouton Play circulaire personnalisé couleur violette signature ChinoisLingo (`#6200EE`)**. Le lecteur est pré-initialisé en arrière-plan pour garantir un lancement instantané dès le **1er clic / tap tactile**, sans latence ni multi-taps requis.
    - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.
 7. **Contrôle Systématique, Visuel et Obligatoire dans le Navigateur de Toute Vidéo YouTube** :
    - Pour TOUTE vidéo ou chanson ajoutée ou modifiée, **interdiction formelle de valider sans avoir effectué une vérification visuelle directe dans le navigateur (`browser_subagent`)**.
@@ -96,11 +98,11 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
 12. **Règle du Plan Général par Défaut sur Écoute & Lecture (Onglet Chansons Actif)** :
    - Lors de la navigation vers la rubrique **Écoute & Lecture** (`/ecoute-lecture`), afficher systématiquement le **plan général du catalogue** avec l'onglet **Chansons** coché et visible par défaut. L'apprenant visualise immédiatement les chansons et peut ensuite switcher librement vers les autres sous-menus (*Articles*, *Histoires*, *Dialogues*, *Podcasts*, *Vidéos*). Ne jamais forcer la réouverture d'une session terminée sans paramètre d'URL explicite.
 
-13. **Règle Permanente de Notification et Pop-up Toast pour TOUT Nouveau Contenu Ajouté** :
+13. **Règle Permanente de Notification, Cloche Épurée et Pop-up Toast Persistant** :
    - Pour TOUT nouveau contenu ajouté sur la plateforme (vidéo, épisode de série, formation, chanson, dialogue, article, podcast, cours) :
-     1. **Notification Cloche** : Ajouter systématiquement la notification dans `src/lib/data/notificationsData.ts` (affichée au niveau de la cloche de notification en haut avec badge non lu).
-     2. **Pop-up Toast Automatique (`NewContentToast`)** : Le dernier ajout non vu apparaît automatiquement sous forme de pop-up discret en bas à droite après 2.5 secondes avec la photo d'Espoir Chinois (ou icône), le titre, et le bouton direct `Regarder / Découvrir` pour rediriger l'apprenant en 1 clic.
-     3. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
+     1. **Notification Cloche & Persistance de Lecture** : Les notifications lues sont enregistrées durablement (`localStorage` + base Supabase). Dès que l'utilisateur a vu ses notifications et se reconnecte, la cloche affiche un état épuré **sans badge rouge ni chiffre (`unreadCount = 0`)**.
+     2. **Pop-up Toast Automatique (`NewContentToast`)** : N'apparaît que pour un contenu réellement inédit et non encore vu, puis est mémorisé comme vu.
+     3. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts non vus restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
 
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :
@@ -268,3 +270,13 @@ Pour maximiser l'immersion et la clarté pédagogique de chaque dialogue interac
   5. Le bouton de sauvegarde directe dans **Mes Mots** (`Bookmark` / `Check`).
 
 
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

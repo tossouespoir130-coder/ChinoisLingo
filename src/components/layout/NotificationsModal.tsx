@@ -23,46 +23,35 @@ interface NotificationsModalProps {
   onNotificationsChange?: (unreadCount: number) => void;
 }
 
-import { fetchNotifications, markNotificationAsRead } from '@/lib/services/notificationService';
+import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '@/lib/services/notificationService';
 
 export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: NotificationsModalProps) {
   const router = useRouter();
   const { userAvatar } = usePreferences();
-  const [notifications, setNotifications] = useState<NotificationItem[]>(initialNotifications);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'system'>('all');
 
-  // Load live notifications and merge with fresh initial notifications
+  // Load live notifications merged with persistent read status
   useEffect(() => {
     async function loadNotifs() {
       try {
-        const dbNotifs = await fetchNotifications();
-        if (dbNotifs && dbNotifs.length > 0) {
-          const dbIds = new Set(initialNotifications.map(n => n.id));
-          const additionalNotifs: NotificationItem[] = dbNotifs
-            .filter(n => !dbIds.has(n.id))
-            .map((n) => ({
-              id: n.id,
-              source: (n.source === 'founder' ? 'founder' : 'system') as 'founder' | 'system',
-              founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
-              founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
-              founderAvatar: '/espoir-chinois.jpg',
-              title: n.title,
-              message: n.message,
-              timestamp: 'Récemment',
-              isRead: !!n.is_read,
-              actionUrl: n.action_url || '/tableau-de-bord',
-              actionLabel: 'Consulter',
-            }));
-          setNotifications([...initialNotifications, ...additionalNotifs]);
-        } else {
-          setNotifications(initialNotifications);
-        }
+        const notifs = await fetchMergedNotifications();
+        setNotifications(notifs);
       } catch {
         setNotifications(initialNotifications);
       }
     }
 
     loadNotifs();
+
+    const handleUpdate = () => {
+      loadNotifs();
+    };
+
+    window.addEventListener('chinoislingo_notifications_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('chinoislingo_notifications_updated', handleUpdate);
+    };
   }, []);
 
   const unreadCount = notifications.filter(n => !n.isRead).length;
@@ -73,32 +62,26 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
       if (onNotificationsChange) {
         onNotificationsChange(0);
       }
-      const timer = setTimeout(() => {
-        setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
-      }, 350);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen, onNotificationsChange]);
-
-  const markAllAsRead = async () => {
-    const updated = notifications.map(n => ({ ...n, isRead: true }));
-    setNotifications(updated);
-    if (onNotificationsChange) onNotificationsChange(0);
-
-    for (const notif of notifications) {
-      if (!notif.isRead) {
-        await markNotificationAsRead(notif.id);
+      const unreadIds = notifications.filter(n => !n.isRead).map(n => n.id);
+      if (unreadIds.length > 0) {
+        const timer = setTimeout(() => {
+          markAllNotificationsAsRead(unreadIds);
+          setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+        }, 500);
+        return () => clearTimeout(timer);
       }
     }
+  }, [isOpen, notifications, onNotificationsChange]);
+
+  const markAllAsRead = async () => {
+    const allIds = notifications.map(n => n.id);
+    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+    if (onNotificationsChange) onNotificationsChange(0);
+    await markAllNotificationsAsRead(allIds);
   };
 
   const markAsRead = async (id: string) => {
-    const updated = notifications.map(n => n.id === id ? { ...n, isRead: true } : n);
-    setNotifications(updated);
-    if (onNotificationsChange) {
-      onNotificationsChange(updated.filter(n => !n.isRead).length);
-    }
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
     await markNotificationAsRead(id);
   };
 

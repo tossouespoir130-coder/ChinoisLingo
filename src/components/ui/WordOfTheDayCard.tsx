@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Volume2, Sparkles, Bookmark, Check, Info, ChevronDown } from 'lucide-react';
+import { Volume2, Sparkles, Bookmark, Check, Info, ChevronDown, ChevronUp } from 'lucide-react';
 import { getDailyWord } from '@/lib/mock/dashboard';
 import { usePreferences } from '@/context/PreferencesContext';
 import { addSavedWord, removeSavedWord, fetchUserSavedWords } from '@/lib/services/vocabularyService';
@@ -163,19 +163,19 @@ export function WordOfTheDayCard() {
           }}
           type="button"
           aria-expanded={showSentences}
-          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 hover:bg-[#6200EE]/15 dark:hover:bg-[#6200EE]/20 border border-[#6200EE]/20 text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] transition-all duration-200 cursor-pointer select-none group"
+          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 hover:bg-[#6200EE]/15 dark:hover:bg-[#6200EE]/20 active:scale-[0.99] border border-[#6200EE]/20 text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] transition-all duration-200 cursor-pointer select-none group btn-press shadow-2xs"
         >
           <span className="flex items-center gap-2">
-            <span>{showSentences ? 'Masquer les exemples' : 'Afficher les exemples'}</span>
+            <span>{showSentences ? 'Masquer les exemples' : 'Exemples'}</span>
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/25 font-semibold text-[#6200EE] dark:text-[#BB86FC]">
-              3 phrases contextuelles
+              3 phrases
             </span>
           </span>
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-300 text-[#6200EE] dark:text-[#BB86FC] ${
-              showSentences ? 'rotate-180' : 'rotate-0'
-            }`}
-          />
+          {showSentences ? (
+            <ChevronUp className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC] pointer-events-none transition-transform" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC] pointer-events-none transition-transform group-hover:translate-y-0.5" />
+          )}
         </button>
 
         {showSentences && (

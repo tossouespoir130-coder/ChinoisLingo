@@ -1,8 +1,7 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { initialNotifications, NotificationItem } from '@/lib/data/notificationsData';
+import { NotificationItem } from '@/lib/data/notificationsData';
+import { fetchMergedNotifications, saveReadNotificationId } from '@/lib/services/notificationService';
 import { X, Sparkles, Play, ArrowRight, Bell } from 'lucide-react';
 
 export function NewContentToast() {
@@ -22,25 +21,38 @@ export function NewContentToast() {
       return;
     }
 
-    // Trouver la notification la plus récente non lue
-    const latest = initialNotifications.find((n) => !n.isRead) || initialNotifications[0];
-    if (!latest) return;
+    async function checkLatest() {
+      try {
+        const notifs = await fetchMergedNotifications();
+        // Trouver la notification la plus récente non lue uniquement
+        const unreadLatest = notifs.find((n) => !n.isRead);
+        if (!unreadLatest) {
+          setIsVisible(false);
+          setLatestNotif(null);
+          return;
+        }
 
-    setLatestNotif(latest);
+        setLatestNotif(unreadLatest);
 
-    // Vérifier si ce pop-up a déjà été fermé par l'utilisateur
-    const dismissedId = typeof window !== 'undefined' ? localStorage.getItem('chinoislingo_dismissed_content_toast') : null;
-    
-    // Si l'utilisateur est déjà sur la page exacte de l'actionUrl, ne pas afficher le pop-up
-    const isAlreadyOnPage = latest.actionUrl && pathname === latest.actionUrl.split('?')[0];
+        // Vérifier si ce pop-up a déjà été fermé par l'utilisateur
+        const dismissedId = typeof window !== 'undefined' ? localStorage.getItem('chinoislingo_dismissed_content_toast') : null;
+        
+        // Si l'utilisateur est déjà sur la page exacte de l'actionUrl, ne pas afficher le pop-up
+        const isAlreadyOnPage = unreadLatest.actionUrl && pathname === unreadLatest.actionUrl.split('?')[0];
 
-    if (dismissedId !== latest.id && !isAlreadyOnPage) {
-      // Déclenchement naturel après 2.5 secondes
-      const timer = setTimeout(() => {
-        setIsVisible(true);
-      }, 2500);
-      return () => clearTimeout(timer);
+        if (dismissedId !== unreadLatest.id && !isAlreadyOnPage) {
+          // Déclenchement naturel après 2.5 secondes
+          const timer = setTimeout(() => {
+            setIsVisible(true);
+          }, 2500);
+          return () => clearTimeout(timer);
+        }
+      } catch {
+        setIsVisible(false);
+      }
     }
+
+    checkLatest();
   }, [pathname]);
 
   const handleDismiss = () => {
@@ -51,6 +63,7 @@ export function NewContentToast() {
       if (latestNotif) {
         try {
           localStorage.setItem('chinoislingo_dismissed_content_toast', latestNotif.id);
+          saveReadNotificationId(latestNotif.id);
         } catch {}
       }
     }, 300);
@@ -58,6 +71,7 @@ export function NewContentToast() {
 
   const handleAction = () => {
     if (!latestNotif) return;
+    saveReadNotificationId(latestNotif.id);
     handleDismiss();
     if (latestNotif.actionUrl) {
       router.push(latestNotif.actionUrl);
