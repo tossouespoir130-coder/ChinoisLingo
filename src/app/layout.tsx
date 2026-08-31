@@ -43,6 +43,16 @@ export const metadata: Metadata = {
   title: 'ChinoisLingo — Le chinois devient facile',
   description:
     'Avec ChinoisLingo, le chinois devient facile. Plateforme d’apprentissage complète du mandarin pour les francophones : vocabulaire, répétition espacée, écoute & lecture audio synchronisée, formations et livres.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
