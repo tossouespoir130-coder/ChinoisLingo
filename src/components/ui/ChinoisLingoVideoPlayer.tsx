@@ -121,11 +121,12 @@ export function ChinoisLingoVideoPlayer({
   };
 
   const coverImage = thumbnailUrl || `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1`;
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`;
 
   return (
     <div
       ref={containerRef}
+      onContextMenu={(e) => e.preventDefault()}
       className={`relative select-none group transition-all duration-300 ${
         isFullscreen
           ? 'fixed inset-0 z-[999999] w-[100dvw] h-[100dvh] max-w-none max-h-none rounded-none bg-black flex flex-col justify-center items-center shadow-none border-0'
@@ -156,14 +157,14 @@ export function ChinoisLingoVideoPlayer({
           </div>
         </div>
       ) : (
-        /* 2. LECTEUR VIDÉO IFRAME 100% FIABLE ET INSTANTANÉ */
-        <div className="relative w-full h-full">
+        /* 2. LECTEUR VIDÉO ÉPURÉ SANS LOGO NI LIEN DE COPIE YOUTUBE */
+        <div className="relative w-full h-full overflow-hidden bg-black flex items-center justify-center">
           <iframe
             src={embedUrl}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="w-full h-full border-0"
+            className="w-[102%] h-[116%] -mt-[8%] -ml-[1%] border-0 pointer-events-auto"
           />
 
           {/* Bouton flottant pour basculer en Plein Écran */}

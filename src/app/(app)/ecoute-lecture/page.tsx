@@ -1620,55 +1620,6 @@ function EcouteLectureContent() {
   const [localFrenchOverride, setLocalFrenchOverride] = useState<boolean | null>(null);
   const isFrenchVisible = localFrenchOverride !== null ? localFrenchOverride : showFrenchTranslation;
 
-  // Tooltip de découverte (14 jours sur mobile)
-  const [showTranslationTooltip, setShowTranslationTooltip] = useState(false);
-
-  useEffect(() => {
-    if (!activeReading || typeof window === 'undefined') return;
-
-    try {
-      const hidePermanently = localStorage.getItem('chinoislingo_hide_translation_tooltip');
-      if (hidePermanently === 'true') {
-        setShowTranslationTooltip(false);
-        return;
-      }
-
-      let firstUsed = localStorage.getItem('chinoislingo_first_used_date');
-      const now = Date.now();
-      if (!firstUsed) {
-        firstUsed = String(now);
-        localStorage.setItem('chinoislingo_first_used_date', firstUsed);
-      }
-
-      const firstUsedTime = parseInt(firstUsed, 10);
-      const fourteenDaysMs = 14 * 24 * 60 * 60 * 1000;
-
-      if (now - firstUsedTime <= fourteenDaysMs) {
-        setShowTranslationTooltip(true);
-      } else {
-        setShowTranslationTooltip(false);
-      }
-    } catch {
-      setShowTranslationTooltip(false);
-    }
-  }, [activeReading]);
-
-  const handleDismissTooltip = (permanently = false) => {
-    setShowTranslationTooltip(false);
-    if (permanently && typeof window !== 'undefined') {
-      try {
-        localStorage.setItem('chinoislingo_hide_translation_tooltip', 'true');
-      } catch {}
-    }
-  };
-
-  // Video play state for song player (custom branded play button like Formations)
-  const [isPlayingSongVideo, setIsPlayingSongVideo] = useState(false);
-
-  useEffect(() => {
-    setIsPlayingSongVideo(false);
-  }, [activeReading]);
-
   const [savedSentenceIds, setSavedSentenceIds] = useState<Set<string>>(new Set());
 
   // Completed Items State (Mark as completed feature with persistence)
@@ -2005,81 +1956,54 @@ function EcouteLectureContent() {
       {/* ========================================================================= */}
       {activeReading ? (
         <div className="space-y-6 animate-fadeIn">
-          {/* Top Bar: Back Button, Bilingual Title with Hanzi & Pinyin, Audio Actions ONLY */}
-          <div className="flex items-center justify-between gap-3 p-3.5 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
-            <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0 flex-1">
+          {/* Top Bar: Back Button, Multi-line Title (L1: French, L2: Hanzi, L3: Pinyin), Audio Action Buttons at Top Right */}
+          <div className="flex items-start justify-between gap-3 p-3.5 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+            <div className="flex items-start gap-2.5 sm:gap-3.5 min-w-0 flex-1">
               <button
                 onClick={closeReading}
                 type="button"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer mt-0.5"
                 title="Retour au catalogue Écoute & Lecture"
               >
                 <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              <div className="min-w-0 flex-1">
-                {/* Detail View Title: French Title (H1) + Chinese Title (Hanzi) */}
-                <div className="flex items-baseline gap-1.5 sm:gap-2 truncate">
-                  <h1 className="font-display font-black text-sm sm:text-lg lg:text-xl text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate">
-                    {displayedTitleFr}
-                  </h1>
-                  <span className="font-hanzi text-xs sm:text-base font-bold text-[#00796B] dark:text-[#03DAC5] shrink-0">
-                    ({displayedTitleZh})
-                  </span>
-                </div>
+              <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
+                {/* Ligne 1 : Titre complet en français (H1) */}
+                <h1 className="font-display font-black text-sm sm:text-lg lg:text-xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-snug">
+                  {displayedTitleFr}
+                </h1>
 
-                {/* Pinyin Subtitle under the title (obeying Pinyin On/Off toggle) */}
+                {/* Ligne 2 : Titre en Caractères Chinois (Hanzi) */}
+                {displayedTitleZh && (
+                  <div className="font-hanzi text-sm sm:text-base font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
+                    {displayedTitleZh}
+                  </div>
+                )}
+
+                {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
                 {isPinyinVisible && displayedTitlePinyin && (
-                  <p className="font-pinyin text-[10.5px] sm:text-xs font-semibold text-[#00796B] dark:text-[#03DAC5] mt-0.5 truncate">
+                  <div className="font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85 leading-snug">
                     {displayedTitlePinyin}
-                  </p>
+                  </div>
                 )}
 
                 {activeReading.artist && (
-                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5 truncate">
+                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
                     Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
                   </p>
                 )}
 
                 {activeReading.author && (
-                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] mt-0.5 truncate">
+                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
                     Par <span className="font-bold text-[#6200EE] dark:text-[#BB86FC]">{activeReading.author}</span>
                   </p>
                 )}
               </div>
             </div>
 
-            {/* Quick Action Toggles: Compact Icon-only Buttons on Mobile, Text on Desktop + 14-day Discovery Tooltip */}
-            <div className="relative flex items-center gap-1.5 sm:gap-2 shrink-0">
-              {/* Tooltip de découverte (Mobile uniquement - 14 jours) */}
-              {showTranslationTooltip && (
-                <div className="sm:hidden absolute bottom-full right-0 mb-2.5 w-64 p-3 rounded-2xl bg-[#212121] dark:bg-[#1E1E1E] text-white border border-[#6200EE]/40 shadow-2xl z-50 animate-slideUp text-left">
-                  <div className="flex items-start justify-between gap-1.5">
-                    <p className="text-[11px] font-medium leading-snug text-white/95">
-                      💡 Affiche/masque le pinyin et la traduction
-                    </p>
-                    <button
-                      onClick={() => handleDismissTooltip(false)}
-                      type="button"
-                      className="text-white/60 hover:text-white p-0.5 shrink-0 cursor-pointer"
-                      title="Fermer"
-                      aria-label="Fermer"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => handleDismissTooltip(true)}
-                    type="button"
-                    className="mt-2 text-[10px] text-[#03DAC5] dark:text-[#BB86FC] font-semibold underline block hover:opacity-80 cursor-pointer text-left"
-                  >
-                    Ne plus afficher ce message
-                  </button>
-                  {/* Flèche pointant vers les boutons */}
-                  <div className="absolute -bottom-1.5 right-4 w-3 h-3 bg-[#212121] dark:bg-[#1E1E1E] border-r border-b border-[#6200EE]/40 transform rotate-45" />
-                </div>
-              )}
-
+            {/* Quick Action Toggles: Compact Icon-only Buttons on Mobile, Text on Desktop */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 pt-0.5">
               {/* Bouton Pinyin : Icône seule sur mobile, Icône + Texte sur PC */}
               <button
                 onClick={() => setLocalPinyinOverride(!isPinyinVisible)}

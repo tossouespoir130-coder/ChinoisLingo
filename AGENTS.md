@@ -61,17 +61,18 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - **HSK 5** : **Pourpre / Violet Profond** (`#8E24AA`)
      - **HSK 6** : **Rubis Impérial / Magenta** (`#D81B60` / `#D32F2F`)
    - Cette cohérence chromatique absolue permet à l'apprenant d'identifier instantanément le niveau de difficulté au premier coup d'œil.
-6. **Présentation Visuelle du Lecteur Immersif Écoute & Lecture (Responsivité Mobile & Épuration Maximale)** :
-   - **Absence Totale de Badge HSK à l'Intérieur du Lecteur** : Le badge HSK est réservé exclusivement à l'extérieur (sur les miniatures et cartes du catalogue). Dès que l'apprenant ouvre une ressource (chanson, vidéo, dialogue, histoire, article, podcast), **aucun badge HSK n'est affiché dans l'en-tête**, évitant toute redondance et libérant l'espace.
-   - **En-tête de lecture** : Affiche directement le **Titre en français (H1)** suivi du **Titre en caractères chinois (Hanzi)** (`Titre Français (Hanzi)`).
-   - **Sous-titres** : Le **Pinyin** est positionné sur la ligne juste en dessous, suivi du **nom de l'artiste** ou de l'auteur.
+6. **Présentation Visuelle du Lecteur Immersif Écoute & Lecture (Responsivité Mobile & Ergonomie)** :
+   - **Absence Totale de Badge HSK à l'Intérieur du Lecteur** : Le badge HSK est réservé exclusivement à l'extérieur (sur les miniatures et cartes du catalogue). Dès que l'apprenant ouvre une ressource, aucun badge HSK n'est affiché dans l'en-tête, évitant toute redondance et libérant l'espace.
+   - **En-tête de lecture hiérarchisé sur 3 lignes distinctes** :
+     - **Ligne 1** : **Titre complet en français (H1)** (sans troncature forcée, avec retour à la ligne naturel si long).
+     - **Ligne 2** : **Titre en caractères chinois (Hanzi)** (`font-hanzi font-bold text-[#00796B] dark:text-[#03DAC5]`).
+     - **Ligne 3** : **Transcription phonétique (Pinyin)** (`font-pinyin text-xs font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85`), obéissant au bouton Pinyin.
+     - Suivi du nom de l'artiste ou de l'auteur.
    - **Boutons d'action rapide en en-tête (Pinyin & Traduction)** :
-     - Positionnés **à droite** de l'en-tête, stylisés en **micro-pills ultra-compacts** (`text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full`).
-     - Alignement garanti sur **une seule ligne horizontale** avec le titre sur smartphone (iPhone 13 Pro, iPhone XR, etc.) et sur ordinateur.
-     - L'état actif/inactif est signalé visuellement par la couleur du bouton (allumé/éteint).
-     - **Épuration maximale** : Ne pas ajouter de bouton de synchronisation ou de lecteur TTS global dans l'en-tête ; l'apprenant fait défiler les paroles librement à son rythme.
-   - **Lecteur Vidéo avec Bouton Personnalisé Violet Signature ChinoisLingo (1-Clic Direct Garanti sur Mobile)** : Sur TOUTE la plateforme (Écoute & Lecture, Vidéos, Chansons, Formations), les vidéos affichent la miniature avec le **bouton Play circulaire personnalisé couleur violette signature ChinoisLingo (`#6200EE`)**. Le lecteur est pré-initialisé en arrière-plan pour garantir un lancement instantané dès le **1er clic / tap tactile**, sans latence ni multi-taps requis.
-   - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers (ex: "X vers / phrases") dans l'en-tête des paroles/transcriptions afin de préserver une immersion fluide et épurée pour l'apprenant.
+     - Positionnés **en haut à droite**, format circulaire compact icône seule sur mobile (`w-8 h-8 rounded-full`) et format avec texte sur PC (`sm:w-auto sm:px-2.5 sm:py-1`).
+     - L'état actif/inactif est signalé visuellement par la couleur du bouton (vert pour Pinyin, violet pour Traduction).
+   - **Lecteur Vidéo Anti-Fuite & Bouton Violet Signature (1-Clic Direct)** : Sur TOUTE la plateforme (Écoute & Lecture, Vidéos, Chansons, Formations), les vidéos affichent la miniature avec le **bouton Play circulaire violet signature ChinoisLingo (`#6200EE`)**. À la lecture, le lecteur est protégé : l'en-tête YouTube parasite (titre, logo de chaîne, icône de copie de lien) et le logo YouTube sont masqués pour protéger les contenus de la plateforme. Clic droit désactivé (`onContextMenu`).
+   - **Épuration de l'Interface** : Ne jamais afficher de compteur technique de lignes ou de vers dans l'en-tête afin de préserver une immersion épurée pour l'apprenant.
 7. **Contrôle Systématique, Visuel et Obligatoire dans le Navigateur de Toute Vidéo YouTube** :
    - Pour TOUTE vidéo ou chanson ajoutée ou modifiée, **interdiction formelle de valider sans avoir effectué une vérification visuelle directe dans le navigateur (`browser_subagent`)**.
    - L'agent doit impérativement ouvrir la page, lancer le lecteur immersif, vérifier que la vidéo se charge et qu'elle est jouable sans AUCUN message « Vidéo non disponible », restriction de droits d'auteur ou blocage d'intégration oEmbed.
