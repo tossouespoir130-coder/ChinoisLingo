@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Volume2, Sparkles, Bookmark, Check, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { Volume2, Sparkles, Bookmark, Check, Info, ChevronDown } from 'lucide-react';
 import { getDailyWord } from '@/lib/mock/dashboard';
 import { usePreferences } from '@/context/PreferencesContext';
 import { addSavedWord, removeSavedWord, fetchUserSavedWords } from '@/lib/services/vocabularyService';
@@ -99,7 +99,7 @@ export function WordOfTheDayCard() {
         <button
           onClick={handleToggleSave}
           type="button"
-          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all btn-press ${
+          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all btn-press cursor-pointer ${
             isSaved
               ? 'bg-[#E91E63] text-white shadow-xs'
               : 'bg-black/[0.03] dark:bg-white/[0.05] text-[#757575] hover:text-[#212121] dark:hover:text-white'
@@ -134,7 +134,7 @@ export function WordOfTheDayCard() {
         <button
           onClick={() => playAudio(dailyWord.hanzi)}
           type="button"
-          className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all btn-press ${
+          className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all btn-press cursor-pointer ${
             isPlaying
               ? 'bg-[#6200EE] text-white scale-95 shadow-md shadow-[#6200EE]/30 animate-pulse'
               : 'bg-[#6200EE] hover:bg-[#3700B3] text-white hover:scale-105 active:scale-95 shadow-sm shadow-[#6200EE]/25'
@@ -156,12 +156,26 @@ export function WordOfTheDayCard() {
       {/* Expandable Example Sentences Button */}
       <div className="mt-3.5 pt-2 border-t border-[#E0E0E0] dark:border-[#2D2D2D]">
         <button
-          onClick={() => setShowSentences(!showSentences)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setShowSentences((prev) => !prev);
+          }}
           type="button"
-          className="w-full flex items-center justify-between text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline transition-colors py-1 btn-press"
+          aria-expanded={showSentences}
+          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 hover:bg-[#6200EE]/15 dark:hover:bg-[#6200EE]/20 border border-[#6200EE]/20 text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] transition-all duration-200 cursor-pointer select-none group"
         >
-          <span>{showSentences ? 'Masquer les exemples' : 'Exemples →'}</span>
-          {showSentences ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          <span className="flex items-center gap-2">
+            <span>{showSentences ? 'Masquer les exemples' : 'Afficher les exemples'}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/25 font-semibold text-[#6200EE] dark:text-[#BB86FC]">
+              3 phrases contextuelles
+            </span>
+          </span>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-300 text-[#6200EE] dark:text-[#BB86FC] ${
+              showSentences ? 'rotate-180' : 'rotate-0'
+            }`}
+          />
         </button>
 
         {showSentences && (
@@ -180,7 +194,7 @@ export function WordOfTheDayCard() {
                   <button
                     onClick={() => playAudio(tier.hanzi, true, idx)}
                     type="button"
-                    className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-[10px] font-bold transition-all btn-press ${
+                    className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-[10px] font-bold transition-all btn-press cursor-pointer ${
                       playingSentenceIdx === idx
                         ? 'bg-[#6200EE] text-white animate-pulse'
                         : 'bg-white dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] border border-[#E0E0E0] dark:border-[#333333] hover:bg-[#6200EE]/10'
@@ -215,6 +229,15 @@ export function WordOfTheDayCard() {
                 </div>
               </div>
             ))}
+
+            {/* Bouton rapide pour refermer */}
+            <button
+              onClick={() => setShowSentences(false)}
+              type="button"
+              className="w-full py-1.5 text-center text-[11px] font-semibold text-[#757575] dark:text-[#A0A0A0] hover:text-[#6200EE] dark:hover:text-[#BB86FC] transition-colors cursor-pointer"
+            >
+              ▲ Replier les exemples
+            </button>
           </div>
         )}
       </div>
