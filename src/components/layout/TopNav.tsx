@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Bell, Flame, User, LogOut, Settings, CreditCard, UserCheck, ChevronDown } from 'lucide-react';
+import { Search, Bell, Flame, User, LogOut, Settings, CreditCard, UserCheck, ChevronDown, Shield } from 'lucide-react';
 import { mockCurrentUser, mockUserStreak } from '@/lib/mock/dashboard';
 import { usePreferences } from '@/context/PreferencesContext';
 import { useAuth } from '@/lib/auth/AuthContext';
@@ -227,6 +227,21 @@ export function TopNav() {
                     <Settings className="w-4 h-4 text-[#757575]" />
                     <span>Préférences</span>
                   </Link>
+
+                  {/* Accès à l'espace d'administration — invisible pour les
+                      comptes sans le rôle. Ce masquage est un confort
+                      d'interface, PAS la sécurité : la protection réelle est
+                      le contrôle serveur dans middleware.ts. */}
+                  {profile?.role === 'admin' && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setIsProfileMenuOpen(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-2xl text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] bg-[#6200EE]/8 hover:bg-[#6200EE]/15 transition-colors"
+                    >
+                      <Shield className="w-4 h-4" />
+                      <span>Administration</span>
+                    </Link>
+                  )}
                 </div>
 
                 {/* Authentication Action Button: Toujours Se déconnecter */}
