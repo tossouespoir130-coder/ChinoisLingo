@@ -36,6 +36,11 @@ import { usePreferences } from '@/context/PreferencesContext';
 import { ImageCropModal } from '@/components/ui/ImageCropModal';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { updateProfileSettings } from '@/lib/services/profileService';
+import { GrilleTarifs } from '@/components/subscription/GrilleTarifs';
+import { useAbonnement } from '@/lib/payments/useAbonnement';
+import { formaterEcheance } from '@/lib/payments/subscription';
+import { BONUS_PREMIER_PAIEMENT_JOURS } from '@/lib/payments/plans';
+import { resumeOffreGratuite } from '@/lib/payments/acces';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -162,8 +167,8 @@ function MonCompteContent() {
     }
   }, [tabParam]);
 
-  // Subscription state
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual');
+  // Abonnement : état réel du profil + ouverture du portail de facturation
+  const { etat: etatAbonnement, ouvrirPortail } = useAbonnement();
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Avatars de Personnages / Membres de la Communauté
@@ -296,7 +301,7 @@ function MonCompteContent() {
             Mon Compte
           </h1>
           <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-0.5">
-            Gérez votre profil, votre formule VIP et vos réglages d&apos;apprentissage.
+            Gérez votre profil, votre abonnement et vos réglages d&apos;apprentissage.
           </p>
         </div>
 
@@ -370,8 +375,18 @@ function MonCompteContent() {
                 </h3>
                 <p className="text-xs text-[#757575] dark:text-[#A0A0A0] font-mono truncate">{profileData.email}</p>
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-2">
-                  <span className="inline-block px-2.5 sm:px-3 py-0.5 rounded-full bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-wider border border-[#6200EE]/20">
-                    Membre VIP Actif
+                  <span
+                    className={`inline-block px-2.5 sm:px-3 py-0.5 rounded-full text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-wider border ${
+                      etatAbonnement.estAdmin || etatAbonnement.estAbonne
+                        ? 'bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] border-[#6200EE]/20'
+                        : 'bg-[#FAFAFA] dark:bg-[#252525] text-[#757575] dark:text-[#A0A0A0] border-[#E0E0E0] dark:border-[#333333]'
+                    }`}
+                  >
+                    {etatAbonnement.estAdmin
+                      ? 'Administrateur · accès complet'
+                      : etatAbonnement.estAbonne
+                        ? `${etatAbonnement.plan?.nom ?? 'Pass'} actif`
+                        : 'Compte gratuit'}
                   </span>
                   <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">📍 {profileData.city}, {profileData.country}</span>
                   <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">🎯 {profileData.targetLevel}</span>
@@ -420,93 +435,107 @@ function MonCompteContent() {
       {/* TAB 2: ABONNEMENT */}
       {activeTab === 'subscription' && (
         <div className="space-y-6 animate-fadeIn">
-          {/* Current Plan Status */}
-          <div className="nixtio-card p-6 bg-gradient-to-r from-[#6200EE] to-[#3700B3] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg shadow-[#6200EE]/25">
-            <div>
-              <span className="text-[10px] uppercase font-extrabold text-[#03DAC5] tracking-wider block">Statut Abonnement</span>
-              <h3 className="font-display font-black text-xl sm:text-2xl mt-0.5">Pass Annuel VIP Actif ✨</h3>
-              <p className="text-xs text-white/85 mt-1">Renouvellement le 15 Janvier 2027 • Règlement effectué par Mobile Money</p>
-            </div>
-            <div className="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-xs font-bold whitespace-nowrap self-start sm:self-auto">
-              Accès Illimité HSK 1-6
-            </div>
-          </div>
-
-          {/* Pricing Plans Grid (Présentation directe côte à côte) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Mensuel */}
-            <div className="nixtio-card p-6 sm:p-7 flex flex-col justify-between bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE]/40 transition-all shadow-xs">
-              <div>
-                <span className="text-xs uppercase font-extrabold text-[#757575] dark:text-[#A0A0A0] tracking-wider">Pass Mensuel</span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="font-display font-black text-3xl text-[#212121] dark:text-[#F5F5F5]">15 000</span>
-                  <span className="text-xs font-bold text-[#757575]">FCFA / mois</span>
-                </div>
-                <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-2">
-                  Sans engagement, renouvelable chaque mois par Mobile Money, Carte ou Crypto.
+          {/* ── Statut réel de l'abonnement ─────────────────────────── */}
+          {etatAbonnement.estAbonne ? (
+            <div className="nixtio-card p-6 bg-gradient-to-r from-[#6200EE] to-[#3700B3] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg shadow-[#6200EE]/25">
+              <div className="min-w-0">
+                <span className="text-[10px] uppercase font-extrabold text-[#03DAC5] tracking-wider block">
+                  Abonnement actif
+                </span>
+                <h3 className="font-display font-black text-xl sm:text-2xl mt-0.5">
+                  {etatAbonnement.plan?.nom ?? 'Pass ChinoisLingo'} ✨
+                </h3>
+                <p className="text-xs text-white/85 mt-1">
+                  Accès complet jusqu’au {formaterEcheance(etatAbonnement.finPeriode)}
+                  {etatAbonnement.fournisseur === 'stripe' && (
+                    <> • {etatAbonnement.resiliationProgrammee ? 'résiliation programmée' : 'renouvellement automatique par carte'}</>
+                  )}
+                  {etatAbonnement.fournisseur === 'moneroo' && (
+                    <> • réglé par Mobile Money, sans reconduction automatique</>
+                  )}
                 </p>
+              </div>
+              <div className="px-4 py-2 rounded-full bg-white/15 border border-white/20 text-xs font-bold whitespace-nowrap self-start sm:self-auto">
+                Catalogue HSK 1 à 6
+              </div>
+            </div>
+          ) : (
+            <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="min-w-0">
+                  <span className="text-[10px] uppercase font-extrabold text-[#00897B] dark:text-[#03DAC5] tracking-wider block">
+                    Compte gratuit
+                  </span>
+                  <h3 className="font-display font-black text-xl sm:text-2xl mt-0.5 text-[#212121] dark:text-[#F5F5F5]">
+                    Votre accès gratuit est illimité dans le temps
+                  </h3>
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-1">
+                    Passez à l’abonnement pour ouvrir tout le catalogue HSK 1 à 6.
+                  </p>
+                </div>
+                {etatAbonnement.bonusDisponible && BONUS_PREMIER_PAIEMENT_JOURS > 0 && (
+                  <div className="px-4 py-2 rounded-full bg-[#E91E63]/10 border border-[#E91E63]/25 text-xs font-extrabold text-[#E91E63] dark:text-[#F06292] whitespace-nowrap self-start sm:self-auto">
+                    ✨ {BONUS_PREMIER_PAIEMENT_JOURS} jours offerts
+                  </div>
+                )}
+              </div>
 
-                <ul className="space-y-2.5 mt-6 text-xs text-[#212121] dark:text-[#F5F5F5] font-medium">
-                  <li className="flex items-center gap-2.5"><Check className="w-4 h-4 text-[#00897B] dark:text-[#03DAC5] shrink-0" /> Accès complet aux Flashcards 3D (HSK 1-6)</li>
-                  <li className="flex items-center gap-2.5"><Check className="w-4 h-4 text-[#00897B] dark:text-[#03DAC5] shrink-0" /> Écoute & Lecture audio synchronisée</li>
-                  <li className="flex items-center gap-2.5"><Check className="w-4 h-4 text-[#00897B] dark:text-[#03DAC5] shrink-0" /> Dictionnaire multilingue & enregistrement de mots</li>
+              <div className="pt-3 border-t border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#757575] dark:text-[#A0A0A0]">
+                  Compris dans votre accès gratuit
+                </p>
+                <ul className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+                  {resumeOffreGratuite().map((ligne) => (
+                    <li key={ligne} className="text-xs text-[#212121] dark:text-[#F5F5F5] flex items-start gap-1.5">
+                      <span className="text-[#00897B] dark:text-[#03DAC5] shrink-0">✓</span>
+                      <span className="leading-snug">{ligne}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
-
-              <button
-                type="button"
-                className="w-full mt-8 py-3 rounded-full bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] text-xs font-bold hover:bg-[#6200EE]/10 hover:text-[#6200EE] transition-all btn-press"
-              >
-                Choisir le forfait mensuel
-              </button>
             </div>
+          )}
 
-            {/* Annuel */}
-            <div className="nixtio-card p-6 sm:p-7 flex flex-col justify-between relative bg-white dark:bg-[#1E1E1E] border-2 border-[#6200EE] shadow-md shadow-[#6200EE]/15">
-              <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-[#E91E63] text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
-                2 mois offerts 🎁
-              </div>
-
-              <div>
-                <span className="text-xs uppercase font-extrabold text-[#6200EE] dark:text-[#BB86FC] tracking-wider">Pass Annuel VIP</span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="font-display font-black text-3xl text-[#6200EE] dark:text-[#BB86FC]">150 000</span>
-                  <span className="text-xs font-bold text-[#757575]">FCFA / an</span>
-                </div>
-                <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-2">
-                  Économisez 30 000 FCFA + Masterclasses complètes incluses.
-                </p>
-
-                <ul className="space-y-2.5 mt-6 text-xs text-[#212121] dark:text-[#F5F5F5] font-medium">
-                  <li className="flex items-center gap-2.5"><Check className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC] shrink-0" /> Tous les avantages du Pass Mensuel</li>
-                  <li className="flex items-center gap-2.5"><Check className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC] shrink-0" /> Téléchargement des cours & dialogues hors-ligne</li>
-                  <li className="flex items-center gap-2.5 font-bold text-[#6200EE] dark:text-[#BB86FC]"><Check className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC] shrink-0" /> Masterclasses vidéo de négociation d’usine & Guanxi</li>
-                </ul>
-              </div>
-
-              <button
-                type="button"
-                className="w-full mt-8 py-3 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold shadow-md shadow-[#6200EE]/25 transition-all btn-press"
-              >
-                Formule Actuelle (Renouveler)
-              </button>
+          {/* Le rôle administrateur ouvre le catalogue indépendamment de la
+              facturation : on le dit explicitement, sinon la carte « Compte
+              gratuit » ci-dessus laisserait croire à un accès restreint. */}
+          {etatAbonnement.estAdmin && (
+            <div className="flex items-start gap-2.5 p-4 rounded-2xl bg-[#03DAC5]/10 border border-[#03DAC5]/30">
+              <Shield className="w-4 h-4 text-[#00897B] dark:text-[#03DAC5] shrink-0 mt-0.5" />
+              <p className="text-xs text-[#00897B] dark:text-[#03DAC5] font-semibold leading-relaxed">
+                Votre compte est administrateur : vous accédez à l&apos;intégralité du
+                catalogue en permanence, sans abonnement ni date d&apos;expiration.
+                Les formules ci-dessous ne concernent que la facturation.
+              </p>
             </div>
-          </div>
+          )}
 
-          {/* 3 Grands Moyens de Paiement : Mobile Money + Carte Bancaire + Crypto-monnaie */}
+          {/* Confirmation d'un retour de paiement annulé */}
+          {searchParams.get('paiement') === 'annule' && (
+            <div className="p-3.5 rounded-2xl bg-[#FFC107]/10 border border-[#FFC107]/30">
+              <p className="text-xs font-medium text-[#B78103] dark:text-[#FFC107]">
+                Paiement interrompu — aucun montant n’a été prélevé. Vous pouvez reprendre quand vous le souhaitez.
+              </p>
+            </div>
+          )}
+
+          {/* ── Les trois formules, dans les deux devises ────────────── */}
+          <GrilleTarifs paysProfil={profile?.country} />
+
+          {/* ── Moyens de paiement & gestion du compte ──────────────── */}
           <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-4 shadow-xs">
             <div>
               <div className="flex items-center gap-2 text-sm font-bold text-[#212121] dark:text-[#F5F5F5]">
                 <Smartphone className="w-4 h-4 text-[#6200EE]" />
-                <span>Moyens de Paiement Acceptés</span>
+                <span>Moyens de paiement acceptés</span>
               </div>
               <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-1">
                 Réglez en toute sécurité via votre moyen de paiement privilégié :
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-              {/* 1. Mobile Money */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              {/* Mobile Money — via Moneroo, en FCFA */}
               <div className="p-4 rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-2">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-xl bg-[#00897B]/10 text-[#00897B] dark:text-[#03DAC5] flex items-center justify-center font-bold text-sm">
@@ -516,7 +545,9 @@ function MonCompteContent() {
                     <h5 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5]">
                       Mobile Money
                     </h5>
-                    <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">Afrique & International</span>
+                    <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">
+                      Paiement en FCFA, sans reconduction
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
@@ -531,7 +562,7 @@ function MonCompteContent() {
                 </div>
               </div>
 
-              {/* 2. Carte Bancaire */}
+              {/* Carte bancaire — via Stripe, en euros */}
               <div className="p-4 rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-2">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-xl bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center font-bold text-sm">
@@ -539,13 +570,15 @@ function MonCompteContent() {
                   </div>
                   <div>
                     <h5 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5]">
-                      Carte Bancaire
+                      Carte bancaire
                     </h5>
-                    <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">Paiement mondial sécurisé</span>
+                    <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">
+                      Paiement en euros, renouvellement automatique
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['Visa', 'Mastercard', 'Carte Bleue'].map((c) => (
+                  {['Visa', 'Mastercard'].map((c) => (
                     <span
                       key={c}
                       className="px-2 py-0.5 rounded-lg bg-white dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[10px] font-bold text-[#212121] dark:text-[#F5F5F5]"
@@ -555,51 +588,41 @@ function MonCompteContent() {
                   ))}
                 </div>
               </div>
-
-              {/* 3. Crypto-monnaie */}
-              <div className="p-4 rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-xl bg-[#FF6D00]/10 text-[#FF6D00] dark:text-[#FFA726] flex items-center justify-center font-bold text-sm">
-                    🌐
-                  </div>
-                  <div>
-                    <h5 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5]">
-                      Crypto-monnaie
-                    </h5>
-                    <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">Instantané & Décentralisé</span>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {['USDT (TRC20 / ERC20)', 'Bitcoin (BTC)'].map((cr) => (
-                    <span
-                      key={cr}
-                      className="px-2 py-0.5 rounded-lg bg-white dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[10px] font-bold text-[#212121] dark:text-[#F5F5F5]"
-                    >
-                      {cr}
-                    </span>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {/* Zone de gestion du compte & Bouton Se désabonner en bas à droite */}
             <div className="pt-4 border-t border-[#E0E0E0] dark:border-[#2D2D2D] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-xs text-[#757575] dark:text-[#A0A0A0]">
                 <Shield className="w-4 h-4 text-[#00897B] shrink-0" />
-                <span>Paiements cryptés SSL 256-bit • Aucun engagement à long terme forcé</span>
+                <span>Paiements chiffrés — aucune coordonnée bancaire n’est stockée par ChinoisLingo.</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsUnsubscribeModalOpen(true)}
-                className="self-end sm:self-auto text-xs font-bold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:underline transition-all cursor-pointer"
-              >
-                Se désabonner
-              </button>
+              {/* La résiliation n'a de sens que pour un abonnement récurrent : un
+                  pass Mobile Money s'arrête de lui-même à son échéance. */}
+              {etatAbonnement.fournisseur === 'stripe' && etatAbonnement.estAbonne && (
+                <button
+                  type="button"
+                  onClick={() => setIsUnsubscribeModalOpen(true)}
+                  className="self-end sm:self-auto text-xs font-bold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:underline transition-all cursor-pointer whitespace-nowrap"
+                >
+                  Gérer ou résilier
+                </button>
+              )}
             </div>
+
+            {etatAbonnement.fournisseur === 'moneroo' && etatAbonnement.estAbonne && (
+              <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] leading-relaxed pt-1">
+                Votre pass Mobile Money est un paiement ponctuel : rien ne sera prélevé
+                automatiquement. Il vous suffira de reprendre une formule ci-dessus avant le{' '}
+                <strong className="text-[#212121] dark:text-white">
+                  {formaterEcheance(etatAbonnement.finPeriode)}
+                </strong>{' '}
+                pour ne pas interrompre votre progression.
+              </p>
+            )}
           </div>
         </div>
       )}
+
 
       {/* TAB 3: PRÉFÉRENCES */}
       {activeTab === 'preferences' && (
@@ -1310,18 +1333,20 @@ function MonCompteContent() {
 
             {unsubscribeSuccess ? (
               <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold space-y-2">
-                <p>✓ Votre demande de résiliation a bien été prise en compte.</p>
-                <p className="font-normal text-[11px]">Vous continuerez de bénéficier de tous vos accès VIP jusqu&apos;à la fin de la période en cours.</p>
+                <p>✓ Ouverture de votre espace de facturation sécurisé…</p>
+                <p className="font-normal text-[11px]">Vous y gérez votre carte, vos factures et votre résiliation.</p>
               </div>
             ) : (
               <div className="space-y-3">
                 <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
-                  Êtes-vous sûr de vouloir résilier votre abonnement <strong className="text-[#212121] dark:text-white">Pass VIP ChinoisLingo</strong> ?
+                  Votre abonnement par carte est géré dans l&apos;espace de facturation sécurisé
+                  de notre prestataire de paiement. Vous y trouverez vos factures, votre moyen
+                  de paiement et la résiliation.
                 </p>
                 <ul className="space-y-1.5 text-xs text-[#757575] dark:text-[#A0A0A0] bg-[#FAFAFA] dark:bg-[#252525] p-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
                   <li>• Vos accès restent actifs jusqu&apos;à la fin de votre période payée.</li>
-                  <li>• Aucun prélèvement automatique supplémentaire ne sera effectué.</li>
-                  <li>• Vous pouvez réactiver votre abonnement à tout moment en 1 clic.</li>
+                  <li>• Aucun prélèvement supplémentaire après la résiliation.</li>
+                  <li>• Vous pouvez reprendre un abonnement à tout moment.</li>
                 </ul>
 
                 <div className="flex items-center justify-end gap-2 pt-2">
@@ -1330,20 +1355,17 @@ function MonCompteContent() {
                     onClick={() => setIsUnsubscribeModalOpen(false)}
                     className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
                   >
-                    Conserver mon pass VIP
+                    Conserver mon pass
                   </button>
                   <button
                     type="button"
                     onClick={() => {
                       setUnsubscribeSuccess(true);
-                      setTimeout(() => {
-                        setIsUnsubscribeModalOpen(false);
-                        setUnsubscribeSuccess(false);
-                      }, 2500);
+                      ouvrirPortail();
                     }}
                     className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer"
                   >
-                    Confirmer la résiliation
+                    Ouvrir l&apos;espace de facturation
                   </button>
                 </div>
               </div>

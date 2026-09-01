@@ -12,6 +12,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_actions_log: {
+        Row: {
+          action: string
+          admin_email: string | null
+          admin_id: string | null
+          created_at: string
+          details: Json | null
+          id: string
+          target_email: string | null
+          target_user_id: string | null
+        }
+        Insert: {
+          action: string
+          admin_email?: string | null
+          admin_id?: string | null
+          created_at?: string
+          details?: Json | null
+          id?: string
+          target_email?: string | null
+          target_user_id?: string | null
+        }
+        Update: {
+          action?: string
+          admin_email?: string | null
+          admin_id?: string | null
+          created_at?: string
+          details?: Json | null
+          id?: string
+          target_email?: string | null
+          target_user_id?: string | null
+        }
+        Relationships: []
+      }
       content_progress: {
         Row: {
           completed_at: string | null
@@ -141,6 +174,89 @@ export type Database = {
           },
         ]
       }
+      payments: {
+        Row: {
+          amount: number
+          checkout_url: string | null
+          created_at: string
+          currency: string
+          customer_email: string | null
+          customer_name: string | null
+          failure_reason: string | null
+          id: string
+          metadata: Json | null
+          plan_id: string
+          provider: string
+          provider_transaction_id: string | null
+          status: string
+          updated_at: string
+          user_id: string
+          webhook_received_at: string | null
+        }
+        Insert: {
+          amount: number
+          checkout_url?: string | null
+          created_at?: string
+          currency: string
+          customer_email?: string | null
+          customer_name?: string | null
+          failure_reason?: string | null
+          id?: string
+          metadata?: Json | null
+          plan_id: string
+          provider: string
+          provider_transaction_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+          webhook_received_at?: string | null
+        }
+        Update: {
+          amount?: number
+          checkout_url?: string | null
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          failure_reason?: string | null
+          id?: string
+          metadata?: Json | null
+          plan_id?: string
+          provider?: string
+          provider_transaction_id?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+          webhook_received_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      processed_events: {
+        Row: {
+          event_id: string
+          processed_at: string
+          provider: string
+        }
+        Insert: {
+          event_id: string
+          processed_at?: string
+          provider: string
+        }
+        Update: {
+          event_id?: string
+          processed_at?: string
+          provider?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -155,7 +271,18 @@ export type Database = {
           id: string
           last_active_date: string | null
           pinyin_enabled: boolean | null
+          role: string
           streak_days: number | null
+          bonus_7j_accorde: boolean
+          cancel_at_period_end: boolean
+          current_period_end: string | null
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          subscription_currency: string | null
+          subscription_plan: string | null
+          subscription_provider: string | null
+          subscription_status: string
+          trial_ends_at: string | null
           subscription_tier: string | null
           target_level: string | null
           total_minutes_learned: number | null
@@ -176,7 +303,18 @@ export type Database = {
           id: string
           last_active_date?: string | null
           pinyin_enabled?: boolean | null
+          role?: string
           streak_days?: number | null
+          bonus_7j_accorde?: boolean
+          cancel_at_period_end?: boolean
+          current_period_end?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_currency?: string | null
+          subscription_plan?: string | null
+          subscription_provider?: string | null
+          subscription_status?: string
+          trial_ends_at?: string | null
           subscription_tier?: string | null
           target_level?: string | null
           total_minutes_learned?: number | null
@@ -197,7 +335,18 @@ export type Database = {
           id?: string
           last_active_date?: string | null
           pinyin_enabled?: boolean | null
+          role?: string
           streak_days?: number | null
+          bonus_7j_accorde?: boolean
+          cancel_at_period_end?: boolean
+          current_period_end?: string | null
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_currency?: string | null
+          subscription_plan?: string | null
+          subscription_provider?: string | null
+          subscription_status?: string
+          trial_ends_at?: string | null
           subscription_tier?: string | null
           target_level?: string | null
           total_minutes_learned?: number | null
@@ -271,7 +420,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_modifier_abonnement: {
+        Args: {
+          p_admin_id: string
+          p_target_id: string
+          p_action: string
+          p_mois?: number | null
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
@@ -287,3 +444,5 @@ export type SavedWord = Database['public']['Tables']['saved_words']['Row']
 export type ContentProgress = Database['public']['Tables']['content_progress']['Row']
 export type CourseProgress = Database['public']['Tables']['course_progress']['Row']
 export type NotificationItem = Database['public']['Tables']['notifications']['Row']
+export type Payment = Database['public']['Tables']['payments']['Row']
+export type AdminActionLog = Database['public']['Tables']['admin_actions_log']['Row']

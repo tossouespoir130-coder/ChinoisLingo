@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
+  Lock,
   Headphones, 
   ArrowLeft, 
   Play, 
@@ -31,6 +32,10 @@ import { usePreferences } from '@/context/PreferencesContext';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { fetchContentProgress, toggleContentCompletedInDb } from '@/lib/services/progressService';
 import { ChinoisLingoVideoPlayer } from '@/components/ui/ChinoisLingoVideoPlayer';
+import { useAbonnement } from '@/lib/payments/useAbonnement';
+import { contenuAccessible } from '@/lib/payments/acces';
+import { EcranPremium, BadgeVerrou } from '@/components/subscription/EcranPremium';
+import { Portal } from '@/components/ui/Portal';
 
 export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts';
 
@@ -1665,8 +1670,40 @@ function EcouteLectureContent() {
     loadProgress();
   }, [user]);
 
+  // Palier gratuit : les quotas par rubrique vivent dans `acces.ts`.
+  const { etat: etatAbonnement } = useAbonnement();
+  // accesComplet et non estAbonne : un administrateur ouvre tout le
+  // catalogue sans abonnement. Pour tout autre compte, les deux valeurs
+  // sont identiques — aucun changement de comportement.
+  const accesComplet = etatAbonnement.accesComplet;
+  const [itemVerrouille, setItemVerrouille] = useState<ReadingItem | null>(null);
+
+  /**
+   * Un contenu est-il ouvert à cet apprenant ?
+   * Le rang est calculé dans le catalogue trié par HSK croissant : les
+   * contenus offerts sont donc toujours les plus accessibles de la rubrique.
+   */
+  const estAccessible = (item: ReadingItem): boolean => {
+    const rang = readingCatalog
+      .filter((r) => r.type === item.type)
+      .sort((a, b) => {
+        const na = parseInt(a.level.replace(/\D/g, '') || '99', 10);
+        const nb = parseInt(b.level.replace(/\D/g, '') || '99', 10);
+        return na - nb;
+      })
+      .findIndex((r) => r.id === item.id);
+    return contenuAccessible(item.type, rang, accesComplet);
+  };
+
   // Unified Open / Close functions with URL persistence (F5 / Reload preserves the reading page)
   const openReading = (item: ReadingItem, episodeIdx = 0) => {
+    // Point de passage unique : la carte du catalogue ET les liens profonds
+    // (?type=&id=) passent par ici, le verrou couvre donc les deux.
+    if (!estAccessible(item)) {
+      setItemVerrouille(item);
+      return;
+    }
+
     setActiveReading(item);
     setActiveCategory(item.type);
     setActiveEpisodeIndex(episodeIdx);
@@ -2612,19 +2649,26 @@ function EcouteLectureContent() {
               {filteredCatalog.map((item) => {
                 const isCompleted = completedItemIds.has(item.id);
                 const hasSeriesEpisodes = !!(item.seriesEpisodes && item.seriesEpisodes.length > 0);
+                const verrouille = !estAccessible(item);
 
                 return (
                   <div
                     key={item.id}
                     onClick={() => {
-                      if (hasSeriesEpisodes) {
+                      // Une série verrouillée ne doit pas non plus s'ouvrir :
+                      // setActiveSeries court-circuiterait openReading.
+                      if (verrouille) {
+                        setItemVerrouille(item);
+                      } else if (hasSeriesEpisodes) {
                         setActiveSeries(item);
                       } else {
                         openReading(item);
                       }
                     }}
                     className={`nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square ${
-                      isCompleted 
+                      verrouille
+                        ? 'border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE]/50'
+                        : isCompleted 
                         ? 'border-[#E53935]/40 dark:border-[#E53935]/30' 
                         : hasSeriesEpisodes
                         ? 'border-[#6200EE]/30 dark:border-[#6200EE]/40 hover:border-[#6200EE] hover:shadow-[#6200EE]/10'
@@ -2637,9 +2681,15 @@ function EcouteLectureContent() {
                       <img 
                         src={item.imageUrl} 
                         alt={item.titleFr}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${
+                          verrouille ? 'grayscale-[0.7] opacity-70' : ''
+                        }`}
                         loading="lazy"
                       />
+
+                      {/* Contenu réservé aux abonnés : la carte reste visible,
+                          elle sert de vitrine. */}
+                      {verrouille && <BadgeVerrou className="absolute top-2.5 left-2.5 z-10" />}
                       
                       {/* Subtle gradient overlay on bottom of image for sleek depth */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
@@ -2714,14 +2764,31 @@ function EcouteLectureContent() {
                         ) : (
                           <button
                             type="button"
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#00897B] group-hover:bg-[#00695C] text-white transition-all btn-press shrink-0"
+                            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs text-white transition-all btn-press shrink-0 ${
+                              verrouille
+                                ? 'bg-[#6200EE] group-hover:bg-[#3700B3]'
+                                : 'bg-[#00897B] group-hover:bg-[#00695C]'
+                            }`}
                           >
-                            {item.type === 'chansons' || item.type === 'podcasts' || item.type === 'videos' ? (
+                            {/* Le libellé ne doit pas promettre une lecture
+                                impossible : une carte verrouillée invite à
+                                s'abonner, pas à écouter. */}
+                            {verrouille ? (
+                              <Lock className="w-3 h-3" />
+                            ) : item.type === 'chansons' || item.type === 'podcasts' || item.type === 'videos' ? (
                               <Play className="w-3 h-3 fill-white" />
                             ) : (
                               <BookOpen className="w-3 h-3" />
                             )}
-                            <span>{item.type === 'chansons' || item.type === 'podcasts' ? 'Écouter' : item.type === 'videos' ? 'Regarder' : 'Lire'}</span>
+                            <span>
+                              {verrouille
+                                ? 'Débloquer'
+                                : item.type === 'chansons' || item.type === 'podcasts'
+                                  ? 'Écouter'
+                                  : item.type === 'videos'
+                                    ? 'Regarder'
+                                    : 'Lire'}
+                            </span>
                           </button>
                         )}
                       </div>
@@ -2732,6 +2799,38 @@ function EcouteLectureContent() {
             </div>
           )}
         </div>
+      )}
+
+      {/* Contenu réservé aux abonnés : fenêtre montée dans document.body,
+          conformément à la règle du projet sur les modals. */}
+      {itemVerrouille && (
+        <Portal>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+            onClick={() => setItemVerrouille(null)}
+          >
+            <div className="relative w-full max-w-lg" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => setItemVerrouille(null)}
+                aria-label="Fermer"
+                className="absolute -top-3 -right-1 z-10 w-8 h-8 rounded-full bg-white dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#757575] hover:text-[#212121] dark:hover:text-white flex items-center justify-center shadow-md btn-press"
+              >
+                ✕
+              </button>
+              <EcranPremium
+                titre={itemVerrouille.titleFr}
+                rubrique={
+                  itemVerrouille.type === 'videos'
+                    ? 'vidéos'
+                    : itemVerrouille.type === 'podcasts'
+                      ? 'podcasts'
+                      : itemVerrouille.type
+                }
+              />
+            </div>
+          </div>
+        </Portal>
       )}
     </div>
   );

@@ -10,6 +10,9 @@ import {
 } from '@/lib/mock/vocabulary';
 import { hskCompleteVocabulary, HSKDictionaryEntry } from '@/lib/data/hskCompleteDictionary';
 import { hskExhaustiveDatabase } from '@/lib/data/hskExhaustiveDb';
+import { useAbonnement } from '@/lib/payments/useAbonnement';
+import { niveauAccessible, NIVEAUX_GRATUITS } from '@/lib/payments/acces';
+import { EcranPremium } from '@/components/subscription/EcranPremium';
 import { FlashcardSession } from '@/components/vocabulary/FlashcardSession';
 import { AddWordModal } from '@/components/vocabulary/AddWordModal';
 import { CombinationMethod } from '@/components/vocabulary/CombinationMethod';
@@ -271,9 +274,16 @@ function VocabulaireContent() {
     }
   };
 
+  // Palier gratuit : seuls les niveaux listés dans `acces.ts` sont ouverts.
+  const { etat: etatAbonnement } = useAbonnement();
+  // accesComplet inclut le rôle administrateur (voir subscription.ts).
+  const accesComplet = etatAbonnement.accesComplet;
+
   // Level List Words (Directly and strictly from official JSON datasets)
   const levelListWords = useMemo(() => {
     if (!selectedLevelForList) return [];
+    // Niveau réservé : on ne charge même pas les mots dans l'état React.
+    if (!niveauAccessible(selectedLevelForList, accesComplet)) return [];
     let levelEntries: HSKDictionaryEntry[] = [];
     if (selectedLevelForList === 'HSK 1') levelEntries = hsk1Json.vocabulaire as HSKDictionaryEntry[];
     else if (selectedLevelForList === 'HSK 2') levelEntries = hsk2Json.vocabulaire as HSKDictionaryEntry[];
@@ -302,7 +312,7 @@ function VocabulaireContent() {
         isSaved: savedWordIds.has(entry.id),
       }))
       .filter((w) => matchesSearch(w, searchQuery));
-  }, [selectedLevelForList, searchQuery, savedWordIds]);
+  }, [selectedLevelForList, searchQuery, savedWordIds, accesComplet]);
 
   // Filtered "Mes Mots"
   const filteredMyWords = useMemo(() => {
@@ -318,10 +328,13 @@ function VocabulaireContent() {
       return [];
     }
     return allWords.filter((w) => {
+      // Le filtre d'accès s'applique AVANT la recherche : un mot réservé ne
+      // doit pas non plus remonter dans les résultats.
+      if (!niveauAccessible(w.level, accesComplet)) return false;
       const matchLevel = selectedLevel === 'all' || w.level === selectedLevel;
       return matchLevel && matchesSearch(w, searchQuery);
     });
-  }, [allWords, searchQuery, selectedLevel]);
+  }, [allWords, searchQuery, selectedLevel, accesComplet]);
 
   // Words for active flashcard session
   const activeSessionWords = useMemo(() => {
@@ -473,7 +486,26 @@ function VocabulaireContent() {
       )}
 
       {/* DEDICATED FULL LEVEL LIST VIEW (Showing ALL words of HSK 1, HSK 2, etc.) */}
-      {selectedLevelForList && (
+      {/* Niveau réservé : on explique le verrouillage plutôt que d'afficher
+          une liste vide sans raison apparente. */}
+      {selectedLevelForList && !niveauAccessible(selectedLevelForList, accesComplet) && (
+        <div className="space-y-4 animate-fadeIn">
+          <button
+            onClick={() => setSelectedLevelForList(null)}
+            type="button"
+            className="flex items-center gap-2 text-xs font-bold text-[#757575] dark:text-[#A0A0A0] hover:text-[#6200EE] transition-colors btn-press"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Retour aux niveaux
+          </button>
+          <EcranPremium
+            titre={`Vocabulaire ${selectedLevelForList}`}
+            rubrique={`niveaux au-delà du ${NIVEAUX_GRATUITS[0]}`}
+          />
+        </div>
+      )}
+
+      {selectedLevelForList && niveauAccessible(selectedLevelForList, accesComplet) && (
         <div className="space-y-4 animate-fadeIn">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-[#6200EE]/10 dark:bg-[#6200EE]/15 border border-[#6200EE]/25">
             <div className="flex items-center gap-3">
@@ -944,12 +976,12 @@ function VocabulaireContent() {
                 className="px-4 py-3 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] bg-white dark:bg-[#1E1E1E] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] outline-none cursor-pointer btn-press"
               >
                 <option value="all">Tous les Niveaux (HSK 1-6)</option>
-                <option value="HSK 1">HSK 1 (A1)</option>
-                <option value="HSK 2">HSK 2 (A2)</option>
-                <option value="HSK 3">HSK 3 (B1)</option>
-                <option value="HSK 4">HSK 4 (B2)</option>
-                <option value="HSK 5">HSK 5 (C1)</option>
-                <option value="HSK 6">HSK 6 (C2)</option>
+                {(['HSK 1', 'HSK 2', 'HSK 3', 'HSK 4', 'HSK 5', 'HSK 6'] as const).map((niveau, i) => (
+                  <option key={niveau} value={niveau}>
+                    {niveau} ({['A1', 'A2', 'B1', 'B2', 'C1', 'C2'][i]})
+                    {niveauAccessible(niveau, accesComplet) ? '' : ' 🔒 Abonnés'}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

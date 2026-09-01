@@ -32,6 +32,9 @@ import {
 import confetti from 'canvas-confetti';
 
 import { initialCourses, CourseModule, LessonItem } from '@/lib/mock/coursesData';
+import { useAbonnement } from '@/lib/payments/useAbonnement';
+import { formationAccessible } from '@/lib/payments/acces';
+import { EcranPremium, BadgeVerrou } from '@/components/subscription/EcranPremium';
 import { initialCourseComments, CourseComment } from '@/lib/mock/commentsData';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { usePreferences } from '@/context/PreferencesContext';
@@ -132,6 +135,11 @@ function FormationContent() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [courses]);
+
+  // Palier gratuit : seules les formations listées dans `acces.ts` sont ouvertes.
+  const { etat: etatAbonnement } = useAbonnement();
+  // accesComplet inclut le rôle administrateur (voir subscription.ts).
+  const accesComplet = etatAbonnement.accesComplet;
 
   const activeCourse = courses.find((c) => c.id === activeCourseId) || null;
   const currentLesson = activeCourse?.lessons.find((l) => l.id === activeLessonId) || activeCourse?.lessons[0];
@@ -320,7 +328,11 @@ function FormationContent() {
       {/* ========================================================================= */}
       {/* VIEW A: FULL-SCREEN VIDEO CLASSROOM (WHEN A FORMATION IS SELECTED)        */}
       {/* ========================================================================= */}
-      {activeCourse && currentLesson ? (
+      {activeCourse && !formationAccessible(activeCourse.id, accesComplet) ? (
+        <div className="py-8">
+          <EcranPremium titre={activeCourse.title} rubrique="formations" />
+        </div>
+      ) : activeCourse && currentLesson ? (
         <div className="space-y-6 animate-fadeIn">
           {/* Top Bar with Back Button & Formation Title */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
@@ -823,7 +835,9 @@ function FormationContent() {
 
           {/* Formations Grid Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course) => (
+            {courses.map((course) => {
+              const verrouillee = !formationAccessible(course.id, accesComplet);
+              return (
               <div
                 key={course.id}
                 onClick={() => handleSelectCourse(course)}
@@ -836,8 +850,13 @@ function FormationContent() {
                       <img
                         src={course.thumbnailUrl}
                         alt={course.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${
+                          verrouillee ? 'grayscale-[0.7] opacity-70' : ''
+                        }`}
                       />
+
+                      {/* Formation réservée : la carte reste visible, elle sert de vitrine. */}
+                      {verrouillee && <BadgeVerrou className="absolute top-2.5 left-2.5 z-20" />}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
                       {/* Bottom Overlay: Niveau + Domaine/Sujet + Compteur de leçons (Strictly single horizontal line, flex-nowrap) */}
@@ -908,11 +927,18 @@ function FormationContent() {
                     className="w-full py-2.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm shadow-[#6200EE]/25 transition-all btn-press"
                   >
                     <Play className="w-3.5 h-3.5 fill-white" />
-                    <span>{course.progress > 0 ? 'Continuer la formation' : 'Commencer la formation'}</span>
+                    <span>
+                      {verrouillee
+                        ? 'Débloquer cette formation'
+                        : course.progress > 0
+                          ? 'Continuer la formation'
+                          : 'Commencer la formation'}
+                    </span>
                   </button>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}

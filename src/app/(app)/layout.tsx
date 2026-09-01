@@ -7,6 +7,7 @@ import { TopNav } from '@/components/layout/TopNav';
 import { MobileTabBar } from '@/components/layout/MobileTabBar';
 import { SrsReminderToast } from '@/components/layout/SrsReminderToast';
 import { NewContentToast } from '@/components/layout/NewContentToast';
+import { BanniereBonus } from '@/components/subscription/BanniereBonus';
 import { Sun, Moon } from 'lucide-react';
 
 function ContainerThemeSwitch() {
@@ -55,6 +56,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
               {/* Dynamic Page Content with comfortable bottom padding on mobile/tablet for the bottom bar */}
               <main className="flex-1 mt-4 sm:mt-6 w-full max-w-full min-w-0 overflow-x-hidden pb-14 sm:pb-16 xl:pb-0">
+                {/* Accroche du bonus de bienvenue / rappel d'échéance.
+                    Le verrouillage n'est plus global : chaque rubrique applique
+                    ses propres quotas via `acces.ts`. */}
+                <BanniereBonus />
+
                 {children}
               </main>
             </div>
