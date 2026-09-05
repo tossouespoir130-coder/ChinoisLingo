@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   Sparkles, 
@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { createClient } from '@/lib/supabase/client';
+import { Logo } from '@/components/ui/Logo';
 
 export default function ConnexionPage() {
   const router = useRouter();
@@ -43,6 +44,18 @@ export default function ConnexionPage() {
   const [isForgotSubmitting, setIsForgotSubmitting] = useState(false);
   const [forgotMessage, setForgotMessage] = useState<string | null>(null);
   const [forgotError, setForgotError] = useState<string | null>(null);
+
+  // Retour depuis le lien de confirmation reçu par e-mail.
+  // `window.location` n'existe qu'après montage : lire cette valeur dans un
+  // initialiseur d'état provoquerait une divergence d'hydratation, le serveur
+  // ne pouvant pas connaître les paramètres d'URL du navigateur.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (new URLSearchParams(window.location.search).get('confirme') === '1') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,9 +86,29 @@ export default function ConnexionPage() {
         return;
       }
 
-      const { error } = await signUpWithEmail(email, password, username, '', username);
+      const { error, besoinConfirmation } = await signUpWithEmail(
+        email,
+        password,
+        username,
+        '',
+        username
+      );
+
       if (error) {
         setErrorMessage(error.message || "Une erreur s'est produite lors de l'inscription.");
+      } else if (besoinConfirmation) {
+        /**
+         * Aucune session n'a été ouverte : l'adresse doit être confirmée.
+         * On NE redirige pas — auparavant l'apprenant était connecté
+         * directement, sans avoir jamais validé son adresse.
+         */
+        setSuccessMessage(
+          `Compte créé. Un lien de confirmation vient d'être envoyé à ${email}. ` +
+            'Ouvrez-le pour activer votre compte, puis revenez vous connecter.'
+        );
+        setPassword('');
+        setConfirmPassword('');
+        setMode('signin');
       } else {
         setSuccessMessage('Compte créé avec succès ! Bienvenue.');
         setTimeout(() => {
@@ -197,8 +230,10 @@ export default function ConnexionPage() {
           {/* Top Brand Header */}
           <div className="relative z-10 space-y-2 sm:space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center font-hanzi font-black text-base sm:text-xl text-white shadow-sm shrink-0">
-                华
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-white flex items-center justify-center shadow-md shrink-0 p-1.5">
+                {/* href vide : sur la page de connexion, le logo ne doit pas
+                    renvoyer vers une page protégée. */}
+                <Logo variant="icon" size="sm" href="" />
               </div>
               <div>
                 <span className="font-display font-black text-lg sm:text-2xl text-white tracking-tight block leading-tight">
@@ -267,8 +302,8 @@ export default function ConnexionPage() {
             {/* Header Mobile Exclusif en Mode Inscription */}
             {mode === 'signup' && (
               <div className="lg:hidden flex items-center gap-2 pb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D3D]/60">
-                <div className="w-7 h-7 rounded-xl bg-[#6200EE] text-white flex items-center justify-center font-hanzi font-black text-sm shadow-xs">
-                  华
+                <div className="w-7 h-7 flex items-center justify-center shrink-0">
+                  <Logo variant="icon" size="sm" href="" />
                 </div>
                 <div>
                   <span className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] block leading-tight">

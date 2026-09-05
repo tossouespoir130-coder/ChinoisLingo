@@ -18,7 +18,7 @@ interface AuthContextType {
     firstName?: string,
     lastName?: string,
     username?: string
-  ) => Promise<{ error: Error | null }>;
+  ) => Promise<{ error: Error | null; besoinConfirmation?: boolean }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -102,6 +102,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
       options: {
+        // Lien de confirmation : l'apprenant atterrit sur la page de connexion
+        // avec un indicateur, plutôt que sur une page protégée.
+        emailRedirectTo:
+          typeof window !== 'undefined'
+            ? `${window.location.origin}/connexion?confirme=1`
+            : undefined,
         data: {
           username: cleanUsername,
           pseudo: cleanUsername,
@@ -112,8 +118,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       },
     });
 
-    if (!error && data?.user) {
-      // Mettre à jour directement et immédiatement le profil dans profiles
+    if (error) return { error: new Error(error.message) };
+
+    /**
+     * Supabase ne renvoie PAS de session quand la confirmation par e-mail est
+     * exigée : c'est le seul signal fiable pour distinguer les deux cas.
+     * Sans ce test, l'application connectait l'apprenant immédiatement, même
+     * lorsque son adresse n'avait jamais été vérifiée.
+     */
+    const besoinConfirmation = !data.session;
+
+    if (data.user && data.session) {
+      // Session ouverte : on complète le profil depuis le navigateur.
+      // Quand la confirmation est exigée, cette écriture est impossible
+      // (aucune session, RLS bloque) — c'est le déclencheur `handle_new_user`
+      // qui crée alors la ligne côté serveur.
       await supabase.from('profiles').upsert({
         id: data.user.id,
         email: data.user.email || email,
@@ -126,7 +145,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await refreshProfile();
     }
 
-    return { error: error ? new Error(error.message) : null };
+    return { error: null, besoinConfirmation };
   };
 
   const signOut = async () => {
