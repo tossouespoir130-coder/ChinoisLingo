@@ -51,9 +51,17 @@ export default function ConnexionPage() {
   // ne pouvant pas connaître les paramètres d'URL du navigateur.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (new URLSearchParams(window.location.search).get('confirme') === '1') {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('confirme') === '1') {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
+    } else if (params.get('confirmation') === 'requise') {
+      // Renvoyé par le garde serveur quand un compte non vérifié tente
+      // d'atteindre une page de l'application.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setErrorMessage(
+        'Votre adresse e-mail n’est pas encore confirmée. Ouvrez le lien reçu par e-mail pour activer votre compte.'
+      );
     }
   }, []);
 

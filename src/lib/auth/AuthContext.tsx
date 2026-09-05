@@ -104,10 +104,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       options: {
         // Lien de confirmation : l'apprenant atterrit sur la page de connexion
         // avec un indicateur, plutôt que sur une page protégée.
-        emailRedirectTo:
-          typeof window !== 'undefined'
-            ? `${window.location.origin}/connexion?confirme=1`
-            : undefined,
+        //
+        // NEXT_PUBLIC_SITE_URL prime sur l'origine du navigateur : en
+        // developpement cette derniere vaut http://localhost:3000, une adresse
+        // injoignable depuis le telephone qui ouvre l'e-mail.
+        emailRedirectTo: `${
+          process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+          (typeof window !== 'undefined' ? window.location.origin : '')
+        }/connexion?confirme=1`,
         data: {
           username: cleanUsername,
           pseudo: cleanUsername,

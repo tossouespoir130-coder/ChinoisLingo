@@ -3,23 +3,29 @@ import { NextResponse, type NextRequest } from 'next/server';
 import type { Database } from '@/lib/supabase/types';
 
 /**
- * Garde d'accès à l'espace d'administration.
+ * Garde d'accès de l'application.
  *
  * Fichier `proxy.ts` et non `middleware.ts` : Next.js 16 a déprécié la
  * convention `middleware`, renommée `proxy`. Il doit vivre dans `src/`,
  * au même niveau que `app/` — à la racine du projet, il est ignoré
  * silencieusement, sans le moindre avertissement au démarrage.
  *
- * PORTÉE VOLONTAIREMENT RESTREINTE — le `matcher` en bas de fichier ne couvre
- * que `/admin`. Le reste de ChinoisLingo garde son fonctionnement actuel
- * (authentification 100 % navigateur, aucune route protégée) : activer la
- * session serveur partout aurait été un changement d'architecture bien plus
- * large que l'ajout de cet espace.
+ * Deux niveaux de contrôle, tous deux CÔTÉ SERVEUR, avant tout rendu :
  *
- * Le contrôle est fait ICI, côté serveur, avant même que la page ne soit
- * rendue. Un utilisateur sans le rôle `admin` est redirigé vers son tableau
- * de bord sans jamais recevoir le code de l'interface d'administration.
+ *   1. Toute route applicative exige une session dont l'adresse e-mail est
+ *      CONFIRMÉE. Sans cela, un compte fraîchement créé pouvait atteindre le
+ *      tableau de bord et son profil en tapant simplement l'URL : rien ne
+ *      protégeait ces pages, l'authentification étant entièrement côté
+ *      navigateur.
+ *   2. `/admin` exige en plus le rôle `admin`.
+ *
+ * Les pages publiques (connexion, retour de paiement) et les routes API en
+ * sont exclues : ces dernières portent leur propre garde et doivent pouvoir
+ * répondre un code d'erreur JSON plutôt qu'une redirection HTML.
  */
+
+/** Pages accessibles sans session. */
+const ROUTES_PUBLIQUES = ['/connexion', '/abonnement/retour'];
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -48,12 +54,30 @@ export async function proxy(request: NextRequest) {
 
   // getUser() valide le jeton auprès de Supabase — contrairement à
   // getSession(), qui se contente de lire le cookie sans le vérifier.
+  const chemin = request.nextUrl.pathname;
+  if (ROUTES_PUBLIQUES.some((r) => chemin.startsWith(r))) {
+    return response;
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
   if (!user) {
     return NextResponse.redirect(new URL('/connexion', request.url));
+  }
+
+  // Adresse non confirmée : le compte existe mais n'est pas encore actif.
+  // C'est ce contrôle qui manquait — un inscrit non vérifié accédait à tout.
+  if (!user.email_confirmed_at) {
+    const url = new URL('/connexion', request.url);
+    url.searchParams.set('confirmation', 'requise');
+    return NextResponse.redirect(url);
+  }
+
+  // Au-delà, seul /admin impose une condition supplémentaire.
+  if (!chemin.startsWith('/admin')) {
+    return response;
   }
 
   const { data: profil } = await supabase
@@ -72,8 +96,25 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Uniquement /admin et ses sous-chemins. Aucune autre route n'est touchée.
-  matcher: ['/admin/:path*'],
+  /**
+   * Toutes les pages applicatives.
+   *
+   * Sont volontairement exclus : `/api` (les routes portent leur propre garde
+   * et répondent en JSON), les ressources internes de Next, et les fichiers
+   * statiques — les soumettre à un contrôle d'authentification ralentirait
+   * chaque image sans rien protéger.
+   */
+  matcher: [
+    '/admin/:path*',
+    '/tableau-de-bord/:path*',
+    '/vocabulaire/:path*',
+    '/ecoute-lecture/:path*',
+    '/formation/:path*',
+    '/livres/:path*',
+    '/mon-compte/:path*',
+    '/parametres/:path*',
+    '/abonnement/:path*',
+  ],
 };
 
 export default proxy;
