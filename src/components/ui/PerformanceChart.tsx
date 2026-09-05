@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { mockPerformanceData } from '@/lib/mock/dashboard';
 import { fetchRealDashboardStats, RealDashboardStats } from '@/lib/services/dashboardService';
 
 interface PerformanceChartProps {
@@ -32,19 +31,19 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
   }, [chartData]);
 
   const emptyWeekData = [
-    { label: 'Lun', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Mar', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Mer', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Jeu', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Ven', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Sam', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Dim', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Lun', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Mar', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Mer', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Jeu', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Ven', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Sam', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Dim', masteredWords: 0, studyTimeHours: 0 },
   ];
   const emptyMonthData = [
-    { label: 'Sem 1', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Sem 2', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Sem 3', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
-    { label: 'Sem 4', masteredWords: 0, studyTimeHours: 0, retentionRate: 0 },
+    { label: 'Sem 1', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Sem 2', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Sem 3', masteredWords: 0, studyTimeHours: 0 },
+    { label: 'Sem 4', masteredWords: 0, studyTimeHours: 0 },
   ];
 
   const points = realStats?.[timeframe] || (timeframe === 'week' ? emptyWeekData : emptyMonthData);
@@ -182,11 +181,6 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
                 <span className="font-black text-white">
                   {timeframe === 'week' ? `${activePoint.studyTimeHours}h` : `${activePoint.studyTimeHours}h`}
                 </span>
-              </div>
-              <div className="flex items-center gap-1.5 whitespace-nowrap">
-                <span className="w-2 h-2 rounded-full bg-[#00897B] dark:bg-[#03DAC5]" />
-                <span className="text-[#03DAC5] font-semibold">Taux de rétention :</span>
-                <span className="font-black text-white">{activePoint.retentionRate}%</span>
               </div>
             </div>
           </div>

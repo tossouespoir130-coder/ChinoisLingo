@@ -35,13 +35,11 @@ export interface RealDashboardStats {
       label: string;
       masteredWords: number;
       studyTimeHours: number;
-      retentionRate: number;
     }>;
     month: Array<{
       label: string;
       masteredWords: number;
       studyTimeHours: number;
-      retentionRate: number;
     }>;
   };
 }
@@ -208,42 +206,68 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     );
   }
 
-  // Generate dynamic real chart data based on user actual stats and real day of week
-  const baseMinutes = Math.max(1, totalMinutesLearned);
-  const baseWords = Math.max(1, totalWordsMastered);
+  /**
+   * Courbes construites depuis `daily_activity`, l'historique REEL.
+   *
+   * L'ancienne version repartissait le total de minutes sur les jours de la
+   * semaine et inventait un taux de retention (85 + fraction x 10) : la courbe
+   * paraissait credible mais ne mesurait rien. Un compte neuf affiche
+   * desormais une courbe vide, qui se remplit au fil de l'usage.
+   */
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  // Real current day index (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
-  const currentDayOfWeek = new Date().getDay();
-  const normalizedDay = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
+  const { data: historique } = user
+    ? await supabase
+        .from('daily_activity')
+        .select('jour, minutes, mots_maitrises')
+        .eq('user_id', user.id)
+        .order('jour', { ascending: true })
+        .limit(400)
+    : { data: [] };
 
-  const weekDaysLabels = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-  const weekChart = weekDaysLabels.map((lbl, idx) => {
-    const dayNum = idx + 1;
-    if (dayNum > normalizedDay) {
-      // Future days in current week have 0 activity
-      return {
-        label: lbl,
-        masteredWords: 0,
-        studyTimeHours: 0,
-        retentionRate: 0,
-      };
-    }
-    // Completed or active days
-    const fraction = dayNum / normalizedDay;
+  const parJour = new Map<string, { minutes: number; mots: number }>();
+  (historique ?? []).forEach((l: { jour: string; minutes: number | null; mots_maitrises: number | null }) => {
+    parJour.set(l.jour, { minutes: l.minutes ?? 0, mots: l.mots_maitrises ?? 0 });
+  });
+
+  const cle = (d: Date) => d.toISOString().split('T')[0];
+
+  // Les 7 derniers jours, du plus ancien au plus recent.
+  const JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  const weekChart = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (6 - i));
+    const e = parJour.get(cle(d));
     return {
-      label: lbl,
-      masteredWords: Math.round(baseWords * fraction),
-      studyTimeHours: Number(((baseMinutes * fraction) / 60).toFixed(1)),
-      retentionRate: Math.min(100, 85 + Math.round(fraction * 10)),
+      label: JOURS[d.getDay()],
+      masteredWords: e?.mots ?? 0,
+      studyTimeHours: Number(((e?.minutes ?? 0) / 60).toFixed(1)),
     };
   });
 
-  const monthChart = [
-    { label: 'Sem 1', masteredWords: Math.round(baseWords * 0.35), studyTimeHours: Number((baseMinutes * 0.2 / 60).toFixed(1)), retentionRate: 82 },
-    { label: 'Sem 2', masteredWords: Math.round(baseWords * 0.6), studyTimeHours: Number((baseMinutes * 0.25 / 60).toFixed(1)), retentionRate: 89 },
-    { label: 'Sem 3', masteredWords: Math.round(baseWords * 0.85), studyTimeHours: Number((baseMinutes * 0.3 / 60).toFixed(1)), retentionRate: 93 },
-    { label: 'Sem 4', masteredWords: baseWords, studyTimeHours: Number((baseMinutes * 0.35 / 60).toFixed(1)), retentionRate: 96 },
-  ];
+  // Les 4 dernieres semaines, cumulees depuis les memes lignes reelles.
+  const monthChart = Array.from({ length: 4 }, (_, i) => {
+    const fin = new Date();
+    fin.setDate(fin.getDate() - (3 - i) * 7);
+    const debut = new Date(fin);
+    debut.setDate(debut.getDate() - 6);
+
+    let minutes = 0;
+    let mots = 0;
+    for (let d = new Date(debut); d <= fin; d.setDate(d.getDate() + 1)) {
+      const e = parJour.get(cle(d));
+      if (e) {
+        minutes += e.minutes;
+        mots = Math.max(mots, e.mots);
+      }
+    }
+    return {
+      label: `Sem ${i + 1}`,
+      masteredWords: mots,
+      studyTimeHours: Number((minutes / 60).toFixed(1)),
+    };
+  });
 
   return {
     streakDays,

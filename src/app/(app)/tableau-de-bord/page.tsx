@@ -11,7 +11,6 @@ import { AnimatedStreakBanner } from '@/components/ui/AnimatedStreakBanner';
 import { GuideModal } from '@/components/guides/GuideModal';
 import { LearningTipsModal } from '@/components/guides/LearningTipsModal';
 import { AboutModal } from '@/components/guides/AboutModal';
-import { mockCurrentUser, mockRecentActivities } from '@/lib/mock/dashboard';
 import { 
   ArrowUpRight, 
   History, 

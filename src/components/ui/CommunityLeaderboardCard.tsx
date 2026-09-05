@@ -1,142 +1,138 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { mockLeaderboard } from '@/lib/mock/dashboard';
-import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
+import React, { useEffect, useState } from 'react';
+import { Trophy, Users } from 'lucide-react';
+import { useAuth } from '@/lib/auth/AuthContext';
 
+interface Participant {
+  rang: number;
+  id: string;
+  nom: string;
+  avatarUrl: string | null;
+  motsMaitrises: number;
+  serie: number;
+  estMoi: boolean;
+}
+
+/**
+ * Classement communautaire, construit sur des comptes réels.
+ *
+ * Il affichait auparavant une liste inventée — Aminata Diallo, Koffi Mensah,
+ * Fatou Traoré — strictement identique pour chaque utilisateur. Les données
+ * viennent désormais de `/api/classement`, qui lit les vrais profils côté
+ * serveur (RLS interdit au navigateur de lire les lignes des autres).
+ *
+ * Tant que la communauté compte moins de trois apprenants actifs, la carte
+ * annonce honnêtement qu'il n'y a pas encore de classement, au lieu d'en
+ * fabriquer un.
+ */
 export function CommunityLeaderboardCard() {
-  const [animated, setAnimated] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const { session } = useAuth();
+  const [participants, setParticipants] = useState<Participant[] | null>(null);
+  const [total, setTotal] = useState(0);
 
-  // Trigger animation ONLY when scrolled into view (Intersection Observer)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimated(true);
-          observer.disconnect(); // Trigger once on scroll into view
-        }
-      },
-      { threshold: 0.2 }
-    );
+    const jeton = session?.access_token;
+    if (!jeton) return;
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    let annule = false;
 
-    return () => observer.disconnect();
-  }, []);
+    fetch('/api/classement', { headers: { Authorization: `Bearer ${jeton}` } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (annule || !d) return;
+        setParticipants(d.classement ?? []);
+        setTotal(d.participants ?? 0);
+      })
+      .catch(() => {
+        if (!annule) setParticipants([]);
+      });
 
-  // Distinct brand colors for each peer
-  const userColors: Record<string, { text: string; bg: string; shadow: string }> = {
-    usr_espoir_001: {
-      text: 'text-[#6200EE] dark:text-[#BB86FC]',
-      bg: 'bg-[#6200EE] dark:bg-[#BB86FC]',
-      shadow: 'shadow-xs shadow-[#6200EE]/30',
-    },
-    lead_1: {
-      text: 'text-[#B78103] dark:text-[#FFD54F]',
-      bg: 'bg-[#FFC107]',
-      shadow: 'shadow-xs shadow-[#FFC107]/30',
-    },
-    lead_2: {
-      text: 'text-[#6200EE] dark:text-[#BB86FC]',
-      bg: 'bg-[#6200EE] dark:bg-[#BB86FC]',
-      shadow: 'shadow-xs shadow-[#6200EE]/30',
-    },
-    lead_3: {
-      text: 'text-[#00897B] dark:text-[#03DAC5]',
-      bg: 'bg-[#03DAC5]',
-      shadow: 'shadow-xs shadow-[#03DAC5]/30',
-    },
-    lead_4: {
-      text: 'text-[#E91E63] dark:text-[#F06292]',
-      bg: 'bg-[#E91E63]',
-      shadow: 'shadow-xs shadow-[#E91E63]/30',
-    },
-  };
+    return () => {
+      annule = true;
+    };
+  }, [session]);
+
+  const couleurRang = (rang: number) =>
+    rang === 1
+      ? { texte: 'text-[#B78103] dark:text-[#FFD54F]', fond: 'bg-[#FFC107]' }
+      : rang === 2
+        ? { texte: 'text-[#6200EE] dark:text-[#BB86FC]', fond: 'bg-[#6200EE] dark:bg-[#BB86FC]' }
+        : { texte: 'text-[#00897B] dark:text-[#03DAC5]', fond: 'bg-[#03DAC5]' };
 
   return (
-    <div
-      ref={cardRef}
-      className="nixtio-card p-5 sm:p-6 flex flex-col justify-between h-full min-w-0 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs"
-    >
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="font-display font-bold text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5]">
-            Score des Pairs
+    <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs">
+      <div className="flex items-center gap-2.5 mb-4">
+        <div className="w-10 h-10 rounded-2xl bg-[#FFC107]/15 text-[#B78103] dark:text-[#FFD54F] flex items-center justify-center shadow-2xs">
+          <Trophy className="w-5 h-5" />
+        </div>
+        <div className="min-w-0">
+          <h3 className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5]">
+            Classement de la communauté
           </h3>
-          <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
-            Votre rang parmi les entrepreneurs
+          <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
+            Par nombre de mots enregistrés
           </p>
         </div>
-
-        <select
-          aria-label="Période du classement"
-          className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[#212121] dark:text-[#F5F5F5] outline-none cursor-pointer btn-press"
-        >
-          <option value="week">Cette Semaine</option>
-          <option value="month">Ce Mois</option>
-        </select>
       </div>
 
-      {/* Leaderboard Entries with animated counter and unique color per peer on scroll */}
-      <div className="space-y-3.5 mt-4">
-        {mockLeaderboard.map((user, idx) => {
-          const colorConfig = userColors[user.id] || {
-            text: 'text-[#212121] dark:text-[#F5F5F5]',
-            bg: 'bg-[#6200EE]',
-            shadow: '',
-          };
+      {participants === null ? (
+        <div className="space-y-2.5">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-11 rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] animate-pulse"
+            />
+          ))}
+        </div>
+      ) : participants.length === 0 ? (
+        <div className="py-7 text-center">
+          <Users className="w-7 h-7 text-[#E0E0E0] dark:text-[#333333] mx-auto mb-2.5" />
+          <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed max-w-xs mx-auto">
+            {total > 0
+              ? 'Le classement s’ouvrira dès que la communauté comptera assez d’apprenants actifs.'
+              : 'Aucun classement pour l’instant. Enregistrez vos premiers mots pour y figurer.'}
+          </p>
+        </div>
+      ) : (
+        <ul className="space-y-2">
+          {participants.map((p) => {
+            const c = couleurRang(p.rang);
+            return (
+              <li
+                key={p.id}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-2xl border transition-colors ${
+                  p.estMoi
+                    ? 'bg-[#6200EE]/8 border-[#6200EE]/25'
+                    : 'bg-[#FAFAFA] dark:bg-[#181818] border-transparent'
+                }`}
+              >
+                <span
+                  className={`w-6 h-6 rounded-full ${c.fond} text-white text-[11px] font-black flex items-center justify-center shrink-0`}
+                >
+                  {p.rang}
+                </span>
 
-          return (
-            <div key={user.id} className="flex items-center gap-3">
-              {/* Avatar with country badge */}
-              <div className="relative shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={user.avatar_url}
-                  alt={user.display_name}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover ring-1 ring-[#E0E0E0] dark:ring-[#333333]"
-                />
-                {user.country_code && (
-                  <span className="absolute -bottom-1 -right-1 text-[9px] font-bold px-1 rounded-sm bg-white dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] shadow-xs border border-[#E0E0E0] dark:border-[#333333]">
-                    {user.country_code}
-                  </span>
-                )}
-              </div>
+                <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] truncate flex-1 min-w-0">
+                  {p.nom}
+                  {p.estMoi && (
+                    <span className="ml-1.5 text-[10px] font-extrabold text-[#6200EE] dark:text-[#BB86FC]">
+                      vous
+                    </span>
+                  )}
+                </span>
 
-              {/* Name + Animated Horizontal Score Bar */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between text-xs font-semibold mb-1">
-                  <span
-                    className={`truncate font-bold ${
-                      user.is_current_user ? 'text-[#6200EE] dark:text-[#BB86FC]' : colorConfig.text
-                    }`}
-                  >
-                    {user.display_name} {user.is_current_user && '(Vous)'}
+                <span className={`text-xs font-black tabular-nums shrink-0 ${c.texte}`}>
+                  {p.motsMaitrises}
+                  <span className="text-[10px] font-semibold text-[#757575] dark:text-[#A0A0A0] ml-1">
+                    mots
                   </span>
-                  <span className="text-[#212121] dark:text-[#F5F5F5] font-bold font-display ml-2">
-                    {animated ? <AnimatedCounter value={user.progress_pct} duration={380} /> : '0'}%
-                  </span>
-                </div>
-
-                {/* Animated bar with distinct color triggered on scroll */}
-                <div className="w-full h-2.5 rounded-full bg-[#E0E0E0] dark:bg-[#2D2D2D] overflow-hidden">
-                  <div
-                    className={`h-full rounded-full ${colorConfig.bg} ${colorConfig.shadow}`}
-                    style={{
-                      width: animated ? `${user.progress_pct}%` : '0%',
-                      transition: `width 3.5s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 200}ms`,
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

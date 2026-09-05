@@ -50,8 +50,12 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   const [dailyGoalMinutes, setDailyGoalMinutesState] = useState('20');
   const [dailyReminder, setDailyReminderState] = useState(true);
   const [publicLeaderboard, setPublicLeaderboardState] = useState(true);
-  const [userAvatar, setUserAvatarState] = useState<string>('/espoir-chinois.jpg');
-  const [userName, setUserNameState] = useState<string>('Espoir Chinois');
+  // Valeurs vides par defaut. Elles valaient auparavant '/espoir-chinois.jpg'
+  // et 'Espoir Chinois' : tout nouvel inscrit heritait donc de la photo et du
+  // nom du fondateur tant qu'il n'avait rien renseigne. Le profil Supabase
+  // fait foi ; ces preferences ne sont qu'un cache local par navigateur.
+  const [userAvatar, setUserAvatarState] = useState<string>('');
+  const [userName, setUserNameState] = useState<string>('');
 
   // Load from localStorage on mount
   useEffect(() => {

@@ -133,6 +133,33 @@ export type Database = {
           },
         ]
       }
+      daily_activity: {
+        Row: {
+          created_at: string
+          jour: string
+          minutes: number
+          mots_maitrises: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          jour: string
+          minutes?: number
+          mots_maitrises?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          jour?: string
+          minutes?: number
+          mots_maitrises?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       notifications: {
         Row: {
           action_url: string | null
@@ -446,3 +473,4 @@ export type CourseProgress = Database['public']['Tables']['course_progress']['Ro
 export type NotificationItem = Database['public']['Tables']['notifications']['Row']
 export type Payment = Database['public']['Tables']['payments']['Row']
 export type AdminActionLog = Database['public']['Tables']['admin_actions_log']['Row']
+export type DailyActivity = Database['public']['Tables']['daily_activity']['Row']

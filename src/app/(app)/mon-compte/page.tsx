@@ -30,7 +30,6 @@ import {
   LogOut
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { mockCurrentUser } from '@/lib/mock/dashboard';
 import { useTheme } from '@/context/ThemeContext';
 import { usePreferences } from '@/context/PreferencesContext';
 import { ImageCropModal } from '@/components/ui/ImageCropModal';
@@ -100,17 +99,25 @@ function MonCompteContent() {
   const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
 
   // Local state for user profile
+  /**
+   * Profil affiché.
+   *
+   * AUCUNE valeur de repli inventée : un compte neuf doit voir ses propres
+   * champs vides, jamais l'identité d'un autre. Les anciennes valeurs par
+   * défaut (« Espoir Chinois », contact@chinoislingo.com, Paris, HSK 3, une
+   * biographie) s'affichaient à tout nouvel inscrit.
+   */
   const [profileData, setProfileData] = useState({
-    displayName: profile?.full_name || profile?.first_name || 'Espoir Chinois',
-    firstName: profile?.first_name || 'Espoir',
-    lastName: profile?.last_name || 'Chinois',
-    email: profile?.email || user?.email || 'contact@chinoislingo.com',
-    avatarUrl: profile?.avatar_url || userAvatar || '/espoir-chinois.jpg',
-    bio: 'Passionné par l’apprentissage du mandarin et les opportunités commerciales avec la Chine.',
-    country: 'France',
-    city: 'Paris',
-    targetLevel: 'HSK 3',
-    timezone: 'Europe/Paris (UTC+1)',
+    displayName: profile?.full_name || profile?.first_name || '',
+    firstName: profile?.first_name || '',
+    lastName: profile?.last_name || '',
+    email: profile?.email || user?.email || '',
+    avatarUrl: profile?.avatar_url || userAvatar || '',
+    bio: profile?.bio || '',
+    country: profile?.country || '',
+    city: profile?.city || '',
+    targetLevel: profile?.target_level || '',
+    timezone: '',
   });
 
   const [tempProfileData, setTempProfileData] = useState({ ...profileData });
@@ -118,17 +125,23 @@ function MonCompteContent() {
   // Update profile data when Supabase profile is loaded
   useEffect(() => {
     if (profile) {
+      // bio, ville, pays et niveau visé existent bien dans `profiles` : ils
+      // étaient simplement ignorés au profit de constantes.
       const updated = {
-        displayName: profile.full_name || `${profile.first_name || ''} ${profile.last_name || ''}`.trim() || 'Espoir Chinois',
+        displayName:
+          profile.full_name ||
+          `${profile.first_name || ''} ${profile.last_name || ''}`.trim() ||
+          profile.username ||
+          '',
         firstName: profile.first_name || '',
         lastName: profile.last_name || '',
-        email: profile.email || user?.email || 'contact@chinoislingo.com',
-        avatarUrl: profile.avatar_url || userAvatar || '/espoir-chinois.jpg',
-        bio: 'Passionné par l’apprentissage du mandarin et les opportunités commerciales avec la Chine.',
-        country: 'France',
-        city: 'Paris',
-        targetLevel: 'HSK 3',
-        timezone: 'Europe/Paris (UTC+1)',
+        email: profile.email || user?.email || '',
+        avatarUrl: profile.avatar_url || userAvatar || '',
+        bio: profile.bio || '',
+        country: profile.country || '',
+        city: profile.city || '',
+        targetLevel: profile.target_level || '',
+        timezone: '',
       };
       setProfileData(updated);
       setTempProfileData(updated);
@@ -371,7 +384,7 @@ function MonCompteContent() {
 
               <div className="min-w-0 flex-1">
                 <h3 className="font-display font-black text-base sm:text-xl text-[#212121] dark:text-[#F5F5F5] truncate">
-                  {profileData.displayName}
+                  {profileData.displayName || 'Votre profil'}
                 </h3>
                 <p className="text-xs text-[#757575] dark:text-[#A0A0A0] font-mono truncate">{profileData.email}</p>
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-2">
@@ -388,8 +401,16 @@ function MonCompteContent() {
                         ? `${etatAbonnement.plan?.nom ?? 'Pass'} actif`
                         : 'Compte gratuit'}
                   </span>
-                  <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">📍 {profileData.city}, {profileData.country}</span>
-                  <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">🎯 {profileData.targetLevel}</span>
+                  {/* Masqués tant que l'apprenant ne les a pas renseignés :
+                      un « 📍 , » vide serait pire que rien. */}
+                  {(profileData.city || profileData.country) && (
+                    <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">
+                      📍 {[profileData.city, profileData.country].filter(Boolean).join(', ')}
+                    </span>
+                  )}
+                  {profileData.targetLevel && (
+                    <span className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0]">🎯 {profileData.targetLevel}</span>
+                  )}
                 </div>
                 {profileData.bio && (
                   <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] mt-1.5 sm:mt-2 italic max-w-lg line-clamp-2 sm:line-clamp-none">
@@ -411,22 +432,51 @@ function MonCompteContent() {
             </div>
           </div>
 
-          {/* Quick Account Stats (Matching the 3 Dashboard Performance Metrics) */}
+          {/*
+            Statistiques réelles, lues dans `profiles`.
+
+            Elles étaient auparavant écrites en dur dans le JSX — 440 mots,
+            42 h, 92,4 % — et s'affichaient donc à l'identique pour tous les
+            comptes, y compris ceux créés à l'instant. La « rétention » a été
+            retirée : aucune donnée de ce type n'est mesurée, le chiffre était
+            purement décoratif. La série de jours, elle, existe réellement.
+          */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4">
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
               <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Mots Maîtrisés</span>
-              <p className="font-display font-black text-base sm:text-2xl text-[#212121] dark:text-[#F5F5F5] my-0.5 sm:mt-1">440 <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">mots</span></p>
-              <span className="text-[9px] sm:text-[11px] text-[#00897B] dark:text-[#03DAC5] font-bold line-clamp-1">+18 cette sem.</span>
+              <p className="font-display font-black text-base sm:text-2xl text-[#212121] dark:text-[#F5F5F5] my-0.5 sm:mt-1">
+                {profile?.total_words_mastered ?? 0}{' '}
+                <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">mots</span>
+              </p>
+              <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">
+                Enregistrés dans votre liste
+              </span>
             </div>
+
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
               <span className="text-[9px] sm:text-xs font-bold text-[#E91E63] dark:text-[#F06292] uppercase tracking-wider line-clamp-1">Temps d&apos;étude</span>
-              <p className="font-display font-black text-base sm:text-2xl text-[#E91E63] dark:text-[#F06292] my-0.5 sm:mt-1">42h</p>
-              <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">+6h pratique</span>
+              <p className="font-display font-black text-base sm:text-2xl text-[#E91E63] dark:text-[#F06292] my-0.5 sm:mt-1">
+                {Math.floor((profile?.total_minutes_learned ?? 0) / 60)}h
+                <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] ml-1">
+                  {(profile?.total_minutes_learned ?? 0) % 60}min
+                </span>
+              </p>
+              <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">
+                Cumul depuis l&apos;inscription
+              </span>
             </div>
+
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
-              <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Rétention</span>
-              <p className="font-display font-black text-base sm:text-2xl text-[#00897B] dark:text-[#03DAC5] my-0.5 sm:mt-1">92.4%</p>
-              <span className="text-[9px] sm:text-[11px] text-[#00897B] dark:text-[#03DAC5] font-bold line-clamp-1">Excellent score</span>
+              <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Série</span>
+              <p className="font-display font-black text-base sm:text-2xl text-[#00897B] dark:text-[#03DAC5] my-0.5 sm:mt-1">
+                {profile?.streak_days ?? 0}{' '}
+                <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                  {(profile?.streak_days ?? 0) > 1 ? 'jours' : 'jour'}
+                </span>
+              </p>
+              <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">
+                Jours consécutifs de pratique
+              </span>
             </div>
           </div>
         </div>

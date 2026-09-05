@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Search, Bell, Flame, User, LogOut, Settings, CreditCard, UserCheck, ChevronDown, Shield } from 'lucide-react';
-import { mockCurrentUser, mockUserStreak } from '@/lib/mock/dashboard';
 import { usePreferences } from '@/context/PreferencesContext';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { GlobalSearchModal } from './GlobalSearchModal';
@@ -129,13 +128,21 @@ export function TopNav() {
           </button>
 
           {/* User Streak Pill with Vivid Dynamic Flames Animation */}
-          <div 
-            className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-xs font-extrabold shadow-2xs"
-            title={`${mockUserStreak.current} jours de pratique consécutifs !`}
-          >
-            <Flame className="w-4 h-4 fill-amber-500 text-amber-500 animate-bounce" />
-            <span className="font-mono">{mockUserStreak.current}</span>
-          </div>
+          {/*
+            Serie reelle de l'apprenant, lue dans son profil.
+            Elle affichait auparavant la constante `mockUserStreak.current`,
+            soit 18 jours pour absolument tout le monde, sur chaque page.
+            La pastille disparait tant qu'aucune serie n'est commencee.
+          */}
+          {(profile?.streak_days ?? 0) > 0 && (
+            <div
+              className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-xs font-extrabold shadow-2xs"
+              title={`${profile?.streak_days} jour${(profile?.streak_days ?? 0) > 1 ? 's' : ''} de pratique consécutifs !`}
+            >
+              <Flame className="w-4 h-4 fill-amber-500 text-amber-500 animate-bounce" />
+              <span className="font-mono">{profile?.streak_days}</span>
+            </div>
+          )}
 
           {/* Interactive Notifications Bell -> Opens Notification Modal */}
           <button
@@ -161,21 +168,40 @@ export function TopNav() {
             {(() => {
               const displayAvatar = (profile?.avatar_url && !profile.avatar_url.includes('photo-1534528741775')) 
                 ? profile.avatar_url 
-                : (userAvatar || '/espoir-chinois.jpg');
+                : (profile?.avatar_url || userAvatar || '');
+
+              // Sans photo, on affiche les initiales plutot qu'une image
+              // cassee — et surtout jamais le portrait d'un autre compte.
+              const nomAffiche =
+                profile?.full_name || profile?.username || userName || '';
+              const initiales =
+                nomAffiche
+                  .split(/\s+/)
+                  .filter(Boolean)
+                  .slice(0, 2)
+                  .map((m) => m[0]?.toUpperCase() ?? '')
+                  .join('') || '?';
+
               return (
                 <>
                   <button
                     type="button"
                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                     className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-xs ring-2 ring-transparent hover:ring-[#6200EE] cursor-pointer"
-                    title={`Profil : ${profile?.username || profile?.full_name || userName || 'Espoir Chinois'}`}
+                    title={`Profil : ${profile?.full_name || profile?.username || userName || 'Mon compte'}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={displayAvatar}
-                      alt={profile?.username || profile?.full_name || userName || 'Profil'}
-                      className="w-full h-full object-cover"
-                    />
+                    {displayAvatar ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={displayAvatar}
+                        alt={nomAffiche || 'Profil'}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="w-full h-full flex items-center justify-center bg-[#6200EE] text-white text-xs font-black">
+                        {initiales}
+                      </span>
+                    )}
                   </button>
 
                   {/* Profile Dropdown Card */}
@@ -183,15 +209,21 @@ export function TopNav() {
                     <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-2xl shadow-black/10 p-3.5 space-y-3 z-50 animate-slideUp">
                       {/* User Info Header */}
                       <div className="flex items-center gap-3 pb-3 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={displayAvatar}
-                          alt={profile?.username || 'Profil'}
-                          className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/20 shadow-xs"
-                        />
+                        {displayAvatar ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={displayAvatar}
+                            alt={nomAffiche || 'Profil'}
+                            className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/20 shadow-xs"
+                          />
+                        ) : (
+                          <span className="w-10 h-10 rounded-2xl bg-[#6200EE] text-white text-sm font-black flex items-center justify-center ring-2 ring-[#6200EE]/20 shadow-xs shrink-0">
+                            {initiales}
+                          </span>
+                        )}
                         <div className="min-w-0 flex-1">
                           <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
-                            {profile?.username || profile?.full_name || userName || 'Espoir Chinois'}
+                            {profile?.full_name || profile?.username || userName || 'Mon compte'}
                           </h4>
                           <p className="text-[10px] text-[#757575] dark:text-[#A0A0A0] truncate">
                             {profile?.email || user?.email || 'espoirchinois@gmail.com'}

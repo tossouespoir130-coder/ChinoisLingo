@@ -83,4 +83,84 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<voi
       updated_at: new Date().toISOString(),
     })
     .eq('id', user.id);
+
+  // Historique quotidien reel, qui alimente le graphique du tableau de bord.
+  // Sans lui, la courbe ne pouvait qu'etre fabriquee a partir du total.
+  const { data: jourExistant } = await supabase
+    .from('daily_activity')
+    .select('minutes')
+    .eq('user_id', user.id)
+    .eq('jour', today)
+    .maybeSingle();
+
+  const { error: erreurActivite } = await supabase.from('daily_activity').upsert(
+    {
+      user_id: user.id,
+      jour: today,
+      minutes: (jourExistant?.minutes ?? 0) + minutesToAdd,
+    },
+    { onConflict: 'user_id,jour' }
+  );
+
+  // Une mesure manquee ne doit jamais interrompre la session de l'apprenant.
+  signalerErreurActivite('recordDailyActivity', erreurActivite);
+}
+
+/** Codes renvoyes par PostgREST quand la table n'existe pas encore. */
+const TABLE_ABSENTE = ['PGRST205', '42P01'];
+
+let migrationDejaSignalee = false;
+
+/**
+ * Journalise une erreur d'historique de maniere exploitable.
+ *
+ * Deux problemes traites ici :
+ *   • Une `PostgrestError` n'est pas un objet ordinaire : `console.error(err)`
+ *     l'affichait comme `{}`, sans le moindre indice sur la cause.
+ *   • Tant que la migration `daily_activity` n'est pas passee, l'erreur se
+ *     repete a chaque chargement de page. On n'avertit donc qu'une seule fois,
+ *     avec un message qui dit quoi faire.
+ */
+function signalerErreurActivite(
+  origine: string,
+  erreur: { code?: string; message?: string; details?: string | null } | null
+): void {
+  if (!erreur) return;
+
+  if (erreur.code && TABLE_ABSENTE.includes(erreur.code)) {
+    if (migrationDejaSignalee) return;
+    migrationDejaSignalee = true;
+    console.warn(
+      "[ChinoisLingo] L'historique d'activite n'est pas encore enregistre : " +
+        'la table `daily_activity` est absente. Executez la migration ' +
+        '20260905120000_historique_activite_reelle.sql. Le reste de ' +
+        "l'application fonctionne normalement."
+    );
+    return;
+  }
+
+  console.error(
+    `[ChinoisLingo] ${origine} — ${erreur.code ?? 'erreur'} : ` +
+      `${erreur.message ?? 'cause inconnue'}${erreur.details ? ` (${erreur.details})` : ''}`
+  );
+}
+
+/**
+ * Nombre de mots enregistres a ce jour, fige dans l'historique du jour.
+ * Appele apres l'ajout ou la suppression d'un mot pour que la courbe de
+ * progression reflete la realite plutot qu'une repartition calculee.
+ */
+export async function recordWordCount(total: number): Promise<void> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  const today = new Date().toISOString().split('T')[0];
+
+  const { error } = await supabase.from('daily_activity').upsert(
+    { user_id: user.id, jour: today, mots_maitrises: total },
+    { onConflict: 'user_id,jour' }
+  );
+
+  signalerErreurActivite('recordWordCount', error);
 }
