@@ -55,6 +55,12 @@ export default function ConnexionPage() {
     if (params.get('confirme') === '1') {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
+    } else if (params.get('session') === 'indisponible') {
+      // Le garde serveur n'a pas pu joindre Supabase.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setErrorMessage(
+        'Vérification de session impossible pour le moment. Réessayez dans un instant.'
+      );
     } else if (params.get('confirmation') === 'requise') {
       // Renvoyé par le garde serveur quand un compte non vérifié tente
       // d'atteindre une page de l'application.

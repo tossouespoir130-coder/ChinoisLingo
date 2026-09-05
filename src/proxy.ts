@@ -59,40 +59,58 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (!user) {
-    return NextResponse.redirect(new URL('/connexion', request.url));
-  }
+    if (!user) {
+      return NextResponse.redirect(new URL('/connexion', request.url));
+    }
 
-  // Adresse non confirmée : le compte existe mais n'est pas encore actif.
-  // C'est ce contrôle qui manquait — un inscrit non vérifié accédait à tout.
-  if (!user.email_confirmed_at) {
+    // Adresse non confirmée : le compte existe mais n'est pas encore actif.
+    // C'est ce contrôle qui manquait — un inscrit non vérifié accédait à tout.
+    if (!user.email_confirmed_at) {
+      const url = new URL('/connexion', request.url);
+      url.searchParams.set('confirmation', 'requise');
+      return NextResponse.redirect(url);
+    }
+
+    // Au-delà, seul /admin impose une condition supplémentaire.
+    if (!chemin.startsWith('/admin')) {
+      return response;
+    }
+
+    const { data: profil } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (profil?.role !== 'admin') {
+      // Redirection silencieuse : on ne confirme pas l'existence de /admin
+      // à quelqu'un qui n'y a pas droit.
+      return NextResponse.redirect(new URL('/tableau-de-bord', request.url));
+    }
+
+    return response;
+  } catch (erreur) {
+    /**
+     * Supabase injoignable, lent ou en panne.
+     *
+     * Sans ce filet, l'exception remonterait et Next renverrait 500 sur
+     * CHAQUE page de l'application : une panne du fournisseur d'identite
+     * ferait tomber tout le site, pas seulement l'authentification.
+     *
+     * On echoue en mode ferme — impossible de verifier la session, donc on
+     * traite l'appelant comme non connecte. Jamais l'inverse : laisser
+     * passer en cas de panne ouvrirait le contenu payant a tout le monde.
+     */
+    console.error('[proxy] verification de session impossible', erreur);
     const url = new URL('/connexion', request.url);
-    url.searchParams.set('confirmation', 'requise');
+    url.searchParams.set('session', 'indisponible');
     return NextResponse.redirect(url);
   }
-
-  // Au-delà, seul /admin impose une condition supplémentaire.
-  if (!chemin.startsWith('/admin')) {
-    return response;
-  }
-
-  const { data: profil } = await supabase
-    .from('profiles')
-    .select('role')
-    .eq('id', user.id)
-    .single();
-
-  if (profil?.role !== 'admin') {
-    // Redirection silencieuse : on ne confirme pas l'existence de /admin
-    // à quelqu'un qui n'y a pas droit.
-    return NextResponse.redirect(new URL('/tableau-de-bord', request.url));
-  }
-
-  return response;
 }
 
 export const config = {

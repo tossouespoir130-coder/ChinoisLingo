@@ -446,7 +446,7 @@ function MonCompteContent() {
           */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4">
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
-              <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Mots Maîtrisés</span>
+              <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Mots enregistrés</span>
               <p className="font-display font-black text-base sm:text-2xl text-[#212121] dark:text-[#F5F5F5] my-0.5 sm:mt-1">
                 {profile?.total_words_mastered ?? 0}{' '}
                 <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">mots</span>

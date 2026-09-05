@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/client';
+import { recordWordCount } from './profileService';
 import { SavedWord } from '@/lib/supabase/types';
 
 /**
@@ -52,6 +53,44 @@ export async function fetchUserSavedWords(): Promise<SavedWord[]> {
   return data || [];
 }
 
+/**
+ * Recale `profiles.total_words_mastered` sur le nombre reel de mots enregistres.
+ *
+ * Ce compteur n'etait jamais mis a jour : ajouter ou retirer un mot le laissait
+ * a zero. Trois consequences en cascade — la statistique de Mon Compte restait
+ * bloquee a 0, le graphique de progression aussi, et surtout le classement
+ * communautaire ne pouvait afficher personne puisqu'il ne retient que les
+ * comptes ayant strictement plus de zero mot.
+ *
+ * On recompte plutot que d'incrementer : un compteur incremente derive des que
+ * deux onglets ecrivent en meme temps, alors qu'un recomptage converge toujours.
+ *
+ * L'historique du jour est mis a jour dans la foulee, pour que la courbe de
+ * progression suive le nombre reel de mots.
+ */
+async function synchroniserCompteurMots(userId: string): Promise<void> {
+  const supabase = createClient();
+
+  const { count, error } = await supabase
+    .from('saved_words')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('Error counting saved words:', error.message);
+    return;
+  }
+
+  const total = count ?? 0;
+
+  await supabase
+    .from('profiles')
+    .update({ total_words_mastered: total, updated_at: new Date().toISOString() })
+    .eq('id', userId);
+
+  await recordWordCount(total);
+}
+
 export async function addSavedWord(word: {
   hanzi: string;
   pinyin?: string;
@@ -86,11 +125,15 @@ export async function addSavedWord(word: {
     return null;
   }
 
+  await synchroniserCompteurMots(user.id);
+
   return data;
 }
 
 export async function removeSavedWord(id: string): Promise<boolean> {
   const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { error } = await supabase
     .from('saved_words')
     .delete()
@@ -100,6 +143,8 @@ export async function removeSavedWord(id: string): Promise<boolean> {
     console.error('Error deleting saved word:', error);
     return false;
   }
+
+  if (user) await synchroniserCompteurMots(user.id);
 
   return true;
 }
