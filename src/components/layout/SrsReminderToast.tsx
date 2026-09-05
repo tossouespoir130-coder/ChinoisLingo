@@ -5,6 +5,8 @@ import { createPortal } from 'react-dom';
 import { useRouter, usePathname } from 'next/navigation';
 import { usePreferences } from '@/context/PreferencesContext';
 import { Clock, X, Sparkles } from 'lucide-react';
+import { countWordsDueForReview } from '@/lib/services/vocabularyService';
+import { reserverEmplacement, libererEmplacement } from '@/lib/ui/coordinateurToasts';
 
 export function SrsReminderToast() {
   const router = useRouter();
@@ -13,23 +15,51 @@ export function SrsReminderToast() {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
+  /** Nombre réel de mots dus à la révision. 0 tant qu'on ne l'a pas compté. */
+  const [nbCartes, setNbCartes] = useState(0);
 
   useEffect(() => {
+    // Montage cote navigateur : indispensable avant createPortal, qui a besoin
+    // de document.body. C'est le seul moyen de le savoir.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+  }, []);
 
-    // Si le rappel quotidien est activé et qu'on n'est pas sur /vocabulaire
-    if (dailyReminder && pathname !== '/vocabulaire' && pathname !== '/connexion') {
-      const dismissed = typeof window !== 'undefined' ? sessionStorage.getItem('chinoislingo_srs_reminder_dismissed') : null;
-      if (!dismissed) {
-        // Apparaît discrètement après un délai confortable de 3 secondes
-        const timer = setTimeout(() => {
-          setIsVisible(true);
-        }, 3000);
-        return () => clearTimeout(timer);
-      }
-    } else {
+  useEffect(() => {
+    if (!dailyReminder || pathname === '/vocabulaire' || pathname === '/connexion') {
+      // Masquage immediat au changement de page : laisser le rappel visible
+      // sur /vocabulaire n'aurait aucun sens, l'apprenant y est deja.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(false);
+      return;
     }
+
+    const dismissed =
+      typeof window !== 'undefined'
+        ? sessionStorage.getItem('chinoislingo_srs_reminder_dismissed')
+        : null;
+    if (dismissed) return;
+
+    let annule = false;
+    let minuteur: ReturnType<typeof setTimeout> | undefined;
+
+    // Le rappel n'apparaît QUE s'il y a réellement des cartes à réviser.
+    // Il annonçait auparavant « 12 cartes » en dur, même pour un compte
+    // venant d'être créé et n'ayant enregistré aucun mot.
+    countWordsDueForReview().then((n) => {
+      if (annule || n === 0) return;
+      setNbCartes(n);
+      minuteur = setTimeout(() => {
+        // Une seule notification a la fois : voir coordinateurToasts.
+        if (reserverEmplacement('srs')) setIsVisible(true);
+      }, 3000);
+    });
+
+    return () => {
+      annule = true;
+      if (minuteur) clearTimeout(minuteur);
+      libererEmplacement('srs');
+    };
   }, [dailyReminder, pathname]);
 
   const handleDismiss = () => {
@@ -38,6 +68,8 @@ export function SrsReminderToast() {
     setTimeout(() => {
       setIsVisible(false);
       setIsClosing(false);
+      // Liberation : l'annonce de nouveau contenu peut prendre la place.
+      libererEmplacement('srs');
       try {
         sessionStorage.setItem('chinoislingo_srs_reminder_dismissed', 'true');
       } catch {}
@@ -86,7 +118,7 @@ export function SrsReminderToast() {
         {/* Message discret */}
         <div>
           <h6 className="font-display font-bold text-xs text-[#212121] dark:text-[#F5F5F5] leading-snug">
-            12 cartes à réviser aujourd’hui
+            {nbCartes} carte{nbCartes > 1 ? 's' : ''} à réviser aujourd’hui
           </h6>
           <p className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0] mt-0.5 leading-snug">
             Gardez votre série de pratique active.

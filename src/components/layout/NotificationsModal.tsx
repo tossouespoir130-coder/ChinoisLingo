@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Portal } from '@/components/ui/Portal';
-import { usePreferences } from '@/context/PreferencesContext';
 import {
   Bell,
   X,
@@ -27,7 +26,6 @@ import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsA
 
 export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: NotificationsModalProps) {
   const router = useRouter();
-  const { userAvatar } = usePreferences();
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'system'>('all');
 
@@ -208,7 +206,10 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                 /* ========================================================
                    EXCLUSIVE VIOLET/PURPLE STYLING FOR ESPOIR CHINOIS (FOUNDER)
                    ======================================================== */
-                const founderImage = userAvatar || notif.founderAvatar || '/espoir-chinois.jpg';
+                // Une annonce du fondateur doit porter SON portrait, pas
+                // celui de la personne qui la lit : `userAvatar` n'a rien a
+                // faire ici, il passait avant tout le reste.
+                const founderImage = notif.founderAvatar || '/espoir-chinois.jpg';
 
                 return (
                   <div

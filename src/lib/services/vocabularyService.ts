@@ -1,6 +1,37 @@
 import { createClient } from '@/lib/supabase/client';
 import { SavedWord } from '@/lib/supabase/types';
 
+/**
+ * Nombre de mots reellement dus a la revision aujourd'hui.
+ *
+ * Le rappel affichait « 12 cartes a reviser » en dur : un compte venant
+ * d'etre cree, sans le moindre mot enregistre, voyait ce chiffre. On compte
+ * desormais les lignes dont l'echeance est passee, plus celles jamais
+ * revisees — qui sont dues par definition.
+ *
+ * Retourne 0 sans session ou en cas d'erreur : le rappel reste alors masque.
+ */
+export async function countWordsDueForReview(): Promise<number> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return 0;
+
+  const maintenant = new Date().toISOString();
+
+  const { count, error } = await supabase
+    .from('saved_words')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .or(`next_review_at.is.null,next_review_at.lte.${maintenant}`);
+
+  if (error) {
+    console.error('Error counting words due for review:', error.message);
+    return 0;
+  }
+
+  return count ?? 0;
+}
+
 export async function fetchUserSavedWords(): Promise<SavedWord[]> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();

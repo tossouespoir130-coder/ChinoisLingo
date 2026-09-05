@@ -3,6 +3,11 @@ import { useRouter, usePathname } from 'next/navigation';
 import { NotificationItem } from '@/lib/data/notificationsData';
 import { fetchMergedNotifications, saveReadNotificationId } from '@/lib/services/notificationService';
 import { X, Sparkles, Play, ArrowRight, Bell } from 'lucide-react';
+import {
+  reserverEmplacement,
+  libererEmplacement,
+  attendreEmplacement,
+} from '@/lib/ui/coordinateurToasts';
 
 export function NewContentToast() {
   const router = useRouter();
@@ -13,6 +18,8 @@ export function NewContentToast() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    let desabonner: (() => void) | undefined;
+
     setMounted(true);
 
     // Ne pas afficher sur la page de connexion
@@ -43,9 +50,22 @@ export function NewContentToast() {
         if (dismissedId !== unreadLatest.id && !isAlreadyOnPage) {
           // Déclenchement naturel après 2.5 secondes
           const timer = setTimeout(() => {
-            setIsVisible(true);
+            // Une seule notification à la fois. Si le rappel de révision
+            // occupe déjà l'emplacement, on patiente jusqu'à sa fermeture
+            // au lieu de se superposer à lui.
+            if (reserverEmplacement('contenu')) {
+              setIsVisible(true);
+            } else {
+              desabonner = attendreEmplacement(() => {
+                if (reserverEmplacement('contenu')) setIsVisible(true);
+              });
+            }
           }, 2500);
-          return () => clearTimeout(timer);
+          return () => {
+            clearTimeout(timer);
+            desabonner?.();
+            libererEmplacement('contenu');
+          };
         }
       } catch {
         setIsVisible(false);
@@ -60,6 +80,7 @@ export function NewContentToast() {
     setTimeout(() => {
       setIsVisible(false);
       setIsClosing(false);
+      libererEmplacement('contenu');
       if (latestNotif) {
         try {
           localStorage.setItem('chinoislingo_dismissed_content_toast', latestNotif.id);

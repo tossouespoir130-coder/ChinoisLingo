@@ -40,6 +40,7 @@ import { useAbonnement } from '@/lib/payments/useAbonnement';
 import { formaterEcheance } from '@/lib/payments/subscription';
 import { BONUS_PREMIER_PAIEMENT_JOURS } from '@/lib/payments/plans';
 import { resumeOffreGratuite } from '@/lib/payments/acces';
+import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -184,17 +185,10 @@ function MonCompteContent() {
   const { etat: etatAbonnement, ouvrirPortail } = useAbonnement();
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  // Avatars de Personnages / Membres de la Communauté
-  const communityAvatars = [
-    '/espoir-chinois.jpg',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300&auto=format&fit=crop&q=80',
-  ];
+  // Galerie d'avatars : des illustrations, jamais des photos de personnes.
+  // La photo personnelle du fondateur y figurait auparavant, aux côtés de
+  // sept portraits d'inconnus — voir src/lib/avatars.ts.
+  const communityAvatars = AVATARS_PROPOSES;
 
   const handleSignOut = async () => {
     await signOut();
@@ -368,12 +362,21 @@ function MonCompteContent() {
                 className="relative group cursor-pointer shrink-0"
                 title="Cliquer pour modifier votre profil"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={userAvatar || profileData.avatarUrl}
-                  alt={profileData.displayName}
-                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-[#6200EE]/30 group-hover:ring-[#6200EE] shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-105"
-                />
+                {/* Un `src` vide fait retelecharger la page entiere selon le
+                    navigateur, en plus d'afficher une vignette cassee : on
+                    n'affiche l'image que si une source existe reellement. */}
+                {(userAvatar || profileData.avatarUrl) ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={userAvatar || profileData.avatarUrl}
+                    alt={profileData.displayName || 'Votre profil'}
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-[#6200EE]/30 group-hover:ring-[#6200EE] shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE] text-white text-xl sm:text-2xl font-black flex items-center justify-center ring-2 ring-[#6200EE]/30 group-hover:ring-[#6200EE] shadow-sm transition-all duration-300 group-hover:scale-105">
+                    {initialesDe(profileData.displayName)}
+                  </span>
+                )}
                 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 rounded-full bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white backdrop-blur-[1px]">
@@ -1114,12 +1117,20 @@ function MonCompteContent() {
               <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/80 dark:border-[#333333] space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={tempProfileData.avatarUrl}
-                      alt="Aperçu Avatar"
-                      className="w-16 h-16 sm:w-18 sm:h-18 rounded-full object-cover ring-3 ring-[#6200EE] shadow-md shrink-0"
-                    />
+                    {/* Sans avatar choisi, on affiche les initiales : un
+                        `src` vide produisait une vignette cassée. */}
+                    {tempProfileData.avatarUrl ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img
+                        src={tempProfileData.avatarUrl}
+                        alt="Aperçu de l’avatar"
+                        className="w-16 h-16 sm:w-18 sm:h-18 rounded-full object-cover ring-3 ring-[#6200EE] shadow-md shrink-0"
+                      />
+                    ) : (
+                      <span className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-[#6200EE] text-white text-xl font-black flex items-center justify-center ring-3 ring-[#6200EE] shadow-md shrink-0">
+                        {initialesDe(tempProfileData.displayName)}
+                      </span>
+                    )}
                     <div>
                       <span className="text-xs font-black uppercase tracking-wider text-[#212121] dark:text-[#F5F5F5] block">
                         Photo de Profil
@@ -1187,7 +1198,8 @@ function MonCompteContent() {
                   </span>
 
                   <div className="grid grid-cols-4 sm:grid-cols-8 gap-2.5">
-                    {communityAvatars.map((avUrl, idx) => {
+                    {communityAvatars.map((av, idx) => {
+                      const avUrl = av.url;
                       const isSelected = tempProfileData.avatarUrl === avUrl;
                       return (
                         <button
@@ -1199,12 +1211,12 @@ function MonCompteContent() {
                               ? 'border-[#6200EE] ring-3 ring-[#6200EE]/30 scale-105 shadow-sm'
                               : 'border-[#E0E0E0] dark:border-[#333333] hover:border-[#6200EE]/50 opacity-75 hover:opacity-100 hover:scale-102'
                           }`}
-                          title={`Avatar ${idx + 1}`}
+                          title={av.nom}
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={avUrl}
-                            alt={`Avatar ${idx + 1}`}
+                            alt={av.nom}
                             className="w-full h-full object-cover"
                           />
                           {isSelected && (
