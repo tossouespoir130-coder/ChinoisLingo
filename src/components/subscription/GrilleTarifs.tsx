@@ -42,10 +42,10 @@ export function GrilleTarifs({ paysProfil }: { paysProfil?: string | null }) {
         <div className="inline-flex p-1 rounded-full bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D]">
           {(
             [
-              { valeur: 'XOF' as Devise, libelle: 'FCFA', icone: Smartphone, detail: 'Mobile Money' },
-              { valeur: 'EUR' as Devise, libelle: 'Euro', icone: CreditCard, detail: 'Carte bancaire' },
+              { valeur: 'XOF' as Devise, libelle: 'Mobile Money', icone: Smartphone },
+              { valeur: 'EUR' as Devise, libelle: 'Carte bancaire', icone: CreditCard },
             ]
-          ).map(({ valeur, libelle, icone: Icone, detail }) => (
+          ).map(({ valeur, libelle, icone: Icone }) => (
             <button
               key={valeur}
               type="button"
@@ -61,7 +61,6 @@ export function GrilleTarifs({ paysProfil }: { paysProfil?: string | null }) {
             >
               <Icone className="w-3.5 h-3.5" />
               <span>{libelle}</span>
-              <span className="hidden sm:inline opacity-70 font-semibold">· {detail}</span>
             </button>
           ))}
         </div>
@@ -69,7 +68,7 @@ export function GrilleTarifs({ paysProfil }: { paysProfil?: string | null }) {
         <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] text-center max-w-md">
           {devise === 'XOF'
             ? 'Réglez avec MTN MoMo, Moov Money, Orange Money, Wave ou T-Money.'
-            : 'Réglez par carte Visa ou Mastercard, avec renouvellement automatique.'}
+            : 'Réglez par carte Visa ou Mastercard.'}
         </p>
       </div>
 
