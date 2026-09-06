@@ -286,13 +286,23 @@ export function ChinoisLingoVideoPlayer({
         </div>
       ) : (
         /* ── Lecture : habillage YouTube supprimé, commandes maison ───── */
-        <div className="relative w-full h-full overflow-hidden bg-black flex items-center justify-center">
+        <div className="absolute inset-0 overflow-hidden bg-black">
+          {/*
+            Positionnement absolu plutôt que `flex` + `h-full`.
+
+            Une hauteur en pourcentage dans un conteneur dimensionné par
+            `aspect-ratio` ne se résout pas de façon fiable sur tous les
+            navigateurs mobiles : l'iframe pouvait se retrouver alignée en bas
+            du cadre au lieu de le remplir. `inset-0` supprime cette
+            incertitude — l'iframe couvre exactement le conteneur, et YouTube
+            centre lui-même l'image à l'intérieur.
+          */}
           <iframe
             ref={iframeRef}
             src={embedUrl}
             title={title}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            className="w-full h-full border-0"
+            className="absolute inset-0 w-full h-full border-0"
           />
 
           {/*
@@ -331,10 +341,17 @@ export function ChinoisLingoVideoPlayer({
             </div>
           )}
 
-          {/* ── Barre de commandes ChinoisLingo ──────────────────────── */}
+          {/*
+            Barre de commandes ChinoisLingo.
+
+            `[@media(hover:none)]:opacity-100` la rend visible en permanence sur
+            les appareils tactiles. Elle ne dépendait que de `group-hover`, qui
+            ne se déclenche jamais au doigt : pendant la lecture sur téléphone,
+            ni pause, ni position, ni plein écran n'étaient atteignables.
+          */}
           <div
             data-arret={!enLecture}
-            className="absolute bottom-0 left-0 right-0 z-40 px-3 pb-2.5 pt-8 bg-gradient-to-t from-black/85 via-black/45 to-transparent opacity-0 group-hover:opacity-100 focus-within:opacity-100 data-[arret=true]:opacity-100 transition-opacity duration-300"
+            className="absolute bottom-0 left-0 right-0 z-40 px-3 pb-2.5 pt-8 bg-gradient-to-t from-black/85 via-black/45 to-transparent opacity-0 group-hover:opacity-100 focus-within:opacity-100 data-[arret=true]:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity duration-300"
           >
             {/* La barre n'apparaît que si YouTube nous a communiqué la durée. */}
             {duree > 0 && (
