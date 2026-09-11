@@ -160,6 +160,54 @@ export type Database = {
         }
         Relationships: []
       }
+      emails_abonnement: {
+        Row: {
+          created_at: string
+          destinataire: string
+          echeance: string
+          id: string
+          payment_id: string | null
+          resend_id: string | null
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          destinataire: string
+          echeance: string
+          id?: string
+          payment_id?: string | null
+          resend_id?: string | null
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          destinataire?: string
+          echeance?: string
+          id?: string
+          payment_id?: string | null
+          resend_id?: string | null
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emails_abonnement_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_abonnement_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           action_url: string | null
@@ -474,3 +522,4 @@ export type NotificationItem = Database['public']['Tables']['notifications']['Ro
 export type Payment = Database['public']['Tables']['payments']['Row']
 export type AdminActionLog = Database['public']['Tables']['admin_actions_log']['Row']
 export type DailyActivity = Database['public']['Tables']['daily_activity']['Row']
+export type EmailAbonnement = Database['public']['Tables']['emails_abonnement']['Row']

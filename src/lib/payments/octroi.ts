@@ -1,7 +1,9 @@
 import 'server-only';
 
+import { after } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { getPlan } from './plans';
+import { envoyerConfirmationAbonnement, prenomDe } from '@/lib/emails/abonnement';
+import { getPlan, formaterMontant, BONUS_PREMIER_PAIEMENT_JOURS } from './plans';
 import { calculerFinPeriode } from './subscription';
 
 /**
@@ -96,7 +98,7 @@ export async function accorderAcces(params: {
 
   const { data: paiement } = await admin
     .from('payments')
-    .select('id, user_id, plan_id, amount, currency, status, provider')
+    .select('id, user_id, plan_id, amount, currency, status, provider, customer_email')
     .eq('id', paymentId)
     .single();
 
@@ -140,7 +142,7 @@ export async function accorderAcces(params: {
 
   const { data: profil } = await admin
     .from('profiles')
-    .select('current_period_end, bonus_7j_accorde')
+    .select('current_period_end, bonus_7j_accorde, email, first_name, full_name')
     .eq('id', paiement.user_id)
     .single();
 
@@ -194,6 +196,27 @@ export async function accorderAcces(params: {
       ? `Votre ${plan.nom} est actif jusqu'au ${echeance}, vos 7 jours offerts inclus. Bon apprentissage !`
       : `Votre ${plan.nom} est actif jusqu'au ${echeance}. Bon apprentissage !`,
   });
+
+  // E-mail de confirmation, Mobile Money uniquement : Stripe envoie déjà ses
+  // propres reçus. `after` l'expédie une fois la réponse rendue au
+  // fournisseur, qui n'attend donc pas Resend. La transition « pending » →
+  // « completed » ci-dessus garantit qu'il ne part qu'une fois par paiement.
+  const destinataire = paiement.customer_email ?? profil?.email;
+  if (paiement.provider === 'moneroo' && destinataire) {
+    after(() =>
+      envoyerConfirmationAbonnement(admin, {
+        userId: paiement.user_id,
+        paymentId: paiement.id,
+        destinataire,
+        prenom: profil ? prenomDe(profil) : null,
+        plan,
+        // Moneroo n'encaisse que la grille FCFA.
+        montant: formaterMontant(paiement.amount, 'XOF'),
+        finPeriode,
+        bonusJours: bonusApplique ? BONUS_PREMIER_PAIEMENT_JOURS : 0,
+      })
+    );
+  }
 
   return { ok: true, finPeriode: finPeriode.toISOString() };
 }

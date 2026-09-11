@@ -39,16 +39,18 @@ export async function utilisateurDeLaRequete(
 }
 
 /**
- * URL publique du site, pour construire les redirections de paiement.
+ * URL publique du site, pour construire les redirections de paiement et les
+ * liens des e-mails.
  * Vercel expose `VERCEL_PROJECT_PRODUCTION_URL` ; en local on retombe sur
- * l'origine de la requête.
+ * l'origine de la requête, ou sur le serveur de développement quand il n'y en
+ * a pas (tâche planifiée, envoi différé).
  */
-export function urlDeBase(requete: Request): string {
+export function urlDeBase(requete?: Request): string {
   const configuree = process.env.NEXT_PUBLIC_SITE_URL;
   if (configuree) return configuree.replace(/\/$/, '');
 
   const productionVercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   if (productionVercel) return `https://${productionVercel}`;
 
-  return new URL(requete.url).origin;
+  return requete ? new URL(requete.url).origin : 'http://localhost:3000';
 }
