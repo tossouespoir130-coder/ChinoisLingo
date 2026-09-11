@@ -27,7 +27,9 @@ import {
   Image as ImageIcon,
   ChevronDown,
   Crop,
-  LogOut
+  LogOut,
+  Receipt,
+  RotateCcw
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '@/context/ThemeContext';
@@ -38,7 +40,9 @@ import { updateProfileSettings } from '@/lib/services/profileService';
 import { GrilleTarifs } from '@/components/subscription/GrilleTarifs';
 import { useAbonnement } from '@/lib/payments/useAbonnement';
 import { formaterEcheance } from '@/lib/payments/subscription';
-import { BONUS_PREMIER_PAIEMENT_JOURS } from '@/lib/payments/plans';
+import { BONUS_PREMIER_PAIEMENT_JOURS, formaterMontant, getPlan } from '@/lib/payments/plans';
+import { fetchPaymentHistory, PaiementHistorique } from '@/lib/services/paymentService';
+import { Portal } from '@/components/ui/Portal';
 import { resumeOffreGratuite } from '@/lib/payments/acces';
 import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
 
@@ -86,8 +90,12 @@ function MonCompteContent() {
   const [activeTab, setActiveTab] = useState<'profile' | 'subscription' | 'preferences'>('profile');
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [profileSaveSuccess, setProfileSaveSuccess] = useState(false);
-  const [isUnsubscribeModalOpen, setIsUnsubscribeModalOpen] = useState(false);
-  const [unsubscribeSuccess, setUnsubscribeSuccess] = useState(false);
+  // Annulation / réactivation de l'abonnement par carte
+  const [modalAnnulationOuvert, setModalAnnulationOuvert] = useState(false);
+  const [modificationEnCours, setModificationEnCours] = useState(false);
+  const [erreurAbonnement, setErreurAbonnement] = useState<string | null>(null);
+  const [messageAbonnement, setMessageAbonnement] = useState<string | null>(null);
+  const [historique, setHistorique] = useState<PaiementHistorique[]>([]);
   const [mounted, setMounted] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [rawOriginalPhoto, setRawOriginalPhoto] = useState<string | null>(null);
@@ -182,7 +190,47 @@ function MonCompteContent() {
   }, [tabParam]);
 
   // Abonnement : état réel du profil + ouverture du portail de facturation
-  const { etat: etatAbonnement, ouvrirPortail } = useAbonnement();
+  const { etat: etatAbonnement, ouvrirPortail, modifierRenouvellement } = useAbonnement();
+
+  // Un abonnement par carte non annulé est le seul qui se renouvelle seul.
+  const renouvellementAuto =
+    etatAbonnement.fournisseur === 'stripe' && !etatAbonnement.resiliationProgrammee;
+
+  useEffect(() => {
+    if (activeTab !== 'subscription' || !user) return;
+    let annule = false;
+    fetchPaymentHistory().then((lignes) => {
+      if (!annule) setHistorique(lignes);
+    });
+    return () => {
+      annule = true;
+    };
+  }, [activeTab, user]);
+
+  /**
+   * Annuler ne coupe rien : le renouvellement s'arrête et l'accès complet
+   * reste ouvert jusqu'à la fin de la période payée.
+   */
+  const modifierAbonnement = async (action: 'annuler' | 'reprendre') => {
+    setModificationEnCours(true);
+    setErreurAbonnement(null);
+    setMessageAbonnement(null);
+
+    const resultat = await modifierRenouvellement(action);
+    setModificationEnCours(false);
+
+    if (!resultat.ok) {
+      setErreurAbonnement(resultat.erreur ?? 'La modification n’a pas pu être enregistrée.');
+      return;
+    }
+
+    setModalAnnulationOuvert(false);
+    setMessageAbonnement(
+      action === 'annuler'
+        ? `Annulation confirmée. Vous gardez l’accès complet jusqu’au ${formaterEcheance(etatAbonnement.finPeriode)}.`
+        : 'Votre abonnement est réactivé : il se renouvellera automatiquement.'
+    );
+  };
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Galerie d'avatars : des illustrations, jamais des photos de personnes.
@@ -501,7 +549,7 @@ function MonCompteContent() {
                 <p className="text-xs text-white/85 mt-1">
                   Accès complet jusqu’au {formaterEcheance(etatAbonnement.finPeriode)}
                   {etatAbonnement.fournisseur === 'stripe' && (
-                    <> • {etatAbonnement.resiliationProgrammee ? 'résiliation programmée' : 'renouvellement automatique par carte'}</>
+                    <> • {etatAbonnement.resiliationProgrammee ? 'annulé, sans renouvellement' : 'renouvellement automatique par carte'}</>
                   )}
                   {etatAbonnement.fournisseur === 'moneroo' && (
                     <> • réglé par Mobile Money, sans reconduction automatique</>
@@ -549,6 +597,175 @@ function MonCompteContent() {
             </div>
           )}
 
+          {/* ── Gestion de l'abonnement en cours ────────────────────── */}
+          {etatAbonnement.estAbonne && (
+            <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-5 shadow-xs">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#212121] dark:text-[#F5F5F5]">
+                <CreditCard className="w-4 h-4 text-[#6200EE]" />
+                <span>Gérer mon abonnement</span>
+              </div>
+
+              <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  ['Formule', etatAbonnement.plan?.nom ?? 'Pass ChinoisLingo'],
+                  [
+                    'Moyen de paiement',
+                    etatAbonnement.fournisseur === 'stripe' ? 'Carte bancaire' : 'Mobile Money',
+                  ],
+                  [
+                    'Statut',
+                    renouvellementAuto
+                      ? 'Actif — renouvellement automatique'
+                      : etatAbonnement.fournisseur === 'stripe'
+                        ? 'Annulé — actif jusqu’à l’échéance'
+                        : 'Actif — sans renouvellement automatique',
+                  ],
+                  [
+                    renouvellementAuto ? 'Prochain renouvellement' : 'Fin de l’accès complet',
+                    `${formaterEcheance(etatAbonnement.finPeriode)} (${
+                      etatAbonnement.joursRestants <= 1
+                        ? 'dernier jour'
+                        : `dans ${etatAbonnement.joursRestants} jours`
+                    })`,
+                  ],
+                ].map(([libelle, valeur]) => (
+                  <div
+                    key={libelle}
+                    className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D]"
+                  >
+                    <dt className="text-[10px] uppercase font-extrabold tracking-wider text-[#757575] dark:text-[#A0A0A0]">
+                      {libelle}
+                    </dt>
+                    <dd className="text-sm font-bold text-[#212121] dark:text-[#F5F5F5] mt-0.5">{valeur}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              {messageAbonnement && (
+                <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-[#00897B] dark:text-[#03DAC5] flex items-start gap-2">
+                  <Check className="w-4 h-4 shrink-0" />
+                  <span>{messageAbonnement}</span>
+                </div>
+              )}
+              {erreurAbonnement && !modalAnnulationOuvert && (
+                <div className="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs font-bold text-rose-600 dark:text-rose-400">
+                  {erreurAbonnement}
+                </div>
+              )}
+
+              {renouvellementAuto ? (
+                <>
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
+                    Votre carte sera débitée automatiquement le{' '}
+                    <strong className="text-[#212121] dark:text-white">{formaterEcheance(etatAbonnement.finPeriode)}</strong>.
+                    Vous pouvez annuler à tout moment : vous garderez l’accès complet jusqu’à cette date, sans nouveau prélèvement.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={ouvrirPortail}
+                      className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:bg-[#FAFAFA] dark:hover:bg-white/5 transition-all btn-press"
+                    >
+                      Carte et factures
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setErreurAbonnement(null);
+                        setModalAnnulationOuvert(true);
+                      }}
+                      className="px-4 py-2 rounded-full border border-rose-500/40 text-xs font-bold text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-all btn-press"
+                    >
+                      Annuler mon abonnement
+                    </button>
+                  </div>
+                </>
+              ) : etatAbonnement.fournisseur === 'stripe' ? (
+                <>
+                  <div className="p-4 rounded-2xl bg-[#FFC107]/10 border border-[#FFC107]/30 text-xs text-[#B78103] dark:text-[#FFC107] leading-relaxed">
+                    Votre abonnement est annulé : aucun prélèvement ne sera effectué. Vous gardez
+                    l’accès complet jusqu’au <strong>{formaterEcheance(etatAbonnement.finPeriode)}</strong>,
+                    puis votre compte repassera à l’offre gratuite. Votre progression est conservée.
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => modifierAbonnement('reprendre')}
+                      disabled={modificationEnCours}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold shadow-md shadow-[#6200EE]/25 transition-all btn-press disabled:opacity-60"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      {modificationEnCours ? 'Réactivation…' : 'Réactiver mon abonnement'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={ouvrirPortail}
+                      className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:bg-[#FAFAFA] dark:hover:bg-white/5 transition-all btn-press"
+                    >
+                      Carte et factures
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
+                    Réglé par Mobile Money : rien ne sera prélevé automatiquement, il n’y a donc rien
+                    à annuler. Votre accès complet reste actif jusqu’au{' '}
+                    <strong className="text-[#212121] dark:text-white">{formaterEcheance(etatAbonnement.finPeriode)}</strong>.
+                    Pour continuer ensuite, reprenez une formule : la nouvelle période s’ajoutera à la fin
+                    de celle en cours, sans perdre un seul jour.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      document.getElementById('formules')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                    className="px-4 py-2 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs font-bold shadow-md shadow-[#6200EE]/25 transition-all btn-press"
+                  >
+                    Renouveler mon abonnement
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+
+          {/* ── Historique des paiements ─────────────────────────────── */}
+          {historique.length > 0 && (
+            <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-3 shadow-xs">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#212121] dark:text-[#F5F5F5]">
+                <Receipt className="w-4 h-4 text-[#6200EE]" />
+                <span>Historique des paiements</span>
+              </div>
+              <ul className="divide-y divide-[#E0E0E0] dark:divide-[#2D2D2D]">
+                {historique.map((paiement) => (
+                  <li key={paiement.id} className="py-2.5 flex items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] block">
+                        {getPlan(paiement.plan_id)?.nom ?? paiement.plan_id}
+                      </span>
+                      <span className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
+                        {new Date(paiement.created_at).toLocaleDateString('fr-FR', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric',
+                        })}{' '}
+                        • {paiement.provider === 'stripe' ? 'Carte bancaire' : 'Mobile Money'}
+                      </span>
+                    </div>
+                    <span className="text-xs font-black text-[#212121] dark:text-[#F5F5F5] tabular-nums whitespace-nowrap">
+                      {formaterMontant(paiement.amount, paiement.currency === 'EUR' ? 'EUR' : 'XOF')}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {historique.some((paiement) => paiement.provider === 'stripe') && (
+                <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
+                  Les factures des renouvellements par carte se trouvent dans « Carte et factures ».
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Le rôle administrateur ouvre le catalogue indépendamment de la
               facturation : on le dit explicitement, sinon la carte « Compte
               gratuit » ci-dessus laisserait croire à un accès restreint. */}
@@ -573,7 +790,9 @@ function MonCompteContent() {
           )}
 
           {/* ── Les trois formules, dans les deux devises ────────────── */}
-          <GrilleTarifs paysProfil={profile?.country} />
+          <div id="formules" className="scroll-mt-4">
+            <GrilleTarifs paysProfil={profile?.country} />
+          </div>
 
           {/* ── Moyens de paiement & gestion du compte ──────────────── */}
           <div className="nixtio-card p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] space-y-4 shadow-xs">
@@ -649,29 +868,8 @@ function MonCompteContent() {
                 <span>Paiements chiffrés — aucune coordonnée bancaire n’est stockée par ChinoisLingo.</span>
               </div>
 
-              {/* La résiliation n'a de sens que pour un abonnement récurrent : un
-                  pass Mobile Money s'arrête de lui-même à son échéance. */}
-              {etatAbonnement.fournisseur === 'stripe' && etatAbonnement.estAbonne && (
-                <button
-                  type="button"
-                  onClick={() => setIsUnsubscribeModalOpen(true)}
-                  className="self-end sm:self-auto text-xs font-bold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:underline transition-all cursor-pointer whitespace-nowrap"
-                >
-                  Gérer ou résilier
-                </button>
-              )}
             </div>
 
-            {etatAbonnement.fournisseur === 'moneroo' && etatAbonnement.estAbonne && (
-              <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] leading-relaxed pt-1">
-                Votre pass Mobile Money est un paiement ponctuel : rien ne sera prélevé
-                automatiquement. Il vous suffira de reprendre une formule ci-dessus avant le{' '}
-                <strong className="text-[#212121] dark:text-white">
-                  {formaterEcheance(etatAbonnement.finPeriode)}
-                </strong>{' '}
-                pour ne pas interrompre votre progression.
-              </p>
-            )}
           </div>
         </div>
       )}
@@ -1368,73 +1566,72 @@ function MonCompteContent() {
         onSelectNewImage={() => fileInputRef.current?.click()}
       />
 
-      {/* MODAL DE CONFIRMATION DE DÉSABONNEMENT */}
-      {mounted && isUnsubscribeModalOpen && createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn">
-          <div 
-            className="w-full max-w-md bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4 animate-scaleUp text-left"
-            onClick={(e) => e.stopPropagation()}
+      {/* MODAL D'ANNULATION DE L'ABONNEMENT PAR CARTE */}
+      {modalAnnulationOuvert && (
+        <Portal>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn"
+            onClick={() => !modificationEnCours && setModalAnnulationOuvert(false)}
           >
-            <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center font-bold text-sm">
-                  ⚠️
-                </div>
+            <div
+              className="w-full max-w-md bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4 animate-scaleUp text-left"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
                 <h3 className="font-display font-bold text-base text-[#212121] dark:text-[#F5F5F5]">
-                  Gestion du désabonnement
+                  Annuler mon abonnement
                 </h3>
+                <button
+                  type="button"
+                  onClick={() => setModalAnnulationOuvert(false)}
+                  disabled={modificationEnCours}
+                  aria-label="Fermer"
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => setIsUnsubscribeModalOpen(false)}
-                className="w-7 h-7 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white"
-              >
-                ✕
-              </button>
-            </div>
 
-            {unsubscribeSuccess ? (
-              <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold space-y-2">
-                <p>✓ Ouverture de votre espace de facturation sécurisé…</p>
-                <p className="font-normal text-[11px]">Vous y gérez votre carte, vos factures et votre résiliation.</p>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
-                  Votre abonnement par carte est géré dans l&apos;espace de facturation sécurisé
-                  de notre prestataire de paiement. Vous y trouverez vos factures, votre moyen
-                  de paiement et la résiliation.
-                </p>
-                <ul className="space-y-1.5 text-xs text-[#757575] dark:text-[#A0A0A0] bg-[#FAFAFA] dark:bg-[#252525] p-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
-                  <li>• Vos accès restent actifs jusqu&apos;à la fin de votre période payée.</li>
-                  <li>• Aucun prélèvement supplémentaire après la résiliation.</li>
-                  <li>• Vous pouvez reprendre un abonnement à tout moment.</li>
-                </ul>
+              <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
+                Votre abonnement ne sera pas renouvelé. Vous gardez l’accès complet jusqu’au{' '}
+                <strong className="text-[#212121] dark:text-white">
+                  {formaterEcheance(etatAbonnement.finPeriode)}
+                </strong>
+                , puis votre compte repassera à l’offre gratuite.
+              </p>
+              <ul className="space-y-1.5 text-xs text-[#757575] dark:text-[#A0A0A0] bg-[#FAFAFA] dark:bg-[#252525] p-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <li>• Aucun prélèvement après cette date.</li>
+                <li>• Votre progression et vos mots enregistrés sont conservés.</li>
+                <li>• Vous pouvez réactiver votre abonnement à tout moment d’ici là.</li>
+              </ul>
 
-                <div className="flex items-center justify-end gap-2 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setIsUnsubscribeModalOpen(false)}
-                    className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
-                  >
-                    Conserver mon pass
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setUnsubscribeSuccess(true);
-                      ouvrirPortail();
-                    }}
-                    className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer"
-                  >
-                    Ouvrir l&apos;espace de facturation
-                  </button>
+              {erreurAbonnement && (
+                <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs font-bold text-rose-600 dark:text-rose-400">
+                  {erreurAbonnement}
                 </div>
+              )}
+
+              <div className="flex flex-wrap items-center justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setModalAnnulationOuvert(false)}
+                  disabled={modificationEnCours}
+                  className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
+                >
+                  Garder mon abonnement
+                </button>
+                <button
+                  type="button"
+                  onClick={() => modifierAbonnement('annuler')}
+                  disabled={modificationEnCours}
+                  className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-60"
+                >
+                  {modificationEnCours ? 'Annulation…' : 'Confirmer l’annulation'}
+                </button>
               </div>
-            )}
+            </div>
           </div>
-        </div>,
-        document.body
+        </Portal>
       )}
     </div>
   );

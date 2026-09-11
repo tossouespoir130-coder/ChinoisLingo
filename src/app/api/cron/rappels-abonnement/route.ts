@@ -12,8 +12,10 @@ export const maxDuration = 60;
 /**
  * GET /api/cron/rappels-abonnement
  *
- * Déclenchée chaque matin par Vercel Cron (voir `vercel.json`) : prévient les
- * abonnés Mobile Money que leur accès se termine dans 7 puis 3 jours.
+ * Déclenchée chaque jour par Vercel Cron (voir `vercel.json`) : e-mails
+ * 7 jours et 3 jours avant l'échéance, le jour même, puis 3 et 7 jours après
+ * tant que l'apprenant n'a pas renouvelé. Concerne les abonnements qui ne se
+ * renouvellent pas seuls : Mobile Money et cartes annulées.
  *
  * Vercel envoie `Authorization: Bearer <CRON_SECRET>` dès que la variable
  * CRON_SECRET existe dans le projet. Sans elle, la route refuse tout appel :

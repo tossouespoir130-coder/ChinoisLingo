@@ -33,6 +33,8 @@ export default function ConnexionPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // Décochée par défaut : l'apprenant choisit de rester connecté sur cet appareil.
+  const [resterConnecte, setResterConnecte] = useState(false);
   const [username, setUsername] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -130,7 +132,7 @@ export default function ConnexionPage() {
         }, 1000);
       }
     } else {
-      const { error } = await signInWithEmail(email, password);
+      const { error } = await signInWithEmail(email, password, resterConnecte);
       if (error) {
         setErrorMessage(error.message || 'Identifiants incorrects.');
       } else {
@@ -450,6 +452,24 @@ export default function ConnexionPage() {
                     </button>
                   </div>
                 </div>
+              )}
+
+              {/* « Rester connecté » : la session survit à la fermeture du navigateur */}
+              {mode === 'signin' && (
+                <label className="flex items-center gap-2.5 w-fit py-0.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={resterConnecte}
+                    onChange={(e) => setResterConnecte(e.target.checked)}
+                    className="w-4 h-4 rounded accent-[#6200EE] cursor-pointer"
+                  />
+                  <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
+                    Rester connecté
+                  </span>
+                  <span className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0]">
+                    sur cet appareil
+                  </span>
+                </label>
               )}
 
               {/* 3. Bouton Se Connecter / Créer mon compte */}

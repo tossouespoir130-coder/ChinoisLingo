@@ -1,5 +1,7 @@
 import 'server-only';
 
+import type { LiensDesabonnement } from './desabonnement';
+
 /**
  * Adaptateur Resend — envoi des e-mails transactionnels.
  *
@@ -28,6 +30,8 @@ export interface EmailAEnvoyer {
   sujet: string;
   html: string;
   texte: string;
+  /** Relances commerciales seulement : bouton natif « Se désabonner ». */
+  desabonnement?: LiensDesabonnement;
 }
 
 export type ResultatEnvoi = { ok: true; id: string } | { ok: false; erreur: string };
@@ -60,6 +64,16 @@ export async function envoyerEmail(email: EmailAEnvoyer): Promise<ResultatEnvoi>
         // Facultatif : sans adresse de réponse, les apprenants répondent à
         // l'expéditeur, souvent une adresse non surveillée.
         ...(process.env.EMAIL_REPONSE ? { reply_to: process.env.EMAIL_REPONSE } : {}),
+        // Bouton « Se désabonner » de Gmail et d'Apple Mail (RFC 8058) : il
+        // envoie un POST direct, sans que l'apprenant quitte sa boîte mail.
+        ...(email.desabonnement
+          ? {
+              headers: {
+                'List-Unsubscribe': `<${email.desabonnement.unClic}>`,
+                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+              },
+            }
+          : {}),
       }),
       signal: ctrl.signal,
     });

@@ -128,8 +128,46 @@ export function useAbonnement() {
     }
   }, [session]);
 
+  /**
+   * Annule — ou rétablit — le renouvellement automatique d'un abonnement par
+   * carte. L'accès reste ouvert jusqu'à la fin de la période payée.
+   */
+  const modifierRenouvellement = useCallback(
+    async (action: 'annuler' | 'reprendre'): Promise<{ ok: boolean; erreur?: string }> => {
+      if (!session?.access_token) {
+        return { ok: false, erreur: 'Votre session a expiré. Reconnectez-vous pour continuer.' };
+      }
+
+      try {
+        const reponse = await fetch('/api/paiement/abonnement', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session.access_token}`,
+          },
+          body: JSON.stringify({ action }),
+        });
+        const donnees = await reponse.json().catch(() => ({}));
+
+        if (!reponse.ok) {
+          return {
+            ok: false,
+            erreur: donnees.erreur ?? 'La modification n\'a pas pu être enregistrée.',
+          };
+        }
+
+        await refreshProfile();
+        return { ok: true };
+      } catch {
+        return { ok: false, erreur: 'Connexion au service de paiement impossible. Réessayez.' };
+      }
+    },
+    [session, refreshProfile]
+  );
+
   return {
     etat,
+    modifierRenouvellement,
     indetermine,
     estConnecte: session !== null,
     enCours,

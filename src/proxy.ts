@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import type { Database } from '@/lib/supabase/types';
+import { COOKIE_SESSION_EPHEMERE, adapterDuree } from '@/lib/supabase/session-ephemere';
 
 /**
  * Garde d'accès de l'application.
@@ -10,7 +11,7 @@ import type { Database } from '@/lib/supabase/types';
  * au même niveau que `app/` — à la racine du projet, il est ignoré
  * silencieusement, sans le moindre avertissement au démarrage.
  *
- * Deux niveaux de contrôle, tous deux CÔTÉ SERVEUR, avant tout rendu :
+ * Trois niveaux de contrôle, tous CÔTÉ SERVEUR, avant tout rendu :
  *
  *   1. Toute route applicative exige une session dont l'adresse e-mail est
  *      CONFIRMÉE. Sans cela, un compte fraîchement créé pouvait atteindre le
@@ -18,23 +19,34 @@ import type { Database } from '@/lib/supabase/types';
  *      protégeait ces pages, l'authentification étant entièrement côté
  *      navigateur.
  *   2. `/admin` exige en plus le rôle `admin`.
+ *   3. Les pages d'entrée (`/`, `/connexion`) renvoient un apprenant déjà
+ *      connecté vers son tableau de bord. Sans cela, taper l'adresse du site
+ *      affichait le formulaire de connexion même avec une session valide —
+ *      et « Rester connecté » n'aurait servi à rien.
  *
- * Les pages publiques (connexion, retour de paiement) et les routes API en
- * sont exclues : ces dernières portent leur propre garde et doivent pouvoir
- * répondre un code d'erreur JSON plutôt qu'une redirection HTML.
+ * Le retour de paiement et les routes API en sont exclus : ces dernières
+ * portent leur propre garde et doivent pouvoir répondre un code d'erreur JSON
+ * plutôt qu'une redirection HTML.
  */
 
 /** Pages accessibles sans session. */
-const ROUTES_PUBLIQUES = ['/connexion', '/abonnement/retour'];
+const ROUTES_PUBLIQUES = ['/abonnement/retour'];
+
+/** Pages d'entrée : un apprenant connecté n'a rien à y faire. */
+const PAGES_ENTREE = ['/', '/connexion'];
+
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
+
+  const chemin = request.nextUrl.pathname;
+  const estEntree = PAGES_ENTREE.includes(chemin);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   // Configuration absente : on refuse l'accès plutôt que de laisser passer.
   if (!supabaseUrl || !supabaseAnonKey) {
-    return NextResponse.redirect(new URL('/tableau-de-bord', request.url));
+    return estEntree ? response : NextResponse.redirect(new URL('/tableau-de-bord', request.url));
   }
 
   const supabase = createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
@@ -43,37 +55,61 @@ export async function proxy(request: NextRequest) {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet) {
+        // « Rester connecté » décoché : les jetons rafraîchis ici restent des
+        // cookies de session, sinon ce rafraîchissement les rendrait permanents.
+        const ephemere = request.cookies.has(COOKIE_SESSION_EPHEMERE);
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
         cookiesToSet.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
+          response.cookies.set(name, value, adapterDuree(options, ephemere))
         );
       },
     },
   });
 
-  // getUser() valide le jeton auprès de Supabase — contrairement à
-  // getSession(), qui se contente de lire le cookie sans le vérifier.
-  const chemin = request.nextUrl.pathname;
+  /**
+   * Redirection qui conserve les cookies de session rafraîchis par
+   * `getUser()` : une redirection nue les perdrait, et le navigateur
+   * présenterait ensuite un jeton de rafraîchissement déjà consommé.
+   */
+  const rediriger = (cible: string, parametres: Record<string, string> = {}) => {
+    const url = new URL(cible, request.url);
+    Object.entries(parametres).forEach(([cle, valeur]) => url.searchParams.set(cle, valeur));
+    const redirection = NextResponse.redirect(url);
+    response.cookies.getAll().forEach((cookie) => redirection.cookies.set(cookie));
+    return redirection;
+  };
+
   if (ROUTES_PUBLIQUES.some((r) => chemin.startsWith(r))) {
     return response;
   }
 
+  // Retour d'un lien reçu par e-mail (confirmation, mot de passe oublié) :
+  // la page doit elle-même échanger le code, on ne redirige pas.
+  if (chemin === '/connexion' && request.nextUrl.searchParams.has('code')) {
+    return response;
+  }
+
   try {
+    // getUser() valide le jeton auprès de Supabase — contrairement à
+    // getSession(), qui se contente de lire le cookie sans le vérifier.
     const {
       data: { user },
     } = await supabase.auth.getUser();
 
+    if (estEntree) {
+      if (user?.email_confirmed_at) return rediriger('/tableau-de-bord');
+      return chemin === '/' ? rediriger('/connexion') : response;
+    }
+
     if (!user) {
-      return NextResponse.redirect(new URL('/connexion', request.url));
+      return rediriger('/connexion');
     }
 
     // Adresse non confirmée : le compte existe mais n'est pas encore actif.
     // C'est ce contrôle qui manquait — un inscrit non vérifié accédait à tout.
     if (!user.email_confirmed_at) {
-      const url = new URL('/connexion', request.url);
-      url.searchParams.set('confirmation', 'requise');
-      return NextResponse.redirect(url);
+      return rediriger('/connexion', { confirmation: 'requise' });
     }
 
     // Au-delà, seul /admin impose une condition supplémentaire.
@@ -90,7 +126,7 @@ export async function proxy(request: NextRequest) {
     if (profil?.role !== 'admin') {
       // Redirection silencieuse : on ne confirme pas l'existence de /admin
       // à quelqu'un qui n'y a pas droit.
-      return NextResponse.redirect(new URL('/tableau-de-bord', request.url));
+      return rediriger('/tableau-de-bord');
     }
 
     return response;
@@ -107,15 +143,19 @@ export async function proxy(request: NextRequest) {
      * passer en cas de panne ouvrirait le contenu payant a tout le monde.
      */
     console.error('[proxy] verification de session impossible', erreur);
-    const url = new URL('/connexion', request.url);
-    url.searchParams.set('session', 'indisponible');
-    return NextResponse.redirect(url);
+
+    // Page d'entrée : on l'affiche. Rediriger /connexion vers /connexion
+    // bouclerait tant que Supabase reste injoignable.
+    if (estEntree) {
+      return chemin === '/' ? rediriger('/connexion') : response;
+    }
+    return rediriger('/connexion', { session: 'indisponible' });
   }
 }
 
 export const config = {
   /**
-   * Toutes les pages applicatives.
+   * Toutes les pages applicatives, plus les deux pages d'entrée.
    *
    * Sont volontairement exclus : `/api` (les routes portent leur propre garde
    * et répondent en JSON), les ressources internes de Next, et les fichiers
@@ -123,6 +163,8 @@ export const config = {
    * chaque image sans rien protéger.
    */
   matcher: [
+    '/',
+    '/connexion',
     '/admin/:path*',
     '/tableau-de-bord/:path*',
     '/vocabulaire/:path*',

@@ -1611,6 +1611,10 @@ function EcouteLectureContent() {
   const [activeSeries, setActiveSeries] = useState<ReadingItem | null>(null);
   const [activeEpisodeIndex, setActiveEpisodeIndex] = useState(0);
 
+  // Lecture dont la vidéo a été lancée : elle reste alors fixée en haut de
+  // l'écran pendant qu'on fait défiler les paroles (mobile).
+  const [videoLanceePour, setVideoLanceePour] = useState<string | null>(null);
+
   // Audio Playback State inside active reading
   const [isPlayingAll, setIsPlayingAll] = useState(false);
   const currentSentenceIndexState = useState(0);
@@ -1640,6 +1644,11 @@ function EcouteLectureContent() {
   const displayedTitlePinyin = currentEpisode ? currentEpisode.titlePinyin : (activeReading?.titlePinyin || '');
   const displayedDuration = currentEpisode ? currentEpisode.duration : (activeReading?.duration || '');
   const displayedDescription = currentEpisode ? currentEpisode.description : (activeReading?.description || '');
+
+  // Avec une vidéo, le lecteur passe sur deux colonnes à partir de `lg` :
+  // vidéo fixée à gauche, paroles à droite.
+  const avecVideo = Boolean(activeReading?.youtubeId);
+  const videoLancee = activeReading !== null && videoLanceePour === activeReading.id;
 
   // Sync with Supabase & localStorage safely after mount
   useEffect(() => {
@@ -1992,9 +2001,13 @@ function EcouteLectureContent() {
       {/* VIEW A: FULL-SCREEN IMMERSIVE READER / SONG PLAYER VIEW                   */}
       {/* ========================================================================= */}
       {activeReading ? (
-        <div className="space-y-6 animate-fadeIn">
+        <div
+          className={`space-y-6 animate-fadeIn ${
+            avecVideo ? 'lg:grid lg:grid-cols-12 lg:gap-6 lg:space-y-0 lg:items-start' : ''
+          }`}
+        >
           {/* Top Bar: Back Button, Multi-line Title (L1: French, L2: Hanzi, L3: Pinyin), Audio Action Buttons at Top Right */}
-          <div className="flex items-start justify-between gap-3 p-3.5 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+          <div className="lg:col-span-12 flex items-start justify-between gap-3 p-3.5 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
             <div className="flex items-start gap-2.5 sm:gap-3.5 min-w-0 flex-1">
               <button
                 onClick={closeReading}
@@ -2075,19 +2088,35 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* Custom Branded Video Player 100% ChinoisLingo (Barre violette #6200EE, 1-clic direct, sans barre rouge YouTube) */}
+          {/*
+            Lecteur vidéo 100 % ChinoisLingo, visible pendant toute la lecture
+            des paroles : fixé en haut de l'écran sur mobile dès qu'il est
+            lancé, fixé dans la colonne de gauche sur ordinateur. Sur mobile,
+            son parent est la page de lecture entière : un élément `sticky` ne
+            reste accroché qu'à l'intérieur de son parent.
+          */}
           {activeReading.youtubeId && (
-            <div className="w-full max-w-4xl mx-auto">
+            <div
+              className={`z-30 lg:col-start-1 lg:col-span-7 lg:row-start-2 lg:sticky lg:top-6 lg:self-start ${
+                activeReading.characters && activeReading.characters.length > 0 ? 'lg:row-span-3' : 'lg:row-span-2'
+              } ${
+                videoLancee
+                  ? 'max-lg:sticky max-lg:top-0 max-lg:py-2 max-lg:bg-white/90 max-lg:dark:bg-[#121212]/95 max-lg:backdrop-blur-xl'
+                  : ''
+              }`}
+            >
               <ChinoisLingoVideoPlayer
+                key={activeReading.youtubeId}
                 youtubeId={activeReading.youtubeId}
                 title={`${displayedTitleFr} - ${displayedTitleZh}`}
                 thumbnailUrl={activeReading.imageUrl}
+                onStart={() => setVideoLanceePour(activeReading.id)}
               />
             </div>
           )}
 
           {/* Continuous Description & Timer Banner (Couleur principale violette ChinoisLingo) */}
-          <div className="w-full p-4 sm:p-5 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
+          <div className="lg:col-start-8 lg:col-span-5 min-w-0 w-full p-4 sm:p-5 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
             <p className="flex-1 mr-4 leading-relaxed font-medium">
               {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
             </p>
@@ -2101,7 +2130,7 @@ function EcouteLectureContent() {
           {/* SECTION LES PERSONNAGES (CADRAGE CONTEXTUEL AVANT TRANSCRIPTION)          */}
           {/* ========================================================================= */}
           {activeReading.characters && activeReading.characters.length > 0 && (
-            <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
+            <div className="lg:col-start-8 lg:col-span-5 min-w-0 nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
                   <Users className="w-4 h-4" />
@@ -2177,9 +2206,9 @@ function EcouteLectureContent() {
           )}
 
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
-          <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
+          <div className="lg:col-start-8 lg:col-span-5 min-w-0 nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
             {/* Header: Title + Transparent Interactive Audio Controller with Speed Control */}
-            <div className="pb-4 mb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className={`pb-4 mb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${avecVideo ? 'lg:flex-col lg:items-start' : ''}`}>
               <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#00796B] dark:text-[#03DAC5] flex items-center gap-2">
                 {activeReading.type === 'chansons' ? <Music className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
                 <span>{activeReading.type === 'chansons' ? 'Paroles & Traduction (Lyrics)' : 'Texte & Transcription Synchronisée'}</span>
@@ -2368,7 +2397,7 @@ function EcouteLectureContent() {
           {/* SECTION 📝 生词 — NOUVEAUX MOTS & VOCABULAIRE CLÉ (EN BAS DE L'HISTOIRE) */}
           {/* ========================================================================= */}
           {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
-            <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
+            <div className="lg:col-span-12 nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#FFD700]" />
@@ -2422,7 +2451,7 @@ function EcouteLectureContent() {
           )}
 
           {/* Bottom Completion Card: Prominent "Marquer comme terminé" Button with Paillettes Celebration */}
-          <div className="nixtio-card p-6 sm:p-7 bg-gradient-to-r from-[#00897B] via-[#00796B] to-[#004D40] text-white rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-lg shadow-[#00897B]/25">
+          <div className="lg:col-span-12 nixtio-card p-6 sm:p-7 bg-gradient-to-r from-[#00897B] via-[#00796B] to-[#004D40] text-white rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-lg shadow-[#00897B]/25">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] uppercase font-black text-[#03DAC5] tracking-wider px-2 py-0.5 rounded-md bg-white/10 border border-white/20">

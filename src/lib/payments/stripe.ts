@@ -199,6 +199,36 @@ export async function creerSessionPortail(params: {
   }
 }
 
+/**
+ * Annule — ou rétablit — le renouvellement automatique.
+ *
+ * L'abonnement reste actif jusqu'à la fin de la période payée : Stripe ne le
+ * supprime qu'à l'échéance, ce qui déclenche alors
+ * `customer.subscription.deleted` et la révocation de l'accès. L'apprenant
+ * profite donc de tout ce qu'il a payé.
+ */
+export async function programmerFinAbonnementStripe(
+  abonnementId: string,
+  annuler: boolean
+): Promise<
+  | { ok: true; resiliationProgrammee: boolean; finPeriode: Date | null }
+  | { ok: false; erreur: string }
+> {
+  try {
+    const abonnement = await stripeClient().subscriptions.update(abonnementId, {
+      cancel_at_period_end: annuler,
+    });
+    const fin = finPeriodeAbonnement(abonnement);
+    return {
+      ok: true,
+      resiliationProgrammee: abonnement.cancel_at_period_end,
+      finPeriode: fin ? new Date(fin * 1000) : null,
+    };
+  } catch (err) {
+    return { ok: false, erreur: (err as Error).message };
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────
 // Webhooks
 // ─────────────────────────────────────────────────────────────────────────

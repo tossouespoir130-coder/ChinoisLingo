@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { createClient } from '@/lib/supabase/client';
+import { createClient, definirSessionEphemere } from '@/lib/supabase/client';
 import { Profile } from '@/lib/supabase/types';
 import { fetchUserProfile, recordDailyActivity } from '@/lib/services/profileService';
 
@@ -11,7 +11,12 @@ interface AuthContextType {
   session: Session | null;
   profile: Profile | null;
   isLoading: boolean;
-  signInWithEmail: (email: string, password?: string) => Promise<{ error: Error | null }>;
+  signInWithEmail: (
+    email: string,
+    password?: string,
+    /** « Rester connecté » : la session survit à la fermeture du navigateur. */
+    resterConnecte?: boolean
+  ) => Promise<{ error: Error | null }>;
   signUpWithEmail: (
     email: string,
     password?: string,
@@ -67,8 +72,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const signInWithEmail = async (email: string, password?: string) => {
+  const signInWithEmail = async (email: string, password?: string, resterConnecte = true) => {
     if (password) {
+      // Avant la connexion : les cookies de session créés par Supabase
+      // héritent de ce choix (voir session-ephemere.ts).
+      definirSessionEphemere(!resterConnecte);
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       return { error: error ? new Error(error.message) : null };
     } else {
@@ -154,6 +162,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     await supabase.auth.signOut();
+    // Le prochain apprenant sur cet appareil repart du choix par défaut.
+    definirSessionEphemere(false);
     setUser(null);
     setSession(null);
     setProfile(null);

@@ -43,19 +43,24 @@ function ContainerThemeSwitch() {
 }
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
+  /*
+   * `overflow-x-clip` plutôt que `overflow-x-hidden` seul : `hidden` fait de
+   * chaque conteneur une zone de défilement, ce qui empêche tout élément
+   * `position: sticky` de rester accroché à l'écran (vidéo des chansons).
+   */
   return (
     <ThemeProvider>
       <PreferencesProvider>
-        <div className="min-h-screen w-full max-w-full overflow-x-hidden app-atmosphere flex items-center justify-center p-0 sm:p-4 lg:p-8">
+        <div className="min-h-screen w-full max-w-full overflow-x-hidden supports-[overflow:clip]:overflow-x-clip app-atmosphere flex items-center justify-center p-0 sm:p-4 lg:p-8">
           {/* Main Application Container Card */}
-          <div className="w-full max-w-7xl min-h-screen sm:min-h-[92vh] bg-white/90 dark:bg-[#121212]/95 backdrop-blur-xl sm:rounded-[36px] border-0 sm:border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xl p-3.5 sm:p-6 lg:p-8 flex flex-col justify-between relative overflow-x-hidden">
+          <div className="w-full max-w-7xl min-h-screen sm:min-h-[92vh] bg-white/90 dark:bg-[#121212]/95 backdrop-blur-xl sm:rounded-[36px] border-0 sm:border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xl p-3.5 sm:p-6 lg:p-8 flex flex-col justify-between relative overflow-x-hidden supports-[overflow:clip]:overflow-x-clip">
             
             <div className="flex-1 flex flex-col">
               {/* Top Navigation Bar */}
               <TopNav />
 
               {/* Dynamic Page Content with comfortable bottom padding on mobile/tablet for the bottom bar */}
-              <main className="flex-1 mt-4 sm:mt-6 w-full max-w-full min-w-0 overflow-x-hidden pb-14 sm:pb-16 xl:pb-0">
+              <main className="flex-1 mt-4 sm:mt-6 w-full max-w-full min-w-0 overflow-x-hidden supports-[overflow:clip]:overflow-x-clip pb-14 sm:pb-16 xl:pb-0">
                 {/* Accroche du bonus de bienvenue / rappel d'échéance.
                     Le verrouillage n'est plus global : chaque rubrique applique
                     ses propres quotas via `acces.ts`. */}

@@ -346,6 +346,7 @@ export type Database = {
           id: string
           last_active_date: string | null
           pinyin_enabled: boolean | null
+          relances_desactivees: boolean
           role: string
           streak_days: number | null
           bonus_7j_accorde: boolean
@@ -378,6 +379,7 @@ export type Database = {
           id: string
           last_active_date?: string | null
           pinyin_enabled?: boolean | null
+          relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
           bonus_7j_accorde?: boolean
@@ -410,6 +412,7 @@ export type Database = {
           id?: string
           last_active_date?: string | null
           pinyin_enabled?: boolean | null
+          relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
           bonus_7j_accorde?: boolean

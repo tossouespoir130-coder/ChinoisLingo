@@ -68,6 +68,14 @@
 
 html, body {
   overflow-x: hidden;
+  /*
+   * `clip` masque le débordement horizontal comme `hidden`, mais sans faire de
+   * body un conteneur de défilement. Avec `hidden` seul, aucun élément
+   * `position: sticky` ne pouvait rester accroché : la vidéo des chansons
+   * disparaissait dès qu'on faisait défiler les paroles. Les navigateurs qui
+   * ignorent `clip` conservent `hidden`.
+   */
+  overflow-x: clip;
   max-width: 100vw;
 }
 

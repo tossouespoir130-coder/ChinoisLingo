@@ -4,21 +4,30 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { urlDeBase } from '@/lib/payments/session-serveur';
 import { getPlan, Plan } from '@/lib/payments/plans';
 import { configurationEmailPrete, envoyerEmail } from './resend';
+import { lienDesabonnement } from './desabonnement';
 import {
   ContenuEmail,
+  DonneesEcheance,
   JOURS_RAPPEL,
   modeleConfirmation,
+  modeleExpiration,
   modeleRappelJ3,
   modeleRappelJ7,
+  modeleRelance,
 } from './modeles';
 
 /**
- * E-mails d'abonnement — réservés aux abonnés Mobile Money (Moneroo).
+ * E-mails d'abonnement.
  *
- * Moneroo ne reconduit rien : sans rappel, l'apprenant découvre la fin de son
- * accès en se heurtant à un cadenas. Les abonnés Stripe ne reçoivent rien
- * d'ici : leur carte est prélevée automatiquement et Stripe envoie ses
- * propres reçus.
+ *   • Confirmation à l'activation — Mobile Money uniquement : Stripe envoie
+ *     déjà ses propres reçus.
+ *   • Série d'échéance : 7 jours et 3 jours avant, le jour même, puis 3 et 7
+ *     jours après si l'apprenant n'a pas renouvelé. Elle concerne les
+ *     abonnements qui ne se renouvellent pas seuls : Mobile Money (Moneroo ne
+ *     reconduit rien) et cartes dont l'apprenant a annulé le renouvellement.
+ *
+ * Renouveler arrête la série d'elle-même : l'échéance recule, ou la carte
+ * reprend son renouvellement automatique, et l'apprenant sort des fenêtres.
  *
  * Aucune fonction ne lève d'exception : comme pour les notifications in-app,
  * un e-mail manqué ne doit jamais faire échouer un paiement ni la tâche
@@ -26,15 +35,29 @@ import {
  */
 
 type ClientAdmin = ReturnType<typeof createAdminClient>;
-type TypeEmail = 'confirmation' | 'rappel_j7' | 'rappel_j3';
-type TypeRappel = Exclude<TypeEmail, 'confirmation'>;
+type TypeEcheance = 'rappel_j7' | 'rappel_j3' | 'expiration_j0' | 'relance_j3' | 'relance_j7';
+type TypeEmail = 'confirmation' | TypeEcheance;
+
+const TYPES_ECHEANCE: TypeEcheance[] = [
+  'rappel_j7',
+  'rappel_j3',
+  'expiration_j0',
+  'relance_j3',
+  'relance_j7',
+];
 
 const JOUR_MS = 86_400_000;
 
+/** Jours après l'échéance où partent les relances. */
+const JOURS_RELANCE = { j3: 3, j7: 7 } as const;
+
+/** Au-delà, la série est close : plus aucun e-mail pour cette échéance. */
+const FIN_DE_SERIE_JOURS = 13;
+
 /**
  * Plafond d'envois par exécution, pour tenir dans la durée maximale de la
- * route. Le surplus éventuel part le lendemain : chaque fenêtre de rappel
- * dure plusieurs jours.
+ * route. Le surplus éventuel part le lendemain : chaque fenêtre dure
+ * plusieurs jours.
  */
 const ENVOIS_MAX_PAR_EXECUTION = 80;
 
@@ -86,31 +109,79 @@ export async function envoyerConfirmationAbonnement(
 }
 
 // ─────────────────────────────────────────────────────────────────────────
-// Rappels avant échéance
+// Série d'échéance
 // ─────────────────────────────────────────────────────────────────────────
 
+/** Écart en jours calendaires (UTC) entre la date d'échéance et aujourd'hui. */
+export function ecartJours(fin: Date, maintenant: Date): number {
+  const jour = (d: Date) => Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  return Math.round((jour(fin) - jour(maintenant)) / JOUR_MS);
+}
+
 /**
- * Quel rappel doit partir pour une échéance donnée ? `null` hors fenêtre.
+ * Quel e-mail de la série doit partir pour une échéance donnée ? `null` hors
+ * série.
  *
  * Des fenêtres plutôt que des jours exacts : Vercel ne garantit ni qu'une
- * exécution planifiée a bien lieu, ni qu'elle n'a lieu qu'une fois. Un rappel
- * manqué un jour part donc le lendemain avec le bon décompte, et le registre
- * empêche tout doublon. Même arrondi que `lireEtatAbonnement`, pour que
- * l'e-mail et la page Mon compte annoncent le même nombre de jours.
+ * exécution planifiée a bien lieu, ni qu'elle n'a lieu qu'une fois. Un
+ * e-mail manqué un jour part donc le lendemain, et le registre empêche tout
+ * doublon :
+ *   7 à 4 jours avant → rappel J-7        3 à 1 jour avant → rappel J-3
+ *   jour J à J+2      → échéance          J+3 à J+6        → relance J+3
+ *   J+7 à J+13        → relance J+7       au-delà          → plus rien
  */
-export function rappelDu(
+export function emailDu(
   finPeriode: Date,
   maintenant: Date
-): { type: TypeRappel; joursRestants: number } | null {
-  const joursRestants = Math.ceil((finPeriode.getTime() - maintenant.getTime()) / JOUR_MS);
-  if (joursRestants <= 0) return null;
-  if (joursRestants <= JOURS_RAPPEL.j3) return { type: 'rappel_j3', joursRestants };
-  if (joursRestants <= JOURS_RAPPEL.j7) return { type: 'rappel_j7', joursRestants };
+): { type: TypeEcheance; ecart: number } | null {
+  const ecart = ecartJours(finPeriode, maintenant);
+  if (ecart > JOURS_RAPPEL.j7) return null;
+  if (ecart > JOURS_RAPPEL.j3) return { type: 'rappel_j7', ecart };
+  if (ecart >= 1) return { type: 'rappel_j3', ecart };
+  if (ecart > -JOURS_RELANCE.j3) return { type: 'expiration_j0', ecart };
+  if (ecart > -JOURS_RELANCE.j7) return { type: 'relance_j3', ecart };
+  if (ecart >= -FIN_DE_SERIE_JOURS) return { type: 'relance_j7', ecart };
   return null;
 }
 
+/**
+ * Un abonnement par carte non annulé se renouvelle seul : son échéance ne
+ * menace rien, aucune série ne le concerne.
+ */
+function seRenouvelleSeul(profil: {
+  subscription_provider: string | null;
+  cancel_at_period_end: boolean;
+  stripe_subscription_id: string | null;
+}): boolean {
+  return (
+    profil.subscription_provider === 'stripe' &&
+    !profil.cancel_at_period_end &&
+    profil.stripe_subscription_id !== null
+  );
+}
+
+/** Les e-mails postérieurs à l'échéance invitent à se réabonner : ce sont des messages commerciaux. */
+function estRelance(type: TypeEcheance): boolean {
+  return type === 'relance_j3' || type === 'relance_j7';
+}
+
+function contenuPour(type: TypeEcheance, donnees: DonneesEcheance): ContenuEmail {
+  switch (type) {
+    case 'rappel_j7':
+      return modeleRappelJ7(donnees);
+    case 'rappel_j3':
+      return modeleRappelJ3(donnees);
+    case 'expiration_j0':
+      return modeleExpiration(donnees);
+    case 'relance_j3':
+      return modeleRelance(donnees, false);
+    case 'relance_j7':
+      return modeleRelance(donnees, true);
+  }
+}
+
 export interface BilanRappels {
-  /** Abonnés Mobile Money dans une fenêtre de rappel. */
+  /** Abonnés dans une fenêtre de la série. */
   candidats: number;
   envoyes: number;
   dejaEnvoyes: number;
@@ -118,27 +189,25 @@ export interface BilanRappels {
   erreur?: string;
 }
 
-/** Tâche quotidienne : prévient les abonnés Mobile Money avant leur échéance. */
+/** Tâche quotidienne : un e-mail par abonné dont l'échéance tombe dans une fenêtre. */
 export async function envoyerRappelsEcheance(
   admin: ClientAdmin,
   maintenant: Date = new Date()
 ): Promise<BilanRappels> {
   const bilan: BilanRappels = { candidats: 0, envoyes: 0, dejaEnvoyes: 0, echecs: 0 };
 
-  const debut = maintenant.toISOString();
-  const horizon = new Date(maintenant.getTime() + JOURS_RAPPEL.j7 * JOUR_MS).toISOString();
+  // Un jour de marge de chaque côté : `emailDu` tranche ensuite au jour près.
+  const debut = new Date(maintenant.getTime() - (FIN_DE_SERIE_JOURS + 1) * JOUR_MS).toISOString();
+  const horizon = new Date(maintenant.getTime() + (JOURS_RAPPEL.j7 + 1) * JOUR_MS).toISOString();
 
-  // Seul compte le fournisseur de la période EN COURS : un apprenant passé à
-  // Stripe, ou revenu au palier gratuit, sort de lui-même de la sélection.
   const { data: profils, error: erreurProfils } = await admin
     .from('profiles')
-    .select('id, email, first_name, full_name, subscription_plan, current_period_end')
-    .eq('subscription_provider', 'moneroo')
+    .select(
+      'id, email, first_name, full_name, subscription_plan, subscription_provider, subscription_currency, cancel_at_period_end, stripe_subscription_id, current_period_end, relances_desactivees'
+    )
+    .in('subscription_provider', ['moneroo', 'stripe'])
     .gt('current_period_end', debut)
     .lte('current_period_end', horizon)
-    // Échéances les plus proches d'abord : si le plafond est atteint, ce sont
-    // les rappels les moins urgents qui attendent le lendemain.
-    .order('current_period_end', { ascending: true })
     .limit(1000);
 
   if (erreurProfils) {
@@ -146,17 +215,17 @@ export async function envoyerRappelsEcheance(
     return { ...bilan, erreur: 'Lecture des échéances impossible.' };
   }
 
-  // Rappels déjà partis pour ces échéances. Les écarter d'emblée évite de
+  // E-mails déjà partis pour ces échéances. Les écarter d'emblée évite de
   // repasser par le verrou pour chacun, jour après jour.
   const { data: dejaPartis, error: erreurRegistre } = await admin
     .from('emails_abonnement')
     .select('user_id, type, echeance')
-    .in('type', ['rappel_j7', 'rappel_j3'])
+    .in('type', TYPES_ECHEANCE)
     .gt('echeance', debut)
     .lte('echeance', horizon);
 
   if (erreurRegistre) {
-    // Le plus souvent : migration 20260911090000 pas encore appliquée.
+    // Le plus souvent : migration du registre pas encore appliquée.
     console.error('[emails] registre des envois illisible', erreurRegistre);
     return { ...bilan, erreur: 'Registre des envois illisible.' };
   }
@@ -165,18 +234,37 @@ export async function envoyerRappelsEcheance(
     `${userId}|${type}|${new Date(echeance).getTime()}`;
   const dejaFaits = new Set((dejaPartis ?? []).map((e) => cle(e.user_id, e.type, e.echeance)));
 
-  const base = urlDeBase();
+  const aTraiter: {
+    profil: NonNullable<typeof profils>[number];
+    echeance: string;
+    finPeriode: Date;
+    type: TypeEcheance;
+    ecart: number;
+  }[] = [];
 
   for (const profil of profils ?? []) {
-    if (!profil.current_period_end) continue;
-
+    if (!profil.current_period_end || seRenouvelleSeul(profil)) continue;
     const finPeriode = new Date(profil.current_period_end);
-    const rappel = rappelDu(finPeriode, maintenant);
-    if (!rappel) continue;
+    const email = emailDu(finPeriode, maintenant);
+    if (!email) continue;
 
+    // Refus exprimé depuis un e-mail : seules les relances commerciales
+    // s'arrêtent, les messages de service continuent.
+    if (profil.relances_desactivees && estRelance(email.type)) continue;
+
+    aTraiter.push({ profil, echeance: profil.current_period_end, finPeriode, ...email });
+  }
+
+  // Les e-mails les plus proches de l'échéance d'abord : si le plafond est
+  // atteint, ce sont les moins urgents qui attendent le lendemain.
+  aTraiter.sort((a, b) => Math.abs(a.ecart) - Math.abs(b.ecart));
+
+  const base = urlDeBase();
+
+  for (const { profil, echeance, finPeriode, type, ecart } of aTraiter) {
     bilan.candidats++;
 
-    if (dejaFaits.has(cle(profil.id, rappel.type, profil.current_period_end))) {
+    if (dejaFaits.has(cle(profil.id, type, echeance))) {
       bilan.dejaEnvoyes++;
       continue;
     }
@@ -190,20 +278,26 @@ export async function envoyerRappelsEcheance(
       continue;
     }
 
-    const donnees = {
+    const donnees: DonneesEcheance = {
       base,
       prenom: prenomDe(profil),
       nomPlan: getPlan(profil.subscription_plan ?? '')?.nom ?? 'Pass ChinoisLingo',
       finPeriode,
-      joursRestants: rappel.joursRestants,
+      ecart,
+      terminee: finPeriode.getTime() <= maintenant.getTime(),
+      moyen: profil.subscription_provider === 'stripe' ? 'carte' : 'mobile_money',
+      devise: profil.subscription_currency === 'EUR' ? 'EUR' : 'XOF',
+      // Lien légal de désabonnement : uniquement sur les relances commerciales.
+      desabonnement: estRelance(type) ? lienDesabonnement(base, profil.id) : undefined,
     };
 
+    const contenu = contenuPour(type, donnees);
     const issue = await envoyerUneFois(admin, {
       userId: profil.id,
-      type: rappel.type,
-      echeance: profil.current_period_end,
+      type,
+      echeance,
       destinataire,
-      contenu: rappel.type === 'rappel_j3' ? modeleRappelJ3(donnees) : modeleRappelJ7(donnees),
+      contenu,
     });
 
     if (issue === 'envoye') {
