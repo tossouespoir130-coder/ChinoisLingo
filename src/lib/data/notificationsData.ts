@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_comment_tu_tappelles',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Comment tu t’appelles ? — 你叫什么名字？ 🎬',
+    message: 'Apprenez à demander et donner votre prénom en chinois avec cette nouvelle vidéo immersive entre Chén Yǎ et Espoir.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_comment_tu_tappelles',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_merci_wang',
     source: 'founder',
     founderName: 'Espoir Chinois',

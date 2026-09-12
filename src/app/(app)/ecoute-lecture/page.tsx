@@ -618,6 +618,62 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '不客气', pinyin: 'bú kèqi', french: 'de rien', role: 'Formule de politesse' },
     ]
   },
+  {
+    id: 'video_comment_tu_tappelles',
+    titleFr: 'Comment tu t’appelles ?',
+    titleZh: '你叫什么名字？',
+    titlePinyin: 'Nǐ jiào shénme míngzi?',
+    type: 'videos',
+    level: 'HSK 1',
+    duration: '0 min 20',
+    description: 'Chén Yǎ rencontre Espoir dans un parc pour apprendre à demander et dire son prénom en chinois.',
+    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#6200EE] to-[#3700B3]',
+    characters: [
+      {
+        name: '陈雅',
+        nameZh: '陈雅',
+        pinyin: 'Chén Yǎ',
+        role: 'Lectrice dans le parc',
+        description: 'Assise sur un banc dans un parc, en train de lire. Aujourd’hui, elle fait la connaissance d’Espoir.',
+        color: 'turquoise',
+      },
+      {
+        name: '苏波',
+        nameZh: '苏波',
+        pinyin: 'Sūbō',
+        role: 'Passant (Espoir)',
+        description: 'De passage dans le parc. Aujourd’hui, il rencontre Chén Yǎ sur un banc.',
+        color: 'violet',
+      }
+    ],
+    sentences: [
+      {
+        id: 'nom_1',
+        speaker: '陈雅',
+        speakerRole: 'Chén Yǎ',
+        speakerColor: 'turquoise',
+        hanzi: '你叫什么名字？',
+        pinyin: 'Nǐ jiào shénme míngzi?',
+        french: 'Comment tu t’appelles ?',
+      },
+      {
+        id: 'nom_2',
+        speaker: '苏波',
+        speakerRole: 'Espoir',
+        speakerColor: 'violet',
+        hanzi: '我叫苏波。',
+        pinyin: 'Wǒ jiào Sūbō.',
+        french: 'Je m’appelle Sūbō.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+      { hanzi: '什么', pinyin: 'shénme', french: 'quoi, quel', role: 'Pronom interrogatif' },
+      { hanzi: '名字', pinyin: 'míngzi', french: 'nom, prénom', role: 'Nom commun' },
+      { hanzi: '苏波', pinyin: 'Sūbō', french: 'Espoir (nom propre)', role: 'Nom propre' },
+    ]
+  },
 
   // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
   {
