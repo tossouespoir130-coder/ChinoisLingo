@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_merci_wang',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Merci ! — 谢谢！ 🎬',
+    message: 'Apprenez à dire merci et de rien en chinois avec cette courte scène du quotidien entre Grand-mère Wang et Xiao Le.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_merci_wang',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_bonjour_subo',
     source: 'founder',
     founderName: 'Espoir Chinois',
@@ -22,7 +36,7 @@ export const initialNotifications: NotificationItem[] = [
     founderAvatar: '/espoir-chinois.jpg',
     type: 'video',
     title: 'Bonjour ! — 你好！ 🎬',
-    message: 'Découvrez les salutations indispensables du chinois du quotidien avec Lily et Espoir (苏波) dans cette nouvelle vidéo.',
+    message: 'Découvrez les salutations indispensables du chinois du quotidien avec Lily et Espoir dans cette nouvelle vidéo.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=videos&id=video_bonjour_subo',

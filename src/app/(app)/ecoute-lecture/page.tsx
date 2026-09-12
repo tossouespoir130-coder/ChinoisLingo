@@ -564,6 +564,60 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '你好', pinyin: 'nǐ hǎo', french: 'bonjour', role: 'Formule de salutation' },
     ]
   },
+  {
+    id: 'video_merci_wang',
+    titleFr: 'Merci ! (Dire Merci)',
+    titleZh: '谢谢！',
+    titlePinyin: 'Xièxie!',
+    type: 'videos',
+    level: 'HSK 1',
+    duration: '0 min 20',
+    description: 'Grand-mère Wang offre une pomme à Xiao Le pour apprendre à remercier et répondre poliment en chinois.',
+    imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#6200EE] to-[#3700B3]',
+    characters: [
+      {
+        name: '王奶奶',
+        nameZh: '王奶奶',
+        pinyin: 'Wáng nǎinai',
+        role: 'Grand-mère Wang',
+        description: 'Assise devant chez elle avec un panier de fruits. Aujourd’hui, elle offre une pomme à Xiǎo Lè qui passe par là.',
+        color: 'violet',
+      },
+      {
+        name: '小乐',
+        nameZh: '小乐',
+        pinyin: 'Xiǎo Lè',
+        role: 'Écolier',
+        description: 'Un petit garçon qui rentre de l’école. Aujourd’hui, il reçoit une pomme de la part de Grand-mère Wang.',
+        color: 'turquoise',
+      }
+    ],
+    sentences: [
+      {
+        id: 'merci_1',
+        speaker: '小乐',
+        speakerRole: 'Xiao Le',
+        speakerColor: 'turquoise',
+        hanzi: '谢谢！',
+        pinyin: 'Xièxie!',
+        french: 'Merci !',
+      },
+      {
+        id: 'merci_2',
+        speaker: '王奶奶',
+        speakerRole: 'Grand-mère Wang',
+        speakerColor: 'violet',
+        hanzi: '不客气！',
+        pinyin: 'Bú kèqi!',
+        french: 'De rien !',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '谢谢', pinyin: 'xièxie', french: 'merci', role: 'Formule de politesse' },
+      { hanzi: '不客气', pinyin: 'bú kèqi', french: 'de rien', role: 'Formule de politesse' },
+    ]
+  },
 
   // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
   {
