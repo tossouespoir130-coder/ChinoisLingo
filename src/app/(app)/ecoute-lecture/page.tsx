@@ -1702,7 +1702,7 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 3',
     duration: '4 min 30',
     artist: 'Na Ying',
-    youtubeId: 'rRuL3pxPL9w',
+    youtubeId: '5JXOLr-32Wc',
     description: 'Chanson envoûtante et puissante de Na Ying (B.O. du film « A or B »). Une ode à la résilience et à la renaissance.',
     imageUrl: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
