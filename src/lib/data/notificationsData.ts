@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_xiaoli_ep2',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Xiao Li — Épisode 2 : Mon ami ! 🎬',
+    message: 'Retrouvez Xiao Li à Pékin et découvrez son meilleur ami dans ce nouvel épisode immersif pour enrichir votre vocabulaire HSK 1.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_xiaoli_ep2',
+    actionLabel: 'Regarder l’épisode 2'
+  },
+  {
     id: 'notif_video_xiaoli_ep1',
     source: 'founder',
     founderName: 'Espoir Chinois',
@@ -23,7 +37,7 @@ export const initialNotifications: NotificationItem[] = [
     type: 'video',
     title: 'Nouvelle Série Vidéo : Les Aventures de Xiao Li 🎬',
     message: 'Découvrez les aventures immersives de Xiao Li, un chaton curieux à Pékin, pour apprendre vos premiers mots et phrases du HSK 1 en vidéo animée.',
-    timestamp: 'Nouveau',
+    timestamp: 'Il y a 10 min',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=videos&id=video_xiaoli_ep1',
     actionLabel: 'Regarder la vidéo'
