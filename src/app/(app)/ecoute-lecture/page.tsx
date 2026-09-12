@@ -3322,63 +3322,31 @@ function EcouteLectureContent() {
         /* VIEW B: SERIES HUB WITH 3 INDIVIDUAL ARTICLE FRAMES / CARDS               */
         /* ========================================================================= */
         <div className="space-y-6 animate-fadeIn">
-          {/* Top Series Header - Complet avec Hanzi, Pinyin et Bascule Pinyin */}
-          <div className="flex items-start sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
-            <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+          {/* Top Series Header - Épuré 100% en Français */}
+          <div className="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <button
                 onClick={() => setActiveSeries(null)}
                 type="button"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#6200EE] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer mt-0.5 sm:mt-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#6200EE] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
                 title="Retour au catalogue général"
               >
                 <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               <div className="min-w-0 flex-1 space-y-0.5">
-                {/* Ligne 1 : Titre complet en français */}
+                {/* Titre complet en français */}
                 <h1 className="font-display font-black text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate leading-snug">
                   {activeSeries.titleFr}
                 </h1>
 
-                {/* Ligne 2 : Titre en Caractères Chinois (Hanzi) */}
-                {activeSeries.titleZh && (
-                  <div className="font-hanzi text-xs sm:text-sm font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
-                    {activeSeries.titleZh}
-                  </div>
-                )}
-
-                {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
-                {isPinyinVisible && activeSeries.titlePinyin && (
-                  <div className="font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B] dark:text-[#03DAC5] leading-snug">
-                    {activeSeries.titlePinyin}
-                  </div>
-                )}
-
                 {/* Sous-titre indicatif */}
-                <p className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] truncate pt-0.5">
+                <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] truncate">
                   {activeSeries.type === 'videos' 
                     ? 'Sélectionnez un épisode pour commencer à regarder' 
                     : 'Sélectionnez un article pour commencer votre lecture'}
                 </p>
               </div>
-            </div>
-
-            {/* Quick Action Toggle Pinyin */}
-            <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
-              <button
-                onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
-                type="button"
-                className={`inline-flex items-center justify-center gap-1 w-8 h-8 sm:w-auto sm:h-auto sm:px-2.5 sm:py-1 rounded-full border text-[10px] sm:text-[11px] font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0 ${
-                  isPinyinVisible
-                    ? 'bg-[#00897B] text-white border-[#00897B]'
-                    : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
-                }`}
-                title={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
-                aria-label={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
-              >
-                {isPinyinVisible ? <Eye className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" /> : <EyeOff className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" />}
-                <span className="hidden sm:inline">Pinyin</span>
-              </button>
             </div>
           </div>
 
@@ -3418,23 +3386,13 @@ function EcouteLectureContent() {
                     </span>
                   </div>
 
-                  {/* Moitié Inférieure du Cadre (Titre, Description, Durée, Bouton) */}
+                  {/* Moitié Inférieure du Cadre (Titre Fr, Description Fr, Durée, Bouton) */}
                   <div className="p-3.5 sm:p-4 h-1/2 flex flex-col justify-between min-w-0">
-                    <div className="min-w-0 space-y-0.5">
-                      <h3 className="font-display font-black text-xs sm:text-[13.5px] text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug truncate">
+                    <div className="min-w-0 space-y-1">
+                      <h3 className="font-display font-black text-xs sm:text-[13.5px] text-[#212121] dark:text-[#F5F5F5] group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors leading-snug line-clamp-2">
                         {ep.titleFr}
                       </h3>
-                      {ep.titleZh && (
-                        <div className="font-hanzi text-[11px] sm:text-xs font-bold text-[#00796B] dark:text-[#03DAC5] truncate">
-                          {ep.titleZh}
-                        </div>
-                      )}
-                      {isPinyinVisible && ep.titlePinyin && (
-                        <div className="font-pinyin text-[10px] sm:text-[11px] font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85 truncate">
-                          {ep.titlePinyin}
-                        </div>
-                      )}
-                      <p className="text-[10px] sm:text-[10.5px] text-[#757575] dark:text-[#A0A0A0] line-clamp-2 leading-relaxed font-medium pt-0.5">
+                      <p className="text-[10.5px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-2 leading-relaxed font-medium">
                         {ep.description}
                       </p>
                     </div>

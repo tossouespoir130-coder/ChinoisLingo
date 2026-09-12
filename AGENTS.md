@@ -87,12 +87,13 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - Suivis de tous les contenus **HSK 4, HSK 5, HSK 6**.
    - Aucun contenu d'un niveau inférieur (ex: HSK 1) ne doit apparaître après un contenu de niveau supérieur (ex: HSK 3).
 
-9. **Absence Totale et Stricte de Caractères Chinois sur les Cartes du Catalogue de la Grille** :
-   - Dans TOUT le catalogue / grille de la rubrique **Écoute & Lecture** (Chansons, Podcasts, Articles, Histoires, Dialogues) :
-     - Le titre affiché sur la carte est **100% en français** (`titleFr`).
+9. **Absence Totale et Stricte de Caractères Chinois et de Pinyin sur TOUTES les Cartes, Miniatures, Hubs de Séries et Prévisualisations du Catalogue** :
+   - Dans TOUTES les rubriques et particulièrement dans le catalogue / grille d'**Écoute & Lecture** (Chansons, Podcasts, Articles, Histoires, Dialogues, Vidéos, Séries d'épisodes) :
+     - Le titre affiché sur la carte, sur la miniature ou dans le hub de sélection d'épisodes est **100% en français** (`titleFr`).
      - Le nom de l'artiste/auteur est **100% en alphabet latin / français** (`artist`), sans AUCUN caractère chinois (ex: `Little Fox Chinese` et non `Little Fox Chinese (经典儿歌)`, `Cheng Xiang` et non `Cheng Xiang (程响)`).
      - La description est **100% en français**.
-     - **Les caractères chinois (Hanzi) et le Pinyin sont réservés exclusivement à l'intérieur du Lecteur Immersif** (affichés uniquement lorsque l'apprenant clique sur la carte pour lancer la leçon).
+     - Ne jamais surcharger les vignettes ni les hubs de sélection avec du Hanzi ou du Pinyin.
+     - **Les caractères chinois (Hanzi) et le Pinyin sont réservés exclusivement et strictement à l'intérieur du Lecteur Immersif** (affichés uniquement lorsque l'apprenant clique sur la carte pour lancer et étudier la leçon).
 
 11. **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** :
    - Pour TOUTE nouvelle série de vidéos, vidéo individuelle, formation ou masterclass ajoutée sur la plateforme (que ce soit dans la sous-rubrique *Vidéos* d'*Écoute & Lecture* ou dans la rubrique *Formations*), l'image d'illustration/couverture de la carte et du lecteur DOIT obligatoirement être la **miniature officielle originale de la première vidéo** (`https://img.youtube.com/vi/<ID>/hqdefault.jpg` ou `maxresdefault.jpg`). Ne jamais utiliser d'image abstraite ou déconnectée du dessin animé/de la vidéo réelle.
