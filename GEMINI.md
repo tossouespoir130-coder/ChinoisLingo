@@ -67,7 +67,7 @@ Comprend 4 sous-sections fondamentales :
 
 ### 4.3. Écoute & Lecture (`/ecoute-lecture`)
 - **6 Catégories dans l'ordre officiel** : Chansons (coché par défaut à l'ouverture du catalogue général), Articles, Histoires, Dialogues, Podcasts, Vidéos.
-- **Règles des Cartes du Catalogue, Miniatures et Hubs de Séries** : Titre 100% en français, nom d'artiste 100% en alphabet latin, description concise en français, badge HSK coloré (aucun caractère chinois ni pinyin sur les cartes extérieures, miniatures ou hubs de sélection ; les Hanzi et Pinyin sont réservés strictement à l'intérieur du lecteur immersif).
+- **Règles des Cartes du Catalogue, Miniatures et Hubs de Séries** : Titre 100% en français, nom d'artiste 100% en alphabet latin, description concise en français, badge HSK coloré (aucun caractère chinois ni pinyin sur les cartes extérieures, miniatures ou hubs de sélection ; suppression de tout badge violet d'épisode redondant sur l'image car le titre mentionne déjà l'épisode ; les Hanzi et Pinyin sont réservés strictement à l'intérieur du lecteur immersif).
 - **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** : Pour toute série de vidéos ou formation (Vidéos, Formations), l'image de couverture DOIT obligatoirement être la miniature originale de la première vidéo (`https://img.youtube.com/vi/<ID>/hqdefault.jpg`).
 - **Lecteur Immersif & Multimédia (Responsivité & Ergonomie Mobile Maximale)** :
    - **Absence de Badge HSK à l'Intérieur du Lecteur** : Le badge HSK est affiché sur la carte extérieure du catalogue et totalement supprimé de l'en-tête de lecture pour une clarté et un confort visuel absolu.

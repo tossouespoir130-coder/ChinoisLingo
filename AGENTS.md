@@ -93,6 +93,7 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      - Le nom de l'artiste/auteur est **100% en alphabet latin / français** (`artist`), sans AUCUN caractère chinois (ex: `Little Fox Chinese` et non `Little Fox Chinese (经典儿歌)`, `Cheng Xiang` et non `Cheng Xiang (程响)`).
      - La description est **100% en français**.
      - Ne jamais surcharger les vignettes ni les hubs de sélection avec du Hanzi ou du Pinyin.
+     - **Suppression Totale de Badge Redondant d'Épisode sur l'Image** : Sur les vignettes des hubs de séries, ne jamais afficher de badge violet « ÉPISODE X » sur l'image car le titre situé juste en dessous mentionne déjà l'épisode en clair (ex: *« Épisode 1 : Bonjour ! »*), préservant la netteté et la beauté visuelle de la miniature.
      - **Les caractères chinois (Hanzi) et le Pinyin sont réservés exclusivement et strictement à l'intérieur du Lecteur Immersif** (affichés uniquement lorsque l'apprenant clique sur la carte pour lancer et étudier la leçon).
 
 11. **Règle Permanente d'Illustration par Miniature Originale de la Première Vidéo** :

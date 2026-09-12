@@ -3379,11 +3379,6 @@ function EcouteLectureContent() {
                     <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(activeSeries.level)}`}>
                       {activeSeries.level}
                     </span>
-
-                    {/* Floating Episode Badge on Bottom-Left */}
-                    <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#6200EE] text-white shadow-md">
-                      {activeSeries.type === 'videos' ? 'Épisode' : 'Article'} {ep.episodeNumber}
-                    </span>
                   </div>
 
                   {/* Moitié Inférieure du Cadre (Titre Fr, Description Fr, Durée, Bouton) */}
