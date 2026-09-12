@@ -133,9 +133,9 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '1 min 30',
     description: 'Faites la connaissance de Xiao Li, un chat curieux et attachant qui commence ses aventures à Pékin pour apprendre le chinois.',
-    imageUrl: 'https://img.youtube.com/vi/amw1Dr7hpD0/hqdefault.jpg',
+    imageUrl: 'https://img.youtube.com/vi/8cZ20QY948A/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
-    youtubeId: 'amw1Dr7hpD0',
+    youtubeId: '8cZ20QY948A',
     characters: [
       {
         name: '小李',
