@@ -2520,13 +2520,13 @@ function EcouteLectureContent() {
 
                 {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
                 {isPinyinVisible && displayedTitlePinyin && (
-                  <div className={`font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85 leading-snug ${avecVideo ? 'lg:hidden' : ''}`}>
+                  <div className="font-pinyin text-xs sm:text-sm font-semibold text-[#00796B] dark:text-[#03DAC5] leading-snug">
                     {displayedTitlePinyin}
                   </div>
                 )}
 
                 {activeReading.artist && (
-                  <p className={`text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5 ${avecVideo ? 'lg:hidden' : ''}`}>
+                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
                     Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
                   </p>
                 )}
