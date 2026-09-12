@@ -212,7 +212,7 @@ export const readingCatalog: ReadingItem[] = [
         titleZh: '第二集：我的朋友！',
         titlePinyin: 'Dì èr jí: Wǒ de péngyou!',
         duration: '0 min 30',
-        description: 'Xiao Li fait la connaissance de Duōduō, un petit chien policier sérieux et attachant. Une aventure animée pour apprendre à se présenter et faire connaissance.',
+        description: 'Xiao Li rencontre Duōduō, un petit chien policier sérieux et adorable pour apprendre à se présenter en chinois.',
         imageUrl: 'https://img.youtube.com/vi/N6G7InZ8_BM/hqdefault.jpg',
         youtubeId: 'N6G7InZ8_BM',
         characters: [
@@ -318,7 +318,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'videos',
     level: 'HSK 1',
     duration: '0 min 30',
-    description: 'Accompagnez Lily lors d’un trajet en taxi en Chine. Une scène du quotidien idéale pour apprendre à indiquer sa destination et payer une course en mandarin.',
+    description: 'Accompagnez Lily en taxi pour apprendre à indiquer votre destination et régler une course du quotidien en Chine.',
     imageUrl: 'https://img.youtube.com/vi/RFixTlCYcJs/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
     youtubeId: 'RFixTlCYcJs',
