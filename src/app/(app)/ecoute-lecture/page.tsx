@@ -1536,12 +1536,60 @@ export const readingCatalog: ReadingItem[] = [
     ],
   },
   {
+    id: 'chanson_toushiwodecuo',
+    titleFr: 'Tout est ma faute',
+    titleZh: '都是我的错',
+    titlePinyin: 'Dōu shì wǒ de cuò',
+    type: 'chansons',
+    level: 'HSK 6',
+    duration: '—',
+    artist: 'Liu Jia Liang',
+    youtubeId: 'nZ5LL2J49kQ',
+    description: 'Une ballade pop de Liu Jia Liang, portée par des regrets que le chanteur prend entièrement à son compte.',
+    imageUrl: 'https://img.youtube.com/vi/nZ5LL2J49kQ/hqdefault.jpg',
+    iconBg: 'from-[#0288D1] to-[#6200EE]',
+    // Paroles à venir : aucune ligne inventée, l'écran l'annonce à l'apprenant.
+    sentences: [],
+  },
+  {
+    id: 'chanson_xianchuzhendeni',
+    titleFr: 'Montre qui tu es vraiment',
+    titleZh: '现出真的你',
+    titlePinyin: 'Xiàn chū zhēn de nǐ',
+    type: 'chansons',
+    level: 'HSK 6',
+    duration: '—',
+    artist: 'Hu Weina & Ding Shuang',
+    youtubeId: 'ISK2emgbm4c',
+    description: 'La version mandarine d’une chanson du film La Reine des Neiges 2, interprétée par Hu Weina et Ding Shuang.',
+    imageUrl: 'https://img.youtube.com/vi/ISK2emgbm4c/hqdefault.jpg',
+    iconBg: 'from-[#00897B] to-[#0288D1]',
+    // Paroles à venir : aucune ligne inventée, l'écran l'annonce à l'apprenant.
+    sentences: [],
+  },
+  {
+    id: 'chanson_qianbainian',
+    titleFr: 'Qui se souviendra de qui, mille ans plus tard',
+    titleZh: '千百年后谁又记得谁',
+    titlePinyin: 'Qiānbǎi nián hòu shéi yòu jìdé shéi',
+    type: 'chansons',
+    level: 'HSK 6',
+    duration: '—',
+    artist: 'Han Lei & Yao Beina',
+    youtubeId: 'BtS8G2V73ek',
+    description: 'Un duo de Han Lei et Yao Beina (2005) sur la mémoire, le temps qui passe et ce qu’il en reste.',
+    imageUrl: 'https://img.youtube.com/vi/BtS8G2V73ek/hqdefault.jpg',
+    iconBg: 'from-[#D81B60] to-[#8E24AA]',
+    // Paroles à venir : aucune ligne inventée, l'écran l'annonce à l'apprenant.
+    sentences: [],
+  },
+  {
     id: 'chanson_renjian_yanhuo',
     titleFr: 'Les Lueurs de ce Monde',
     titleZh: '人间烟火',
     titlePinyin: 'Rénjiān Yānhuǒ',
     type: 'chansons',
-    level: 'HSK 3',
+    level: 'HSK 6',
     duration: '3 min 35',
     artist: 'Cheng Xiang',
     youtubeId: 'lxPybHy4SoM',
@@ -1590,7 +1638,9 @@ export const readingCatalog: ReadingItem[] = [
       { id: 'ry_39', speaker: 'Cheng Xiang', hanzi: '可怜良辰无多', pinyin: 'Kělián liángchén wú duō', french: 'Hélas, le temps du bonheur est compté' },
       { id: 'ry_40', speaker: 'Cheng Xiang', hanzi: '竟似无人说', pinyin: 'Jìng sì wú rén shuō', french: 'Et nul ne saurait l’exprimer' },
       { id: 'ry_41', speaker: 'Cheng Xiang', hanzi: '可怜良辰无多', pinyin: 'Kělián liángchén wú duō', french: 'Tant de précieux instants perdus' },
-      { id: 'ry_42', speaker: 'Cheng Xiang', hanzi: '再难与人说', pinyin: 'Zài nán yǔ rén shuō', french: 'Qu’il est désormais si difficile d’en parler à quiconque' },
+      { id: 'ry_42', speaker: 'Cheng Xiang', hanzi: '竟似无人说', pinyin: 'Jìng sì wú rén shuō', french: 'Et nul ne saurait l’exprimer' },
+      { id: 'ry_43', speaker: 'Cheng Xiang', hanzi: '可怜良辰无多', pinyin: 'Kělián liángchén wú duō', french: 'Tant de précieux instants perdus' },
+      { id: 'ry_44', speaker: 'Cheng Xiang', hanzi: '再难与人说', pinyin: 'Zài nán yǔ rén shuō', french: 'Qu’il est désormais si difficile d’en parler à quiconque' },
     ],
   },
 ];
@@ -1719,6 +1769,10 @@ function EcouteLectureContent() {
     setCurrentSentenceIndex(0);
     setIsPlayingAll(false);
 
+    // La vidéo est en haut de la page : on y remonte, sinon la lecture
+    // s'ouvre au milieu des paroles, à la hauteur où on avait laissé la liste.
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('type', item.type);
@@ -1797,6 +1851,7 @@ function EcouteLectureContent() {
         setActiveEpisodeIndex(isNaN(directEp) ? 0 : directEp);
         setCurrentSentenceIndex(0);
         setIsPlayingAll(false);
+        window.scrollTo({ top: 0 });
       }
     } else {
       setActiveReading(null);
@@ -2001,13 +2056,9 @@ function EcouteLectureContent() {
       {/* VIEW A: FULL-SCREEN IMMERSIVE READER / SONG PLAYER VIEW                   */}
       {/* ========================================================================= */}
       {activeReading ? (
-        <div
-          className={`space-y-6 animate-fadeIn ${
-            avecVideo ? 'lg:grid lg:grid-cols-12 lg:gap-6 lg:space-y-0 lg:items-start' : ''
-          }`}
-        >
+        <div className="space-y-6 animate-fadeIn">
           {/* Top Bar: Back Button, Multi-line Title (L1: French, L2: Hanzi, L3: Pinyin), Audio Action Buttons at Top Right */}
-          <div className="lg:col-span-12 flex items-start justify-between gap-3 p-3.5 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm">
+          <div className={`flex items-start justify-between gap-3 p-3.5 sm:p-5 ${avecVideo ? 'lg:py-3' : ''} rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm`}>
             <div className="flex items-start gap-2.5 sm:gap-3.5 min-w-0 flex-1">
               <button
                 onClick={closeReading}
@@ -2033,13 +2084,13 @@ function EcouteLectureContent() {
 
                 {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
                 {isPinyinVisible && displayedTitlePinyin && (
-                  <div className="font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85 leading-snug">
+                  <div className={`font-pinyin text-[11px] sm:text-xs font-semibold text-[#00796B]/85 dark:text-[#03DAC5]/85 leading-snug ${avecVideo ? 'lg:hidden' : ''}`}>
                     {displayedTitlePinyin}
                   </div>
                 )}
 
                 {activeReading.artist && (
-                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
+                  <p className={`text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5 ${avecVideo ? 'lg:hidden' : ''}`}>
                     Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
                   </p>
                 )}
@@ -2097,9 +2148,7 @@ function EcouteLectureContent() {
           */}
           {activeReading.youtubeId && (
             <div
-              className={`z-30 lg:col-start-1 lg:col-span-7 lg:row-start-2 lg:sticky lg:top-6 lg:self-start ${
-                activeReading.characters && activeReading.characters.length > 0 ? 'lg:row-span-3' : 'lg:row-span-2'
-              } ${
+              className={`z-30 mx-auto w-full lg:max-w-[85vh] lg:sticky lg:top-3 ${
                 videoLancee
                   ? 'max-lg:sticky max-lg:top-0 max-lg:py-2 max-lg:bg-white/90 max-lg:dark:bg-[#121212]/95 max-lg:backdrop-blur-xl'
                   : ''
@@ -2116,7 +2165,7 @@ function EcouteLectureContent() {
           )}
 
           {/* Continuous Description & Timer Banner (Couleur principale violette ChinoisLingo) */}
-          <div className="lg:col-start-8 lg:col-span-5 min-w-0 w-full p-4 sm:p-5 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs">
+          <div className={`w-full p-4 sm:p-5 ${avecVideo ? 'lg:hidden' : ''} rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs`}>
             <p className="flex-1 mr-4 leading-relaxed font-medium">
               {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
             </p>
@@ -2130,15 +2179,12 @@ function EcouteLectureContent() {
           {/* SECTION LES PERSONNAGES (CADRAGE CONTEXTUEL AVANT TRANSCRIPTION)          */}
           {/* ========================================================================= */}
           {activeReading.characters && activeReading.characters.length > 0 && (
-            <div className="lg:col-start-8 lg:col-span-5 min-w-0 nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
+            <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
                   <Users className="w-4 h-4" />
                   <span>{activeReading.type === 'histoires' ? 'Les Personnages de l’Histoire' : 'Les Personnages du Dialogue'}</span>
                 </h3>
-                <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
-                  {activeReading.characters.length} intervenants
-                </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -2206,9 +2252,9 @@ function EcouteLectureContent() {
           )}
 
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
-          <div className="lg:col-start-8 lg:col-span-5 min-w-0 nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
+          <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm">
             {/* Header: Title + Transparent Interactive Audio Controller with Speed Control */}
-            <div className={`pb-4 mb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${avecVideo ? 'lg:flex-col lg:items-start' : ''}`}>
+            <div className="pb-4 mb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#00796B] dark:text-[#03DAC5] flex items-center gap-2">
                 {activeReading.type === 'chansons' ? <Music className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
                 <span>{activeReading.type === 'chansons' ? 'Paroles & Traduction (Lyrics)' : 'Texte & Transcription Synchronisée'}</span>
@@ -2269,6 +2315,15 @@ function EcouteLectureContent() {
               </div>
             </div>
 
+            {/*
+              Avec une vidéo, les paroles tiennent dans un cadre de quelques
+              lignes qui défile tout seul : l'image garde le haut de l'écran.
+            */}
+            <div
+              className={`divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80 ${
+                avecVideo ? 'lg:max-h-[42vh] lg:overflow-y-auto lg:pr-1.5' : ''
+              }`}
+            >
             {displayedSentences.map((sent, idx) => {
               const isSentencePlaying = playingSentenceId === sent.id;
               const isCurrentInSequence = isPlayingAll && currentSentenceIndex === idx;
@@ -2287,7 +2342,7 @@ function EcouteLectureContent() {
                     setCurrentSentenceIndex(idx);
                     playSentenceAudio(sent.id, sent.hanzi);
                   }}
-                  className={`py-3 sm:py-4 px-2.5 sm:px-4 rounded-2xl transition-all duration-200 cursor-pointer group ${
+                  className={`py-3 sm:py-4 ${avecVideo ? 'lg:py-1.5' : ''} px-2.5 sm:px-4 rounded-2xl transition-all duration-200 cursor-pointer group ${
                     isHighlighted
                       ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 border border-[#6200EE]/30 shadow-xs -mx-1 sm:-mx-2'
                       : 'hover:bg-black/[0.02] dark:hover:bg-white/[0.02]'
@@ -2349,13 +2404,13 @@ function EcouteLectureContent() {
                     )}
 
                     {/* Hanzi Text - 100% Full Width (No Constraint on Top) */}
-                    <div className="font-hanzi font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] leading-snug w-full">
+                    <div className={`font-hanzi font-black text-lg sm:text-2xl ${avecVideo ? 'lg:text-lg' : ''} text-[#212121] dark:text-[#F5F5F5] leading-snug w-full`}>
                       {sent.hanzi}
                     </div>
 
                     {/* Pinyin with Tone Coloring - 100% Full Width */}
                     {isPinyinVisible && (
-                      <div className="font-pinyin font-bold text-xs sm:text-base text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug pt-0.5 w-full">
+                      <div className={`font-pinyin font-bold text-xs sm:text-base ${avecVideo ? 'lg:text-sm' : ''} text-[#00796B] dark:text-[#03DAC5] tracking-wide leading-snug pt-0.5 w-full`}>
                         {sent.pinyin}
                       </div>
                     )}
@@ -2363,7 +2418,7 @@ function EcouteLectureContent() {
                     {/* French Translation on Left & Bookmark in Bottom-Right Corner */}
                     <div className="flex items-center justify-between gap-2 pt-1 w-full min-w-0">
                       {isFrenchVisible ? (
-                        <div className="text-xs sm:text-sm font-medium text-[#757575] dark:text-[#B0B0B0] leading-snug flex-1 min-w-0">
+                        <div className={`text-xs sm:text-sm ${avecVideo ? 'lg:text-xs' : ''} font-medium text-[#757575] dark:text-[#B0B0B0] leading-snug flex-1 min-w-0`}>
                           {sent.french}
                         </div>
                       ) : (
@@ -2391,13 +2446,20 @@ function EcouteLectureContent() {
                 </div>
               );
             })}
+            </div>
+
+            {displayedSentences.length === 0 && (
+              <p className="py-6 text-center text-xs text-[#757575] dark:text-[#A0A0A0]">
+                Les paroles de ce contenu arrivent très bientôt.
+              </p>
+            )}
           </div>
 
           {/* ========================================================================= */}
           {/* SECTION 📝 生词 — NOUVEAUX MOTS & VOCABULAIRE CLÉ (EN BAS DE L'HISTOIRE) */}
           {/* ========================================================================= */}
           {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
-            <div className="lg:col-span-12 nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
+            <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#FFD700]" />
@@ -2451,7 +2513,7 @@ function EcouteLectureContent() {
           )}
 
           {/* Bottom Completion Card: Prominent "Marquer comme terminé" Button with Paillettes Celebration */}
-          <div className="lg:col-span-12 nixtio-card p-6 sm:p-7 bg-gradient-to-r from-[#00897B] via-[#00796B] to-[#004D40] text-white rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-lg shadow-[#00897B]/25">
+          <div className="nixtio-card p-6 sm:p-7 bg-gradient-to-r from-[#00897B] via-[#00796B] to-[#004D40] text-white rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-lg shadow-[#00897B]/25">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] uppercase font-black text-[#03DAC5] tracking-wider px-2 py-0.5 rounded-md bg-white/10 border border-white/20">

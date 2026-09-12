@@ -48,6 +48,16 @@ interface ChinoisLingoVideoPlayerProps {
   onStart?: () => void;
 }
 
+/** Bond d'une tape sur le côté de l'image, comme dans les lecteurs habituels. */
+const SAUT_SECONDES = 10;
+
+/** Délai avant l'effacement des commandes pendant la lecture. */
+const DELAI_MASQUAGE_MS = 2000;
+
+/** États renvoyés par YouTube : 1 = en lecture, 2 = en pause, 0 = terminé. */
+const ETAT_LECTURE = 1;
+const ETAT_PAUSE = 2;
+
 function orientationEcran(): OrientationVerrouillable | undefined {
   if (typeof screen === 'undefined') return undefined;
   return screen.orientation as unknown as OrientationVerrouillable | undefined;
@@ -69,17 +79,15 @@ function bloquerDefilement(bloque: boolean) {
  *   1. `controls=0` — YouTube ne dessine plus sa barre de commandes, donc ni
  *      logo, ni bouton de partage, ni « Regarder sur YouTube ». C'est la
  *      barrière principale : ce qui n'est pas dessiné n'est pas cliquable.
- *   2. Un voile transparent couvre toute la surface de l'iframe et intercepte
- *      chaque clic. Même si YouTube réaffichait un filigrane au survol, il
- *      resterait hors d'atteinte.
+ *   2. Des zones transparentes couvrent toute la surface de l'iframe et
+ *      interceptent chaque tap. Même si YouTube réaffichait un filigrane au
+ *      survol, il resterait hors d'atteinte.
  *   3. Le clic droit est neutralisé sur le conteneur.
  *
- * L'ancienne approche — agrandir l'iframe pour pousser l'habillage hors du
- * cadre — a été abandonnée : elle laissait passer la barre du bas selon le
- * format, et surtout elle rognait les sous-titres incrustés dans l'image.
- *
- * Les commandes (lecture, pause, position, plein écran) sont donc les nôtres.
- * Elles pilotent la vidéo par `postMessage`, via `enablejsapi=1`.
+ * Ces zones ne mettent PLUS la vidéo en pause : une tape à gauche recule de
+ * 10 secondes, à droite avance d'autant, au centre elle montre ou efface les
+ * commandes. Seul le bouton lecture/pause interrompt la vidéo — taper l'image
+ * pour « voir ce qui se passe » ne doit pas couper le film.
  */
 export function ChinoisLingoVideoPlayer({
   youtubeId,
@@ -98,15 +106,28 @@ export function ChinoisLingoVideoPlayer({
   const [position, setPosition] = useState(0);
   const [duree, setDuree] = useState(0);
 
+  /** Commandes affichées ; elles s'effacent seules pendant la lecture. */
+  const [commandesVisibles, setCommandesVisibles] = useState(true);
+  /** Retour visuel bref après une tape de saut. */
+  const [saut, setSaut] = useState<{ sens: -1 | 1; cle: number } | null>(null);
+
   /**
    * Seconde de départ de l'iframe. En mode secours, l'iframe change de parent
    * et le navigateur la recharge : on la relance là où la lecture en était.
    */
   const [depart, setDepart] = useState(0);
+
   const positionRef = useRef(0);
+  const enLectureRef = useRef(true);
+  const etatLecteurRef = useRef(-1);
+  const minuteurCommandes = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
     positionRef.current = position;
   }, [position]);
+  useEffect(() => {
+    enLectureRef.current = enLecture;
+  }, [enLecture]);
 
   // ── Pilotage de la vidéo ────────────────────────────────────────────
   const commander = useCallback((func: string, args: unknown[] = []) => {
@@ -114,6 +135,51 @@ export function ChinoisLingoVideoPlayer({
       JSON.stringify({ event: 'command', func, args }),
       '*'
     );
+  }, []);
+
+  /** Demande à YouTube de commencer à publier son état. */
+  const abonner = useCallback(() => {
+    iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'listening' }), '*');
+  }, []);
+
+  /**
+   * YouTube ignore les commandes reçues avant que son lecteur ne soit prêt :
+   * sur téléphone, il fallait souvent taper plusieurs fois avant que la vidéo
+   * ne démarre. On répète donc la commande jusqu'à ce que le lecteur annonce
+   * l'état voulu.
+   */
+  const commanderJusqua = useCallback(
+    (func: 'playVideo' | 'pauseVideo', etatVoulu: number) => {
+      abonner();
+      commander(func);
+
+      let essais = 0;
+      const relance = setInterval(() => {
+        essais += 1;
+        if (etatLecteurRef.current === etatVoulu || essais > 8) {
+          clearInterval(relance);
+          return;
+        }
+        abonner();
+        commander(func);
+      }, 250);
+    },
+    [abonner, commander]
+  );
+
+  const montrerCommandes = useCallback(() => {
+    setCommandesVisibles(true);
+    if (minuteurCommandes.current) clearTimeout(minuteurCommandes.current);
+    minuteurCommandes.current = setTimeout(() => {
+      // À l'arrêt, les commandes restent : c'est le seul moyen de repartir.
+      if (enLectureRef.current) setCommandesVisibles(false);
+    }, DELAI_MASQUAGE_MS);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (minuteurCommandes.current) clearTimeout(minuteurCommandes.current);
+    };
   }, []);
 
   /**
@@ -139,7 +205,10 @@ export function ChinoisLingoVideoPlayer({
         if (typeof info.duration === 'number' && info.duration > 0) setDuree(info.duration);
         if (typeof info.currentTime === 'number') setPosition(info.currentTime);
         if (typeof info.playerState === 'number') {
-          setEnLecture(info.playerState === 1);
+          etatLecteurRef.current = info.playerState;
+          setEnLecture(info.playerState === ETAT_LECTURE);
+          // Mise en pause : les commandes réapparaissent pour pouvoir repartir.
+          if (info.playerState !== ETAT_LECTURE) setCommandesVisibles(true);
           // 0 = terminé
           if (info.playerState === 0) onEnded?.();
         }
@@ -150,12 +219,6 @@ export function ChinoisLingoVideoPlayer({
 
     window.addEventListener('message', surMessage);
 
-    const abonner = () => {
-      iframeRef.current?.contentWindow?.postMessage(
-        JSON.stringify({ event: 'listening' }),
-        '*'
-      );
-    };
     abonner();
     const battement = setInterval(abonner, 1000);
 
@@ -163,10 +226,11 @@ export function ChinoisLingoVideoPlayer({
       window.removeEventListener('message', surMessage);
       clearInterval(battement);
     };
-  }, [hasStarted, onEnded]);
+  }, [hasStarted, onEnded, abonner]);
 
   const demarrer = () => {
     setHasStarted(true);
+    montrerCommandes();
     onStart?.();
   };
 
@@ -267,18 +331,36 @@ export function ChinoisLingoVideoPlayer({
     e?.stopPropagation();
     if (pleinEcran !== 'non') quitterPleinEcran();
     else entrerPleinEcran();
+    montrerCommandes();
   };
 
   const basculerLecture = (e?: React.SyntheticEvent) => {
     e?.stopPropagation();
-    commander(enLecture ? 'pauseVideo' : 'playVideo');
-    setEnLecture((v) => !v);
+    const versLecture = !enLecture;
+    setEnLecture(versLecture);
+    commanderJusqua(versLecture ? 'playVideo' : 'pauseVideo', versLecture ? ETAT_LECTURE : ETAT_PAUSE);
+    montrerCommandes();
   };
 
   const deplacer = (secondes: number) => {
     commander('seekTo', [secondes, true]);
     setPosition(secondes);
   };
+
+  /** Tape sur le côté de l'image : 10 secondes en arrière ou en avant. */
+  const sauter = (sens: -1 | 1) => {
+    const brute = positionRef.current + sens * SAUT_SECONDES;
+    const cible = Math.max(0, duree > 0 ? Math.min(brute, duree) : brute);
+    deplacer(cible);
+    setSaut({ sens, cle: Date.now() });
+    montrerCommandes();
+  };
+
+  useEffect(() => {
+    if (!saut) return;
+    const minuteur = setTimeout(() => setSaut(null), 550);
+    return () => clearTimeout(minuteur);
+  }, [saut]);
 
   /**
    * Avance locale de la tête de lecture.
@@ -320,10 +402,12 @@ export function ChinoisLingoVideoPlayer({
 
   const enPleinEcran = pleinEcran !== 'non';
   const tailleBouton = enPleinEcran ? 'w-10 h-10' : 'w-8 h-8';
+  // À l'arrêt, les commandes restent affichées : sinon plus rien ne permet de repartir.
+  const commandesAffichees = commandesVisibles || !enLecture;
 
   /* ── Lecture : habillage YouTube supprimé, commandes maison ─────────── */
   const surfaceLecture = (
-    <div className="absolute inset-0 overflow-hidden bg-black">
+    <div className="absolute inset-0 overflow-hidden bg-black" onMouseMove={montrerCommandes}>
       {/*
         Positionnement absolu plutôt que `flex` + `h-full`.
 
@@ -338,30 +422,70 @@ export function ChinoisLingoVideoPlayer({
         ref={iframeRef}
         src={embedUrl}
         title={title}
+        onLoad={abonner}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         className="absolute inset-0 w-full h-full border-0"
       />
 
       {/*
-        Voile d'interception. `inset-0` couvre l'iframe en entier : aucun
-        clic ne l'atteint, donc aucun lien YouTube n'est ouvrable, même si
-        un filigrane réapparaissait. Un clic ici met simplement en pause.
+        Zones d'interception. Elles couvrent l'iframe en entier : aucun clic
+        ne l'atteint, donc aucun lien YouTube n'est ouvrable. Une tape sur les
+        côtés déplace la lecture de 10 secondes, au centre elle montre ou
+        efface les commandes — mais ne met jamais en pause.
       */}
-      <button
-        type="button"
-        onClick={basculerLecture}
-        aria-label={enLecture ? 'Mettre en pause' : 'Reprendre la lecture'}
-        className="absolute inset-0 z-20 w-full h-full cursor-pointer bg-transparent"
-      />
+      <div className="absolute inset-0 z-20 flex">
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            sauter(-1);
+          }}
+          aria-label={`Reculer de ${SAUT_SECONDES} secondes`}
+          className="h-full w-[30%] bg-transparent cursor-pointer"
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (commandesVisibles) setCommandesVisibles(false);
+            else montrerCommandes();
+          }}
+          aria-label={commandesVisibles ? 'Masquer les commandes' : 'Afficher les commandes'}
+          className="h-full flex-1 bg-transparent cursor-pointer"
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            sauter(1);
+          }}
+          aria-label={`Avancer de ${SAUT_SECONDES} secondes`}
+          className="h-full w-[30%] bg-transparent cursor-pointer"
+        />
+      </div>
+
+      {/* Retour visuel du saut, le temps d'une demi-seconde. */}
+      {saut && (
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 z-30 px-3 py-1.5 rounded-full bg-black/60 text-white text-xs font-bold backdrop-blur-md pointer-events-none ${
+            saut.sens === -1 ? 'left-6' : 'right-6'
+          }`}
+        >
+          {saut.sens === -1 ? `− ${SAUT_SECONDES} s` : `+ ${SAUT_SECONDES} s`}
+        </div>
+      )}
 
       {/*
-        Bandeau supérieur permanent. YouTube réaffiche le titre de la
-        vidéo et le nom de la chaîne au survol, y compris en lecture, et
-        ces deux libellés sont des liens vers youtube.com. On les masque
-        en permanence. Le bas de l'image, lui, n'est jamais recouvert
-        pendant la lecture : les sous-titres y sont incrustés.
+        Voile du haut : il masque le titre et le nom de la chaîne, que YouTube
+        réaffiche parfois et qui sont des liens vers youtube.com. Il n'apparaît
+        qu'avec les commandes — en permanence, il assombrissait l'image et
+        gênait la lecture.
       */}
-      <div className="absolute top-0 left-0 right-0 h-16 sm:h-20 z-30 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none" />
+      <div
+        className={`absolute top-0 left-0 right-0 h-14 sm:h-16 z-30 bg-gradient-to-b from-black/70 to-transparent pointer-events-none transition-opacity duration-300 ${
+          commandesAffichees ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
 
       {/*
         À l'arrêt, YouTube dessine son propre habillage complet : grand
@@ -372,9 +496,19 @@ export function ChinoisLingoVideoPlayer({
       */}
       {!enLecture && (
         <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/95 backdrop-blur-sm pointer-events-none">
-          <div className="w-16 h-16 rounded-full bg-[#6200EE] text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/50 border-2 border-white/40">
-            <Play className="w-7 h-7 fill-white text-white ml-1" />
-          </div>
+          {/*
+            Bouton central : à l'arrêt, c'est lui qui relance la vidéo — le
+            geste le plus naturel. Le voile reste transparent aux clics, pour
+            que les tapes sur les côtés continuent de déplacer la lecture.
+          */}
+          <button
+            type="button"
+            onClick={basculerLecture}
+            aria-label="Reprendre la lecture"
+            className="pointer-events-auto w-16 h-16 rounded-full bg-[#6200EE] hover:bg-[#4A00B0] text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/50 border-2 border-white/40 active:scale-95 transition-all btn-press cursor-pointer"
+          >
+            <Play className="w-7 h-7 fill-white text-white ml-1 pointer-events-none" />
+          </button>
         </div>
       )}
 
@@ -389,25 +523,20 @@ export function ChinoisLingoVideoPlayer({
           onClick={basculerPleinEcran}
           aria-label="Quitter le plein écran"
           title="Quitter le plein écran"
-          className="absolute z-50 top-[max(0.75rem,env(safe-area-inset-top))] right-[max(0.75rem,env(safe-area-inset-right))] w-11 h-11 rounded-full bg-black/60 hover:bg-[#6200EE] border border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-all btn-press"
+          className="absolute z-50 top-[max(0.75rem,env(safe-area-inset-top))] right-[max(0.75rem,env(safe-area-inset-right))] w-11 h-11 rounded-full bg-black/50 hover:bg-[#6200EE] border border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-all btn-press"
         >
           <X className="w-5 h-5" />
         </button>
       )}
 
       {/*
-        Barre de commandes ChinoisLingo.
-
-        `[@media(hover:none)]:opacity-100` la rend visible en permanence sur
-        les appareils tactiles. Elle ne dépendait que de `group-hover`, qui
-        ne se déclenche jamais au doigt : pendant la lecture sur téléphone,
-        ni pause, ni position, ni plein écran n'étaient atteignables.
+        Barre de commandes ChinoisLingo. Elle s'efface d'elle-même pendant la
+        lecture pour laisser l'image entière, et revient à la moindre tape.
       */}
       <div
-        data-arret={!enLecture}
-        className={`absolute bottom-0 left-0 right-0 z-40 px-3 pt-8 bg-gradient-to-t from-black/85 via-black/45 to-transparent opacity-0 group-hover:opacity-100 focus-within:opacity-100 data-[arret=true]:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity duration-300 ${
+        className={`absolute bottom-0 left-0 right-0 z-40 px-3 pt-8 bg-gradient-to-t from-black/75 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none ${
           enPleinEcran ? 'pb-[max(0.75rem,env(safe-area-inset-bottom))]' : 'pb-2.5'
-        }`}
+        } ${commandesAffichees ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
       >
         {/* La barre n'apparaît que si YouTube nous a communiqué la durée. */}
         {duree > 0 && (
@@ -417,7 +546,10 @@ export function ChinoisLingoVideoPlayer({
             max={duree}
             step={0.1}
             value={Math.min(position, duree)}
-            onChange={(e) => deplacer(parseFloat(e.target.value))}
+            onChange={(e) => {
+              deplacer(parseFloat(e.target.value));
+              montrerCommandes();
+            }}
             aria-label="Position dans la vidéo"
             /*
               Le remplissage est peint par un dégradé dont la césure suit
@@ -428,7 +560,7 @@ export function ChinoisLingoVideoPlayer({
             style={{
               background: `linear-gradient(to right, #6200EE 0%, #6200EE ${pourcentage}%, rgba(255,255,255,0.28) ${pourcentage}%, rgba(255,255,255,0.28) 100%)`,
             }}
-            className="w-full h-1.5 mb-2.5 appearance-none rounded-full cursor-pointer transition-all hover:h-2
+            className="pointer-events-auto w-full h-1.5 mb-2.5 appearance-none rounded-full cursor-pointer transition-all hover:h-2
               [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:h-3.5
               [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white
               [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer
@@ -444,7 +576,7 @@ export function ChinoisLingoVideoPlayer({
               type="button"
               onClick={basculerLecture}
               aria-label={enLecture ? 'Mettre en pause' : 'Reprendre la lecture'}
-              className={`${tailleBouton} rounded-full bg-white/15 hover:bg-[#6200EE] text-white flex items-center justify-center backdrop-blur-md transition-all btn-press shrink-0`}
+              className={`pointer-events-auto ${tailleBouton} rounded-full bg-white/15 hover:bg-[#6200EE] text-white flex items-center justify-center backdrop-blur-md transition-all btn-press shrink-0`}
             >
               {enLecture ? (
                 <Pause className="w-3.5 h-3.5 fill-white" />
@@ -465,7 +597,7 @@ export function ChinoisLingoVideoPlayer({
             onClick={basculerPleinEcran}
             aria-label={enPleinEcran ? 'Quitter le plein écran' : 'Plein écran'}
             title={enPleinEcran ? 'Quitter le plein écran' : 'Plein écran'}
-            className={`${tailleBouton} rounded-full bg-white/15 hover:bg-[#6200EE] text-white flex items-center justify-center backdrop-blur-md transition-all btn-press shrink-0`}
+            className={`pointer-events-auto ${tailleBouton} rounded-full bg-white/15 hover:bg-[#6200EE] text-white flex items-center justify-center backdrop-blur-md transition-all btn-press shrink-0`}
           >
             {enPleinEcran ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
           </button>
