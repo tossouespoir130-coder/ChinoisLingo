@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_acheter_pommes',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Acheter des Pommes — 买苹果 🎬',
+    message: 'Apprenez à commander des fruits, compter les quantités et régler vos achats au marché avec cette nouvelle vidéo animée.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_acheter_pommes',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_prendre_taxi',
     source: 'founder',
     founderName: 'Espoir Chinois',
