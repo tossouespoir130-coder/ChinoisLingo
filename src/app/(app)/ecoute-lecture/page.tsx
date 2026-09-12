@@ -519,9 +519,9 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '0 min 20',
     description: 'Lily croise Espoir dans la rue. Apprenez la première formule de salutation essentielle en chinois.',
-    imageUrl: 'https://img.youtube.com/vi/LzSYHgBD9HI/hqdefault.jpg',
+    imageUrl: 'https://img.youtube.com/vi/M5KnxVYUdGQ/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
-    youtubeId: 'LzSYHgBD9HI',
+    youtubeId: 'M5KnxVYUdGQ',
     characters: [
       {
         name: '丽丽',
