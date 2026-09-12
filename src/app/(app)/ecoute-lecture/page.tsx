@@ -76,6 +76,9 @@ export interface ArticleEpisode {
   duration: string;
   description: string;
   imageUrl?: string;
+  youtubeId?: string;
+  characters?: DialogueCharacter[];
+  vocabulary?: VocabularyWord[];
   sentences: ReadingSentence[];
 }
 
@@ -123,150 +126,161 @@ export function getLevelBadgeStyle(level: string) {
 }
 
 export const readingCatalog: ReadingItem[] = [
-  // ================= 0. VIDÉOS IMMERSIVES & DESSINS ANIMÉS (HSK 1) =================
+  // ================= 0. SÉRIES & VIDÉOS IMMERSIVES (HSK 1) =================
   {
-    id: 'video_xiaoli_ep1',
-    titleFr: 'Les Aventures de Xiao Li — Épisode 1 : Bonjour !',
-    titleZh: '小李历险记：你好！',
-    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì: Nǐ hǎo!',
+    id: 'video_xiaoli_series',
+    titleFr: 'Les Aventures de Xiao Li (Série Animée)',
+    titleZh: '小李历险记系列',
+    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì Xìliè',
     type: 'videos',
     level: 'HSK 1',
-    duration: '0 min 30',
-    description: 'Faites la connaissance de Xiao Li, un chat curieux et attachant qui commence ses aventures à Pékin pour apprendre le chinois.',
+    duration: '2 épisodes',
+    description: 'Suivez les aventures animées et amusantes de Xiao Li, un chat curieux qui vit à Pékin et apprend le chinois pas à pas avec ses amis.',
     imageUrl: 'https://img.youtube.com/vi/8cZ20QY948A/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
-    youtubeId: '8cZ20QY948A',
-    characters: [
+    seriesEpisodes: [
       {
-        name: '小李',
-        nameZh: '小李',
-        pinyin: 'Xiǎo Lǐ',
-        role: 'Personnage principal',
-        description: 'Un chat roux tigré mignon et curieux qui vit dans une salle de classe à Pékin. C’est le compagnon de 李老师 (Monsieur Li), et il "assiste" à tous les cours — certains élèves plaisantent en disant qu’il comprend le chinois mieux qu’eux ! Dans 小李历险记, il part à la découverte du monde, rencontre des personnages, et vit de petites aventures qui l’aident (et vous aident !) à apprendre le chinois pas à pas.',
-        color: 'violet',
+        id: 'video_xiaoli_ep1',
+        episodeNumber: 1,
+        titleFr: 'Épisode 1 : Bonjour !',
+        titleZh: '第一集：你好！',
+        titlePinyin: 'Dì yī jí: Nǐ hǎo!',
+        duration: '0 min 30',
+        description: 'Faites la connaissance de Xiao Li, un chat curieux et attachant qui commence ses aventures à Pékin pour apprendre le chinois.',
+        imageUrl: 'https://img.youtube.com/vi/8cZ20QY948A/hqdefault.jpg',
+        youtubeId: '8cZ20QY948A',
+        characters: [
+          {
+            name: '小李',
+            nameZh: '小李',
+            pinyin: 'Xiǎo Lǐ',
+            role: 'Personnage principal',
+            description: 'Un chat roux tigré mignon et curieux qui vit dans une salle de classe à Pékin. C’est le compagnon de 李老师 (Monsieur Li), et il "assiste" à tous les cours — certains élèves plaisantent en disant qu’il comprend le chinois mieux qu’eux ! Dans 小李历险记, il part à la découverte du monde, rencontre des personnages, et vit de petites aventures qui l’aident (et vous aident !) à apprendre le chinois pas à pas.',
+            color: 'violet',
+          }
+        ],
+        sentences: [
+          {
+            id: 'xl1_1',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '大家好，我叫小李。',
+            pinyin: 'Dàjiā hǎo, wǒ jiào Xiǎo Lǐ.',
+            french: 'Bonjour tout le monde, je m’appelle Xiǎo Lǐ.',
+          },
+          {
+            id: 'xl1_2',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '我是一只猫，我住在北京。',
+            pinyin: 'Wǒ shì yì zhī māo, wǒ zhù zài Běijīng.',
+            french: 'Je suis un chat, j’habite à Pékin.',
+          },
+          {
+            id: 'xl1_3',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '我喜欢学中文，也喜欢旅游。',
+            pinyin: 'Wǒ xǐhuan xué Zhōngwén, yě xǐhuan lǚyóu.',
+            french: 'J’aime apprendre le chinois, et j’aime aussi voyager.',
+          },
+          {
+            id: 'xl1_4',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '我很高兴认识你们！',
+            pinyin: 'Wǒ hěn gāoxìng rènshi nǐmen!',
+            french: 'Je suis très content de vous rencontrer !',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '小李', pinyin: 'Xiǎo Lǐ', french: '(nom du personnage — le chat)', role: 'Nom propre' },
+          { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour les animaux (chat, chien, oiseau, lapin, canard...)', role: 'Classificateur (量词)' },
+          { hanzi: '北京', pinyin: 'Běijīng', french: 'Pékin', role: 'Nom propre (lieu)' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
+          { hanzi: '高兴', pinyin: 'gāoxìng', french: 'content(e), heureux(se)', role: 'Adjectif' },
+        ]
+      },
+      {
+        id: 'video_xiaoli_ep2',
+        episodeNumber: 2,
+        titleFr: 'Épisode 2 : Mon ami !',
+        titleZh: '第二集：我的朋友！',
+        titlePinyin: 'Dì èr jí: Wǒ de péngyou!',
+        duration: '0 min 30',
+        description: 'Xiao Li vous présente son meilleur ami ! Une aventure animée pour enrichir son vocabulaire du quotidien sur l’amitié et les animaux.',
+        imageUrl: 'https://img.youtube.com/vi/N6G7InZ8_BM/hqdefault.jpg',
+        youtubeId: 'N6G7InZ8_BM',
+        characters: [
+          {
+            name: '小李',
+            nameZh: '小李',
+            pinyin: 'Xiǎo Lǐ',
+            role: 'Personnage principal',
+            description: 'Un chat roux tigré mignon et curieux qui apprend le chinois et partage son quotidien à Pékin avec ses amis.',
+            color: 'violet',
+          },
+          {
+            name: '大黄',
+            nameZh: '大黄',
+            pinyin: 'Dà Huáng',
+            role: 'Le Meilleur Ami',
+            description: 'Un petit chien joyeux et joueur, compagnon inséparable de Xiao Li pour s’amuser et réviser le chinois.',
+            color: 'turquoise',
+          }
+        ],
+        sentences: [
+          {
+            id: 'xl2_1',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '这是我的好朋友。',
+            pinyin: 'Zhè shì wǒ de hǎo péngyou.',
+            french: 'Voici mon bon ami.',
+          },
+          {
+            id: 'xl2_2',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '他叫大黄，他是一只小狗。',
+            pinyin: 'Tā jiào Dà Huáng, tā shì yì zhī xiǎogǒu.',
+            french: 'Il s’appelle Dà Huáng, c’est un petit chien.',
+          },
+          {
+            id: 'xl2_3',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '我们每天一起玩，一起学中文。',
+            pinyin: 'Wǒmen měitiān yìqǐ wán, yìqǐ xué Zhōngwén.',
+            french: 'Nous jouons ensemble tous les jours et apprenons le chinois ensemble.',
+          },
+          {
+            id: 'xl2_4',
+            speaker: '小李',
+            speakerRole: 'Le Chat Curieux',
+            speakerColor: 'violet',
+            hanzi: '你也有好朋友吗？',
+            pinyin: 'Nǐ yě yǒu hǎo péngyou ma?',
+            french: 'As-tu toi aussi de bons amis ?',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami(e)', role: 'Nom' },
+          { hanzi: '小狗', pinyin: 'xiǎogǒu', french: 'petit chien, toutou', role: 'Nom' },
+          { hanzi: '每天', pinyin: 'měitiān', french: 'tous les jours, chaque jour', role: 'Adverbe' },
+          { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
+          { hanzi: '玩', pinyin: 'wán', french: 'jouer, s’amuser', role: 'Verbe' },
+        ]
       }
     ],
-    sentences: [
-      {
-        id: 'xl1_1',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '大家好，我叫小李。',
-        pinyin: 'Dàjiā hǎo, wǒ jiào Xiǎo Lǐ.',
-        french: 'Bonjour tout le monde, je m’appelle Xiǎo Lǐ.',
-      },
-      {
-        id: 'xl1_2',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '我是一只猫，我住在北京。',
-        pinyin: 'Wǒ shì yì zhī māo, wǒ zhù zài Běijīng.',
-        french: 'Je suis un chat, j’habite à Pékin.',
-      },
-      {
-        id: 'xl1_3',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '我喜欢学中文，也喜欢旅游。',
-        pinyin: 'Wǒ xǐhuan xué Zhōngwén, yě xǐhuan lǚyóu.',
-        french: 'J’aime apprendre le chinois, et j’aime aussi voyager.',
-      },
-      {
-        id: 'xl1_4',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '我很高兴认识你们！',
-        pinyin: 'Wǒ hěn gāoxìng rènshi nǐmen!',
-        french: 'Je suis très content de vous rencontrer !',
-      },
-    ],
-    vocabulary: [
-      { hanzi: '小李', pinyin: 'Xiǎo Lǐ', french: '(nom du personnage — le chat)', role: 'Nom propre' },
-      { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour les animaux (chat, chien, oiseau, lapin, canard...)', role: 'Classificateur (量词)' },
-      { hanzi: '北京', pinyin: 'Běijīng', french: 'Pékin', role: 'Nom propre (lieu)' },
-      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
-      { hanzi: '高兴', pinyin: 'gāoxìng', french: 'content(e), heureux(se)', role: 'Adjectif' },
-    ]
-  },
-  {
-    id: 'video_xiaoli_ep2',
-    titleFr: 'Les Aventures de Xiao Li — Épisode 2 : Mon ami !',
-    titleZh: '小李历险记：我的朋友！',
-    titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì: Wǒ de péngyou!',
-    type: 'videos',
-    level: 'HSK 1',
-    duration: '0 min 30',
-    description: 'Xiao Li vous présente son meilleur ami ! Une aventure animée pour enrichir son vocabulaire du quotidien sur l’amitié et les animaux.',
-    imageUrl: 'https://img.youtube.com/vi/N6G7InZ8_BM/hqdefault.jpg',
-    iconBg: 'from-[#6200EE] to-[#3700B3]',
-    youtubeId: 'N6G7InZ8_BM',
-    characters: [
-      {
-        name: '小李',
-        nameZh: '小李',
-        pinyin: 'Xiǎo Lǐ',
-        role: 'Personnage principal',
-        description: 'Un chat roux tigré mignon et curieux qui apprend le chinois et partage son quotidien à Pékin avec ses amis.',
-        color: 'violet',
-      },
-      {
-        name: '大黄',
-        nameZh: '大黄',
-        pinyin: 'Dà Huáng',
-        role: 'Le Meilleur Ami',
-        description: 'Un petit chien joyeux et joueur, compagnon inséparable de Xiao Li pour s’amuser et réviser le chinois.',
-        color: 'turquoise',
-      }
-    ],
-    sentences: [
-      {
-        id: 'xl2_1',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '这是我的好朋友。',
-        pinyin: 'Zhè shì wǒ de hǎo péngyou.',
-        french: 'Voici mon bon ami.',
-      },
-      {
-        id: 'xl2_2',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '他叫大黄，他是一只小狗。',
-        pinyin: 'Tā jiào Dà Huáng, tā shì yì zhī xiǎogǒu.',
-        french: 'Il s’appelle Dà Huáng, c’est un petit chien.',
-      },
-      {
-        id: 'xl2_3',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '我们每天一起玩，一起学中文。',
-        pinyin: 'Wǒmen měitiān yìqǐ wán, yìqǐ xué Zhōngwén.',
-        french: 'Nous jouons ensemble tous les jours et apprenons le chinois ensemble.',
-      },
-      {
-        id: 'xl2_4',
-        speaker: '小李',
-        speakerRole: 'Le Chat Curieux',
-        speakerColor: 'violet',
-        hanzi: '你也有好朋友吗？',
-        pinyin: 'Nǐ yě yǒu hǎo péngyou ma?',
-        french: 'As-tu toi aussi de bons amis ?',
-      },
-    ],
-    vocabulary: [
-      { hanzi: '朋友', pinyin: 'péngyou', french: 'ami(e)', role: 'Nom' },
-      { hanzi: '小狗', pinyin: 'xiǎogǒu', french: 'petit chien, toutou', role: 'Nom' },
-      { hanzi: '每天', pinyin: 'měitiān', french: 'tous les jours, chaque jour', role: 'Adverbe' },
-      { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
-      { hanzi: '玩', pinyin: 'wán', french: 'jouer, s’amuser', role: 'Verbe' },
-    ]
+    sentences: []
   },
 
   // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
@@ -1919,11 +1933,15 @@ function EcouteLectureContent() {
   const displayedTitlePinyin = currentEpisode ? currentEpisode.titlePinyin : (activeReading?.titlePinyin || '');
   const displayedDuration = currentEpisode ? currentEpisode.duration : (activeReading?.duration || '');
   const displayedDescription = currentEpisode ? currentEpisode.description : (activeReading?.description || '');
+  const displayedYoutubeId = currentEpisode?.youtubeId || activeReading?.youtubeId;
+  const displayedImageUrl = currentEpisode?.imageUrl || activeReading?.imageUrl || '';
+  const displayedCharacters = currentEpisode?.characters || activeReading?.characters || [];
+  const displayedVocabulary = currentEpisode?.vocabulary || activeReading?.vocabulary || [];
 
   // Avec une vidéo, le lecteur passe sur deux colonnes à partir de `lg` :
   // vidéo fixée à gauche, paroles à droite.
-  const avecVideo = Boolean(activeReading?.youtubeId);
-  const videoLancee = activeReading !== null && videoLanceePour === activeReading.id;
+  const avecVideo = Boolean(displayedYoutubeId);
+  const videoLancee = activeReading !== null && videoLanceePour === `${activeReading.id}_${activeEpisodeIndex}`;
 
   // Sync with Supabase & localStorage safely after mount
   useEffect(() => {
@@ -2090,11 +2108,27 @@ function EcouteLectureContent() {
     }
 
     if (directId) {
-      const matched = readingCatalog.find((item) => item.id === directId);
+      let matched = readingCatalog.find((item) => item.id === directId);
+      let targetEp = isNaN(directEp) ? 0 : directEp;
+
+      if (!matched) {
+        // Fallback: chercher si directId correspond à un épisode d'une série
+        for (const item of readingCatalog) {
+          if (item.seriesEpisodes) {
+            const epIdx = item.seriesEpisodes.findIndex((ep) => ep.id === directId);
+            if (epIdx !== -1) {
+              matched = item;
+              targetEp = epIdx;
+              break;
+            }
+          }
+        }
+      }
+
       if (matched) {
         setActiveCategory(matched.type);
         setActiveReading(matched);
-        setActiveEpisodeIndex(isNaN(directEp) ? 0 : directEp);
+        setActiveEpisodeIndex(targetEp);
         setCurrentSentenceIndex(0);
         setIsPlayingAll(false);
         window.scrollTo({ top: 0 });
@@ -2120,10 +2154,25 @@ function EcouteLectureContent() {
       }
 
       if (id) {
-        const matched = readingCatalog.find((item) => item.id === id);
+        let matched = readingCatalog.find((item) => item.id === id);
+        let targetEp = isNaN(ep) ? 0 : ep;
+
+        if (!matched) {
+          for (const item of readingCatalog) {
+            if (item.seriesEpisodes) {
+              const epIdx = item.seriesEpisodes.findIndex((e) => e.id === id);
+              if (epIdx !== -1) {
+                matched = item;
+                targetEp = epIdx;
+                break;
+              }
+            }
+          }
+        }
+
         if (matched) {
           setActiveReading(matched);
-          setActiveEpisodeIndex(isNaN(ep) ? 0 : ep);
+          setActiveEpisodeIndex(targetEp);
         }
       } else {
         setActiveReading(null);
@@ -2410,7 +2459,7 @@ function EcouteLectureContent() {
             son parent est la page de lecture entière : un élément `sticky` ne
             reste accroché qu'à l'intérieur de son parent.
           */}
-          {activeReading.youtubeId && (
+          {displayedYoutubeId && (
             <div
               className={`z-30 ${
                 videoLancee
@@ -2424,12 +2473,60 @@ function EcouteLectureContent() {
               */}
               <div className="mx-auto w-full lg:max-w-[85vh]">
                 <ChinoisLingoVideoPlayer
-                  key={activeReading.youtubeId}
-                  youtubeId={activeReading.youtubeId}
+                  key={`${displayedYoutubeId}_${activeEpisodeIndex}`}
+                  youtubeId={displayedYoutubeId}
                   title={`${displayedTitleFr} - ${displayedTitleZh}`}
-                  thumbnailUrl={activeReading.imageUrl}
-                  onStart={() => setVideoLanceePour(activeReading.id)}
+                  thumbnailUrl={displayedImageUrl}
+                  onStart={() => setVideoLanceePour(`${activeReading.id}_${activeEpisodeIndex}`)}
                 />
+              </div>
+            </div>
+          )}
+
+          {/* SÉLECTEUR RAPIDE D'ÉPISODES DANS LE LECTEUR (POUR LES SÉRIES) */}
+          {activeReading.seriesEpisodes && activeReading.seriesEpisodes.length > 1 && (
+            <div className="w-full p-2.5 sm:p-3.5 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs">
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+                <span className="text-[11px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] shrink-0 mr-1 flex items-center gap-1">
+                  {activeReading.type === 'videos' ? (
+                    <>
+                      <Video className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+                      <span>Épisodes :</span>
+                    </>
+                  ) : (
+                    <>
+                      <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+                      <span>Chapitres :</span>
+                    </>
+                  )}
+                </span>
+                {activeReading.seriesEpisodes.map((ep, eIdx) => {
+                  const isCurrent = activeEpisodeIndex === eIdx;
+                  return (
+                    <button
+                      key={ep.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveEpisodeIndex(eIdx);
+                        setCurrentSentenceIndex(0);
+                        setIsPlayingAll(false);
+                        if (typeof window !== 'undefined') {
+                          const url = new URL(window.location.href);
+                          url.searchParams.set('ep', String(eIdx));
+                          window.history.pushState({}, '', url.toString());
+                        }
+                      }}
+                      className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all shrink-0 btn-press cursor-pointer flex items-center gap-1.5 ${
+                        isCurrent
+                          ? 'bg-[#6200EE] text-white shadow-md'
+                          : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC]'
+                      }`}
+                    >
+                      <span>{activeReading.type === 'videos' ? `Épisode ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
+                      <span className="opacity-70 font-normal truncate max-w-[120px] sm:max-w-[180px]">• {ep.titleFr}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -2448,17 +2545,23 @@ function EcouteLectureContent() {
           {/* ========================================================================= */}
           {/* SECTION LES PERSONNAGES (CADRAGE CONTEXTUEL AVANT TRANSCRIPTION)          */}
           {/* ========================================================================= */}
-          {activeReading.characters && activeReading.characters.length > 0 && (
+          {displayedCharacters && displayedCharacters.length > 0 && (
             <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  <span>{activeReading.type === 'histoires' ? 'Les Personnages de l’Histoire' : 'Les Personnages du Dialogue'}</span>
+                  <span>
+                    {activeReading.type === 'videos' 
+                      ? 'Les Personnages de la Série' 
+                      : activeReading.type === 'histoires' 
+                      ? 'Les Personnages de l’Histoire' 
+                      : 'Les Personnages du Dialogue'}
+                  </span>
                 </h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {activeReading.characters.map((char, cIdx) => {
+                {displayedCharacters.map((char, cIdx) => {
                   const isViolet = char.color === 'violet';
                   const isTurquoise = char.color === 'turquoise';
 
@@ -2724,7 +2827,7 @@ function EcouteLectureContent() {
           {/* ========================================================================= */}
           {/* SECTION 📝 生词 — NOUVEAUX MOTS & VOCABULAIRE CLÉ (EN BAS DE L'HISTOIRE) */}
           {/* ========================================================================= */}
-          {activeReading.vocabulary && activeReading.vocabulary.length > 0 && (
+          {displayedVocabulary && displayedVocabulary.length > 0 && (
             <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
@@ -2732,12 +2835,12 @@ function EcouteLectureContent() {
                   <span>📝 生词 — Nouveaux Mots & Vocabulaire Clé</span>
                 </h3>
                 <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
-                  {activeReading.vocabulary.length} mots clés
+                  {displayedVocabulary.length} mots clés
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {activeReading.vocabulary.map((vocab, vIdx) => (
+                {displayedVocabulary.map((vocab, vIdx) => (
                   <div
                     key={vIdx}
                     className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex flex-col justify-between gap-2 group hover:border-[#00897B] transition-all shadow-2xs"
@@ -2844,13 +2947,15 @@ function EcouteLectureContent() {
                   {activeSeries.titleFr}
                 </h1>
                 <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] truncate">
-                  Sélectionnez un article pour commencer votre lecture
+                  {activeSeries.type === 'videos' 
+                    ? 'Sélectionnez un épisode pour commencer à regarder' 
+                    : 'Sélectionnez un article pour commencer votre lecture'}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Grille des 3 Cadres d'Articles (Ratio Carré 1:1 Standard) */}
+          {/* Grille des Cadres d'Épisodes / Articles (Ratio Carré 1:1 Standard) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {activeSeries.seriesEpisodes?.map((ep, eIdx) => {
               return (
@@ -2882,7 +2987,7 @@ function EcouteLectureContent() {
 
                     {/* Floating Episode Badge on Bottom-Left */}
                     <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#6200EE] text-white shadow-md">
-                      Article {ep.episodeNumber}
+                      {activeSeries.type === 'videos' ? 'Épisode' : 'Article'} {ep.episodeNumber}
                     </span>
                   </div>
 
@@ -2908,8 +3013,17 @@ function EcouteLectureContent() {
                         type="button"
                         className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#6200EE] group-hover:bg-[#4A00B0] text-white transition-all btn-press"
                       >
-                        <BookOpen className="w-3 h-3" />
-                        <span>Lire</span>
+                        {activeSeries.type === 'videos' ? (
+                          <>
+                            <Play className="w-3 h-3 fill-current" />
+                            <span>Regarder</span>
+                          </>
+                        ) : (
+                          <>
+                            <BookOpen className="w-3 h-3" />
+                            <span>Lire</span>
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>
@@ -3059,13 +3173,19 @@ function EcouteLectureContent() {
                       {/* Unified Badge on Bottom-Left */}
                       {hasSeriesEpisodes ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
-                          <span className="text-[#03DAC5] font-black">Série d’articles</span>
+                          <span className="text-[#03DAC5] font-black">
+                            {item.type === 'videos' ? 'Série de vidéos' : 'Série d’articles'}
+                          </span>
                           <span className="text-white/40">•</span>
-                          <span>Par {item.author || 'Espoir Chinois'}</span>
+                          <span>
+                            {item.type === 'videos' 
+                              ? `${item.seriesEpisodes?.length || 0} épisodes` 
+                              : `Par ${item.author || 'Espoir Chinois'}`}
+                          </span>
                         </span>
                       ) : item.type === 'videos' ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
-                          <span className="text-[#03DAC5] font-black">Série de vidéos</span>
+                          <span className="text-[#03DAC5] font-black">Vidéo animée</span>
                           <span className="text-white/40">•</span>
                           <span>{item.level}</span>
                         </span>
@@ -3115,8 +3235,17 @@ function EcouteLectureContent() {
                             type="button"
                             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold shadow-xs bg-[#6200EE] group-hover:bg-[#4A00B0] text-white transition-all btn-press shrink-0"
                           >
-                            <BookOpen className="w-3 h-3" />
-                            <span>Explorer (3)</span>
+                            {item.type === 'videos' ? (
+                              <>
+                                <Play className="w-3 h-3 fill-white" />
+                                <span>Épisodes ({item.seriesEpisodes?.length || 0})</span>
+                              </>
+                            ) : (
+                              <>
+                                <BookOpen className="w-3 h-3" />
+                                <span>Explorer ({item.seriesEpisodes?.length || 0})</span>
+                              </>
+                            )}
                           </button>
                         ) : (
                           <button
