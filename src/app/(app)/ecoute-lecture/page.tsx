@@ -2187,9 +2187,9 @@ function EcouteLectureContent() {
           */}
           {activeReading.youtubeId && (
             <div
-              className={`z-30 lg:sticky lg:top-0 lg:py-3 lg:bg-white/70 lg:dark:bg-[#121212]/70 lg:backdrop-blur-xl ${
+              className={`z-30 ${
                 videoLancee
-                  ? 'max-lg:sticky max-lg:top-0 max-lg:py-2 max-lg:bg-white/80 max-lg:dark:bg-[#121212]/85 max-lg:backdrop-blur-xl'
+                  ? 'sticky top-0 py-2 lg:py-3 bg-white/80 dark:bg-[#121212]/85 backdrop-blur-xl'
                   : ''
               }`}
             >
