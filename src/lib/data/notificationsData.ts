@@ -22,7 +22,7 @@ export const initialNotifications: NotificationItem[] = [
     founderAvatar: '/espoir-chinois.jpg',
     type: 'video',
     title: 'Xiao Li — Épisode 2 : Mon ami ! 🎬',
-    message: 'Retrouvez Xiao Li à Pékin et découvrez son meilleur ami dans ce nouvel épisode immersif pour enrichir votre vocabulaire HSK 1.',
+    message: 'Retrouvez Xiao Li à Pékin et découvrez son nouvel ami Duōduō, le petit chien policier, dans ce nouvel épisode immersif pour apprendre à faire connaissance en chinois.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=videos&id=video_xiaoli_ep2',
