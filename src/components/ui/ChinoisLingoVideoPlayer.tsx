@@ -407,7 +407,13 @@ export function ChinoisLingoVideoPlayer({
 
   /* ── Lecture : habillage YouTube supprimé, commandes maison ─────────── */
   const surfaceLecture = (
-    <div className="absolute inset-0 overflow-hidden bg-black" onMouseMove={montrerCommandes}>
+    <div
+      className={`absolute inset-0 overflow-hidden bg-black transition-all duration-300 ${
+        !commandesAffichees ? 'cursor-none [&_*]:!cursor-none' : ''
+      }`}
+      onMouseMove={montrerCommandes}
+      onPointerMove={montrerCommandes}
+    >
       {/*
         Positionnement absolu plutôt que `flex` + `h-full`.
 
@@ -433,7 +439,7 @@ export function ChinoisLingoVideoPlayer({
         côtés déplace la lecture de 10 secondes, au centre elle montre ou
         efface les commandes — mais ne met jamais en pause.
       */}
-      <div className="absolute inset-0 z-20 flex">
+      <div className={`absolute inset-0 z-20 flex ${!commandesAffichees ? 'cursor-none' : ''}`}>
         <button
           type="button"
           onClick={(e) => {
@@ -441,7 +447,7 @@ export function ChinoisLingoVideoPlayer({
             sauter(-1);
           }}
           aria-label={`Reculer de ${SAUT_SECONDES} secondes`}
-          className="h-full w-[30%] bg-transparent cursor-pointer"
+          className={`h-full w-[30%] bg-transparent ${commandesAffichees ? 'cursor-pointer' : 'cursor-none'}`}
         />
         <button
           type="button"
@@ -451,7 +457,7 @@ export function ChinoisLingoVideoPlayer({
             else montrerCommandes();
           }}
           aria-label={commandesVisibles ? 'Masquer les commandes' : 'Afficher les commandes'}
-          className="h-full flex-1 bg-transparent cursor-pointer"
+          className={`h-full flex-1 bg-transparent ${commandesAffichees ? 'cursor-pointer' : 'cursor-none'}`}
         />
         <button
           type="button"
@@ -460,7 +466,7 @@ export function ChinoisLingoVideoPlayer({
             sauter(1);
           }}
           aria-label={`Avancer de ${SAUT_SECONDES} secondes`}
-          className="h-full w-[30%] bg-transparent cursor-pointer"
+          className={`h-full w-[30%] bg-transparent ${commandesAffichees ? 'cursor-pointer' : 'cursor-none'}`}
         />
       </div>
 
@@ -617,7 +623,11 @@ export function ChinoisLingoVideoPlayer({
     <div
       ref={containerRef}
       onContextMenu={(e) => e.preventDefault()}
+      onMouseMove={hasStarted ? montrerCommandes : undefined}
+      onPointerMove={hasStarted ? montrerCommandes : undefined}
       className={`relative select-none group transition-all duration-300 ${
+        hasStarted && !commandesAffichees ? 'cursor-none [&_*]:!cursor-none' : ''
+      } ${
         pleinEcran === 'natif'
           ? 'fixed inset-0 z-[999999] w-screen h-[100dvh] max-w-none max-h-none rounded-none bg-black shadow-none border-0'
           : `w-full aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] ${className}`
@@ -651,7 +661,11 @@ export function ChinoisLingoVideoPlayer({
           <Portal>
             <div
               onContextMenu={(e) => e.preventDefault()}
-              className="fixed inset-0 z-[1000] bg-black select-none group"
+              onMouseMove={montrerCommandes}
+              onPointerMove={montrerCommandes}
+              className={`fixed inset-0 z-[1000] bg-black select-none group ${
+                !commandesAffichees ? 'cursor-none [&_*]:!cursor-none' : ''
+              }`}
             >
               {surfaceLecture}
             </div>
