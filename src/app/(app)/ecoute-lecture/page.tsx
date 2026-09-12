@@ -1730,7 +1730,7 @@ function EcouteLectureContent() {
   }, [user]);
 
   // Palier gratuit : les quotas par rubrique vivent dans `acces.ts`.
-  const { etat: etatAbonnement } = useAbonnement();
+  const { etat: etatAbonnement, indetermine: accesIndetermine } = useAbonnement();
   // accesComplet et non estAbonne : un administrateur ouvre tout le
   // catalogue sans abonnement. Pour tout autre compte, les deux valeurs
   // sont identiques — aucun changement de comportement.
@@ -1753,6 +1753,27 @@ function EcouteLectureContent() {
       .findIndex((r) => r.id === item.id);
     return contenuAccessible(item.type, rang, accesComplet);
   };
+
+  /** Libellé de rubrique pour l'écran « réservé aux abonnés ». */
+  const rubriqueDe = (item: ReadingItem): string =>
+    item.type === 'videos' ? 'vidéos' : item.type === 'podcasts' ? 'podcasts' : item.type;
+
+  /**
+   * Un lien profond (?type=&id=) ne doit pas ouvrir un contenu réservé : la
+   * carte du catalogue est verrouillée, l'adresse doit l'être aussi.
+   *
+   * Le contrôle a lieu AU RENDU, comme dans Formation et Vocabulaire. Il
+   * couvre ainsi toutes les façons d'arriver sur une lecture — lien partagé,
+   * bouton Précédent du navigateur, restauration de session — là où le
+   * contrôle au clic d'`openReading` n'en couvrait qu'une seule.
+   *
+   * Tant que l'abonnement n'est pas connu, on n'affiche ni le contenu ni le
+   * mur : un abonné dont le profil charge encore ne doit pas voir clignoter
+   * un écran « réservé ».
+   */
+  const lectureAutorisee = activeReading !== null && estAccessible(activeReading);
+  const lectureEnAttente = activeReading !== null && !lectureAutorisee && accesIndetermine;
+  const lectureRefusee = activeReading !== null && !lectureAutorisee && !accesIndetermine;
 
   // Unified Open / Close functions with URL persistence (F5 / Reload preserves the reading page)
   const openReading = (item: ReadingItem, episodeIdx = 0) => {
@@ -2055,7 +2076,25 @@ function EcouteLectureContent() {
       {/* ========================================================================= */}
       {/* VIEW A: FULL-SCREEN IMMERSIVE READER / SONG PLAYER VIEW                   */}
       {/* ========================================================================= */}
-      {activeReading ? (
+      {lectureEnAttente ? (
+        <div className="py-16 text-center text-xs text-[#757575] dark:text-[#A0A0A0] animate-fadeIn">
+          Vérification de votre accès…
+        </div>
+      ) : lectureRefusee && activeReading ? (
+        <div className="py-8 animate-fadeIn">
+          <EcranPremium titre={activeReading.titleFr} rubrique={rubriqueDe(activeReading)} />
+          <div className="flex justify-center mt-5">
+            <button
+              onClick={closeReading}
+              type="button"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:bg-[#FAFAFA] dark:hover:bg-white/5 transition-all btn-press cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Retour au catalogue
+            </button>
+          </div>
+        </div>
+      ) : activeReading && lectureAutorisee ? (
         <div className="space-y-6 animate-fadeIn">
           {/* Top Bar: Back Button, Multi-line Title (L1: French, L2: Hanzi, L3: Pinyin), Audio Action Buttons at Top Right */}
           <div className={`flex items-start justify-between gap-3 p-3.5 sm:p-5 ${avecVideo ? 'lg:py-3' : ''} rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm`}>
@@ -2148,19 +2187,25 @@ function EcouteLectureContent() {
           */}
           {activeReading.youtubeId && (
             <div
-              className={`z-30 mx-auto w-full lg:max-w-[85vh] lg:sticky lg:top-3 ${
+              className={`z-30 lg:sticky lg:top-0 lg:py-3 lg:bg-white/70 lg:dark:bg-[#121212]/70 lg:backdrop-blur-xl ${
                 videoLancee
-                  ? 'max-lg:sticky max-lg:top-0 max-lg:py-2 max-lg:bg-white/90 max-lg:dark:bg-[#121212]/95 max-lg:backdrop-blur-xl'
+                  ? 'max-lg:sticky max-lg:top-0 max-lg:py-2 max-lg:bg-white/80 max-lg:dark:bg-[#121212]/85 max-lg:backdrop-blur-xl'
                   : ''
               }`}
             >
-              <ChinoisLingoVideoPlayer
-                key={activeReading.youtubeId}
-                youtubeId={activeReading.youtubeId}
-                title={`${displayedTitleFr} - ${displayedTitleZh}`}
-                thumbnailUrl={activeReading.imageUrl}
-                onStart={() => setVideoLanceePour(activeReading.id)}
-              />
+              {/*
+                Bandeau pleine largeur, flouté : le texte qui défile derrière
+                la vidéo devient illisible plutôt que distrayant.
+              */}
+              <div className="mx-auto w-full lg:max-w-[85vh]">
+                <ChinoisLingoVideoPlayer
+                  key={activeReading.youtubeId}
+                  youtubeId={activeReading.youtubeId}
+                  title={`${displayedTitleFr} - ${displayedTitleZh}`}
+                  thumbnailUrl={activeReading.imageUrl}
+                  onStart={() => setVideoLanceePour(activeReading.id)}
+                />
+              </div>
             </div>
           )}
 
@@ -2319,11 +2364,7 @@ function EcouteLectureContent() {
               Avec une vidéo, les paroles tiennent dans un cadre de quelques
               lignes qui défile tout seul : l'image garde le haut de l'écran.
             */}
-            <div
-              className={`divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80 ${
-                avecVideo ? 'lg:max-h-[42vh] lg:overflow-y-auto lg:pr-1.5' : ''
-              }`}
-            >
+            <div className="divide-y divide-[#E0E0E0]/60 dark:divide-[#2D2D2D]/80">
             {displayedSentences.map((sent, idx) => {
               const isSentencePlaying = playingSentenceId === sent.id;
               const isCurrentInSequence = isPlayingAll && currentSentenceIndex === idx;
@@ -2909,16 +2950,7 @@ function EcouteLectureContent() {
               >
                 ✕
               </button>
-              <EcranPremium
-                titre={itemVerrouille.titleFr}
-                rubrique={
-                  itemVerrouille.type === 'videos'
-                    ? 'vidéos'
-                    : itemVerrouille.type === 'podcasts'
-                      ? 'podcasts'
-                      : itemVerrouille.type
-                }
-              />
+              <EcranPremium titre={itemVerrouille.titleFr} rubrique={rubriqueDe(itemVerrouille)} />
             </div>
           </div>
         </Portal>

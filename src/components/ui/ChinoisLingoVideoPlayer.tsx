@@ -495,22 +495,29 @@ export function ChinoisLingoVideoPlayer({
         sous-titre n'est masqué.
       */}
       {!enLecture && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/95 backdrop-blur-sm pointer-events-none">
-          {/*
-            Bouton central : à l'arrêt, c'est lui qui relance la vidéo — le
-            geste le plus naturel. Le voile reste transparent aux clics, pour
-            que les tapes sur les côtés continuent de déplacer la lecture.
-          */}
-          <button
-            type="button"
-            onClick={basculerLecture}
-            aria-label="Reprendre la lecture"
-            className="pointer-events-auto w-16 h-16 rounded-full bg-[#6200EE] hover:bg-[#4A00B0] text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/50 border-2 border-white/40 active:scale-95 transition-all btn-press cursor-pointer"
-          >
-            <Play className="w-7 h-7 fill-white text-white ml-1 pointer-events-none" />
-          </button>
-        </div>
+        <div className="absolute inset-0 z-30 bg-black/95 backdrop-blur-sm pointer-events-none" />
       )}
+
+      {/*
+        Bouton central lecture/pause : la commande principale, au milieu de
+        l'image. Il joue ET met en pause — auparavant il n'apparaissait qu'à
+        l'arrêt, si bien qu'on ne pouvait plus interrompre la vidéo une fois
+        lancée. Il s'efface avec les autres commandes pendant la lecture.
+      */}
+      <button
+        type="button"
+        onClick={basculerLecture}
+        aria-label={enLecture ? 'Mettre en pause' : 'Reprendre la lecture'}
+        className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 w-16 h-16 rounded-full bg-[#6200EE]/95 hover:bg-[#4A00B0] text-white flex items-center justify-center shadow-2xl shadow-[#6200EE]/50 border-2 border-white/40 active:scale-95 transition-all btn-press cursor-pointer ${
+          commandesAffichees ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {enLecture ? (
+          <Pause className="w-7 h-7 fill-white text-white pointer-events-none" />
+        ) : (
+          <Play className="w-7 h-7 fill-white text-white ml-1 pointer-events-none" />
+        )}
+      </button>
 
       {/*
         Sortie du plein écran toujours visible, en haut à droite, avec une
