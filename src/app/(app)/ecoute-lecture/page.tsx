@@ -518,7 +518,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'videos',
     level: 'HSK 1',
     duration: '0 min 20',
-    description: 'Lily croise Espoir dans la rue pour apprendre la première formule de salutation essentielle en chinois.',
+    description: 'Lily croise Espoir dans la rue. Apprenez la première formule de salutation essentielle en chinois.',
     imageUrl: 'https://img.youtube.com/vi/LzSYHgBD9HI/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
     youtubeId: 'LzSYHgBD9HI',
@@ -3512,7 +3512,7 @@ function EcouteLectureContent() {
                         </span>
                       ) : item.type === 'videos' ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
-                          <span className="text-[#03DAC5] font-black">Vidéo animée</span>
+                          <span className="text-[#03DAC5] font-black">Vidéo</span>
                           <span className="text-white/40">•</span>
                           <span>{item.level}</span>
                         </span>
