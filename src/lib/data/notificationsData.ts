@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_dou_viens_tu',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'D’où viens-tu ? (Nationalités) — 你是哪国人？ 🎬',
+    message: 'Apprenez à demander et exprimer votre pays et votre nationalité en chinois à travers cette scène à l’aéroport avec Marc, M. Wang et Espoir.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_dou_viens_tu',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_comment_tu_tappelles',
     source: 'founder',
     founderName: 'Espoir Chinois',
