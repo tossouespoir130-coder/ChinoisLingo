@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_prendre_taxi',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Prendre le Taxi — 坐出租车 🎬',
+    message: 'Découvrez cette nouvelle vidéo immersive du quotidien pour apprendre à indiquer une destination et payer un taxi en chinois.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_prendre_taxi',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_xiaoli_ep2',
     source: 'founder',
     founderName: 'Espoir Chinois',
