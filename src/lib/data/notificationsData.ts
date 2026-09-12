@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_video_bonjour_subo',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Bonjour ! — 你好！ 🎬',
+    message: 'Découvrez les salutations indispensables du chinois du quotidien avec Lily et Espoir (苏波) dans cette nouvelle vidéo.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=videos&id=video_bonjour_subo',
+    actionLabel: 'Regarder la vidéo'
+  },
+  {
     id: 'notif_video_acheter_pommes',
     source: 'founder',
     founderName: 'Espoir Chinois',

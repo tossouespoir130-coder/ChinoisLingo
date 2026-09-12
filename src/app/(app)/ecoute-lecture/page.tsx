@@ -510,6 +510,60 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '谢谢', pinyin: 'xièxie', french: 'merci, remercier', role: 'Expression / Verbe' },
     ]
   },
+  {
+    id: 'video_bonjour_subo',
+    titleFr: 'Bonjour ! (Se Saluer)',
+    titleZh: '你好！',
+    titlePinyin: 'Nǐ hǎo!',
+    type: 'videos',
+    level: 'HSK 1',
+    duration: '0 min 20',
+    description: 'Lily croise Espoir dans la rue pour apprendre la première formule de salutation essentielle en chinois.',
+    imageUrl: 'https://img.youtube.com/vi/LzSYHgBD9HI/hqdefault.jpg',
+    iconBg: 'from-[#6200EE] to-[#3700B3]',
+    youtubeId: 'LzSYHgBD9HI',
+    characters: [
+      {
+        name: '丽丽',
+        nameZh: '丽丽',
+        pinyin: 'Lìli',
+        role: 'Passante',
+        description: 'Pleine d’énergie et toujours souriante. Aujourd’hui Lily croise Espoir dans la rue.',
+        color: 'turquoise',
+      },
+      {
+        name: '苏波',
+        nameZh: '苏波',
+        pinyin: 'Sūbō',
+        role: 'Passant (Espoir)',
+        description: 'Espoir parle chinois et traverse souvent les rues animées de la ville. Ce matin-là, il croise Lily sur son chemin.',
+        color: 'violet',
+      }
+    ],
+    sentences: [
+      {
+        id: 'bonjour_1',
+        speaker: '丽丽',
+        speakerRole: 'Lily',
+        speakerColor: 'turquoise',
+        hanzi: '你好！',
+        pinyin: 'Nǐ hǎo!',
+        french: 'Bonjour !',
+      },
+      {
+        id: 'bonjour_2',
+        speaker: '苏波',
+        speakerRole: 'Espoir',
+        speakerColor: 'violet',
+        hanzi: '你好！',
+        pinyin: 'Nǐ hǎo!',
+        french: 'Bonjour !',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '你好', pinyin: 'nǐ hǎo', french: 'bonjour', role: 'Formule de salutation' },
+    ]
+  },
 
   // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
   {
