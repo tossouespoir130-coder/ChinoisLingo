@@ -1076,7 +1076,7 @@ export function analyzeAndGenerateCombinations(rawInput: string): CombinatoryAna
               { id: 'sub_ni', hanzi: '你', pinyin: 'Nǐ', french: 'Tu' },
               { id: 'sub_ta', hanzi: '他', pinyin: 'Tā', french: 'Il' },
               { id: 'sub_women', hanzi: '我们', pinyin: 'Wǒmen', french: 'Nous' },
-              { id: 'sub_lily', hanzi: '莉莉', pinyin: 'Lìli', french: 'Lily' },
+              { id: 'sub_lily', hanzi: '丽丽', pinyin: 'Lìli', french: 'Lily' },
               { id: 'sub_tongshi', hanzi: '同事们', pinyin: 'Tóngshìmen', french: 'Les collègues' },
               { id: 'sub_jingli', hanzi: '王经理', pinyin: 'Wáng jīnglǐ', french: 'Le directeur Wang' },
             ],

@@ -324,8 +324,8 @@ export const readingCatalog: ReadingItem[] = [
     youtubeId: 'RFixTlCYcJs',
     characters: [
       {
-        name: '莉莉',
-        nameZh: '莉莉',
+        name: '丽丽',
+        nameZh: '丽丽',
         pinyin: 'Lìli',
         role: 'Passagère',
         description: 'Dynamique et toujours pressée d’avancer, Lily a le sourire facile. Aujourd’hui, elle est en route vers l’école.',
@@ -352,7 +352,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'taxi_2',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Passagère',
         speakerColor: 'turquoise',
         hanzi: '你好，我要去阳光学校。',
@@ -379,7 +379,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'taxi_5',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Passagère',
         speakerColor: 'turquoise',
         hanzi: '多少钱？',
@@ -419,8 +419,8 @@ export const readingCatalog: ReadingItem[] = [
     youtubeId: 'lssQ7_tvDRk',
     characters: [
       {
-        name: '莉莉',
-        nameZh: '莉莉',
+        name: '丽丽',
+        nameZh: '丽丽',
         pinyin: 'Lìli',
         role: 'Cliente',
         description: 'Pleine d’énergie et toujours en mouvement, Lily ne s’arrête jamais bien longtemps. Ce jour-là, elle fait ses courses au marché.',
@@ -438,7 +438,7 @@ export const readingCatalog: ReadingItem[] = [
     sentences: [
       {
         id: 'pommes_1',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Cliente',
         speakerColor: 'turquoise',
         hanzi: '你好！我要买苹果。',
@@ -456,7 +456,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'pommes_3',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Cliente',
         speakerColor: 'turquoise',
         hanzi: '我要五个。',
@@ -474,7 +474,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'pommes_5',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Cliente',
         speakerColor: 'turquoise',
         hanzi: '好，给你钱。',
@@ -492,7 +492,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'pommes_7',
-        speaker: '莉莉',
+        speaker: '丽丽',
         speakerRole: 'La Cliente',
         speakerColor: 'turquoise',
         hanzi: '再见！',
