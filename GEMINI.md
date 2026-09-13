@@ -91,7 +91,7 @@ Comprend 4 sous-sections fondamentales :
 
 ### 4.6. Recherche Globale, Notifications & Pop-up Toasts
 - **Recherche Globale (`GlobalSearchModal.tsx`)** : Barre de recherche instantanée avec état vide épuré et filtrage par onglets de résultats (Vocabulaire, Écoute & Lecture, Formations...).
-- **Notifications (`NotificationsModal.tsx` & `notificationsData.ts`)** : Filtres *Tous*, *Espoir Chinois (Fondateur)* et *Système* avec auto-scroll au clic, persistance et **titres bilingues structurés sur 2 lignes propres (`\n`)** (Ligne 1 : Français / Ligne 2 : `🎬 <Chinois>`) pour un confort mobile optimal sans icône orpheline.
+- **Notifications (`NotificationsModal.tsx` & `notificationsData.ts`)** : Filtres *Tous*, *Espoir Chinois (Fondateur)* et *Système* avec auto-scroll au clic, persistance et **titres bilingues structurés sur 2 lignes propres (`\n`)** (Ligne 1 : Français / Ligne 2 : `<Chinois> 🎬` avec l'émoji clapet à la fin) pour un confort mobile optimal sans icône orpheline.
 - **Pop-up Toast Automatique de Nouveau Contenu (`NewContentToast.tsx`)** : Dès qu'un nouveau contenu (vidéo, formation, dialogue, chanson) est publié, le pop-up toast apparaît automatiquement en bas à droite après 2.5 secondes avec la photo d'Espoir Chinois pour inviter l'apprenant à le découvrir en 1 clic.
 
 ---
