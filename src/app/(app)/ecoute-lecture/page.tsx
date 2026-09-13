@@ -3677,10 +3677,8 @@ function EcouteLectureContent() {
                           </span>
                         </span>
                       ) : item.type === 'videos' ? (
-                        <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
-                          <span className="text-[#03DAC5] font-black">Vidéo</span>
-                          <span className="text-white/40">•</span>
-                          <span>{item.level}</span>
+                        <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-black px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-[#03DAC5] border border-white/15 shadow-sm">
+                          Vidéo
                         </span>
                       ) : null}
                     </div>
