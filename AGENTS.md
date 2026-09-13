@@ -105,8 +105,9 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
 13. **Règle Permanente de Notification, Cloche Épurée et Pop-up Toast Persistant** :
    - Pour TOUT nouveau contenu ajouté sur la plateforme (vidéo, épisode de série, formation, chanson, dialogue, article, podcast, cours) :
      1. **Notification Cloche & Persistance de Lecture** : Les notifications lues sont enregistrées durablement (`localStorage` + base Supabase). Dès que l'utilisateur a vu ses notifications et se reconnecte, la cloche affiche un état épuré **sans badge rouge ni chiffre (`unreadCount = 0`)**.
-     2. **Pop-up Toast Automatique (`NewContentToast`)** : N'apparaît que pour un contenu réellement inédit et non encore vu, puis est mémorisé comme vu.
-     3. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts non vus restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
+     2. **Formatage Visuel Propre des Titres (2 Lignes Distinctes)** : Dès qu'un titre de notification comporte une partie en français et en chinois, toujours structurer avec `\n` (Ligne 1 : Titre complet en français / Ligne 2 : `🎬 <Titre en Chinois>`), évitant ainsi qu'une icône ou un caractère se retrouve isolé ou orphelin sur mobile.
+     3. **Pop-up Toast Automatique (`NewContentToast`)** : N'apparaît que pour un contenu réellement inédit et non encore vu, puis est mémorisé comme vu.
+     4. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts non vus restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
 
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :

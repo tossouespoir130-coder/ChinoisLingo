@@ -258,7 +258,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
                     {/* Subject & Message Body */}
                     <div className="space-y-1 pl-12">
-                      <h4 className="font-display font-extrabold text-xs sm:text-sm text-[#6200EE] dark:text-[#BB86FC]">
+                      <h4 className="font-display font-extrabold text-xs sm:text-sm text-[#6200EE] dark:text-[#BB86FC] whitespace-pre-line leading-snug">
                         {notif.title}
                       </h4>
                       <p className="text-xs text-[#212121] dark:text-[#E0E0E0] leading-relaxed">
