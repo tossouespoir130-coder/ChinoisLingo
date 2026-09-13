@@ -43,38 +43,50 @@ export async function updateProfileSettings(updates: Partial<Profile>): Promise<
   return true;
 }
 
-export async function recordDailyActivity(minutesToAdd: number = 0): Promise<void> {
+export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Profile | null> {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return;
+  if (!user) return null;
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('streak_days, last_active_date, total_minutes_learned')
+    .select('*')
     .eq('id', user.id)
     .single();
 
-  if (!profile) return;
+  if (!profile) return null;
 
   const today = new Date().toISOString().split('T')[0];
-  const lastActive = profile.last_active_date;
+  const lastActive = profile.last_active_date ? String(profile.last_active_date).split('T')[0] : null;
   let newStreak = profile.streak_days || 1;
 
   if (lastActive) {
-    const lastDate = new Date(lastActive);
-    const currentDate = new Date(today);
-    const diffTime = Math.abs(currentDate.getTime() - lastDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (lastActive === today) {
+      // Déjà connecté aujourd'hui : on conserve la série actuelle intacte
+      newStreak = profile.streak_days || 1;
+    } else {
+      // Comparaison en jours calendaires entiers UTC
+      const [y1, m1, d1] = lastActive.split('-').map(Number);
+      const [y2, m2, d2] = today.split('-').map(Number);
+      const date1Utc = Date.UTC(y1, m1 - 1, d1);
+      const date2Utc = Date.UTC(y2, m2 - 1, d2);
+      const diffDays = Math.round((date2Utc - date1Utc) / 86400000);
 
-    if (diffDays === 1) {
-      newStreak += 1;
-    } else if (diffDays > 1) {
-      newStreak = 1; // reset streak if missed a day
+      if (diffDays === 1) {
+        // Connexion le lendemain consécutif : série + 1
+        newStreak = (profile.streak_days || 0) + 1;
+      } else if (diffDays > 1) {
+        // Absence de 2 jours ou plus : la série recommence à 1
+        newStreak = 1;
+      }
     }
+  } else {
+    // Première connexion
+    newStreak = 1;
   }
 
-  await supabase
+  const { data: updatedProfile, error: updateError } = await supabase
     .from('profiles')
     .update({
       streak_days: newStreak,
@@ -82,7 +94,13 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<voi
       total_minutes_learned: (profile.total_minutes_learned || 0) + minutesToAdd,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', user.id);
+    .eq('id', user.id)
+    .select('*')
+    .single();
+
+  if (updateError) {
+    console.error('[ChinoisLingo] Erreur mise à jour streak:', updateError);
+  }
 
   // Historique quotidien reel, qui alimente le graphique du tableau de bord.
   // Sans lui, la courbe ne pouvait qu'etre fabriquee a partir du total.
@@ -104,6 +122,8 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<voi
 
   // Une mesure manquee ne doit jamais interrompre la session de l'apprenant.
   signalerErreurActivite('recordDailyActivity', erreurActivite);
+
+  return updatedProfile || null;
 }
 
 /** Codes renvoyes par PostgREST quand la table n'existe pas encore. */

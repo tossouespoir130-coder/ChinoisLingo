@@ -45,22 +45,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // 1. Check current session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        refreshProfile();
-        recordDailyActivity(1);
+        try {
+          const updated = await recordDailyActivity(0);
+          if (updated) {
+            setProfile(updated);
+          } else {
+            await refreshProfile();
+          }
+        } catch {
+          await refreshProfile();
+        }
       }
       setIsLoading(false);
     });
 
     // 2. Listen to auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        refreshProfile();
+        try {
+          const updated = await recordDailyActivity(0);
+          if (updated) {
+            setProfile(updated);
+          } else {
+            await refreshProfile();
+          }
+        } catch {
+          await refreshProfile();
+        }
       } else {
         setProfile(null);
       }
