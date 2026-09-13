@@ -30,20 +30,28 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
     };
   }, [chartData]);
 
-  const emptyWeekData = [
-    { label: 'Lun', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Mar', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Mer', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Jeu', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Ven', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Sam', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Dim', masteredWords: 0, studyTimeHours: 0 },
+  interface ChartPoint {
+    label: string;
+    masteredWords: number;
+    studyTimeMinutes: number;
+    studyTimeHours?: number;
+    retentionRate?: number;
+  }
+
+  const emptyWeekData: ChartPoint[] = [
+    { label: 'Lun', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Mar', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Mer', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Jeu', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Ven', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Sam', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Dim', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
   ];
-  const emptyMonthData = [
-    { label: 'Sem 1', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Sem 2', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Sem 3', masteredWords: 0, studyTimeHours: 0 },
-    { label: 'Sem 4', masteredWords: 0, studyTimeHours: 0 },
+  const emptyMonthData: ChartPoint[] = [
+    { label: 'Sem 1', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Sem 2', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Sem 3', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
+    { label: 'Sem 4', masteredWords: 0, studyTimeMinutes: 0, studyTimeHours: 0 },
   ];
 
   const points = realStats?.[timeframe] || (timeframe === 'week' ? emptyWeekData : emptyMonthData);
@@ -53,8 +61,11 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
   const maxWordsInPoints = Math.max(...points.map((p: any) => p.masteredWords || 0), 10);
   const MAX_WORDS = Math.max(50, Math.ceil(maxWordsInPoints * 1.25));
 
-  const maxHoursInPoints = Math.max(...points.map((p: any) => p.studyTimeHours || 0), 0.5);
-  const MAX_STUDY_HOURS = Math.max(timeframe === 'week' ? 2 : 10, Math.ceil(maxHoursInPoints * 1.3));
+  const maxMinutesInPoints = Math.max(
+    ...points.map((p: any) => p.studyTimeMinutes ?? Math.round((p.studyTimeHours || 0) * 60)),
+    5
+  );
+  const MAX_STUDY_MINUTES = Math.max(timeframe === 'week' ? 60 : 180, Math.ceil(maxMinutesInPoints * 1.25));
 
   const MAX_PERCENT = 100;
 
@@ -97,11 +108,11 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
     return paddingTop + innerHeight - effectiveH;
   };
 
-  // Y Coordinate for Study Time
-  const getYStudyHours = (hours: number) => {
-    const clamped = Math.min(MAX_STUDY_HOURS, Math.max(0, hours));
-    const rawH = (clamped / MAX_STUDY_HOURS) * (innerHeight * 0.88);
-    const effectiveH = hours > 0 ? Math.max(8, rawH) : 0;
+  // Y Coordinate for Study Time (in minutes)
+  const getYStudyMinutes = (minutes: number) => {
+    const clamped = Math.min(MAX_STUDY_MINUTES, Math.max(0, minutes));
+    const rawH = (clamped / MAX_STUDY_MINUTES) * (innerHeight * 0.88);
+    const effectiveH = minutes > 0 ? Math.max(8, rawH) : 0;
     return paddingTop + innerHeight - effectiveH;
   };
 
@@ -179,7 +190,7 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
                 <span className="w-2 h-2 rounded-full bg-[#E91E63]" />
                 <span className="text-[#F06292] font-semibold">Temps d’étude :</span>
                 <span className="font-black text-white">
-                  {timeframe === 'week' ? `${activePoint.studyTimeHours}h` : `${activePoint.studyTimeHours}h`}
+                  {activePoint.studyTimeMinutes ?? Math.round((activePoint.studyTimeHours || 0) * 60)} min
                 </span>
               </div>
             </div>
@@ -264,7 +275,8 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
             const targetWordsY = getYWords(p.masteredWords);
             const targetWordsH = paddingTop + innerHeight - targetWordsY;
 
-            const targetStudyY = getYStudyHours(p.studyTimeHours);
+            const studyMinutes = p.studyTimeMinutes ?? Math.round((p.studyTimeHours || 0) * 60);
+            const targetStudyY = getYStudyMinutes(studyMinutes);
             const targetStudyH = paddingTop + innerHeight - targetStudyY;
 
             const targetRetentionY = getYRetention(p.retentionRate);

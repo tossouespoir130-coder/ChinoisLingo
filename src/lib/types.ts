@@ -48,7 +48,8 @@ export interface DashboardPerformanceData {
   chartData: {
     label: string;
     masteredWords: number; // Mots maîtrisés (Barres - Axe de gauche)
-    studyTimeHours: number; // Temps d'étude en heures (Barres - Axe de gauche)
+    studyTimeMinutes?: number; // Temps d'étude en minutes (Barres - Axe de gauche)
+    studyTimeHours?: number; // Temps d'étude en heures (rétro-compatibilité)
     retentionRate: number;  // Taux de rétention % (Ligne superposée - Axe de droite)
     savedWords?: number;
     theory?: number;

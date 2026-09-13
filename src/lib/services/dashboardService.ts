@@ -34,12 +34,14 @@ export interface RealDashboardStats {
     week: Array<{
       label: string;
       masteredWords: number;
-      studyTimeHours: number;
+      studyTimeMinutes: number;
+      studyTimeHours?: number;
     }>;
     month: Array<{
       label: string;
       masteredWords: number;
-      studyTimeHours: number;
+      studyTimeMinutes: number;
+      studyTimeHours?: number;
     }>;
   };
 }
@@ -239,10 +241,12 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     const d = new Date();
     d.setDate(d.getDate() - (6 - i));
     const e = parJour.get(cle(d));
+    const minutes = Math.round(e?.minutes ?? 0);
     return {
       label: JOURS[d.getDay()],
       masteredWords: e?.mots ?? 0,
-      studyTimeHours: Number(((e?.minutes ?? 0) / 60).toFixed(1)),
+      studyTimeMinutes: minutes,
+      studyTimeHours: Number((minutes / 60).toFixed(1)),
     };
   });
 
@@ -262,10 +266,12 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
         mots = Math.max(mots, e.mots);
       }
     }
+    const roundedMinutes = Math.round(minutes);
     return {
       label: `Sem ${i + 1}`,
       masteredWords: mots,
-      studyTimeHours: Number((minutes / 60).toFixed(1)),
+      studyTimeMinutes: roundedMinutes,
+      studyTimeHours: Number((roundedMinutes / 60).toFixed(1)),
     };
   });
 
