@@ -58,8 +58,8 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'ChinoisLingo',
   },
-  formatDetection: {
-    telephone: false,
+  other: {
+    google: 'notranslate',
   },
 };
 
@@ -73,10 +73,11 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${outfit.variable} ${plusJakartaSans.variable} ${notoSansSC.variable} ${notoSans.variable} h-full`}
+      translate="no"
+      className={`${outfit.variable} ${plusJakartaSans.variable} ${notoSansSC.variable} ${notoSans.variable} h-full notranslate`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased min-h-screen text-slate-900 selection:bg-rose-200 selection:text-slate-900">
+      <body className="font-sans antialiased min-h-screen text-slate-900 selection:bg-rose-200 selection:text-slate-900 notranslate">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

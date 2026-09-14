@@ -3615,7 +3615,11 @@ function EcouteLectureContent() {
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-hanzi font-black text-lg text-[#212121] dark:text-[#F5F5F5]">
+                          <span
+                            lang="zh-Hans"
+                            translate="no"
+                            className="font-hanzi notranslate font-black text-lg text-[#212121] dark:text-[#F5F5F5]"
+                          >
                             {vocab.hanzi}
                           </span>
                           <button
