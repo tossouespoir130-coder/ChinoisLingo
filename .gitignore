@@ -38,3 +38,6 @@ app/.env*
 # TypeScript build info
 *.tsbuildinfo
 app/next-env.d.ts
+
+# Internal generation scripts & tools
+scripts/
