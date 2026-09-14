@@ -154,15 +154,33 @@ export function WordDetailModal({
   const playAudio = (text: string, identifier: number | 'word') => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      utterance.rate = identifier === 'word' ? (parseFloat(audioSpeed) || 0.75) : (parseFloat(audioSpeed) || 0.85);
+    }
 
+    const clean = text.trim();
+    const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
+
+    const playWebSpeech = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        utterance.rate = identifier === 'word' ? (parseFloat(audioSpeed) || 0.75) : (parseFloat(audioSpeed) || 0.85);
+
+        setPlayingIdx(identifier);
+        utterance.onend = () => setPlayingIdx(null);
+        utterance.onerror = () => setPlayingIdx(null);
+
+        window.speechSynthesis.speak(utterance);
+      }
+    };
+
+    if (identifier === 'word' || clean.length <= 6) {
+      const audio = new Audio(vocabAudioUrl);
       setPlayingIdx(identifier);
-      utterance.onend = () => setPlayingIdx(null);
-      utterance.onerror = () => setPlayingIdx(null);
-
-      window.speechSynthesis.speak(utterance);
+      audio.onended = () => setPlayingIdx(null);
+      audio.onerror = () => playWebSpeech();
+      audio.play().catch(() => playWebSpeech());
+    } else {
+      playWebSpeech();
     }
   };
 

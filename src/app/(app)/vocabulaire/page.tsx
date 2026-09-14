@@ -352,14 +352,31 @@ function VocabulaireContent() {
   const playAudio = (wordId: string, text: string) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      utterance.rate = parseFloat(audioSpeed) || 0.85;
-      setPlayingWordId(wordId);
-      utterance.onend = () => setPlayingWordId(null);
-      utterance.onerror = () => setPlayingWordId(null);
-      window.speechSynthesis.speak(utterance);
     }
+
+    const clean = text.trim();
+    const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
+
+    const playWebSpeech = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        utterance.rate = parseFloat(audioSpeed) || 0.85;
+        setPlayingWordId(wordId);
+        utterance.onend = () => setPlayingWordId(null);
+        utterance.onerror = () => setPlayingWordId(null);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setPlayingWordId(null);
+      }
+    };
+
+    const audio = new Audio(vocabAudioUrl);
+    setPlayingWordId(wordId);
+    audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+    audio.onended = () => setPlayingWordId(null);
+    audio.onerror = () => playWebSpeech();
+    audio.play().catch(() => playWebSpeech());
   };
 
   const handleAddWord = async (newWord: VocabularyWord) => {

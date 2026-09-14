@@ -152,14 +152,34 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
   const playAudio = (text: string, rateMultiplier: number = 1) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      const baseRate = parseFloat(audioSpeed) || 0.85;
-      utterance.rate = Math.max(0.5, Math.min(1.5, baseRate * rateMultiplier));
+    }
+
+    const clean = text.trim();
+    const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
+
+    const playWebSpeech = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        const baseRate = parseFloat(audioSpeed) || 0.85;
+        utterance.rate = Math.max(0.5, Math.min(1.5, baseRate * rateMultiplier));
+        setIsPlayingAudio(true);
+        utterance.onend = () => setIsPlayingAudio(false);
+        utterance.onerror = () => setIsPlayingAudio(false);
+        window.speechSynthesis.speak(utterance);
+      }
+    };
+
+    if (clean.length <= 6) {
+      const audio = new Audio(vocabAudioUrl);
       setIsPlayingAudio(true);
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
+      const baseRate = parseFloat(audioSpeed) || 1.0;
+      audio.playbackRate = Math.max(0.5, Math.min(1.5, baseRate * rateMultiplier));
+      audio.onended = () => setIsPlayingAudio(false);
+      audio.onerror = () => playWebSpeech();
+      audio.play().catch(() => playWebSpeech());
+    } else {
+      playWebSpeech();
     }
   };
 
