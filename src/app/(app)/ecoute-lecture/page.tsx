@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { 
   Lock,
   Headphones, 
@@ -987,45 +987,30 @@ export const readingCatalog: ReadingItem[] = [
     sentences: [
       {
         id: 'h1_1',
-        speaker: 'David',
-        speakerRole: 'Voyageur',
-        speakerColor: 'violet',
         hanzi: '早上七点，大卫起床了。',
         pinyin: 'Zǎoshang qī diǎn, Dàwèi qǐchuáng le.',
         french: 'À sept heures du matin, David s’est levé.',
       },
       {
         id: 'h1_2',
-        speaker: 'David',
-        speakerRole: 'Voyageur',
-        speakerColor: 'violet',
         hanzi: '天气很好。',
         pinyin: 'Tiānqì hěn hǎo.',
         french: 'Il fait très beau.',
       },
       {
         id: 'h1_3',
-        speaker: 'David',
-        speakerRole: 'Voyageur',
-        speakerColor: 'violet',
         hanzi: '他去饭店喝茶，吃米饭和鱼。',
         pinyin: 'Tā qù fàndiàn hē chá, chī mǐfàn hé yú.',
         french: 'Il va au restaurant boire du thé et manger du riz et du poisson.',
       },
       {
         id: 'h1_4',
-        speaker: '服务员',
-        speakerRole: 'Serveur',
-        speakerColor: 'turquoise',
         hanzi: '服务员说：“欢迎你来北京！”',
         pinyin: 'Fúwùyuán shuō: “Huānyíng nǐ lái Běijīng!”',
         french: 'Le serveur dit : « Bienvenue à Pékin ! »',
       },
       {
         id: 'h1_5',
-        speaker: 'David',
-        speakerRole: 'Voyageur',
-        speakerColor: 'violet',
         hanzi: '大卫很高兴，他说：“谢谢！”',
         pinyin: 'Dàwèi hěn gāoxìng, tā shuō: “Xièxie!”',
         french: 'David est content, il dit : « Merci ! »',
@@ -1062,36 +1047,24 @@ export const readingCatalog: ReadingItem[] = [
     sentences: [
       {
         id: 'h2_1',
-        speaker: '李经理',
-        speakerRole: 'Responsable Usine',
-        speakerColor: 'turquoise',
         hanzi: '今天，李经理带客户参观工厂。',
         pinyin: 'Jīntiān, Lǐ jīnglǐ dài kèhù cānguān gōngchǎng.',
         french: 'Aujourd’hui, le directeur Li fait visiter l’usine à ses clients.',
       },
       {
         id: 'h2_2',
-        speaker: '李经理',
-        speakerRole: 'Responsable Usine',
-        speakerColor: 'turquoise',
         hanzi: '工厂很大，工人们都在认真工作。',
         pinyin: 'Gōngchǎng hěn dà, gōngrénmen dōu zài rènzhēn gōngzuò.',
         french: 'L’usine est spacieuse et les ouvriers travaillent avec rigueur.',
       },
       {
         id: 'h2_3',
-        speaker: 'Client Importateur',
-        speakerRole: 'Acheteur',
-        speakerColor: 'violet',
         hanzi: '客户看了样品，非常满意。',
         pinyin: 'Kèhù kàn le yàngpǐn, fēicháng mǎnyì.',
         french: 'Le client examine les échantillons et est très satisfait.',
       },
       {
         id: 'h2_4',
-        speaker: '李经理',
-        speakerRole: 'Responsable Usine',
-        speakerColor: 'turquoise',
         hanzi: '他们喝了乌龙茶，约定明天签合同。',
         pinyin: 'Tāmen hē le wūlóngchá, yuēdìng míngtiān qiān hétong.',
         french: 'Ils boivent du thé Oolong et conviennent de signer le contrat demain.',
@@ -2501,6 +2474,7 @@ function EcouteLectureContent() {
   const currentSentenceIndex = currentSentenceIndexState[0];
   const setCurrentSentenceIndex = currentSentenceIndexState[1];
   const [playingSentenceId, setPlayingSentenceId] = useState<string | null>(null);
+  const activeAudioRef = useRef<HTMLAudioElement | null>(null);
   
   // Local display toggles
   const [localPinyinOverride, setLocalPinyinOverride] = useState<boolean | null>(null);
@@ -2649,6 +2623,10 @@ function EcouteLectureContent() {
 
   const closeReading = () => {
     setIsPlayingAll(false);
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
+    }
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
@@ -2855,10 +2833,59 @@ function EcouteLectureContent() {
       });
   }, [activeCategory]);
 
-  // Play audio for a single sentence via Web Speech Synthesis
+  // Play audio for a single sentence (prefers ElevenLabs HD voice clip, fallbacks to Web Speech)
   const playSentenceAudio = (id: string, text: string) => {
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
+    }
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
+    }
+
+    const currentId = activeReading?.id;
+    const clipUrl = currentId ? `/audio/readings/${currentId}_${id}.mp3` : null;
+
+    if (clipUrl) {
+      const audio = new Audio(clipUrl);
+      activeAudioRef.current = audio;
+      audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+      setPlayingSentenceId(id);
+
+      audio.onended = () => {
+        setPlayingSentenceId(null);
+        activeAudioRef.current = null;
+      };
+
+      audio.onerror = () => {
+        // Fallback to Web Speech Synthesis if specific clip file is unavailable
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'zh-CN';
+          utterance.rate = parseFloat(audioSpeed) || 0.85;
+          setPlayingSentenceId(id);
+          utterance.onend = () => setPlayingSentenceId(null);
+          utterance.onerror = () => setPlayingSentenceId(null);
+          window.speechSynthesis.speak(utterance);
+        } else {
+          setPlayingSentenceId(null);
+        }
+      };
+
+      audio.play().catch(() => {
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'zh-CN';
+          utterance.rate = parseFloat(audioSpeed) || 0.85;
+          setPlayingSentenceId(id);
+          utterance.onend = () => setPlayingSentenceId(null);
+          utterance.onerror = () => setPlayingSentenceId(null);
+          window.speechSynthesis.speak(utterance);
+        } else {
+          setPlayingSentenceId(null);
+        }
+      });
+    } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'zh-CN';
       utterance.rate = parseFloat(audioSpeed) || 0.85;
@@ -2869,37 +2896,85 @@ function EcouteLectureContent() {
     }
   };
 
-  // Play all sentences sequentially
+  // Play all sentences sequentially with ElevenLabs HD audio & synchronized sentence highlights
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
     if (isPlayingAll && displayedSentences.length > 0) {
       const sentence = displayedSentences[currentSentenceIndex];
       if (sentence) {
+        if (activeAudioRef.current) {
+          activeAudioRef.current.pause();
+          activeAudioRef.current = null;
+        }
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
           window.speechSynthesis.cancel();
+        }
+
+        const currentId = activeReading?.id;
+        const clipUrl = currentId ? `/audio/readings/${currentId}_${sentence.id}.mp3` : null;
+
+        const onSentenceFinish = () => {
+          setPlayingSentenceId(null);
+          if (currentSentenceIndex < displayedSentences.length - 1) {
+            timeoutId = setTimeout(() => {
+              setCurrentSentenceIndex((prev) => prev + 1);
+            }, 600);
+          } else {
+            setIsPlayingAll(false);
+            setCurrentSentenceIndex(0);
+          }
+        };
+
+        const onSentenceError = () => {
+          setIsPlayingAll(false);
+          setPlayingSentenceId(null);
+        };
+
+        if (clipUrl) {
+          const audio = new Audio(clipUrl);
+          activeAudioRef.current = audio;
+          audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+          setPlayingSentenceId(sentence.id);
+
+          audio.onended = () => {
+            activeAudioRef.current = null;
+            onSentenceFinish();
+          };
+
+          audio.onerror = () => {
+            // Fallback to speech synthesis
+            if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+              const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
+              utterance.lang = 'zh-CN';
+              utterance.rate = parseFloat(audioSpeed) || 0.85;
+              utterance.onend = onSentenceFinish;
+              utterance.onerror = onSentenceError;
+              window.speechSynthesis.speak(utterance);
+            } else {
+              onSentenceError();
+            }
+          };
+
+          audio.play().catch(() => {
+            if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+              const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
+              utterance.lang = 'zh-CN';
+              utterance.rate = parseFloat(audioSpeed) || 0.85;
+              utterance.onend = onSentenceFinish;
+              utterance.onerror = onSentenceError;
+              window.speechSynthesis.speak(utterance);
+            } else {
+              onSentenceError();
+            }
+          });
+        } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
           const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
           utterance.lang = 'zh-CN';
           utterance.rate = parseFloat(audioSpeed) || 0.85;
           setPlayingSentenceId(sentence.id);
-
-          utterance.onend = () => {
-            setPlayingSentenceId(null);
-            if (currentSentenceIndex < displayedSentences.length - 1) {
-              timeoutId = setTimeout(() => {
-                setCurrentSentenceIndex((prev) => prev + 1);
-              }, 800);
-            } else {
-              setIsPlayingAll(false);
-              setCurrentSentenceIndex(0);
-            }
-          };
-
-          utterance.onerror = () => {
-            setIsPlayingAll(false);
-            setPlayingSentenceId(null);
-          };
-
+          utterance.onend = onSentenceFinish;
+          utterance.onerror = onSentenceError;
           window.speechSynthesis.speak(utterance);
         }
       }
@@ -2907,11 +2982,15 @@ function EcouteLectureContent() {
 
     return () => {
       clearTimeout(timeoutId);
+      if (activeAudioRef.current) {
+        activeAudioRef.current.pause();
+        activeAudioRef.current = null;
+      }
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
     };
-  }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, setCurrentSentenceIndex]);
+  }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, activeReading, setCurrentSentenceIndex]);
 
   // Auto-scroll synchronized with audio reading sequence
   useEffect(() => {
@@ -3337,8 +3416,8 @@ function EcouteLectureContent() {
                       </div>
                     )}
 
-                    {/* Differentiated Speaker Badges with Distinct Colors */}
-                    {sent.speaker && activeReading.type !== 'chansons' && (
+                    {/* Differentiated Speaker Badges with Distinct Colors - ONLY for dialogues and videos */}
+                    {sent.speaker && (activeReading.type === 'dialogues' || activeReading.type === 'videos') && (
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className={`text-xs font-black ${
                           isViolet

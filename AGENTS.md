@@ -23,6 +23,9 @@
     - Nom français du personnage : **`Espoir`** (sans "Chinois").
     - Nom chinois (Hanzi) : **`苏波`** (Pinyin : **`Sūbō`**).
     - Traduction française de présentation : `我叫苏波。` se traduit **obligatoirement** par **`Je m’appelle Espoir.`** (et jamais par `Je m’appelle Sūbō.`).
+- **Règle Permanente de Structure : Histoires & Articles vs Dialogues & Vidéos** :
+  - **Histoires & Articles** : Le texte est rédigé et présenté en **un bloc narratif fluide et continu (paragraphe par paragraphe)**, sans aucune étiquette ni badge d'interlocuteur (`speaker`) devant les phrases. Les personnages de l'histoire sont présentés collectivement dans la carte d'en-tête *« Les Personnages de l’Histoire »*.
+  - **Dialogues & Vidéos scénarisées** : La parole étant alternée, chaque réplique affiche le nom et le rôle de l'interlocuteur (`speaker`) avec son code couleur distinctif.
 - **Règle d'Ergonomie Mobile Plein Écran & Anti-Zoom iOS sur les Formulaires** : Sur smartphone, la page de connexion / inscription s'ajuste pour tenir **intégralement sur un seul écran sans aucun défilement** (`min-h-[100dvh]`).
   - **Mode Connexion** : Sur mobile, le volet violet affiche uniquement l'en-tête (Logo ChinoisLingo + Slogan + « Maîtrisez le mandarin par immersion active » + court sous-titre) au-dessus du formulaire de connexion compact, masquant les 3 highlights pour garantir zéro scroll.
   - **Mode Création de Compte** : Sur mobile, le volet violet est entièrement masqué au profit du formulaire d'inscription complet (Pseudo, Email, Mot de passe, Confirmation) avec un mini-header épuré, permettant à tous les champs de tenir confortablement sur un seul écran sans défilement.

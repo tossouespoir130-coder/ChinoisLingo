@@ -7,6 +7,8 @@ export type Json =
   | Json[]
 
 export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
@@ -43,7 +45,22 @@ export type Database = {
           target_email?: string | null
           target_user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "admin_actions_log_admin_id_fkey"
+            columns: ["admin_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "admin_actions_log_target_user_id_fkey"
+            columns: ["target_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       content_progress: {
         Row: {
@@ -77,7 +94,7 @@ export type Database = {
           is_completed?: boolean | null
           is_favorite?: boolean | null
           updated_at?: string | null
-          user_id?: string
+          user_id: string
         }
         Relationships: [
           {
@@ -158,7 +175,15 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "daily_activity_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       emails_abonnement: {
         Row: {
@@ -314,6 +339,51 @@ export type Database = {
           },
         ]
       }
+      personnages_voix: {
+        Row: {
+          category: Database["public"]["Enums"]["voice_category"]
+          character_name_fr: string
+          character_name_zh: string | null
+          created_at: string | null
+          description: string | null
+          gender: Database["public"]["Enums"]["voice_gender"]
+          id: string
+          model_id: string | null
+          similarity_boost: number | null
+          stability: number | null
+          updated_at: string | null
+          voice_id: string | null
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["voice_category"]
+          character_name_fr: string
+          character_name_zh?: string | null
+          created_at?: string | null
+          description?: string | null
+          gender: Database["public"]["Enums"]["voice_gender"]
+          id: string
+          model_id?: string | null
+          similarity_boost?: number | null
+          stability?: number | null
+          updated_at?: string | null
+          voice_id?: string | null
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["voice_category"]
+          character_name_fr?: string
+          character_name_zh?: string | null
+          created_at?: string | null
+          description?: string | null
+          gender?: Database["public"]["Enums"]["voice_gender"]
+          id?: string
+          model_id?: string | null
+          similarity_boost?: number | null
+          stability?: number | null
+          updated_at?: string | null
+          voice_id?: string | null
+        }
+        Relationships: []
+      }
       processed_events: {
         Row: {
           event_id: string
@@ -336,99 +406,99 @@ export type Database = {
         Row: {
           avatar_url: string | null
           bio: string | null
+          bonus_7j_accorde: boolean
+          cancel_at_period_end: boolean
           city: string | null
           country: string | null
           created_at: string | null
+          current_period_end: string | null
           email: string | null
           first_name: string | null
-          last_name: string | null
           full_name: string | null
           id: string
           last_active_date: string | null
+          last_name: string | null
           pinyin_enabled: boolean | null
-          relances_desactivees: boolean
+          relances_desactivees?: boolean
           role: string
           streak_days: number | null
-          bonus_7j_accorde: boolean
-          cancel_at_period_end: boolean
-          current_period_end: string | null
           stripe_customer_id: string | null
           stripe_subscription_id: string | null
           subscription_currency: string | null
           subscription_plan: string | null
           subscription_provider: string | null
           subscription_status: string
-          trial_ends_at: string | null
           subscription_tier: string | null
           target_level: string | null
           total_minutes_learned: number | null
           total_words_mastered: number | null
+          trial_ends_at: string | null
           updated_at: string | null
           username: string | null
         }
         Insert: {
           avatar_url?: string | null
           bio?: string | null
+          bonus_7j_accorde?: boolean
+          cancel_at_period_end?: boolean
           city?: string | null
           country?: string | null
           created_at?: string | null
+          current_period_end?: string | null
           email?: string | null
           first_name?: string | null
-          last_name?: string | null
           full_name?: string | null
           id: string
           last_active_date?: string | null
+          last_name?: string | null
           pinyin_enabled?: boolean | null
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
-          bonus_7j_accorde?: boolean
-          cancel_at_period_end?: boolean
-          current_period_end?: string | null
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
           subscription_currency?: string | null
           subscription_plan?: string | null
           subscription_provider?: string | null
           subscription_status?: string
-          trial_ends_at?: string | null
           subscription_tier?: string | null
           target_level?: string | null
           total_minutes_learned?: number | null
           total_words_mastered?: number | null
+          trial_ends_at?: string | null
           updated_at?: string | null
           username?: string | null
         }
         Update: {
           avatar_url?: string | null
           bio?: string | null
+          bonus_7j_accorde?: boolean
+          cancel_at_period_end?: boolean
           city?: string | null
           country?: string | null
           created_at?: string | null
+          current_period_end?: string | null
           email?: string | null
           first_name?: string | null
-          last_name?: string | null
           full_name?: string | null
           id?: string
           last_active_date?: string | null
+          last_name?: string | null
           pinyin_enabled?: boolean | null
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
-          bonus_7j_accorde?: boolean
-          cancel_at_period_end?: boolean
-          current_period_end?: string | null
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
           subscription_currency?: string | null
           subscription_plan?: string | null
           subscription_provider?: string | null
           subscription_status?: string
-          trial_ends_at?: string | null
           subscription_tier?: string | null
           target_level?: string | null
           total_minutes_learned?: number | null
           total_words_mastered?: number | null
+          trial_ends_at?: string | null
           updated_at?: string | null
           username?: string | null
         }
@@ -500,22 +570,150 @@ export type Database = {
     Functions: {
       admin_modifier_abonnement: {
         Args: {
-          p_admin_id: string
-          p_target_id: string
           p_action: string
+          p_admin_id: string
           p_mois?: number | null
+          p_target_id: string
         }
         Returns: Json
       }
+      est_admin: { Args: { uid: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      voice_category: "recurrent" | "narrator" | "generic" | "founder"
+      voice_gender: "female" | "male" | "neutral"
     }
     CompositeTypes: {
       [_ in never]: never
     }
   }
 }
+
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends (DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never) = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends (DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never) = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends (PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never) = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {
+      voice_category: ["recurrent", "narrator", "generic", "founder"],
+      voice_gender: ["female", "male", "neutral"],
+    },
+  },
+} as const
 
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type SavedWord = Database['public']['Tables']['saved_words']['Row']
@@ -526,3 +724,5 @@ export type Payment = Database['public']['Tables']['payments']['Row']
 export type AdminActionLog = Database['public']['Tables']['admin_actions_log']['Row']
 export type DailyActivity = Database['public']['Tables']['daily_activity']['Row']
 export type EmailAbonnement = Database['public']['Tables']['emails_abonnement']['Row']
+export type PersonnageVoix = Database['public']['Tables']['personnages_voix']['Row']
+

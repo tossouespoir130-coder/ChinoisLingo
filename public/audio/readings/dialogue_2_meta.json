@@ -1,0 +1,32 @@
+{
+  "contentId": "dialogue_2",
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_2.mp3",
+  "totalDurationMs": 15108,
+  "sentences": [
+    {
+      "sentenceId": "d2_1",
+      "startMs": 0,
+      "endMs": 3399,
+      "audioUrl": "/audio/readings/dialogue_2_d2_1.mp3"
+    },
+    {
+      "sentenceId": "d2_2",
+      "startMs": 3849,
+      "endMs": 7117,
+      "audioUrl": "/audio/readings/dialogue_2_d2_2.mp3"
+    },
+    {
+      "sentenceId": "d2_3",
+      "startMs": 7567,
+      "endMs": 11671,
+      "audioUrl": "/audio/readings/dialogue_2_d2_3.mp3"
+    },
+    {
+      "sentenceId": "d2_4",
+      "startMs": 12121,
+      "endMs": 14658,
+      "audioUrl": "/audio/readings/dialogue_2_d2_4.mp3"
+    }
+  ]
+}
