@@ -3,31 +3,35 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_docteur_zhang_wei.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 23771,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 23420,
   "sentences": [
     {
       "sentenceId": "h_zw_1",
       "startMs": 0,
-      "endMs": 5828,
+      "endMs": 6540,
+      "durationMs": 6190,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_1.mp3"
     },
     {
       "sentenceId": "h_zw_2",
-      "startMs": 6008,
-      "endMs": 13273,
+      "startMs": 6540,
+      "endMs": 13320,
+      "durationMs": 6430,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_2.mp3"
     },
     {
       "sentenceId": "h_zw_3",
-      "startMs": 13453,
-      "endMs": 18236,
+      "startMs": 13320,
+      "endMs": 18350,
+      "durationMs": 4680,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_3.mp3"
     },
     {
       "sentenceId": "h_zw_4",
-      "startMs": 18416,
-      "endMs": 23591,
+      "startMs": 18350,
+      "endMs": 23420,
+      "durationMs": 5070,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_4.mp3"
     }
   ]

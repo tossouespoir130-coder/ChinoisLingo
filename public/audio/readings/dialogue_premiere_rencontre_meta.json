@@ -3,37 +3,42 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_premiere_rencontre.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 7678,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 7280,
   "sentences": [
     {
       "sentenceId": "dpr_1",
       "startMs": 0,
-      "endMs": 1021,
+      "endMs": 1190,
+      "durationMs": 840,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_1.mp3"
     },
     {
       "sentenceId": "dpr_2",
-      "startMs": 1201,
-      "endMs": 2536,
+      "startMs": 1190,
+      "endMs": 2220,
+      "durationMs": 680,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_2.mp3"
     },
     {
       "sentenceId": "dpr_3",
-      "startMs": 2716,
-      "endMs": 3737,
+      "startMs": 2220,
+      "endMs": 3640,
+      "durationMs": 1070,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_3.mp3"
     },
     {
       "sentenceId": "dpr_4",
-      "startMs": 3917,
-      "endMs": 5983,
+      "startMs": 3640,
+      "endMs": 5790,
+      "durationMs": 1800,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_4.mp3"
     },
     {
       "sentenceId": "dpr_5",
-      "startMs": 6163,
-      "endMs": 7498,
+      "startMs": 5790,
+      "endMs": 7280,
+      "durationMs": 1490,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_5.mp3"
     }
   ]

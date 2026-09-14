@@ -3,31 +3,35 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_3.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 11598,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 11830,
   "sentences": [
     {
       "sentenceId": "d3_1",
       "startMs": 0,
-      "endMs": 2537,
+      "endMs": 2150,
+      "durationMs": 1800,
       "audioUrl": "/audio/readings/dialogue_3_d3_1.mp3"
     },
     {
       "sentenceId": "d3_2",
-      "startMs": 2717,
-      "endMs": 6142,
+      "startMs": 2150,
+      "endMs": 5970,
+      "durationMs": 3470,
       "audioUrl": "/audio/readings/dialogue_3_d3_2.mp3"
     },
     {
       "sentenceId": "d3_3",
-      "startMs": 6322,
-      "endMs": 8937,
+      "startMs": 5970,
+      "endMs": 9320,
+      "durationMs": 3000,
       "audioUrl": "/audio/readings/dialogue_3_d3_3.mp3"
     },
     {
       "sentenceId": "d3_4",
-      "startMs": 9117,
-      "endMs": 11418,
+      "startMs": 9320,
+      "endMs": 11830,
+      "durationMs": 2510,
       "audioUrl": "/audio/readings/dialogue_3_d3_4.mp3"
     }
   ]

@@ -3,19 +3,21 @@
   "aliases": [],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_decouvrir_la_chine.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 14654,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 14500,
   "sentences": [
     {
       "sentenceId": "art_cn_1",
       "startMs": 0,
-      "endMs": 5828,
+      "endMs": 6380,
+      "durationMs": 6030,
       "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_1.mp3"
     },
     {
       "sentenceId": "art_cn_2",
-      "startMs": 6008,
-      "endMs": 14474,
+      "startMs": 6380,
+      "endMs": 14500,
+      "durationMs": 8120,
       "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_2.mp3"
     }
   ]

@@ -3,43 +3,49 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_1.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 18520,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 19250,
   "sentences": [
     {
       "sentenceId": "d1_1",
       "startMs": 0,
-      "endMs": 2615,
+      "endMs": 2940,
+      "durationMs": 2590,
       "audioUrl": "/audio/readings/dialogue_1_d1_1.mp3"
     },
     {
       "sentenceId": "d1_2",
-      "startMs": 2795,
-      "endMs": 6063,
+      "startMs": 2940,
+      "endMs": 6760,
+      "durationMs": 3470,
       "audioUrl": "/audio/readings/dialogue_1_d1_2.mp3"
     },
     {
       "sentenceId": "d1_3",
-      "startMs": 6243,
-      "endMs": 7996,
+      "startMs": 6760,
+      "endMs": 9070,
+      "durationMs": 1960,
       "audioUrl": "/audio/readings/dialogue_1_d1_3.mp3"
     },
     {
       "sentenceId": "d1_4",
-      "startMs": 8176,
-      "endMs": 11366,
+      "startMs": 9070,
+      "endMs": 12420,
+      "durationMs": 3000,
       "audioUrl": "/audio/readings/dialogue_1_d1_4.mp3"
     },
     {
       "sentenceId": "d1_5",
-      "startMs": 11546,
-      "endMs": 14892,
+      "startMs": 12420,
+      "endMs": 15930,
+      "durationMs": 3160,
       "audioUrl": "/audio/readings/dialogue_1_d1_5.mp3"
     },
     {
       "sentenceId": "d1_6",
-      "startMs": 15072,
-      "endMs": 18340,
+      "startMs": 15930,
+      "endMs": 19250,
+      "durationMs": 3320,
       "audioUrl": "/audio/readings/dialogue_1_d1_6.mp3"
     }
   ]

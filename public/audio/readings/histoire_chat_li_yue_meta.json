@@ -3,37 +3,42 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_chat_li_yue.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 24450,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 25050,
   "sentences": [
     {
       "sentenceId": "h_cat_1",
       "startMs": 0,
-      "endMs": 9433,
+      "endMs": 10150,
+      "durationMs": 9800,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_1.mp3"
     },
     {
       "sentenceId": "h_cat_2",
-      "startMs": 9613,
-      "endMs": 15049,
+      "startMs": 10150,
+      "endMs": 15020,
+      "durationMs": 4520,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_2.mp3"
     },
     {
       "sentenceId": "h_cat_3",
-      "startMs": 15229,
-      "endMs": 18497,
+      "startMs": 15020,
+      "endMs": 18690,
+      "durationMs": 3320,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_3.mp3"
     },
     {
       "sentenceId": "h_cat_4",
-      "startMs": 18677,
-      "endMs": 21632,
+      "startMs": 18690,
+      "endMs": 22360,
+      "durationMs": 3320,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_4.mp3"
     },
     {
       "sentenceId": "h_cat_5",
-      "startMs": 21812,
-      "endMs": 24270,
+      "startMs": 22360,
+      "endMs": 25050,
+      "durationMs": 2690,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_5.mp3"
     }
   ]

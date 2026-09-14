@@ -3,31 +3,35 @@
   "aliases": [],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_1.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 15307,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 14790,
   "sentences": [
     {
       "sentenceId": "a1_1",
       "startMs": 0,
-      "endMs": 2301,
+      "endMs": 2620,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/article_1_a1_1.mp3"
     },
     {
       "sentenceId": "a1_2",
-      "startMs": 2481,
-      "endMs": 5906,
+      "startMs": 2620,
+      "endMs": 6370,
+      "durationMs": 3400,
       "audioUrl": "/audio/readings/article_1_a1_2.mp3"
     },
     {
       "sentenceId": "a1_3",
-      "startMs": 6086,
-      "endMs": 10869,
+      "startMs": 6370,
+      "endMs": 11470,
+      "durationMs": 4750,
       "audioUrl": "/audio/readings/article_1_a1_3.mp3"
     },
     {
       "sentenceId": "a1_4",
-      "startMs": 11049,
-      "endMs": 15127,
+      "startMs": 11470,
+      "endMs": 14790,
+      "durationMs": 3320,
       "audioUrl": "/audio/readings/article_1_a1_4.mp3"
     }
   ]

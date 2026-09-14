@@ -3920,17 +3920,22 @@ function EcouteLectureContent() {
 
   // Play audio for a single sentence or vocabulary word (prefers ElevenLabs HD voice clip, fallbacks to Web Speech)
   const playSentenceAudio = (id: string, text: string) => {
-    // If we're already playing the full continuous audio, seek directly without stopping or reloading
-    if (isPlayingAll && readingAudioMeta && activeAudioRef.current) {
+    // If we're already playing the full continuous audio and clicked a line in displayed sentences, seek directly
+    if (isPlayingAll && readingAudioMeta && activeAudioRef.current && !id.startsWith('voc_')) {
       const sentMeta = readingAudioMeta.sentences.find((s) => s.sentenceId === id);
       if (sentMeta) {
-        activeAudioRef.current.currentTime = sentMeta.startMs / 1000;
+        activeAudioRef.current.currentTime = Math.max(0, sentMeta.startMs / 1000);
         activeAudioRef.current.play().catch(() => {});
         setPlayingSentenceId(id);
         const idx = displayedSentences.findIndex((s) => s.id === id);
         if (idx !== -1) setCurrentSentenceIndex(idx);
         return;
       }
+    }
+
+    // Stop continuous audio if playing when clicking an individual word or detached sentence
+    if (isPlayingAll) {
+      setIsPlayingAll(false);
     }
 
     if (activeAudioRef.current) {
@@ -3947,12 +3952,12 @@ function EcouteLectureContent() {
 
     // Priority list of pre-generated ElevenLabs HD audio clips
     const candidateUrls: string[] = [];
-    if (primaryId) {
-      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
-    }
-    // Global vocabulary audio store (Ethan Zhang - eleven_multilingual_v2)
     if (id.startsWith('voc_') || cleanWord.length <= 6) {
       candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3`);
+      candidateUrls.push(`/audio/vocab/${cleanWord}.mp3`);
+    }
+    if (primaryId) {
+      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
     }
     if (fallbackId && fallbackId !== primaryId) {
       candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
@@ -3960,6 +3965,7 @@ function EcouteLectureContent() {
 
     const playWithWebSpeech = () => {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-CN';
         utterance.rate = parseFloat(audioSpeed) || 0.85;
@@ -3984,17 +3990,26 @@ function EcouteLectureContent() {
       audio.playbackRate = parseFloat(audioSpeed) || 1.0;
       setPlayingSentenceId(id);
 
-      audio.onended = () => {
-        setPlayingSentenceId(null);
-        activeAudioRef.current = null;
-      };
-
-      audio.onerror = () => {
+      let isHandled = false;
+      const advance = () => {
+        if (isHandled) return;
+        isHandled = true;
         tryPlayNextCandidate(index + 1);
       };
+
+      audio.onended = () => {
+        if (isHandled) return;
+        isHandled = true;
+        setPlayingSentenceId(null);
+        if (activeAudioRef.current === audio) {
+          activeAudioRef.current = null;
+        }
+      };
+
+      audio.onerror = advance;
 
       audio.play().catch(() => {
-        tryPlayNextCandidate(index + 1);
+        advance();
       });
     };
 
@@ -4041,9 +4056,13 @@ function EcouteLectureContent() {
 
       const onTimeUpdate = () => {
         const currentMs = audio.currentTime * 1000;
-        const matched = readingAudioMeta.sentences.find(
-          (s) => currentMs >= s.startMs && currentMs < s.endMs
-        );
+        let matched: typeof readingAudioMeta.sentences[0] | null = null;
+        for (let i = 0; i < readingAudioMeta.sentences.length; i++) {
+          const s = readingAudioMeta.sentences[i];
+          if (currentMs >= s.startMs) {
+            matched = s;
+          }
+        }
         if (matched) {
           setPlayingSentenceId(matched.sentenceId);
           const idx = displayedSentences.findIndex((s) => s.id === matched.sentenceId);

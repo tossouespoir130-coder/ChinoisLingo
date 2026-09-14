@@ -357,8 +357,12 @@ function VocabulaireContent() {
     const clean = text.trim();
     const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
 
+    let isHandled = false;
     const playWebSpeech = () => {
+      if (isHandled) return;
+      isHandled = true;
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-CN';
         utterance.rate = parseFloat(audioSpeed) || 0.85;
@@ -374,7 +378,11 @@ function VocabulaireContent() {
     const audio = new Audio(vocabAudioUrl);
     setPlayingWordId(wordId);
     audio.playbackRate = parseFloat(audioSpeed) || 1.0;
-    audio.onended = () => setPlayingWordId(null);
+    audio.onended = () => {
+      if (isHandled) return;
+      isHandled = true;
+      setPlayingWordId(null);
+    };
     audio.onerror = () => playWebSpeech();
     audio.play().catch(() => playWebSpeech());
   };

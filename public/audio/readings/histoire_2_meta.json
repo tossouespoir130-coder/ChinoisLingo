@@ -3,31 +3,35 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_2.mp3",
-  "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 13452,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 13420,
   "sentences": [
     {
       "sentenceId": "h2_1",
       "startMs": 0,
-      "endMs": 3425,
+      "endMs": 3510,
+      "durationMs": 3160,
       "audioUrl": "/audio/readings/histoire_2_h2_1.mp3"
     },
     {
       "sentenceId": "h2_2",
-      "startMs": 3605,
-      "endMs": 7186,
+      "startMs": 3510,
+      "endMs": 7330,
+      "durationMs": 3470,
       "audioUrl": "/audio/readings/histoire_2_h2_2.mp3"
     },
     {
       "sentenceId": "h2_3",
-      "startMs": 7366,
-      "endMs": 9746,
+      "startMs": 7330,
+      "endMs": 9950,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/histoire_2_h2_3.mp3"
     },
     {
       "sentenceId": "h2_4",
-      "startMs": 9926,
-      "endMs": 13272,
+      "startMs": 9950,
+      "endMs": 13420,
+      "durationMs": 3470,
       "audioUrl": "/audio/readings/histoire_2_h2_4.mp3"
     }
   ]
