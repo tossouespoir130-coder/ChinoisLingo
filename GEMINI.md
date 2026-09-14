@@ -22,11 +22,13 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 ## 2. Distinction des 3 Rôles d’Espoir Chinois
 
 1. **Rôle 1 — Fondateur de ChinoisLingo** (Notifications, messages de la plateforme, emails) :
-   - Signature : *« Espoir Chinois, Fondateur de ChinoisLingo »* (ou *« Espoir Chinois — Fondateur »*).
-2. **Rôle 2 — Formateur** (Rubrique Formations & Cours vidéos) :
-   - Intitulé : *« Formateur : Espoir Chinois »*.
-3. **Rôle 3 — Personnage & Intervenant Contextuel** (Dialogues, Histoires, Écoute & Lecture) :
-   - Nommage contextuel selon le scénario (ex: *Espoir Chinois (Partenaire)*, *Katia (Acheteuse)*, *Brice (Client)*, *王总 (Directeur)*).
+   - Signature / Intitulé : **`Espoir Chinois`** (*« Espoir Chinois, Fondateur de ChinoisLingo »*).
+2. **Rôle 2 — Formateur** (Rubrique Formations & Podcasts de cours) :
+   - Intitulé : **`Espoir Chinois`** (*« Formateur : Espoir Chinois »*).
+3. **Rôle 3 — Personnage & Intervenant dans les Dialogues, Histoires et Vidéos** :
+   - Nom français du personnage : **`Espoir`** (sans "Chinois").
+   - Nom chinois (Hanzi) : **`苏波`** (Pinyin : **`Sūbō`**).
+   - Traduction française de présentation : `我叫苏波。` se traduit **obligatoirement** par **`Je m’appelle Espoir.`** (et jamais par `Je m’appelle Sūbō.`).
 
 ---
 

@@ -11,13 +11,14 @@
   },
   "personnages": [
     {
-      "id": "espoir_chinois",
-      "nom": "Espoir Chinois",
-      "nomChinois": "希望老师 / 埃斯普瓦尔",
+      "id": "espoir",
+      "nom": "Espoir",
+      "nomChinois": "苏波",
+      "pinyin": "Sūbō",
       "paysOrigine": "Bénin",
       "nationalite": "Béninoise",
-      "statut": "Fondateur & Personnage Principal",
-      "role": "Fondateur de ChinoisLingo, interprète professionnel français-chinois, coach en langue chinoise depuis plusieurs années.",
+      "statut": "Personnage Principal & Voyageur",
+      "role": "Partenaire commercial, voyageur et négociateur en Chine.",
       "traitsCaractere": [
         "Bienveillant",
         "Pédagogue patient",

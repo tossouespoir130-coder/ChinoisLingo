@@ -198,7 +198,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
         title: 'Dialogue : Commander au Restaurant',
         category: 'Dialogue',
         categoryBadge: 'ORAL & IMMERSION',
-        hskLevel: 'HSK 1',
+        hskLevel: 'HSK 2',
         progressPercentage: 10,
         duration: '6 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80',
