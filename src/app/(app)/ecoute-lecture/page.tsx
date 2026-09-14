@@ -3540,7 +3540,11 @@ function EcouteLectureContent() {
                     )}
 
                     {/* Hanzi Text - 100% Full Width (No Constraint on Top) */}
-                    <div className={`font-hanzi font-black text-lg sm:text-2xl ${avecVideo ? 'lg:text-lg' : ''} text-[#212121] dark:text-[#F5F5F5] leading-snug w-full`}>
+                    <div
+                      lang="zh-Hans"
+                      translate="no"
+                      className={`font-hanzi notranslate font-black text-lg sm:text-2xl ${avecVideo ? 'lg:text-lg' : ''} text-[#212121] dark:text-[#F5F5F5] leading-snug w-full`}
+                    >
                       {sent.hanzi}
                     </div>
 

@@ -64,6 +64,7 @@ export const metadata: Metadata = {
 };
 
 import { AuthProvider } from '@/lib/auth/AuthContext';
+import { SimplifiedChineseGuard } from '@/components/ui/SimplifiedChineseGuard';
 
 export default function RootLayout({
   children,
@@ -78,6 +79,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans antialiased min-h-screen text-slate-900 selection:bg-rose-200 selection:text-slate-900 notranslate">
+        <SimplifiedChineseGuard />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
