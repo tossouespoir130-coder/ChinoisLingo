@@ -6,7 +6,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep1.mp3",
   "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 15411,
+  "totalDurationMs": 15778,
   "sentences": [
     {
       "sentenceId": "vc_b1_1",
@@ -17,25 +17,25 @@
     {
       "sentenceId": "vc_b1_2",
       "startMs": 2717,
-      "endMs": 5436,
+      "endMs": 6455,
       "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_2.mp3"
     },
     {
       "sentenceId": "vc_b1_3",
-      "startMs": 5616,
-      "endMs": 9615,
+      "startMs": 6635,
+      "endMs": 9668,
       "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_3.mp3"
     },
     {
       "sentenceId": "vc_b1_4",
-      "startMs": 9795,
-      "endMs": 12175,
+      "startMs": 9848,
+      "endMs": 12385,
       "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_4.mp3"
     },
     {
       "sentenceId": "vc_b1_5",
-      "startMs": 12355,
-      "endMs": 15231,
+      "startMs": 12565,
+      "endMs": 15598,
       "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_5.mp3"
     }
   ]
