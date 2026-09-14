@@ -771,83 +771,9 @@ export const readingCatalog: ReadingItem[] = [
     ]
   },
 
-  // ================= 1. ARTICLES & LEÇONS ÉCRITES (HSK 1) =================
-  {
-    id: 'article_podcast_2',
-    titleFr: 'Les Clés des Affaires en Chine',
-    titleZh: '在中国做生意',
-    titlePinyin: 'Zài Zhōngguó Zuò Shēngyi',
-    type: 'articles',
-    level: 'HSK 1',
-    duration: '3 min 10',
-    description: 'Comprendre l’importance du premier contact et la politesse dans les échanges commerciaux.',
-    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#00897B] to-[#004D40]',
-    sentences: [
-      {
-        id: 'pod2_1',
-        hanzi: '在中国，第一次见面递名片要用双手。',
-        pinyin: 'Zài Zhōngguó, dì yī cì jiànmiàn dì míngpiàn yào yòng shuāngshǒu.',
-        french: 'En Chine, tendez votre carte de visite à deux mains lors de la première rencontre.',
-      },
-      {
-        id: 'pod2_2',
-        hanzi: '这是尊重的表现，非常重要。',
-        pinyin: 'Zhè shì zūnzhòng de biǎoxiàn, fēicháng zhòngyào.',
-        french: 'C’est une marque de respect essentielle.',
-      },
-      {
-        id: 'pod2_3',
-        hanzi: '你可以说：这是我的名片，请多关照。',
-        pinyin: 'Nǐ kěyǐ shuō: Zhè shì wǒ de míngpiàn, qǐng duō guānzhào.',
-        french: 'Vous pouvez dire : Voici ma carte de visite, enchanté de faire affaire avec vous.',
-      },
-      {
-        id: 'pod2_4',
-        hanzi: '对方会觉得你很有礼貌，合作会更顺利。',
-        pinyin: 'Duìfāng huì juéde nǐ hěn yǒu lǐmào, hézuò huì gèng shùnlì.',
-        french: 'Votre interlocuteur vous trouvera poli et la coopération sera plus fluide.',
-      },
-    ],
-  },
-  {
-    id: 'article_1',
-    titleFr: 'La Culture du Thé en Chine',
-    titleZh: '中国茶文化',
-    titlePinyin: 'Zhōngguó Chá Wénhuà',
-    type: 'articles',
-    level: 'HSK 1',
-    duration: '2 min 20',
-    description: 'Découvrez la tradition millénaire du thé vert et du thé noir lors des rendez-vous professionnels.',
-    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#00897B] to-[#004D40]',
-    sentences: [
-      {
-        id: 'a1_1',
-        hanzi: '中国人非常喜欢喝茶。',
-        pinyin: 'Zhōngguórén fēicháng xǐhuan hē chá.',
-        french: 'Les Chinois aiment beaucoup boire du thé.',
-      },
-      {
-        id: 'a1_2',
-        hanzi: '绿茶、红茶和乌龙茶都很有名。',
-        pinyin: 'Lǜchá, hóngchá hé wūlóngchá dōu hěn yǒumíng.',
-        french: 'Le thé vert, le thé noir et le thé Oolong sont très réputés.',
-      },
-      {
-        id: 'a1_3',
-        hanzi: '在公司开会前，大家会一起喝热茶。',
-        pinyin: 'Zài gōngsī kāihuì qián, dàjiā huì yīqǐ hē rè chá.',
-        french: 'Avant les réunions d’entreprise, on partage souvent du thé chaud.',
-      },
-      {
-        id: 'a1_4',
-        hanzi: '喝茶能让人放松，也能促进合作。',
-        pinyin: 'Hē chá néng ràng rén fàngsōng, yě néng cùjìn hézuò.',
-        french: 'Le thé détend les esprits et favorise une coopération harmonieuse.',
-      },
-    ],
-  },
+  // ================= 1. ARTICLES & LEÇONS ÉCRITES =================
+  
+  // ---------- NIVEAU HSK 1 ----------
   {
     id: 'article_2',
     titleFr: 'L’Importance des Nombres en Chine',
@@ -877,6 +803,136 @@ export const readingCatalog: ReadingItem[] = [
         hanzi: '数字六代表顺利，生意兴隆。',
         pinyin: 'Shùzì liù dàibiǎo shùnlì, shēngyì xīnglóng.',
         french: 'Le chiffre six (6) symbolise la fluidité et la réussite des affaires.',
+      },
+    ],
+  },
+
+  // ---------- NIVEAU HSK 4 ----------
+  {
+    id: 'article_1',
+    titleFr: 'La Culture du Thé en Chine',
+    titleZh: '中国茶文化',
+    titlePinyin: 'Zhōngguó Chá Wénhuà',
+    type: 'articles',
+    level: 'HSK 4',
+    duration: '2 min 30',
+    description: 'Découvrez la tradition millénaire du thé en Chine et son rôle central dans l’accueil des clients et la visite d’usines.',
+    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#3F51B5] to-[#1A237E]',
+    sentences: [
+      {
+        id: 'a1_1',
+        hanzi: '中国人非常喜欢喝茶。',
+        pinyin: 'Zhōngguórén fēicháng xǐhuan hē chá.',
+        french: 'Les Chinois aiment beaucoup boire du thé.',
+      },
+      {
+        id: 'a1_2',
+        hanzi: '绿茶、红茶和乌龙茶都很有名。',
+        pinyin: 'Lǜchá, hóngchá hé wūlóngchá dōu hěn yǒumíng.',
+        french: 'Le thé vert, le thé noir et le thé Oolong sont très réputés.',
+      },
+      {
+        id: 'a1_3',
+        hanzi: '带客户参观工厂前，大家喜欢一起喝杯热茶。',
+        pinyin: 'Dài kèhù cānguān gōngchǎng qián, dàjiā xǐhuan yīqǐ hē bēi rè chá.',
+        french: 'Avant de faire visiter l’usine aux clients, on aime partager une tasse de thé chaud ensemble.',
+      },
+      {
+        id: 'a1_4',
+        hanzi: '喝茶能让人放松，也能促进合作。',
+        pinyin: 'Hē chá néng ràng rén fàngsōng, yě néng cùjìn hézuò.',
+        french: 'Le thé détend les esprits et favorise une coopération harmonieuse.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '客户', pinyin: 'kèhù', french: 'client', role: 'Nom commun' },
+      { hanzi: '参观', pinyin: 'cānguān', french: 'visiter (une usine, une entreprise)', role: 'Verbe' },
+      { hanzi: '工厂', pinyin: 'gōngchǎng', french: 'usine, fabrique', role: 'Nom commun' },
+      { hanzi: '放松', pinyin: 'fàngsōng', french: 'se détendre, se relaxer', role: 'Verbe' },
+      { hanzi: '促进', pinyin: 'cùjìn', french: 'favoriser, promouvoir', role: 'Verbe' },
+      { hanzi: '合作', pinyin: 'hézuò', french: 'coopération, partenariat', role: 'Nom / Verbe' },
+    ]
+  },
+  {
+    id: 'article_cles_affaires_series',
+    titleFr: 'Les Clés des Affaires en Chine',
+    titleZh: '中国商务宝典',
+    titlePinyin: 'Zhōngguó Shāngwù Bǎodiǎn',
+    type: 'articles',
+    level: 'HSK 4',
+    duration: '1 article',
+    description: 'Maîtrisez les codes, règles d’étiquette et notions essentielles pour réussir vos négociations et partenariats commerciaux en Chine.',
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#3F51B5] to-[#1A237E]',
+    seriesEpisodes: [
+      {
+        id: 'article_carte_visite',
+        episodeNumber: 1,
+        titleFr: 'Comment échanger une carte de visite en Chine',
+        titleZh: '如何在中国交换名片',
+        titlePinyin: 'Rúhé zài Zhōngguó jiāohuàn míngpiàn',
+        duration: '3 min 10',
+        description: 'Comprendre l’importance du premier contact et la politesse dans les échanges commerciaux en Chine.',
+        imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'cdv_1',
+            hanzi: '在中国，第一次见面递名片要用双手。',
+            pinyin: 'Zài Zhōngguó, dì yī cì jiànmiàn dì míngpiàn yào yòng shuāngshǒu.',
+            french: 'En Chine, tendez votre carte de visite à deux mains lors de la première rencontre.',
+          },
+          {
+            id: 'cdv_2',
+            hanzi: '这是尊重的表现，非常重要。',
+            pinyin: 'Zhè shì zūnzhòng de biǎoxiàn, fēicháng zhòngyào.',
+            french: 'C’est une marque de respect essentielle.',
+          },
+          {
+            id: 'cdv_3',
+            hanzi: '你可以说：这是我的名片，请多关照。',
+            pinyin: 'Nǐ kěyǐ shuō: Zhè shì wǒ de míngpiàn, qǐng duō guānzhào.',
+            french: 'Vous pouvez dire : Voici ma carte de visite, enchanté de faire affaire avec vous.',
+          },
+          {
+            id: 'cdv_4',
+            hanzi: '对方会觉得你很有礼貌，合作会更顺利。',
+            pinyin: 'Duìfāng huì juéde nǐ hěn yǒu lǐmào, hézuò huì gèng shùnlì.',
+            french: 'Votre interlocuteur vous trouvera poli et la coopération sera plus fluide.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '名片', pinyin: 'míngpiàn', french: 'carte de visite', role: 'Nom commun' },
+          { hanzi: '双手', pinyin: 'shuāngshǒu', french: 'les deux mains', role: 'Nom commun' },
+          { hanzi: '关照', pinyin: 'guānzhào', french: 'accorder sa bienveillance, prendre soin', role: 'Verbe' },
+          { hanzi: '顺利', pinyin: 'shùnlì', french: 'fluide, favorable, avec succès', role: 'Adjectif' },
+        ]
+      }
+    ],
+    sentences: [
+      {
+        id: 'cdv_1',
+        hanzi: '在中国，第一次见面递名片要用双手。',
+        pinyin: 'Zài Zhōngguó, dì yī cì jiànmiàn dì míngpiàn yào yòng shuāngshǒu.',
+        french: 'En Chine, tendez votre carte de visite à deux mains lors de la première rencontre.',
+      },
+      {
+        id: 'cdv_2',
+        hanzi: '这是尊重的表现，非常重要。',
+        pinyin: 'Zhè shì zūnzhòng de biǎoxiàn, fēicháng zhòngyào.',
+        french: 'C’est une marque de respect essentielle.',
+      },
+      {
+        id: 'cdv_3',
+        hanzi: '你可以说：这是我的名片，请多关照。',
+        pinyin: 'Nǐ kěyǐ shuō: Zhè shì wǒ de míngpiàn, qǐng duō guānzhào.',
+        french: 'Vous pouvez dire : Voici ma carte de visite, enchanté de faire affaire avec vous.',
+      },
+      {
+        id: 'cdv_4',
+        hanzi: '对方会觉得你很有礼貌，合作会更顺利。',
+        pinyin: 'Duìfāng huì juéde nǐ hěn yǒu lǐmào, hézuò huì gèng shùnlì.',
+        french: 'Votre interlocuteur vous trouvera poli et la coopération sera plus fluide.',
       },
     ],
   },
