@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_a_lecole.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 5700,
+  "generationMode": "pcm_dialogue_with_timestamps",
+  "totalDurationMs": 6247,
   "sentences": [
     {
       "sentenceId": "dae_1",
+      "hanzi": "他是谁？",
       "startMs": 0,
-      "endMs": 1340,
-      "durationMs": 990,
-      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_1.mp3"
+      "endMs": 1355,
+      "durationMs": 975
     },
     {
       "sentenceId": "dae_2",
-      "startMs": 1340,
-      "endMs": 3180,
-      "durationMs": 1490,
-      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_2.mp3"
+      "hanzi": "他是我的老师。",
+      "startMs": 1355,
+      "endMs": 3360,
+      "durationMs": 1625
     },
     {
       "sentenceId": "dae_3",
-      "startMs": 3180,
-      "endMs": 4130,
-      "durationMs": 600,
-      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_3.mp3"
+      "hanzi": "她呢？",
+      "startMs": 3360,
+      "endMs": 4529,
+      "durationMs": 789
     },
     {
       "sentenceId": "dae_4",
-      "startMs": 4130,
-      "endMs": 5700,
-      "durationMs": 1570,
-      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_4.mp3"
+      "hanzi": "她是我的同学。",
+      "startMs": 4529,
+      "endMs": 6247,
+      "durationMs": 1718
     }
   ]
 }

@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_2.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 13420,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 13096,
   "sentences": [
     {
       "sentenceId": "h2_1",
+      "hanzi": "今天，李经理带客户参观工厂。",
       "startMs": 0,
-      "endMs": 3510,
-      "durationMs": 3160,
-      "audioUrl": "/audio/readings/histoire_2_h2_1.mp3"
+      "endMs": 3460,
+      "durationMs": 3460
     },
     {
       "sentenceId": "h2_2",
-      "startMs": 3510,
-      "endMs": 7330,
-      "durationMs": 3470,
-      "audioUrl": "/audio/readings/histoire_2_h2_2.mp3"
+      "hanzi": "工厂很大，工人们都在认真工作。",
+      "startMs": 3460,
+      "endMs": 6792,
+      "durationMs": 2937
     },
     {
       "sentenceId": "h2_3",
-      "startMs": 7330,
-      "endMs": 9950,
-      "durationMs": 2270,
-      "audioUrl": "/audio/readings/histoire_2_h2_3.mp3"
+      "hanzi": "客户看了样品，非常满意。",
+      "startMs": 6792,
+      "endMs": 9718,
+      "durationMs": 2391
     },
     {
       "sentenceId": "h2_4",
-      "startMs": 9950,
-      "endMs": 13420,
-      "durationMs": 3470,
-      "audioUrl": "/audio/readings/histoire_2_h2_4.mp3"
+      "hanzi": "他们喝了乌龙茶，约定明天签合同。",
+      "startMs": 9718,
+      "endMs": 12817,
+      "durationMs": 3099
     }
   ]
 }

@@ -418,6 +418,7 @@ export type Database = {
           id: string
           last_active_date: string | null
           last_name: string | null
+          last_sign_in_at: string | null
           pinyin_enabled: boolean | null
           relances_desactivees?: boolean
           role: string
@@ -430,6 +431,7 @@ export type Database = {
           subscription_status: string
           subscription_tier: string | null
           target_level: string | null
+          total_login_days: number | null
           total_minutes_learned: number | null
           total_words_mastered: number | null
           trial_ends_at: string | null
@@ -451,6 +453,7 @@ export type Database = {
           id: string
           last_active_date?: string | null
           last_name?: string | null
+          last_sign_in_at?: string | null
           pinyin_enabled?: boolean | null
           relances_desactivees?: boolean
           role?: string
@@ -463,6 +466,7 @@ export type Database = {
           subscription_status?: string
           subscription_tier?: string | null
           target_level?: string | null
+          total_login_days?: number | null
           total_minutes_learned?: number | null
           total_words_mastered?: number | null
           trial_ends_at?: string | null
@@ -484,6 +488,7 @@ export type Database = {
           id?: string
           last_active_date?: string | null
           last_name?: string | null
+          last_sign_in_at?: string | null
           pinyin_enabled?: boolean | null
           relances_desactivees?: boolean
           role?: string
@@ -496,6 +501,7 @@ export type Database = {
           subscription_status?: string
           subscription_tier?: string | null
           target_level?: string | null
+          total_login_days?: number | null
           total_minutes_learned?: number | null
           total_words_mastered?: number | null
           trial_ends_at?: string | null

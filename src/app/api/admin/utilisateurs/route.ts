@@ -25,7 +25,7 @@ export async function GET(requete: Request) {
 
   let requeteSql = admin
     .from('profiles')
-    .select('id, full_name, username, email, created_at, current_period_end, subscription_plan, role', {
+    .select('id, full_name, username, email, created_at, last_sign_in_at, total_login_days, current_period_end, subscription_plan, role', {
       count: 'exact',
     })
     .order('created_at', { ascending: false })
@@ -55,6 +55,8 @@ export async function GET(requete: Request) {
       nom: u.full_name || u.username || '—',
       email: u.email ?? '—',
       inscritLe: u.created_at,
+      derniereConnexion: u.last_sign_in_at || u.created_at,
+      joursConnexion: u.total_login_days || 1,
       role: u.role,
       // Le statut est recalculé ici plutôt que lu dans subscription_status :
       // la date de fin de période est la seule source fiable.

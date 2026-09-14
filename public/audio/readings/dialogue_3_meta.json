@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_3.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 11830,
+  "generationMode": "pcm_dialogue_with_timestamps",
+  "totalDurationMs": 10707,
   "sentences": [
     {
       "sentenceId": "d3_1",
+      "hanzi": "服务员，请给我菜单。",
       "startMs": 0,
-      "endMs": 2150,
-      "durationMs": 1800,
-      "audioUrl": "/audio/readings/dialogue_3_d3_1.mp3"
+      "endMs": 2098,
+      "durationMs": 1718
     },
     {
       "sentenceId": "d3_2",
-      "startMs": 2150,
-      "endMs": 5970,
-      "durationMs": 3470,
-      "audioUrl": "/audio/readings/dialogue_3_d3_2.mp3"
+      "hanzi": "好的，这是菜单。请问您想吃什么？",
+      "startMs": 2098,
+      "endMs": 5961,
+      "durationMs": 3483
     },
     {
       "sentenceId": "d3_3",
-      "startMs": 5970,
-      "endMs": 9320,
-      "durationMs": 3000,
-      "audioUrl": "/audio/readings/dialogue_3_d3_3.mp3"
+      "hanzi": "我要一碗牛肉面，和一瓶水。",
+      "startMs": 5961,
+      "endMs": 8524,
+      "durationMs": 2183
     },
     {
       "sentenceId": "d3_4",
-      "startMs": 9320,
-      "endMs": 11830,
-      "durationMs": 2510,
-      "audioUrl": "/audio/readings/dialogue_3_d3_4.mp3"
+      "hanzi": "好的，请稍等，马上来！",
+      "startMs": 8524,
+      "endMs": 10707,
+      "durationMs": 2183
     }
   ]
 }

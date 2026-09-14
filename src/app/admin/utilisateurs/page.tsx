@@ -10,13 +10,15 @@ import {
   ModaleAnnulation,
   type CibleAction,
 } from '@/components/admin/ModalesAbonnement';
-import { useApiAdmin, formaterDate } from '@/lib/admin/useApiAdmin';
+import { useApiAdmin, formaterDate, formaterDateHeure } from '@/lib/admin/useApiAdmin';
 
 interface Utilisateur {
   id: string;
   nom: string;
   email: string;
   inscritLe: string | null;
+  derniereConnexion: string | null;
+  joursConnexion: number;
   role: string;
   premium: boolean;
   plan: string | null;
@@ -137,10 +139,10 @@ export default function UtilisateursPage() {
         {/* Le tableau défile dans son propre conteneur : la page ne doit
             jamais partir en défilement horizontal sur mobile. */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[820px]">
+          <table className="w-full text-left border-collapse min-w-[960px]">
             <thead>
               <tr className="bg-[#FAFAFA] dark:bg-[#181818] border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-                {['Nom', 'E-mail', 'Inscription', 'Statut', 'Actions'].map((t) => (
+                {['Nom', 'E-mail', 'Inscription', 'Jours Actifs', 'Dernière Connexion', 'Statut', 'Actions'].map((t) => (
                   <th
                     key={t}
                     className="px-4 py-3 text-[11px] font-extrabold uppercase tracking-wider text-[#757575] dark:text-[#A0A0A0]"
@@ -153,13 +155,13 @@ export default function UtilisateursPage() {
             <tbody>
               {chargement && !donnees ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-12 text-center">
+                  <td colSpan={7} className="px-4 py-12 text-center">
                     <Loader2 className="w-5 h-5 animate-spin text-[#6200EE] mx-auto" />
                   </td>
                 </tr>
               ) : donnees && donnees.utilisateurs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-4 py-12 text-center text-sm text-[#757575]">
+                  <td colSpan={7} className="px-4 py-12 text-center text-sm text-[#757575]">
                     Aucun compte ne correspond à cette recherche.
                   </td>
                 </tr>
@@ -185,11 +187,19 @@ export default function UtilisateursPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[240px]">
+                    <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[220px]">
                       {u.email}
                     </td>
-                    <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
+                    <td className="px-4 py-3 text-xs text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
                       {formaterDate(u.inscritLe)}
+                    </td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#00897B]/10 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/20">
+                        🔥 {u.joursConnexion || 1} {u.joursConnexion > 1 ? 'jours' : 'jour'}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-xs font-medium text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
+                      {formaterDateHeure(u.derniereConnexion)}
                     </td>
                     <td className="px-4 py-3">
                       <span

@@ -5,43 +5,43 @@
   ],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 15120,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 18669,
   "sentences": [
     {
       "sentenceId": "vc_b1_1",
+      "hanzi": "星期二早上，布里斯先到了中国。",
       "startMs": 0,
-      "endMs": 2700,
-      "durationMs": 2350,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_1.mp3"
+      "endMs": 3599,
+      "durationMs": 3599
     },
     {
       "sentenceId": "vc_b1_2",
-      "startMs": 2700,
-      "endMs": 5900,
-      "durationMs": 2850,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_2.mp3"
+      "hanzi": "两天后，星期四晚上，安东尼也到了。",
+      "startMs": 3599,
+      "endMs": 7860,
+      "durationMs": 3750
     },
     {
       "sentenceId": "vc_b1_3",
-      "startMs": 5900,
-      "endMs": 9100,
-      "durationMs": 2850,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_3.mp3"
+      "hanzi": "最后，星期六早上十点，卡蒂娅到了。",
+      "startMs": 7860,
+      "endMs": 12086,
+      "durationMs": 3843
     },
     {
       "sentenceId": "vc_b1_4",
-      "startMs": 9100,
-      "endMs": 11720,
-      "durationMs": 2270,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_4.mp3"
+      "hanzi": "她坐出租车从机场去酒店。",
+      "startMs": 12086,
+      "endMs": 14838,
+      "durationMs": 2368
     },
     {
       "sentenceId": "vc_b1_5",
-      "startMs": 11720,
-      "endMs": 15120,
-      "durationMs": 3400,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_5.mp3"
+      "hanzi": "酒店很大，也很漂亮，有很多房间。",
+      "startMs": 14838,
+      "endMs": 18425,
+      "durationMs": 3587
     }
   ]
 }

@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_au_magasin.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 9640,
+  "generationMode": "pcm_dialogue_with_timestamps",
+  "totalDurationMs": 9005,
   "sentences": [
     {
       "sentenceId": "dam_1",
+      "hanzi": "请问，这个杯子多少钱？",
       "startMs": 0,
-      "endMs": 2310,
-      "durationMs": 1960,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_1.mp3"
+      "endMs": 2330,
+      "durationMs": 1950
     },
     {
       "sentenceId": "dam_2",
-      "startMs": 2310,
-      "endMs": 3890,
-      "durationMs": 1230,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_2.mp3"
+      "hanzi": "十块。",
+      "startMs": 2330,
+      "endMs": 3592,
+      "durationMs": 882
     },
     {
       "sentenceId": "dam_3",
-      "startMs": 3890,
-      "endMs": 5470,
-      "durationMs": 1230,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_3.mp3"
+      "hanzi": "那个呢？",
+      "startMs": 3592,
+      "endMs": 4808,
+      "durationMs": 836
     },
     {
       "sentenceId": "dam_4",
-      "startMs": 5470,
-      "endMs": 6730,
-      "durationMs": 910,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_4.mp3"
+      "hanzi": "那个八块。",
+      "startMs": 4808,
+      "endMs": 6256,
+      "durationMs": 1068
     },
     {
       "sentenceId": "dam_5",
-      "startMs": 6730,
-      "endMs": 8490,
-      "durationMs": 1410,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_5.mp3"
+      "hanzi": "我要这个。谢谢。",
+      "startMs": 6256,
+      "endMs": 8169,
+      "durationMs": 1533
     },
     {
       "sentenceId": "dam_6",
-      "startMs": 8490,
-      "endMs": 9640,
-      "durationMs": 1150,
-      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_6.mp3"
+      "hanzi": "好的。",
+      "startMs": 8169,
+      "endMs": 9005,
+      "durationMs": 836
     }
   ]
 }

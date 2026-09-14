@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_docteur_zhang_wei.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 23420,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 28793,
   "sentences": [
     {
       "sentenceId": "h_zw_1",
+      "hanzi": "张伟是医生。他在医院工作。医院很大。医院里有很多人。",
       "startMs": 0,
-      "endMs": 6540,
-      "durationMs": 6190,
-      "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_1.mp3"
+      "endMs": 7767,
+      "durationMs": 7767
     },
     {
       "sentenceId": "h_zw_2",
-      "startMs": 6540,
-      "endMs": 13320,
-      "durationMs": 6430,
-      "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_2.mp3"
+      "hanzi": "张伟喜欢他的工作。他有很多朋友。朋友都是医生。他们工作，吃饭。",
+      "startMs": 7767,
+      "endMs": 16718,
+      "durationMs": 8232
     },
     {
       "sentenceId": "h_zw_3",
-      "startMs": 13320,
-      "endMs": 18350,
-      "durationMs": 4680,
-      "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_3.mp3"
+      "hanzi": "张伟有女儿。女儿叫张小月。张小月是学生。",
+      "startMs": 16718,
+      "endMs": 22861,
+      "durationMs": 5330
     },
     {
       "sentenceId": "h_zw_4",
-      "startMs": 18350,
-      "endMs": 23420,
-      "durationMs": 5070,
-      "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_4.mp3"
+      "hanzi": "她学习汉语，也写字。她也很喜欢医院。她想做医生。",
+      "startMs": 22861,
+      "endMs": 28526,
+      "durationMs": 5665
     }
   ]
 }

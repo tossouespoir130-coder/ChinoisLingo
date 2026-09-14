@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 14790,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 18112,
   "sentences": [
     {
       "sentenceId": "a1_1",
+      "hanzi": "中国人非常喜欢喝茶。",
       "startMs": 0,
-      "endMs": 2620,
-      "durationMs": 2270,
-      "audioUrl": "/audio/readings/article_1_a1_1.mp3"
+      "endMs": 3553,
+      "durationMs": 3553
     },
     {
       "sentenceId": "a1_2",
-      "startMs": 2620,
-      "endMs": 6370,
-      "durationMs": 3400,
-      "audioUrl": "/audio/readings/article_1_a1_2.mp3"
+      "hanzi": "绿茶、红茶和乌龙茶都很有名。",
+      "startMs": 3553,
+      "endMs": 8057,
+      "durationMs": 3076
     },
     {
       "sentenceId": "a1_3",
-      "startMs": 6370,
-      "endMs": 11470,
-      "durationMs": 4750,
-      "audioUrl": "/audio/readings/article_1_a1_3.mp3"
+      "hanzi": "带客户参观工厂前，大家喜欢一起喝杯热茶。",
+      "startMs": 8057,
+      "endMs": 14245,
+      "durationMs": 4772
     },
     {
       "sentenceId": "a1_4",
-      "startMs": 11470,
-      "endMs": 14790,
-      "durationMs": 3320,
-      "audioUrl": "/audio/readings/article_1_a1_4.mp3"
+      "hanzi": "喝茶能让人放松，也能促进合作。",
+      "startMs": 14245,
+      "endMs": 17833,
+      "durationMs": 3588
     }
   ]
 }

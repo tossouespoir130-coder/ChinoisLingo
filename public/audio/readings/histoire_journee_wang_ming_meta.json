@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 34380,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 34041,
   "sentences": [
     {
       "sentenceId": "h_wm_1",
+      "hanzi": "王明是学生。他有一个好朋友，叫李月。李月也是学生。",
       "startMs": 0,
-      "endMs": 5990,
-      "durationMs": 5640,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_1.mp3"
+      "endMs": 5759,
+      "durationMs": 5759
     },
     {
       "sentenceId": "h_wm_2",
-      "startMs": 5990,
-      "endMs": 9740,
-      "durationMs": 3400,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_2.mp3"
+      "hanzi": "今天天气很好。不冷，也不热。",
+      "startMs": 5759,
+      "endMs": 9253,
+      "durationMs": 3181
     },
     {
       "sentenceId": "h_wm_3",
-      "startMs": 9740,
-      "endMs": 17640,
-      "durationMs": 7550,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_3.mp3"
+      "hanzi": "上午，王明去学校。他在学校学习汉语。他看见李月。李月很高兴。",
+      "startMs": 9253,
+      "endMs": 16498,
+      "durationMs": 6885
     },
     {
       "sentenceId": "h_wm_4",
-      "startMs": 17640,
-      "endMs": 24600,
-      "durationMs": 6610,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_4.mp3"
+      "hanzi": "中午，王明和李月去饭店。王明吃米饭，喝茶。李月吃米饭，喝水。",
+      "startMs": 16498,
+      "endMs": 24010,
+      "durationMs": 7001
     },
     {
       "sentenceId": "h_wm_5",
-      "startMs": 24600,
-      "endMs": 30750,
-      "durationMs": 5800,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_5.mp3"
+      "hanzi": "下午，他们回家。王明在家看电视。李月在家看书。",
+      "startMs": 24010,
+      "endMs": 29861,
+      "durationMs": 5479
     },
     {
       "sentenceId": "h_wm_6",
-      "startMs": 30750,
-      "endMs": 34380,
-      "durationMs": 3630,
-      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
+      "hanzi": "今天，王明很高兴。李月也很高兴。",
+      "startMs": 29861,
+      "endMs": 33774,
+      "durationMs": 3913
     }
   ]
 }

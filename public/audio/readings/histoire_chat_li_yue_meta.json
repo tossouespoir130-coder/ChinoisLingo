@@ -3,43 +3,43 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_chat_li_yue.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 25050,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 22013,
   "sentences": [
     {
       "sentenceId": "h_cat_1",
+      "hanzi": "李月家有猫。猫叫小白。小白很小，很漂亮。李月很喜欢小白。",
       "startMs": 0,
-      "endMs": 10150,
-      "durationMs": 9800,
-      "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_1.mp3"
+      "endMs": 7210,
+      "durationMs": 7210
     },
     {
       "sentenceId": "h_cat_2",
-      "startMs": 10150,
-      "endMs": 15020,
-      "durationMs": 4520,
-      "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_2.mp3"
+      "hanzi": "今天上午，李月在家。她看书，小白睡觉。",
+      "startMs": 7210,
+      "endMs": 11854,
+      "durationMs": 4400
     },
     {
       "sentenceId": "h_cat_3",
-      "startMs": 15020,
-      "endMs": 18690,
-      "durationMs": 3320,
-      "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_3.mp3"
+      "hanzi": "中午，李月吃米饭。小白喝水。",
+      "startMs": 11854,
+      "endMs": 15673,
+      "durationMs": 3262
     },
     {
       "sentenceId": "h_cat_4",
-      "startMs": 18690,
-      "endMs": 22360,
-      "durationMs": 3320,
-      "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_4.mp3"
+      "hanzi": "下午，李月去商店。她买水果。",
+      "startMs": 15673,
+      "endMs": 19482,
+      "durationMs": 3240
     },
     {
       "sentenceId": "h_cat_5",
-      "startMs": 22360,
-      "endMs": 25050,
-      "durationMs": 2690,
-      "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_5.mp3"
+      "hanzi": "她回家，看见小白在椅子上。",
+      "startMs": 19482,
+      "endMs": 21723,
+      "durationMs": 2241
     }
   ]
 }

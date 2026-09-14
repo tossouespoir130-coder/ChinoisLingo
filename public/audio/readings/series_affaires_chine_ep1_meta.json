@@ -6,36 +6,36 @@
   ],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_carte_visite.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12570,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 15557,
   "sentences": [
     {
       "sentenceId": "cdv_1",
+      "hanzi": "在中国，第一次见面递名片要用双手。",
       "startMs": 0,
-      "endMs": 3820,
-      "durationMs": 3470,
-      "audioUrl": "/audio/readings/article_carte_visite_cdv_1.mp3"
+      "endMs": 4319,
+      "durationMs": 4319
     },
     {
       "sentenceId": "cdv_2",
-      "startMs": 3820,
-      "endMs": 6290,
-      "durationMs": 2120,
-      "audioUrl": "/audio/readings/article_carte_visite_cdv_2.mp3"
+      "hanzi": "这是尊重的表现，非常重要。",
+      "startMs": 4319,
+      "endMs": 7709,
+      "durationMs": 2844
     },
     {
       "sentenceId": "cdv_3",
-      "startMs": 6290,
-      "endMs": 9410,
-      "durationMs": 2770,
-      "audioUrl": "/audio/readings/article_carte_visite_cdv_3.mp3"
+      "hanzi": "你可以说：这是我的名片，请多关照。",
+      "startMs": 7709,
+      "endMs": 11529,
+      "durationMs": 3355
     },
     {
       "sentenceId": "cdv_4",
-      "startMs": 9410,
-      "endMs": 12570,
-      "durationMs": 3160,
-      "audioUrl": "/audio/readings/article_carte_visite_cdv_4.mp3"
+      "hanzi": "对方会觉得你很有礼貌，合作会更顺利。",
+      "startMs": 11529,
+      "endMs": 15290,
+      "durationMs": 3761
     }
   ]
 }

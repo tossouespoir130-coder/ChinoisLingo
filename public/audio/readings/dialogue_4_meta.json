@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_4.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12070,
+  "generationMode": "pcm_dialogue_with_timestamps",
+  "totalDurationMs": 13029,
   "sentences": [
     {
       "sentenceId": "d4_1",
+      "hanzi": "师傅，您好！我想去北京酒店。",
       "startMs": 0,
-      "endMs": 2940,
-      "durationMs": 2590,
-      "audioUrl": "/audio/readings/dialogue_4_d4_1.mp3"
+      "endMs": 3817,
+      "durationMs": 3437
     },
     {
       "sentenceId": "d4_2",
-      "startMs": 2940,
-      "endMs": 6450,
-      "durationMs": 3160,
-      "audioUrl": "/audio/readings/dialogue_4_d4_2.mp3"
+      "hanzi": "好的，请上车，请系好安全带。",
+      "startMs": 3817,
+      "endMs": 7355,
+      "durationMs": 3158
     },
     {
       "sentenceId": "d4_3",
-      "startMs": 6450,
-      "endMs": 10350,
-      "durationMs": 3550,
-      "audioUrl": "/audio/readings/dialogue_4_d4_3.mp3"
+      "hanzi": "请问，到北京酒店要坐几分钟？",
+      "startMs": 7355,
+      "endMs": 11032,
+      "durationMs": 3297
     },
     {
       "sentenceId": "d4_4",
-      "startMs": 10350,
-      "endMs": 12070,
-      "durationMs": 1720,
-      "audioUrl": "/audio/readings/dialogue_4_d4_4.mp3"
+      "hanzi": "大概十五分钟就到了。",
+      "startMs": 11032,
+      "endMs": 13029,
+      "durationMs": 1997
     }
   ]
 }

@@ -3,22 +3,22 @@
   "aliases": [],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_decouvrir_la_chine.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 14500,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 13282,
   "sentences": [
     {
       "sentenceId": "art_cn_1",
+      "hanzi": "中国很大。中国有很多人。北京在中国。北京也很大。",
       "startMs": 0,
-      "endMs": 6380,
-      "durationMs": 6030,
-      "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_1.mp3"
+      "endMs": 5886,
+      "durationMs": 5886
     },
     {
       "sentenceId": "art_cn_2",
-      "startMs": 6380,
-      "endMs": 14500,
-      "durationMs": 8120,
-      "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_2.mp3"
+      "hanzi": "中国人说汉语。中国人写汉字。中国人喜欢喝茶。中国人也喜欢中国菜。",
+      "startMs": 5886,
+      "endMs": 13015,
+      "durationMs": 7129
     }
   ]
 }

@@ -3,43 +3,43 @@
   "aliases": [],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_mon_ami_chinois.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 22170,
+  "generationMode": "single_call_with_timestamps",
+  "totalDurationMs": 23684,
   "sentences": [
     {
       "sentenceId": "art_friend_1",
+      "hanzi": "我有一个中国朋友。他叫王明。他是北京人。",
       "startMs": 0,
-      "endMs": 6070,
-      "durationMs": 5720,
-      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_1.mp3"
+      "endMs": 5968,
+      "durationMs": 5968
     },
     {
       "sentenceId": "art_friend_2",
-      "startMs": 6070,
-      "endMs": 13030,
-      "durationMs": 6610,
-      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_2.mp3"
+      "hanzi": "他说汉语，也写汉字。他喜欢喝茶，也喜欢吃中国菜。",
+      "startMs": 5968,
+      "endMs": 13375,
+      "durationMs": 6164
     },
     {
       "sentenceId": "art_friend_3",
-      "startMs": 13030,
-      "endMs": 16540,
-      "durationMs": 3160,
-      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_3.mp3"
+      "hanzi": "他请我喝茶。我说：“谢谢。”",
+      "startMs": 13375,
+      "endMs": 18564,
+      "durationMs": 5166
     },
     {
       "sentenceId": "art_friend_4",
-      "startMs": 16540,
-      "endMs": 20600,
-      "durationMs": 3710,
-      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_4.mp3"
+      "hanzi": "我们说话，我们看书，我们写字。",
+      "startMs": 18564,
+      "endMs": 22477,
+      "durationMs": 2694
     },
     {
       "sentenceId": "art_friend_5",
-      "startMs": 20600,
-      "endMs": 22170,
-      "durationMs": 1570,
-      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_5.mp3"
+      "hanzi": "他是我的好朋友。",
+      "startMs": 22477,
+      "endMs": 23475,
+      "durationMs": 998
     }
   ]
 }

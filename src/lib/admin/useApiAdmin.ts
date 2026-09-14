@@ -46,3 +46,14 @@ export function formaterDate(iso: string | null): string {
     ? '—'
     : d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
 }
+
+export function formaterDateHeure(iso: string | null): string {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '—';
+  
+  const dateStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+  const heureStr = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  return `${dateStr} à ${heureStr}`;
+}
+

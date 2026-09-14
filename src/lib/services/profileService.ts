@@ -86,11 +86,18 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
     newStreak = 1;
   }
 
+  const isNewDay = lastActive !== today;
+  const newTotalLoginDays = isNewDay
+    ? (profile.total_login_days || 0) + 1
+    : (profile.total_login_days || 1);
+
   const { data: updatedProfile, error: updateError } = await supabase
     .from('profiles')
     .update({
       streak_days: newStreak,
       last_active_date: today,
+      last_sign_in_at: new Date().toISOString(),
+      total_login_days: newTotalLoginDays,
       total_minutes_learned: (profile.total_minutes_learned || 0) + minutesToAdd,
       updated_at: new Date().toISOString(),
     })
