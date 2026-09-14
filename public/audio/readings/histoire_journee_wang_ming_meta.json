@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
-  "generationMode": "single_call_with_timestamps",
-  "totalDurationMs": 34041,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 32320,
   "sentences": [
     {
       "sentenceId": "h_wm_1",
-      "hanzi": "王明是学生。他有一个好朋友，叫李月。李月也是学生。",
       "startMs": 0,
-      "endMs": 5759,
-      "durationMs": 5759
+      "endMs": 5840,
+      "durationMs": 5490,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_1.mp3"
     },
     {
       "sentenceId": "h_wm_2",
-      "hanzi": "今天天气很好。不冷，也不热。",
-      "startMs": 5759,
-      "endMs": 9253,
-      "durationMs": 3181
+      "startMs": 5840,
+      "endMs": 9190,
+      "durationMs": 3000,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_2.mp3"
     },
     {
       "sentenceId": "h_wm_3",
-      "hanzi": "上午，王明去学校。他在学校学习汉语。他看见李月。李月很高兴。",
-      "startMs": 9253,
-      "endMs": 16498,
-      "durationMs": 6885
+      "startMs": 9190,
+      "endMs": 16310,
+      "durationMs": 6770,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_3.mp3"
     },
     {
       "sentenceId": "h_wm_4",
-      "hanzi": "中午，王明和李月去饭店。王明吃米饭，喝茶。李月吃米饭，喝水。",
-      "startMs": 16498,
-      "endMs": 24010,
-      "durationMs": 7001
+      "startMs": 16310,
+      "endMs": 23820,
+      "durationMs": 7160,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_4.mp3"
     },
     {
       "sentenceId": "h_wm_5",
-      "hanzi": "下午，他们回家。王明在家看电视。李月在家看书。",
-      "startMs": 24010,
-      "endMs": 29861,
-      "durationMs": 5479
+      "startMs": 23820,
+      "endMs": 28530,
+      "durationMs": 4360,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_5.mp3"
     },
     {
       "sentenceId": "h_wm_6",
-      "hanzi": "今天，王明很高兴。李月也很高兴。",
-      "startMs": 29861,
-      "endMs": 33774,
-      "durationMs": 3913
+      "startMs": 28530,
+      "endMs": 32320,
+      "durationMs": 3790,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
     }
   ]
 }

@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_1.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 22614,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 18290,
   "sentences": [
     {
       "sentenceId": "d1_1",
-      "hanzi": "王总，您好！很高兴能来到这里。",
       "startMs": 0,
-      "endMs": 4235,
-      "durationMs": 3855
+      "endMs": 2780,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/dialogue_1_d1_1.mp3"
     },
     {
       "sentenceId": "d1_2",
-      "hanzi": "您好，欢迎欢迎！请坐，先喝杯茶。",
-      "startMs": 4235,
-      "endMs": 7634,
-      "durationMs": 3019
+      "startMs": 2780,
+      "endMs": 6060,
+      "durationMs": 2930,
+      "audioUrl": "/audio/readings/dialogue_1_d1_2.mp3"
     },
     {
       "sentenceId": "d1_3",
-      "hanzi": "谢谢王总，您太客气了。",
-      "startMs": 7634,
-      "endMs": 10475,
-      "durationMs": 2461
+      "startMs": 6060,
+      "endMs": 8370,
+      "durationMs": 1960,
+      "audioUrl": "/audio/readings/dialogue_1_d1_3.mp3"
     },
     {
       "sentenceId": "d1_4",
-      "hanzi": "应该的。您什么时候到的？休息好了吗？",
-      "startMs": 10475,
-      "endMs": 14710,
-      "durationMs": 3855
+      "startMs": 8370,
+      "endMs": 11880,
+      "durationMs": 3160,
+      "audioUrl": "/audio/readings/dialogue_1_d1_4.mp3"
     },
     {
       "sentenceId": "d1_5",
-      "hanzi": "昨天晚上到的，休息得挺好，谢谢关心。",
-      "startMs": 14710,
-      "endMs": 19270,
-      "durationMs": 4180
+      "startMs": 11880,
+      "endMs": 15780,
+      "durationMs": 3550,
+      "audioUrl": "/audio/readings/dialogue_1_d1_5.mp3"
     },
     {
       "sentenceId": "d1_6",
-      "hanzi": "好，咱们先聊聊，等会儿再看产品目录。",
-      "startMs": 19270,
-      "endMs": 22614,
-      "durationMs": 3344
+      "startMs": 15780,
+      "endMs": 18290,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/dialogue_1_d1_6.mp3"
     }
   ]
 }

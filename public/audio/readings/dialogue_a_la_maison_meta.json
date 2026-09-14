@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_a_la_maison.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 9145,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 9500,
   "sentences": [
     {
       "sentenceId": "dlm_1",
-      "hanzi": "妈妈，现在几点？",
       "startMs": 0,
-      "endMs": 1727,
-      "durationMs": 1347
+      "endMs": 1660,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_1.mp3"
     },
     {
       "sentenceId": "dlm_2",
-      "hanzi": "现在七点。",
-      "startMs": 1727,
-      "endMs": 3407,
-      "durationMs": 1300
+      "startMs": 1660,
+      "endMs": 3000,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_2.mp3"
     },
     {
       "sentenceId": "dlm_3",
-      "hanzi": "我们几点去饭馆？",
-      "startMs": 3407,
-      "endMs": 5320,
-      "durationMs": 1533
+      "startMs": 3000,
+      "endMs": 4760,
+      "durationMs": 1410,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_3.mp3"
     },
     {
       "sentenceId": "dlm_4",
-      "hanzi": "七点半。",
-      "startMs": 5320,
-      "endMs": 6768,
-      "durationMs": 1068
+      "startMs": 4760,
+      "endMs": 6520,
+      "durationMs": 1410,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_4.mp3"
     },
     {
       "sentenceId": "dlm_5",
-      "hanzi": "爸爸呢？",
-      "startMs": 6768,
-      "endMs": 8030,
-      "durationMs": 882
+      "startMs": 6520,
+      "endMs": 8590,
+      "durationMs": 1720,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_5.mp3"
     },
     {
       "sentenceId": "dlm_6",
-      "hanzi": "他在睡觉。",
-      "startMs": 8030,
-      "endMs": 9145,
-      "durationMs": 1115
+      "startMs": 8590,
+      "endMs": 9500,
+      "durationMs": 910,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_6.mp3"
     }
   ]
 }

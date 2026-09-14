@@ -3,78 +3,78 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_appel_telephonique.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 18560,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 18140,
   "sentences": [
     {
       "sentenceId": "dat_1",
-      "hanzi": "喂，你好。",
       "startMs": 0,
-      "endMs": 1680,
-      "durationMs": 1300
+      "endMs": 1030,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_1.mp3"
     },
     {
       "sentenceId": "dat_2",
-      "hanzi": "你好，请问王老师在吗？",
-      "startMs": 1680,
-      "endMs": 4103,
-      "durationMs": 2043
+      "startMs": 1030,
+      "endMs": 3570,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_2.mp3"
     },
     {
       "sentenceId": "dat_3",
-      "hanzi": "我就是。",
-      "startMs": 4103,
-      "endMs": 5319,
-      "durationMs": 836
+      "startMs": 3570,
+      "endMs": 4910,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_3.mp3"
     },
     {
       "sentenceId": "dat_4",
-      "hanzi": "王老师，您好。我是李月。",
-      "startMs": 5319,
-      "endMs": 8114,
-      "durationMs": 2415
+      "startMs": 4910,
+      "endMs": 7380,
+      "durationMs": 2120,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_4.mp3"
     },
     {
       "sentenceId": "dat_5",
-      "hanzi": "李月，你好。",
-      "startMs": 8114,
-      "endMs": 9841,
-      "durationMs": 1347
+      "startMs": 7380,
+      "endMs": 8720,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_5.mp3"
     },
     {
       "sentenceId": "dat_6",
-      "hanzi": "老师，明天上课吗？",
-      "startMs": 9841,
-      "endMs": 12218,
-      "durationMs": 1997
+      "startMs": 8720,
+      "endMs": 11260,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_6.mp3"
     },
     {
       "sentenceId": "dat_7",
-      "hanzi": "明天上课。",
-      "startMs": 12218,
-      "endMs": 13852,
-      "durationMs": 1254
+      "startMs": 11260,
+      "endMs": 13960,
+      "durationMs": 2350,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_7.mp3"
     },
     {
       "sentenceId": "dat_8",
-      "hanzi": "好，谢谢老师。",
-      "startMs": 13852,
-      "endMs": 15672,
-      "durationMs": 1440
+      "startMs": 13960,
+      "endMs": 15800,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_8.mp3"
     },
     {
       "sentenceId": "dat_9",
-      "hanzi": "不客气。明天见。",
-      "startMs": 15672,
-      "endMs": 17445,
-      "durationMs": 1393
+      "startMs": 15800,
+      "endMs": 17460,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_9.mp3"
     },
     {
       "sentenceId": "dat_10",
-      "hanzi": "明天见。",
-      "startMs": 17445,
-      "endMs": 18560,
-      "durationMs": 1115
+      "startMs": 17460,
+      "endMs": 18140,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_10.mp3"
     }
   ]
 }

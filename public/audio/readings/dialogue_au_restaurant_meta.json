@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_au_restaurant.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 9331,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 9430,
   "sentences": [
     {
       "sentenceId": "dar_1",
-      "hanzi": "你喝什么？",
       "startMs": 0,
-      "endMs": 1402,
-      "durationMs": 1022
+      "endMs": 1030,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_1.mp3"
     },
     {
       "sentenceId": "dar_2",
-      "hanzi": "我喝茶。你呢？",
-      "startMs": 1402,
-      "endMs": 3315,
-      "durationMs": 1533
+      "startMs": 1030,
+      "endMs": 2950,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_2.mp3"
     },
     {
       "sentenceId": "dar_3",
-      "hanzi": "我喝水。",
-      "startMs": 3315,
-      "endMs": 4717,
-      "durationMs": 1022
+      "startMs": 2950,
+      "endMs": 4950,
+      "durationMs": 1650,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_3.mp3"
     },
     {
       "sentenceId": "dar_4",
-      "hanzi": "你吃什么？",
-      "startMs": 4717,
-      "endMs": 6165,
-      "durationMs": 1068
+      "startMs": 4950,
+      "endMs": 6290,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_4.mp3"
     },
     {
       "sentenceId": "dar_5",
-      "hanzi": "我吃米饭。你呢？",
-      "startMs": 6165,
-      "endMs": 7938,
-      "durationMs": 1393
+      "startMs": 6290,
+      "endMs": 8360,
+      "durationMs": 1720,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_5.mp3"
     },
     {
       "sentenceId": "dar_6",
-      "hanzi": "我也吃米饭。",
-      "startMs": 7938,
-      "endMs": 9331,
-      "durationMs": 1393
+      "startMs": 8360,
+      "endMs": 9430,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_6.mp3"
     }
   ]
 }

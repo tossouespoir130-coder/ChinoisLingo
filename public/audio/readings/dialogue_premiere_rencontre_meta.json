@@ -3,43 +3,43 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_premiere_rencontre.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 7232,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 7320,
   "sentences": [
     {
       "sentenceId": "dpr_1",
-      "hanzi": "你好！",
       "startMs": 0,
-      "endMs": 1216,
-      "durationMs": 836
+      "endMs": 1260,
+      "durationMs": 910,
+      "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_1.mp3"
     },
     {
       "sentenceId": "dpr_2",
-      "hanzi": "你好！",
-      "startMs": 1216,
-      "endMs": 2478,
-      "durationMs": 882
+      "startMs": 1260,
+      "endMs": 2760,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_2.mp3"
     },
     {
       "sentenceId": "dpr_3",
-      "hanzi": "你叫什么名字？",
-      "startMs": 2478,
-      "endMs": 4112,
-      "durationMs": 1254
+      "startMs": 2760,
+      "endMs": 4180,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_3.mp3"
     },
     {
       "sentenceId": "dpr_4",
-      "hanzi": "我叫李月。你呢？",
-      "startMs": 4112,
-      "endMs": 6071,
-      "durationMs": 1579
+      "startMs": 4180,
+      "endMs": 6330,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_4.mp3"
     },
     {
       "sentenceId": "dpr_5",
-      "hanzi": "我叫王明。",
-      "startMs": 6071,
-      "endMs": 7232,
-      "durationMs": 1161
+      "startMs": 6330,
+      "endMs": 7320,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_5.mp3"
     }
   ]
 }

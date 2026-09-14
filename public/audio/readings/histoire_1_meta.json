@@ -3,43 +3,43 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_1.mp3",
-  "generationMode": "single_call_with_timestamps",
-  "totalDurationMs": 13375,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 12460,
   "sentences": [
     {
       "sentenceId": "h1_1",
-      "hanzi": "早上七点，大卫起床了。",
       "startMs": 0,
-      "endMs": 2810,
-      "durationMs": 2810
+      "endMs": 2000,
+      "durationMs": 1650,
+      "audioUrl": "/audio/readings/histoire_1_h1_1.mp3"
     },
     {
       "sentenceId": "h1_2",
-      "hanzi": "天气很好。",
-      "startMs": 2810,
-      "endMs": 4133,
-      "durationMs": 1045
+      "startMs": 2000,
+      "endMs": 4470,
+      "durationMs": 2120,
+      "audioUrl": "/audio/readings/histoire_1_h1_2.mp3"
     },
     {
       "sentenceId": "h1_3",
-      "hanzi": "他去饭店喝茶，吃米饭和鱼。",
-      "startMs": 4133,
-      "endMs": 7140,
-      "durationMs": 2682
+      "startMs": 4470,
+      "endMs": 7250,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/histoire_1_h1_3.mp3"
     },
     {
       "sentenceId": "h1_4",
-      "hanzi": "服务员说：“欢迎你来北京！”",
-      "startMs": 7140,
-      "endMs": 9927,
-      "durationMs": 2670
+      "startMs": 7250,
+      "endMs": 10110,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/histoire_1_h1_4.mp3"
     },
     {
       "sentenceId": "h1_5",
-      "hanzi": "大卫很高兴，他说：“谢谢！”",
-      "startMs": 9927,
-      "endMs": 13119,
-      "durationMs": 3192
+      "startMs": 10110,
+      "endMs": 12460,
+      "durationMs": 2350,
+      "audioUrl": "/audio/readings/histoire_1_h1_5.mp3"
     }
   ]
 }

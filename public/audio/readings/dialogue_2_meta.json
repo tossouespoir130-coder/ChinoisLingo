@@ -3,36 +3,36 @@
   "aliases": [],
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_2.mp3",
-  "generationMode": "pcm_dialogue_with_timestamps",
-  "totalDurationMs": 14236,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 12260,
   "sentences": [
     {
       "sentenceId": "d2_1",
-      "hanzi": "老板，请问这个多少钱一个？",
       "startMs": 0,
-      "endMs": 4049,
-      "durationMs": 3669
+      "endMs": 3200,
+      "durationMs": 2850,
+      "audioUrl": "/audio/readings/dialogue_2_d2_1.mp3"
     },
     {
       "sentenceId": "d2_2",
-      "hanzi": "这个二十块钱一个。您要多少个？",
-      "startMs": 4049,
-      "endMs": 7680,
-      "durationMs": 3251
+      "startMs": 3200,
+      "endMs": 6320,
+      "durationMs": 2770,
+      "audioUrl": "/audio/readings/dialogue_2_d2_2.mp3"
     },
     {
       "sentenceId": "d2_3",
-      "hanzi": "如果我要一百个，可以便宜一点吗？",
-      "startMs": 7680,
-      "endMs": 12007,
-      "durationMs": 3947
+      "startMs": 6320,
+      "endMs": 10300,
+      "durationMs": 3630,
+      "audioUrl": "/audio/readings/dialogue_2_d2_3.mp3"
     },
     {
       "sentenceId": "d2_4",
-      "hanzi": "可以，给您十五块一个！",
-      "startMs": 12007,
-      "endMs": 14236,
-      "durationMs": 2229
+      "startMs": 10300,
+      "endMs": 12260,
+      "durationMs": 1960,
+      "audioUrl": "/audio/readings/dialogue_2_d2_4.mp3"
     }
   ]
 }

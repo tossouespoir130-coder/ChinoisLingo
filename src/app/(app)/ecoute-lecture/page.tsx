@@ -3946,6 +3946,23 @@ function EcouteLectureContent() {
       window.speechSynthesis.cancel();
     }
 
+    const primaryId = currentEpisode?.id || activeReading?.id;
+    const fallbackId = activeReading?.id;
+    const cleanWord = text.trim();
+
+    // Priority list of pre-generated ElevenLabs v3 HD audio clips
+    const candidateUrls: string[] = [];
+    if (id.startsWith('voc_') || cleanWord.length <= 6) {
+      candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3`);
+      candidateUrls.push(`/audio/vocab/${cleanWord}.mp3`);
+    }
+    if (primaryId && !id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
+    }
+    if (fallbackId && fallbackId !== primaryId && !id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
+    }
+
     const playWithWebSpeech = () => {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
@@ -3961,64 +3978,44 @@ function EcouteLectureContent() {
       }
     };
 
-    // 1. If clicking a sentence that exists in readingAudioMeta, play the master track bounded to [startMs, endMs]
-    if (!id.startsWith('voc_') && readingAudioMeta && readingAudioMeta.fullAudioUrl) {
-      const sentMeta = readingAudioMeta.sentences.find((s) => s.sentenceId === id);
-      if (sentMeta) {
-        const audio = new Audio(readingAudioMeta.fullAudioUrl);
-        activeAudioRef.current = audio;
-        audio.playbackRate = parseFloat(audioSpeed) || 1.0;
-        audio.currentTime = Math.max(0, sentMeta.startMs / 1000);
-        setPlayingSentenceId(id);
-        const idx = displayedSentences.findIndex((s) => s.id === id);
-        if (idx !== -1) setCurrentSentenceIndex(idx);
-
-        const onTimeUpdate = () => {
-          if (audio.currentTime * 1000 >= sentMeta.endMs) {
-            audio.pause();
-            audio.removeEventListener('timeupdate', onTimeUpdate);
-            setPlayingSentenceId(null);
-            if (activeAudioRef.current === audio) {
-              activeAudioRef.current = null;
-            }
-          }
-        };
-
-        const onEnded = () => {
-          setPlayingSentenceId(null);
-          if (activeAudioRef.current === audio) {
-            activeAudioRef.current = null;
-          }
-        };
-
-        audio.addEventListener('timeupdate', onTimeUpdate);
-        audio.addEventListener('ended', onEnded);
-        audio.play().catch(() => {
-          playWithWebSpeech();
-        });
-        return;
-      }
-    }
-
-    const primaryId = currentEpisode?.id || activeReading?.id;
-    const fallbackId = activeReading?.id;
-    const cleanWord = text.trim();
-
-    // Priority list of pre-generated ElevenLabs HD audio clips (vocab files)
-    const candidateUrls: string[] = [];
-    if (id.startsWith('voc_') || cleanWord.length <= 6) {
-      candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3`);
-      candidateUrls.push(`/audio/vocab/${cleanWord}.mp3`);
-    }
-    if (primaryId) {
-      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
-    }
-    if (fallbackId && fallbackId !== primaryId) {
-      candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
-    }
-
     const tryPlayNextCandidate = (index: number) => {
       if (index >= candidateUrls.length) {
+        // Fallback to bounded segment in master track if individual file is missing
+        if (!id.startsWith('voc_') && readingAudioMeta && readingAudioMeta.fullAudioUrl) {
+          const sentMeta = readingAudioMeta.sentences.find((s) => s.sentenceId === id);
+          if (sentMeta) {
+            const audio = new Audio(readingAudioMeta.fullAudioUrl);
+            activeAudioRef.current = audio;
+            audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+            audio.currentTime = Math.max(0, sentMeta.startMs / 1000);
+            setPlayingSentenceId(id);
+            const idx = displayedSentences.findIndex((s) => s.id === id);
+            if (idx !== -1) setCurrentSentenceIndex(idx);
+
+            const onTimeUpdate = () => {
+              if (audio.currentTime * 1000 >= sentMeta.endMs) {
+                audio.pause();
+                audio.removeEventListener('timeupdate', onTimeUpdate);
+                setPlayingSentenceId(null);
+                if (activeAudioRef.current === audio) {
+                  activeAudioRef.current = null;
+                }
+              }
+            };
+
+            const onEnded = () => {
+              setPlayingSentenceId(null);
+              if (activeAudioRef.current === audio) {
+                activeAudioRef.current = null;
+              }
+            };
+
+            audio.addEventListener('timeupdate', onTimeUpdate);
+            audio.addEventListener('ended', onEnded);
+            audio.play().catch(() => playWithWebSpeech());
+            return;
+          }
+        }
         playWithWebSpeech();
         return;
       }
@@ -4028,6 +4025,8 @@ function EcouteLectureContent() {
       activeAudioRef.current = audio;
       audio.playbackRate = parseFloat(audioSpeed) || 1.0;
       setPlayingSentenceId(id);
+      const idx = displayedSentences.findIndex((s) => s.id === id);
+      if (idx !== -1) setCurrentSentenceIndex(idx);
 
       let isHandled = false;
       const advance = () => {

@@ -5,36 +5,36 @@
   ],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_2.mp3",
-  "generationMode": "single_call_with_timestamps",
-  "totalDurationMs": 17136,
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 17380,
   "sentences": [
     {
       "sentenceId": "a2_1",
-      "hanzi": "在中国文化中，数字有特别的意思。",
       "startMs": 0,
-      "endMs": 3657,
-      "durationMs": 3657
+      "endMs": 3510,
+      "durationMs": 3160,
+      "audioUrl": "/audio/readings/article_2_a2_1.mp3"
     },
     {
       "sentenceId": "a2_2",
-      "hanzi": "数字八代表发财，大家都很喜欢。",
-      "startMs": 3657,
-      "endMs": 7175,
-      "durationMs": 2728
+      "startMs": 3510,
+      "endMs": 7100,
+      "durationMs": 3240,
+      "audioUrl": "/audio/readings/article_2_a2_2.mp3"
     },
     {
       "sentenceId": "a2_3",
-      "hanzi": "数字六也很受欢迎，因为“六六大顺”，代表做什么都顺利。",
-      "startMs": 7175,
-      "endMs": 12968,
-      "durationMs": 4899
+      "startMs": 7100,
+      "endMs": 13410,
+      "durationMs": 5960,
+      "audioUrl": "/audio/readings/article_2_a2_3.mp3"
     },
     {
       "sentenceId": "a2_4",
-      "hanzi": "数字四的发音像“死”，所以很多人不太喜欢它。",
-      "startMs": 12968,
-      "endMs": 16904,
-      "durationMs": 3936
+      "startMs": 13410,
+      "endMs": 17380,
+      "durationMs": 3970,
+      "audioUrl": "/audio/readings/article_2_a2_4.mp3"
     }
   ]
 }
