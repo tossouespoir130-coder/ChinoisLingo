@@ -573,8 +573,9 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '0 min 20',
     description: 'Grand-mère Wang offre une pomme à Xiao Le pour apprendre à remercier et répondre poliment en chinois.',
-    imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://img.youtube.com/vi/oW2MlykmNDs/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
+    youtubeId: 'oW2MlykmNDs',
     characters: [
       {
         name: '王奶奶',
@@ -620,15 +621,16 @@ export const readingCatalog: ReadingItem[] = [
   },
   {
     id: 'video_comment_tu_tappelles',
-    titleFr: 'Comment tu t’appelles ?',
+    titleFr: 'Comment t’appelles-tu ?',
     titleZh: '你叫什么名字？',
     titlePinyin: 'Nǐ jiào shénme míngzi?',
     type: 'videos',
     level: 'HSK 1',
     duration: '0 min 20',
     description: 'Chén Yǎ rencontre Espoir dans un parc pour apprendre à demander et dire son prénom en chinois.',
-    imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://img.youtube.com/vi/Gxl2VZPG_EQ/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
+    youtubeId: 'Gxl2VZPG_EQ',
     characters: [
       {
         name: '陈雅',
@@ -655,7 +657,7 @@ export const readingCatalog: ReadingItem[] = [
         speakerColor: 'turquoise',
         hanzi: '你叫什么名字？',
         pinyin: 'Nǐ jiào shénme míngzi?',
-        french: 'Comment tu t’appelles ?',
+        french: 'Comment t’appelles-tu ?',
       },
       {
         id: 'nom_2',
@@ -676,15 +678,16 @@ export const readingCatalog: ReadingItem[] = [
   },
   {
     id: 'video_dou_viens_tu',
-    titleFr: 'D’où viens-tu ? (Nationalités)',
+    titleFr: 'Quelle est ta nationalité ? (Nationalités)',
     titleZh: '你是哪国人？',
     titlePinyin: 'Nǐ shì nǎ guó rén?',
     type: 'videos',
     level: 'HSK 1',
     duration: '0 min 30',
     description: 'M. Wang contrôle les passeports de Marc et d’Espoir à l’aéroport pour apprendre à demander et dire sa nationalité en chinois.',
-    imageUrl: 'https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://img.youtube.com/vi/VY1FskKIgpA/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
+    youtubeId: 'VY1FskKIgpA',
     characters: [
       {
         name: '王先生',
@@ -719,7 +722,7 @@ export const readingCatalog: ReadingItem[] = [
         speakerColor: 'neutral',
         hanzi: '你是哪国人？',
         pinyin: 'Nǐ shì nǎ guó rén?',
-        french: 'D’où viens-tu ?',
+        french: 'Quelle est ta nationalité ?',
       },
       {
         id: 'dvt_2',
@@ -737,7 +740,7 @@ export const readingCatalog: ReadingItem[] = [
         speakerColor: 'neutral',
         hanzi: '你是哪国人？',
         pinyin: 'Nǐ shì nǎ guó rén?',
-        french: 'D’où viens-tu ?',
+        french: 'Quelle est ta nationalité ?',
       },
       {
         id: 'dvt_4',
