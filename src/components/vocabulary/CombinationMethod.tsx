@@ -129,7 +129,7 @@ export function CombinationMethod({
     return buildDynamicSentence(pattern.slots, activeSelectedMap);
   }, [pattern, activeSelectedMap]);
 
-  // Random Sentence Generator 🎲
+  // Random Sentence Generator (Shuffle)
   const handleRandomize = () => {
     if (!pattern) return;
     const newMap: Record<string, string> = {};

@@ -180,7 +180,7 @@ export const initialCourses: CourseModule[] = [
         "isLocked": false,
         "youtubeId": "8CP0wpRAkl0",
         "description": "Répondre poliment après un remerciement en mandarin.",
-        "keyPoints": "Dire 不客气 (Bù kèqi) et 不用谢 (Bú yòng xiè).",
+        "keyPoints": "Dire 不客气 (Bú kèqi) et 不用谢 (Bú yòng xiè).",
         "tip": "不客气 signifie littéralement \"Ne faites pas de manières / Ne soyez pas si poli\"."
       },
       {

@@ -167,7 +167,7 @@ export const mockVocabularyWords: VocabularyWord[] = [
     cefrLevel: 'A1',
     businessTip: 'Réponse cordiale standard lorsque quelqu’un vous dit 谢谢.',
     exampleHanzi: '不用谢，不客气！',
-    examplePinyin: 'Bù yòng xiè, bù kèqi!',
+    examplePinyin: 'Bú yòng xiè, bú kèqi!',
     exampleFrench: 'Pas de quoi, je vous en prie !',
     spacedRepetitionIntervalDays: 10,
   },
