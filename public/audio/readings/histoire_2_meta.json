@@ -2,30 +2,30 @@
   "contentId": "histoire_2",
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_2.mp3",
-  "totalDurationMs": 13775,
+  "totalDurationMs": 17588,
   "sentences": [
     {
       "sentenceId": "h2_1",
       "startMs": 0,
-      "endMs": 2981,
+      "endMs": 4391,
       "audioUrl": "/audio/readings/histoire_2_h2_1.mp3"
     },
     {
       "sentenceId": "h2_2",
-      "startMs": 3431,
-      "endMs": 6751,
+      "startMs": 4841,
+      "endMs": 9232,
       "audioUrl": "/audio/readings/histoire_2_h2_2.mp3"
     },
     {
       "sentenceId": "h2_3",
-      "startMs": 7201,
-      "endMs": 9685,
+      "startMs": 9682,
+      "endMs": 12793,
       "audioUrl": "/audio/readings/histoire_2_h2_3.mp3"
     },
     {
       "sentenceId": "h2_4",
-      "startMs": 10135,
-      "endMs": 13325,
+      "startMs": 13243,
+      "endMs": 17138,
       "audioUrl": "/audio/readings/histoire_2_h2_4.mp3"
     }
   ]

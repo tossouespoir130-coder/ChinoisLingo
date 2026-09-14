@@ -149,11 +149,29 @@ const CONTENTS = [
   }
 ];
 
+function formatChineseTextWithNaturalPacing(textZh) {
+  let formatted = textZh.trim();
+  if (formatted.includes('[pause]')) {
+    return formatted;
+  }
+  formatted = formatted
+    .replace(/，\s*/g, '， [pause] ')
+    .replace(/,\s*/g, ', [pause] ')
+    .replace(/、\s*/g, '、 [pause] ')
+    .replace(/；\s*/g, '； [pause] ')
+    .replace(/：\s*/g, '： [pause] ')
+    .replace(/\.\.\.\s*/g, '... [pause] ')
+    .replace(/……\s*/g, '…… [pause] ');
+
+  return formatted.replace(/\s+/g, ' ').trim();
+}
+
 function synthesizeTts(text, voiceId) {
   return new Promise((resolve, reject) => {
+    const promptText = formatChineseTextWithNaturalPacing(text);
     const postData = JSON.stringify({
-      text: text,
-      model_id: 'eleven_multilingual_v2',
+      text: promptText,
+      model_id: 'eleven_v3',
       voice_settings: {
         stability: 0.50,
         similarity_boost: 0.75,

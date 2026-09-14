@@ -27,7 +27,37 @@ export interface AssembledAudioResult {
 }
 
 /**
- * Appelle l'API ElevenLabs pour synthétiser un texte chinois en audio MP3.
+/**
+ * Formate le texte chinois pour un rendu audio ultra-naturel avec ElevenLabs v3 :
+ * - Ajoute des respirations et pauses [pause] naturelles après les virgules et les incises
+ * - Évite le débit précipité et garantit des respirations fluides et réalistes
+ */
+export function formatChineseTextWithNaturalPacing(textZh: string): string {
+  let formatted = textZh.trim();
+
+  // Si des balises [pause] sont déjà présentes, ne pas les dupliquer
+  if (formatted.includes('[pause]')) {
+    return formatted;
+  }
+
+  // Remplacer les virgules chinoises et occidentales par une virgule suivie d'une pause respiratoire
+  formatted = formatted
+    .replace(/，\s*/g, '， [pause] ')
+    .replace(/,\s*/g, ', [pause] ')
+    .replace(/、\s*/g, '、 [pause] ')
+    .replace(/；\s*/g, '； [pause] ')
+    .replace(/：\s*/g, '： [pause] ')
+    .replace(/\.\.\.\s*/g, '... [pause] ')
+    .replace(/……\s*/g, '…… [pause] ');
+
+  // Nettoyage des espaces redondants
+  formatted = formatted.replace(/\s+/g, ' ').trim();
+
+  return formatted;
+}
+
+/**
+ * Appelle l'API ElevenLabs pour synthétiser un texte chinois en audio MP3 (Modèle eleven_v3).
  */
 export async function generateSentenceAudio(
   textZh: string,
@@ -43,6 +73,8 @@ export async function generateSentenceAudio(
     throw new Error(`Aucun voice_id ElevenLabs configuré pour la voix "${voiceConfig.characterNameFr}" (${voiceConfig.id}).`);
   }
 
+  const promptText = formatChineseTextWithNaturalPacing(textZh);
+
   const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceConfig.voiceId}`, {
     method: 'POST',
     headers: {
@@ -51,8 +83,8 @@ export async function generateSentenceAudio(
       Accept: 'audio/mpeg',
     },
     body: JSON.stringify({
-      text: textZh,
-      model_id: voiceConfig.modelId || 'eleven_multilingual_v2',
+      text: promptText,
+      model_id: voiceConfig.modelId || 'eleven_v3',
       voice_settings: {
         stability: voiceConfig.stability ?? 0.50,
         similarity_boost: voiceConfig.similarityBoost ?? 0.75,

@@ -2,30 +2,30 @@
   "contentId": "series_affaires_chine_ep1",
   "type": "article",
   "fullAudioUrl": "/audio/readings/series_affaires_chine_ep1.mp3",
-  "totalDurationMs": 19025,
+  "totalDurationMs": 22160,
   "sentences": [
     {
       "sentenceId": "as1_1",
       "startMs": 0,
-      "endMs": 3503,
+      "endMs": 3738,
       "audioUrl": "/audio/readings/series_affaires_chine_ep1_as1_1.mp3"
     },
     {
       "sentenceId": "as1_2",
-      "startMs": 3953,
-      "endMs": 8344,
+      "startMs": 4188,
+      "endMs": 9781,
       "audioUrl": "/audio/readings/series_affaires_chine_ep1_as1_2.mp3"
     },
     {
       "sentenceId": "as1_3",
-      "startMs": 8794,
-      "endMs": 14073,
+      "startMs": 10231,
+      "endMs": 17104,
       "audioUrl": "/audio/readings/series_affaires_chine_ep1_as1_3.mp3"
     },
     {
       "sentenceId": "as1_4",
-      "startMs": 14523,
-      "endMs": 18575,
+      "startMs": 17554,
+      "endMs": 21710,
       "audioUrl": "/audio/readings/series_affaires_chine_ep1_as1_4.mp3"
     }
   ]
