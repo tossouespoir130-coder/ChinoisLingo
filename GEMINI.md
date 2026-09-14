@@ -15,6 +15,7 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 - **Règle Globale du Bouton Terminé (`✓ Terminé`)** : Sur toute l'application, l'état validé utilise le bouton avec fond rouge/corail (`#E53935` / `#E91E63`), texte blanc net, icône `Check`, intitulé exact **`✓ Terminé`** (sans le mot "Revoir").
 - **Règle Globale d'Auto-Alignement des Onglets sur Mobile (`scrollIntoView`)** : Dès qu'un utilisateur clique sur un onglet ou filtre dans un ruban horizontal, l'élément défile automatiquement et de façon fluide pour venir se positionner au tout début visible à gauche (`inline: 'start'`).
 - **Règle Permanente de Nommage du Personnage Lily (`丽丽`)** : Sur **TOUTE l'application et dans tous les contenus** (dialogues, vidéos, histoires, méthode de la combinaison, fiches personnages, notifications), le prénom **Lily** s'écrit **exclusivement et obligatoirement avec les caractères chinois `丽丽`** (Pinyin : `Lìli`). Bannissement strict de la variante 莉莉.
+- **Règle d'Exclusivité Absolue des Caractères Chinois Simplifiés (`简体字`)** : Sur **TOUTE l'application, dans tous les modules, rubriques, contenus et composants** (Vocabulaire, Écoute & Lecture, Formations, Dialogues, Histoires, Chansons, Articles, Podcasts, Dictionnaire, Notifications), utiliser **exclusivement et rigoureusement des caractères chinois simplifiés (`简体字`)**. Bannissement absolu et strict de tout caractère chinois traditionnel (`繁体字`) (ex: `放松`, `门`, `国`, `学`, `点`).
 
 ---
 

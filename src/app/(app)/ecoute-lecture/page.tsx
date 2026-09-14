@@ -77,6 +77,7 @@ export interface ArticleEpisode {
   description: string;
   imageUrl?: string;
   youtubeId?: string;
+  level?: string;
   characters?: DialogueCharacter[];
   vocabulary?: VocabularyWord[];
   sentences: ReadingSentence[];
@@ -773,18 +774,18 @@ export const readingCatalog: ReadingItem[] = [
 
   // ================= 1. ARTICLES & LEÇONS ÉCRITES =================
   
-  // ---------- NIVEAU HSK 1 ----------
+  // ---------- NIVEAU HSK 4 ----------
   {
     id: 'article_2',
     titleFr: 'L’Importance des Nombres en Chine',
     titleZh: '数字的意义',
     titlePinyin: 'Shùzì de Yìyì',
     type: 'articles',
-    level: 'HSK 1',
-    duration: '2 min 00',
-    description: 'Pourquoi le 8 et le 6 sont synonymes de prospérité et de réussite en affaires.',
+    level: 'HSK 4',
+    duration: '2 min 30',
+    description: 'Pourquoi le 8, le 6 et le 4 ont une signification si particulière dans la culture et les affaires chinoises.',
     imageUrl: 'https://images.unsplash.com/photo-1512418490979-92798cec1380?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#00897B] to-[#004D40]',
+    iconBg: 'from-[#3F51B5] to-[#1A237E]',
     sentences: [
       {
         id: 'a2_1',
@@ -800,11 +801,26 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'a2_3',
-        hanzi: '数字六代表顺利，生意兴隆。',
-        pinyin: 'Shùzì liù dàibiǎo shùnlì, shēngyì xīnglóng.',
-        french: 'Le chiffre six (6) symbolise la fluidité et la réussite des affaires.',
+        hanzi: '数字六也很受欢迎，因为“六六大顺”，代表做什么都顺利。',
+        pinyin: 'Shùzì liù yě hěn shòu huānyíng, yīnwèi "liùliù dàshùn", dàibiǎo zuò shénme dōu shùnlì.',
+        french: 'Le chiffre six est aussi très apprécié, car "liùliù dàshùn" signifie que tout se passera sans accroc, quoi qu’on entreprenne.',
+      },
+      {
+        id: 'a2_4',
+        hanzi: '数字四的发音像“死”，所以很多人不太喜欢它。',
+        pinyin: 'Shùzì sì de fāyīn xiàng "sǐ", suǒyǐ hěn duō rén bú tài xǐhuan tā.',
+        french: 'Le chiffre quatre a une prononciation proche de "mourir", donc beaucoup de gens ne l’aiment pas trop.',
       },
     ],
+    vocabulary: [
+      { hanzi: '数字', pinyin: 'shùzì', french: 'nombre, chiffre', role: 'Nom commun' },
+      { hanzi: '特别', pinyin: 'tèbié', french: 'particulier, spécial', role: 'Adjectif / Adverbe' },
+      { hanzi: '发财', pinyin: 'fācái', french: 'faire fortune, prospérer', role: 'Verbe' },
+      { hanzi: '受欢迎', pinyin: 'shòu huānyíng', french: 'populaire, apprécié', role: 'Expression' },
+      { hanzi: '六六大顺', pinyin: 'liùliù dàshùn', french: 'que tout aille pour le mieux', role: 'Chengyu / Formule' },
+      { hanzi: '顺利', pinyin: 'shùnlì', french: 'sans encombre, favorable', role: 'Adjectif' },
+      { hanzi: '发音', pinyin: 'fāyīn', french: 'prononciation', role: 'Nom commun' },
+    ]
   },
 
   // ---------- NIVEAU HSK 4 ----------
@@ -873,6 +889,7 @@ export const readingCatalog: ReadingItem[] = [
         titleZh: '如何在中国交换名片',
         titlePinyin: 'Rúhé zài Zhōngguó jiāohuàn míngpiàn',
         duration: '3 min 10',
+        level: 'HSK 4',
         description: 'Comprendre l’importance du premier contact et la politesse dans les échanges commerciaux en Chine.',
         imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
         sentences: [
@@ -3528,8 +3545,8 @@ function EcouteLectureContent() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
                     {/* Floating HSK Level Badge on Top-Right */}
-                    <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(activeSeries.level)}`}>
-                      {activeSeries.level}
+                    <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(ep.level || activeSeries.level)}`}>
+                      {ep.level || activeSeries.level}
                     </span>
                   </div>
 
@@ -3707,10 +3724,12 @@ function EcouteLectureContent() {
                       {/* Subtle gradient overlay on bottom of image for sleek depth */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-                      {/* Floating HSK Level Badge on Top-Right */}
-                      <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(item.level)}`}>
-                        {item.level}
-                      </span>
+                      {/* Floating HSK Level Badge on Top-Right (Masqué pour les séries car elles regroupent plusieurs niveaux d'apprentissage) */}
+                      {!hasSeriesEpisodes && (
+                        <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(item.level)}`}>
+                          {item.level}
+                        </span>
+                      )}
 
                       {/* Unified Badge on Bottom-Left */}
                       {hasSeriesEpisodes ? (
@@ -3722,7 +3741,7 @@ function EcouteLectureContent() {
                           <span>
                             {item.type === 'videos' 
                               ? `${item.seriesEpisodes?.length || 0} épisodes` 
-                              : `Par ${item.author || 'Espoir Chinois'}`}
+                              : `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'articles' : 'article'}`}
                           </span>
                         </span>
                       ) : item.type === 'videos' ? (
