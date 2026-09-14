@@ -96,6 +96,15 @@ body {
   font-variant-east-asian: simplified;
   -webkit-font-feature-settings: "locl" 1, "trad" 0, "smpl" 1;
   font-feature-settings: "locl" 1, "trad" 0, "smpl" 1;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+.font-hanzi *, [lang="zh-Hans"] * {
+  border-bottom: none !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 
 .font-pinyin {
