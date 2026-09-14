@@ -964,7 +964,7 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '1 épisode',
     description: 'Suivez les péripéties et premiers pas de Brice, Anthony et Katia dans le monde des affaires en Chine.',
-    imageUrl: 'https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
       {
