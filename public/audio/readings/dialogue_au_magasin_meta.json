@@ -1,0 +1,46 @@
+{
+  "contentId": "dialogue_au_magasin",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_au_magasin.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 8672,
+  "sentences": [
+    {
+      "sentenceId": "dam_1",
+      "startMs": 0,
+      "endMs": 1910,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_1.mp3"
+    },
+    {
+      "sentenceId": "dam_2",
+      "startMs": 2090,
+      "endMs": 3190,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_2.mp3"
+    },
+    {
+      "sentenceId": "dam_3",
+      "startMs": 3370,
+      "endMs": 3921,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_3.mp3"
+    },
+    {
+      "sentenceId": "dam_4",
+      "startMs": 4101,
+      "endMs": 5201,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_4.mp3"
+    },
+    {
+      "sentenceId": "dam_5",
+      "startMs": 5381,
+      "endMs": 6977,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_5.mp3"
+    },
+    {
+      "sentenceId": "dam_6",
+      "startMs": 7157,
+      "endMs": 8492,
+      "audioUrl": "/audio/readings/dialogue_au_magasin_dam_6.mp3"
+    }
+  ]
+}

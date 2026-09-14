@@ -1,0 +1,40 @@
+{
+  "contentId": "article_mon_ami_chinois",
+  "aliases": [],
+  "type": "article",
+  "fullAudioUrl": "/audio/readings/article_mon_ami_chinois.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 21864,
+  "sentences": [
+    {
+      "sentenceId": "art_friend_1",
+      "startMs": 0,
+      "endMs": 5097,
+      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_1.mp3"
+    },
+    {
+      "sentenceId": "art_friend_2",
+      "startMs": 5277,
+      "endMs": 11732,
+      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_2.mp3"
+    },
+    {
+      "sentenceId": "art_friend_3",
+      "startMs": 11912,
+      "endMs": 15337,
+      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_3.mp3"
+    },
+    {
+      "sentenceId": "art_friend_4",
+      "startMs": 15517,
+      "endMs": 19908,
+      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_4.mp3"
+    },
+    {
+      "sentenceId": "art_friend_5",
+      "startMs": 20088,
+      "endMs": 21684,
+      "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_5.mp3"
+    }
+  ]
+}

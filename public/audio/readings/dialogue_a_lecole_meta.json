@@ -1,0 +1,34 @@
+{
+  "contentId": "dialogue_a_lecole",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_a_lecole.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 4832,
+  "sentences": [
+    {
+      "sentenceId": "dae_1",
+      "startMs": 0,
+      "endMs": 708,
+      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_1.mp3"
+    },
+    {
+      "sentenceId": "dae_2",
+      "startMs": 888,
+      "endMs": 2145,
+      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_2.mp3"
+    },
+    {
+      "sentenceId": "dae_3",
+      "startMs": 2325,
+      "endMs": 3033,
+      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_3.mp3"
+    },
+    {
+      "sentenceId": "dae_4",
+      "startMs": 3213,
+      "endMs": 4652,
+      "audioUrl": "/audio/readings/dialogue_a_lecole_dae_4.mp3"
+    }
+  ]
+}

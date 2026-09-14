@@ -1,0 +1,46 @@
+{
+  "contentId": "histoire_journee_wang_ming",
+  "aliases": [],
+  "type": "histoire",
+  "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 31398,
+  "sentences": [
+    {
+      "sentenceId": "h_wm_1",
+      "startMs": 0,
+      "endMs": 6220,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_1.mp3"
+    },
+    {
+      "sentenceId": "h_wm_2",
+      "startMs": 6400,
+      "endMs": 9119,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_2.mp3"
+    },
+    {
+      "sentenceId": "h_wm_3",
+      "startMs": 9299,
+      "endMs": 16172,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_3.mp3"
+    },
+    {
+      "sentenceId": "h_wm_4",
+      "startMs": 16352,
+      "endMs": 23617,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_4.mp3"
+    },
+    {
+      "sentenceId": "h_wm_5",
+      "startMs": 23797,
+      "endMs": 27535,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_5.mp3"
+    },
+    {
+      "sentenceId": "h_wm_6",
+      "startMs": 27715,
+      "endMs": 31218,
+      "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
+    }
+  ]
+}

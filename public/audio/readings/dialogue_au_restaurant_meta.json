@@ -1,0 +1,46 @@
+{
+  "contentId": "dialogue_au_restaurant",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_au_restaurant.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 9743,
+  "sentences": [
+    {
+      "sentenceId": "dar_1",
+      "startMs": 0,
+      "endMs": 1518,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_1.mp3"
+    },
+    {
+      "sentenceId": "dar_2",
+      "startMs": 1698,
+      "endMs": 3451,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_2.mp3"
+    },
+    {
+      "sentenceId": "dar_3",
+      "startMs": 3631,
+      "endMs": 5070,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_3.mp3"
+    },
+    {
+      "sentenceId": "dar_4",
+      "startMs": 5250,
+      "endMs": 6193,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_4.mp3"
+    },
+    {
+      "sentenceId": "dar_5",
+      "startMs": 6373,
+      "endMs": 8048,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_5.mp3"
+    },
+    {
+      "sentenceId": "dar_6",
+      "startMs": 8228,
+      "endMs": 9563,
+      "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_6.mp3"
+    }
+  ]
+}

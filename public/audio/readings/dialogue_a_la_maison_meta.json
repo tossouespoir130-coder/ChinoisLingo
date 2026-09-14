@@ -1,0 +1,46 @@
+{
+  "contentId": "dialogue_a_la_maison",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_a_la_maison.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 8646,
+  "sentences": [
+    {
+      "sentenceId": "dlm_1",
+      "startMs": 0,
+      "endMs": 1257,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_1.mp3"
+    },
+    {
+      "sentenceId": "dlm_2",
+      "startMs": 1437,
+      "endMs": 2615,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_2.mp3"
+    },
+    {
+      "sentenceId": "dlm_3",
+      "startMs": 2795,
+      "endMs": 4130,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_3.mp3"
+    },
+    {
+      "sentenceId": "dlm_4",
+      "startMs": 4310,
+      "endMs": 5410,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_4.mp3"
+    },
+    {
+      "sentenceId": "dlm_5",
+      "startMs": 5590,
+      "endMs": 7186,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_5.mp3"
+    },
+    {
+      "sentenceId": "dlm_6",
+      "startMs": 7366,
+      "endMs": 8466,
+      "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_6.mp3"
+    }
+  ]
+}

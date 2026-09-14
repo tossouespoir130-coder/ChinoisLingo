@@ -1,0 +1,70 @@
+{
+  "contentId": "dialogue_appel_telephonique",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_appel_telephonique.mp3",
+  "loudness": "-16 LUFS (EBU R128 standard)",
+  "totalDurationMs": 16428,
+  "sentences": [
+    {
+      "sentenceId": "dat_1",
+      "startMs": 0,
+      "endMs": 786,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_1.mp3"
+    },
+    {
+      "sentenceId": "dat_2",
+      "startMs": 966,
+      "endMs": 3424,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_2.mp3"
+    },
+    {
+      "sentenceId": "dat_3",
+      "startMs": 3604,
+      "endMs": 4782,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_3.mp3"
+    },
+    {
+      "sentenceId": "dat_4",
+      "startMs": 4962,
+      "endMs": 7185,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_4.mp3"
+    },
+    {
+      "sentenceId": "dat_5",
+      "startMs": 7365,
+      "endMs": 8386,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_5.mp3"
+    },
+    {
+      "sentenceId": "dat_6",
+      "startMs": 8566,
+      "endMs": 10711,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_6.mp3"
+    },
+    {
+      "sentenceId": "dat_7",
+      "startMs": 10891,
+      "endMs": 11834,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_7.mp3"
+    },
+    {
+      "sentenceId": "dat_8",
+      "startMs": 12014,
+      "endMs": 13610,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_8.mp3"
+    },
+    {
+      "sentenceId": "dat_9",
+      "startMs": 13790,
+      "endMs": 15125,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_9.mp3"
+    },
+    {
+      "sentenceId": "dat_10",
+      "startMs": 15305,
+      "endMs": 16248,
+      "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_10.mp3"
+    }
+  ]
+}
