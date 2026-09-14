@@ -7,30 +7,30 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_carte_visite.mp3",
   "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 13139,
+  "totalDurationMs": 12850,
   "sentences": [
     {
       "sentenceId": "cdv_1",
       "startMs": 0,
-      "endMs": 3346,
+      "endMs": 3320,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_1.mp3"
     },
     {
       "sentenceId": "cdv_2",
-      "startMs": 3526,
-      "endMs": 6063,
+      "startMs": 3500,
+      "endMs": 6010,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_2.mp3"
     },
     {
       "sentenceId": "cdv_3",
-      "startMs": 6243,
-      "endMs": 9354,
+      "startMs": 6190,
+      "endMs": 9270,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_3.mp3"
     },
     {
       "sentenceId": "cdv_4",
-      "startMs": 9534,
-      "endMs": 12959,
+      "startMs": 9450,
+      "endMs": 12850,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_4.mp3"
     }
   ]

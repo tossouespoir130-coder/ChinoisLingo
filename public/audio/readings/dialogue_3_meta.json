@@ -4,30 +4,30 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_3.mp3",
   "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 11207,
+  "totalDurationMs": 10920,
   "sentences": [
     {
       "sentenceId": "d3_1",
       "startMs": 0,
-      "endMs": 1988,
+      "endMs": 1960,
       "audioUrl": "/audio/readings/dialogue_3_d3_1.mp3"
     },
     {
       "sentenceId": "d3_2",
-      "startMs": 2168,
-      "endMs": 5985,
+      "startMs": 2140,
+      "endMs": 5930,
       "audioUrl": "/audio/readings/dialogue_3_d3_2.mp3"
     },
     {
       "sentenceId": "d3_3",
-      "startMs": 6165,
-      "endMs": 8702,
+      "startMs": 6110,
+      "endMs": 8620,
       "audioUrl": "/audio/readings/dialogue_3_d3_3.mp3"
     },
     {
       "sentenceId": "d3_4",
-      "startMs": 8882,
-      "endMs": 11027,
+      "startMs": 8800,
+      "endMs": 10920,
       "audioUrl": "/audio/readings/dialogue_3_d3_4.mp3"
     }
   ]

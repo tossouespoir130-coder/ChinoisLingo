@@ -6,30 +6,30 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_2.mp3",
   "loudness": "-16 LUFS (EBU R128 standard)",
-  "totalDurationMs": 16352,
+  "totalDurationMs": 16050,
   "sentences": [
     {
       "sentenceId": "a2_1",
       "startMs": 0,
-      "endMs": 3190,
+      "endMs": 3160,
       "audioUrl": "/audio/readings/article_2_a2_1.mp3"
     },
     {
       "sentenceId": "a2_2",
-      "startMs": 3370,
-      "endMs": 6403,
+      "startMs": 3340,
+      "endMs": 6340,
       "audioUrl": "/audio/readings/article_2_a2_2.mp3"
     },
     {
       "sentenceId": "a2_3",
-      "startMs": 6583,
-      "endMs": 12254,
+      "startMs": 6520,
+      "endMs": 12160,
       "audioUrl": "/audio/readings/article_2_a2_3.mp3"
     },
     {
       "sentenceId": "a2_4",
-      "startMs": 12434,
-      "endMs": 16172,
+      "startMs": 12340,
+      "endMs": 16050,
       "audioUrl": "/audio/readings/article_2_a2_4.mp3"
     }
   ]

@@ -2833,8 +2833,65 @@ function EcouteLectureContent() {
       });
   }, [activeCategory]);
 
-  // Play audio for a single sentence (prefers ElevenLabs HD voice clip, fallbacks to Web Speech)
+  // Audio Metadata for smooth continuous master track playback
+  const [readingAudioMeta, setReadingAudioMeta] = useState<{
+    contentId: string;
+    fullAudioUrl: string;
+    sentences: Array<{ sentenceId: string; startMs: number; endMs: number; audioUrl?: string }>;
+  } | null>(null);
+
+  // Fetch audio metadata whenever active reading or episode changes
+  useEffect(() => {
+    const primaryId = currentEpisode?.id || activeReading?.id;
+    const fallbackId = activeReading?.id;
+    if (!primaryId) {
+      setReadingAudioMeta(null);
+      return;
+    }
+
+    let isMounted = true;
+    fetch(`/audio/readings/${primaryId}_meta.json`)
+      .then((res) => {
+        if (res.ok) return res.json();
+        if (fallbackId && fallbackId !== primaryId) {
+          return fetch(`/audio/readings/${fallbackId}_meta.json`).then((r) => (r.ok ? r.json() : null));
+        }
+        return null;
+      })
+      .then((data) => {
+        if (isMounted) setReadingAudioMeta(data);
+      })
+      .catch(() => {
+        if (isMounted) setReadingAudioMeta(null);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [currentEpisode?.id, activeReading?.id]);
+
+  // Adjust active audio playback rate when user toggles speed
+  useEffect(() => {
+    if (activeAudioRef.current) {
+      activeAudioRef.current.playbackRate = parseFloat(audioSpeed) || 1.0;
+    }
+  }, [audioSpeed]);
+
+  // Play audio for a single sentence or vocabulary word (prefers ElevenLabs HD voice clip, fallbacks to Web Speech)
   const playSentenceAudio = (id: string, text: string) => {
+    // If we're already playing the full continuous audio, seek directly without stopping or reloading
+    if (isPlayingAll && readingAudioMeta && activeAudioRef.current) {
+      const sentMeta = readingAudioMeta.sentences.find((s) => s.sentenceId === id);
+      if (sentMeta) {
+        activeAudioRef.current.currentTime = sentMeta.startMs / 1000;
+        activeAudioRef.current.play().catch(() => {});
+        setPlayingSentenceId(id);
+        const idx = displayedSentences.findIndex((s) => s.id === id);
+        if (idx !== -1) setCurrentSentenceIndex(idx);
+        return;
+      }
+    }
+
     if (activeAudioRef.current) {
       activeAudioRef.current.pause();
       activeAudioRef.current = null;
@@ -2845,7 +2902,20 @@ function EcouteLectureContent() {
 
     const primaryId = currentEpisode?.id || activeReading?.id;
     const fallbackId = activeReading?.id;
-    const clipUrl = primaryId ? `/audio/readings/${primaryId}_${id}.mp3` : null;
+    const cleanWord = text.trim();
+
+    // Priority list of pre-generated ElevenLabs HD audio clips
+    const candidateUrls: string[] = [];
+    if (primaryId) {
+      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
+    }
+    // Global vocabulary audio store (Ethan Zhang - eleven_multilingual_v2)
+    if (id.startsWith('voc_') || cleanWord.length <= 6) {
+      candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3`);
+    }
+    if (fallbackId && fallbackId !== primaryId) {
+      candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
+    }
 
     const playWithWebSpeech = () => {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -2861,8 +2931,14 @@ function EcouteLectureContent() {
       }
     };
 
-    if (clipUrl) {
-      const audio = new Audio(clipUrl);
+    const tryPlayNextCandidate = (index: number) => {
+      if (index >= candidateUrls.length) {
+        playWithWebSpeech();
+        return;
+      }
+
+      const url = candidateUrls[index];
+      const audio = new Audio(url);
       activeAudioRef.current = audio;
       audio.playbackRate = parseFloat(audioSpeed) || 1.0;
       setPlayingSentenceId(id);
@@ -2873,146 +2949,24 @@ function EcouteLectureContent() {
       };
 
       audio.onerror = () => {
-        // Try fallback ID if available
-        if (fallbackId && fallbackId !== primaryId) {
-          const fallbackUrl = `/audio/readings/${fallbackId}_${id}.mp3`;
-          const fallbackAudio = new Audio(fallbackUrl);
-          activeAudioRef.current = fallbackAudio;
-          fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
-          fallbackAudio.onended = () => {
-            setPlayingSentenceId(null);
-            activeAudioRef.current = null;
-          };
-          fallbackAudio.onerror = () => playWithWebSpeech();
-          fallbackAudio.play().catch(() => playWithWebSpeech());
-        } else {
-          playWithWebSpeech();
-        }
+        tryPlayNextCandidate(index + 1);
       };
 
       audio.play().catch(() => {
-        if (fallbackId && fallbackId !== primaryId) {
-          const fallbackUrl = `/audio/readings/${fallbackId}_${id}.mp3`;
-          const fallbackAudio = new Audio(fallbackUrl);
-          activeAudioRef.current = fallbackAudio;
-          fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
-          fallbackAudio.onended = () => {
-            setPlayingSentenceId(null);
-            activeAudioRef.current = null;
-          };
-          fallbackAudio.onerror = () => playWithWebSpeech();
-          fallbackAudio.play().catch(() => playWithWebSpeech());
-        } else {
-          playWithWebSpeech();
-        }
+        tryPlayNextCandidate(index + 1);
       });
+    };
+
+    if (candidateUrls.length > 0) {
+      tryPlayNextCandidate(0);
     } else {
       playWithWebSpeech();
     }
   };
 
-  // Play all sentences sequentially with ElevenLabs HD audio & synchronized sentence highlights
+  // Play continuous full audio with seamless line synchronization (0 hitch, 0 stutter, pure continuity)
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
-    if (isPlayingAll && displayedSentences.length > 0) {
-      const sentence = displayedSentences[currentSentenceIndex];
-      if (sentence) {
-        if (activeAudioRef.current) {
-          activeAudioRef.current.pause();
-          activeAudioRef.current = null;
-        }
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          window.speechSynthesis.cancel();
-        }
-
-        const primaryId = currentEpisode?.id || activeReading?.id;
-        const fallbackId = activeReading?.id;
-        const clipUrl = primaryId ? `/audio/readings/${primaryId}_${sentence.id}.mp3` : null;
-
-        const onSentenceFinish = () => {
-          setPlayingSentenceId(null);
-          if (currentSentenceIndex < displayedSentences.length - 1) {
-            timeoutId = setTimeout(() => {
-              setCurrentSentenceIndex((prev) => prev + 1);
-            }, 120);
-          } else {
-            setIsPlayingAll(false);
-            setCurrentSentenceIndex(0);
-          }
-        };
-
-        const onSentenceError = () => {
-          setIsPlayingAll(false);
-          setPlayingSentenceId(null);
-        };
-
-        const playSequenceWebSpeech = () => {
-          if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
-            utterance.lang = 'zh-CN';
-            utterance.rate = parseFloat(audioSpeed) || 0.85;
-            setPlayingSentenceId(sentence.id);
-            utterance.onend = onSentenceFinish;
-            utterance.onerror = onSentenceError;
-            window.speechSynthesis.speak(utterance);
-          } else {
-            onSentenceError();
-          }
-        };
-
-        if (clipUrl) {
-          const audio = new Audio(clipUrl);
-          activeAudioRef.current = audio;
-          audio.playbackRate = parseFloat(audioSpeed) || 1.0;
-          setPlayingSentenceId(sentence.id);
-
-          audio.onended = () => {
-            activeAudioRef.current = null;
-            onSentenceFinish();
-          };
-
-          audio.onerror = () => {
-            if (fallbackId && fallbackId !== primaryId) {
-              const fallbackUrl = `/audio/readings/${fallbackId}_${sentence.id}.mp3`;
-              const fallbackAudio = new Audio(fallbackUrl);
-              activeAudioRef.current = fallbackAudio;
-              fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
-              fallbackAudio.onended = () => {
-                activeAudioRef.current = null;
-                onSentenceFinish();
-              };
-              fallbackAudio.onerror = () => playSequenceWebSpeech();
-              fallbackAudio.play().catch(() => playSequenceWebSpeech());
-            } else {
-              playSequenceWebSpeech();
-            }
-          };
-
-          audio.play().catch(() => {
-            if (fallbackId && fallbackId !== primaryId) {
-              const fallbackUrl = `/audio/readings/${fallbackId}_${sentence.id}.mp3`;
-              const fallbackAudio = new Audio(fallbackUrl);
-              activeAudioRef.current = fallbackAudio;
-              fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
-              fallbackAudio.onended = () => {
-                activeAudioRef.current = null;
-                onSentenceFinish();
-              };
-              fallbackAudio.onerror = () => playSequenceWebSpeech();
-              fallbackAudio.play().catch(() => playSequenceWebSpeech());
-            } else {
-              playSequenceWebSpeech();
-            }
-          });
-        } else {
-          playSequenceWebSpeech();
-        }
-      }
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
+    if (!isPlayingAll) {
       if (activeAudioRef.current) {
         activeAudioRef.current.pause();
         activeAudioRef.current = null;
@@ -3020,8 +2974,120 @@ function EcouteLectureContent() {
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
+      setPlayingSentenceId(null);
+      return;
+    }
+
+    if (displayedSentences.length === 0) return;
+
+    // Master continuous track playback with ElevenLabs HD audio
+    if (readingAudioMeta && readingAudioMeta.fullAudioUrl && readingAudioMeta.sentences.length > 0) {
+      const audio = new Audio(readingAudioMeta.fullAudioUrl);
+      activeAudioRef.current = audio;
+      audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+
+      // Start from current sentence position if clicked in the middle
+      const initialSentence = displayedSentences[currentSentenceIndex];
+      const initialMeta = initialSentence
+        ? readingAudioMeta.sentences.find((s) => s.sentenceId === initialSentence.id)
+        : null;
+      if (initialMeta && initialMeta.startMs > 0) {
+        audio.currentTime = initialMeta.startMs / 1000;
+        setPlayingSentenceId(initialMeta.sentenceId);
+      } else if (readingAudioMeta.sentences[0]) {
+        setPlayingSentenceId(readingAudioMeta.sentences[0].sentenceId);
+      }
+
+      const onTimeUpdate = () => {
+        const currentMs = audio.currentTime * 1000;
+        const matched = readingAudioMeta.sentences.find(
+          (s) => currentMs >= s.startMs && currentMs < s.endMs
+        );
+        if (matched) {
+          setPlayingSentenceId(matched.sentenceId);
+          const idx = displayedSentences.findIndex((s) => s.id === matched.sentenceId);
+          if (idx !== -1 && idx !== currentSentenceIndex) {
+            setCurrentSentenceIndex(idx);
+          }
+        }
+      };
+
+      const onEnded = () => {
+        setIsPlayingAll(false);
+        setPlayingSentenceId(null);
+        setCurrentSentenceIndex(0);
+        activeAudioRef.current = null;
+      };
+
+      const onError = () => {
+        // Fallback to Web Speech sequence if continuous master file fails
+        playSequenceWebSpeech(0);
+      };
+
+      audio.addEventListener('timeupdate', onTimeUpdate);
+      audio.addEventListener('ended', onEnded);
+      audio.addEventListener('error', onError);
+
+      audio.play().catch(() => {
+        onError();
+      });
+
+      return () => {
+        audio.removeEventListener('timeupdate', onTimeUpdate);
+        audio.removeEventListener('ended', onEnded);
+        audio.removeEventListener('error', onError);
+        audio.pause();
+        if (activeAudioRef.current === audio) {
+          activeAudioRef.current = null;
+        }
+      };
+    }
+
+    // Fallback: Web Speech sequential synthesis if no ElevenLabs master track
+    let cancelSpeech = false;
+    function playSequenceWebSpeech(index: number) {
+      if (cancelSpeech || index >= displayedSentences.length) {
+        setIsPlayingAll(false);
+        setPlayingSentenceId(null);
+        setCurrentSentenceIndex(0);
+        return;
+      }
+
+      const sent = displayedSentences[index];
+      if (!sent) return;
+
+      setCurrentSentenceIndex(index);
+      setPlayingSentenceId(sent.id);
+
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(sent.hanzi);
+        utterance.lang = 'zh-CN';
+        utterance.rate = parseFloat(audioSpeed) || 0.85;
+        utterance.onend = () => {
+          if (!cancelSpeech) {
+            setTimeout(() => playSequenceWebSpeech(index + 1), 100);
+          }
+        };
+        utterance.onerror = () => {
+          setIsPlayingAll(false);
+          setPlayingSentenceId(null);
+        };
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setIsPlayingAll(false);
+        setPlayingSentenceId(null);
+      }
+    }
+
+    playSequenceWebSpeech(currentSentenceIndex);
+
+    return () => {
+      cancelSpeech = true;
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
     };
-  }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, activeReading, currentEpisode, setCurrentSentenceIndex]);
+  }, [isPlayingAll, readingAudioMeta, displayedSentences, audioSpeed, setCurrentSentenceIndex]);
 
   // Auto-scroll synchronized with audio reading sequence
   useEffect(() => {

@@ -208,17 +208,33 @@ export const DEFAULT_VOICES_CONFIG: PersonnageVoixConfig[] = [
     similarityBoost: 0.75,
     description: 'Voix féminine secondaire pour figurantes — Stacy',
   },
+  // 5. Voix neutre dédiée à la prononciation du vocabulaire (cartes 生词)
+  // Utilise eleven_multilingual_v2 pour une netteté et une justesse tonale absolue sur mot isolé
   {
-    id: 'generic_female_2',
-    characterNameFr: 'Secondaire femme 2',
-    characterNameZh: '女声二',
-    elevenVoiceName: 'Amy',
-    voiceId: 'bhJUNIXWQQ94l8eI2VUf',
+    id: 'vocab_neutral',
+    characterNameFr: 'Vocabulaire (生词)',
+    characterNameZh: '生词发音',
+    elevenVoiceName: 'Ethan Zhang',
+    voiceId: 'brChkoggsUHF1stW6omH',
     category: 'generic',
-    gender: 'female',
-    modelId: 'eleven_v3',
-    stability: 0.50,
+    gender: 'neutral',
+    modelId: 'eleven_multilingual_v2',
+    stability: 0.75,
     similarityBoost: 0.75,
-    description: 'Voix féminine secondaire alternative anti-collision — Amy',
+    description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven Multilingual v2)',
   },
 ];
+
+export const VOCABULARY_VOICE_CONFIG: PersonnageVoixConfig = {
+  id: 'vocab_neutral',
+  characterNameFr: 'Vocabulaire (生词)',
+  characterNameZh: '生词发音',
+  elevenVoiceName: 'Ethan Zhang',
+  voiceId: 'brChkoggsUHF1stW6omH',
+  category: 'generic',
+  gender: 'neutral',
+  modelId: 'eleven_multilingual_v2',
+  stability: 0.75,
+  similarityBoost: 0.75,
+  description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven Multilingual v2)',
+};

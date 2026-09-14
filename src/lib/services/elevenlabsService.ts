@@ -234,3 +234,16 @@ export async function generateDialogueAudio(
     sentenceTimestamps,
   };
 }
+
+/**
+ * Synthétise un mot ou une expression de vocabulaire chinois (cartes 生词)
+ * en utilisant la voix dédiée neutre et claire (Ethan Zhang - brChkoggsUHF1stW6omH)
+ * avec le modèle eleven_multilingual_v2 pour une netteté et une précision tonale absolue sur mot isolé.
+ */
+export async function generateVocabularyAudio(
+  hanzi: string,
+  apiKey?: string
+): Promise<Buffer> {
+  const { VOCABULARY_VOICE_CONFIG } = await import('../audio/voicesConfig');
+  return generateSentenceAudio(hanzi, VOCABULARY_VOICE_CONFIG, apiKey);
+}
