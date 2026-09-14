@@ -1112,9 +1112,9 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'vc_b1_3',
-            hanzi: '最后，星期六早上十点，卡蒂娅终于到了。',
-            pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà zhōngyú dào le.',
-            french: 'Enfin, samedi matin à dix heures, Katia est enfin arrivée.',
+            hanzi: '最后，星期六早上十点，卡蒂娅到了。',
+            pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà dào le.',
+            french: 'Enfin, samedi matin à dix heures, Katia est arrivée.',
           },
           {
             id: 'vc_b1_4',
@@ -1136,7 +1136,6 @@ export const readingCatalog: ReadingItem[] = [
           { hanzi: '到', pinyin: 'dào', french: 'arriver, parvenir à', role: 'Verbe' },
           { hanzi: '晚上', pinyin: 'wǎnshang', french: 'soir', role: 'Nom temporel' },
           { hanzi: '最后', pinyin: 'zuìhòu', french: 'enfin, finalement, en dernier', role: 'Nom / Adverbe' },
-          { hanzi: '终于', pinyin: 'zhōngyú', french: 'enfin, finalement', role: 'Adverbe' },
           { hanzi: '出租车', pinyin: 'chūzūchē', french: 'taxi', role: 'Nom commun' },
           { hanzi: '机场', pinyin: 'jīchǎng', french: 'aéroport', role: 'Nom commun' },
           { hanzi: '酒店', pinyin: 'jiǔdiàn', french: 'hôtel', role: 'Nom commun' },
@@ -1160,9 +1159,9 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'vc_b1_3',
-        hanzi: '最后，星期六早上十点，卡蒂娅终于到了。',
-        pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà zhōngyú dào le.',
-        french: 'Enfin, samedi matin à dix heures, Katia est enfin arrivée.',
+        hanzi: '最后，星期六早上十点，卡蒂娅到了。',
+        pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà dào le.',
+        french: 'Enfin, samedi matin à dix heures, Katia est arrivée.',
       },
       {
         id: 'vc_b1_4',
@@ -1184,7 +1183,6 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '到', pinyin: 'dào', french: 'arriver, parvenir à', role: 'Verbe' },
       { hanzi: '晚上', pinyin: 'wǎnshang', french: 'soir', role: 'Nom temporel' },
       { hanzi: '最后', pinyin: 'zuìhòu', french: 'enfin, finalement, en dernier', role: 'Nom / Adverbe' },
-      { hanzi: '终于', pinyin: 'zhōngyú', french: 'enfin, finalement', role: 'Adverbe' },
       { hanzi: '出租车', pinyin: 'chūzūchē', french: 'taxi', role: 'Nom commun' },
       { hanzi: '机场', pinyin: 'jīchǎng', french: 'aéroport', role: 'Nom commun' },
       { hanzi: '酒店', pinyin: 'jiǔdiàn', french: 'hôtel', role: 'Nom commun' },
