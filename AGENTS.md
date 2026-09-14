@@ -5,6 +5,7 @@
 - Demander confirmation avant toute publication ou déploiement en ligne.
 - Ne pas hésiter à proposer des idées constructives et innovantes.
 - Slogan officiel de la marque : **« Le chinois devient facile »** (ou *« Avec ChinoisLingo, le chinois devient facile »*).
+- **Règle Permanente de Sécurité Absolue des Clés API & Secrets** : Ne **JAMAIS** écrire une clé d'API, un token ou un secret en dur dans le code, même comme valeur de repli (*fallback*), valeur temporaire ou pour un test rapide. Utiliser **systématiquement et obligatoirement une variable d'environnement (`process.env.*`) stockée exclusivement dans `.env.local`** dès la toute première ligne de code qui en a besoin, quel que soit le service (ElevenLabs, Resend, Stripe, Moneroo, Supabase, etc.). Tout script utilitaire ou d'administration doit être situé dans un dossier exclu du suivi Git (`scripts/` dans `.gitignore`).
 - **Règle d'Unicité Absolue et Stricte des Images dans TOUTE l'Application** : Ne JAMAIS réutiliser deux fois la même image dans tout l'outil. Chaque ressource (vocabulaire, article, chanson, histoire, dialogue, podcast, cours, livre, tableau de bord) DOIT posséder sa propre image haute définition unique, exclusive et dédiée. Interdiction absolue de dupliquer une URL ou un visuel d'une rubrique à une autre.
 - **Règle Globale de Célébration (Confettis & Paillettes)** : Dès qu'un utilisateur marque une ressource (cours, leçon, chanson, dialogue, article, podcast, mot, livre) comme terminée, déclencher **systématiquement une animation festive de confettis et paillettes** (`confetti({ ... })`) pour le féliciter.
 - **Règle Globale du Bouton Terminé (`✓ Terminé`) sur Tout le Site** : Sur **TOUTE l'application et dans toutes les rubriques**, l'état terminé utilise le bouton normalisé : fond rouge/corail (`#E53935` / `#E91E63`), texte blanc net, icône de validation `Check`, intitulé exact **`✓ Terminé`** (sans le mot "Revoir").
@@ -14,7 +15,14 @@
 - **Règle d'Harmonisation Stricte de l'Icône « Aléatoire » (`Shuffle`)** : Sur **TOUTE l'application et dans tous les réglages/préférences** (sens d'apprentissage, ordre des cartes, etc.), le choix aléatoire utilise **exclusivement l'icône de croisement de flèches (`Shuffle`)**. Bannissement absolu de l'émoji ou du symbole du dé (`🎲`).
 - **Règle Globale de Chargement par Squelette Animé (`Skeleton Loader`)** : Lors du chargement initial ou de la reconnexion d'un utilisateur, afficher systématiquement un **Skeleton Loader fluide et animé** (`animate-pulse`) le temps de récupérer les données réelles depuis la base de données (profil, série de jours, mots appris, leçons complétées, activités récentes), garantissant une transition sans clignotement ni affichage temporaire de données fictives.
 - **Règle d'Animation Garantie du Graphique de Performance** : Le graphique de performance anime systématiquement ses barres verticales de 0 à leur hauteur réelle dès l'arrivée des données (`requestAnimationFrame` + `transition` fluide sur 950ms) sans dépendre d'un rafraîchissement manuel de la page. Les données sont transmises directement depuis l'état racine du Tableau de Bord avec calcul adaptatif de l'échelle (`MAX_WORDS` / `MAX_STUDY_HOURS`) pour une visibilité majestueuse et immédiate à chaque connexion.
-- **Règle Permanente de Nommage du Personnage Lily (`丽丽`)** : Sur **TOUTE l'application et dans tous les contenus** (dialogues, vidéos, histoires, méthode de la combinaison, fiches personnages, notifications), le prénom **Lily** s'écrit **exclusivement et obligatoirement avec les caractères chinois `丽丽`** (Pinyin : `Lìli`). Bannissement strict de la variante 莉莉.
+- **Règle Permanente de Nommage des Personnages Récurrents** :
+  - **Espoir** : `苏波` (Pinyin : `Sūbō`)
+  - **Lily** : `丽丽` (Pinyin : `Lìli`) — Bannissement strict de la variante 莉莉.
+  - **Katia** : `卡蒂娅` (Pinyin : `Kǎdìyà`)
+  - **Brice** : `布里斯` (Pinyin : `Bùlǐsī`)
+  - **Anthony** : `安东尼` (Pinyin : `Āndōngní`)
+  - **Claire** : `克莱尔` (Pinyin : `Kèlái'ěr`)
+  - **Monsieur Li** : `李老师` (Pinyin : `Lǐ Lǎoshī`)
 - **Règle d'Exclusivité Absolue des Caractères Chinois Simplifiés (`简体字`)** : Sur **TOUTE l'application, dans tous les modules, rubriques, contenus et composants** (Vocabulaire, Écoute & Lecture, Formations, Dialogues, Histoires, Chansons, Articles, Podcasts, Dictionnaire, Notifications, etc.), utiliser **exclusivement et rigoureusement des caractères chinois simplifiés (`简体字`)**. Bannissement absolu et strict de tout caractère chinois traditionnel (`繁体字`) (ex: utiliser exclusivement `放松` et jamais `放鬆`, `门` et jamais `門`, `国` et jamais `國`, `学` et jamais `學`, `点` et jamais `點`).
 - **Règle Permanente de Distinction des 3 Rôles et Nommages d'Espoir** :
   - **Rôle 1 — Fondateur de ChinoisLingo** (Notifications, messages de la plateforme, emails) : **`Espoir Chinois`** (*« Espoir Chinois, Fondateur de ChinoisLingo »*).
@@ -119,6 +127,11 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
      2. **Formatage Visuel Propre des Titres (2 Lignes Distinctes)** : Dès qu'un titre de notification comporte une partie en français et en chinois, toujours structurer avec `\n` (Ligne 1 : Titre complet en français / Ligne 2 : `<Titre en Chinois> 🎬`), avec l'émoji clapet positionné à la fin, évitant ainsi qu'une icône ou un caractère se retrouve isolé ou orphelin sur mobile.
      3. **Pop-up Toast Automatique (`NewContentToast`)** : N'apparaît que pour un contenu réellement inédit et non encore vu, puis est mémorisé comme vu.
      4. **Historique Cumulatif** : Si l'utilisateur ne s'est pas connecté depuis longtemps, tous les ajouts non vus restent parfaitement ordonnés et consultables dans le volet des notifications (cloche).
+
+14. **Règle Permanente de Narration et d'Attribution Vocale des Séries d'Histoires** :
+    - Pour les histoires ou séries d'histoires sans dialogue direct (quand les personnages ne prennent pas directement la parole), la voix de narration utilise par défaut le **Narrateur n°1** (`narrator_1` / Ethan Zhang `brChkoggsUHF1stW6omH`, modèle `eleven_v3`).
+    - Dès lors qu'un personnage prend la parole au sein d'une histoire ou d'un épisode (ex: Katia `卡蒂娅`, Brice `布里斯`, Anthony `安东尼`, Espoir `苏波`, Lily `丽丽`), sa réplique est interprétée directement par sa voix dédiée respective.
+    - Les transitions narratives et descriptions intermédiaires reviennent automatiquement au narrateur principal.
 
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :

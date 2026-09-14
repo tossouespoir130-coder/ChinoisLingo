@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_vie_chine_business_ep1',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Vie en Chine : Business — Épisode 1\n在中国的第一天 📖',
+    message: 'Découvrez le 1er épisode de la série « Vie en Chine : Business » ! Brice, Anthony et Katia arrivent tour à tour en Chine pour débuter leurs affaires.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&episode=vie_chine_business_ep1',
+    actionLabel: 'Lire l’épisode'
+  },
+  {
     id: 'notif_video_dou_viens_tu',
     source: 'founder',
     founderName: 'Espoir Chinois',

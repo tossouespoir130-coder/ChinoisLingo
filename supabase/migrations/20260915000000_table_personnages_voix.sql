@@ -60,7 +60,7 @@ VALUES
   ('lily', 'Lily', '丽丽', NULL, 'recurrent', 'female', 'Voix féminine jeune et dynamique pour Lily'),
   ('mr_li', 'Monsieur Li', '李老师', NULL, 'recurrent', 'male', 'Voix masculine mature, posée et pédagogique pour le Professeur Li'),
   ('lao_wang', 'Directeur Wang / Lao Wang', '王总', NULL, 'recurrent', 'male', 'Voix masculine professionnelle et chaleureuse pour M. Wang'),
-  ('katia', 'Katia', '卡佳', NULL, 'recurrent', 'female', 'Voix féminine d’affaires claire et élégante pour Katia'),
+  ('katia', 'Katia', '卡蒂娅', NULL, 'recurrent', 'female', 'Voix féminine d’affaires claire et élégante pour Katia'),
   ('brice', 'Brice', '布里斯', NULL, 'recurrent', 'male', 'Voix masculine déterminée et dynamique pour Brice'),
   ('anthony', 'Anthony', '安东尼', NULL, 'recurrent', 'male', 'Voix masculine jeune et persévérante pour Anthony'),
   

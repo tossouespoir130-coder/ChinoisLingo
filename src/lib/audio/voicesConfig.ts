@@ -62,7 +62,7 @@ export const DEFAULT_VOICES_CONFIG: PersonnageVoixConfig[] = [
   {
     id: 'katia',
     characterNameFr: 'Katia',
-    characterNameZh: '卡佳',
+    characterNameZh: '卡蒂娅',
     elevenVoiceName: 'Xiaoran',
     voiceId: 'm7QGIiNrWASyI5oJn4I8',
     category: 'recurrent',
@@ -70,7 +70,7 @@ export const DEFAULT_VOICES_CONFIG: PersonnageVoixConfig[] = [
     modelId: 'eleven_v3',
     stability: 0.50,
     similarityBoost: 0.75,
-    description: 'Voix féminine d’affaires claire et élégante pour Katia (卡佳) — Xiaoran',
+    description: 'Voix féminine d’affaires claire et élégante pour Katia (卡蒂娅) — Xiaoran',
   },
   {
     id: 'brice',

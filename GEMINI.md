@@ -10,11 +10,19 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 - **Slogan officiel** : **« Le chinois devient facile »** (ou *« Avec ChinoisLingo, le chinois devient facile »*).
 - **Nom de l'utilisateur / Propriétaire** : **Espoir Chinois** (toujours s'adresser à lui sous ce nom).
 - **Règle de Déploiement** : Toujours demander confirmation explicite à Espoir Chinois avant toute publication ou déploiement en ligne.
+- **Règle Permanente de Sécurité Absolue des Clés API & Secrets** : Ne **JAMAIS** écrire une clé d'API, un token ou un secret en dur dans le code, même comme valeur de repli (*fallback*), valeur temporaire ou pour un test rapide. Utiliser **systématiquement et obligatoirement une variable d'environnement (`process.env.*`) stockée exclusivement dans `.env.local`** dès la toute première ligne de code qui en a besoin, quel que soit le service (ElevenLabs, Resend, Stripe, Moneroo, Supabase, etc.). Tout script utilitaire ou d'administration doit être situé dans un dossier exclu du suivi Git (`scripts/` dans `.gitignore`).
 - **Règle d'Unicité Absolue des Images** : Ne **JAMAIS** réutiliser la même image deux fois dans tout l'outil. Chaque ressource (mot, pack, article, chanson, histoire, dialogue, podcast, formation, livre) possède son image HD dédiée et exclusive.
 - **Règle Globale de Célébration (Confettis & Paillettes)** : Dès qu'une ressource ou leçon est marquée comme terminée, déclencher systématiquement `confetti({ ... })`.
 - **Règle Globale du Bouton Terminé (`✓ Terminé`)** : Sur toute l'application, l'état validé utilise le bouton avec fond rouge/corail (`#E53935` / `#E91E63`), texte blanc net, icône `Check`, intitulé exact **`✓ Terminé`** (sans le mot "Revoir").
 - **Règle Globale d'Auto-Alignement des Onglets sur Mobile (`scrollIntoView`)** : Dès qu'un utilisateur clique sur un onglet ou filtre dans un ruban horizontal, l'élément défile automatiquement et de façon fluide pour venir se positionner au tout début visible à gauche (`inline: 'start'`).
-- **Règle Permanente de Nommage du Personnage Lily (`丽丽`)** : Sur **TOUTE l'application et dans tous les contenus** (dialogues, vidéos, histoires, méthode de la combinaison, fiches personnages, notifications), le prénom **Lily** s'écrit **exclusivement et obligatoirement avec les caractères chinois `丽丽`** (Pinyin : `Lìli`). Bannissement strict de la variante 莉莉.
+- **Règle Permanente de Nommage des Personnages Récurrents** :
+  - **Espoir** : `苏波` (Pinyin : `Sūbō`)
+  - **Lily** : `丽丽` (Pinyin : `Lìli`) — Bannissement strict de la variante 莉莉.
+  - **Katia** : `卡蒂娅` (Pinyin : `Kǎdìyà`)
+  - **Brice** : `布里斯` (Pinyin : `Bùlǐsī`)
+  - **Anthony** : `安东尼` (Pinyin : `Āndōngní`)
+  - **Claire** : `克莱尔` (Pinyin : `Kèlái'ěr`)
+  - **Monsieur Li** : `李老师` (Pinyin : `Lǐ Lǎoshī`)
 - **Règle d'Exclusivité Absolue des Caractères Chinois Simplifiés (`简体字`)** : Sur **TOUTE l'application, dans tous les modules, rubriques, contenus et composants** (Vocabulaire, Écoute & Lecture, Formations, Dialogues, Histoires, Chansons, Articles, Podcasts, Dictionnaire, Notifications), utiliser **exclusivement et rigoureusement des caractères chinois simplifiés (`简体字`)**. Bannissement absolu et strict de tout caractère chinois traditionnel (`繁体字`) (ex: `放松`, `门`, `国`, `学`, `点`).
 - **Règle Permanente de Structure : Histoires & Articles vs Dialogues & Vidéos** :
   - **Histoires & Articles** : Le texte est rédigé et présenté en **un bloc narratif fluide et continu (paragraphe par paragraphe)**, sans aucune étiquette ni badge d'interlocuteur (`speaker`) devant les phrases. Les personnages sont présentés collectivement dans la carte d'en-tête *« Les Personnages de l’Histoire »*.
@@ -86,6 +94,7 @@ Comprend 4 sous-sections fondamentales :
    - **Vérification Multi-Sources** : Comparaison systématique des lyrics sur plusieurs sources chinoises certifiées pour garantir l'exactitude audio.
    - **Dialogues** : Section *Les Personnages du Dialogue* intercalée en en-tête avec rôles et portraits, puis répliques immersives avec lecture audio et pinyin commutable.
    - **Articles & Histoires** : Paragraphes bilingues avec synthèse vocale phrase par phrase.
+   - **Règle Permanente de Narration dans les Séries d'Histoires** : Dans les épisodes ou histoires sans prise de parole directe, la voix par défaut est le **Narrateur n°1** (`narrator_1` / Ethan Zhang `brChkoggsUHF1stW6omH`, modèle `eleven_v3`). Lorsqu'un personnage s'exprime (Katia, Brice, Anthony, Espoir, Lily), sa réplique utilise sa voix dédiée respective et le narrateur reprend le relais pour le reste.
 
 ### 4.4. Formations & Masterclasses (`/formation`)
 - Catalogue de formations vidéo animées par **Espoir Chinois**.

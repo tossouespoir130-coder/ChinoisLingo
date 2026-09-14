@@ -956,6 +956,149 @@ export const readingCatalog: ReadingItem[] = [
 
   // ================= 2. HISTOIRES COURTES (HSK 1) =================
   {
+    id: 'series_vie_chine_business',
+    titleFr: 'Vie en Chine : Business',
+    titleZh: '中国生活：商务',
+    titlePinyin: 'Zhōngguó Shēnghuó: Shāngwù',
+    type: 'histoires',
+    level: 'HSK 1',
+    duration: '1 épisode',
+    description: 'Suivez les péripéties et premiers pas de Brice, Anthony et Katia dans le monde des affaires en Chine.',
+    imageUrl: 'https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: 'Brice',
+        nameZh: '布里斯',
+        pinyin: 'Bùlǐsī',
+        role: 'Entrepreneur',
+        description: 'Entrepreneur ivoirien arrivé en Chine pour développer son activité d’import-export.',
+        color: 'violet'
+      },
+      {
+        name: 'Anthony',
+        nameZh: '安东尼',
+        pinyin: 'Āndōngní',
+        role: 'Businessman',
+        description: 'Homme d’affaires burkinabè déterminé à tisser de nouveaux partenariats.',
+        color: 'turquoise'
+      },
+      {
+        name: 'Katia',
+        nameZh: '卡蒂娅',
+        pinyin: 'Kǎdìyà',
+        role: 'Femme d’Affaires',
+        description: 'Femme d’affaires française rejoignant l’équipe pour des réunions stratégiques.',
+        color: 'neutral'
+      }
+    ],
+    seriesEpisodes: [
+      {
+        id: 'vie_chine_business_ep1',
+        episodeNumber: 1,
+        titleFr: 'Épisode 1 : Premier jour en Chine',
+        titleZh: '第一集：在中国的第一天',
+        titlePinyin: 'Dì yī jí: Zài Zhōngguó de dì yī tiān',
+        duration: '1 min 30',
+        level: 'HSK 1',
+        description: 'Brice, Anthony et Katia arrivent tour à tour en Chine et découvrent leur hôtel.',
+        imageUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'vc_b1_1',
+            hanzi: '星期二早上，布里斯先到了中国。',
+            pinyin: 'Xīngqī\'èr zǎoshang, Bùlǐsī xiān dào le Zhōngguó.',
+            french: 'Mardi matin, Brice est arrivé en Chine en premier.',
+          },
+          {
+            id: 'vc_b1_2',
+            hanzi: '两天后，星期四晚上，安东尼也到了。',
+            pinyin: 'Liǎng tiān hòu, xīngqīsì wǎnshang, Āndōngní yě dào le.',
+            french: 'Deux jours après, jeudi soir, Anthony est arrivé aussi.',
+          },
+          {
+            id: 'vc_b1_3',
+            hanzi: '最后，星期六早上十点，卡蒂娅终于到了。',
+            pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà zhōngyú dào le.',
+            french: 'Enfin, samedi matin à dix heures, Katia est enfin arrivée.',
+          },
+          {
+            id: 'vc_b1_4',
+            hanzi: '她坐出租车从机场去酒店。',
+            pinyin: 'Tā zuò chūzūchē cóng jīchǎng qù jiǔdiàn.',
+            french: 'Elle prend un taxi de l\'aéroport jusqu\'à l\'hôtel.',
+          },
+          {
+            id: 'vc_b1_5',
+            hanzi: '酒店很大，也很漂亮，有很多房间。',
+            pinyin: 'Jiǔdiàn hěn dà, yě hěn piàoliang, yǒu hěn duō fángjiān.',
+            french: 'L\'hôtel est grand, il est aussi très beau, et il y a beaucoup de chambres.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '星期二', pinyin: 'xīngqī\'èr', french: 'mardi', role: 'Nom temporel' },
+          { hanzi: '早上', pinyin: 'zǎoshang', french: 'matin', role: 'Nom temporel' },
+          { hanzi: '先', pinyin: 'xiān', french: 'd’abord, en premier', role: 'Adverbe' },
+          { hanzi: '到', pinyin: 'dào', french: 'arriver, parvenir à', role: 'Verbe' },
+          { hanzi: '晚上', pinyin: 'wǎnshang', french: 'soir', role: 'Nom temporel' },
+          { hanzi: '最后', pinyin: 'zuìhòu', french: 'enfin, finalement, en dernier', role: 'Nom / Adverbe' },
+          { hanzi: '终于', pinyin: 'zhōngyú', french: 'enfin, finalement', role: 'Adverbe' },
+          { hanzi: '出租车', pinyin: 'chūzūchē', french: 'taxi', role: 'Nom commun' },
+          { hanzi: '机场', pinyin: 'jīchǎng', french: 'aéroport', role: 'Nom commun' },
+          { hanzi: '酒店', pinyin: 'jiǔdiàn', french: 'hôtel', role: 'Nom commun' },
+          { hanzi: '漂亮', pinyin: 'piàoliang', french: 'joli, beau, magnifique', role: 'Adjectif' },
+          { hanzi: '房间', pinyin: 'fángjiān', french: 'chambre, pièce', role: 'Nom commun' },
+        ]
+      }
+    ],
+    sentences: [
+      {
+        id: 'vc_b1_1',
+        hanzi: '星期二早上，布里斯先到了中国。',
+        pinyin: 'Xīngqī\'èr zǎoshang, Bùlǐsī xiān dào le Zhōngguó.',
+        french: 'Mardi matin, Brice est arrivé en Chine en premier.',
+      },
+      {
+        id: 'vc_b1_2',
+        hanzi: '两天后，星期四晚上，安东尼也到了。',
+        pinyin: 'Liǎng tiān hòu, xīngqīsì wǎnshang, Āndōngní yě dào le.',
+        french: 'Deux jours après, jeudi soir, Anthony est arrivé aussi.',
+      },
+      {
+        id: 'vc_b1_3',
+        hanzi: '最后，星期六早上十点，卡蒂娅终于到了。',
+        pinyin: 'Zuìhòu, xīngqīliù zǎoshang shí diǎn, Kǎdìyà zhōngyú dào le.',
+        french: 'Enfin, samedi matin à dix heures, Katia est enfin arrivée.',
+      },
+      {
+        id: 'vc_b1_4',
+        hanzi: '她坐出租车从机场去酒店。',
+        pinyin: 'Tā zuò chūzūchē cóng jīchǎng qù jiǔdiàn.',
+        french: 'Elle prend un taxi de l\'aéroport jusqu\'à l\'hôtel.',
+      },
+      {
+        id: 'vc_b1_5',
+        hanzi: '酒店很大，也很漂亮，有很多房间。',
+        pinyin: 'Jiǔdiàn hěn dà, yě hěn piàoliang, yǒu hěn duō fángjiān.',
+        french: 'L\'hôtel est grand, il est aussi très beau, et il y a beaucoup de chambres.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '星期二', pinyin: 'xīngqī\'èr', french: 'mardi', role: 'Nom temporel' },
+      { hanzi: '早上', pinyin: 'zǎoshang', french: 'matin', role: 'Nom temporel' },
+      { hanzi: '先', pinyin: 'xiān', french: 'd’abord, en premier', role: 'Adverbe' },
+      { hanzi: '到', pinyin: 'dào', french: 'arriver, parvenir à', role: 'Verbe' },
+      { hanzi: '晚上', pinyin: 'wǎnshang', french: 'soir', role: 'Nom temporel' },
+      { hanzi: '最后', pinyin: 'zuìhòu', french: 'enfin, finalement, en dernier', role: 'Nom / Adverbe' },
+      { hanzi: '终于', pinyin: 'zhōngyú', french: 'enfin, finalement', role: 'Adverbe' },
+      { hanzi: '出租车', pinyin: 'chūzūchē', french: 'taxi', role: 'Nom commun' },
+      { hanzi: '机场', pinyin: 'jīchǎng', french: 'aéroport', role: 'Nom commun' },
+      { hanzi: '酒店', pinyin: 'jiǔdiàn', french: 'hôtel', role: 'Nom commun' },
+      { hanzi: '漂亮', pinyin: 'piàoliang', french: 'joli, beau, magnifique', role: 'Adjectif' },
+      { hanzi: '房间', pinyin: 'fángjiān', french: 'chambre, pièce', role: 'Nom commun' },
+    ]
+  },
+  {
     id: 'histoire_1',
     titleFr: 'David prend son petit-déjeuner à Pékin',
     titleZh: '大卫在北京吃早饭',
@@ -3727,6 +3870,8 @@ function EcouteLectureContent() {
                 <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] truncate">
                   {activeSeries.type === 'videos' 
                     ? 'Sélectionnez un épisode pour commencer à regarder' 
+                    : activeSeries.type === 'histoires'
+                    ? 'Sélectionnez un épisode pour commencer votre histoire'
                     : 'Sélectionnez un article pour commencer votre lecture'}
                 </p>
               </div>
@@ -3949,12 +4094,12 @@ function EcouteLectureContent() {
                       {hasSeriesEpisodes ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
                           <span className="text-[#03DAC5] font-black">
-                            {item.type === 'videos' ? 'Série de vidéos' : 'Série d’articles'}
+                            {item.type === 'videos' ? 'Série de vidéos' : item.type === 'histoires' ? 'Série d’histoires' : 'Série d’articles'}
                           </span>
                           <span className="text-white/40">•</span>
                           <span>
-                            {item.type === 'videos' 
-                              ? `${item.seriesEpisodes?.length || 0} épisodes` 
+                            {item.type === 'videos' || item.type === 'histoires'
+                              ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'épisodes' : 'épisode'}` 
                               : `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'articles' : 'article'}`}
                           </span>
                         </span>

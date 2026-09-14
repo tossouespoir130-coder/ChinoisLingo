@@ -109,6 +109,8 @@ const RECURRENT_CHARACTER_MAP: Record<string, string> = {
 
   // Katia
   katia: 'katia',
+  kǎdìyà: 'katia',
+  '卡蒂娅': 'katia',
   '卡佳': 'katia',
 
   // Brice
