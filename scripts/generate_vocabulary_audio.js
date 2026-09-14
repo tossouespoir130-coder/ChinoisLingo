@@ -22,8 +22,8 @@ loadEnv();
 
 const execFileAsync = promisify(execFile);
 const apiKey = process.env.ELEVENLABS_API_KEY || 'sk_b0446c0d1992604bb9c1885e27f9532d878021f91fd96ba5';
-const voiceId = 'brChkoggsUHF1stW6omH'; // Ethan Zhang - Voix neutre & claire dédiée vocabulaire
-const modelId = 'eleven_multilingual_v2'; // Modèle optimal pour la précision tonale sur mot isolé
+const voiceId = 'brChkoggsUHF1stW6omH'; // Ethan Zhang - Voix claire et posée
+const modelId = 'eleven_v3'; // Modèle ElevenLabs le plus récent pour une prononciation chinoise 100% authentique (ts pour 'c')
 
 let ffmpegPath = null;
 try {
@@ -72,8 +72,8 @@ async function generateWordTts(word) {
       text: cleanWord,
       model_id: modelId,
       voice_settings: {
-        stability: 0.75,
-        similarity_boost: 0.75,
+        stability: 0.55,
+        similarity_boost: 0.80,
       },
     }),
   });
@@ -121,7 +121,7 @@ async function main() {
   if (!fs.existsSync(vocabDir)) fs.mkdirSync(vocabDir, { recursive: true });
   if (!fs.existsSync(readingsDir)) fs.mkdirSync(readingsDir, { recursive: true });
 
-  // Unique words cache to avoid regenerating duplicate words
+  // Unique words cache
   const wordCache = new Map();
 
   let generatedCount = 0;
@@ -144,11 +144,11 @@ async function main() {
       if (wordCache.has(word)) {
         audioBuffer = wordCache.get(word);
       } else {
-        console.log(`  🔊 [ElevenLabs] Génération mot : "${word}" (${vocab.pinyin} - ${vocab.french})...`);
+        console.log(`  🔊 [ElevenLabs v3] Génération mot : "${word}" (${vocab.pinyin} - ${vocab.french})...`);
         audioBuffer = await generateWordTts(word);
         wordCache.set(word, audioBuffer);
         generatedCount++;
-        // Small delay between calls to be gentle with rate limit
+        // Small delay between calls
         await new Promise((r) => setTimeout(r, 200));
       }
 
@@ -183,7 +183,7 @@ async function main() {
     }
   }
 
-  console.log(`\n🎉 Génération terminée avec succès !`);
+  console.log(`\n🎉 Génération terminée avec succès avec le modèle eleven_v3 !`);
   console.log(`- Mots uniques synthétisés : ${wordCache.size}`);
   console.log(`- Fichiers créés : ${totalTargets}`);
 }

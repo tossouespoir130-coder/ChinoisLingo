@@ -91,8 +91,11 @@ body {
   font-family: var(--font-outfit), var(--font-jakarta), sans-serif;
 }
 
-.font-hanzi {
-  font-family: var(--font-hanzi), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+.font-hanzi, [lang="zh"], [lang="zh-CN"], [lang="zh-Hans"] {
+  font-family: var(--font-hanzi), "PingFang SC", "Lantinghei SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  font-variant-east-asian: simplified;
+  -webkit-font-feature-settings: "locl" 1, "trad" 0, "smpl" 1;
+  font-feature-settings: "locl" 1, "trad" 0, "smpl" 1;
 }
 
 .font-pinyin {

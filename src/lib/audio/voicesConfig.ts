@@ -218,10 +218,10 @@ export const DEFAULT_VOICES_CONFIG: PersonnageVoixConfig[] = [
     voiceId: 'brChkoggsUHF1stW6omH',
     category: 'generic',
     gender: 'neutral',
-    modelId: 'eleven_multilingual_v2',
-    stability: 0.75,
-    similarityBoost: 0.75,
-    description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven Multilingual v2)',
+    modelId: 'eleven_v3',
+    stability: 0.55,
+    similarityBoost: 0.80,
+    description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven v3)',
   },
 ];
 
@@ -233,8 +233,8 @@ export const VOCABULARY_VOICE_CONFIG: PersonnageVoixConfig = {
   voiceId: 'brChkoggsUHF1stW6omH',
   category: 'generic',
   gender: 'neutral',
-  modelId: 'eleven_multilingual_v2',
-  stability: 0.75,
-  similarityBoost: 0.75,
-  description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven Multilingual v2)',
+  modelId: 'eleven_v3',
+  stability: 0.55,
+  similarityBoost: 0.80,
+  description: 'Voix neutre et claire dédiée à la prononciation du vocabulaire et des cartes 生词 (Eleven v3)',
 };
