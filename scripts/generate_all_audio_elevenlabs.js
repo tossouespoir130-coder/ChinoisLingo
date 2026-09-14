@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { execSync } = require('child_process');
+const os = require('os');
+const ffmpegPath = require('ffmpeg-static');
 
 // 1. Lire la clé ElevenLabs depuis .env.local
 const envPath = path.join(__dirname, '..', '.env.local');
@@ -33,7 +36,7 @@ const VOICES = {
   katia: 'm7QGIiNrWASyI5oJn4I8',       // Xiaoran
   brice: 'vZZLclMx4wouUtKBRfZn',       // Jin
   anthony: 'agczkAUlHLowaNnL72Cc',     // Adrian
-  espoir_placeholder: 'MQkiCZS3mnl44caDtxkJ', // Guan Tao Bao (en attendant le clone)
+  espoir_placeholder: 'MQkiCZS3mnl44caDtxkJ', // Guan Tao Bao (voix masculine secondaire en attendant le clonage)
 
   // Voix Secondaires
   generic_male_1: 'MQkiCZS3mnl44caDtxkJ',   // Guan Tao Bao
@@ -42,11 +45,14 @@ const VOICES = {
   generic_female_2: 'bhJUNIXWQQ94l8eI2VUf', // Amy
 };
 
-// 3. Contenus à synthétiser
+// 3. Contenus complets pour les 3 compartiments : Histoires, Articles, Dialogues
 const CONTENTS = [
-  // --- HISTOIRES (Narration) ---
+  // ==========================================
+  // COMPARTIMENT 1 : HISTOIRES
+  // ==========================================
   {
     id: 'histoire_1',
+    aliases: [],
     type: 'histoire',
     voiceId: VOICES.narrator_1, // Ethan Zhang
     sentences: [
@@ -59,6 +65,7 @@ const CONTENTS = [
   },
   {
     id: 'histoire_2',
+    aliases: [],
     type: 'histoire',
     voiceId: VOICES.narrator_2, // Siqi liu
     sentences: [
@@ -69,9 +76,12 @@ const CONTENTS = [
     ]
   },
 
-  // --- ARTICLES (Narration) ---
+  // ==========================================
+  // COMPARTIMENT 2 : ARTICLES
+  // ==========================================
   {
-    id: 'article_nombres',
+    id: 'article_2',
+    aliases: ['article_nombres'], // Supporte article_2 et article_nombres
     type: 'article',
     voiceId: VOICES.narrator_3, // Sage
     sentences: [
@@ -83,6 +93,7 @@ const CONTENTS = [
   },
   {
     id: 'article_1',
+    aliases: [],
     type: 'article',
     voiceId: VOICES.narrator_4, // Hua feng
     sentences: [
@@ -93,20 +104,24 @@ const CONTENTS = [
     ]
   },
   {
-    id: 'series_affaires_chine_ep1',
+    id: 'article_carte_visite',
+    aliases: ['article_cles_affaires_series', 'series_affaires_chine_ep1'], // Supporte à la fois l'épisode et la série parente
     type: 'article',
     voiceId: VOICES.narrator_1, // Ethan Zhang
     sentences: [
-      { id: 'as1_1', hanzi: '在中国做生意，名片非常重要。' },
-      { id: 'as1_2', hanzi: '递名片时，要用双手，正面朝向对方。' },
-      { id: 'as1_3', hanzi: '收到名片后，请认真看几秒，不要马上放进口袋。' },
-      { id: 'as1_4', hanzi: '对方会觉得你很有礼貌，合作会更顺利。' },
+      { id: 'cdv_1', hanzi: '在中国，第一次见面递名片要用双手。' },
+      { id: 'cdv_2', hanzi: '这是尊重的表现，非常重要。' },
+      { id: 'cdv_3', hanzi: '你可以说：这是我的名片，请多关照。' },
+      { id: 'cdv_4', hanzi: '对方会觉得你很有礼貌，合作会更顺利。' },
     ]
   },
 
-  // --- DIALOGUES (Multi-voix) ---
+  // ==========================================
+  // COMPARTIMENT 3 : DIALOGUES
+  // ==========================================
   {
     id: 'dialogue_1',
+    aliases: [],
     type: 'dialogue',
     sentences: [
       { id: 'd1_1', speaker: 'Espoir', voiceId: VOICES.espoir_placeholder, hanzi: '王总，您好！很高兴能来到这里。' },
@@ -119,6 +134,7 @@ const CONTENTS = [
   },
   {
     id: 'dialogue_2',
+    aliases: [],
     type: 'dialogue',
     sentences: [
       { id: 'd2_1', speaker: 'Katia', voiceId: VOICES.katia, hanzi: '老板，请问这个多少钱一个？' },
@@ -129,6 +145,7 @@ const CONTENTS = [
   },
   {
     id: 'dialogue_4',
+    aliases: [],
     type: 'dialogue',
     sentences: [
       { id: 'd4_1', speaker: 'Espoir', voiceId: VOICES.espoir_placeholder, hanzi: '师傅，您好！我想去北京酒店。' },
@@ -139,6 +156,7 @@ const CONTENTS = [
   },
   {
     id: 'dialogue_3',
+    aliases: [],
     type: 'dialogue',
     sentences: [
       { id: 'd3_1', speaker: 'Brice', voiceId: VOICES.brice, hanzi: '服务员，请给我菜单。' },
@@ -149,28 +167,49 @@ const CONTENTS = [
   }
 ];
 
-function formatChineseTextWithNaturalPacing(textZh) {
-  let formatted = textZh.trim();
-  if (formatted.includes('[pause]')) {
-    return formatted;
+/**
+ * Normalise le volume sonore à -16 LUFS (EBU R128) via ffmpeg
+ */
+function normalizeLoudness(buffer, targetLufs = -16) {
+  if (!ffmpegPath || !fs.existsSync(ffmpegPath)) {
+    return buffer;
   }
-  formatted = formatted
-    .replace(/，\s*/g, '， [pause] ')
-    .replace(/,\s*/g, ', [pause] ')
-    .replace(/、\s*/g, '、 [pause] ')
-    .replace(/；\s*/g, '； [pause] ')
-    .replace(/：\s*/g, '： [pause] ')
-    .replace(/\.\.\.\s*/g, '... [pause] ')
-    .replace(/……\s*/g, '…… [pause] ');
 
-  return formatted.replace(/\s+/g, ' ').trim();
+  const tmpId = Math.random().toString(36).substring(2, 9);
+  const tmpIn = path.join(os.tmpdir(), `norm_in_${tmpId}.mp3`);
+  const tmpOut = path.join(os.tmpdir(), `norm_out_${tmpId}.mp3`);
+
+  try {
+    fs.writeFileSync(tmpIn, buffer);
+    execSync(
+      `"${ffmpegPath}" -y -i "${tmpIn}" -af loudnorm=I=${targetLufs}:TP=-1.5:LRA=11 -ar 44100 -b:a 128k "${tmpOut}"`,
+      { stdio: ['pipe', 'pipe', 'ignore'] }
+    );
+    return fs.readFileSync(tmpOut);
+  } catch (e) {
+    console.warn('Loudness normalization fallback to raw:', e.message);
+    return buffer;
+  } finally {
+    try { if (fs.existsSync(tmpIn)) fs.unlinkSync(tmpIn); } catch {}
+    try { if (fs.existsSync(tmpOut)) fs.unlinkSync(tmpOut); } catch {}
+  }
+}
+
+/**
+ * Crée un fichier de silence MP3 pour espacer les répliques
+ */
+function generateSilenceFile(silencePath, durationSec = 0.18) {
+  execSync(
+    `"${ffmpegPath}" -y -f lavfi -i anullsrc=r=44100:cl=mono -t ${durationSec} -b:a 128k "${silencePath}"`,
+    { stdio: ['pipe', 'pipe', 'ignore'] }
+  );
 }
 
 function synthesizeTts(text, voiceId) {
   return new Promise((resolve, reject) => {
-    const promptText = formatChineseTextWithNaturalPacing(text);
+    const cleanText = text.trim();
     const postData = JSON.stringify({
-      text: promptText,
+      text: cleanText,
       model_id: 'eleven_v3',
       voice_settings: {
         stability: 0.50,
@@ -196,7 +235,10 @@ function synthesizeTts(text, voiceId) {
       res.on('data', (d) => chunks.push(d));
       res.on('end', () => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(Buffer.concat(chunks));
+          const rawBuffer = Buffer.concat(chunks);
+          // Normalisation unitaire à -16 LUFS
+          const normalizedBuffer = normalizeLoudness(rawBuffer, -16);
+          resolve(normalizedBuffer);
         } else {
           reject(new Error(`ElevenLabs status ${res.statusCode}: ${Buffer.concat(chunks).toString()}`));
         }
@@ -209,27 +251,15 @@ function synthesizeTts(text, voiceId) {
   });
 }
 
-function createSilenceBuffer(durationMs = 450) {
-  // Standard MP3 silence frame
-  const silentFrame = Buffer.from([
-    0xff, 0xfb, 0x90, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-  ]);
-  const frameCount = Math.max(1, Math.round(durationMs / 26));
-  const frames = [];
-  for (let i = 0; i < frameCount; i++) {
-    frames.push(silentFrame);
-  }
-  return Buffer.concat(frames);
-}
-
 async function run() {
-  console.log('🎙️ Démarrage de la génération des audios ElevenLabs HD...\n');
-  const silence = createSilenceBuffer(450);
+  console.log('🎙️ Démarrage de la génération des audios ElevenLabs v3 HD avec Normalisation Sonore (-16 LUFS)...\n');
+  
+  const silenceTmp = path.join(os.tmpdir(), 'silence_180ms.mp3');
+  generateSilenceFile(silenceTmp, 0.18);
 
   for (const item of CONTENTS) {
-    console.log(`▶️ Traitement de "${item.id}" (${item.type}) - ${item.sentences.length} phrases...`);
-    const fullBuffers = [];
+    console.log(`▶️ Traitement de "${item.id}" (${item.type}) - ${item.sentences.length} phrases (Loudnorm -16 LUFS)...`);
+    const sentenceFiles = [];
     const timestamps = [];
     let currentOffsetMs = 0;
 
@@ -241,11 +271,19 @@ async function run() {
       try {
         const sentenceAudio = await synthesizeTts(s.hanzi, voiceId);
         
-        // Sauvegarder aussi le clip individuel par phrase
+        // Sauvegarder le clip individuel normalisé à -16 LUFS
         const singleFilename = `${item.id}_${s.id}.mp3`;
-        fs.writeFileSync(path.join(OUTPUT_DIR, singleFilename), sentenceAudio);
+        const singleFilePath = path.join(OUTPUT_DIR, singleFilename);
+        fs.writeFileSync(singleFilePath, sentenceAudio);
 
-        // Estimer la durée
+        // Sauvegarder aussi les alias
+        for (const alias of item.aliases) {
+          fs.writeFileSync(path.join(OUTPUT_DIR, `${alias}_${s.id}.mp3`), sentenceAudio);
+        }
+
+        sentenceFiles.push(singleFilePath);
+
+        // Durée réelle
         const durationMs = Math.round((sentenceAudio.length / 16000) * 1000);
 
         timestamps.push({
@@ -255,41 +293,63 @@ async function run() {
           audioUrl: `/audio/readings/${singleFilename}`
         });
 
-        fullBuffers.push(sentenceAudio);
-        fullBuffers.push(silence);
-        currentOffsetMs += durationMs + 450;
-
-        console.log(`✅ OK (${(sentenceAudio.length / 1024).toFixed(1)} Ko)`);
+        currentOffsetMs += durationMs + 180;
+        console.log(`✅ OK (-16 LUFS, ${(sentenceAudio.length / 1024).toFixed(1)} Ko)`);
         
-        // Petite pause de 150ms entre requêtes
-        await new Promise((r) => setTimeout(r, 150));
+        await new Promise((r) => setTimeout(r, 100));
       } catch (err) {
         console.log(`❌ Erreur: ${err.message}`);
       }
     }
 
-    // Sauvegarder le fichier audio assemblé complet
+    // Assemblage concat demuxer avec normalisation globale
+    const listFile = path.join(os.tmpdir(), `concat_list_${item.id}.txt`);
+    const listLines = [];
+    for (let i = 0; i < sentenceFiles.length; i++) {
+      listLines.push(`file '${sentenceFiles[i]}'`);
+      if (i < sentenceFiles.length - 1) {
+        listLines.push(`file '${silenceTmp}'`);
+      }
+    }
+    fs.writeFileSync(listFile, listLines.join('\n'));
+
     const fullAudioFilename = `${item.id}.mp3`;
     const fullAudioPath = path.join(OUTPUT_DIR, fullAudioFilename);
-    fs.writeFileSync(fullAudioPath, Buffer.concat(fullBuffers));
+
+    execSync(
+      `"${ffmpegPath}" -y -f concat -safe 0 -i "${listFile}" -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 44100 -b:a 128k "${fullAudioPath}"`,
+      { stdio: ['pipe', 'pipe', 'ignore'] }
+    );
+    try { fs.unlinkSync(listFile); } catch {}
+
+    // Sauvegarder aussi pour les alias
+    const assembledBuffer = fs.readFileSync(fullAudioPath);
+    for (const alias of item.aliases) {
+      fs.writeFileSync(path.join(OUTPUT_DIR, `${alias}.mp3`), assembledBuffer);
+    }
 
     // Sauvegarder les métadonnées de synchronisation
     const metaFilename = `${item.id}_meta.json`;
-    fs.writeFileSync(
-      path.join(OUTPUT_DIR, metaFilename), 
-      JSON.stringify({
-        contentId: item.id,
-        type: item.type,
-        fullAudioUrl: `/audio/readings/${fullAudioFilename}`,
-        totalDurationMs: currentOffsetMs,
-        sentences: timestamps
-      }, null, 2)
-    );
+    const metaContent = JSON.stringify({
+      contentId: item.id,
+      aliases: item.aliases,
+      type: item.type,
+      fullAudioUrl: `/audio/readings/${fullAudioFilename}`,
+      loudness: '-16 LUFS (EBU R128 standard)',
+      totalDurationMs: currentOffsetMs,
+      sentences: timestamps
+    }, null, 2);
 
-    console.log(`   ✨ Fichier assemblé créé : public/audio/readings/${fullAudioFilename} (${(fs.statSync(fullAudioPath).size / 1024).toFixed(1)} Ko)\n`);
+    fs.writeFileSync(path.join(OUTPUT_DIR, metaFilename), metaContent);
+    for (const alias of item.aliases) {
+      fs.writeFileSync(path.join(OUTPUT_DIR, `${alias}_meta.json`), metaContent);
+    }
+
+    console.log(`   ✨ Fichier assemblé égalisé à -16 LUFS : public/audio/readings/${fullAudioFilename} (${(fs.statSync(fullAudioPath).size / 1024).toFixed(1)} Ko)\n`);
   }
 
-  console.log('🎉 Tous les fichiers audio ElevenLabs ont été générés avec succès !');
+  try { fs.unlinkSync(silenceTmp); } catch {}
+  console.log('🎉 Tous les fichiers audio ElevenLabs v3 ont été normalisés à -16 LUFS avec succès !');
 }
 
 run();

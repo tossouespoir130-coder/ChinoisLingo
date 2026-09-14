@@ -2843,8 +2843,23 @@ function EcouteLectureContent() {
       window.speechSynthesis.cancel();
     }
 
-    const currentId = activeReading?.id;
-    const clipUrl = currentId ? `/audio/readings/${currentId}_${id}.mp3` : null;
+    const primaryId = currentEpisode?.id || activeReading?.id;
+    const fallbackId = activeReading?.id;
+    const clipUrl = primaryId ? `/audio/readings/${primaryId}_${id}.mp3` : null;
+
+    const playWithWebSpeech = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        utterance.rate = parseFloat(audioSpeed) || 0.85;
+        setPlayingSentenceId(id);
+        utterance.onend = () => setPlayingSentenceId(null);
+        utterance.onerror = () => setPlayingSentenceId(null);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setPlayingSentenceId(null);
+      }
+    };
 
     if (clipUrl) {
       const audio = new Audio(clipUrl);
@@ -2858,41 +2873,41 @@ function EcouteLectureContent() {
       };
 
       audio.onerror = () => {
-        // Fallback to Web Speech Synthesis if specific clip file is unavailable
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'zh-CN';
-          utterance.rate = parseFloat(audioSpeed) || 0.85;
-          setPlayingSentenceId(id);
-          utterance.onend = () => setPlayingSentenceId(null);
-          utterance.onerror = () => setPlayingSentenceId(null);
-          window.speechSynthesis.speak(utterance);
+        // Try fallback ID if available
+        if (fallbackId && fallbackId !== primaryId) {
+          const fallbackUrl = `/audio/readings/${fallbackId}_${id}.mp3`;
+          const fallbackAudio = new Audio(fallbackUrl);
+          activeAudioRef.current = fallbackAudio;
+          fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
+          fallbackAudio.onended = () => {
+            setPlayingSentenceId(null);
+            activeAudioRef.current = null;
+          };
+          fallbackAudio.onerror = () => playWithWebSpeech();
+          fallbackAudio.play().catch(() => playWithWebSpeech());
         } else {
-          setPlayingSentenceId(null);
+          playWithWebSpeech();
         }
       };
 
       audio.play().catch(() => {
-        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'zh-CN';
-          utterance.rate = parseFloat(audioSpeed) || 0.85;
-          setPlayingSentenceId(id);
-          utterance.onend = () => setPlayingSentenceId(null);
-          utterance.onerror = () => setPlayingSentenceId(null);
-          window.speechSynthesis.speak(utterance);
+        if (fallbackId && fallbackId !== primaryId) {
+          const fallbackUrl = `/audio/readings/${fallbackId}_${id}.mp3`;
+          const fallbackAudio = new Audio(fallbackUrl);
+          activeAudioRef.current = fallbackAudio;
+          fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
+          fallbackAudio.onended = () => {
+            setPlayingSentenceId(null);
+            activeAudioRef.current = null;
+          };
+          fallbackAudio.onerror = () => playWithWebSpeech();
+          fallbackAudio.play().catch(() => playWithWebSpeech());
         } else {
-          setPlayingSentenceId(null);
+          playWithWebSpeech();
         }
       });
-    } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      utterance.rate = parseFloat(audioSpeed) || 0.85;
-      setPlayingSentenceId(id);
-      utterance.onend = () => setPlayingSentenceId(null);
-      utterance.onerror = () => setPlayingSentenceId(null);
-      window.speechSynthesis.speak(utterance);
+    } else {
+      playWithWebSpeech();
     }
   };
 
@@ -2911,15 +2926,16 @@ function EcouteLectureContent() {
           window.speechSynthesis.cancel();
         }
 
-        const currentId = activeReading?.id;
-        const clipUrl = currentId ? `/audio/readings/${currentId}_${sentence.id}.mp3` : null;
+        const primaryId = currentEpisode?.id || activeReading?.id;
+        const fallbackId = activeReading?.id;
+        const clipUrl = primaryId ? `/audio/readings/${primaryId}_${sentence.id}.mp3` : null;
 
         const onSentenceFinish = () => {
           setPlayingSentenceId(null);
           if (currentSentenceIndex < displayedSentences.length - 1) {
             timeoutId = setTimeout(() => {
               setCurrentSentenceIndex((prev) => prev + 1);
-            }, 600);
+            }, 120);
           } else {
             setIsPlayingAll(false);
             setCurrentSentenceIndex(0);
@@ -2929,6 +2945,20 @@ function EcouteLectureContent() {
         const onSentenceError = () => {
           setIsPlayingAll(false);
           setPlayingSentenceId(null);
+        };
+
+        const playSequenceWebSpeech = () => {
+          if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
+            utterance.lang = 'zh-CN';
+            utterance.rate = parseFloat(audioSpeed) || 0.85;
+            setPlayingSentenceId(sentence.id);
+            utterance.onend = onSentenceFinish;
+            utterance.onerror = onSentenceError;
+            window.speechSynthesis.speak(utterance);
+          } else {
+            onSentenceError();
+          }
         };
 
         if (clipUrl) {
@@ -2943,39 +2973,40 @@ function EcouteLectureContent() {
           };
 
           audio.onerror = () => {
-            // Fallback to speech synthesis
-            if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-              const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
-              utterance.lang = 'zh-CN';
-              utterance.rate = parseFloat(audioSpeed) || 0.85;
-              utterance.onend = onSentenceFinish;
-              utterance.onerror = onSentenceError;
-              window.speechSynthesis.speak(utterance);
+            if (fallbackId && fallbackId !== primaryId) {
+              const fallbackUrl = `/audio/readings/${fallbackId}_${sentence.id}.mp3`;
+              const fallbackAudio = new Audio(fallbackUrl);
+              activeAudioRef.current = fallbackAudio;
+              fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
+              fallbackAudio.onended = () => {
+                activeAudioRef.current = null;
+                onSentenceFinish();
+              };
+              fallbackAudio.onerror = () => playSequenceWebSpeech();
+              fallbackAudio.play().catch(() => playSequenceWebSpeech());
             } else {
-              onSentenceError();
+              playSequenceWebSpeech();
             }
           };
 
           audio.play().catch(() => {
-            if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-              const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
-              utterance.lang = 'zh-CN';
-              utterance.rate = parseFloat(audioSpeed) || 0.85;
-              utterance.onend = onSentenceFinish;
-              utterance.onerror = onSentenceError;
-              window.speechSynthesis.speak(utterance);
+            if (fallbackId && fallbackId !== primaryId) {
+              const fallbackUrl = `/audio/readings/${fallbackId}_${sentence.id}.mp3`;
+              const fallbackAudio = new Audio(fallbackUrl);
+              activeAudioRef.current = fallbackAudio;
+              fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
+              fallbackAudio.onended = () => {
+                activeAudioRef.current = null;
+                onSentenceFinish();
+              };
+              fallbackAudio.onerror = () => playSequenceWebSpeech();
+              fallbackAudio.play().catch(() => playSequenceWebSpeech());
             } else {
-              onSentenceError();
+              playSequenceWebSpeech();
             }
           });
-        } else if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-          const utterance = new SpeechSynthesisUtterance(sentence.hanzi);
-          utterance.lang = 'zh-CN';
-          utterance.rate = parseFloat(audioSpeed) || 0.85;
-          setPlayingSentenceId(sentence.id);
-          utterance.onend = onSentenceFinish;
-          utterance.onerror = onSentenceError;
-          window.speechSynthesis.speak(utterance);
+        } else {
+          playSequenceWebSpeech();
         }
       }
     }
@@ -2990,7 +3021,7 @@ function EcouteLectureContent() {
         window.speechSynthesis.cancel();
       }
     };
-  }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, activeReading, setCurrentSentenceIndex]);
+  }, [isPlayingAll, currentSentenceIndex, displayedSentences, audioSpeed, activeReading, currentEpisode, setCurrentSentenceIndex]);
 
   // Auto-scroll synchronized with audio reading sequence
   useEffect(() => {

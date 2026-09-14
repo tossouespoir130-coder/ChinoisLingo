@@ -1,5 +1,12 @@
 import { PersonnageVoixConfig } from '../audio/voicesConfig';
 import { getVoiceConfigs, allocateNarratorVoice, allocateDialogueVoices, DialogueCharacterInput } from '../audio/voiceAllocator';
+import { execFile } from 'child_process';
+import { promisify } from 'util';
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+
+const execFileAsync = promisify(execFile);
 
 export interface SentenceAudioInput {
   id: string;
@@ -27,37 +34,58 @@ export interface AssembledAudioResult {
 }
 
 /**
-/**
- * Formate le texte chinois pour un rendu audio ultra-naturel avec ElevenLabs v3 :
- * - Ajoute des respirations et pauses [pause] naturelles après les virgules et les incises
- * - Évite le débit précipité et garantit des respirations fluides et réalistes
+ * Nettoie et prépare le texte chinois pour une élocution fluide et naturelle avec ElevenLabs v3.
+ * Le modèle eleven_v3 gère nativement la prosodie, les respirations et la ponctuation chinoise (，、。？！：；).
  */
 export function formatChineseTextWithNaturalPacing(textZh: string): string {
-  let formatted = textZh.trim();
-
-  // Si des balises [pause] sont déjà présentes, ne pas les dupliquer
-  if (formatted.includes('[pause]')) {
-    return formatted;
-  }
-
-  // Remplacer les virgules chinoises et occidentales par une virgule suivie d'une pause respiratoire
-  formatted = formatted
-    .replace(/，\s*/g, '， [pause] ')
-    .replace(/,\s*/g, ', [pause] ')
-    .replace(/、\s*/g, '、 [pause] ')
-    .replace(/；\s*/g, '； [pause] ')
-    .replace(/：\s*/g, '： [pause] ')
-    .replace(/\.\.\.\s*/g, '... [pause] ')
-    .replace(/……\s*/g, '…… [pause] ');
-
-  // Nettoyage des espaces redondants
-  formatted = formatted.replace(/\s+/g, ' ').trim();
-
-  return formatted;
+  return textZh.trim().replace(/\s+/g, ' ');
 }
 
 /**
- * Appelle l'API ElevenLabs pour synthétiser un texte chinois en audio MP3 (Modèle eleven_v3).
+ * Normalise le volume sonore d'un Buffer audio MP3 à -16 LUFS (norme de loudness broadcast EBU R128)
+ * pour garantir un niveau audio parfaitement égal et harmonieux entre toutes les voix.
+ */
+export async function normalizeAudioBuffer(inputBuffer: Buffer, targetLufs: number = -16): Promise<Buffer> {
+  let ffmpegPath: string | null = null;
+  try {
+    ffmpegPath = require('ffmpeg-static');
+  } catch {
+    ffmpegPath = null;
+  }
+
+  if (!ffmpegPath || !fs.existsSync(/* turbopackIgnore: true */ ffmpegPath)) {
+    return inputBuffer;
+  }
+
+  const tmpId = Math.random().toString(36).substring(2, 9);
+  const tmpIn = path.join(os.tmpdir(), `tts_in_${tmpId}.mp3`);
+  const tmpOut = path.join(os.tmpdir(), `tts_out_${tmpId}.mp3`);
+
+  try {
+    await fs.promises.writeFile(tmpIn, inputBuffer);
+    await execFileAsync(ffmpegPath, [
+      '-y',
+      '-i', tmpIn,
+      '-af', `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11`,
+      '-ar', '44100',
+      '-b:a', '128k',
+      tmpOut
+    ]);
+
+    const normalizedBuffer = await fs.promises.readFile(tmpOut);
+    return normalizedBuffer;
+  } catch (err) {
+    console.warn('Loudness normalization fallback to raw buffer:', err);
+    return inputBuffer;
+  } finally {
+    try { if (fs.existsSync(tmpIn)) await fs.promises.unlink(tmpIn); } catch {}
+    try { if (fs.existsSync(tmpOut)) await fs.promises.unlink(tmpOut); } catch {}
+  }
+}
+
+/**
+ * Appelle l'API ElevenLabs pour synthétiser un texte chinois en audio MP3 (Modèle eleven_v3)
+ * avec normalisation sonore automatique à -16 LUFS.
  */
 export async function generateSentenceAudio(
   textZh: string,
@@ -98,15 +126,14 @@ export async function generateSentenceAudio(
   }
 
   const arrayBuffer = await response.arrayBuffer();
-  return Buffer.from(arrayBuffer);
+  const rawBuffer = Buffer.from(arrayBuffer);
+  return await normalizeAudioBuffer(rawBuffer, -16);
 }
 
 /**
  * Génère un silence MP3 binaire de quelques millisecondes pour aérer les répliques
  */
-function createSilentMp3Buffer(durationMs: number = 400): Buffer {
-  // Silence frame standard MPEG Layer 3 (128 kbps, 44.1 kHz, frame = 417-418 bytes pour ~26ms)
-  // Pour un silence basique sans artefact, une répétition de frames silencieuses
+function createSilentMp3Buffer(durationMs: number = 200): Buffer {
   const silentFrame = Buffer.from([
     0xff, 0xfb, 0x90, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -120,7 +147,7 @@ function createSilentMp3Buffer(durationMs: number = 400): Buffer {
 }
 
 /**
- * Génère l'audio complet d'une Histoire ou d'un Article (Narration pure).
+ * Génère l'audio complet d'une Histoire ou d'un Article (Narration pure avec égalisation sonore).
  */
 export async function generateStoryOrArticleAudio(
   contentId: string,
@@ -133,13 +160,11 @@ export async function generateStoryOrArticleAudio(
   const audioBuffers: Buffer[] = [];
   const sentenceTimestamps: AssembledAudioResult['sentenceTimestamps'] = [];
   let currentOffsetMs = 0;
-  const pauseMs = 500;
+  const pauseMs = 180;
   const pauseBuffer = createSilentMp3Buffer(pauseMs);
 
   for (const sentence of sentences) {
     const buffer = await generateSentenceAudio(sentence.hanzi, narratorVoice, apiKey);
-    
-    // Estimation empirique de la durée (taille MP3 à 128kbps ~ 16 Ko/sec)
     const durationMs = Math.round((buffer.length / 16000) * 1000);
 
     sentenceTimestamps.push({
@@ -153,7 +178,8 @@ export async function generateStoryOrArticleAudio(
     currentOffsetMs += durationMs + pauseMs;
   }
 
-  const fullAudioBuffer = Buffer.concat(audioBuffers);
+  const assembledBuffer = Buffer.concat(audioBuffers);
+  const fullAudioBuffer = await normalizeAudioBuffer(assembledBuffer, -16);
 
   return {
     fullAudioBuffer,
@@ -164,7 +190,7 @@ export async function generateStoryOrArticleAudio(
 }
 
 /**
- * Génère l'audio complet d'un Dialogue multi-personnages avec assemblage harmonieux.
+ * Génère l'audio complet d'un Dialogue multi-personnages avec égalisation sonore stricte (-16 LUFS).
  */
 export async function generateDialogueAudio(
   characters: DialogueCharacterInput[],
@@ -177,7 +203,7 @@ export async function generateDialogueAudio(
   const audioBuffers: Buffer[] = [];
   const sentenceTimestamps: AssembledAudioResult['sentenceTimestamps'] = [];
   let currentOffsetMs = 0;
-  const pauseBetweenRepliesMs = 450;
+  const pauseBetweenRepliesMs = 200;
   const pauseBuffer = createSilentMp3Buffer(pauseBetweenRepliesMs);
 
   for (const sentence of sentences) {
@@ -198,7 +224,8 @@ export async function generateDialogueAudio(
     currentOffsetMs += durationMs + pauseBetweenRepliesMs;
   }
 
-  const fullAudioBuffer = Buffer.concat(audioBuffers);
+  const assembledBuffer = Buffer.concat(audioBuffers);
+  const fullAudioBuffer = await normalizeAudioBuffer(assembledBuffer, -16);
 
   return {
     fullAudioBuffer,
