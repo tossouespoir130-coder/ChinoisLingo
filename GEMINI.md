@@ -28,6 +28,11 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
   - **Histoires & Articles** : Le texte est rédigé et présenté en **un bloc narratif fluide et continu (paragraphe par paragraphe)**, sans aucune étiquette ni badge d'interlocuteur (`speaker`) devant les phrases. Les personnages sont présentés collectivement dans la carte d'en-tête *« Les Personnages de l’Histoire »*.
   - **Dialogues & Vidéos scénarisées** : La parole étant alternée, chaque réplique affiche le nom et le rôle de l'interlocuteur (`speaker`) avec son code couleur distinctif.
 - **Règle Permanente de Perfection Orthographique et Grammaticale Française & Audit Automatique** : Sur **TOUTE l'application** (textes, leçons, dialogues, histoires, articles, vocabulaire, traductions, boutons, notifications, emails), zéro faute de français n'est tolérée (orthographe, grammaire, accords, ponctuation, typographie soignée). Lors de chaque audit ou ajout de contenu, une vérification systématique de l'orthographe française doit être exécutée.
+- **Règle Permanente de Contrôle & Checking Audio Obligatoire avant Déploiement** : Pour TOUT contenu ajouté ou modifié sur la plateforme (histoire, article, dialogue, chanson, podcast, formation, vocabulaire), exécuter obligatoirement un contrôle final complet (*checking*) :
+  1. Vérifier la présence effective et la conformité de toutes les pistes audio générées avec la voix attribuée (**Narrateur n°1** `narrator_1` pour les histoires et articles, voix dédiées pour les personnages).
+  2. Vérifier la conformité stricte du fichier de métadonnées `_meta.json` (`contentId`, `fullAudioUrl`, tableau `sentences` avec `sentenceId`, `startMs`, `endMs`, `durationMs`, `audioUrl`).
+  3. Vérifier que le lecteur immersif charge et joue bien les fichiers audio réels d'ElevenLabs (Master continu et audio phrase par phrase) sans aucun basculement intempestif sur la synthèse vocale du navigateur.
+- **Règle Permanente de Distinction : « Épisode » (Vidéos) vs « Partie » (Histoires & Lectures)** : Le terme **« Épisode »** est réservé exclusivement aux contenus vidéos (`type: 'videos'`). Pour les histoires et lectures scénarisées (`type: 'histoires'`), utiliser systématiquement le terme **« Partie »** (`Partie 1`, `Partie 2`...) et **`X parties`** pour la durée globale.
 
 ---
 

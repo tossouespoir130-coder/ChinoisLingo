@@ -1,22 +1,38 @@
 {
-  "mc_e2_1": {
-    "start": 0,
-    "end": 3240,
-    "duration": 3240
-  },
-  "mc_e2_2": {
-    "start": 3840,
-    "end": 6610,
-    "duration": 2770
-  },
-  "mc_e2_3": {
-    "start": 7210,
-    "end": 10290,
-    "duration": 3080
-  },
-  "mc_e2_4": {
-    "start": 10890,
-    "end": 13580,
-    "duration": 2690
-  }
+  "contentId": "mon_chat_ep2",
+  "aliases": [],
+  "type": "histoire",
+  "fullAudioUrl": "/audio/readings/mon_chat_ep2.mp3",
+  "pauseBetweenSec": 0.6,
+  "totalDurationMs": 13580,
+  "sentences": [
+    {
+      "sentenceId": "mc_e2_1",
+      "startMs": 0,
+      "endMs": 3840,
+      "durationMs": 3240,
+      "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_1.mp3"
+    },
+    {
+      "sentenceId": "mc_e2_2",
+      "startMs": 3840,
+      "endMs": 7210,
+      "durationMs": 2770,
+      "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_2.mp3"
+    },
+    {
+      "sentenceId": "mc_e2_3",
+      "startMs": 7210,
+      "endMs": 10890,
+      "durationMs": 3080,
+      "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_3.mp3"
+    },
+    {
+      "sentenceId": "mc_e2_4",
+      "startMs": 10890,
+      "endMs": 13580,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_4.mp3"
+    }
+  ]
 }
