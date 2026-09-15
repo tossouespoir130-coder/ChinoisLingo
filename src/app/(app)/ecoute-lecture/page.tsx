@@ -45,7 +45,7 @@ export interface DialogueCharacter {
   pinyin?: string;
   role: string;
   description: string;
-  color?: 'violet' | 'turquoise' | 'neutral';
+  color?: 'violet' | 'turquoise' | 'amber' | 'pink' | 'neutral';
 }
 
 export interface VocabularyWord {
@@ -59,7 +59,7 @@ export interface ReadingSentence {
   id: string;
   speaker?: string;
   speakerRole?: string;
-  speakerColor?: 'violet' | 'turquoise' | 'neutral'; // Distinct color coding per character
+  speakerColor?: 'violet' | 'turquoise' | 'amber' | 'pink' | 'neutral'; // Distinct color coding per character
   section?: string; // e.g. "Refrain", "Couplet", "Pré-refrain"
   isRefrain?: boolean;
   hanzi: string;
@@ -1079,7 +1079,7 @@ export const readingCatalog: ReadingItem[] = [
         pinyin: 'Bùlǐsī',
         role: 'Entrepreneur',
         description: 'Entrepreneur arrivé en Chine pour développer son activité d’import-export.',
-        color: 'violet'
+        color: 'amber'
       },
       {
         name: 'Anthony',
@@ -1095,7 +1095,7 @@ export const readingCatalog: ReadingItem[] = [
         pinyin: 'Kǎdìyà',
         role: 'Femme d’affaires',
         description: 'Rejoint l’équipe pour des réunions stratégiques à Pékin.',
-        color: 'neutral'
+        color: 'pink'
       }
     ],
     seriesEpisodes: [
@@ -1171,7 +1171,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b2_3',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '我去北京酒店。',
             pinyin: 'Wǒ qù Běijīng jiǔdiàn.',
             french: 'Je vais à l’hôtel de Pékin.',
@@ -1189,7 +1189,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b2_5',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '多少钱？',
             pinyin: 'Duōshao qián?',
             french: 'Combien ça coûte ?',
@@ -1207,7 +1207,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b2_7',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '好，谢谢。',
             pinyin: 'Hǎo, xièxie.',
             french: 'D’accord, merci.',
@@ -1251,7 +1251,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_3',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '喂，你好。',
             pinyin: 'Wèi, nǐ hǎo.',
             french: 'Allô, bonjour.',
@@ -1260,7 +1260,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_4',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '布里斯，你好！我是卡蒂娅。',
             pinyin: 'Bùlǐsī, nǐ hǎo! Wǒ shì Kǎdìyà.',
             french: 'Brice, bonjour ! C’est Katia.',
@@ -1269,7 +1269,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_5',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '卡蒂娅！你到了吗？',
             pinyin: 'Kǎdìyà! Nǐ dào le ma?',
             french: 'Katia ! Tu es arrivée ?',
@@ -1278,7 +1278,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_6',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '到了。我在酒店。你在哪儿？',
             pinyin: 'Dào le. Wǒ zài jiǔdiàn. Nǐ zài nǎr?',
             french: 'Oui, arrivée. Je suis à l’hôtel. Tu es où ?',
@@ -1287,7 +1287,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_7',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '我也在酒店。我在房间。',
             pinyin: 'Wǒ yě zài jiǔdiàn. Wǒ zài fángjiān.',
             french: 'Moi aussi je suis à l’hôtel. Je suis dans ma chambre.',
@@ -1296,7 +1296,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_8',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '安东尼呢？',
             pinyin: 'Āndōngní ne?',
             french: 'Et Anthony ?',
@@ -1305,7 +1305,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_9',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '他也在。',
             pinyin: 'Tā yě zài.',
             french: 'Il est là aussi.',
@@ -1314,7 +1314,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_10',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '好。我们明天见。',
             pinyin: 'Hǎo. Wǒmen míngtiān jiàn.',
             french: 'D’accord. À demain.',
@@ -1323,7 +1323,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b3_11',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '好，明天见。',
             pinyin: 'Hǎo, míngtiān jiàn.',
             french: 'D’accord, à demain.',
@@ -1366,7 +1366,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_3',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '你们吃什么？',
             pinyin: 'Nǐmen chī shénme?',
             french: 'Que mangez-vous ?',
@@ -1375,7 +1375,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_4',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '我吃米饭。你呢？',
             pinyin: 'Wǒ chī mǐfàn. Nǐ ne?',
             french: 'Je mange du riz. Et toi ?',
@@ -1393,7 +1393,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_6',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '我吃面条。',
             pinyin: 'Wǒ chī miàntiáo.',
             french: 'Je mange des nouilles.',
@@ -1402,7 +1402,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_7',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '老板，两碗米饭，一碗面条。',
             pinyin: 'Lǎobǎn, liǎng wǎn mǐfàn, yì wǎn miàntiáo.',
             french: 'Patron, deux bols de riz et un bol de nouilles.',
@@ -1447,7 +1447,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_12',
             speaker: 'Katia',
             speakerRole: 'Femme d’affaires',
-            speakerColor: 'neutral',
+            speakerColor: 'pink',
             hanzi: '我要一杯水。',
             pinyin: 'Wǒ yào yì bēi shuǐ.',
             french: 'Je voudrais un verre d’eau.',
@@ -1456,7 +1456,7 @@ export const readingCatalog: ReadingItem[] = [
             id: 'vc_b4_13',
             speaker: 'Brice',
             speakerRole: 'Entrepreneur',
-            speakerColor: 'violet',
+            speakerColor: 'amber',
             hanzi: '我也要水。',
             pinyin: 'Wǒ yě yào shuǐ.',
             french: 'Moi aussi je veux de l’eau.',
@@ -2438,7 +2438,7 @@ export const readingCatalog: ReadingItem[] = [
         name: 'Katia',
         role: 'Acheteuse',
         description: 'Acheteuse française venue au marché de gros pour négocier des volumes et obtenir le meilleur tarif unitaire pour sa boutique.',
-        color: 'violet'
+        color: 'pink'
       },
       {
         name: '摊主',
@@ -2454,7 +2454,7 @@ export const readingCatalog: ReadingItem[] = [
         id: 'd2_1',
         speaker: 'Katia',
         speakerRole: 'Acheteuse',
-        speakerColor: 'violet',
+        speakerColor: 'pink',
         hanzi: '老板，请问这个多少钱一个？',
         pinyin: 'Lǎobǎn, qǐngwèn zhège duōshao qián yí gè?',
         french: 'Chef, combien coûte cet article à l’unité ?',
@@ -2472,7 +2472,7 @@ export const readingCatalog: ReadingItem[] = [
         id: 'd2_3',
         speaker: 'Katia',
         speakerRole: 'Acheteuse',
-        speakerColor: 'violet',
+        speakerColor: 'pink',
         hanzi: '如果我要一百个，可以便宜一点吗？',
         pinyin: 'Rúguǒ wǒ yào yībǎi gè, kěyǐ piányi yīdiǎn ma?',
         french: 'Si j’en prends 100, pouvez-vous faire un petit geste sur le prix ?',
@@ -4810,6 +4810,8 @@ function EcouteLectureContent() {
                 {displayedCharacters.map((char, cIdx) => {
                   const isViolet = char.color === 'violet';
                   const isTurquoise = char.color === 'turquoise';
+                  const isAmber = char.color === 'amber';
+                  const isPink = char.color === 'pink';
 
                   return (
                     <div
@@ -4819,6 +4821,10 @@ function EcouteLectureContent() {
                           ? 'bg-[#6200EE]/[0.03] dark:bg-[#6200EE]/10 border-[#6200EE]/20 hover:border-[#6200EE]/40'
                           : isTurquoise
                           ? 'bg-[#00897B]/[0.03] dark:bg-[#00897B]/10 border-[#00897B]/20 hover:border-[#00897B]/40'
+                          : isAmber
+                          ? 'bg-[#FFA000]/[0.05] dark:bg-[#FFA000]/10 border-[#FFA000]/25 hover:border-[#FFA000]/45'
+                          : isPink
+                          ? 'bg-[#E91E63]/[0.04] dark:bg-[#E91E63]/10 border-[#E91E63]/25 hover:border-[#E91E63]/45'
                           : 'bg-[#FAFAFA] dark:bg-[#252525] border-[#E0E0E0] dark:border-[#333333]'
                       }`}
                     >
@@ -4830,6 +4836,10 @@ function EcouteLectureContent() {
                                 ? 'bg-[#6200EE] text-white'
                                 : isTurquoise
                                 ? 'bg-[#00897B] text-white'
+                                : isAmber
+                                ? 'bg-[#F57C00] text-white'
+                                : isPink
+                                ? 'bg-[#E91E63] text-white'
                                 : 'bg-black/10 dark:bg-white/10 text-[#212121] dark:text-white'
                             }`}
                           >
@@ -4853,6 +4863,10 @@ function EcouteLectureContent() {
                               ? 'bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/30'
                               : isTurquoise
                               ? 'bg-[#00897B]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/30'
+                              : isAmber
+                              ? 'bg-[#FFA000]/15 text-[#E65100] dark:text-[#FFB74D] border border-[#FFA000]/30'
+                              : isPink
+                              ? 'bg-[#E91E63]/15 text-[#E91E63] dark:text-[#F48FB1] border border-[#E91E63]/30'
                               : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E]'
                           }`}
                         >
@@ -4948,6 +4962,8 @@ function EcouteLectureContent() {
               // Character color coding
               const isViolet = sent.speakerColor === 'violet';
               const isTurquoise = sent.speakerColor === 'turquoise';
+              const isAmber = sent.speakerColor === 'amber';
+              const isPink = sent.speakerColor === 'pink';
 
               return (
                 <div
@@ -5000,6 +5016,10 @@ function EcouteLectureContent() {
                             ? 'text-[#6200EE] dark:text-[#BB86FC]'
                             : isTurquoise
                             ? 'text-[#00796B] dark:text-[#03DAC5]'
+                            : isAmber
+                            ? 'text-[#E65100] dark:text-[#FFB74D]'
+                            : isPink
+                            ? 'text-[#E91E63] dark:text-[#F48FB1]'
                             : 'text-[#616161] dark:text-[#BDBDBD]'
                         }`}>
                           {sent.speaker}
@@ -5010,6 +5030,10 @@ function EcouteLectureContent() {
                               ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20'
                               : isTurquoise
                               ? 'bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/20'
+                              : isAmber
+                              ? 'bg-[#FFA000]/10 dark:bg-[#FFA000]/20 text-[#E65100] dark:text-[#FFB74D] border border-[#FFA000]/25'
+                              : isPink
+                              ? 'bg-[#E91E63]/10 dark:bg-[#E91E63]/20 text-[#E91E63] dark:text-[#F48FB1] border border-[#E91E63]/20'
                               : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E] border border-black/10 dark:border-white/10'
                           }`}>
                             {sent.speakerRole}

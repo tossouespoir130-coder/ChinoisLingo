@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep4.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 35040,
+  "totalDurationMs": 35940,
   "sentences": [
     {
       "sentenceId": "vc_b4_1",
@@ -16,105 +16,105 @@
     {
       "sentenceId": "vc_b4_2",
       "startMs": 3350,
-      "endMs": 7100,
+      "endMs": 7550,
       "durationMs": 3400,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_2.mp3"
     },
     {
       "sentenceId": "vc_b4_3",
-      "startMs": 7100,
-      "endMs": 8360,
+      "startMs": 7550,
+      "endMs": 8810,
       "durationMs": 910,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_3.mp3"
     },
     {
       "sentenceId": "vc_b4_4",
-      "startMs": 8360,
-      "endMs": 10360,
+      "startMs": 8810,
+      "endMs": 10810,
       "durationMs": 1650,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_4.mp3"
     },
     {
       "sentenceId": "vc_b4_5",
-      "startMs": 10360,
-      "endMs": 13060,
+      "startMs": 10810,
+      "endMs": 13510,
       "durationMs": 2350,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_5.mp3"
     },
     {
       "sentenceId": "vc_b4_6",
-      "startMs": 13060,
-      "endMs": 15530,
+      "startMs": 13510,
+      "endMs": 15980,
       "durationMs": 2120,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_6.mp3"
     },
     {
       "sentenceId": "vc_b4_7",
-      "startMs": 15530,
-      "endMs": 18150,
+      "startMs": 15980,
+      "endMs": 18600,
       "durationMs": 2270,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_7.mp3"
     },
     {
       "sentenceId": "vc_b4_8",
-      "startMs": 18150,
-      "endMs": 19990,
+      "startMs": 18600,
+      "endMs": 20440,
       "durationMs": 1490,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_8.mp3"
     },
     {
       "sentenceId": "vc_b4_9",
-      "startMs": 19990,
-      "endMs": 21910,
+      "startMs": 20440,
+      "endMs": 22360,
       "durationMs": 1570,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_9.mp3"
     },
     {
       "sentenceId": "vc_b4_10",
-      "startMs": 21910,
-      "endMs": 23170,
+      "startMs": 22360,
+      "endMs": 23620,
       "durationMs": 910,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_10.mp3"
     },
     {
       "sentenceId": "vc_b4_11",
-      "startMs": 23170,
-      "endMs": 24510,
+      "startMs": 23620,
+      "endMs": 24960,
       "durationMs": 990,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_11.mp3"
     },
     {
       "sentenceId": "vc_b4_12",
-      "startMs": 24510,
-      "endMs": 25770,
+      "startMs": 24960,
+      "endMs": 26220,
       "durationMs": 910,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_12.mp3"
     },
     {
       "sentenceId": "vc_b4_13",
-      "startMs": 25770,
-      "endMs": 27110,
+      "startMs": 26220,
+      "endMs": 27560,
       "durationMs": 990,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_13.mp3"
     },
     {
       "sentenceId": "vc_b4_14",
-      "startMs": 27110,
-      "endMs": 28530,
+      "startMs": 27560,
+      "endMs": 29430,
       "durationMs": 1070,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_14.mp3"
     },
     {
       "sentenceId": "vc_b4_15",
-      "startMs": 28530,
-      "endMs": 32040,
+      "startMs": 29430,
+      "endMs": 32940,
       "durationMs": 3160,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_15.mp3"
     },
     {
       "sentenceId": "vc_b4_16",
-      "startMs": 32040,
-      "endMs": 35040,
+      "startMs": 32940,
+      "endMs": 35940,
       "durationMs": 3000,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_16.mp3"
     }
