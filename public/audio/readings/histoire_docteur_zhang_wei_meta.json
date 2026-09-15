@@ -4,35 +4,42 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_docteur_zhang_wei.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 22960,
+  "totalDurationMs": 18050,
   "sentences": [
     {
       "sentenceId": "h_zw_1",
       "startMs": 0,
-      "endMs": 6380,
-      "durationMs": 6030,
+      "endMs": 2540,
+      "durationMs": 2190,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_1.mp3"
     },
     {
       "sentenceId": "h_zw_2",
-      "startMs": 6380,
-      "endMs": 13340,
-      "durationMs": 6610,
+      "startMs": 2540,
+      "endMs": 5010,
+      "durationMs": 2120,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_2.mp3"
     },
     {
       "sentenceId": "h_zw_3",
-      "startMs": 13340,
-      "endMs": 18210,
-      "durationMs": 4520,
+      "startMs": 5010,
+      "endMs": 10510,
+      "durationMs": 5150,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_3.mp3"
     },
     {
       "sentenceId": "h_zw_4",
-      "startMs": 18210,
-      "endMs": 22960,
-      "durationMs": 4750,
+      "startMs": 10510,
+      "endMs": 14650,
+      "durationMs": 3790,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_4.mp3"
+    },
+    {
+      "sentenceId": "h_zw_5",
+      "startMs": 14650,
+      "endMs": 18050,
+      "durationMs": 3400,
+      "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_5.mp3"
     }
   ]
 }

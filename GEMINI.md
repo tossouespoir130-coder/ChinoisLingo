@@ -27,6 +27,7 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 - **Règle Permanente de Structure : Histoires & Articles vs Dialogues & Vidéos** :
   - **Histoires & Articles** : Le texte est rédigé et présenté en **un bloc narratif fluide et continu (paragraphe par paragraphe)**, sans aucune étiquette ni badge d'interlocuteur (`speaker`) devant les phrases. Les personnages sont présentés collectivement dans la carte d'en-tête *« Les Personnages de l’Histoire »*.
   - **Dialogues & Vidéos scénarisées** : La parole étant alternée, chaque réplique affiche le nom et le rôle de l'interlocuteur (`speaker`) avec son code couleur distinctif.
+- **Règle Permanente de Perfection Orthographique et Grammaticale Française & Audit Automatique** : Sur **TOUTE l'application** (textes, leçons, dialogues, histoires, articles, vocabulaire, traductions, boutons, notifications, emails), zéro faute de français n'est tolérée (orthographe, grammaire, accords, ponctuation, typographie soignée). Lors de chaque audit ou ajout de contenu, une vérification systématique de l'orthographe française doit être exécutée.
 
 ---
 

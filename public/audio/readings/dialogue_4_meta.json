@@ -4,34 +4,34 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_4.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12550,
+  "totalDurationMs": 11360,
   "sentences": [
     {
       "sentenceId": "d4_1",
       "startMs": 0,
-      "endMs": 3430,
-      "durationMs": 3080,
+      "endMs": 3040,
+      "durationMs": 2690,
       "audioUrl": "/audio/readings/dialogue_4_d4_1.mp3"
     },
     {
       "sentenceId": "d4_2",
-      "startMs": 3430,
-      "endMs": 6370,
-      "durationMs": 2590,
+      "startMs": 3040,
+      "endMs": 5740,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/dialogue_4_d4_2.mp3"
     },
     {
       "sentenceId": "d4_3",
-      "startMs": 6370,
-      "endMs": 10510,
-      "durationMs": 3790,
+      "startMs": 5740,
+      "endMs": 9560,
+      "durationMs": 3470,
       "audioUrl": "/audio/readings/dialogue_4_d4_3.mp3"
     },
     {
       "sentenceId": "d4_4",
-      "startMs": 10510,
-      "endMs": 12550,
-      "durationMs": 2040,
+      "startMs": 9560,
+      "endMs": 11360,
+      "durationMs": 1800,
       "audioUrl": "/audio/readings/dialogue_4_d4_4.mp3"
     }
   ]

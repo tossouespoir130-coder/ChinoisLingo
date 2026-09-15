@@ -4,41 +4,41 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_mon_ami_chinois.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 23190,
+  "totalDurationMs": 21610,
   "sentences": [
     {
       "sentenceId": "art_friend_1",
       "startMs": 0,
-      "endMs": 6880,
-      "durationMs": 6530,
+      "endMs": 4870,
+      "durationMs": 4520,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_1.mp3"
     },
     {
       "sentenceId": "art_friend_2",
-      "startMs": 6880,
-      "endMs": 13660,
-      "durationMs": 6430,
+      "startMs": 4870,
+      "endMs": 7910,
+      "durationMs": 2690,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_2.mp3"
     },
     {
       "sentenceId": "art_friend_3",
-      "startMs": 13660,
-      "endMs": 17800,
-      "durationMs": 3790,
+      "startMs": 7910,
+      "endMs": 11340,
+      "durationMs": 3080,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_3.mp3"
     },
     {
       "sentenceId": "art_friend_4",
-      "startMs": 17800,
-      "endMs": 21780,
-      "durationMs": 3630,
+      "startMs": 11340,
+      "endMs": 15970,
+      "durationMs": 4280,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_4.mp3"
     },
     {
       "sentenceId": "art_friend_5",
-      "startMs": 21780,
-      "endMs": 23190,
-      "durationMs": 1410,
+      "startMs": 15970,
+      "endMs": 21610,
+      "durationMs": 5640,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_5.mp3"
     }
   ]

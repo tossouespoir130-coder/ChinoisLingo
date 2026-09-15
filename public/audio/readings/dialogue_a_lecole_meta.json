@@ -4,34 +4,34 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_a_lecole.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 6340,
+  "totalDurationMs": 5540,
   "sentences": [
     {
       "sentenceId": "dae_1",
       "startMs": 0,
-      "endMs": 2000,
-      "durationMs": 1650,
+      "endMs": 1340,
+      "durationMs": 990,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_1.mp3"
     },
     {
       "sentenceId": "dae_2",
-      "startMs": 2000,
-      "endMs": 3920,
-      "durationMs": 1570,
+      "startMs": 1340,
+      "endMs": 3100,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_2.mp3"
     },
     {
       "sentenceId": "dae_3",
-      "startMs": 3920,
-      "endMs": 5030,
-      "durationMs": 760,
+      "startMs": 3100,
+      "endMs": 4050,
+      "durationMs": 600,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_3.mp3"
     },
     {
       "sentenceId": "dae_4",
-      "startMs": 5030,
-      "endMs": 6340,
-      "durationMs": 1310,
+      "startMs": 4050,
+      "endMs": 5540,
+      "durationMs": 1490,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_4.mp3"
     }
   ]

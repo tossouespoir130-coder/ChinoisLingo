@@ -1,0 +1,59 @@
+{
+  "contentId": "vie_chine_business_ep2",
+  "aliases": [],
+  "type": "histoire",
+  "fullAudioUrl": "/audio/readings/vie_chine_business_ep2.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 14120,
+  "sentences": [
+    {
+      "sentenceId": "vc_b2_1",
+      "startMs": 0,
+      "endMs": 2860,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_1.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_2",
+      "startMs": 2860,
+      "endMs": 5010,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_2.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_3",
+      "startMs": 5010,
+      "endMs": 6510,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_3.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_4",
+      "startMs": 6510,
+      "endMs": 7540,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_4.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_5",
+      "startMs": 7540,
+      "endMs": 10160,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_5.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_6",
+      "startMs": 10160,
+      "endMs": 12000,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_6.mp3"
+    },
+    {
+      "sentenceId": "vc_b2_7",
+      "startMs": 12000,
+      "endMs": 14120,
+      "durationMs": 2120,
+      "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_7.mp3"
+    }
+  ]
+}

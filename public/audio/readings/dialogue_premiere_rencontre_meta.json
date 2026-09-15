@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_premiere_rencontre.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 7320,
+  "totalDurationMs": 7880,
   "sentences": [
     {
       "sentenceId": "dpr_1",
@@ -30,15 +30,15 @@
     {
       "sentenceId": "dpr_4",
       "startMs": 4180,
-      "endMs": 6330,
-      "durationMs": 1800,
+      "endMs": 6650,
+      "durationMs": 2120,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_4.mp3"
     },
     {
       "sentenceId": "dpr_5",
-      "startMs": 6330,
-      "endMs": 7320,
-      "durationMs": 990,
+      "startMs": 6650,
+      "endMs": 7880,
+      "durationMs": 1230,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_5.mp3"
     }
   ]

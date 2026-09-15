@@ -4,75 +4,75 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_appel_telephonique.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 18140,
+  "totalDurationMs": 19280,
   "sentences": [
     {
       "sentenceId": "dat_1",
       "startMs": 0,
-      "endMs": 1030,
-      "durationMs": 680,
+      "endMs": 1260,
+      "durationMs": 910,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_1.mp3"
     },
     {
       "sentenceId": "dat_2",
-      "startMs": 1030,
-      "endMs": 3570,
-      "durationMs": 2190,
+      "startMs": 1260,
+      "endMs": 4300,
+      "durationMs": 2690,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_2.mp3"
     },
     {
       "sentenceId": "dat_3",
-      "startMs": 3570,
-      "endMs": 4910,
-      "durationMs": 990,
+      "startMs": 4300,
+      "endMs": 5560,
+      "durationMs": 910,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_3.mp3"
     },
     {
       "sentenceId": "dat_4",
-      "startMs": 4910,
-      "endMs": 7380,
-      "durationMs": 2120,
+      "startMs": 5560,
+      "endMs": 8260,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_4.mp3"
     },
     {
       "sentenceId": "dat_5",
-      "startMs": 7380,
-      "endMs": 8720,
-      "durationMs": 990,
+      "startMs": 8260,
+      "endMs": 9680,
+      "durationMs": 1070,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_5.mp3"
     },
     {
       "sentenceId": "dat_6",
-      "startMs": 8720,
-      "endMs": 11260,
-      "durationMs": 2190,
+      "startMs": 9680,
+      "endMs": 11910,
+      "durationMs": 1880,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_6.mp3"
     },
     {
       "sentenceId": "dat_7",
-      "startMs": 11260,
-      "endMs": 13960,
-      "durationMs": 2350,
+      "startMs": 11910,
+      "endMs": 13250,
+      "durationMs": 990,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_7.mp3"
     },
     {
       "sentenceId": "dat_8",
-      "startMs": 13960,
-      "endMs": 15800,
+      "startMs": 13250,
+      "endMs": 15090,
       "durationMs": 1490,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_8.mp3"
     },
     {
       "sentenceId": "dat_9",
-      "startMs": 15800,
-      "endMs": 17460,
-      "durationMs": 1310,
+      "startMs": 15090,
+      "endMs": 18600,
+      "durationMs": 3160,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_9.mp3"
     },
     {
       "sentenceId": "dat_10",
-      "startMs": 17460,
-      "endMs": 18140,
+      "startMs": 18600,
+      "endMs": 19280,
       "durationMs": 680,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_10.mp3"
     }

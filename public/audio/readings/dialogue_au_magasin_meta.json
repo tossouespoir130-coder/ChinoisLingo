@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_au_magasin.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 10060,
+  "totalDurationMs": 8850,
   "sentences": [
     {
       "sentenceId": "dam_1",
@@ -16,36 +16,36 @@
     {
       "sentenceId": "dam_2",
       "startMs": 2150,
-      "endMs": 3570,
-      "durationMs": 1070,
+      "endMs": 3650,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_2.mp3"
     },
     {
       "sentenceId": "dam_3",
-      "startMs": 3570,
-      "endMs": 5150,
-      "durationMs": 1230,
+      "startMs": 3650,
+      "endMs": 4600,
+      "durationMs": 600,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_3.mp3"
     },
     {
       "sentenceId": "dam_4",
-      "startMs": 5150,
-      "endMs": 6990,
-      "durationMs": 1490,
+      "startMs": 4600,
+      "endMs": 5860,
+      "durationMs": 910,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_4.mp3"
     },
     {
       "sentenceId": "dam_5",
-      "startMs": 6990,
-      "endMs": 8570,
-      "durationMs": 1230,
+      "startMs": 5860,
+      "endMs": 7780,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_5.mp3"
     },
     {
       "sentenceId": "dam_6",
-      "startMs": 8570,
-      "endMs": 10060,
-      "durationMs": 1490,
+      "startMs": 7780,
+      "endMs": 8850,
+      "durationMs": 1070,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_6.mp3"
     }
   ]

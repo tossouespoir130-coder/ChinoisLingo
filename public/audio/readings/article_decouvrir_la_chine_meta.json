@@ -4,21 +4,35 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_decouvrir_la_chine.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 13230,
+  "totalDurationMs": 11750,
   "sentences": [
     {
       "sentenceId": "art_cn_1",
       "startMs": 0,
-      "endMs": 5420,
-      "durationMs": 5070,
+      "endMs": 2700,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_1.mp3"
     },
     {
       "sentenceId": "art_cn_2",
-      "startMs": 5420,
-      "endMs": 13230,
-      "durationMs": 7810,
+      "startMs": 2700,
+      "endMs": 5240,
+      "durationMs": 2190,
       "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_2.mp3"
+    },
+    {
+      "sentenceId": "art_cn_3",
+      "startMs": 5240,
+      "endMs": 8670,
+      "durationMs": 3080,
+      "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_3.mp3"
+    },
+    {
+      "sentenceId": "art_cn_4",
+      "startMs": 8670,
+      "endMs": 11750,
+      "durationMs": 3080,
+      "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_4.mp3"
     }
   ]
 }

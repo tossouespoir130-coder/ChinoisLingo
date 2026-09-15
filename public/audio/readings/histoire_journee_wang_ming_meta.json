@@ -4,48 +4,48 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 32320,
+  "totalDurationMs": 27800,
   "sentences": [
     {
       "sentenceId": "h_wm_1",
       "startMs": 0,
-      "endMs": 5840,
-      "durationMs": 5490,
+      "endMs": 3900,
+      "durationMs": 3550,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_1.mp3"
     },
     {
       "sentenceId": "h_wm_2",
-      "startMs": 5840,
-      "endMs": 9190,
-      "durationMs": 3000,
+      "startMs": 3900,
+      "endMs": 8530,
+      "durationMs": 4280,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_2.mp3"
     },
     {
       "sentenceId": "h_wm_3",
-      "startMs": 9190,
-      "endMs": 16310,
-      "durationMs": 6770,
+      "startMs": 8530,
+      "endMs": 14840,
+      "durationMs": 5960,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_3.mp3"
     },
     {
       "sentenceId": "h_wm_4",
-      "startMs": 16310,
-      "endMs": 23820,
-      "durationMs": 7160,
+      "startMs": 14840,
+      "endMs": 21620,
+      "durationMs": 6430,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_4.mp3"
     },
     {
       "sentenceId": "h_wm_5",
-      "startMs": 23820,
-      "endMs": 28530,
-      "durationMs": 4360,
+      "startMs": 21620,
+      "endMs": 25680,
+      "durationMs": 3710,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_5.mp3"
     },
     {
       "sentenceId": "h_wm_6",
-      "startMs": 28530,
-      "endMs": 32320,
-      "durationMs": 3790,
+      "startMs": 25680,
+      "endMs": 27800,
+      "durationMs": 2120,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
     }
   ]

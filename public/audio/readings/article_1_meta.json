@@ -4,34 +4,34 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_1.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 16020,
+  "totalDurationMs": 15600,
   "sentences": [
     {
       "sentenceId": "a1_1",
       "startMs": 0,
-      "endMs": 3040,
-      "durationMs": 2690,
+      "endMs": 2780,
+      "durationMs": 2430,
       "audioUrl": "/audio/readings/article_1_a1_1.mp3"
     },
     {
       "sentenceId": "a1_2",
-      "startMs": 3040,
-      "endMs": 6790,
-      "durationMs": 3400,
+      "startMs": 2780,
+      "endMs": 6370,
+      "durationMs": 3240,
       "audioUrl": "/audio/readings/article_1_a1_2.mp3"
     },
     {
       "sentenceId": "a1_3",
-      "startMs": 6790,
-      "endMs": 12050,
-      "durationMs": 4910,
+      "startMs": 6370,
+      "endMs": 11470,
+      "durationMs": 4750,
       "audioUrl": "/audio/readings/article_1_a1_3.mp3"
     },
     {
       "sentenceId": "a1_4",
-      "startMs": 12050,
-      "endMs": 16020,
-      "durationMs": 3970,
+      "startMs": 11470,
+      "endMs": 15600,
+      "durationMs": 4130,
       "audioUrl": "/audio/readings/article_1_a1_4.mp3"
     }
   ]

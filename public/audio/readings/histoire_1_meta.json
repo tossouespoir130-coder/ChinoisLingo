@@ -4,40 +4,40 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_1.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12460,
+  "totalDurationMs": 12840,
   "sentences": [
     {
       "sentenceId": "h1_1",
       "startMs": 0,
-      "endMs": 2000,
-      "durationMs": 1650,
+      "endMs": 2310,
+      "durationMs": 1960,
       "audioUrl": "/audio/readings/histoire_1_h1_1.mp3"
     },
     {
       "sentenceId": "h1_2",
-      "startMs": 2000,
-      "endMs": 4470,
-      "durationMs": 2120,
+      "startMs": 2310,
+      "endMs": 4930,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/histoire_1_h1_2.mp3"
     },
     {
       "sentenceId": "h1_3",
-      "startMs": 4470,
-      "endMs": 7250,
-      "durationMs": 2430,
+      "startMs": 4930,
+      "endMs": 7870,
+      "durationMs": 2590,
       "audioUrl": "/audio/readings/histoire_1_h1_3.mp3"
     },
     {
       "sentenceId": "h1_4",
-      "startMs": 7250,
-      "endMs": 10110,
-      "durationMs": 2510,
+      "startMs": 7870,
+      "endMs": 10490,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/histoire_1_h1_4.mp3"
     },
     {
       "sentenceId": "h1_5",
-      "startMs": 10110,
-      "endMs": 12460,
+      "startMs": 10490,
+      "endMs": 12840,
       "durationMs": 2350,
       "audioUrl": "/audio/readings/histoire_1_h1_5.mp3"
     }
