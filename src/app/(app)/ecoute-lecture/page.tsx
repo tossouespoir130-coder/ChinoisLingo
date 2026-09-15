@@ -1374,7 +1374,7 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Zhōngguó Shēnghuó: Shāngwù',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '5 épisodes',
+    duration: '5 parties',
     description: 'Suivez les péripéties et premiers pas de Brice, Anthony et Katia dans le monde des affaires en Chine.',
     imageUrl: 'https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
@@ -1408,9 +1408,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'vie_chine_business_ep1',
         episodeNumber: 1,
-        titleFr: 'Épisode 1 : Arrivées en Chine',
-        titleZh: '第一集：到达中国',
-        titlePinyin: 'Dì yī jí: Dàodá Zhōngguó',
+        titleFr: 'Partie 1 : Arrivées en Chine',
+        titleZh: '第一篇：到达中国',
+        titlePinyin: 'Dì yī piān: Dàodá Zhōngguó',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Brice, Anthony et Katia arrivent tour à tour en Chine pour leur voyage d’affaires.',
@@ -1450,9 +1450,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'vie_chine_business_ep2',
         episodeNumber: 2,
-        titleFr: 'Épisode 2 : Katia prend le taxi',
-        titleZh: '第二集：卡蒂娅坐出租车',
-        titlePinyin: 'Dì èr jí: Kǎdìyà zuò chūzūchē',
+        titleFr: 'Partie 2 : Katia prend le taxi',
+        titleZh: '第二篇：卡蒂娅坐出租车',
+        titlePinyin: 'Dì èr piān: Kǎdìyà zuò chūzūchē',
         duration: '1 min 15',
         level: 'HSK 1',
         description: 'Katia prend un taxi à l’aéroport pour rejoindre son hôtel à Pékin.',
@@ -1533,9 +1533,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'vie_chine_business_ep3',
         episodeNumber: 3,
-        titleFr: 'Épisode 3 : À l’hôtel',
-        titleZh: '第三集：在酒店',
-        titlePinyin: 'Dì sān jí: Zài jiǔdiàn',
+        titleFr: 'Partie 3 : À l’hôtel',
+        titleZh: '第三篇：在酒店',
+        titlePinyin: 'Dì sān piān: Zài jiǔdiàn',
         duration: '1 min 30',
         level: 'HSK 1',
         description: 'Arrivée à l’hôtel, Katia appelle Brice pour faire le point avant leurs rendez-vous du lendemain.',
@@ -1648,9 +1648,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'vie_chine_business_ep4',
         episodeNumber: 4,
-        titleFr: 'Épisode 4 : Acheter à manger',
-        titleZh: '第四集：买吃的',
-        titlePinyin: 'Dì sì jí: Mǎi chī de',
+        titleFr: 'Partie 4 : Acheter à manger',
+        titleZh: '第四篇：买吃的',
+        titlePinyin: 'Dì sì piān: Mǎi chī de',
         duration: '1 min 45',
         level: 'HSK 1',
         description: 'Katia, Brice et Anthony vont au restaurant pour commander de délicieux plats chinois.',
@@ -1805,9 +1805,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'vie_chine_business_ep5',
         episodeNumber: 5,
-        titleFr: 'Épisode 5 : Acheter à boire',
-        titleZh: '第五集：买喝的',
-        titlePinyin: 'Dì wǔ jí: Mǎi hē de',
+        titleFr: 'Partie 5 : Acheter à boire',
+        titleZh: '第五篇：买喝的',
+        titlePinyin: 'Dì wǔ piān: Mǎi hē de',
         duration: '1 min 45',
         level: 'HSK 2',
         description: 'Par une chaude après-midi, Katia, Brice et Anthony se rendent dans un magasin pour acheter de l’eau, du café et du lait.',
@@ -5686,7 +5686,7 @@ function EcouteLectureContent() {
                   {activeSeries.type === 'videos' 
                     ? 'Sélectionnez un épisode pour commencer à regarder' 
                     : activeSeries.type === 'histoires'
-                    ? 'Sélectionnez un épisode pour commencer votre histoire'
+                    ? 'Sélectionnez une partie pour commencer votre lecture'
                     : 'Sélectionnez un article pour commencer votre lecture'}
                 </p>
               </div>
@@ -5972,10 +5972,15 @@ function EcouteLectureContent() {
                                 <Play className="w-3 h-3 fill-white" />
                                 <span>Épisodes ({item.seriesEpisodes?.length || 0})</span>
                               </>
+                            ) : item.type === 'histoires' ? (
+                              <>
+                                <BookOpen className="w-3 h-3" />
+                                <span>Parties ({item.seriesEpisodes?.length || 0})</span>
+                              </>
                             ) : (
                               <>
                                 <BookOpen className="w-3 h-3" />
-                                <span>Explorer ({item.seriesEpisodes?.length || 0})</span>
+                                <span>Articles ({item.seriesEpisodes?.length || 0})</span>
                               </>
                             )}
                           </button>

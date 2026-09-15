@@ -35,12 +35,12 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Épisode 5 : Acheter à boire\n买喝的 🎬',
+    title: 'Partie 5 : Acheter à boire\n买喝的 📖',
     message: 'Par une chaude après-midi, Katia, Brice et Anthony vont au magasin pour acheter de l’eau, du café et du lait.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&episode=vie_chine_business_ep5',
-    actionLabel: 'Écouter l’épisode'
+    actionLabel: 'Lire la partie'
   },
   {
     id: 'notif_article_decouvrir_la_chine',
@@ -203,12 +203,12 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Vie en Chine : Business — Épisode 1\n到达中国 📖',
-    message: 'Découvrez le 1er épisode de la série « Vie en Chine : Business » ! Brice, Anthony et Katia arrivent tour à tour en Chine pour débuter leurs affaires.',
+    title: 'Vie en Chine : Business — Partie 1\n到达中国 📖',
+    message: 'Découvrez la 1ère partie de la série « Vie en Chine : Business » ! Brice, Anthony et Katia arrivent tour à tour en Chine pour débuter leurs affaires.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&ep=0',
-    actionLabel: 'Lire l’épisode'
+    actionLabel: 'Lire la partie'
   },
   {
     id: 'notif_vie_chine_business_ep2',
@@ -217,12 +217,12 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Vie en Chine : Business — Épisode 2\n卡蒂娅坐出租车 📖',
+    title: 'Vie en Chine : Business — Partie 2\n卡蒂娅坐出租车 📖',
     message: 'Katia prend le taxi depuis l’aéroport vers l’hôtel de Pékin. Apprenez à échanger avec le chauffeur en chinois !',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&ep=1',
-    actionLabel: 'Lire l’épisode'
+    actionLabel: 'Lire la partie'
   },
   {
     id: 'notif_vie_chine_business_ep3',
@@ -231,12 +231,12 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Vie en Chine : Business — Épisode 3\n在酒店 📖',
+    title: 'Vie en Chine : Business — Partie 3\n在酒店 📖',
     message: 'Arrivée à l’hôtel, Katia appelle Brice pour faire le point sur l’équipe avant leurs rendez-vous.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&ep=2',
-    actionLabel: 'Lire l’épisode'
+    actionLabel: 'Lire la partie'
   },
   {
     id: 'notif_vie_chine_business_ep4',
@@ -245,12 +245,12 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Vie en Chine : Business — Épisode 4\n买吃的 📖',
+    title: 'Vie en Chine : Business — Partie 4\n买吃的 📖',
     message: 'Katia, Brice et Anthony vont au restaurant. Découvrez le vocabulaire des repas, des boissons et de la commande en chinois !',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&ep=3',
-    actionLabel: 'Lire l’épisode'
+    actionLabel: 'Lire la partie'
   },
   {
     id: 'notif_video_dou_viens_tu',
