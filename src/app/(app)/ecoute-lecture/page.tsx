@@ -1274,9 +1274,9 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'mc_e3_4',
-            hanzi: '下午，我回家。小白在家。',
-            pinyin: 'Xiàwǔ, wǒ huí jiā. Xiǎobái zài jiā.',
-            french: 'L’après-midi, je rentre à la maison. Xiaobai est à la maison.',
+            hanzi: '下午，我回家。',
+            pinyin: 'Xiàwǔ, wǒ huí jiā.',
+            french: 'L’après-midi, je rentre à la maison.',
           },
         ],
         vocabulary: [
