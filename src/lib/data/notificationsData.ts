@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_vie_chine_business_ep5',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Épisode 5 : Commander des boissons\n买饮料 🎬',
+    message: 'Suivez Katia, Brice et Anthony dans leur pause boisson pour commander eau minérale, soda et café au magasin.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&episode=vie_chine_business_ep5',
+    actionLabel: 'Écouter l’épisode'
+  },
+  {
     id: 'notif_article_decouvrir_la_chine',
     source: 'founder',
     founderName: 'Espoir Chinois',
