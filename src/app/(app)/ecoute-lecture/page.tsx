@@ -1068,8 +1068,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Wǒ de māo',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '5 épisodes',
-    description: 'Une adorable série d’histoires simples et douces pour débutant absolu : suivez les journées de Wang Xiaoming et de son petit chat Xiaobai.',
+    duration: '5 parties',
+    description: 'Une adorable série d’histoires simples et douces pour débutant absolu (HSK 1) : suivez les journées de Wang Xiaoming et de son petit chat Xiaobai.',
     imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
@@ -1102,13 +1102,13 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'mon_chat_ep1',
         episodeNumber: 1,
-        titleFr: 'Épisode 1 : Mon chat',
-        titleZh: '第一集：我的猫',
-        titlePinyin: 'Dì yī jí: Wǒ de māo',
+        titleFr: 'Partie 1 : Mon chat',
+        titleZh: '第一篇：我的猫',
+        titlePinyin: 'Dì yī piān: Wǒ de māo',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Faites la connaissance de Wang Xiaoming, un jeune garçon de six ans, et de son adorable petit chat Xiaobai.',
-        imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e1_1',
@@ -1147,13 +1147,13 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'mon_chat_ep2',
         episodeNumber: 2,
-        titleFr: 'Épisode 2 : L’heure du repas',
-        titleZh: '第二集：吃东西',
-        titlePinyin: 'Dì èr jí: Chī dōngxi',
+        titleFr: 'Partie 2 : L’heure du repas',
+        titleZh: '第二篇：吃东西',
+        titlePinyin: 'Dì èr piān: Chī dōngxi',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Il fait très beau aujourd’hui. Pendant que Wang Xiaoming mange son riz, Xiaobai se régale avec du poisson.',
-        imageUrl: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e2_1',
@@ -1192,13 +1192,13 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'mon_chat_ep3',
         episodeNumber: 3,
-        titleFr: 'Épisode 3 : Aller à l’école',
-        titleZh: '第三集：去学校',
-        titlePinyin: 'Dì sān jí: Qù xuéxiào',
+        titleFr: 'Partie 3 : Aller à l’école',
+        titleZh: '第三篇：去学校',
+        titlePinyin: 'Dì sān piān: Qù xuéxiào',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Wang Xiaoming part à l’école pour étudier et écrire, tandis que Xiaobai passe sa journée à dormir paisiblement.',
-        imageUrl: 'https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e3_1',
@@ -1237,13 +1237,13 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'mon_chat_ep4',
         episodeNumber: 4,
-        titleFr: 'Épisode 4 : Aller au parc',
-        titleZh: '第四集：去公园',
-        titlePinyin: 'Dì sì jí: Qù gōngyuán',
+        titleFr: 'Partie 4 : Aller au parc',
+        titleZh: '第四篇：去公园',
+        titlePinyin: 'Dì sì piān: Qù gōngyuán',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Wang Xiaoming emmène Xiaobai se promener dans un grand parc rempli de monde.',
-        imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e4_1',
@@ -1282,13 +1282,13 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'mon_chat_ep5',
         episodeNumber: 5,
-        titleFr: 'Épisode 5 : Un ami vient chez moi',
-        titleZh: '第五集：朋友来我家',
-        titlePinyin: 'Dì wǔ jí: Péngyou lái wǒ jiā',
+        titleFr: 'Partie 5 : Un ami vient chez moi',
+        titleZh: '第五篇：朋友来我家',
+        titlePinyin: 'Dì wǔ piān: Péngyou lái wǒ jiā',
         duration: '1 min',
         level: 'HSK 1',
         description: 'Wang Ming, un ami de huit ans, vient rendre visite à Wang Xiaoming à la maison avec son propre chat.',
-        imageUrl: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1471286174890-9c112ffca56a?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e5_1',
@@ -5178,7 +5178,7 @@ function EcouteLectureContent() {
                   ) : activeReading.type === 'histoires' ? (
                     <>
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
-                      <span>Épisodes :</span>
+                      <span>Parties :</span>
                     </>
                   ) : (
                     <>
@@ -5222,7 +5222,7 @@ function EcouteLectureContent() {
                           : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC]'
                       }`}
                     >
-                      <span>{activeReading.type === 'videos' || activeReading.type === 'histoires' ? `Épisode ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
+                      <span>{activeReading.type === 'videos' ? `Épisode ${ep.episodeNumber}` : activeReading.type === 'histoires' ? `Partie ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
                       <span className="opacity-80 font-normal truncate max-w-[130px] sm:max-w-[190px]">• {ep.titleFr}</span>
                     </button>
                   );
@@ -5909,8 +5909,10 @@ function EcouteLectureContent() {
                           </span>
                           <span className="text-white/40">•</span>
                           <span>
-                            {item.type === 'videos' || item.type === 'histoires'
-                              ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'épisodes' : 'épisode'}` 
+                            {item.type === 'videos'
+                              ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'épisodes' : 'épisode'}`
+                              : item.type === 'histoires'
+                              ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'parties' : 'partie'}`
                               : `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'articles' : 'article'}`}
                           </span>
                         </span>
