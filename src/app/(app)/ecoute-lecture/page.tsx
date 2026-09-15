@@ -1090,10 +1090,10 @@ export const readingCatalog: ReadingItem[] = [
         color: 'amber'
       },
       {
-        name: 'Wang Ming',
-        nameZh: '王明',
-        pinyin: 'Wáng Míng',
-        role: 'Ami (8 ans)',
+        name: 'Li Hua',
+        nameZh: '李华',
+        pinyin: 'Lǐ Huá',
+        role: 'Ami (7 ans)',
         description: 'Ami de Wang Xiaoming qui a lui aussi un chat nommé Xiaobai.',
         color: 'pink'
       }
@@ -1108,7 +1108,25 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Faites la connaissance de Wang Xiaoming, un jeune garçon de six ans, et de son adorable petit chat Xiaobai.',
-        imageUrl: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Wang Xiaoming',
+            nameZh: '王小明',
+            pinyin: 'Wáng Xiǎomíng',
+            role: 'Garçon (6 ans)',
+            description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+            color: 'turquoise'
+          },
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Petit chat blanc',
+            description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+            color: 'amber'
+          }
+        ],
         sentences: [
           {
             id: 'mc_e1_1',
@@ -1154,6 +1172,24 @@ export const readingCatalog: ReadingItem[] = [
         level: 'HSK 1',
         description: 'Il fait très beau aujourd’hui. Pendant que Wang Xiaoming mange son riz, Xiaobai se régale avec du poisson.',
         imageUrl: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Wang Xiaoming',
+            nameZh: '王小明',
+            pinyin: 'Wáng Xiǎomíng',
+            role: 'Garçon (6 ans)',
+            description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+            color: 'turquoise'
+          },
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Petit chat blanc',
+            description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+            color: 'amber'
+          }
+        ],
         sentences: [
           {
             id: 'mc_e2_1',
@@ -1199,6 +1235,24 @@ export const readingCatalog: ReadingItem[] = [
         level: 'HSK 1',
         description: 'Wang Xiaoming part à l’école pour étudier et écrire, tandis que Xiaobai passe sa journée à dormir paisiblement.',
         imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Wang Xiaoming',
+            nameZh: '王小明',
+            pinyin: 'Wáng Xiǎomíng',
+            role: 'Garçon (6 ans)',
+            description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+            color: 'turquoise'
+          },
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Petit chat blanc',
+            description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+            color: 'amber'
+          }
+        ],
         sentences: [
           {
             id: 'mc_e3_1',
@@ -1244,6 +1298,24 @@ export const readingCatalog: ReadingItem[] = [
         level: 'HSK 1',
         description: 'Wang Xiaoming emmène Xiaobai se promener dans un grand parc rempli de monde.',
         imageUrl: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Wang Xiaoming',
+            nameZh: '王小明',
+            pinyin: 'Wáng Xiǎomíng',
+            role: 'Garçon (6 ans)',
+            description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+            color: 'turquoise'
+          },
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Petit chat blanc',
+            description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+            color: 'amber'
+          }
+        ],
         sentences: [
           {
             id: 'mc_e4_1',
@@ -1287,8 +1359,34 @@ export const readingCatalog: ReadingItem[] = [
         titlePinyin: 'Dì wǔ piān: Péngyou lái wǒ jiā',
         duration: '1 min',
         level: 'HSK 1',
-        description: 'Wang Ming, un ami de huit ans, vient rendre visite à Wang Xiaoming à la maison avec son propre chat.',
+        description: 'Li Hua, un ami de sept ans, vient rendre visite à Wang Xiaoming à la maison avec son propre chat.',
         imageUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Wang Xiaoming',
+            nameZh: '王小明',
+            pinyin: 'Wáng Xiǎomíng',
+            role: 'Garçon (6 ans)',
+            description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+            color: 'turquoise'
+          },
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Petit chat blanc',
+            description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+            color: 'amber'
+          },
+          {
+            name: 'Li Hua',
+            nameZh: '李华',
+            pinyin: 'Lǐ Huá',
+            role: 'Ami (7 ans)',
+            description: 'Ami de Wang Xiaoming qui a lui aussi un chat nommé Xiaobai.',
+            color: 'pink'
+          }
+        ],
         sentences: [
           {
             id: 'mc_e5_1',
@@ -1298,15 +1396,15 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'mc_e5_2',
-            hanzi: '他叫王明。',
-            pinyin: 'Tā jiào Wáng Míng.',
-            french: 'Il s’appelle Wang Ming.',
+            hanzi: '他叫李华。',
+            pinyin: 'Tā jiào Lǐ Huá.',
+            french: 'Il s’appelle Li Hua.',
           },
           {
             id: 'mc_e5_3',
-            hanzi: '他八岁。',
-            pinyin: 'Tā bā suì.',
-            french: 'Il a huit ans.',
+            hanzi: '他七岁。',
+            pinyin: 'Tā qī suì.',
+            french: 'Il a sept ans.',
           },
           {
             id: 'mc_e5_4',
@@ -1325,7 +1423,7 @@ export const readingCatalog: ReadingItem[] = [
           { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
           { hanzi: '来', pinyin: 'lái', french: 'venir', role: 'Verbe' },
           { hanzi: '我家', pinyin: 'wǒ jiā', french: 'chez moi', role: 'Expression de lieu' },
-          { hanzi: '八', pinyin: 'bā', french: 'huit', role: 'Nombre' },
+          { hanzi: '七', pinyin: 'qī', french: 'sept', role: 'Nombre' },
           { hanzi: '只', pinyin: 'zhī', french: '(spécificatif pour animaux)', role: 'Spécificatif' },
           { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
           { hanzi: '有', pinyin: 'yǒu', french: 'avoir', role: 'Verbe' },
@@ -2149,7 +2247,7 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '1 min 30',
     description: 'Découvrez la vie professionnelle du docteur Zhang Wei à l’hôpital et la vocation de sa fille Zhang Xiaoyue.',
-    imageUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&auto=format&fit=crop&crop=faces&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
       {

@@ -4,40 +4,40 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/mon_chat_ep5.mp3",
   "pauseBetweenSec": 0.75,
-  "totalDurationMs": 9500,
+  "totalDurationMs": 8880,
   "sentences": [
     {
       "sentenceId": "mc_e5_1",
       "startMs": 0,
-      "endMs": 2810,
+      "endMs": 2060,
       "durationMs": 2060,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_1.mp3"
     },
     {
       "sentenceId": "mc_e5_2",
       "startMs": 2810,
-      "endMs": 4600,
-      "durationMs": 1040,
+      "endMs": 3490,
+      "durationMs": 680,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_2.mp3"
     },
     {
       "sentenceId": "mc_e5_3",
-      "startMs": 4600,
-      "endMs": 6110,
-      "durationMs": 760,
+      "startMs": 4240,
+      "endMs": 4920,
+      "durationMs": 680,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_3.mp3"
     },
     {
       "sentenceId": "mc_e5_4",
-      "startMs": 6110,
-      "endMs": 8090,
+      "startMs": 5670,
+      "endMs": 6900,
       "durationMs": 1230,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_4.mp3"
     },
     {
       "sentenceId": "mc_e5_5",
-      "startMs": 8090,
-      "endMs": 9500,
+      "startMs": 7650,
+      "endMs": 9060,
       "durationMs": 1410,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_5.mp3"
     }

@@ -4,26 +4,26 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/mon_chat_ep4.mp3",
   "pauseBetweenSec": 0.75,
-  "totalDurationMs": 7720,
+  "totalDurationMs": 7580,
   "sentences": [
     {
       "sentenceId": "mc_e4_1",
       "startMs": 0,
-      "endMs": 2530,
+      "endMs": 1780,
       "durationMs": 1780,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_1.mp3"
     },
     {
       "sentenceId": "mc_e4_2",
       "startMs": 2530,
-      "endMs": 4430,
+      "endMs": 3680,
       "durationMs": 1150,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_2.mp3"
     },
     {
       "sentenceId": "mc_e4_3",
       "startMs": 4430,
-      "endMs": 6490,
+      "endMs": 5740,
       "durationMs": 1310,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_3.mp3"
     },

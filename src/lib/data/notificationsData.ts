@@ -21,7 +21,7 @@ export const initialNotifications: NotificationItem[] = [
     founderRole: 'Fondateur de ChinoisLingo',
     founderAvatar: '/espoir-chinois.jpg',
     type: 'audio',
-    title: 'Nouvelle série : Mon chat\n我的猫 (HSK 1) 🎬',
+    title: 'Nouvelle série : Mon chat\n我的猫 (HSK 1) 📖',
     message: 'Découvrez la toute nouvelle série HSK 1 pur pour débutant absolu : 5 parties douces et progressives racontées par le Narrateur.',
     timestamp: 'Nouveau',
     isRead: false,
