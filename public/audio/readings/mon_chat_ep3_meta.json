@@ -1,0 +1,22 @@
+{
+  "mc_e3_1": {
+    "start": 0,
+    "end": 1960,
+    "duration": 1960
+  },
+  "mc_e3_2": {
+    "start": 2560,
+    "end": 5410,
+    "duration": 2850
+  },
+  "mc_e3_3": {
+    "start": 6010,
+    "end": 7160,
+    "duration": 1150
+  },
+  "mc_e3_4": {
+    "start": 7760,
+    "end": 9640,
+    "duration": 1880
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "mc_e5_1": {
+    "start": 0,
+    "end": 1880,
+    "duration": 1880
+  },
+  "mc_e5_2": {
+    "start": 2480,
+    "end": 3390,
+    "duration": 910
+  },
+  "mc_e5_3": {
+    "start": 3990,
+    "end": 4750,
+    "duration": 760
+  },
+  "mc_e5_4": {
+    "start": 5350,
+    "end": 6500,
+    "duration": 1150
+  },
+  "mc_e5_5": {
+    "start": 7100,
+    "end": 8590,
+    "duration": 1490
+  }
+}

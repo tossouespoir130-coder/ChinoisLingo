@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_series_mon_chat',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouvelle série : Mon chat\n我的猫 (HSK 1) 🎬',
+    message: 'Découvrez la toute nouvelle série HSK 1 pur pour débutant absolu : 5 épisodes doux et progressifs racontés par le Narrateur.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_mon_chat&episode=mon_chat_ep1',
+    actionLabel: 'Découvrir la série'
+  },
+  {
     id: 'notif_vie_chine_business_ep5',
     source: 'founder',
     founderName: 'Espoir Chinois',

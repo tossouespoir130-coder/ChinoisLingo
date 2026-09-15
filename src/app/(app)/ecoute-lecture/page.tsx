@@ -1062,6 +1062,312 @@ export const readingCatalog: ReadingItem[] = [
 
   // ================= 2. HISTOIRES COURTES (HSK 1) =================
   {
+    id: 'series_mon_chat',
+    titleFr: 'Mon chat',
+    titleZh: '我的猫',
+    titlePinyin: 'Wǒ de māo',
+    type: 'histoires',
+    level: 'HSK 1',
+    duration: '5 épisodes',
+    description: 'Une adorable série d’histoires simples et douces pour débutant absolu : suivez les journées de Wang Xiaoming et de son petit chat Xiaobai.',
+    imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: 'Wang Xiaoming',
+        nameZh: '王小明',
+        pinyin: 'Wáng Xiǎomíng',
+        role: 'Garçon (6 ans)',
+        description: 'Jeune garçon joyeux de six ans qui adore son petit chat Xiaobai.',
+        color: 'turquoise'
+      },
+      {
+        name: 'Xiaobai',
+        nameZh: '小白',
+        pinyin: 'Xiǎobái',
+        role: 'Petit chat blanc',
+        description: 'Adorable petit chat blanc très joueur qui aime le poisson et les siestes.',
+        color: 'amber'
+      },
+      {
+        name: 'Wang Ming',
+        nameZh: '王明',
+        pinyin: 'Wáng Míng',
+        role: 'Ami (8 ans)',
+        description: 'Ami de Wang Xiaoming qui a lui aussi un chat nommé Xiaobai.',
+        color: 'pink'
+      }
+    ],
+    seriesEpisodes: [
+      {
+        id: 'mon_chat_ep1',
+        episodeNumber: 1,
+        titleFr: 'Épisode 1 : Mon chat',
+        titleZh: '第一集：我的猫',
+        titlePinyin: 'Dì yī jí: Wǒ de māo',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Faites la connaissance de Wang Xiaoming, un jeune garçon de six ans, et de son adorable petit chat Xiaobai.',
+        imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'mc_e1_1',
+            hanzi: '我是王小明。我六岁。',
+            pinyin: 'Wǒ shì Wáng Xiǎomíng. Wǒ liù suì.',
+            french: 'Je m’appelle Wang Xiaoming. J’ai six ans.',
+          },
+          {
+            id: 'mc_e1_2',
+            hanzi: '我的猫叫小白。',
+            pinyin: 'Wǒ de māo jiào Xiǎobái.',
+            french: 'Mon chat s’appelle Xiaobai.',
+          },
+          {
+            id: 'mc_e1_3',
+            hanzi: '小白很小。小白很漂亮。',
+            pinyin: 'Xiǎobái hěn xiǎo. Xiǎobái hěn piàoliang.',
+            french: 'Xiaobai est très petit. Xiaobai est très beau.',
+          },
+          {
+            id: 'mc_e1_4',
+            hanzi: '我很喜欢小白。小白也很喜欢我。',
+            pinyin: 'Wǒ hěn xǐhuan Xiǎobái. Xiǎobái yě hěn xǐhuan wǒ.',
+            french: 'J’aime beaucoup Xiaobai. Xiaobai m’aime beaucoup aussi.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Spécificatif' },
+          { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+          { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+          { hanzi: '漂亮', pinyin: 'piàoliang', french: 'beau, joli', role: 'Adjectif' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+          { hanzi: '小', pinyin: 'xiǎo', french: 'petit', role: 'Adjectif' },
+        ]
+      },
+      {
+        id: 'mon_chat_ep2',
+        episodeNumber: 2,
+        titleFr: 'Épisode 2 : L’heure du repas',
+        titleZh: '第二集：吃东西',
+        titlePinyin: 'Dì èr jí: Chī dōngxi',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Il fait très beau aujourd’hui. Pendant que Wang Xiaoming mange son riz, Xiaobai se régale avec du poisson.',
+        imageUrl: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'mc_e2_1',
+            hanzi: '今天天气很好。不冷，也不热。',
+            pinyin: 'Jīntiān tiānqì hěn hǎo. Bù lěng, yě bú rè.',
+            french: 'Aujourd’hui il fait très beau. Il ne fait ni froid, ni chaud.',
+          },
+          {
+            id: 'mc_e2_2',
+            hanzi: '我吃米饭。我喝水。',
+            pinyin: 'Wǒ chī mǐfàn. Wǒ hē shuǐ.',
+            french: 'Je mange du riz. Je bois de l’eau.',
+          },
+          {
+            id: 'mc_e2_3',
+            hanzi: '小白也喝水。小白不吃米饭。',
+            pinyin: 'Xiǎobái yě hē shuǐ. Xiǎobái bù chī mǐfàn.',
+            french: 'Xiaobai boit aussi de l’eau. Xiaobai ne mange pas de riz.',
+          },
+          {
+            id: 'mc_e2_4',
+            hanzi: '小白吃鱼。',
+            pinyin: 'Xiǎobái chī yú.',
+            french: 'Xiaobai mange du poisson.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '天气', pinyin: 'tiānqì', french: 'temps (météo)', role: 'Nom commun' },
+          { hanzi: '米饭', pinyin: 'mǐfàn', french: 'riz (cuit)', role: 'Nom commun' },
+          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+          { hanzi: '冷', pinyin: 'lěng', french: 'froid', role: 'Adjectif' },
+          { hanzi: '热', pinyin: 'rè', french: 'chaud', role: 'Adjectif' },
+          { hanzi: '喝', pinyin: 'hē', french: 'boire', role: 'Verbe' },
+        ]
+      },
+      {
+        id: 'mon_chat_ep3',
+        episodeNumber: 3,
+        titleFr: 'Épisode 3 : Aller à l’école',
+        titleZh: '第三集：去学校',
+        titlePinyin: 'Dì sān jí: Qù xuéxiào',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Wang Xiaoming part à l’école pour étudier et écrire, tandis que Xiaobai passe sa journée à dormir paisiblement.',
+        imageUrl: 'https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'mc_e3_1',
+            hanzi: '我去学校。小白在家。',
+            pinyin: 'Wǒ qù xuéxiào. Xiǎobái zài jiā.',
+            french: 'Je vais à l’école. Xiaobai est à la maison.',
+          },
+          {
+            id: 'mc_e3_2',
+            hanzi: '我在学校看书。我也写字。',
+            pinyin: 'Wǒ zài xuéxiào kàn shū. Wǒ yě xiě zì.',
+            french: 'À l’école je lis des livres. J’écris aussi.',
+          },
+          {
+            id: 'mc_e3_3',
+            hanzi: '小白在家睡觉。',
+            pinyin: 'Xiǎobái zài jiā shuìjiào.',
+            french: 'Xiaobai dort à la maison.',
+          },
+          {
+            id: 'mc_e3_4',
+            hanzi: '下午，我回家。小白在家。',
+            pinyin: 'Xiàwǔ, wǒ huí jiā. Xiǎobái zài jiā.',
+            french: 'L’après-midi, je rentre à la maison. Xiaobai est à la maison.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '学校', pinyin: 'xuéxiào', french: 'école', role: 'Nom commun' },
+          { hanzi: '看书', pinyin: 'kàn shū', french: 'lire des livres', role: 'Verbe + Objet' },
+          { hanzi: '写字', pinyin: 'xiě zì', french: 'écrire', role: 'Verbe + Objet' },
+          { hanzi: '睡觉', pinyin: 'shuìjiào', french: 'dormir', role: 'Verbe' },
+          { hanzi: '回家', pinyin: 'huí jiā', french: 'rentrer à la maison', role: 'Verbe + Objet' },
+          { hanzi: '下午', pinyin: 'xiàwǔ', french: 'après-midi', role: 'Nom temporel' },
+        ]
+      },
+      {
+        id: 'mon_chat_ep4',
+        episodeNumber: 4,
+        titleFr: 'Épisode 4 : Aller au parc',
+        titleZh: '第四集：去公园',
+        titlePinyin: 'Dì sì jí: Qù gōngyuán',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Wang Xiaoming emmène Xiaobai se promener dans un grand parc rempli de monde.',
+        imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'mc_e4_1',
+            hanzi: '我和小白去公园。',
+            pinyin: 'Wǒ hé Xiǎobái qù gōngyuán.',
+            french: 'Xiaobai et moi allons au parc.',
+          },
+          {
+            id: 'mc_e4_2',
+            hanzi: '公园很大。',
+            pinyin: 'Gōngyuán hěn dà.',
+            french: 'Le parc est très grand.',
+          },
+          {
+            id: 'mc_e4_3',
+            hanzi: '公园里有很多人。',
+            pinyin: 'Gōngyuán lǐ yǒu hěn duō rén.',
+            french: 'Il y a beaucoup de monde dans le parc.',
+          },
+          {
+            id: 'mc_e4_4',
+            hanzi: '小白看大家。',
+            pinyin: 'Xiǎobái kàn dàjiā.',
+            french: 'Xiaobai regarde tout le monde.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '公园', pinyin: 'gōngyuán', french: 'parc', role: 'Nom commun' },
+          { hanzi: '里', pinyin: 'lǐ', french: 'dans, à l’intérieur', role: 'Postposition' },
+          { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup', role: 'Quantificateur' },
+          { hanzi: '人', pinyin: 'rén', french: 'personne, gens', role: 'Nom commun' },
+          { hanzi: '大家', pinyin: 'dàjiā', french: 'tout le monde', role: 'Pronom' },
+          { hanzi: '大', pinyin: 'dà', french: 'grand', role: 'Adjectif' },
+        ]
+      },
+      {
+        id: 'mon_chat_ep5',
+        episodeNumber: 5,
+        titleFr: 'Épisode 5 : Un ami vient chez moi',
+        titleZh: '第五集：朋友来我家',
+        titlePinyin: 'Dì wǔ jí: Péngyou lái wǒ jiā',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Wang Ming, un ami de huit ans, vient rendre visite à Wang Xiaoming à la maison avec son propre chat.',
+        imageUrl: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&auto=format&fit=crop&q=80',
+        sentences: [
+          {
+            id: 'mc_e5_1',
+            hanzi: '今天，我的朋友来我家。',
+            pinyin: 'Jīntiān, wǒ de péngyou lái wǒ jiā.',
+            french: 'Aujourd’hui, mon ami vient chez moi.',
+          },
+          {
+            id: 'mc_e5_2',
+            hanzi: '他叫王明。',
+            pinyin: 'Tā jiào Wáng Míng.',
+            french: 'Il s’appelle Wang Ming.',
+          },
+          {
+            id: 'mc_e5_3',
+            hanzi: '他八岁。',
+            pinyin: 'Tā bā suì.',
+            french: 'Il a huit ans.',
+          },
+          {
+            id: 'mc_e5_4',
+            hanzi: '他也有一只猫。',
+            pinyin: 'Tā yě yǒu yì zhī māo.',
+            french: 'Lui aussi a un chat.',
+          },
+          {
+            id: 'mc_e5_5',
+            hanzi: '他的猫也叫小白。',
+            pinyin: 'Tā de māo yě jiào Xiǎobái.',
+            french: 'Son chat s’appelle aussi Xiaobai.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+          { hanzi: '来', pinyin: 'lái', french: 'venir', role: 'Verbe' },
+          { hanzi: '我家', pinyin: 'wǒ jiā', french: 'chez moi', role: 'Expression de lieu' },
+          { hanzi: '八', pinyin: 'bā', french: 'huit', role: 'Nombre' },
+          { hanzi: '只', pinyin: 'zhī', french: '(spécificatif pour animaux)', role: 'Spécificatif' },
+          { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+          { hanzi: '有', pinyin: 'yǒu', french: 'avoir', role: 'Verbe' },
+        ]
+      }
+    ],
+    sentences: [
+      {
+        id: 'mc_e1_1',
+        hanzi: '我是王小明。我六岁。',
+        pinyin: 'Wǒ shì Wáng Xiǎomíng. Wǒ liù suì.',
+        french: 'Je m’appelle Wang Xiaoming. J’ai six ans.',
+      },
+      {
+        id: 'mc_e1_2',
+        hanzi: '我的猫叫小白。',
+        pinyin: 'Wǒ de māo jiào Xiǎobái.',
+        french: 'Mon chat s’appelle Xiaobai.',
+      },
+      {
+        id: 'mc_e1_3',
+        hanzi: '小白很小。小白很漂亮。',
+        pinyin: 'Xiǎobái hěn xiǎo. Xiǎobái hěn piàoliang.',
+        french: 'Xiaobai est très petit. Xiaobai est très beau.',
+      },
+      {
+        id: 'mc_e1_4',
+        hanzi: '我很喜欢小白。小白也很喜欢我。',
+        pinyin: 'Wǒ hěn xǐhuan Xiǎobái. Xiǎobái yě hěn xǐhuan wǒ.',
+        french: 'J’aime beaucoup Xiaobai. Xiaobai m’aime beaucoup aussi.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Spécificatif' },
+      { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+      { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+      { hanzi: '漂亮', pinyin: 'piàoliang', french: 'beau, joli', role: 'Adjectif' },
+      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+      { hanzi: '小', pinyin: 'xiǎo', french: 'petit', role: 'Adjectif' },
+    ]
+  },
+  {
     id: 'series_vie_chine_business',
     titleFr: 'Vie en Chine : Business',
     titleZh: '中国生活：商务',
