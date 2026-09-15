@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_dialogue_mon_passeport',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouveau dialogue HSK 2 : Où est mon passeport ?\n我的护照在哪儿？ 🎬',
+    message: 'Xiaoming cherche activement son passeport avec l’aide de Xiaohong avant de partir pour l’aéroport.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_mon_passeport',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'notif_series_mon_chat',
     source: 'founder',
     founderName: 'Espoir Chinois',

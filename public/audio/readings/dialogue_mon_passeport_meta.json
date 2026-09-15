@@ -1,0 +1,115 @@
+{
+  "contentId": "dialogue_mon_passeport",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_mon_passeport.mp3",
+  "pauseBetweenSec": 0.45,
+  "totalDurationMs": 47620,
+  "sentences": [
+    {
+      "sentenceId": "dmp_1",
+      "startMs": 0,
+      "endMs": 2460,
+      "durationMs": 2460,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_1.mp3"
+    },
+    {
+      "sentenceId": "dmp_2",
+      "startMs": 2910,
+      "endMs": 5180,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_2.mp3"
+    },
+    {
+      "sentenceId": "dmp_3",
+      "startMs": 5630,
+      "endMs": 9100,
+      "durationMs": 3470,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_3.mp3"
+    },
+    {
+      "sentenceId": "dmp_4",
+      "startMs": 9550,
+      "endMs": 12060,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_4.mp3"
+    },
+    {
+      "sentenceId": "dmp_5",
+      "startMs": 12510,
+      "endMs": 16590,
+      "durationMs": 4080,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_5.mp3"
+    },
+    {
+      "sentenceId": "dmp_6",
+      "startMs": 17040,
+      "endMs": 19500,
+      "durationMs": 2460,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_6.mp3"
+    },
+    {
+      "sentenceId": "dmp_7",
+      "startMs": 19950,
+      "endMs": 22460,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_7.mp3"
+    },
+    {
+      "sentenceId": "dmp_8",
+      "startMs": 22910,
+      "endMs": 26570,
+      "durationMs": 3660,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_8.mp3"
+    },
+    {
+      "sentenceId": "dmp_9",
+      "startMs": 27020,
+      "endMs": 29340,
+      "durationMs": 2320,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_9.mp3"
+    },
+    {
+      "sentenceId": "dmp_10",
+      "startMs": 29790,
+      "endMs": 32250,
+      "durationMs": 2460,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_10.mp3"
+    },
+    {
+      "sentenceId": "dmp_11",
+      "startMs": 32700,
+      "endMs": 35230,
+      "durationMs": 2530,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_11.mp3"
+    },
+    {
+      "sentenceId": "dmp_12",
+      "startMs": 35680,
+      "endMs": 37900,
+      "durationMs": 2220,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_12.mp3"
+    },
+    {
+      "sentenceId": "dmp_13",
+      "startMs": 38350,
+      "endMs": 42970,
+      "durationMs": 4620,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_13.mp3"
+    },
+    {
+      "sentenceId": "dmp_14",
+      "startMs": 43420,
+      "endMs": 46350,
+      "durationMs": 2930,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_14.mp3"
+    },
+    {
+      "sentenceId": "dmp_15",
+      "startMs": 46800,
+      "endMs": 48180,
+      "durationMs": 1380,
+      "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_15.mp3"
+    }
+  ]
+}
