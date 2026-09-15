@@ -93,9 +93,14 @@ export function NewContentToast() {
   const handleAction = () => {
     if (!latestNotif) return;
     saveReadNotificationId(latestNotif.id);
+    const actionUrl = latestNotif.actionUrl;
     handleDismiss();
-    if (latestNotif.actionUrl) {
-      router.push(latestNotif.actionUrl);
+    if (actionUrl) {
+      if (typeof window !== 'undefined' && window.location.pathname === actionUrl.split('?')[0]) {
+        window.history.pushState({}, '', actionUrl);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
+      router.push(actionUrl);
     }
   };
 

@@ -4054,7 +4054,7 @@ function EcouteLectureContent() {
     const urlParams = new URLSearchParams(window.location.search);
     const directId = urlParams.get('id') || searchParams.get('id');
     const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
-    const directEp = parseInt(urlParams.get('ep') || '0', 10);
+    const directEpParam = urlParams.get('ep') || searchParams.get('ep') || urlParams.get('episode') || searchParams.get('episode');
 
     if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos'].includes(directType)) {
       setActiveCategory(directType);
@@ -4064,7 +4064,7 @@ function EcouteLectureContent() {
 
     if (directId) {
       let matched = readingCatalog.find((item) => item.id === directId);
-      let targetEp = isNaN(directEp) ? 0 : directEp;
+      let targetEp = 0;
 
       if (!matched) {
         // Fallback: chercher si directId correspond à un épisode d'une série
@@ -4078,6 +4078,14 @@ function EcouteLectureContent() {
             }
           }
         }
+      } else if (matched.seriesEpisodes && directEpParam) {
+        const parsedNum = parseInt(directEpParam, 10);
+        if (!isNaN(parsedNum) && parsedNum >= 0 && parsedNum < matched.seriesEpisodes.length) {
+          targetEp = parsedNum;
+        } else {
+          const epIdx = matched.seriesEpisodes.findIndex((ep) => ep.id === directEpParam);
+          if (epIdx !== -1) targetEp = epIdx;
+        }
       }
 
       if (matched) {
@@ -4086,7 +4094,7 @@ function EcouteLectureContent() {
         setActiveEpisodeIndex(targetEp);
         setCurrentSentenceIndex(0);
         setIsPlayingAll(false);
-        window.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
       setActiveReading(null);
@@ -4102,7 +4110,7 @@ function EcouteLectureContent() {
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
       const type = params.get('type') as ContentType | null;
-      const ep = parseInt(params.get('ep') || '0', 10);
+      const epParam = params.get('ep') || params.get('episode');
 
       if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(type)) {
         setActiveCategory(type);
@@ -4110,7 +4118,7 @@ function EcouteLectureContent() {
 
       if (id) {
         let matched = readingCatalog.find((item) => item.id === id);
-        let targetEp = isNaN(ep) ? 0 : ep;
+        let targetEp = 0;
 
         if (!matched) {
           for (const item of readingCatalog) {
@@ -4123,11 +4131,21 @@ function EcouteLectureContent() {
               }
             }
           }
+        } else if (matched.seriesEpisodes && epParam) {
+          const parsedNum = parseInt(epParam, 10);
+          if (!isNaN(parsedNum) && parsedNum >= 0 && parsedNum < matched.seriesEpisodes.length) {
+            targetEp = parsedNum;
+          } else {
+            const epIdx = matched.seriesEpisodes.findIndex((e) => e.id === epParam);
+            if (epIdx !== -1) targetEp = epIdx;
+          }
         }
 
         if (matched) {
           setActiveReading(matched);
           setActiveEpisodeIndex(targetEp);
+          setCurrentSentenceIndex(0);
+          setIsPlayingAll(false);
         }
       } else {
         setActiveReading(null);
@@ -4696,17 +4714,22 @@ function EcouteLectureContent() {
           {/* SÉLECTEUR RAPIDE D'ÉPISODES DANS LE LECTEUR (POUR LES SÉRIES) */}
           {activeReading.seriesEpisodes && activeReading.seriesEpisodes.length > 1 && (
             <div className="w-full p-2.5 sm:p-3.5 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs">
-              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+              <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth py-1 px-1 touch-pan-x">
                 <span className="text-[11px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] shrink-0 mr-1 flex items-center gap-1">
                   {activeReading.type === 'videos' ? (
                     <>
                       <Video className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
                       <span>Épisodes :</span>
                     </>
+                  ) : activeReading.type === 'histoires' ? (
+                    <>
+                      <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+                      <span>Épisodes :</span>
+                    </>
                   ) : (
                     <>
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
-                      <span>Chapitres :</span>
+                      <span>Articles :</span>
                     </>
                   )}
                 </span>
@@ -4716,24 +4739,37 @@ function EcouteLectureContent() {
                     <button
                       key={ep.id}
                       type="button"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                        if (activeAudioRef.current) {
+                          activeAudioRef.current.pause();
+                          activeAudioRef.current = null;
+                        }
+                        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                          window.speechSynthesis.cancel();
+                        }
                         setActiveEpisodeIndex(eIdx);
                         setCurrentSentenceIndex(0);
                         setIsPlayingAll(false);
                         if (typeof window !== 'undefined') {
                           const url = new URL(window.location.href);
                           url.searchParams.set('ep', String(eIdx));
-                          window.history.pushState({}, '', url.toString());
+                          window.history.pushState({ readingId: activeReading.id, episodeIdx: eIdx }, '', url.toString());
+                          try {
+                            sessionStorage.setItem('chinoislingo_active_ep_idx', String(eIdx));
+                          } catch {
+                            // ignore
+                          }
                         }
                       }}
-                      className={`px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all shrink-0 btn-press cursor-pointer flex items-center gap-1.5 ${
+                      className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all shrink-0 btn-press cursor-pointer flex items-center gap-1.5 active:scale-95 ${
                         isCurrent
-                          ? 'bg-[#6200EE] text-white shadow-md'
+                          ? 'bg-[#6200EE] text-white shadow-md ring-2 ring-[#6200EE]/30'
                           : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC]'
                       }`}
                     >
-                      <span>{activeReading.type === 'videos' ? `Épisode ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
-                      <span className="opacity-70 font-normal truncate max-w-[120px] sm:max-w-[180px]">• {ep.titleFr}</span>
+                      <span>{activeReading.type === 'videos' || activeReading.type === 'histoires' ? `Épisode ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
+                      <span className="opacity-80 font-normal truncate max-w-[130px] sm:max-w-[190px]">• {ep.titleFr}</span>
                     </button>
                   );
                 })}
@@ -4956,8 +4992,8 @@ function EcouteLectureContent() {
                       </div>
                     )}
 
-                    {/* Differentiated Speaker Badges with Distinct Colors - ONLY for dialogues and videos */}
-                    {sent.speaker && (activeReading.type === 'dialogues' || activeReading.type === 'videos') && (
+                    {/* Differentiated Speaker Badges with Distinct Colors */}
+                    {sent.speaker && (
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className={`text-xs font-black ${
                           isViolet
@@ -5178,17 +5214,14 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* Grille des Cadres d'Épisodes / Articles (Ratio Carré 1:1 Standard) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Grille des Cadres d'Épisodes / Articles (Adaptative 1 à 4 colonnes) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {activeSeries.seriesEpisodes?.map((ep, eIdx) => {
               return (
                 <div
                   key={ep.id}
                   onClick={() => {
-                    setActiveEpisodeIndex(eIdx);
-                    setActiveReading(activeSeries);
-                    setCurrentSentenceIndex(0);
-                    setIsPlayingAll(false);
+                    openReading(activeSeries, eIdx);
                   }}
                   className="nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE] transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square"
                 >

@@ -87,6 +87,10 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
     markAsRead(notif.id);
     if (notif.actionUrl) {
       onClose();
+      if (typeof window !== 'undefined' && window.location.pathname === notif.actionUrl.split('?')[0]) {
+        window.history.pushState({}, '', notif.actionUrl);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
       router.push(notif.actionUrl);
     }
   };
