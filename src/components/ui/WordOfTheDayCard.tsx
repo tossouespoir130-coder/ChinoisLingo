@@ -51,25 +51,78 @@ export function WordOfTheDayCard() {
     }
   };
 
+  const activeAudioRef = React.useRef<HTMLAudioElement | null>(null);
+
   const playAudio = (text: string, isSentence = false, sentenceIdx = 0) => {
+    // 1. Stop any currently active audio or speech
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current.currentTime = 0;
+      activeAudioRef.current = null;
+    }
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      utterance.rate = isSentence ? (parseFloat(audioSpeed) || 0.82) : (parseFloat(audioSpeed) || 0.75);
+    }
 
+    if (isSentence) {
+      setPlayingSentenceIdx(sentenceIdx);
+    } else {
+      setIsPlaying(true);
+    }
+
+    const onFinish = () => {
       if (isSentence) {
-        setPlayingSentenceIdx(sentenceIdx);
-        utterance.onend = () => setPlayingSentenceIdx(null);
-        utterance.onerror = () => setPlayingSentenceIdx(null);
+        setPlayingSentenceIdx(null);
       } else {
-        setIsPlaying(true);
-        utterance.onend = () => setIsPlaying(false);
-        utterance.onerror = () => setIsPlaying(false);
+        setIsPlaying(false);
+      }
+      activeAudioRef.current = null;
+    };
+
+    // 2. Build candidate URLs for pre-rendered ElevenLabs v3 HD audio
+    const candidateUrls: string[] = [];
+    if (isSentence) {
+      candidateUrls.push(`/audio/wod/${dailyWord.id}_s${sentenceIdx + 1}.mp3`);
+    } else {
+      candidateUrls.push(`/audio/wod/${dailyWord.id}_word.mp3`);
+      candidateUrls.push(`/audio/vocab/${encodeURIComponent(dailyWord.hanzi)}.mp3`);
+      candidateUrls.push(`/audio/vocab/${dailyWord.hanzi}.mp3`);
+    }
+
+    const fallbackWebSpeech = () => {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        utterance.rate = isSentence ? (parseFloat(audioSpeed) || 0.82) : (parseFloat(audioSpeed) || 0.75);
+        utterance.onend = onFinish;
+        utterance.onerror = onFinish;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        onFinish();
+      }
+    };
+
+    const tryPlayCandidate = (idx: number) => {
+      if (idx >= candidateUrls.length) {
+        fallbackWebSpeech();
+        return;
       }
 
-      window.speechSynthesis.speak(utterance);
-    }
+      const audio = new Audio(candidateUrls[idx]);
+      audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+      activeAudioRef.current = audio;
+
+      audio.onended = onFinish;
+      audio.onerror = () => {
+        tryPlayCandidate(idx + 1);
+      };
+
+      audio.play().catch(() => {
+        tryPlayCandidate(idx + 1);
+      });
+    };
+
+    tryPlayCandidate(0);
   };
 
   const levelBadges = {
