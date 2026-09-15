@@ -5287,6 +5287,13 @@ function EcouteLectureContent() {
                 </span>
                 {activeReading.seriesEpisodes.map((ep, eIdx) => {
                   const isCurrent = activeEpisodeIndex === eIdx;
+                  const labelPrefix = activeReading.type === 'videos' 
+                    ? `Épisode ${ep.episodeNumber}` 
+                    : activeReading.type === 'histoires' 
+                    ? `Partie ${ep.episodeNumber}` 
+                    : `Article ${ep.episodeNumber}`;
+                  const cleanSubtitle = ep.titleFr.replace(/^(Partie|Épisode|Article)\s*\d+\s*:\s*/i, '').trim();
+
                   return (
                     <button
                       key={ep.id}
@@ -5320,8 +5327,10 @@ function EcouteLectureContent() {
                           : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC]'
                       }`}
                     >
-                      <span>{activeReading.type === 'videos' ? `Épisode ${ep.episodeNumber}` : activeReading.type === 'histoires' ? `Partie ${ep.episodeNumber}` : `Article ${ep.episodeNumber}`}</span>
-                      <span className="opacity-80 font-normal truncate max-w-[130px] sm:max-w-[190px]">• {ep.titleFr}</span>
+                      <span>{labelPrefix}</span>
+                      {cleanSubtitle && cleanSubtitle !== labelPrefix && (
+                        <span className="opacity-80 font-normal truncate max-w-[130px] sm:max-w-[190px]">• {cleanSubtitle}</span>
+                      )}
                     </button>
                   );
                 })}
