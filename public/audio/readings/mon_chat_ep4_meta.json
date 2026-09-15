@@ -3,35 +3,35 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/mon_chat_ep4.mp3",
-  "pauseBetweenSec": 0.6,
-  "totalDurationMs": 6480,
+  "pauseBetweenSec": 0.75,
+  "totalDurationMs": 7720,
   "sentences": [
     {
       "sentenceId": "mc_e4_1",
       "startMs": 0,
-      "endMs": 1910,
-      "durationMs": 1310,
+      "endMs": 2530,
+      "durationMs": 1780,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_1.mp3"
     },
     {
       "sentenceId": "mc_e4_2",
-      "startMs": 1910,
-      "endMs": 3580,
-      "durationMs": 1070,
+      "startMs": 2530,
+      "endMs": 4430,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_2.mp3"
     },
     {
       "sentenceId": "mc_e4_3",
-      "startMs": 3580,
-      "endMs": 5490,
+      "startMs": 4430,
+      "endMs": 6490,
       "durationMs": 1310,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_3.mp3"
     },
     {
       "sentenceId": "mc_e4_4",
-      "startMs": 5490,
-      "endMs": 6480,
-      "durationMs": 990,
+      "startMs": 6490,
+      "endMs": 7720,
+      "durationMs": 1230,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_4.mp3"
     }
   ]

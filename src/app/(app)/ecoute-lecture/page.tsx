@@ -1108,7 +1108,7 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Faites la connaissance de Wang Xiaoming, un jeune garçon de six ans, et de son adorable petit chat Xiaobai.',
-        imageUrl: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e1_1',
@@ -1288,7 +1288,7 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Wang Ming, un ami de huit ans, vient rendre visite à Wang Xiaoming à la maison avec son propre chat.',
-        imageUrl: 'https://images.unsplash.com/photo-1471286174890-9c112ffca56a?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80',
         sentences: [
           {
             id: 'mc_e5_1',
@@ -5242,101 +5242,6 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* ========================================================================= */}
-          {/* SECTION LES PERSONNAGES (CADRAGE CONTEXTUEL AVANT TRANSCRIPTION)          */}
-          {/* ========================================================================= */}
-          {displayedCharacters && displayedCharacters.length > 0 && (
-            <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
-              <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
-                <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
-                  <Users className="w-4 h-4" />
-                  <span>
-                    {activeReading.type === 'videos' 
-                      ? 'Les Personnages de la Série' 
-                      : activeReading.type === 'histoires' 
-                      ? 'Les Personnages de l’Histoire' 
-                      : 'Les Personnages du Dialogue'}
-                  </span>
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {displayedCharacters.map((char, cIdx) => {
-                  const isViolet = char.color === 'violet';
-                  const isTurquoise = char.color === 'turquoise';
-                  const isAmber = char.color === 'amber';
-                  const isPink = char.color === 'pink';
-
-                  return (
-                    <div
-                      key={cIdx}
-                      className={`p-4 rounded-2xl border transition-all ${
-                        isViolet
-                          ? 'bg-[#6200EE]/[0.03] dark:bg-[#6200EE]/10 border-[#6200EE]/20 hover:border-[#6200EE]/40'
-                          : isTurquoise
-                          ? 'bg-[#00897B]/[0.03] dark:bg-[#00897B]/10 border-[#00897B]/20 hover:border-[#00897B]/40'
-                          : isAmber
-                          ? 'bg-[#FFA000]/[0.05] dark:bg-[#FFA000]/10 border-[#FFA000]/25 hover:border-[#FFA000]/45'
-                          : isPink
-                          ? 'bg-[#E91E63]/[0.04] dark:bg-[#E91E63]/10 border-[#E91E63]/25 hover:border-[#E91E63]/45'
-                          : 'bg-[#FAFAFA] dark:bg-[#252525] border-[#E0E0E0] dark:border-[#333333]'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <div
-                            className={`w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs shrink-0 shadow-2xs ${
-                              isViolet
-                                ? 'bg-[#6200EE] text-white'
-                                : isTurquoise
-                                ? 'bg-[#00897B] text-white'
-                                : isAmber
-                                ? 'bg-[#F57C00] text-white'
-                                : isPink
-                                ? 'bg-[#E91E63] text-white'
-                                : 'bg-black/10 dark:bg-white/10 text-[#212121] dark:text-white'
-                            }`}
-                          >
-                            {char.name.charAt(0)}
-                          </div>
-                          <div className="min-w-0">
-                            <h4 className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
-                              {char.name}
-                              {char.pinyin && isPinyinVisible && (
-                                <span className="ml-1.5 text-xs font-semibold text-[#00796B] dark:text-[#03DAC5]">
-                                  ({char.pinyin})
-                                </span>
-                              )}
-                            </h4>
-                          </div>
-                        </div>
-
-                        <span
-                          className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0 ${
-                            isViolet
-                              ? 'bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/30'
-                              : isTurquoise
-                              ? 'bg-[#00897B]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/30'
-                              : isAmber
-                              ? 'bg-[#FFA000]/15 text-[#E65100] dark:text-[#FFB74D] border border-[#FFA000]/30'
-                              : isPink
-                              ? 'bg-[#E91E63]/15 text-[#E91E63] dark:text-[#F48FB1] border border-[#E91E63]/30'
-                              : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E]'
-                          }`}
-                        >
-                          {char.role}
-                        </span>
-                      </div>
-
-                      <p className="text-xs text-[#616161] dark:text-[#CCCCCC] leading-relaxed font-medium">
-                        {char.description}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
 
           {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
           <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm">
@@ -5609,6 +5514,102 @@ function EcouteLectureContent() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* SECTION LES PERSONNAGES (PLACÉE EN BAS AVANT LA VALIDATION)               */}
+          {/* ========================================================================= */}
+          {displayedCharacters && displayedCharacters.length > 0 && (
+            <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
+              <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
+                <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  <span>
+                    {activeReading.type === 'videos' 
+                      ? 'Les Personnages de la Série' 
+                      : activeReading.type === 'histoires' 
+                      ? 'Les Personnages de l’Histoire' 
+                      : 'Les Personnages du Dialogue'}
+                  </span>
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {displayedCharacters.map((char, cIdx) => {
+                  const isViolet = char.color === 'violet';
+                  const isTurquoise = char.color === 'turquoise';
+                  const isAmber = char.color === 'amber';
+                  const isPink = char.color === 'pink';
+
+                  return (
+                    <div
+                      key={cIdx}
+                      className={`p-4 rounded-2xl border transition-all ${
+                        isViolet
+                          ? 'bg-[#6200EE]/[0.03] dark:bg-[#6200EE]/10 border-[#6200EE]/20 hover:border-[#6200EE]/40'
+                          : isTurquoise
+                          ? 'bg-[#00897B]/[0.03] dark:bg-[#00897B]/10 border-[#00897B]/20 hover:border-[#00897B]/40'
+                          : isAmber
+                          ? 'bg-[#FFA000]/[0.05] dark:bg-[#FFA000]/10 border-[#FFA000]/25 hover:border-[#FFA000]/45'
+                          : isPink
+                          ? 'bg-[#E91E63]/[0.04] dark:bg-[#E91E63]/10 border-[#E91E63]/25 hover:border-[#E91E63]/45'
+                          : 'bg-[#FAFAFA] dark:bg-[#252525] border-[#E0E0E0] dark:border-[#333333]'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div
+                            className={`w-8 h-8 rounded-xl flex items-center justify-center font-black text-xs shrink-0 shadow-2xs ${
+                              isViolet
+                                ? 'bg-[#6200EE] text-white'
+                                : isTurquoise
+                                ? 'bg-[#00897B] text-white'
+                                : isAmber
+                                ? 'bg-[#F57C00] text-white'
+                                : isPink
+                                ? 'bg-[#E91E63] text-white'
+                                : 'bg-black/10 dark:bg-white/10 text-[#212121] dark:text-white'
+                            }`}
+                          >
+                            {char.name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
+                              {char.name}
+                              {char.pinyin && isPinyinVisible && (
+                                <span className="ml-1.5 text-xs font-semibold text-[#00796B] dark:text-[#03DAC5]">
+                                  ({char.pinyin})
+                                </span>
+                              )}
+                            </h4>
+                          </div>
+                        </div>
+
+                        <span
+                          className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider shrink-0 ${
+                            isViolet
+                              ? 'bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/30'
+                              : isTurquoise
+                              ? 'bg-[#00897B]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/30'
+                              : isAmber
+                              ? 'bg-[#FFA000]/15 text-[#E65100] dark:text-[#FFB74D] border border-[#FFA000]/30'
+                              : isPink
+                              ? 'bg-[#E91E63]/15 text-[#E91E63] dark:text-[#F48FB1] border border-[#E91E63]/30'
+                              : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#9E9E9E]'
+                          }`}
+                        >
+                          {char.role}
+                        </span>
+                      </div>
+
+                      <p className="text-xs text-[#616161] dark:text-[#CCCCCC] leading-relaxed font-medium">
+                        {char.description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
