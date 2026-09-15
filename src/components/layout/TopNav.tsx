@@ -9,7 +9,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { GlobalSearchModal } from './GlobalSearchModal';
 import { NotificationsModal } from './NotificationsModal';
 import { AuthModal } from '@/components/auth/AuthModal';
-import { fetchMergedNotifications } from '@/lib/services/notificationService';
+import { fetchMergedNotifications, saveAllReadNotificationIds, markAllNotificationsAsRead } from '@/lib/services/notificationService';
 
 const topTabs = [
   { name: 'Accueil', href: '/tableau-de-bord' },
@@ -147,9 +147,17 @@ export function TopNav() {
           {/* Interactive Notifications Bell -> Opens Notification Modal */}
           <button
             type="button"
-            onClick={() => {
+            onClick={async () => {
               setIsNotificationsOpen(true);
               setUnreadCount(0);
+              try {
+                const notifs = await fetchMergedNotifications();
+                const unreadIds = notifs.filter(n => !n.isRead).map(n => n.id);
+                if (unreadIds.length > 0) {
+                  saveAllReadNotificationIds(unreadIds);
+                  markAllNotificationsAsRead(unreadIds);
+                }
+              } catch {}
             }}
             className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center bg-white dark:bg-[#1E1E1E] text-[#757575] dark:text-[#A0A0A0] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:bg-slate-50 dark:hover:bg-[#252525] active:scale-90 transition-all shadow-xs btn-press"
             aria-label="Centre de notifications"

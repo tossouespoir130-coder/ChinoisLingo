@@ -22,12 +22,15 @@ interface NotificationsModalProps {
   onNotificationsChange?: (unreadCount: number) => void;
 }
 
-import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsAsRead } from '@/lib/services/notificationService';
+import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsAsRead, saveAllReadNotificationIds, saveReadNotificationId } from '@/lib/services/notificationService';
 
 export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: NotificationsModalProps) {
   const router = useRouter();
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'system'>('all');
+
+  const unreadCount = notifications.filter(n => !n.isRead).length;
+  const founderUnreadCount = notifications.filter(n => n.source === 'founder' && !n.isRead).length;
 
   // Load live notifications merged with persistent read status
   useEffect(() => {
@@ -52,9 +55,6 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
     };
   }, []);
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
-  const founderUnreadCount = notifications.filter(n => n.source === 'founder' && !n.isRead).length;
-
   useEffect(() => {
     if (isOpen) {
       if (onNotificationsChange) {
@@ -62,31 +62,31 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
       }
       const unreadIds = notifications.filter(n => !n.isRead).map(n => n.id);
       if (unreadIds.length > 0) {
-        const timer = setTimeout(() => {
-          markAllNotificationsAsRead(unreadIds);
-          setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
-        }, 500);
-        return () => clearTimeout(timer);
+        saveAllReadNotificationIds(unreadIds);
+        markAllNotificationsAsRead(unreadIds);
+        setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
       }
     }
-  }, [isOpen, notifications, onNotificationsChange]);
+  }, [isOpen]);
 
   const markAllAsRead = async () => {
     const allIds = notifications.map(n => n.id);
+    saveAllReadNotificationIds(allIds);
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
     if (onNotificationsChange) onNotificationsChange(0);
     await markAllNotificationsAsRead(allIds);
   };
 
   const markAsRead = async (id: string) => {
+    saveReadNotificationId(id);
     setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
     await markNotificationAsRead(id);
   };
 
   const handleAction = (notif: NotificationItem) => {
     markAsRead(notif.id);
+    onClose();
     if (notif.actionUrl) {
-      onClose();
       if (typeof window !== 'undefined' && window.location.pathname === notif.actionUrl.split('?')[0]) {
         window.history.pushState({}, '', notif.actionUrl);
         window.dispatchEvent(new PopStateEvent('popstate'));

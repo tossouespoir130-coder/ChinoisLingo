@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { NotificationItem } from '@/lib/data/notificationsData';
-import { fetchMergedNotifications, saveReadNotificationId } from '@/lib/services/notificationService';
+import { fetchMergedNotifications, saveReadNotificationId, markNotificationAsRead } from '@/lib/services/notificationService';
 import { X, Sparkles, Play, ArrowRight, Bell } from 'lucide-react';
 import {
   reserverEmplacement,
@@ -85,6 +85,7 @@ export function NewContentToast() {
         try {
           localStorage.setItem('chinoislingo_dismissed_content_toast', latestNotif.id);
           saveReadNotificationId(latestNotif.id);
+          markNotificationAsRead(latestNotif.id);
         } catch {}
       }
     }, 300);
@@ -93,6 +94,7 @@ export function NewContentToast() {
   const handleAction = () => {
     if (!latestNotif) return;
     saveReadNotificationId(latestNotif.id);
+    markNotificationAsRead(latestNotif.id);
     const actionUrl = latestNotif.actionUrl;
     handleDismiss();
     if (actionUrl) {
