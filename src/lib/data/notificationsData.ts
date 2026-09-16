@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_chanson_shinian',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Nouvelle chanson : Dix Ans\n十年 (HSK 3) 🎵',
+    message: 'Découvrez le chef-d’œuvre culte d’Eason Chan avec paroles synchronisées et traduction pour enrichir votre vocabulaire.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=chansons&id=chanson_shinian',
+    actionLabel: 'Écouter la chanson'
+  },
+  {
     id: 'notif_series_je_suis_xiaobai',
     source: 'founder',
     founderName: 'Espoir Chinois',
