@@ -1466,6 +1466,297 @@ export const readingCatalog: ReadingItem[] = [
     ]
   },
   {
+    id: 'series_je_suis_xiaobai',
+    titleFr: 'Je suis Xiaobai',
+    titleZh: '我是小白',
+    titlePinyin: 'Wǒ shì Xiǎobái',
+    type: 'histoires',
+    level: 'HSK 1',
+    duration: '5 parties',
+    description: 'Suivez les aventures du petit chat Xiaobai : sa vie en Chine, son meilleur ami Xiaohua, sa maman Li Yue et son amour pour le poisson.',
+    imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: 'Xiaobai',
+        nameZh: '小白',
+        pinyin: 'Xiǎobái',
+        role: 'Chaton blanc (1 an)',
+        description: 'Petit chat blanc curieux et joueur qui aime manger du poisson et habiter en Chine.',
+        color: 'amber'
+      },
+      {
+        name: 'Xiaohua',
+        nameZh: '小花',
+        pinyin: 'Xiǎohuā',
+        role: 'Ami chat (2 ans)',
+        description: 'Meilleur ami de Xiaobai avec qui il joue, regarde la télévision et fait des siestes.',
+        color: 'turquoise'
+      },
+      {
+        name: 'Li Yue',
+        nameZh: '李月',
+        pinyin: 'Lǐ Yuè',
+        role: 'Maman de Xiaobai (23 ans)',
+        description: 'Jeune femme attentionnée travaillant à l’hôpital qui prend soin de Xiaobai.',
+        color: 'pink'
+      }
+    ],
+    seriesEpisodes: [
+      {
+        id: 'je_suis_xiaobai_ep1',
+        episodeNumber: 1,
+        titleFr: 'Partie 1 : Je suis un chat',
+        titleZh: '第一篇：我是猫',
+        titlePinyin: 'Dì yī piān: Wǒ shì māo',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai se présente : son âge, ses goûts, son lieu de vie en Chine et ses nombreux amis.',
+        imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc (1 an)',
+            description: 'Petit chat blanc curieux et joueur qui aime le poisson.',
+            color: 'amber'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
+          { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
+          { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
+          { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
+          { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
+          { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
+          { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
+        ],
+        vocabulary: [
+          { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+          { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+          { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+          { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
+          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+          { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep2',
+        episodeNumber: 2,
+        titleFr: 'Partie 2 : Mon ami',
+        titleZh: '第二篇：我的朋友',
+        titlePinyin: 'Dì èr piān: Wǒ de péngyou',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai présente son grand ami Xiaohua, un chat de deux ans qui vit lui aussi en Chine.',
+        imageUrl: 'https://images.unsplash.com/photo-1513360309081-38f076278f94?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc',
+            description: 'Présente son ami avec enthousiasme.',
+            color: 'amber'
+          },
+          {
+            name: 'Xiaohua',
+            nameZh: '小花',
+            pinyin: 'Xiǎohuā',
+            role: 'Ami chat (2 ans)',
+            description: 'Un autre chat qui aime manger du poisson.',
+            color: 'turquoise'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e2_1', hanzi: '我有一个朋友。', pinyin: 'Wǒ yǒu yí gè péngyou.', french: 'J’ai un ami.' },
+          { id: 'jsx_e2_2', hanzi: '他也是一只猫。', pinyin: 'Tā yě释 yì zhī māo.', french: 'C’est aussi un chat.' },
+          { id: 'jsx_e2_3', hanzi: '他叫小花。', pinyin: 'Tā jiào Xiǎohuā.', french: 'Il s’appelle Xiaohua.' },
+          { id: 'jsx_e2_4', hanzi: '他两岁。', pinyin: 'Tā liǎng suì.', french: 'Il a deux ans.' },
+          { id: 'jsx_e2_5', hanzi: '他也喜欢吃鱼。', pinyin: 'Tā yě xǐhuan chī yú.', french: 'Il aime aussi manger du poisson.' },
+          { id: 'jsx_e2_6', hanzi: '他也住在中国。', pinyin: 'Tā yě zhù zài Zhōngguó.', french: 'Il habite aussi en Chine.' },
+        ],
+        vocabulary: [
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+          { hanzi: '也', pinyin: 'yě', french: 'aussi, également', role: 'Adverbe' },
+          { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour animaux', role: 'Classificateur' },
+          { hanzi: '两', pinyin: 'liǎng', french: 'deux (quantité)', role: 'Nombre' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
+          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+          { hanzi: '住', pinyin: 'zhù', french: 'habiter', role: 'Verbe' },
+          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep3',
+        episodeNumber: 3,
+        titleFr: 'Partie 3 : Moi et mon ami',
+        titleZh: '第三篇：我和我的朋友',
+        titlePinyin: 'Dì sān piān: Wǒ hé wǒ de péngyou',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Découvrez toutes les activités que Xiaobai et Xiaohua partagent ensemble chaque jour.',
+        imageUrl: 'https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc',
+            description: 'Joue et dort avec son meilleur ami.',
+            color: 'amber'
+          },
+          {
+            name: 'Xiaohua',
+            nameZh: '小花',
+            pinyin: 'Xiǎohuā',
+            role: 'Ami chat',
+            description: 'Partage ses repas et ses siestes avec Xiaobai.',
+            color: 'turquoise'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e3_1', hanzi: '我和小花是朋友。', pinyin: 'Wǒ hé Xiǎohuā shì péngyou.', french: 'Xiaohua et moi sommes amis.' },
+          { id: 'jsx_e3_2', hanzi: '我们一起玩。', pinyin: 'Wǒmen yìqǐ wán.', french: 'Nous jouons ensemble.' },
+          { id: 'jsx_e3_3', hanzi: '我们一起吃鱼。', pinyin: 'Wǒmen yìqǐ chī yú.', french: 'Nous mangeons du poisson ensemble.' },
+          { id: 'jsx_e3_4', hanzi: '我们一起喝水。', pinyin: 'Wǒmen yìqǐ hē shuǐ.', french: 'Nous buvons de l’eau ensemble.' },
+          { id: 'jsx_e3_5', hanzi: '我们一起看电视。', pinyin: 'Wǒmen yìqǐ kàn diànshì.', french: 'Nous regardons la télévision ensemble.' },
+          { id: 'jsx_e3_6', hanzi: '我们一起睡觉。', pinyin: 'Wǒmen yìqǐ shuìjiào.', french: 'Nous dormons ensemble.' },
+          { id: 'jsx_e3_7', hanzi: '我们是好朋友。', pinyin: 'Wǒmen shì hǎo péngyou.', french: 'Nous sommes de bons amis.' },
+        ],
+        vocabulary: [
+          { hanzi: '和', pinyin: 'hé', french: 'et, avec', role: 'Conjonction' },
+          { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
+          { hanzi: '玩', pinyin: 'wán', french: 'jouer, s’amuser', role: 'Verbe' },
+          { hanzi: '喝', pinyin: 'hē', french: 'boire', role: 'Verbe' },
+          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+          { hanzi: '看', pinyin: 'kàn', french: 'regarder, voir', role: 'Verbe' },
+          { hanzi: '电视', pinyin: 'diànshì', french: 'télévision', role: 'Nom commun' },
+          { hanzi: '睡觉', pinyin: 'shuìjiào', french: 'dormir', role: 'Verbe' },
+          { hanzi: '好', pinyin: 'hǎo', french: 'bon, bien', role: 'Adjectif' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep4',
+        episodeNumber: 4,
+        titleFr: 'Partie 4 : Ma maman',
+        titleZh: '第四篇：我的妈妈',
+        titlePinyin: 'Dì sì piān: Wǒ de māma',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai nous présente sa maman humaine Li Yue, qui travaille à l’hôpital et cuisine de délicieux plats chinois.',
+        imageUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton',
+            description: 'Aime profondément sa maman Li Yue.',
+            color: 'amber'
+          },
+          {
+            name: 'Li Yue',
+            nameZh: '李月',
+            pinyin: 'Lǐ Yuè',
+            role: 'Maman (23 ans)',
+            description: 'Professionnelle de santé à l’hôpital qui adore son chat Xiaobai.',
+            color: 'pink'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e4_1', hanzi: '我的妈妈叫李月。', pinyin: 'Wǒ de māma jiào Lǐ Yuè.', french: 'Ma maman s’appelle Li Yue.' },
+          { id: 'jsx_e4_2', hanzi: '她今年二十三岁。', pinyin: 'Tā jīnnián èrshísān suì.', french: 'Elle a vingt-trois ans cette année.' },
+          { id: 'jsx_e4_3', hanzi: '她在医院工作。', pinyin: 'Tā zài yīyuàn gōngzuò.', french: 'Elle travaille à l’hôpital.' },
+          { id: 'jsx_e4_4', hanzi: '她喜欢吃中国菜。', pinyin: 'Tā xǐhuan chī Zhōngguócài.', french: 'Elle aime manger de la cuisine chinoise.' },
+          { id: 'jsx_e4_5', hanzi: '她是中国人。', pinyin: 'Tā shì Zhōngguórén.', french: 'Elle est chinoise.' },
+          { id: 'jsx_e4_6', hanzi: '我很喜欢我的妈妈。', pinyin: 'Wǒ hěn xǐhuan wǒ de māma.', french: 'J’aime beaucoup ma maman.' },
+        ],
+        vocabulary: [
+          { hanzi: '妈妈', pinyin: 'māma', french: 'maman, mère', role: 'Nom commun' },
+          { hanzi: '今年', pinyin: 'jīnnián', french: 'cette année', role: 'Nom temporel' },
+          { hanzi: '医院', pinyin: 'yīyuàn', french: 'hôpital', role: 'Nom commun' },
+          { hanzi: '工作', pinyin: 'gōngzuò', french: 'travailler, travail', role: 'Verbe / Nom' },
+          { hanzi: '中国菜', pinyin: 'Zhōngguócài', french: 'cuisine chinoise', role: 'Nom commun' },
+          { hanzi: '中国人', pinyin: 'Zhōngguórén', french: 'Chinois(e)', role: 'Nom de nationalité' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep5',
+        episodeNumber: 5,
+        titleFr: 'Partie 5 : Je veux manger du poisson',
+        titleZh: '第五篇：我想吃鱼',
+        titlePinyin: 'Dì wǔ piān: Wǒ xiǎng chī yú',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai réclame son plat favori mais sa maman n’a qu’une pomme à lui offrir...',
+        imageUrl: 'https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton gourmand',
+            description: 'Refuse la pomme et ne rêve que de bon poisson frais.',
+            color: 'amber'
+          },
+          {
+            name: 'Li Yue',
+            nameZh: '李月',
+            pinyin: 'Lǐ Yuè',
+            role: 'Maman de Xiaobai',
+            description: 'Propose gentiment une pomme à son chat.',
+            color: 'pink'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e5_1', hanzi: '我想吃鱼。', pinyin: 'Wǒ xiǎng chī yú.', french: 'Je veux manger du poisson.' },
+          { id: 'jsx_e5_2', hanzi: '家里没有鱼。', pinyin: 'Jiā lǐ méiyǒu yú.', french: 'Il n’y a pas de poisson à la maison.' },
+          { id: 'jsx_e5_3', hanzi: '妈妈没有买鱼。', pinyin: 'Māma méiyǒu mǎi yú.', french: 'Maman n’a pas acheté de poisson.' },
+          { id: 'jsx_e5_4', hanzi: '妈妈给我一个苹果。', pinyin: 'Māma gěi wǒ yí gè píngguǒ.', french: 'Maman me donne une pomme.' },
+          { id: 'jsx_e5_5', hanzi: '我不想吃苹果。', pinyin: 'Wǒ bù xiǎng chī píngguǒ.', french: 'Je ne veux pas manger de pomme.' },
+          { id: 'jsx_e5_6', hanzi: '我不喜欢苹果。', pinyin: 'Wǒ bù xǐhuan píngguǒ.', french: 'Je n’aime pas les pommes.' },
+        ],
+        vocabulary: [
+          { hanzi: '想', pinyin: 'xiǎng', french: 'vouloir, avoir envie de', role: 'Verbe auxiliaire' },
+          { hanzi: '家里', pinyin: 'jiā lǐ', french: 'à la maison, chez soi', role: 'Locution de lieu' },
+          { hanzi: '没有', pinyin: 'méiyǒu', french: 'ne pas avoir, il n’y a pas', role: 'Verbe de négation' },
+          { hanzi: '给', pinyin: 'gěi', french: 'donner à', role: 'Verbe' },
+          { hanzi: '苹果', pinyin: 'píngguǒ', french: 'pomme', role: 'Nom commun' },
+        ]
+      }
+    ],
+    sentences: [
+      { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
+      { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
+      { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
+      { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
+      { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
+      { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
+      { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
+    ],
+    vocabulary: [
+      { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+      { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+      { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
+      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+      { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+      { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+      { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+      { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
+      { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+      { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
+      { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+    ]
+  },
+  {
     id: 'series_vie_chine_business',
     titleFr: 'Vie en Chine : Business',
     titleZh: '中国生活：商务',
@@ -3041,6 +3332,191 @@ export const readingCatalog: ReadingItem[] = [
     ],
   },
   {
+    id: 'dialogue_pas_professeur',
+    titleFr: 'Je ne suis pas professeur',
+    titleZh: '我不是老师',
+    titlePinyin: 'Wǒ bú shì lǎoshī',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Xiaoming et Xiaohong font connaissance et échangent sur leur statut d’étudiants.',
+    imageUrl: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '小明',
+        nameZh: '小明',
+        pinyin: 'Xiǎomíng',
+        role: 'Étudiant',
+        description: 'Pose des questions pour savoir qui est professeur et qui est étudiant.',
+        color: 'violet'
+      },
+      {
+        name: '小红',
+        nameZh: '小红',
+        pinyin: 'Xiǎohóng',
+        role: 'Étudiante',
+        description: 'Répond avec clarté et confirme qu’ils sont tous étudiants.',
+        color: 'turquoise'
+      }
+    ],
+    sentences: [
+      { id: 'dpp_1', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '你是老师吗？', pinyin: 'Nǐ shì lǎoshī ma?', french: 'Es-tu professeur ?' },
+      { id: 'dpp_2', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '我不是老师。', pinyin: 'Wǒ bú shì lǎoshī.', french: 'Je ne suis pas professeur.' },
+      { id: 'dpp_3', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '他是老师吗？', pinyin: 'Tā shì lǎoshī ma?', french: 'Est-il professeur ?' },
+      { id: 'dpp_4', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '他也不是老师。', pinyin: 'Tā yě bú shì lǎoshī.', french: 'Il n’est pas professeur non plus.' },
+      { id: 'dpp_5', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '你们是学生吗？', pinyin: 'Nǐmen shì xuésheng ma?', french: 'Êtes-vous étudiants ?' },
+      { id: 'dpp_6', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '是的，我们是学生。', pinyin: 'Shì de, wǒmen shì xuésheng.', french: 'Oui, nous sommes étudiants.' },
+    ],
+    vocabulary: [
+      { hanzi: '老师', pinyin: 'lǎoshī', french: 'professeur', role: 'Nom commun' },
+      { hanzi: '学生', pinyin: 'xuésheng', french: 'étudiant, élève', role: 'Nom commun' },
+      { hanzi: '不是', pinyin: 'bú shì', french: 'ne pas être', role: 'Locution' },
+      { hanzi: '也', pinyin: 'yě', french: 'aussi, non plus', role: 'Adverbe' },
+      { hanzi: '你们', pinyin: 'nǐmen', french: 'vous', role: 'Pronom personnel' },
+      { hanzi: '我们', pinyin: 'wǒmen', french: 'nous', role: 'Pronom personnel' },
+      { hanzi: '是的', pinyin: 'shì de', french: 'oui, en effet', role: 'Expression affirmative' },
+    ]
+  },
+  {
+    id: 'dialogue_qui_est_il',
+    titleFr: 'Qui est-il ?',
+    titleZh: '他是谁？',
+    titlePinyin: 'Tā shì shéi?',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Xiaoming demande à Xiaohong qui sont les personnes présentes à ses côtés sur le campus.',
+    imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '小明',
+        nameZh: '小明',
+        pinyin: 'Xiǎomíng',
+        role: 'Étudiant',
+        description: 'Curieux d’en savoir plus sur les amis de Xiaohong.',
+        color: 'violet'
+      },
+      {
+        name: '小红',
+        nameZh: '小红',
+        pinyin: 'Xiǎohóng',
+        role: 'Étudiante',
+        description: 'Présente ses amis Wang Ming et Li Yue avec gentillesse.',
+        color: 'turquoise'
+      }
+    ],
+    sentences: [
+      { id: 'dqi_1', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '他是谁？', pinyin: 'Tā shì shéi?', french: 'Qui est-il ?' },
+      { id: 'dqi_2', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '他是王明。', pinyin: 'Tā shì Wáng Míng.', french: 'C’est Wang Ming.' },
+      { id: 'dqi_3', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '她是谁？', pinyin: 'Tā shì shéi?', french: 'Qui est-elle ?' },
+      { id: 'dqi_4', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '她是李月。', pinyin: 'Tā shì Lǐ Yuè.', french: 'C’est Li Yue.' },
+      { id: 'dqi_5', speaker: '小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '王明是你朋友吗？', pinyin: 'Wáng Míng shì nǐ péngyou ma?', french: 'Wang Ming est-il ton ami ?' },
+      { id: 'dqi_6', speaker: '小红', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '是，他是我朋友。', pinyin: 'Shì, tā shì wǒ péngyou.', french: 'Oui, c’est mon ami.' },
+    ],
+    vocabulary: [
+      { hanzi: '谁', pinyin: 'shéi', french: 'qui', role: 'Pronom interrogatif' },
+      { hanzi: '她', pinyin: 'tā', french: 'elle', role: 'Pronom personnel' },
+      { hanzi: '朋友', pinyin: 'péngyou', french: 'ami(e)', role: 'Nom commun' },
+      { hanzi: '他', pinyin: 'tā', french: 'il, lui', role: 'Pronom personnel' },
+      { hanzi: '是', pinyin: 'shì', french: 'être, oui', role: 'Verbe' },
+    ]
+  },
+  {
+    id: 'dialogue_pas_le_mien',
+    titleFr: 'Ce n’est pas le mien',
+    titleZh: '这个不是我的',
+    titlePinyin: 'Zhège bú shì wǒ de',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Wang Xiaoyun aide Li Xiaoming à identifier ses affaires d’étude éparpillées sur la table.',
+    imageUrl: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '王小云',
+        nameZh: '王小云',
+        pinyin: 'Wáng Xiǎoyún',
+        role: 'Étudiante',
+        description: 'Aide son camarade à retrouver ses livres et son matériel de travail.',
+        color: 'turquoise'
+      },
+      {
+        name: '李小明',
+        nameZh: '李小明',
+        pinyin: 'Lǐ Xiǎomíng',
+        role: 'Étudiant',
+        description: 'Vérifie calmement la place de ses affaires sur son bureau.',
+        color: 'violet'
+      }
+    ],
+    sentences: [
+      { id: 'dpm_1', speaker: '王小云', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '这是你的书吗？', pinyin: 'Zhè shì nǐ de shū ma?', french: 'Est-ce ton livre ?' },
+      { id: 'dpm_2', speaker: '李小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '这不是我的书。', pinyin: 'Zhè bú shì wǒ de shū.', french: 'Ce n’est pas mon livre.' },
+      { id: 'dpm_3', speaker: '王小云', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '那是你的笔吗？', pinyin: 'Nà shì nǐ de bǐ ma?', french: 'Est-ce ton stylo là-bas ?' },
+      { id: 'dpm_4', speaker: '李小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '那也不是我的笔。', pinyin: 'Nà yě bú shì wǒ de bǐ.', french: 'Ce n’est pas non plus mon stylo.' },
+      { id: 'dpm_5', speaker: '王小云', speakerRole: 'Étudiante', speakerColor: 'turquoise', hanzi: '你的书在哪儿？', pinyin: 'Nǐ de shū zài nǎr?', french: 'Où est ton livre ?' },
+      { id: 'dpm_6', speaker: '李小明', speakerRole: 'Étudiant', speakerColor: 'violet', hanzi: '我的书在桌子上。', pinyin: 'Wǒ de shū zài zhuōzi shang.', french: 'Mon livre est sur la table.' },
+    ],
+    vocabulary: [
+      { hanzi: '这', pinyin: 'zhè', french: 'ceci, ce', role: 'Pronom démonstratif' },
+      { hanzi: '那', pinyin: 'nà', french: 'cela, ce... là-bas', role: 'Pronom démonstratif' },
+      { hanzi: '书', pinyin: 'shū', french: 'livre', role: 'Nom commun' },
+      { hanzi: '笔', pinyin: 'bǐ', french: 'stylo, crayon', role: 'Nom commun' },
+      { hanzi: '桌子', pinyin: 'zhuōzi', french: 'table, bureau', role: 'Nom commun' },
+      { hanzi: '不是', pinyin: 'bú shì', french: 'ne pas être', role: 'Locution' },
+      { hanzi: '在哪儿', pinyin: 'zài nǎr', french: 'où se trouver', role: 'Locution interrogative' },
+    ]
+  },
+  {
+    id: 'dialogue_acheter_fruits',
+    titleFr: 'Qu’est-ce que vous voulez acheter ?',
+    titleZh: '你要买什么？',
+    titlePinyin: 'Nǐ yào mǎi shénme?',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Un client se rend chez le marchand de fruits pour commander de bonnes pommes.',
+    imageUrl: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '售货员',
+        nameZh: '售货员',
+        pinyin: 'Shòuhuòyuán',
+        role: 'Vendeur',
+        description: 'Accueille les clients au marché de fruits et prend les commandes.',
+        color: 'turquoise'
+      },
+      {
+        name: '顾客',
+        nameZh: '顾客',
+        pinyin: 'Gùkè',
+        role: 'Client',
+        description: 'Vient acheter des fruits frais pour sa collation.',
+        color: 'violet'
+      }
+    ],
+    sentences: [
+      { id: 'daf_1', speaker: '售货员', speakerRole: 'Vendeur', speakerColor: 'turquoise', hanzi: '你要买什么？', pinyin: 'Nǐ yào mǎi shénme?', french: 'Que désirez-vous acheter ?' },
+      { id: 'daf_2', speaker: '顾客', speakerRole: 'Client', speakerColor: 'violet', hanzi: '我要买水果。', pinyin: 'Wǒ yào mǎi shuǐguǒ.', french: 'Je voudrais acheter des fruits.' },
+      { id: 'daf_3', speaker: '售货员', speakerRole: 'Vendeur', speakerColor: 'turquoise', hanzi: '你要买什么水果？', pinyin: 'Nǐ yào mǎi shénme shuǐguǒ?', french: 'Quels fruits voulez-vous acheter ?' },
+      { id: 'daf_4', speaker: '顾客', speakerRole: 'Client', speakerColor: 'violet', hanzi: '我要买苹果。', pinyin: 'Wǒ yào mǎi píngguǒ.', french: 'Je voudrais acheter des pommes.' },
+      { id: 'daf_5', speaker: '售货员', speakerRole: 'Vendeur', speakerColor: 'turquoise', hanzi: '你要买几个？', pinyin: 'Nǐ yào mǎi jǐ gè?', french: 'Combien en voulez-vous ?' },
+      { id: 'daf_6', speaker: '顾客', speakerRole: 'Client', speakerColor: 'violet', hanzi: '我要买三个。', pinyin: 'Wǒ yào mǎi sān gè.', french: 'Je voudrais en acheter trois.' },
+    ],
+    vocabulary: [
+      { hanzi: '买', pinyin: 'mǎi', french: 'acheter', role: 'Verbe' },
+      { hanzi: '什么', pinyin: 'shénme', french: 'quoi, quel', role: 'Pronom interrogatif' },
+      { hanzi: '水果', pinyin: 'shuǐguǒ', french: 'fruit', role: 'Nom commun' },
+      { hanzi: '苹果', pinyin: 'píngguǒ', french: 'pomme', role: 'Nom commun' },
+      { hanzi: '几', pinyin: 'jǐ', french: 'combien (petite quantité)', role: 'Pronom interrogatif' },
+      { hanzi: '个', pinyin: 'gè', french: 'classificateur général', role: 'Classificateur' },
+    ]
+  },
+  {
     id: 'dialogue_4',
     titleFr: 'Prendre le Taxi pour Aller à l’Hôtel',
     titleZh: '坐出租车去酒店',
@@ -4520,7 +4996,7 @@ export const readingCatalog: ReadingItem[] = [
     youtubeId: 'lxPybHy4SoM',
     description: 'Une somptueuse ballade poétique de Cheng Xiang sur la nostalgie du Jiangnan, les ruelles d’eau et les éclats éphémères de la vie.',
     imageUrl: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#6200EE] to-[#3700B3]',
+    iconBg: 'from-[#D81B60] to-[#880E4F]',
     sentences: [
       { id: 'ry_1', section: 'Couplet 1', speaker: 'Cheng Xiang', hanzi: '一人后来过江南', pinyin: 'Yì rén hòulái guò Jiāngnán', french: 'Seul, je suis venu plus tard dans le Sud du fleuve' },
       { id: 'ry_2', speaker: 'Cheng Xiang', hanzi: '烟雨锁惆怅', pinyin: 'Yānyǔ suǒ chóuchàng', french: 'La brume et la pluie enferment la mélancolie' },
@@ -5157,9 +5633,57 @@ function EcouteLectureContent() {
     }
   };
 
-  // Play continuous full audio with seamless line synchronization (0 hitch, 0 stutter, pure continuity)
+  // Cleanup audio playback when switching readings or episodes
   useEffect(() => {
-    if (!isPlayingAll) {
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAll(false);
+    setPlayingSentenceId(null);
+    setCurrentSentenceIndex(0);
+  }, [activeReading?.id, activeEpisodeIndex]);
+
+  // Fallback: Web Speech sequential synthesis if no audio master track
+  const playSequenceWebSpeech = (index: number) => {
+    if (index >= displayedSentences.length) {
+      setIsPlayingAll(false);
+      setPlayingSentenceId(null);
+      setCurrentSentenceIndex(0);
+      return;
+    }
+
+    const sent = displayedSentences[index];
+    if (!sent) return;
+
+    setCurrentSentenceIndex(index);
+    setPlayingSentenceId(sent.id);
+
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(sent.hanzi);
+      utterance.lang = 'zh-CN';
+      utterance.rate = parseFloat(audioSpeed) || 0.85;
+      utterance.onend = () => {
+        setTimeout(() => playSequenceWebSpeech(index + 1), 120);
+      };
+      utterance.onerror = () => {
+        setIsPlayingAll(false);
+        setPlayingSentenceId(null);
+      };
+      window.speechSynthesis.speak(utterance);
+    } else {
+      setIsPlayingAll(false);
+      setPlayingSentenceId(null);
+    }
+  };
+
+  // Synchronous Direct Play/Pause Trigger (100% Reliable on iOS Safari and Mobile Browsers)
+  const handleTogglePlayAll = () => {
+    if (isPlayingAll) {
+      setIsPlayingAll(false);
       if (activeAudioRef.current) {
         activeAudioRef.current.pause();
         activeAudioRef.current = null;
@@ -5173,26 +5697,31 @@ function EcouteLectureContent() {
 
     if (displayedSentences.length === 0) return;
 
-    // Master continuous track playback with ElevenLabs HD audio
-    if (readingAudioMeta && readingAudioMeta.fullAudioUrl && readingAudioMeta.sentences.length > 0) {
-      const audio = new Audio(readingAudioMeta.fullAudioUrl);
-      activeAudioRef.current = audio;
-      audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+    const primaryId = currentEpisode?.id || activeReading?.id;
+    const fallbackId = activeReading?.id;
+    const masterUrl = (readingAudioMeta && readingAudioMeta.fullAudioUrl) || `/audio/readings/${primaryId}.mp3`;
 
-      // Start from current sentence position if clicked in the middle
-      const initialSentence = displayedSentences[currentSentenceIndex];
-      const initialMeta = initialSentence
-        ? readingAudioMeta.sentences.find((s) => s.sentenceId === initialSentence.id)
-        : null;
-      if (initialMeta && initialMeta.startMs > 0) {
-        audio.currentTime = initialMeta.startMs / 1000;
-        setPlayingSentenceId(initialMeta.sentenceId);
-      } else if (readingAudioMeta.sentences[0]) {
-        setPlayingSentenceId(readingAudioMeta.sentences[0].sentenceId);
-      }
+    // Direct synchronous instantiation unlocks mobile WebKit playback policies
+    const audio = new Audio(masterUrl);
+    activeAudioRef.current = audio;
+    audio.playbackRate = parseFloat(audioSpeed) || 1.0;
 
-      const onTimeUpdate = () => {
-        const currentMs = audio.currentTime * 1000;
+    const initialSentence = displayedSentences[currentSentenceIndex];
+    const initialMeta = initialSentence && readingAudioMeta
+      ? readingAudioMeta.sentences.find((s) => s.sentenceId === initialSentence.id)
+      : null;
+    if (initialMeta && initialMeta.startMs > 0) {
+      audio.currentTime = initialMeta.startMs / 1000;
+      setPlayingSentenceId(initialMeta.sentenceId);
+    } else if (readingAudioMeta?.sentences?.[0]) {
+      setPlayingSentenceId(readingAudioMeta.sentences[0].sentenceId);
+    } else if (displayedSentences[0]) {
+      setPlayingSentenceId(displayedSentences[0].id);
+    }
+
+    const onTimeUpdate = () => {
+      const currentMs = audio.currentTime * 1000;
+      if (readingAudioMeta?.sentences) {
         let matched: typeof readingAudioMeta.sentences[0] | null = null;
         for (let i = 0; i < readingAudioMeta.sentences.length; i++) {
           const s = readingAudioMeta.sentences[i];
@@ -5207,84 +5736,39 @@ function EcouteLectureContent() {
             setCurrentSentenceIndex(idx);
           }
         }
-      };
-
-      const onEnded = () => {
-        setIsPlayingAll(false);
-        setPlayingSentenceId(null);
-        setCurrentSentenceIndex(0);
-        activeAudioRef.current = null;
-      };
-
-      const onError = () => {
-        // Fallback to Web Speech sequence if continuous master file fails
-        playSequenceWebSpeech(0);
-      };
-
-      audio.addEventListener('timeupdate', onTimeUpdate);
-      audio.addEventListener('ended', onEnded);
-      audio.addEventListener('error', onError);
-
-      audio.play().catch(() => {
-        onError();
-      });
-
-      return () => {
-        audio.removeEventListener('timeupdate', onTimeUpdate);
-        audio.removeEventListener('ended', onEnded);
-        audio.removeEventListener('error', onError);
-        audio.pause();
-        if (activeAudioRef.current === audio) {
-          activeAudioRef.current = null;
-        }
-      };
-    }
-
-    // Fallback: Web Speech sequential synthesis if no ElevenLabs master track
-    let cancelSpeech = false;
-    function playSequenceWebSpeech(index: number) {
-      if (cancelSpeech || index >= displayedSentences.length) {
-        setIsPlayingAll(false);
-        setPlayingSentenceId(null);
-        setCurrentSentenceIndex(0);
-        return;
-      }
-
-      const sent = displayedSentences[index];
-      if (!sent) return;
-
-      setCurrentSentenceIndex(index);
-      setPlayingSentenceId(sent.id);
-
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(sent.hanzi);
-        utterance.lang = 'zh-CN';
-        utterance.rate = parseFloat(audioSpeed) || 0.85;
-        utterance.onend = () => {
-          if (!cancelSpeech) {
-            setTimeout(() => playSequenceWebSpeech(index + 1), 100);
-          }
-        };
-        utterance.onerror = () => {
-          setIsPlayingAll(false);
-          setPlayingSentenceId(null);
-        };
-        window.speechSynthesis.speak(utterance);
-      } else {
-        setIsPlayingAll(false);
-        setPlayingSentenceId(null);
-      }
-    }
-
-    playSequenceWebSpeech(currentSentenceIndex);
-
-    return () => {
-      cancelSpeech = true;
-      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
       }
     };
-  }, [isPlayingAll, readingAudioMeta, displayedSentences, audioSpeed, setCurrentSentenceIndex]);
+
+    const onEnded = () => {
+      setIsPlayingAll(false);
+      setPlayingSentenceId(null);
+      setCurrentSentenceIndex(0);
+      activeAudioRef.current = null;
+    };
+
+    const onError = () => {
+      if (fallbackId && fallbackId !== primaryId && masterUrl !== `/audio/readings/${fallbackId}.mp3`) {
+        const fallbackAudio = new Audio(`/audio/readings/${fallbackId}.mp3`);
+        activeAudioRef.current = fallbackAudio;
+        fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
+        fallbackAudio.addEventListener('timeupdate', onTimeUpdate);
+        fallbackAudio.addEventListener('ended', onEnded);
+        fallbackAudio.play().catch(() => playSequenceWebSpeech(0));
+      } else {
+        playSequenceWebSpeech(0);
+      }
+    };
+
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('ended', onEnded);
+    audio.addEventListener('error', onError);
+
+    setIsPlayingAll(true);
+
+    audio.play().catch(() => {
+      onError();
+    });
+  };
 
   // Auto-scroll synchronized with audio reading sequence
   useEffect(() => {
@@ -5565,17 +6049,7 @@ function EcouteLectureContent() {
 
                 {/* Main Play / Pause Audio Button */}
                 <button
-                  onClick={() => {
-                    if (isPlayingAll) {
-                      setIsPlayingAll(false);
-                      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-                        window.speechSynthesis.cancel();
-                      }
-                      setPlayingSentenceId(null);
-                    } else {
-                      setIsPlayingAll(true);
-                    }
-                  }}
+                  onClick={handleTogglePlayAll}
                   type="button"
                   className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs btn-press cursor-pointer ${
                     isPlayingAll

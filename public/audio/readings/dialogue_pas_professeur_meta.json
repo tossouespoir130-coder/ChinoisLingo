@@ -1,0 +1,52 @@
+{
+  "contentId": "dialogue_pas_professeur",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_pas_professeur.mp3",
+  "pauseBetweenSec": 0.45,
+  "totalDurationMs": 10270,
+  "sentences": [
+    {
+      "sentenceId": "dpp_1",
+      "startMs": 0,
+      "endMs": 1250,
+      "durationMs": 1250,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_1.mp3"
+    },
+    {
+      "sentenceId": "dpp_2",
+      "startMs": 1700,
+      "endMs": 2980,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_2.mp3"
+    },
+    {
+      "sentenceId": "dpp_3",
+      "startMs": 3430,
+      "endMs": 4710,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_3.mp3"
+    },
+    {
+      "sentenceId": "dpp_4",
+      "startMs": 5160,
+      "endMs": 6600,
+      "durationMs": 1440,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_4.mp3"
+    },
+    {
+      "sentenceId": "dpp_5",
+      "startMs": 7050,
+      "endMs": 8300,
+      "durationMs": 1250,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_5.mp3"
+    },
+    {
+      "sentenceId": "dpp_6",
+      "startMs": 8750,
+      "endMs": 10450,
+      "durationMs": 1700,
+      "audioUrl": "/audio/readings/dialogue_pas_professeur_dpp_6.mp3"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "contentId": "dialogue_acheter_fruits",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_acheter_fruits.mp3",
+  "pauseBetweenSec": 0.45,
+  "totalDurationMs": 10270,
+  "sentences": [
+    {
+      "sentenceId": "daf_1",
+      "startMs": 0,
+      "endMs": 1330,
+      "durationMs": 1330,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_1.mp3"
+    },
+    {
+      "sentenceId": "daf_2",
+      "startMs": 1780,
+      "endMs": 3160,
+      "durationMs": 1380,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_2.mp3"
+    },
+    {
+      "sentenceId": "daf_3",
+      "startMs": 3610,
+      "endMs": 5130,
+      "durationMs": 1520,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_3.mp3"
+    },
+    {
+      "sentenceId": "daf_4",
+      "startMs": 5580,
+      "endMs": 6910,
+      "durationMs": 1330,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_4.mp3"
+    },
+    {
+      "sentenceId": "daf_5",
+      "startMs": 7360,
+      "endMs": 8690,
+      "durationMs": 1330,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_5.mp3"
+    },
+    {
+      "sentenceId": "daf_6",
+      "startMs": 9140,
+      "endMs": 10420,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_6.mp3"
+    }
+  ]
+}

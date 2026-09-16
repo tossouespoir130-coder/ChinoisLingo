@@ -1,0 +1,52 @@
+{
+  "contentId": "dialogue_pas_le_mien",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_pas_le_mien.mp3",
+  "pauseBetweenSec": 0.45,
+  "totalDurationMs": 10480,
+  "sentences": [
+    {
+      "sentenceId": "dpm_1",
+      "startMs": 0,
+      "endMs": 1380,
+      "durationMs": 1380,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_1.mp3"
+    },
+    {
+      "sentenceId": "dpm_2",
+      "startMs": 1830,
+      "endMs": 3210,
+      "durationMs": 1380,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_2.mp3"
+    },
+    {
+      "sentenceId": "dpm_3",
+      "startMs": 3660,
+      "endMs": 5040,
+      "durationMs": 1380,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_3.mp3"
+    },
+    {
+      "sentenceId": "dpm_4",
+      "startMs": 5490,
+      "endMs": 6770,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_4.mp3"
+    },
+    {
+      "sentenceId": "dpm_5",
+      "startMs": 7220,
+      "endMs": 8550,
+      "durationMs": 1330,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_5.mp3"
+    },
+    {
+      "sentenceId": "dpm_6",
+      "startMs": 9000,
+      "endMs": 10620,
+      "durationMs": 1620,
+      "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_6.mp3"
+    }
+  ]
+}

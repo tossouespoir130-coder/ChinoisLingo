@@ -15,6 +15,34 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_series_je_suis_xiaobai',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouvelle série : Je suis Xiaobai\n我是小白 (HSK 1) 📖',
+    message: 'Suivez les 5 parties du petit chat Xiaobai racontées doucement par la Narratrice pour les débutants.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_je_suis_xiaobai&episode=je_suis_xiaobai_ep1',
+    actionLabel: 'Découvrir la série'
+  },
+  {
+    id: 'notif_nouveaux_dialogues_hsk1',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: '4 Nouveaux dialogues HSK 1 pour débutant\n日常对话 🎬',
+    message: 'Entraînez-vous avec 4 dialogues simples et vivants de la vie quotidienne pour progresser pas à pas.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_pas_professeur',
+    actionLabel: 'Écouter les dialogues'
+  },
+  {
     id: 'notif_dialogue_mon_passeport',
     source: 'founder',
     founderName: 'Espoir Chinois',

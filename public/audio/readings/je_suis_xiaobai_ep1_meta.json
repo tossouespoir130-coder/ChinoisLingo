@@ -1,0 +1,60 @@
+{
+  "contentId": "je_suis_xiaobai_ep1",
+  "aliases": [
+    "series_je_suis_xiaobai"
+  ],
+  "type": "histoire",
+  "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep1.mp3",
+  "totalDurationMs": 14110,
+  "sentences": [
+    {
+      "sentenceId": "jsx_e1_1",
+      "startMs": 0,
+      "endMs": 1780,
+      "durationMs": 1780,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_1.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_2",
+      "startMs": 1580,
+      "endMs": 3603,
+      "durationMs": 2023,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_2.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_3",
+      "startMs": 3403,
+      "endMs": 5344,
+      "durationMs": 1941,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_3.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_4",
+      "startMs": 5144,
+      "endMs": 7701,
+      "durationMs": 2557,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_4.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_5",
+      "startMs": 7501,
+      "endMs": 9965,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_5.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_6",
+      "startMs": 9765,
+      "endMs": 12485,
+      "durationMs": 2720,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_6.mp3"
+    },
+    {
+      "sentenceId": "jsx_e1_7",
+      "startMs": 12285,
+      "endMs": 14110,
+      "durationMs": 1825,
+      "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_7.mp3"
+    }
+  ]
+}

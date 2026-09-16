@@ -1,0 +1,52 @@
+{
+  "contentId": "dialogue_qui_est_il",
+  "aliases": [],
+  "type": "dialogue",
+  "fullAudioUrl": "/audio/readings/dialogue_qui_est_il.mp3",
+  "pauseBetweenSec": 0.45,
+  "totalDurationMs": 9670,
+  "sentences": [
+    {
+      "sentenceId": "dqi_1",
+      "startMs": 0,
+      "endMs": 1100,
+      "durationMs": 1100,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_1.mp3"
+    },
+    {
+      "sentenceId": "dqi_2",
+      "startMs": 1550,
+      "endMs": 2750,
+      "durationMs": 1200,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_2.mp3"
+    },
+    {
+      "sentenceId": "dqi_3",
+      "startMs": 3200,
+      "endMs": 4220,
+      "durationMs": 1020,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_3.mp3"
+    },
+    {
+      "sentenceId": "dqi_4",
+      "startMs": 4670,
+      "endMs": 5820,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_4.mp3"
+    },
+    {
+      "sentenceId": "dqi_5",
+      "startMs": 6270,
+      "endMs": 7760,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_5.mp3"
+    },
+    {
+      "sentenceId": "dqi_6",
+      "startMs": 8210,
+      "endMs": 9880,
+      "durationMs": 1670,
+      "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_6.mp3"
+    }
+  ]
+}
