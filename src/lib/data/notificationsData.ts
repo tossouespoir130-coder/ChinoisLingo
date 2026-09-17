@@ -15,6 +15,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_chanson_jinshengyuan',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Nouvelle chanson : Le Destin de cette Vie\n今生缘 (HSK 4) 🎵',
+    message: 'Découvrez la ballade folk culte de Chuanzi sur la fraternité et le destin avec paroles synchronisées et traduction.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=chansons&id=chanson_jinshengyuan',
+    actionLabel: 'Écouter la chanson'
+  },
+  {
     id: 'notif_chanson_shinian',
     source: 'founder',
     founderName: 'Espoir Chinois',

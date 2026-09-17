@@ -7,6 +7,7 @@ import { TopNav } from '@/components/layout/TopNav';
 import { MobileTabBar } from '@/components/layout/MobileTabBar';
 import { SrsReminderToast } from '@/components/layout/SrsReminderToast';
 import { NewContentToast } from '@/components/layout/NewContentToast';
+import { StudyTimeTracker } from '@/components/layout/StudyTimeTracker';
 import { BanniereBonus } from '@/components/subscription/BanniereBonus';
 import { Sun, Moon } from 'lucide-react';
 
@@ -75,6 +76,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
             {/* Pop-up Toast Nouveau Contenu Ajouté (Xiao Li, Formations, etc.) */}
             <NewContentToast />
+
+            {/* Suivi continu et temps réel du temps d'étude effectif */}
+            <StudyTimeTracker />
 
             {/* Theme Switcher */}
             <ContainerThemeSwitch />

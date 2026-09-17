@@ -25,10 +25,14 @@ export async function GET(requete: Request) {
 
   let requeteSql = admin
     .from('profiles')
-    .select('id, full_name, username, email, created_at, last_sign_in_at, total_login_days, current_period_end, subscription_plan, role', {
-      count: 'exact',
-    })
-    .order('created_at', { ascending: false })
+    .select(
+      'id, full_name, username, email, created_at, last_sign_in_at, last_active_date, streak_days, total_login_days, current_period_end, subscription_plan, role',
+      { count: 'exact' }
+    )
+    .order('role', { ascending: true, nullsFirst: false })
+    .order('total_login_days', { ascending: false, nullsFirst: false })
+    .order('streak_days', { ascending: false, nullsFirst: false })
+    .order('last_sign_in_at', { ascending: false, nullsFirst: false })
     .range((page - 1) * PAR_PAGE, page * PAR_PAGE - 1);
 
   if (recherche) {
@@ -49,15 +53,16 @@ export async function GET(requete: Request) {
 
   const maintenant = Date.now();
 
-  return NextResponse.json({
-    utilisateurs: (data ?? []).map((u) => ({
+  const utilisateurs = (data ?? []).map((u) => {
+    const joursActifs = Math.max(u.total_login_days || 0, u.streak_days || 0, 1);
+    return {
       id: u.id,
       nom: u.full_name || u.username || '—',
       email: u.email ?? '—',
       inscritLe: u.created_at,
-      derniereConnexion: u.last_sign_in_at || u.created_at,
-      joursConnexion: u.total_login_days || 1,
-      role: u.role,
+      derniereConnexion: u.last_sign_in_at || u.last_active_date || u.created_at,
+      joursConnexion: joursActifs,
+      role: u.role || 'user',
       // Le statut est recalculé ici plutôt que lu dans subscription_status :
       // la date de fin de période est la seule source fiable.
       premium: u.current_period_end
@@ -66,7 +71,33 @@ export async function GET(requete: Request) {
       plan: u.subscription_plan,
       // Nécessaire au récapitulatif « avant / après » de la modale.
       finPeriode: u.current_period_end,
-    })),
+    };
+  });
+
+  // Tri strict :
+  // 1. Tous les administrateurs (role === 'admin') TOUJOURS en premier (en haut)
+  // 2. Entre administrateurs : du plus grand nombre de jours actifs au plus petit (décroissant)
+  // 3. Pour tous les autres utilisateurs : du plus grand nombre de jours actifs au plus petit (décroissant)
+  utilisateurs.sort((a, b) => {
+    const aIsAdmin = a.role === 'admin';
+    const bIsAdmin = b.role === 'admin';
+
+    if (aIsAdmin && !bIsAdmin) return -1;
+    if (!aIsAdmin && bIsAdmin) return 1;
+
+    // Même rang (les 2 admins ou les 2 utilisateurs) : ordre décroissant des jours actifs
+    if (b.joursConnexion !== a.joursConnexion) {
+      return b.joursConnexion - a.joursConnexion;
+    }
+
+    // En cas d'égalité : dernière connexion la plus récente en premier
+    const timeA = a.derniereConnexion ? new Date(a.derniereConnexion).getTime() : 0;
+    const timeB = b.derniereConnexion ? new Date(b.derniereConnexion).getTime() : 0;
+    return timeB - timeA;
+  });
+
+  return NextResponse.json({
+    utilisateurs,
     total: count ?? 0,
     page,
     parPage: PAR_PAGE,

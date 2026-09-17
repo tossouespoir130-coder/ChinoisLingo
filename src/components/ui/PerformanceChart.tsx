@@ -17,18 +17,51 @@ export function PerformanceChart({ chartData }: PerformanceChartProps) {
   useEffect(() => {
     if (chartData) {
       setRealStats(chartData);
-      return;
+    } else {
+      let isMounted = true;
+      fetchRealDashboardStats().then((res) => {
+        if (isMounted && res?.chartData) {
+          setRealStats(res.chartData);
+        }
+      });
+      return () => {
+        isMounted = false;
+      };
     }
-    let isMounted = true;
-    fetchRealDashboardStats().then((res) => {
-      if (isMounted && res?.chartData) {
-        setRealStats(res.chartData);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
   }, [chartData]);
+
+  // Écoute en direct des minutes d'étude effectives trackées
+  useEffect(() => {
+    const handleStudyUpdate = (e: CustomEvent<{ dayMinutes: number }>) => {
+      const dayMinutes = e.detail?.dayMinutes;
+      if (typeof dayMinutes !== 'number') return;
+
+      const JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+      const todayLabel = JOURS[new Date().getDay()];
+
+      setRealStats((prev) => {
+        if (!prev) return prev;
+        const newWeek = prev.week.map((p) => {
+          if (p.label === todayLabel) {
+            return {
+              ...p,
+              studyTimeMinutes: Math.max(p.studyTimeMinutes, dayMinutes),
+              studyTimeHours: Number((Math.max(p.studyTimeMinutes, dayMinutes) / 60).toFixed(1)),
+            };
+          }
+          return p;
+        });
+
+        return {
+          ...prev,
+          week: newWeek,
+        };
+      });
+    };
+
+    window.addEventListener('chinoislingo_study_time_updated', handleStudyUpdate as EventListener);
+    return () => window.removeEventListener('chinoislingo_study_time_updated', handleStudyUpdate as EventListener);
+  }, []);
 
   interface ChartPoint {
     label: string;

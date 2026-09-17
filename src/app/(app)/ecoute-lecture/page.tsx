@@ -36,6 +36,7 @@ import { useAbonnement } from '@/lib/payments/useAbonnement';
 import { contenuAccessible } from '@/lib/payments/acces';
 import { EcranPremium, BadgeVerrou } from '@/components/subscription/EcranPremium';
 import { Portal } from '@/components/ui/Portal';
+import { recordOpenedActivity } from '@/lib/services/activityTrackingService';
 
 export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts';
 
@@ -5346,6 +5347,47 @@ function EcouteLectureContent() {
     setCurrentSentenceIndex(0);
     setIsPlayingAll(false);
 
+    // Enregistrer l'activité immédiatement avec le vrai titre pour la section Continuer
+    const currentEp = item.seriesEpisodes?.[episodeIdx];
+    const catBadge =
+      item.type === 'chansons'
+        ? 'CHANSON IMMERSIVE'
+        : item.type === 'dialogues'
+          ? 'ORAL & IMMERSION'
+          : item.type === 'articles'
+            ? 'LECTURE BILINGUE'
+            : item.type === 'histoires'
+              ? 'HISTOIRE IMMERSIVE'
+              : item.type === 'podcasts'
+                ? 'PODCAST AUDIO'
+                : 'VIDÉO IMMERSIVE';
+
+    const catName =
+      item.type === 'chansons'
+        ? 'Chanson'
+        : item.type === 'dialogues'
+          ? 'Dialogue'
+          : item.type === 'articles'
+            ? 'Article'
+            : item.type === 'histoires'
+              ? 'Histoire'
+              : item.type === 'podcasts'
+                ? 'Podcast'
+                : 'Vidéo';
+
+    recordOpenedActivity({
+      id: currentEp ? currentEp.id : item.id,
+      title: currentEp ? currentEp.titleFr : item.titleFr,
+      category: catName as any,
+      categoryBadge: catBadge,
+      hskLevel: item.level,
+      duration: currentEp ? currentEp.duration : item.duration,
+      thumbnailUrl: currentEp?.imageUrl || item.imageUrl || (item.youtubeId ? `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg` : ''),
+      href: `/ecoute-lecture?type=${item.type}&id=${item.id}${episodeIdx > 0 ? `&ep=${episodeIdx}` : ''}`,
+      progressPercentage: completedItemIds.has(item.id) ? 100 : 35,
+      isCompleted: completedItemIds.has(item.id),
+    });
+
     // La vidéo est en haut de la page : on y remonte, sinon la lecture
     // s'ouvre au milieu des paroles, à la hauteur où on avait laissé la liste.
     if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -5581,8 +5623,50 @@ function EcouteLectureContent() {
       return next;
     });
 
+    const item = readingCatalog.find((r) => r.id === id);
+
+    if (item && !isCurrentlyCompleted) {
+      const catBadge =
+        item.type === 'chansons'
+          ? 'CHANSON IMMERSIVE'
+          : item.type === 'dialogues'
+            ? 'ORAL & IMMERSION'
+            : item.type === 'articles'
+              ? 'LECTURE BILINGUE'
+              : item.type === 'histoires'
+                ? 'HISTOIRE IMMERSIVE'
+                : item.type === 'podcasts'
+                  ? 'PODCAST AUDIO'
+                  : 'VIDÉO IMMERSIVE';
+
+      const catName =
+        item.type === 'chansons'
+          ? 'Chanson'
+          : item.type === 'dialogues'
+            ? 'Dialogue'
+            : item.type === 'articles'
+              ? 'Article'
+              : item.type === 'histoires'
+                ? 'Histoire'
+                : item.type === 'podcasts'
+                  ? 'Podcast'
+                  : 'Vidéo';
+
+      recordOpenedActivity({
+        id: item.id,
+        title: item.titleFr,
+        category: catName as any,
+        categoryBadge: catBadge,
+        hskLevel: item.level,
+        duration: item.duration,
+        thumbnailUrl: item.imageUrl || (item.youtubeId ? `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg` : ''),
+        href: `/ecoute-lecture?type=${item.type}&id=${item.id}`,
+        progressPercentage: 100,
+        isCompleted: true,
+      });
+    }
+
     if (user) {
-      const item = readingCatalog.find(r => r.id === id);
       const contentType = item?.type || 'articles';
       await toggleContentCompletedInDb(id, contentType, isCurrentlyCompleted);
     }

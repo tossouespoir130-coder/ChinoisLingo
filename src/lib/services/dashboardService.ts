@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/client';
 import { fetchUserSavedWords } from './vocabularyService';
 import { fetchContentProgress, fetchCourseProgress } from './progressService';
 import { fetchUserProfile } from './profileService';
+import { getLocalRecentActivities, resolveContentDetails } from './activityTrackingService';
 
 export interface RealDashboardStats {
   streakDays: number;
@@ -121,100 +122,116 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     },
   };
 
-  // Recent Real Activities
-  const recentActivities: RealDashboardStats['recentActivities'] = [];
+  // Recent Real Activities (No generic fallback text)
+  let recentActivities: RealDashboardStats['recentActivities'] = [];
 
   const completedLessonKeys = Object.keys(courseProgress).filter((k) => courseProgress[k]);
   const completedContentKeys = Object.keys(contentProgress).filter((k) => contentProgress[k]?.isCompleted);
 
-  // If user has real activities in database
-  if (completedLessonKeys.length > 0 || completedContentKeys.length > 0) {
-    completedLessonKeys.slice(0, 2).forEach((lessonId) => {
+  // 1. Priorité absolue aux activités récemment ouvertes ou étudiées localement
+  const localActivities = getLocalRecentActivities();
+  const seenIds = new Set<string>();
+
+  localActivities.forEach((act) => {
+    if (!seenIds.has(act.id)) {
+      seenIds.add(act.id);
       recentActivities.push({
-        id: `course-${lessonId}`,
-        title: `Formation Vidéo`,
-        category: 'Formation',
-        categoryBadge: 'FORMATION VIDÉO',
-        hskLevel: 'Tous Niveaux',
-        progressPercentage: 100,
-        duration: '15 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
-        href: `/formation?lesson=${lessonId}`,
-        isCompleted: true,
+        ...act,
+        isCompleted: !!act.isCompleted,
       });
+    }
+  });
+
+  // 2. Compléter avec les leçons et contenus complétés en base de données avec leurs VRAIS titres résolus
+  if (recentActivities.length < 3) {
+    completedLessonKeys.forEach((lessonId) => {
+      if (recentActivities.length >= 3 || seenIds.has(lessonId)) return;
+      seenIds.add(lessonId);
+      const resolved = resolveContentDetails(lessonId);
+      if (resolved) {
+        recentActivities.push({
+          id: `course-${lessonId}`,
+          title: resolved.title || 'Formation Vidéo',
+          category: 'Formation',
+          categoryBadge: resolved.categoryBadge || 'FORMATION VIDÉO',
+          hskLevel: resolved.hskLevel || 'Tous Niveaux',
+          progressPercentage: 100,
+          duration: resolved.duration || '15 min',
+          thumbnailUrl: resolved.thumbnailUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
+          href: resolved.href || `/formation?lesson=${lessonId}`,
+          isCompleted: true,
+        });
+      }
     });
 
-    completedContentKeys.slice(0, 2).forEach((contentId) => {
-      let targetType = 'chansons';
-      if (contentId.startsWith('dialogue_')) targetType = 'dialogues';
-      else if (contentId.startsWith('article_')) targetType = 'articles';
-      else if (contentId.startsWith('histoire_')) targetType = 'histoires';
-      else if (contentId.startsWith('podcast_')) targetType = 'podcasts';
-
-      recentActivities.push({
-        id: `content-${contentId}`,
-        title: `Ressource Écoute & Lecture`,
-        category: targetType === 'chansons' ? 'Chanson' : targetType === 'dialogues' ? 'Dialogue' : 'Article',
-        categoryBadge: 'IMMERSION',
-        hskLevel: 'HSK 1',
-        progressPercentage: 100,
-        duration: '5 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&auto=format&fit=crop&q=80',
-        href: `/ecoute-lecture?type=${targetType}&id=${contentId}`,
-        isCompleted: true,
-      });
+    completedContentKeys.forEach((contentId) => {
+      if (recentActivities.length >= 3 || seenIds.has(contentId)) return;
+      seenIds.add(contentId);
+      const resolved = resolveContentDetails(contentId);
+      if (resolved) {
+        recentActivities.push({
+          id: `content-${contentId}`,
+          title: resolved.title || 'Session d’Immersion',
+          category: resolved.category || 'Chanson',
+          categoryBadge: resolved.categoryBadge || 'IMMERSION',
+          hskLevel: resolved.hskLevel || 'HSK 1',
+          progressPercentage: 100,
+          duration: resolved.duration || '5 min',
+          thumbnailUrl: resolved.thumbnailUrl || 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&auto=format&fit=crop&q=80',
+          href: resolved.href || `/ecoute-lecture?id=${contentId}`,
+          isCompleted: true,
+        });
+      }
     });
   }
 
-  // Fallback defaults for new users
+  // 3. Fallback élégant si le compte est 100% neuf sans aucune activité
   if (recentActivities.length === 0) {
     recentActivities.push(
       {
-        id: 'default-1',
-        title: 'Masterclass : Les 4 Tons du Mandarin',
-        category: 'Formation',
-        categoryBadge: 'FORMATION VIDÉO',
-        hskLevel: 'Débutant',
-        progressPercentage: completedLessonKeys.length > 0 ? 100 : 35,
-        duration: '18 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
-        href: '/formation?course=prononciation-tons',
-        isCompleted: completedLessonKeys.length > 0,
-      },
-      {
-        id: 'default-2',
-        title: 'Chanson : L’Étoile la Plus Brillante',
+        id: 'chanson_star',
+        title: 'L’Étoile la Plus Brillante (夜空中最亮的星)',
         category: 'Chanson',
         categoryBadge: 'CHANSON IMMERSIVE',
         hskLevel: 'HSK 3',
-        progressPercentage: completedContentKeys.length > 0 ? 100 : 60,
-        duration: '4 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=400&auto=format&fit=crop&q=80',
+        progressPercentage: 60,
+        duration: '4 min 12',
+        thumbnailUrl: 'https://img.youtube.com/vi/-uzuhqQIaTM/hqdefault.jpg',
         href: '/ecoute-lecture?type=chansons&id=chanson_star',
-        isCompleted: completedContentKeys.length > 0,
+        isCompleted: false,
       },
       {
-        id: 'default-3',
-        title: 'Dialogue : Commander au Restaurant',
+        id: 'dialogue_restaurant',
+        title: 'Commander au Restaurant (在饭馆点菜)',
         category: 'Dialogue',
         categoryBadge: 'ORAL & IMMERSION',
         hskLevel: 'HSK 2',
-        progressPercentage: 10,
-        duration: '6 min',
+        progressPercentage: 35,
+        duration: '4 min',
         thumbnailUrl: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80',
         href: '/ecoute-lecture?type=dialogues&id=dialogue_restaurant',
+        isCompleted: false,
+      },
+      {
+        id: 'prononciation-tons',
+        title: 'Les 4 Tons du Mandarin',
+        category: 'Formation',
+        categoryBadge: 'FORMATION VIDÉO',
+        hskLevel: 'Débutant',
+        progressPercentage: 35,
+        duration: '18 min',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
+        href: '/formation?course=prononciation-tons',
         isCompleted: false,
       }
     );
   }
 
+  // Limiter à 3 éléments maximum pour la carte Continuer
+  recentActivities = recentActivities.slice(0, 3);
+
   /**
-   * Courbes construites depuis `daily_activity`, l'historique REEL.
-   *
-   * L'ancienne version repartissait le total de minutes sur les jours de la
-   * semaine et inventait un taux de retention (85 + fraction x 10) : la courbe
-   * paraissait credible mais ne mesurait rien. Un compte neuf affiche
-   * desormais une courbe vide, qui se remplit au fil de l'usage.
+   * Courbes construites depuis `daily_activity` + minutes locales temps réel.
    */
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -235,13 +252,38 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
 
   const cle = (d: Date) => d.toISOString().split('T')[0];
 
-  // Les 7 derniers jours, du plus ancien au plus recent.
+  // Intégrer les minutes trackées localement pour aujourd'hui et hier si non encore synchronisées
+  if (typeof window !== 'undefined') {
+    const todayStr = cle(new Date());
+    const localTodayMin = Number(localStorage.getItem(`chinoislingo_study_min_${todayStr}`) || '0');
+    if (localTodayMin > 0) {
+      const existing = parJour.get(todayStr);
+      parJour.set(todayStr, {
+        minutes: Math.max(existing?.minutes ?? 0, localTodayMin),
+        mots: existing?.mots ?? 0,
+      });
+    }
+  }
+
+  // Les 7 derniers jours, du plus ancien au plus récent
   const JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  let totalCalculatedMinutes = 0;
+
   const weekChart = Array.from({ length: 7 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() - (6 - i));
-    const e = parJour.get(cle(d));
-    const minutes = Math.round(e?.minutes ?? 0);
+    const dayKey = cle(d);
+    const e = parJour.get(dayKey);
+    let minutes = Math.round(e?.minutes ?? 0);
+
+    // Vérification locale pour le jour si présent dans localStorage
+    if (typeof window !== 'undefined') {
+      const localMin = Number(localStorage.getItem(`chinoislingo_study_min_${dayKey}`) || '0');
+      if (localMin > minutes) minutes = localMin;
+    }
+
+    totalCalculatedMinutes += minutes;
+
     return {
       label: JOURS[d.getDay()],
       masteredWords: e?.mots ?? 0,
@@ -250,7 +292,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     };
   });
 
-  // Les 4 dernieres semaines, cumulees depuis les memes lignes reelles.
+  // Les 4 dernières semaines, cumulées depuis les mêmes lignes réelles
   const monthChart = Array.from({ length: 4 }, (_, i) => {
     const fin = new Date();
     fin.setDate(fin.getDate() - (3 - i) * 7);
@@ -275,9 +317,11 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     };
   });
 
+  const finalTotalMinutesLearned = Math.max(totalMinutesLearned, totalCalculatedMinutes);
+
   return {
     streakDays,
-    totalMinutesLearned,
+    totalMinutesLearned: finalTotalMinutesLearned,
     totalWordsMastered,
     totalSavedWords,
     completedLessonsCount: completedLessonKeys.length,

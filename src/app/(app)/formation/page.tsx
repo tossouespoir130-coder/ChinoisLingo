@@ -40,6 +40,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { usePreferences } from '@/context/PreferencesContext';
 import { fetchCourseProgress, toggleLessonCompletedInDb } from '@/lib/services/progressService';
 import { ChinoisLingoVideoPlayer } from '@/components/ui/ChinoisLingoVideoPlayer';
+import { recordOpenedActivity } from '@/lib/services/activityTrackingService';
 
 function FormationContent() {
   const { user } = useAuth();
@@ -151,6 +152,20 @@ function FormationContent() {
     setSelectedQuizOption(null);
     setQuizSubmitted(false);
 
+    const firstLesson = course.lessons[0];
+    recordOpenedActivity({
+      id: `${course.id}_${firstLesson?.id || '01'}`,
+      title: firstLesson?.title || course.title,
+      category: 'Formation',
+      categoryBadge: 'FORMATION VIDÉO',
+      hskLevel: course.level || 'Tous Niveaux',
+      duration: firstLesson?.duration || `${course.totalLessons} leçons`,
+      thumbnailUrl: firstLesson?.youtubeId ? `https://img.youtube.com/vi/${firstLesson.youtubeId}/hqdefault.jpg` : course.thumbnailUrl || '',
+      href: `/formation?course=${course.id}&lesson=${firstLesson?.id || ''}`,
+      progressPercentage: course.progress || 35,
+      isCompleted: course.progress === 100,
+    });
+
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('course', course.id);
@@ -166,6 +181,24 @@ function FormationContent() {
   const handleSelectLesson = (lessonId: string) => {
     setActiveLessonId(lessonId);
     setIsPlayingVideo(false);
+
+    if (activeCourse) {
+      const lesson = activeCourse.lessons.find((l) => l.id === lessonId);
+      if (lesson) {
+        recordOpenedActivity({
+          id: `${activeCourse.id}_${lesson.id}`,
+          title: lesson.title,
+          category: 'Formation',
+          categoryBadge: 'FORMATION VIDÉO',
+          hskLevel: activeCourse.level || 'Tous Niveaux',
+          duration: lesson.duration || '10 min',
+          thumbnailUrl: lesson.youtubeId ? `https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg` : activeCourse.thumbnailUrl || '',
+          href: `/formation?course=${activeCourse.id}&lesson=${lesson.id}`,
+          progressPercentage: lesson.isCompleted ? 100 : 35,
+          isCompleted: lesson.isCompleted,
+        });
+      }
+    }
 
     if (typeof window !== 'undefined' && activeCourse) {
       const url = new URL(window.location.href);
@@ -244,6 +277,24 @@ function FormationContent() {
         };
       })
     );
+
+    if (targetNextState) {
+      const lesson = activeCourse.lessons.find((l) => l.id === lessonId);
+      if (lesson) {
+        recordOpenedActivity({
+          id: `${activeCourse.id}_${lesson.id}`,
+          title: lesson.title,
+          category: 'Formation',
+          categoryBadge: 'FORMATION VIDÉO',
+          hskLevel: activeCourse.level || 'Tous Niveaux',
+          duration: lesson.duration || '10 min',
+          thumbnailUrl: lesson.youtubeId ? `https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg` : activeCourse.thumbnailUrl || '',
+          href: `/formation?course=${activeCourse.id}&lesson=${lesson.id}`,
+          progressPercentage: 100,
+          isCompleted: true,
+        });
+      }
+    }
 
     if (user && activeCourse) {
       await toggleLessonCompletedInDb(activeCourse.id, lessonId, !targetNextState);

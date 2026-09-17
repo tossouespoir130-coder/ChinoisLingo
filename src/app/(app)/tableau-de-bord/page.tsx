@@ -40,6 +40,7 @@ const motivationalQuotes = [
 import { useAuth } from '@/lib/auth/AuthContext';
 import { usePreferences } from '@/context/PreferencesContext';
 import { fetchRealDashboardStats } from '@/lib/services/dashboardService';
+import { getLocalRecentActivities } from '@/lib/services/activityTrackingService';
 import { DashboardSkeleton } from '@/components/ui/DashboardSkeleton';
 
 export default function DashboardPage() {
@@ -63,6 +64,8 @@ export default function DashboardPage() {
   const [motivationalMessage, setMotivationalMessage] = useState(motivationalQuotes[0]);
   const [realActivities, setRealActivities] = useState<any[]>(() => {
     if (typeof window !== 'undefined') {
+      const locals = getLocalRecentActivities();
+      if (locals.length > 0) return locals;
       try {
         const cached = localStorage.getItem('chinoislingo_user_dashboard_stats');
         if (cached) {
@@ -84,7 +87,7 @@ export default function DashboardPage() {
       .then((res) => {
         if (isMounted && res) {
           setDashboardData(res);
-          if (res.recentActivities) {
+          if (res.recentActivities && res.recentActivities.length > 0) {
             setRealActivities(res.recentActivities);
           }
           try {
@@ -107,6 +110,36 @@ export default function DashboardPage() {
       isMounted = false;
     };
   }, [profile]);
+
+  // Écoute en temps réel des activités ouvertes ou complétées et du temps d'étude
+  useEffect(() => {
+    const handleActivitiesUpdate = (e: CustomEvent<any[]>) => {
+      if (Array.isArray(e.detail) && e.detail.length > 0) {
+        setRealActivities(e.detail.slice(0, 3));
+      }
+    };
+
+    const handleStudyUpdate = (e: CustomEvent<{ minutesAdded: number }>) => {
+      const added = e.detail?.minutesAdded || 0;
+      if (added > 0) {
+        setDashboardData((prev: any) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            totalMinutesLearned: (prev.totalMinutesLearned || 0) + added,
+          };
+        });
+      }
+    };
+
+    window.addEventListener('chinoislingo_activity_updated', handleActivitiesUpdate as EventListener);
+    window.addEventListener('chinoislingo_study_time_updated', handleStudyUpdate as EventListener);
+
+    return () => {
+      window.removeEventListener('chinoislingo_activity_updated', handleActivitiesUpdate as EventListener);
+      window.removeEventListener('chinoislingo_study_time_updated', handleStudyUpdate as EventListener);
+    };
+  }, []);
 
   // Rotate motivational quote on each load/connection
   useEffect(() => {

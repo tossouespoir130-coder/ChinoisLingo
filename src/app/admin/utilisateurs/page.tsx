@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Search, Loader2, AlertCircle, ChevronLeft, ChevronRight, Shield,
-  CalendarPlus, Ban, CheckCircle2,
+  CalendarPlus, Ban, CheckCircle2, RefreshCw, Flame,
 } from 'lucide-react';
 import {
   ModaleProlongation,
@@ -38,6 +38,7 @@ export default function UtilisateursPage() {
   const [recherche, setRecherche] = useState('');
   const [page, setPage] = useState(1);
   const [chargement, setChargement] = useState(true);
+  const [rafraichissement, setRafraichissement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
 
   // Aucune action ne s'exécute au clic : elle ouvre d'abord sa fenêtre de
@@ -47,8 +48,9 @@ export default function UtilisateursPage() {
   const [succes, setSucces] = useState<string | null>(null);
 
   const charger = useCallback(
-    async (p: number, q: string) => {
-      setChargement(true);
+    async (p: number, q: string, silencieux = false) => {
+      if (!silencieux) setChargement(true);
+      else setRafraichissement(true);
       setErreur(null);
       try {
         const d = await appeler<Reponse>(
@@ -59,17 +61,26 @@ export default function UtilisateursPage() {
         setErreur((e as Error).message);
       } finally {
         setChargement(false);
+        setRafraichissement(false);
       }
     },
     [appeler]
   );
 
-  // La recherche est temporisée : sans cela, chaque frappe déclencherait
-  // une requête et la liste clignoterait.
+  // Recherche temporisée
   useEffect(() => {
     if (!pret) return;
     const minuteur = setTimeout(() => charger(page, recherche), 300);
     return () => clearTimeout(minuteur);
+  }, [pret, page, recherche, charger]);
+
+  // Actualisation automatique en continu toutes les 30 secondes
+  useEffect(() => {
+    if (!pret) return;
+    const interval = setInterval(() => {
+      charger(page, recherche, true);
+    }, 30000);
+    return () => clearInterval(interval);
   }, [pret, page, recherche, charger]);
 
   /** Appel serveur commun aux deux actions. La trace est écrite par la
@@ -98,13 +109,26 @@ export default function UtilisateursPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight">
-          Utilisateurs
-        </h1>
-        <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-0.5 sm:mt-1 font-medium">
-          {donnees ? `${donnees.total.toLocaleString('fr-FR')} comptes` : 'Chargement…'} — lecture seule.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h1 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight">
+            Utilisateurs
+          </h1>
+          <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-0.5 sm:mt-1 font-medium">
+            {donnees ? `${donnees.total.toLocaleString('fr-FR')} comptes` : 'Chargement…'} — Classés par Admins en haut puis par jours actifs décroissants.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => charger(page, recherche)}
+          disabled={chargement || rafraichissement}
+          className="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-white dark:bg-[#1E1E1E] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:border-[#6200EE] transition-all btn-press shadow-2xs"
+          title="Actualiser les données"
+        >
+          <RefreshCw className={`w-3.5 h-3.5 text-[#6200EE] ${rafraichissement ? 'animate-spin' : ''}`} />
+          <span>Actualiser</span>
+        </button>
       </div>
 
       <div className="relative">
@@ -166,41 +190,55 @@ export default function UtilisateursPage() {
                   </td>
                 </tr>
               ) : (
-                donnees?.utilisateurs.map((u) => (
-                  <tr
-                    key={u.id}
-                    className="border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]/60 last:border-0 hover:bg-[#FAFAFA] dark:hover:bg-[#181818] transition-colors"
-                  >
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] truncate">
-                          {u.nom}
-                        </span>
-                        {u.role === 'admin' && (
-                          <span
-                            title="Administrateur"
-                            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] text-[10px] font-extrabold shrink-0"
-                          >
-                            <Shield className="w-2.5 h-2.5" />
-                            Admin
+                donnees?.utilisateurs.map((u) => {
+                  const estAdmin = u.role === 'admin';
+                  return (
+                    <tr
+                      key={u.id}
+                      className={`border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]/60 last:border-0 transition-colors ${
+                        estAdmin
+                          ? 'bg-[#6200EE]/5 dark:bg-[#6200EE]/10 hover:bg-[#6200EE]/8 dark:hover:bg-[#6200EE]/15'
+                          : 'hover:bg-[#FAFAFA] dark:hover:bg-[#181818]'
+                      }`}
+                    >
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] truncate">
+                            {u.nom}
                           </span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[220px]">
-                      {u.email}
-                    </td>
-                    <td className="px-4 py-3 text-xs text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
-                      {formaterDate(u.inscritLe)}
-                    </td>
-                    <td className="px-4 py-3 whitespace-nowrap">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#00897B]/10 text-[#00796B] dark:text-[#03DAC5] border border-[#00897B]/20">
-                        🔥 {u.joursConnexion || 1} {u.joursConnexion > 1 ? 'jours' : 'jour'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-xs font-medium text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
-                      {formaterDateHeure(u.derniereConnexion)}
-                    </td>
+                          {estAdmin && (
+                            <span
+                              title="Administrateur du Système"
+                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#6200EE] text-white text-[10px] font-black tracking-wide shadow-xs shrink-0"
+                            >
+                              <Shield className="w-2.5 h-2.5 fill-white" />
+                              ADMIN
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[220px]">
+                        {u.email}
+                      </td>
+                      <td className="px-4 py-3 text-xs text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
+                        {formaterDate(u.inscritLe)}
+                      </td>
+                      <td className="px-4 py-3 whitespace-nowrap">
+                        <span
+                          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-black border shadow-2xs ${
+                            u.joursConnexion >= 10
+                              ? 'bg-[#FF6D00]/12 text-[#E65100] dark:text-[#FF9E80] border-[#FF6D00]/30'
+                              : u.joursConnexion >= 3
+                                ? 'bg-[#00897B]/12 text-[#00796B] dark:text-[#03DAC5] border-[#00897B]/30'
+                                : 'bg-[#757575]/10 text-[#616161] dark:text-[#BDBDBD] border-[#757575]/20'
+                          }`}
+                        >
+                          🔥 {u.joursConnexion || 1} {u.joursConnexion > 1 ? 'jours' : 'jour'}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-xs font-medium text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
+                        {formaterDateHeure(u.derniereConnexion)}
+                      </td>
                     <td className="px-4 py-3">
                       <span
                         className={`inline-block px-2.5 py-0.5 rounded-full text-[11px] font-extrabold whitespace-nowrap ${
@@ -251,8 +289,9 @@ export default function UtilisateursPage() {
                       </div>
                     </td>
                   </tr>
-                ))
-              )}
+                );
+              })
+            )}
             </tbody>
           </table>
         </div>
