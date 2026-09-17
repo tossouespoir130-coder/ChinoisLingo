@@ -1,0 +1,302 @@
+{
+  "contentId": "chanson_naying",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_naying.mp3",
+  "totalDurationMs": 64390,
+  "sentences": [
+    {
+      "sentenceId": "ny_1",
+      "startMs": 0,
+      "endMs": 2925,
+      "durationMs": 2925,
+      "audioUrl": "/audio/readings/chanson_naying_ny_1.mp3"
+    },
+    {
+      "sentenceId": "ny_2",
+      "startMs": 2725,
+      "endMs": 5166,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_naying_ny_2.mp3"
+    },
+    {
+      "sentenceId": "ny_3",
+      "startMs": 4966,
+      "endMs": 7685,
+      "durationMs": 2719,
+      "audioUrl": "/audio/readings/chanson_naying_ny_3.mp3"
+    },
+    {
+      "sentenceId": "ny_4",
+      "startMs": 7485,
+      "endMs": 10100,
+      "durationMs": 2615,
+      "audioUrl": "/audio/readings/chanson_naying_ny_4.mp3"
+    },
+    {
+      "sentenceId": "ny_5",
+      "startMs": 9900,
+      "endMs": 11528,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_naying_ny_5.mp3"
+    },
+    {
+      "sentenceId": "ny_6",
+      "startMs": 11328,
+      "endMs": 13432,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_naying_ny_6.mp3"
+    },
+    {
+      "sentenceId": "ny_7",
+      "startMs": 13232,
+      "endMs": 15673,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_naying_ny_7.mp3"
+    },
+    {
+      "sentenceId": "ny_8",
+      "startMs": 15473,
+      "endMs": 16323,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_naying_ny_8.mp3"
+    },
+    {
+      "sentenceId": "ny_9",
+      "startMs": 16123,
+      "endMs": 17344,
+      "durationMs": 1221,
+      "audioUrl": "/audio/readings/chanson_naying_ny_9.mp3"
+    },
+    {
+      "sentenceId": "ny_10",
+      "startMs": 17144,
+      "endMs": 18714,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/chanson_naying_ny_10.mp3"
+    },
+    {
+      "sentenceId": "ny_11",
+      "startMs": 18514,
+      "endMs": 20584,
+      "durationMs": 2070,
+      "audioUrl": "/audio/readings/chanson_naying_ny_11.mp3"
+    },
+    {
+      "sentenceId": "ny_12",
+      "startMs": 20384,
+      "endMs": 21420,
+      "durationMs": 1036,
+      "audioUrl": "/audio/readings/chanson_naying_ny_12.mp3"
+    },
+    {
+      "sentenceId": "ny_13",
+      "startMs": 21220,
+      "endMs": 23869,
+      "durationMs": 2649,
+      "audioUrl": "/audio/readings/chanson_naying_ny_13.mp3"
+    },
+    {
+      "sentenceId": "ny_14",
+      "startMs": 23669,
+      "endMs": 24438,
+      "durationMs": 769,
+      "audioUrl": "/audio/readings/chanson_naying_ny_14.mp3"
+    },
+    {
+      "sentenceId": "ny_15",
+      "startMs": 24238,
+      "endMs": 25994,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_naying_ny_15.mp3"
+    },
+    {
+      "sentenceId": "ny_16",
+      "startMs": 25794,
+      "endMs": 28026,
+      "durationMs": 2232,
+      "audioUrl": "/audio/readings/chanson_naying_ny_16.mp3"
+    },
+    {
+      "sentenceId": "ny_17",
+      "startMs": 27826,
+      "endMs": 29291,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_naying_ny_17.mp3"
+    },
+    {
+      "sentenceId": "ny_18",
+      "startMs": 29091,
+      "endMs": 30208,
+      "durationMs": 1117,
+      "audioUrl": "/audio/readings/chanson_naying_ny_18.mp3"
+    },
+    {
+      "sentenceId": "ny_19",
+      "startMs": 30008,
+      "endMs": 30406,
+      "durationMs": 400,
+      "audioUrl": "/audio/readings/chanson_naying_ny_19.mp3"
+    },
+    {
+      "sentenceId": "ny_20",
+      "startMs": 30206,
+      "endMs": 31300,
+      "durationMs": 1094,
+      "audioUrl": "/audio/readings/chanson_naying_ny_20.mp3"
+    },
+    {
+      "sentenceId": "ny_21",
+      "startMs": 31100,
+      "endMs": 32647,
+      "durationMs": 1547,
+      "audioUrl": "/audio/readings/chanson_naying_ny_21.mp3"
+    },
+    {
+      "sentenceId": "ny_22",
+      "startMs": 32447,
+      "endMs": 35410,
+      "durationMs": 2963,
+      "audioUrl": "/audio/readings/chanson_naying_ny_22.mp3"
+    },
+    {
+      "sentenceId": "ny_23",
+      "startMs": 35210,
+      "endMs": 37697,
+      "durationMs": 2487,
+      "audioUrl": "/audio/readings/chanson_naying_ny_23.mp3"
+    },
+    {
+      "sentenceId": "ny_24",
+      "startMs": 37497,
+      "endMs": 40217,
+      "durationMs": 2720,
+      "audioUrl": "/audio/readings/chanson_naying_ny_24.mp3"
+    },
+    {
+      "sentenceId": "ny_25",
+      "startMs": 40017,
+      "endMs": 42631,
+      "durationMs": 2614,
+      "audioUrl": "/audio/readings/chanson_naying_ny_25.mp3"
+    },
+    {
+      "sentenceId": "ny_26",
+      "startMs": 42431,
+      "endMs": 43374,
+      "durationMs": 943,
+      "audioUrl": "/audio/readings/chanson_naying_ny_26.mp3"
+    },
+    {
+      "sentenceId": "ny_27",
+      "startMs": 43174,
+      "endMs": 45987,
+      "durationMs": 2813,
+      "audioUrl": "/audio/readings/chanson_naying_ny_27.mp3"
+    },
+    {
+      "sentenceId": "ny_28",
+      "startMs": 45787,
+      "endMs": 48227,
+      "durationMs": 2440,
+      "audioUrl": "/audio/readings/chanson_naying_ny_28.mp3"
+    },
+    {
+      "sentenceId": "ny_29",
+      "startMs": 48027,
+      "endMs": 49365,
+      "durationMs": 1338,
+      "audioUrl": "/audio/readings/chanson_naying_ny_29.mp3"
+    },
+    {
+      "sentenceId": "ny_30",
+      "startMs": 49165,
+      "endMs": 50015,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_naying_ny_30.mp3"
+    },
+    {
+      "sentenceId": "ny_31",
+      "startMs": 49815,
+      "endMs": 51246,
+      "durationMs": 1431,
+      "audioUrl": "/audio/readings/chanson_naying_ny_31.mp3"
+    },
+    {
+      "sentenceId": "ny_32",
+      "startMs": 51046,
+      "endMs": 53208,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_naying_ny_32.mp3"
+    },
+    {
+      "sentenceId": "ny_33",
+      "startMs": 53008,
+      "endMs": 54102,
+      "durationMs": 1094,
+      "audioUrl": "/audio/readings/chanson_naying_ny_33.mp3"
+    },
+    {
+      "sentenceId": "ny_34",
+      "startMs": 53902,
+      "endMs": 56447,
+      "durationMs": 2545,
+      "audioUrl": "/audio/readings/chanson_naying_ny_34.mp3"
+    },
+    {
+      "sentenceId": "ny_35",
+      "startMs": 56247,
+      "endMs": 56970,
+      "durationMs": 723,
+      "audioUrl": "/audio/readings/chanson_naying_ny_35.mp3"
+    },
+    {
+      "sentenceId": "ny_36",
+      "startMs": 56770,
+      "endMs": 58339,
+      "durationMs": 1569,
+      "audioUrl": "/audio/readings/chanson_naying_ny_36.mp3"
+    },
+    {
+      "sentenceId": "ny_37",
+      "startMs": 58139,
+      "endMs": 59489,
+      "durationMs": 1350,
+      "audioUrl": "/audio/readings/chanson_naying_ny_37.mp3"
+    },
+    {
+      "sentenceId": "ny_38",
+      "startMs": 59289,
+      "endMs": 61300,
+      "durationMs": 2011,
+      "audioUrl": "/audio/readings/chanson_naying_ny_38.mp3"
+    },
+    {
+      "sentenceId": "ny_39",
+      "startMs": 61100,
+      "endMs": 62159,
+      "durationMs": 1059,
+      "audioUrl": "/audio/readings/chanson_naying_ny_39.mp3"
+    },
+    {
+      "sentenceId": "ny_40",
+      "startMs": 61959,
+      "endMs": 62368,
+      "durationMs": 409,
+      "audioUrl": "/audio/readings/chanson_naying_ny_40.mp3"
+    },
+    {
+      "sentenceId": "ny_41",
+      "startMs": 62168,
+      "endMs": 63309,
+      "durationMs": 1141,
+      "audioUrl": "/audio/readings/chanson_naying_ny_41.mp3"
+    },
+    {
+      "sentenceId": "ny_42",
+      "startMs": 63109,
+      "endMs": 64390,
+      "durationMs": 1281,
+      "audioUrl": "/audio/readings/chanson_naying_ny_42.mp3"
+    }
+  ]
+}

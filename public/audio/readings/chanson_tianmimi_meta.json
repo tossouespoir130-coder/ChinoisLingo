@@ -1,0 +1,323 @@
+{
+  "contentId": "chanson_tianmimi",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_tianmimi.mp3",
+  "totalDurationMs": 56370,
+  "sentences": [
+    {
+      "sentenceId": "tm_1",
+      "startMs": 0,
+      "endMs": 1299,
+      "durationMs": 1299,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_1.mp3"
+    },
+    {
+      "sentenceId": "tm_2",
+      "startMs": 1099,
+      "endMs": 3064,
+      "durationMs": 1965,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_2.mp3"
+    },
+    {
+      "sentenceId": "tm_3",
+      "startMs": 2864,
+      "endMs": 5433,
+      "durationMs": 2569,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_3.mp3"
+    },
+    {
+      "sentenceId": "tm_4",
+      "startMs": 5233,
+      "endMs": 6930,
+      "durationMs": 1697,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_4.mp3"
+    },
+    {
+      "sentenceId": "tm_5",
+      "startMs": 6730,
+      "endMs": 7557,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_5.mp3"
+    },
+    {
+      "sentenceId": "tm_6",
+      "startMs": 7357,
+      "endMs": 9171,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_6.mp3"
+    },
+    {
+      "sentenceId": "tm_7",
+      "startMs": 8971,
+      "endMs": 11354,
+      "durationMs": 2383,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_7.mp3"
+    },
+    {
+      "sentenceId": "tm_8",
+      "startMs": 11154,
+      "endMs": 12468,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_8.mp3"
+    },
+    {
+      "sentenceId": "tm_9",
+      "startMs": 12268,
+      "endMs": 13223,
+      "durationMs": 955,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_9.mp3"
+    },
+    {
+      "sentenceId": "tm_10",
+      "startMs": 13023,
+      "endMs": 13908,
+      "durationMs": 885,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_10.mp3"
+    },
+    {
+      "sentenceId": "tm_11",
+      "startMs": 13708,
+      "endMs": 14221,
+      "durationMs": 513,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_11.mp3"
+    },
+    {
+      "sentenceId": "tm_12",
+      "startMs": 14021,
+      "endMs": 15870,
+      "durationMs": 1849,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_12.mp3"
+    },
+    {
+      "sentenceId": "tm_13",
+      "startMs": 15670,
+      "endMs": 16241,
+      "durationMs": 571,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_13.mp3"
+    },
+    {
+      "sentenceId": "tm_14",
+      "startMs": 16041,
+      "endMs": 17762,
+      "durationMs": 1721,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_14.mp3"
+    },
+    {
+      "sentenceId": "tm_15",
+      "startMs": 17562,
+      "endMs": 18250,
+      "durationMs": 688,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_15.mp3"
+    },
+    {
+      "sentenceId": "tm_16",
+      "startMs": 18050,
+      "endMs": 18575,
+      "durationMs": 525,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_16.mp3"
+    },
+    {
+      "sentenceId": "tm_17",
+      "startMs": 18375,
+      "endMs": 20618,
+      "durationMs": 2243,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_17.mp3"
+    },
+    {
+      "sentenceId": "tm_18",
+      "startMs": 20418,
+      "endMs": 21721,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_18.mp3"
+    },
+    {
+      "sentenceId": "tm_19",
+      "startMs": 21521,
+      "endMs": 23497,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_19.mp3"
+    },
+    {
+      "sentenceId": "tm_20",
+      "startMs": 23297,
+      "endMs": 25483,
+      "durationMs": 2186,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_20.mp3"
+    },
+    {
+      "sentenceId": "tm_21",
+      "startMs": 25283,
+      "endMs": 26620,
+      "durationMs": 1337,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_21.mp3"
+    },
+    {
+      "sentenceId": "tm_22",
+      "startMs": 26420,
+      "endMs": 27375,
+      "durationMs": 955,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_22.mp3"
+    },
+    {
+      "sentenceId": "tm_23",
+      "startMs": 27175,
+      "endMs": 28048,
+      "durationMs": 873,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_23.mp3"
+    },
+    {
+      "sentenceId": "tm_24",
+      "startMs": 27848,
+      "endMs": 29175,
+      "durationMs": 1327,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_24.mp3"
+    },
+    {
+      "sentenceId": "tm_25",
+      "startMs": 28975,
+      "endMs": 30835,
+      "durationMs": 1860,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_25.mp3"
+    },
+    {
+      "sentenceId": "tm_26",
+      "startMs": 30635,
+      "endMs": 33111,
+      "durationMs": 2476,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_26.mp3"
+    },
+    {
+      "sentenceId": "tm_27",
+      "startMs": 32911,
+      "endMs": 34562,
+      "durationMs": 1651,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_27.mp3"
+    },
+    {
+      "sentenceId": "tm_28",
+      "startMs": 34362,
+      "endMs": 35224,
+      "durationMs": 862,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_28.mp3"
+    },
+    {
+      "sentenceId": "tm_29",
+      "startMs": 35024,
+      "endMs": 37093,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_29.mp3"
+    },
+    {
+      "sentenceId": "tm_30",
+      "startMs": 36893,
+      "endMs": 39566,
+      "durationMs": 2673,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_30.mp3"
+    },
+    {
+      "sentenceId": "tm_31",
+      "startMs": 39366,
+      "endMs": 40692,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_31.mp3"
+    },
+    {
+      "sentenceId": "tm_32",
+      "startMs": 40492,
+      "endMs": 41354,
+      "durationMs": 862,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_32.mp3"
+    },
+    {
+      "sentenceId": "tm_33",
+      "startMs": 41154,
+      "endMs": 42329,
+      "durationMs": 1175,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_33.mp3"
+    },
+    {
+      "sentenceId": "tm_34",
+      "startMs": 42129,
+      "endMs": 42851,
+      "durationMs": 722,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_34.mp3"
+    },
+    {
+      "sentenceId": "tm_35",
+      "startMs": 42651,
+      "endMs": 44210,
+      "durationMs": 1559,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_35.mp3"
+    },
+    {
+      "sentenceId": "tm_36",
+      "startMs": 44010,
+      "endMs": 44686,
+      "durationMs": 676,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_36.mp3"
+    },
+    {
+      "sentenceId": "tm_37",
+      "startMs": 44486,
+      "endMs": 46775,
+      "durationMs": 2289,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_37.mp3"
+    },
+    {
+      "sentenceId": "tm_39",
+      "startMs": 46575,
+      "endMs": 47263,
+      "durationMs": 688,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_39.mp3"
+    },
+    {
+      "sentenceId": "tm_40",
+      "startMs": 47063,
+      "endMs": 49353,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_40.mp3"
+    },
+    {
+      "sentenceId": "tm_41",
+      "startMs": 49153,
+      "endMs": 50328,
+      "durationMs": 1175,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_41.mp3"
+    },
+    {
+      "sentenceId": "tm_42",
+      "startMs": 50128,
+      "endMs": 51942,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_42.mp3"
+    },
+    {
+      "sentenceId": "tm_43",
+      "startMs": 51742,
+      "endMs": 53927,
+      "durationMs": 2185,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_43.mp3"
+    },
+    {
+      "sentenceId": "tm_44",
+      "startMs": 53727,
+      "endMs": 55100,
+      "durationMs": 1373,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_44.mp3"
+    },
+    {
+      "sentenceId": "tm_45",
+      "startMs": 54900,
+      "endMs": 55529,
+      "durationMs": 629,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_45.mp3"
+    },
+    {
+      "sentenceId": "tm_46",
+      "startMs": 55329,
+      "endMs": 56370,
+      "durationMs": 1041,
+      "audioUrl": "/audio/readings/chanson_tianmimi_tm_46.mp3"
+    }
+  ]
+}

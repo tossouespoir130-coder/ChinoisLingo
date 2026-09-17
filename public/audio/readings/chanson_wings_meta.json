@@ -1,0 +1,316 @@
+{
+  "contentId": "chanson_wings",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_wings.mp3",
+  "totalDurationMs": 56870,
+  "sentences": [
+    {
+      "sentenceId": "wg_1",
+      "startMs": 0,
+      "endMs": 881,
+      "durationMs": 881,
+      "audioUrl": "/audio/readings/chanson_wings_wg_1.mp3"
+    },
+    {
+      "sentenceId": "wg_2",
+      "startMs": 681,
+      "endMs": 3111,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/chanson_wings_wg_2.mp3"
+    },
+    {
+      "sentenceId": "wg_3",
+      "startMs": 2911,
+      "endMs": 3784,
+      "durationMs": 873,
+      "audioUrl": "/audio/readings/chanson_wings_wg_3.mp3"
+    },
+    {
+      "sentenceId": "wg_4",
+      "startMs": 3584,
+      "endMs": 6210,
+      "durationMs": 2626,
+      "audioUrl": "/audio/readings/chanson_wings_wg_4.mp3"
+    },
+    {
+      "sentenceId": "wg_5",
+      "startMs": 6010,
+      "endMs": 7186,
+      "durationMs": 1176,
+      "audioUrl": "/audio/readings/chanson_wings_wg_5.mp3"
+    },
+    {
+      "sentenceId": "wg_6",
+      "startMs": 6986,
+      "endMs": 8857,
+      "durationMs": 1871,
+      "audioUrl": "/audio/readings/chanson_wings_wg_6.mp3"
+    },
+    {
+      "sentenceId": "wg_7",
+      "startMs": 8657,
+      "endMs": 9868,
+      "durationMs": 1211,
+      "audioUrl": "/audio/readings/chanson_wings_wg_7.mp3"
+    },
+    {
+      "sentenceId": "wg_8",
+      "startMs": 9668,
+      "endMs": 10645,
+      "durationMs": 977,
+      "audioUrl": "/audio/readings/chanson_wings_wg_8.mp3"
+    },
+    {
+      "sentenceId": "wg_9",
+      "startMs": 10445,
+      "endMs": 11667,
+      "durationMs": 1222,
+      "audioUrl": "/audio/readings/chanson_wings_wg_9.mp3"
+    },
+    {
+      "sentenceId": "wg_10",
+      "startMs": 11467,
+      "endMs": 13664,
+      "durationMs": 2197,
+      "audioUrl": "/audio/readings/chanson_wings_wg_10.mp3"
+    },
+    {
+      "sentenceId": "wg_11",
+      "startMs": 13464,
+      "endMs": 14314,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_wings_wg_11.mp3"
+    },
+    {
+      "sentenceId": "wg_12",
+      "startMs": 14114,
+      "endMs": 16555,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_wings_wg_12.mp3"
+    },
+    {
+      "sentenceId": "wg_13",
+      "startMs": 16355,
+      "endMs": 17576,
+      "durationMs": 1221,
+      "audioUrl": "/audio/readings/chanson_wings_wg_13.mp3"
+    },
+    {
+      "sentenceId": "wg_14",
+      "startMs": 17376,
+      "endMs": 19295,
+      "durationMs": 1919,
+      "audioUrl": "/audio/readings/chanson_wings_wg_14.mp3"
+    },
+    {
+      "sentenceId": "wg_15",
+      "startMs": 19095,
+      "endMs": 20409,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_wings_wg_15.mp3"
+    },
+    {
+      "sentenceId": "wg_16",
+      "startMs": 20209,
+      "endMs": 21733,
+      "durationMs": 1524,
+      "audioUrl": "/audio/readings/chanson_wings_wg_16.mp3"
+    },
+    {
+      "sentenceId": "wg_17",
+      "startMs": 21533,
+      "endMs": 22197,
+      "durationMs": 664,
+      "audioUrl": "/audio/readings/chanson_wings_wg_17.mp3"
+    },
+    {
+      "sentenceId": "wg_18",
+      "startMs": 21997,
+      "endMs": 23973,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_wings_wg_18.mp3"
+    },
+    {
+      "sentenceId": "wg_19",
+      "startMs": 23773,
+      "endMs": 24844,
+      "durationMs": 1071,
+      "audioUrl": "/audio/readings/chanson_wings_wg_19.mp3"
+    },
+    {
+      "sentenceId": "wg_20",
+      "startMs": 24644,
+      "endMs": 26760,
+      "durationMs": 2116,
+      "audioUrl": "/audio/readings/chanson_wings_wg_20.mp3"
+    },
+    {
+      "sentenceId": "wg_21",
+      "startMs": 26560,
+      "endMs": 27329,
+      "durationMs": 769,
+      "audioUrl": "/audio/readings/chanson_wings_wg_21.mp3"
+    },
+    {
+      "sentenceId": "wg_22",
+      "startMs": 27129,
+      "endMs": 29581,
+      "durationMs": 2452,
+      "audioUrl": "/audio/readings/chanson_wings_wg_22.mp3"
+    },
+    {
+      "sentenceId": "wg_23",
+      "startMs": 29381,
+      "endMs": 30521,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_wings_wg_23.mp3"
+    },
+    {
+      "sentenceId": "wg_24",
+      "startMs": 30321,
+      "endMs": 31903,
+      "durationMs": 1582,
+      "audioUrl": "/audio/readings/chanson_wings_wg_24.mp3"
+    },
+    {
+      "sentenceId": "wg_25",
+      "startMs": 31703,
+      "endMs": 32472,
+      "durationMs": 769,
+      "audioUrl": "/audio/readings/chanson_wings_wg_25.mp3"
+    },
+    {
+      "sentenceId": "wg_26",
+      "startMs": 32272,
+      "endMs": 34527,
+      "durationMs": 2255,
+      "audioUrl": "/audio/readings/chanson_wings_wg_26.mp3"
+    },
+    {
+      "sentenceId": "wg_27",
+      "startMs": 34327,
+      "endMs": 35130,
+      "durationMs": 803,
+      "audioUrl": "/audio/readings/chanson_wings_wg_27.mp3"
+    },
+    {
+      "sentenceId": "wg_28",
+      "startMs": 34930,
+      "endMs": 37429,
+      "durationMs": 2499,
+      "audioUrl": "/audio/readings/chanson_wings_wg_28.mp3"
+    },
+    {
+      "sentenceId": "wg_29",
+      "startMs": 37229,
+      "endMs": 38277,
+      "durationMs": 1048,
+      "audioUrl": "/audio/readings/chanson_wings_wg_29.mp3"
+    },
+    {
+      "sentenceId": "wg_30",
+      "startMs": 38077,
+      "endMs": 40483,
+      "durationMs": 2406,
+      "audioUrl": "/audio/readings/chanson_wings_wg_30.mp3"
+    },
+    {
+      "sentenceId": "wg_31",
+      "startMs": 40283,
+      "endMs": 41122,
+      "durationMs": 839,
+      "audioUrl": "/audio/readings/chanson_wings_wg_31.mp3"
+    },
+    {
+      "sentenceId": "wg_32",
+      "startMs": 40922,
+      "endMs": 42306,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_wings_wg_32.mp3"
+    },
+    {
+      "sentenceId": "wg_33",
+      "startMs": 42106,
+      "endMs": 42782,
+      "durationMs": 676,
+      "audioUrl": "/audio/readings/chanson_wings_wg_33.mp3"
+    },
+    {
+      "sentenceId": "wg_34",
+      "startMs": 42582,
+      "endMs": 44500,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_wings_wg_34.mp3"
+    },
+    {
+      "sentenceId": "wg_35",
+      "startMs": 44300,
+      "endMs": 45812,
+      "durationMs": 1512,
+      "audioUrl": "/audio/readings/chanson_wings_wg_35.mp3"
+    },
+    {
+      "sentenceId": "wg_36",
+      "startMs": 45612,
+      "endMs": 47194,
+      "durationMs": 1582,
+      "audioUrl": "/audio/readings/chanson_wings_wg_36.mp3"
+    },
+    {
+      "sentenceId": "wg_37",
+      "startMs": 46994,
+      "endMs": 47728,
+      "durationMs": 734,
+      "audioUrl": "/audio/readings/chanson_wings_wg_37.mp3"
+    },
+    {
+      "sentenceId": "wg_38",
+      "startMs": 47528,
+      "endMs": 49852,
+      "durationMs": 2324,
+      "audioUrl": "/audio/readings/chanson_wings_wg_38.mp3"
+    },
+    {
+      "sentenceId": "wg_39",
+      "startMs": 49652,
+      "endMs": 50711,
+      "durationMs": 1059,
+      "audioUrl": "/audio/readings/chanson_wings_wg_39.mp3"
+    },
+    {
+      "sentenceId": "wg_40",
+      "startMs": 50511,
+      "endMs": 52116,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_wings_wg_40.mp3"
+    },
+    {
+      "sentenceId": "wg_41",
+      "startMs": 51916,
+      "endMs": 52976,
+      "durationMs": 1060,
+      "audioUrl": "/audio/readings/chanson_wings_wg_41.mp3"
+    },
+    {
+      "sentenceId": "wg_42",
+      "startMs": 52776,
+      "endMs": 54694,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_wings_wg_42.mp3"
+    },
+    {
+      "sentenceId": "wg_43",
+      "startMs": 54494,
+      "endMs": 55623,
+      "durationMs": 1129,
+      "audioUrl": "/audio/readings/chanson_wings_wg_43.mp3"
+    },
+    {
+      "sentenceId": "wg_44",
+      "startMs": 55423,
+      "endMs": 56870,
+      "durationMs": 1447,
+      "audioUrl": "/audio/readings/chanson_wings_wg_44.mp3"
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "contentId": "chanson_xianchuzhendeni",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_xianchuzhendeni.mp3",
+  "totalDurationMs": 77270,
+  "sentences": [
+    {
+      "sentenceId": "xcz_1",
+      "startMs": 0,
+      "endMs": 2089,
+      "durationMs": 2089,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_1.mp3"
+    },
+    {
+      "sentenceId": "xcz_2",
+      "startMs": 1889,
+      "endMs": 3505,
+      "durationMs": 1616,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_2.mp3"
+    },
+    {
+      "sentenceId": "xcz_3",
+      "startMs": 3305,
+      "endMs": 5166,
+      "durationMs": 1861,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_3.mp3"
+    },
+    {
+      "sentenceId": "xcz_4",
+      "startMs": 4966,
+      "endMs": 6187,
+      "durationMs": 1221,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_4.mp3"
+    },
+    {
+      "sentenceId": "xcz_5",
+      "startMs": 5987,
+      "endMs": 7511,
+      "durationMs": 1524,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_5.mp3"
+    },
+    {
+      "sentenceId": "xcz_6",
+      "startMs": 7311,
+      "endMs": 8834,
+      "durationMs": 1523,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_6.mp3"
+    },
+    {
+      "sentenceId": "xcz_7",
+      "startMs": 8634,
+      "endMs": 10367,
+      "durationMs": 1733,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_7.mp3"
+    },
+    {
+      "sentenceId": "xcz_8",
+      "startMs": 10167,
+      "endMs": 11087,
+      "durationMs": 920,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_8.mp3"
+    },
+    {
+      "sentenceId": "xcz_9",
+      "startMs": 10887,
+      "endMs": 12828,
+      "durationMs": 1941,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_9.mp3"
+    },
+    {
+      "sentenceId": "xcz_10",
+      "startMs": 12628,
+      "endMs": 14825,
+      "durationMs": 2197,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_10.mp3"
+    },
+    {
+      "sentenceId": "xcz_11",
+      "startMs": 14625,
+      "endMs": 16288,
+      "durationMs": 1663,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_11.mp3"
+    },
+    {
+      "sentenceId": "xcz_12",
+      "startMs": 16088,
+      "endMs": 17507,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_12.mp3"
+    },
+    {
+      "sentenceId": "xcz_13",
+      "startMs": 17307,
+      "endMs": 19040,
+      "durationMs": 1733,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_13.mp3"
+    },
+    {
+      "sentenceId": "xcz_14",
+      "startMs": 18840,
+      "endMs": 19992,
+      "durationMs": 1152,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_14.mp3"
+    },
+    {
+      "sentenceId": "xcz_15",
+      "startMs": 19792,
+      "endMs": 21524,
+      "durationMs": 1732,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_15.mp3"
+    },
+    {
+      "sentenceId": "xcz_16",
+      "startMs": 21324,
+      "endMs": 22093,
+      "durationMs": 769,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_16.mp3"
+    },
+    {
+      "sentenceId": "xcz_17",
+      "startMs": 21893,
+      "endMs": 23092,
+      "durationMs": 1199,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_17.mp3"
+    },
+    {
+      "sentenceId": "xcz_18",
+      "startMs": 22892,
+      "endMs": 26157,
+      "durationMs": 3265,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_18.mp3"
+    },
+    {
+      "sentenceId": "xcz_19",
+      "startMs": 25957,
+      "endMs": 27097,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_19.mp3"
+    },
+    {
+      "sentenceId": "xcz_20",
+      "startMs": 26897,
+      "endMs": 28096,
+      "durationMs": 1199,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_20.mp3"
+    },
+    {
+      "sentenceId": "xcz_21",
+      "startMs": 27896,
+      "endMs": 30847,
+      "durationMs": 2951,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_21.mp3"
+    },
+    {
+      "sentenceId": "xcz_22",
+      "startMs": 30647,
+      "endMs": 32415,
+      "durationMs": 1768,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_22.mp3"
+    },
+    {
+      "sentenceId": "xcz_23",
+      "startMs": 32215,
+      "endMs": 33343,
+      "durationMs": 1128,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_23.mp3"
+    },
+    {
+      "sentenceId": "xcz_24",
+      "startMs": 33143,
+      "endMs": 35689,
+      "durationMs": 2546,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_24.mp3"
+    },
+    {
+      "sentenceId": "xcz_25",
+      "startMs": 35489,
+      "endMs": 37918,
+      "durationMs": 2429,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_25.mp3"
+    },
+    {
+      "sentenceId": "xcz_26",
+      "startMs": 37718,
+      "endMs": 39833,
+      "durationMs": 2115,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_26.mp3"
+    },
+    {
+      "sentenceId": "xcz_27",
+      "startMs": 39633,
+      "endMs": 41679,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_27.mp3"
+    },
+    {
+      "sentenceId": "xcz_28",
+      "startMs": 41479,
+      "endMs": 42585,
+      "durationMs": 1106,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_28.mp3"
+    },
+    {
+      "sentenceId": "xcz_29",
+      "startMs": 42385,
+      "endMs": 43247,
+      "durationMs": 862,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_29.mp3"
+    },
+    {
+      "sentenceId": "xcz_30",
+      "startMs": 43047,
+      "endMs": 44768,
+      "durationMs": 1721,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_30.mp3"
+    },
+    {
+      "sentenceId": "xcz_31",
+      "startMs": 44568,
+      "endMs": 45743,
+      "durationMs": 1175,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_31.mp3"
+    },
+    {
+      "sentenceId": "xcz_32",
+      "startMs": 45543,
+      "endMs": 46788,
+      "durationMs": 1245,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_32.mp3"
+    },
+    {
+      "sentenceId": "xcz_33",
+      "startMs": 46588,
+      "endMs": 48599,
+      "durationMs": 2011,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_33.mp3"
+    },
+    {
+      "sentenceId": "xcz_34",
+      "startMs": 48399,
+      "endMs": 50178,
+      "durationMs": 1779,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_34.mp3"
+    },
+    {
+      "sentenceId": "xcz_35",
+      "startMs": 49978,
+      "endMs": 51362,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_35.mp3"
+    },
+    {
+      "sentenceId": "xcz_36",
+      "startMs": 51162,
+      "endMs": 51989,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_36.mp3"
+    },
+    {
+      "sentenceId": "xcz_37",
+      "startMs": 51789,
+      "endMs": 53545,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_37.mp3"
+    },
+    {
+      "sentenceId": "xcz_38",
+      "startMs": 53345,
+      "endMs": 54288,
+      "durationMs": 943,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_38.mp3"
+    },
+    {
+      "sentenceId": "xcz_39",
+      "startMs": 54088,
+      "endMs": 55379,
+      "durationMs": 1291,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_39.mp3"
+    },
+    {
+      "sentenceId": "xcz_40",
+      "startMs": 55179,
+      "endMs": 57225,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_40.mp3"
+    },
+    {
+      "sentenceId": "xcz_41",
+      "startMs": 57025,
+      "endMs": 57991,
+      "durationMs": 966,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_41.mp3"
+    },
+    {
+      "sentenceId": "xcz_42",
+      "startMs": 57791,
+      "endMs": 58746,
+      "durationMs": 955,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_42.mp3"
+    },
+    {
+      "sentenceId": "xcz_43",
+      "startMs": 58546,
+      "endMs": 60604,
+      "durationMs": 2058,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_43.mp3"
+    },
+    {
+      "sentenceId": "xcz_44",
+      "startMs": 60404,
+      "endMs": 62543,
+      "durationMs": 2139,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_44.mp3"
+    },
+    {
+      "sentenceId": "xcz_45",
+      "startMs": 62343,
+      "endMs": 64772,
+      "durationMs": 2429,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_45.mp3"
+    },
+    {
+      "sentenceId": "xcz_46",
+      "startMs": 64572,
+      "endMs": 66548,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_46.mp3"
+    },
+    {
+      "sentenceId": "xcz_47",
+      "startMs": 66348,
+      "endMs": 67163,
+      "durationMs": 815,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_47.mp3"
+    },
+    {
+      "sentenceId": "xcz_48",
+      "startMs": 66963,
+      "endMs": 69276,
+      "durationMs": 2313,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_48.mp3"
+    },
+    {
+      "sentenceId": "xcz_49",
+      "startMs": 69076,
+      "endMs": 71471,
+      "durationMs": 2395,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_49.mp3"
+    },
+    {
+      "sentenceId": "xcz_50",
+      "startMs": 71271,
+      "endMs": 73433,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_50.mp3"
+    },
+    {
+      "sentenceId": "xcz_51",
+      "startMs": 73233,
+      "endMs": 74153,
+      "durationMs": 920,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_51.mp3"
+    },
+    {
+      "sentenceId": "xcz_52",
+      "startMs": 73953,
+      "endMs": 75012,
+      "durationMs": 1059,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_52.mp3"
+    },
+    {
+      "sentenceId": "xcz_53",
+      "startMs": 74812,
+      "endMs": 75628,
+      "durationMs": 816,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_53.mp3"
+    },
+    {
+      "sentenceId": "xcz_54",
+      "startMs": 75428,
+      "endMs": 77270,
+      "durationMs": 1842,
+      "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_54.mp3"
+    }
+  ]
+}

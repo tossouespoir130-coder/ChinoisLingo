@@ -1,0 +1,225 @@
+{
+  "contentId": "chanson_moon",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_moon.mp3",
+  "totalDurationMs": 50390,
+  "sentences": [
+    {
+      "sentenceId": "ch1_1",
+      "startMs": 0,
+      "endMs": 3122,
+      "durationMs": 3122,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_1.mp3"
+    },
+    {
+      "sentenceId": "ch1_2",
+      "startMs": 2922,
+      "endMs": 4713,
+      "durationMs": 1791,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_2.mp3"
+    },
+    {
+      "sentenceId": "ch1_3",
+      "startMs": 4513,
+      "endMs": 6141,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_3.mp3"
+    },
+    {
+      "sentenceId": "ch1_4",
+      "startMs": 5941,
+      "endMs": 7023,
+      "durationMs": 1082,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_4.mp3"
+    },
+    {
+      "sentenceId": "ch1_5",
+      "startMs": 6823,
+      "endMs": 9217,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_5.mp3"
+    },
+    {
+      "sentenceId": "ch1_6",
+      "startMs": 9017,
+      "endMs": 11714,
+      "durationMs": 2697,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_6.mp3"
+    },
+    {
+      "sentenceId": "ch1_7",
+      "startMs": 11514,
+      "endMs": 13327,
+      "durationMs": 1813,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_7.mp3"
+    },
+    {
+      "sentenceId": "ch1_8",
+      "startMs": 13127,
+      "endMs": 14767,
+      "durationMs": 1640,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_8.mp3"
+    },
+    {
+      "sentenceId": "ch1_9",
+      "startMs": 14567,
+      "endMs": 15673,
+      "durationMs": 1106,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_9.mp3"
+    },
+    {
+      "sentenceId": "ch1_10",
+      "startMs": 15473,
+      "endMs": 17460,
+      "durationMs": 1987,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_10.mp3"
+    },
+    {
+      "sentenceId": "ch1_11",
+      "startMs": 17260,
+      "endMs": 18958,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_11.mp3"
+    },
+    {
+      "sentenceId": "ch1_12",
+      "startMs": 18758,
+      "endMs": 20200,
+      "durationMs": 1442,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_12.mp3"
+    },
+    {
+      "sentenceId": "ch1_13",
+      "startMs": 20000,
+      "endMs": 21211,
+      "durationMs": 1211,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_13.mp3"
+    },
+    {
+      "sentenceId": "ch1_14",
+      "startMs": 21011,
+      "endMs": 23126,
+      "durationMs": 2115,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_14.mp3"
+    },
+    {
+      "sentenceId": "ch1_15",
+      "startMs": 22926,
+      "endMs": 25541,
+      "durationMs": 2615,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_15.mp3"
+    },
+    {
+      "sentenceId": "ch1_16",
+      "startMs": 25341,
+      "endMs": 27062,
+      "durationMs": 1721,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_16.mp3"
+    },
+    {
+      "sentenceId": "ch1_17",
+      "startMs": 26862,
+      "endMs": 28467,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_17.mp3"
+    },
+    {
+      "sentenceId": "ch1_18",
+      "startMs": 28267,
+      "endMs": 29860,
+      "durationMs": 1593,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_18.mp3"
+    },
+    {
+      "sentenceId": "ch1_19",
+      "startMs": 29660,
+      "endMs": 31694,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_19.mp3"
+    },
+    {
+      "sentenceId": "ch1_20",
+      "startMs": 31494,
+      "endMs": 33308,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_20.mp3"
+    },
+    {
+      "sentenceId": "ch1_21",
+      "startMs": 33108,
+      "endMs": 34527,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_21.mp3"
+    },
+    {
+      "sentenceId": "ch1_22",
+      "startMs": 34327,
+      "endMs": 35561,
+      "durationMs": 1234,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_22.mp3"
+    },
+    {
+      "sentenceId": "ch1_23",
+      "startMs": 35361,
+      "endMs": 37441,
+      "durationMs": 2080,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_23.mp3"
+    },
+    {
+      "sentenceId": "ch1_24",
+      "startMs": 37241,
+      "endMs": 39938,
+      "durationMs": 2697,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_24.mp3"
+    },
+    {
+      "sentenceId": "ch1_25",
+      "startMs": 39738,
+      "endMs": 41551,
+      "durationMs": 1813,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_25.mp3"
+    },
+    {
+      "sentenceId": "ch1_26",
+      "startMs": 41351,
+      "endMs": 42828,
+      "durationMs": 1477,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_26.mp3"
+    },
+    {
+      "sentenceId": "ch1_27",
+      "startMs": 42628,
+      "endMs": 44152,
+      "durationMs": 1524,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_27.mp3"
+    },
+    {
+      "sentenceId": "ch1_28",
+      "startMs": 43952,
+      "endMs": 46021,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_28.mp3"
+    },
+    {
+      "sentenceId": "ch1_29",
+      "startMs": 45821,
+      "endMs": 47461,
+      "durationMs": 1640,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_29.mp3"
+    },
+    {
+      "sentenceId": "ch1_30",
+      "startMs": 47261,
+      "endMs": 48784,
+      "durationMs": 1523,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_30.mp3"
+    },
+    {
+      "sentenceId": "ch1_31",
+      "startMs": 48584,
+      "endMs": 50390,
+      "durationMs": 1806,
+      "audioUrl": "/audio/readings/chanson_moon_ch1_31.mp3"
+    }
+  ]
+}

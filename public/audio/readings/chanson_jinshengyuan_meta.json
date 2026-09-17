@@ -1,0 +1,253 @@
+{
+  "contentId": "chanson_jinshengyuan",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_jinshengyuan.mp3",
+  "totalDurationMs": 67000,
+  "sentences": [
+    {
+      "sentenceId": "jsy_1",
+      "startMs": 0,
+      "endMs": 2402,
+      "durationMs": 2402,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_1.mp3"
+    },
+    {
+      "sentenceId": "jsy_2",
+      "startMs": 2202,
+      "endMs": 4063,
+      "durationMs": 1861,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_2.mp3"
+    },
+    {
+      "sentenceId": "jsy_3",
+      "startMs": 3863,
+      "endMs": 5084,
+      "durationMs": 1221,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_3.mp3"
+    },
+    {
+      "sentenceId": "jsy_4",
+      "startMs": 4884,
+      "endMs": 7302,
+      "durationMs": 2418,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_4.mp3"
+    },
+    {
+      "sentenceId": "jsy_5",
+      "startMs": 7102,
+      "endMs": 8985,
+      "durationMs": 1883,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_5.mp3"
+    },
+    {
+      "sentenceId": "jsy_6",
+      "startMs": 8785,
+      "endMs": 10146,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_6.mp3"
+    },
+    {
+      "sentenceId": "jsy_7",
+      "startMs": 9946,
+      "endMs": 12399,
+      "durationMs": 2453,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_7.mp3"
+    },
+    {
+      "sentenceId": "jsy_8",
+      "startMs": 12199,
+      "endMs": 14639,
+      "durationMs": 2440,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_8.mp3"
+    },
+    {
+      "sentenceId": "jsy_9",
+      "startMs": 14439,
+      "endMs": 16531,
+      "durationMs": 2092,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_9.mp3"
+    },
+    {
+      "sentenceId": "jsy_10",
+      "startMs": 16331,
+      "endMs": 19016,
+      "durationMs": 2685,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_10.mp3"
+    },
+    {
+      "sentenceId": "jsy_11",
+      "startMs": 18816,
+      "endMs": 20130,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_11.mp3"
+    },
+    {
+      "sentenceId": "jsy_12",
+      "startMs": 19930,
+      "endMs": 22418,
+      "durationMs": 2488,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_12.mp3"
+    },
+    {
+      "sentenceId": "jsy_13",
+      "startMs": 22218,
+      "endMs": 24159,
+      "durationMs": 1941,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_13.mp3"
+    },
+    {
+      "sentenceId": "jsy_14",
+      "startMs": 23959,
+      "endMs": 25250,
+      "durationMs": 1291,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_14.mp3"
+    },
+    {
+      "sentenceId": "jsy_15",
+      "startMs": 25050,
+      "endMs": 27584,
+      "durationMs": 2534,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_15.mp3"
+    },
+    {
+      "sentenceId": "jsy_16",
+      "startMs": 27384,
+      "endMs": 29813,
+      "durationMs": 2429,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_16.mp3"
+    },
+    {
+      "sentenceId": "jsy_17",
+      "startMs": 29613,
+      "endMs": 32007,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_17.mp3"
+    },
+    {
+      "sentenceId": "jsy_18",
+      "startMs": 31807,
+      "endMs": 33551,
+      "durationMs": 1744,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_18.mp3"
+    },
+    {
+      "sentenceId": "jsy_19",
+      "startMs": 33351,
+      "endMs": 34573,
+      "durationMs": 1222,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_19.mp3"
+    },
+    {
+      "sentenceId": "jsy_20",
+      "startMs": 34373,
+      "endMs": 36825,
+      "durationMs": 2452,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_20.mp3"
+    },
+    {
+      "sentenceId": "jsy_21",
+      "startMs": 36625,
+      "endMs": 39089,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_21.mp3"
+    },
+    {
+      "sentenceId": "jsy_22",
+      "startMs": 38889,
+      "endMs": 40181,
+      "durationMs": 1292,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_22.mp3"
+    },
+    {
+      "sentenceId": "jsy_23",
+      "startMs": 39981,
+      "endMs": 42375,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_23.mp3"
+    },
+    {
+      "sentenceId": "jsy_24",
+      "startMs": 42175,
+      "endMs": 45208,
+      "durationMs": 3033,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_24.mp3"
+    },
+    {
+      "sentenceId": "jsy_25",
+      "startMs": 45008,
+      "endMs": 47820,
+      "durationMs": 2812,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_25.mp3"
+    },
+    {
+      "sentenceId": "jsy_26",
+      "startMs": 47620,
+      "endMs": 50061,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_26.mp3"
+    },
+    {
+      "sentenceId": "jsy_27",
+      "startMs": 49861,
+      "endMs": 51175,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_27.mp3"
+    },
+    {
+      "sentenceId": "jsy_28",
+      "startMs": 50975,
+      "endMs": 53567,
+      "durationMs": 2592,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_28.mp3"
+    },
+    {
+      "sentenceId": "jsy_29",
+      "startMs": 53367,
+      "endMs": 55808,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_29.mp3"
+    },
+    {
+      "sentenceId": "jsy_30",
+      "startMs": 55608,
+      "endMs": 56922,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_30.mp3"
+    },
+    {
+      "sentenceId": "jsy_31",
+      "startMs": 56722,
+      "endMs": 59302,
+      "durationMs": 2580,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_31.mp3"
+    },
+    {
+      "sentenceId": "jsy_32",
+      "startMs": 59102,
+      "endMs": 61462,
+      "durationMs": 2360,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_32.mp3"
+    },
+    {
+      "sentenceId": "jsy_33",
+      "startMs": 61262,
+      "endMs": 62541,
+      "durationMs": 1279,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_33.mp3"
+    },
+    {
+      "sentenceId": "jsy_34",
+      "startMs": 62341,
+      "endMs": 64910,
+      "durationMs": 2569,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_34.mp3"
+    },
+    {
+      "sentenceId": "jsy_35",
+      "startMs": 64710,
+      "endMs": 67000,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_35.mp3"
+    }
+  ]
+}

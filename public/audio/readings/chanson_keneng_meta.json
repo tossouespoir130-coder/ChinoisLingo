@@ -1,0 +1,386 @@
+{
+  "contentId": "chanson_keneng",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_keneng.mp3",
+  "totalDurationMs": 89030,
+  "sentences": [
+    {
+      "sentenceId": "kn_1",
+      "startMs": 0,
+      "endMs": 1439,
+      "durationMs": 1439,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_1.mp3"
+    },
+    {
+      "sentenceId": "kn_2",
+      "startMs": 1239,
+      "endMs": 3041,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_2.mp3"
+    },
+    {
+      "sentenceId": "kn_3",
+      "startMs": 2841,
+      "endMs": 5049,
+      "durationMs": 2208,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_3.mp3"
+    },
+    {
+      "sentenceId": "kn_4",
+      "startMs": 4849,
+      "endMs": 6373,
+      "durationMs": 1524,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_4.mp3"
+    },
+    {
+      "sentenceId": "kn_5",
+      "startMs": 6173,
+      "endMs": 9566,
+      "durationMs": 3393,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_5.mp3"
+    },
+    {
+      "sentenceId": "kn_6",
+      "startMs": 9366,
+      "endMs": 10994,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_6.mp3"
+    },
+    {
+      "sentenceId": "kn_7",
+      "startMs": 10794,
+      "endMs": 12607,
+      "durationMs": 1813,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_7.mp3"
+    },
+    {
+      "sentenceId": "kn_8",
+      "startMs": 12407,
+      "endMs": 13943,
+      "durationMs": 1536,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_8.mp3"
+    },
+    {
+      "sentenceId": "kn_9",
+      "startMs": 13743,
+      "endMs": 15418,
+      "durationMs": 1675,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_9.mp3"
+    },
+    {
+      "sentenceId": "kn_10",
+      "startMs": 15218,
+      "endMs": 17380,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_10.mp3"
+    },
+    {
+      "sentenceId": "kn_11",
+      "startMs": 17180,
+      "endMs": 19028,
+      "durationMs": 1848,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_11.mp3"
+    },
+    {
+      "sentenceId": "kn_12",
+      "startMs": 18828,
+      "endMs": 20410,
+      "durationMs": 1582,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_12.mp3"
+    },
+    {
+      "sentenceId": "kn_13",
+      "startMs": 20210,
+      "endMs": 22082,
+      "durationMs": 1872,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_13.mp3"
+    },
+    {
+      "sentenceId": "kn_14",
+      "startMs": 21882,
+      "endMs": 23870,
+      "durationMs": 1988,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_14.mp3"
+    },
+    {
+      "sentenceId": "kn_15",
+      "startMs": 23670,
+      "endMs": 25599,
+      "durationMs": 1929,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_15.mp3"
+    },
+    {
+      "sentenceId": "kn_16",
+      "startMs": 25399,
+      "endMs": 27492,
+      "durationMs": 2093,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_16.mp3"
+    },
+    {
+      "sentenceId": "kn_17",
+      "startMs": 27292,
+      "endMs": 28711,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_17.mp3"
+    },
+    {
+      "sentenceId": "kn_18",
+      "startMs": 28511,
+      "endMs": 29953,
+      "durationMs": 1442,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_18.mp3"
+    },
+    {
+      "sentenceId": "kn_19",
+      "startMs": 29753,
+      "endMs": 32171,
+      "durationMs": 2418,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_19.mp3"
+    },
+    {
+      "sentenceId": "kn_20",
+      "startMs": 31971,
+      "endMs": 33552,
+      "durationMs": 1581,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_20.mp3"
+    },
+    {
+      "sentenceId": "kn_21",
+      "startMs": 33352,
+      "endMs": 35317,
+      "durationMs": 1965,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_21.mp3"
+    },
+    {
+      "sentenceId": "kn_22",
+      "startMs": 35117,
+      "endMs": 37012,
+      "durationMs": 1895,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_22.mp3"
+    },
+    {
+      "sentenceId": "kn_23",
+      "startMs": 36812,
+      "endMs": 38777,
+      "durationMs": 1965,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_23.mp3"
+    },
+    {
+      "sentenceId": "kn_24",
+      "startMs": 38577,
+      "endMs": 40135,
+      "durationMs": 1558,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_24.mp3"
+    },
+    {
+      "sentenceId": "kn_25",
+      "startMs": 39935,
+      "endMs": 41749,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_25.mp3"
+    },
+    {
+      "sentenceId": "kn_26",
+      "startMs": 41549,
+      "endMs": 43583,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_26.mp3"
+    },
+    {
+      "sentenceId": "kn_27",
+      "startMs": 43383,
+      "endMs": 45244,
+      "durationMs": 1861,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_27.mp3"
+    },
+    {
+      "sentenceId": "kn_28",
+      "startMs": 45044,
+      "endMs": 46509,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_28.mp3"
+    },
+    {
+      "sentenceId": "kn_29",
+      "startMs": 46309,
+      "endMs": 48007,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_29.mp3"
+    },
+    {
+      "sentenceId": "kn_30",
+      "startMs": 47807,
+      "endMs": 49342,
+      "durationMs": 1535,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_30.mp3"
+    },
+    {
+      "sentenceId": "kn_31",
+      "startMs": 49142,
+      "endMs": 51176,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_31.mp3"
+    },
+    {
+      "sentenceId": "kn_32",
+      "startMs": 50976,
+      "endMs": 52953,
+      "durationMs": 1977,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_32.mp3"
+    },
+    {
+      "sentenceId": "kn_33",
+      "startMs": 52753,
+      "endMs": 54741,
+      "durationMs": 1988,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_33.mp3"
+    },
+    {
+      "sentenceId": "kn_34",
+      "startMs": 54541,
+      "endMs": 56540,
+      "durationMs": 1999,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_34.mp3"
+    },
+    {
+      "sentenceId": "kn_35",
+      "startMs": 56340,
+      "endMs": 58386,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_35.mp3"
+    },
+    {
+      "sentenceId": "kn_36",
+      "startMs": 58186,
+      "endMs": 59756,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_36.mp3"
+    },
+    {
+      "sentenceId": "kn_37",
+      "startMs": 59556,
+      "endMs": 61649,
+      "durationMs": 2093,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_37.mp3"
+    },
+    {
+      "sentenceId": "kn_38",
+      "startMs": 61449,
+      "endMs": 63007,
+      "durationMs": 1558,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_38.mp3"
+    },
+    {
+      "sentenceId": "kn_39",
+      "startMs": 62807,
+      "endMs": 64841,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_39.mp3"
+    },
+    {
+      "sentenceId": "kn_40",
+      "startMs": 64641,
+      "endMs": 66687,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_40.mp3"
+    },
+    {
+      "sentenceId": "kn_41",
+      "startMs": 66487,
+      "endMs": 68231,
+      "durationMs": 1744,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_41.mp3"
+    },
+    {
+      "sentenceId": "kn_42",
+      "startMs": 68031,
+      "endMs": 69543,
+      "durationMs": 1512,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_42.mp3"
+    },
+    {
+      "sentenceId": "kn_43",
+      "startMs": 69343,
+      "endMs": 71087,
+      "durationMs": 1744,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_43.mp3"
+    },
+    {
+      "sentenceId": "kn_44",
+      "startMs": 70887,
+      "endMs": 72446,
+      "durationMs": 1559,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_44.mp3"
+    },
+    {
+      "sentenceId": "kn_45",
+      "startMs": 72246,
+      "endMs": 74094,
+      "durationMs": 1848,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_45.mp3"
+    },
+    {
+      "sentenceId": "kn_46",
+      "startMs": 73894,
+      "endMs": 75894,
+      "durationMs": 2000,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_46.mp3"
+    },
+    {
+      "sentenceId": "kn_47",
+      "startMs": 75694,
+      "endMs": 77368,
+      "durationMs": 1674,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_47.mp3"
+    },
+    {
+      "sentenceId": "kn_48",
+      "startMs": 77168,
+      "endMs": 78970,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_48.mp3"
+    },
+    {
+      "sentenceId": "kn_49",
+      "startMs": 78770,
+      "endMs": 80700,
+      "durationMs": 1930,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_49.mp3"
+    },
+    {
+      "sentenceId": "kn_50",
+      "startMs": 80500,
+      "endMs": 82511,
+      "durationMs": 2011,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_50.mp3"
+    },
+    {
+      "sentenceId": "kn_51",
+      "startMs": 82311,
+      "endMs": 84346,
+      "durationMs": 2035,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_51.mp3"
+    },
+    {
+      "sentenceId": "kn_52",
+      "startMs": 84146,
+      "endMs": 86215,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_52.mp3"
+    },
+    {
+      "sentenceId": "kn_53",
+      "startMs": 86015,
+      "endMs": 87631,
+      "durationMs": 1616,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_53.mp3"
+    },
+    {
+      "sentenceId": "kn_54",
+      "startMs": 87431,
+      "endMs": 89030,
+      "durationMs": 1599,
+      "audioUrl": "/audio/readings/chanson_keneng_kn_54.mp3"
+    }
+  ]
+}

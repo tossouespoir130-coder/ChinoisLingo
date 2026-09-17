@@ -1,0 +1,253 @@
+{
+  "contentId": "chanson_yeguang",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_yeguang.mp3",
+  "totalDurationMs": 60630,
+  "sentences": [
+    {
+      "sentenceId": "yg_1",
+      "startMs": 0,
+      "endMs": 2228,
+      "durationMs": 2228,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_1.mp3"
+    },
+    {
+      "sentenceId": "yg_2",
+      "startMs": 2028,
+      "endMs": 3819,
+      "durationMs": 1791,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_2.mp3"
+    },
+    {
+      "sentenceId": "yg_3",
+      "startMs": 3619,
+      "endMs": 5909,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_3.mp3"
+    },
+    {
+      "sentenceId": "yg_4",
+      "startMs": 5709,
+      "endMs": 6733,
+      "durationMs": 1024,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_4.mp3"
+    },
+    {
+      "sentenceId": "yg_5",
+      "startMs": 6533,
+      "endMs": 7952,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_5.mp3"
+    },
+    {
+      "sentenceId": "yg_6",
+      "startMs": 7752,
+      "endMs": 9612,
+      "durationMs": 1860,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_6.mp3"
+    },
+    {
+      "sentenceId": "yg_7",
+      "startMs": 9412,
+      "endMs": 11516,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_7.mp3"
+    },
+    {
+      "sentenceId": "yg_8",
+      "startMs": 11316,
+      "endMs": 13072,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_8.mp3"
+    },
+    {
+      "sentenceId": "yg_9",
+      "startMs": 12872,
+      "endMs": 14616,
+      "durationMs": 1744,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_9.mp3"
+    },
+    {
+      "sentenceId": "yg_10",
+      "startMs": 14416,
+      "endMs": 16032,
+      "durationMs": 1616,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_10.mp3"
+    },
+    {
+      "sentenceId": "yg_11",
+      "startMs": 15832,
+      "endMs": 17542,
+      "durationMs": 1710,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_11.mp3"
+    },
+    {
+      "sentenceId": "yg_12",
+      "startMs": 17342,
+      "endMs": 18830,
+      "durationMs": 1488,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_12.mp3"
+    },
+    {
+      "sentenceId": "yg_13",
+      "startMs": 18630,
+      "endMs": 19887,
+      "durationMs": 1257,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_13.mp3"
+    },
+    {
+      "sentenceId": "yg_14",
+      "startMs": 19687,
+      "endMs": 21884,
+      "durationMs": 2197,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_14.mp3"
+    },
+    {
+      "sentenceId": "yg_15",
+      "startMs": 21684,
+      "endMs": 24148,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_15.mp3"
+    },
+    {
+      "sentenceId": "yg_16",
+      "startMs": 23948,
+      "endMs": 27445,
+      "durationMs": 3497,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_16.mp3"
+    },
+    {
+      "sentenceId": "yg_17",
+      "startMs": 27245,
+      "endMs": 30022,
+      "durationMs": 2777,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_17.mp3"
+    },
+    {
+      "sentenceId": "yg_18",
+      "startMs": 29822,
+      "endMs": 30951,
+      "durationMs": 1129,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_18.mp3"
+    },
+    {
+      "sentenceId": "yg_19",
+      "startMs": 30751,
+      "endMs": 32309,
+      "durationMs": 1558,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_19.mp3"
+    },
+    {
+      "sentenceId": "yg_20",
+      "startMs": 32109,
+      "endMs": 33912,
+      "durationMs": 1803,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_20.mp3"
+    },
+    {
+      "sentenceId": "yg_21",
+      "startMs": 33712,
+      "endMs": 35909,
+      "durationMs": 2197,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_21.mp3"
+    },
+    {
+      "sentenceId": "yg_22",
+      "startMs": 35709,
+      "endMs": 36930,
+      "durationMs": 1221,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_22.mp3"
+    },
+    {
+      "sentenceId": "yg_23",
+      "startMs": 36730,
+      "endMs": 37754,
+      "durationMs": 1024,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_23.mp3"
+    },
+    {
+      "sentenceId": "yg_24",
+      "startMs": 37554,
+      "endMs": 39299,
+      "durationMs": 1745,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_24.mp3"
+    },
+    {
+      "sentenceId": "yg_25",
+      "startMs": 39099,
+      "endMs": 41226,
+      "durationMs": 2127,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_25.mp3"
+    },
+    {
+      "sentenceId": "yg_26",
+      "startMs": 41026,
+      "endMs": 44036,
+      "durationMs": 3010,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_26.mp3"
+    },
+    {
+      "sentenceId": "yg_27",
+      "startMs": 43836,
+      "endMs": 47193,
+      "durationMs": 3357,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_27.mp3"
+    },
+    {
+      "sentenceId": "yg_28",
+      "startMs": 46993,
+      "endMs": 49794,
+      "durationMs": 2801,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_28.mp3"
+    },
+    {
+      "sentenceId": "yg_29",
+      "startMs": 49594,
+      "endMs": 51222,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_29.mp3"
+    },
+    {
+      "sentenceId": "yg_30",
+      "startMs": 51022,
+      "endMs": 53474,
+      "durationMs": 2452,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_30.mp3"
+    },
+    {
+      "sentenceId": "yg_31",
+      "startMs": 53274,
+      "endMs": 56771,
+      "durationMs": 3497,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_31.mp3"
+    },
+    {
+      "sentenceId": "yg_32",
+      "startMs": 56571,
+      "endMs": 58850,
+      "durationMs": 2279,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_32.mp3"
+    },
+    {
+      "sentenceId": "yg_33",
+      "startMs": 58650,
+      "endMs": 59790,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_33.mp3"
+    },
+    {
+      "sentenceId": "yg_34",
+      "startMs": 59590,
+      "endMs": 60115,
+      "durationMs": 525,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_34.mp3"
+    },
+    {
+      "sentenceId": "yg_35",
+      "startMs": 59915,
+      "endMs": 60630,
+      "durationMs": 715,
+      "audioUrl": "/audio/readings/chanson_yeguang_yg_35.mp3"
+    }
+  ]
+}

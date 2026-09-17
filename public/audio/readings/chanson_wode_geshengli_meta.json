@@ -1,0 +1,449 @@
+{
+  "contentId": "chanson_wode_geshengli",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_wode_geshengli.mp3",
+  "totalDurationMs": 80140,
+  "sentences": [
+    {
+      "sentenceId": "wgs_1",
+      "startMs": 0,
+      "endMs": 1845,
+      "durationMs": 1845,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_1.mp3"
+    },
+    {
+      "sentenceId": "wgs_2",
+      "startMs": 1645,
+      "endMs": 3529,
+      "durationMs": 1884,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_2.mp3"
+    },
+    {
+      "sentenceId": "wgs_3",
+      "startMs": 3329,
+      "endMs": 4608,
+      "durationMs": 1279,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_3.mp3"
+    },
+    {
+      "sentenceId": "wgs_4",
+      "startMs": 4408,
+      "endMs": 5560,
+      "durationMs": 1152,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_4.mp3"
+    },
+    {
+      "sentenceId": "wgs_5",
+      "startMs": 5360,
+      "endMs": 6385,
+      "durationMs": 1025,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_5.mp3"
+    },
+    {
+      "sentenceId": "wgs_6",
+      "startMs": 6185,
+      "endMs": 7534,
+      "durationMs": 1349,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_6.mp3"
+    },
+    {
+      "sentenceId": "wgs_7",
+      "startMs": 7334,
+      "endMs": 9891,
+      "durationMs": 2557,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_7.mp3"
+    },
+    {
+      "sentenceId": "wgs_8",
+      "startMs": 9691,
+      "endMs": 11133,
+      "durationMs": 1442,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_8.mp3"
+    },
+    {
+      "sentenceId": "wgs_9",
+      "startMs": 10933,
+      "endMs": 12561,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_9.mp3"
+    },
+    {
+      "sentenceId": "wgs_10",
+      "startMs": 12361,
+      "endMs": 13652,
+      "durationMs": 1291,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_10.mp3"
+    },
+    {
+      "sentenceId": "wgs_11",
+      "startMs": 13452,
+      "endMs": 14325,
+      "durationMs": 873,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_11.mp3"
+    },
+    {
+      "sentenceId": "wgs_12",
+      "startMs": 14125,
+      "endMs": 16032,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_12.mp3"
+    },
+    {
+      "sentenceId": "wgs_13",
+      "startMs": 15832,
+      "endMs": 16659,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_13.mp3"
+    },
+    {
+      "sentenceId": "wgs_14",
+      "startMs": 16459,
+      "endMs": 18308,
+      "durationMs": 1849,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_14.mp3"
+    },
+    {
+      "sentenceId": "wgs_15",
+      "startMs": 18108,
+      "endMs": 19376,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_15.mp3"
+    },
+    {
+      "sentenceId": "wgs_16",
+      "startMs": 19176,
+      "endMs": 20409,
+      "durationMs": 1233,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_16.mp3"
+    },
+    {
+      "sentenceId": "wgs_17",
+      "startMs": 20209,
+      "endMs": 21802,
+      "durationMs": 1593,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_17.mp3"
+    },
+    {
+      "sentenceId": "wgs_18",
+      "startMs": 21602,
+      "endMs": 22429,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_18.mp3"
+    },
+    {
+      "sentenceId": "wgs_19",
+      "startMs": 22229,
+      "endMs": 23997,
+      "durationMs": 1768,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_19.mp3"
+    },
+    {
+      "sentenceId": "wgs_20",
+      "startMs": 23797,
+      "endMs": 25053,
+      "durationMs": 1256,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_20.mp3"
+    },
+    {
+      "sentenceId": "wgs_21",
+      "startMs": 24853,
+      "endMs": 26121,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_21.mp3"
+    },
+    {
+      "sentenceId": "wgs_22",
+      "startMs": 25921,
+      "endMs": 27619,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_22.mp3"
+    },
+    {
+      "sentenceId": "wgs_23",
+      "startMs": 27419,
+      "endMs": 29325,
+      "durationMs": 1906,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_23.mp3"
+    },
+    {
+      "sentenceId": "wgs_24",
+      "startMs": 29125,
+      "endMs": 30672,
+      "durationMs": 1547,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_24.mp3"
+    },
+    {
+      "sentenceId": "wgs_25",
+      "startMs": 30472,
+      "endMs": 32356,
+      "durationMs": 1884,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_25.mp3"
+    },
+    {
+      "sentenceId": "wgs_26",
+      "startMs": 32156,
+      "endMs": 34225,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_26.mp3"
+    },
+    {
+      "sentenceId": "wgs_27",
+      "startMs": 34025,
+      "endMs": 35386,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_27.mp3"
+    },
+    {
+      "sentenceId": "wgs_28",
+      "startMs": 35186,
+      "endMs": 37603,
+      "durationMs": 2417,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_28.mp3"
+    },
+    {
+      "sentenceId": "wgs_29",
+      "startMs": 37403,
+      "endMs": 38834,
+      "durationMs": 1431,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_29.mp3"
+    },
+    {
+      "sentenceId": "wgs_30",
+      "startMs": 38634,
+      "endMs": 39647,
+      "durationMs": 1013,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_30.mp3"
+    },
+    {
+      "sentenceId": "wgs_31",
+      "startMs": 39447,
+      "endMs": 41655,
+      "durationMs": 2208,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_31.mp3"
+    },
+    {
+      "sentenceId": "wgs_32",
+      "startMs": 41455,
+      "endMs": 42270,
+      "durationMs": 815,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_32.mp3"
+    },
+    {
+      "sentenceId": "wgs_33",
+      "startMs": 42070,
+      "endMs": 43478,
+      "durationMs": 1408,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_33.mp3"
+    },
+    {
+      "sentenceId": "wgs_34",
+      "startMs": 43278,
+      "endMs": 44383,
+      "durationMs": 1105,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_34.mp3"
+    },
+    {
+      "sentenceId": "wgs_35",
+      "startMs": 44183,
+      "endMs": 44964,
+      "durationMs": 781,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_35.mp3"
+    },
+    {
+      "sentenceId": "wgs_36",
+      "startMs": 44764,
+      "endMs": 46821,
+      "durationMs": 2057,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_36.mp3"
+    },
+    {
+      "sentenceId": "wgs_37",
+      "startMs": 46621,
+      "endMs": 47982,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_37.mp3"
+    },
+    {
+      "sentenceId": "wgs_38",
+      "startMs": 47782,
+      "endMs": 49074,
+      "durationMs": 1292,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_38.mp3"
+    },
+    {
+      "sentenceId": "wgs_39",
+      "startMs": 48874,
+      "endMs": 50502,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_39.mp3"
+    },
+    {
+      "sentenceId": "wgs_40",
+      "startMs": 50302,
+      "endMs": 51140,
+      "durationMs": 838,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_40.mp3"
+    },
+    {
+      "sentenceId": "wgs_41",
+      "startMs": 50940,
+      "endMs": 52847,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_41.mp3"
+    },
+    {
+      "sentenceId": "wgs_42",
+      "startMs": 52647,
+      "endMs": 53973,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_42.mp3"
+    },
+    {
+      "sentenceId": "wgs_43",
+      "startMs": 53773,
+      "endMs": 55192,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_43.mp3"
+    },
+    {
+      "sentenceId": "wgs_44",
+      "startMs": 54992,
+      "endMs": 56202,
+      "durationMs": 1210,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_44.mp3"
+    },
+    {
+      "sentenceId": "wgs_45",
+      "startMs": 56002,
+      "endMs": 56910,
+      "durationMs": 908,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_45.mp3"
+    },
+    {
+      "sentenceId": "wgs_46",
+      "startMs": 56710,
+      "endMs": 58918,
+      "durationMs": 2208,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_46.mp3"
+    },
+    {
+      "sentenceId": "wgs_47",
+      "startMs": 58718,
+      "endMs": 60428,
+      "durationMs": 1710,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_47.mp3"
+    },
+    {
+      "sentenceId": "wgs_48",
+      "startMs": 60228,
+      "endMs": 61925,
+      "durationMs": 1697,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_48.mp3"
+    },
+    {
+      "sentenceId": "wgs_49",
+      "startMs": 61725,
+      "endMs": 62541,
+      "durationMs": 816,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_49.mp3"
+    },
+    {
+      "sentenceId": "wgs_50",
+      "startMs": 62341,
+      "endMs": 64317,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_50.mp3"
+    },
+    {
+      "sentenceId": "wgs_51",
+      "startMs": 64117,
+      "endMs": 65432,
+      "durationMs": 1315,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_51.mp3"
+    },
+    {
+      "sentenceId": "wgs_52",
+      "startMs": 65232,
+      "endMs": 66627,
+      "durationMs": 1395,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_52.mp3"
+    },
+    {
+      "sentenceId": "wgs_53",
+      "startMs": 66427,
+      "endMs": 68044,
+      "durationMs": 1617,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_53.mp3"
+    },
+    {
+      "sentenceId": "wgs_54",
+      "startMs": 67844,
+      "endMs": 68694,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_54.mp3"
+    },
+    {
+      "sentenceId": "wgs_55",
+      "startMs": 68494,
+      "endMs": 70470,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_55.mp3"
+    },
+    {
+      "sentenceId": "wgs_56",
+      "startMs": 70270,
+      "endMs": 71643,
+      "durationMs": 1373,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_56.mp3"
+    },
+    {
+      "sentenceId": "wgs_57",
+      "startMs": 71443,
+      "endMs": 72850,
+      "durationMs": 1407,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_57.mp3"
+    },
+    {
+      "sentenceId": "wgs_58",
+      "startMs": 72650,
+      "endMs": 74302,
+      "durationMs": 1652,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_58.mp3"
+    },
+    {
+      "sentenceId": "wgs_59",
+      "startMs": 74102,
+      "endMs": 74952,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_59.mp3"
+    },
+    {
+      "sentenceId": "wgs_60",
+      "startMs": 74752,
+      "endMs": 76670,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_60.mp3"
+    },
+    {
+      "sentenceId": "wgs_61",
+      "startMs": 76470,
+      "endMs": 77762,
+      "durationMs": 1292,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_61.mp3"
+    },
+    {
+      "sentenceId": "wgs_62",
+      "startMs": 77562,
+      "endMs": 78934,
+      "durationMs": 1372,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_62.mp3"
+    },
+    {
+      "sentenceId": "wgs_63",
+      "startMs": 78734,
+      "endMs": 80140,
+      "durationMs": 1406,
+      "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_63.mp3"
+    }
+  ]
+}

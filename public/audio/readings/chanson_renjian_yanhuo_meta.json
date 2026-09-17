@@ -1,0 +1,316 @@
+{
+  "contentId": "chanson_renjian_yanhuo",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_renjian_yanhuo.mp3",
+  "totalDurationMs": 61340,
+  "sentences": [
+    {
+      "sentenceId": "ry_1",
+      "startMs": 0,
+      "endMs": 1671,
+      "durationMs": 1671,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_1.mp3"
+    },
+    {
+      "sentenceId": "ry_2",
+      "startMs": 1471,
+      "endMs": 3052,
+      "durationMs": 1581,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_2.mp3"
+    },
+    {
+      "sentenceId": "ry_3",
+      "startMs": 2852,
+      "endMs": 4585,
+      "durationMs": 1733,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_3.mp3"
+    },
+    {
+      "sentenceId": "ry_4",
+      "startMs": 4385,
+      "endMs": 5525,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_4.mp3"
+    },
+    {
+      "sentenceId": "ry_5",
+      "startMs": 5325,
+      "endMs": 7766,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_5.mp3"
+    },
+    {
+      "sentenceId": "ry_6",
+      "startMs": 7566,
+      "endMs": 9275,
+      "durationMs": 1709,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_6.mp3"
+    },
+    {
+      "sentenceId": "ry_7",
+      "startMs": 9075,
+      "endMs": 10204,
+      "durationMs": 1129,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_7.mp3"
+    },
+    {
+      "sentenceId": "ry_8",
+      "startMs": 10004,
+      "endMs": 11214,
+      "durationMs": 1210,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_8.mp3"
+    },
+    {
+      "sentenceId": "ry_9",
+      "startMs": 11014,
+      "endMs": 12886,
+      "durationMs": 1872,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_9.mp3"
+    },
+    {
+      "sentenceId": "ry_10",
+      "startMs": 12686,
+      "endMs": 13943,
+      "durationMs": 1257,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_10.mp3"
+    },
+    {
+      "sentenceId": "ry_11",
+      "startMs": 13743,
+      "endMs": 15627,
+      "durationMs": 1884,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_11.mp3"
+    },
+    {
+      "sentenceId": "ry_12",
+      "startMs": 15427,
+      "endMs": 16706,
+      "durationMs": 1279,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_12.mp3"
+    },
+    {
+      "sentenceId": "ry_13",
+      "startMs": 16506,
+      "endMs": 18274,
+      "durationMs": 1768,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_13.mp3"
+    },
+    {
+      "sentenceId": "ry_14",
+      "startMs": 18074,
+      "endMs": 19365,
+      "durationMs": 1291,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_14.mp3"
+    },
+    {
+      "sentenceId": "ry_15",
+      "startMs": 19165,
+      "endMs": 21095,
+      "durationMs": 1930,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_15.mp3"
+    },
+    {
+      "sentenceId": "ry_16",
+      "startMs": 20895,
+      "endMs": 22546,
+      "durationMs": 1651,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_16.mp3"
+    },
+    {
+      "sentenceId": "ry_17",
+      "startMs": 22346,
+      "endMs": 24021,
+      "durationMs": 1675,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_17.mp3"
+    },
+    {
+      "sentenceId": "ry_18",
+      "startMs": 23821,
+      "endMs": 25553,
+      "durationMs": 1732,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_18.mp3"
+    },
+    {
+      "sentenceId": "ry_19",
+      "startMs": 25353,
+      "endMs": 27445,
+      "durationMs": 2092,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_19.mp3"
+    },
+    {
+      "sentenceId": "ry_20",
+      "startMs": 27245,
+      "endMs": 28432,
+      "durationMs": 1187,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_20.mp3"
+    },
+    {
+      "sentenceId": "ry_21",
+      "startMs": 28232,
+      "endMs": 30313,
+      "durationMs": 2081,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_21.mp3"
+    },
+    {
+      "sentenceId": "ry_22",
+      "startMs": 30113,
+      "endMs": 31381,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_22.mp3"
+    },
+    {
+      "sentenceId": "ry_23",
+      "startMs": 31181,
+      "endMs": 32623,
+      "durationMs": 1442,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_23.mp3"
+    },
+    {
+      "sentenceId": "ry_24",
+      "startMs": 32423,
+      "endMs": 33854,
+      "durationMs": 1431,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_24.mp3"
+    },
+    {
+      "sentenceId": "ry_25",
+      "startMs": 33654,
+      "endMs": 35456,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_25.mp3"
+    },
+    {
+      "sentenceId": "ry_26",
+      "startMs": 35256,
+      "endMs": 36478,
+      "durationMs": 1222,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_26.mp3"
+    },
+    {
+      "sentenceId": "ry_27",
+      "startMs": 36278,
+      "endMs": 38115,
+      "durationMs": 1837,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_27.mp3"
+    },
+    {
+      "sentenceId": "ry_28",
+      "startMs": 37915,
+      "endMs": 39171,
+      "durationMs": 1256,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_28.mp3"
+    },
+    {
+      "sentenceId": "ry_29",
+      "startMs": 38971,
+      "endMs": 40797,
+      "durationMs": 1826,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_29.mp3"
+    },
+    {
+      "sentenceId": "ry_30",
+      "startMs": 40597,
+      "endMs": 41842,
+      "durationMs": 1245,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_30.mp3"
+    },
+    {
+      "sentenceId": "ry_31",
+      "startMs": 41642,
+      "endMs": 43003,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_31.mp3"
+    },
+    {
+      "sentenceId": "ry_32",
+      "startMs": 42803,
+      "endMs": 44513,
+      "durationMs": 1710,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_32.mp3"
+    },
+    {
+      "sentenceId": "ry_33",
+      "startMs": 44313,
+      "endMs": 46184,
+      "durationMs": 1871,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_33.mp3"
+    },
+    {
+      "sentenceId": "ry_34",
+      "startMs": 45984,
+      "endMs": 47682,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_34.mp3"
+    },
+    {
+      "sentenceId": "ry_35",
+      "startMs": 47482,
+      "endMs": 49307,
+      "durationMs": 1825,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_35.mp3"
+    },
+    {
+      "sentenceId": "ry_36",
+      "startMs": 49107,
+      "endMs": 50480,
+      "durationMs": 1373,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_36.mp3"
+    },
+    {
+      "sentenceId": "ry_37",
+      "startMs": 50280,
+      "endMs": 52164,
+      "durationMs": 1884,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_37.mp3"
+    },
+    {
+      "sentenceId": "ry_38",
+      "startMs": 51964,
+      "endMs": 53220,
+      "durationMs": 1256,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_38.mp3"
+    },
+    {
+      "sentenceId": "ry_39",
+      "startMs": 53020,
+      "endMs": 54334,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_39.mp3"
+    },
+    {
+      "sentenceId": "ry_40",
+      "startMs": 54134,
+      "endMs": 55867,
+      "durationMs": 1733,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_40.mp3"
+    },
+    {
+      "sentenceId": "ry_41",
+      "startMs": 55667,
+      "endMs": 57492,
+      "durationMs": 1825,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_41.mp3"
+    },
+    {
+      "sentenceId": "ry_42",
+      "startMs": 57292,
+      "endMs": 58978,
+      "durationMs": 1686,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_42.mp3"
+    },
+    {
+      "sentenceId": "ry_43",
+      "startMs": 58778,
+      "endMs": 60174,
+      "durationMs": 1396,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_43.mp3"
+    },
+    {
+      "sentenceId": "ry_44",
+      "startMs": 59974,
+      "endMs": 61340,
+      "durationMs": 1366,
+      "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_44.mp3"
+    }
+  ]
+}

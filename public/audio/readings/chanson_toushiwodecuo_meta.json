@@ -1,0 +1,435 @@
+{
+  "contentId": "chanson_toushiwodecuo",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_toushiwodecuo.mp3",
+  "totalDurationMs": 121760,
+  "sentences": [
+    {
+      "sentenceId": "tdc_1",
+      "startMs": 0,
+      "endMs": 2286,
+      "durationMs": 2286,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_1.mp3"
+    },
+    {
+      "sentenceId": "tdc_2",
+      "startMs": 2086,
+      "endMs": 4690,
+      "durationMs": 2604,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_2.mp3"
+    },
+    {
+      "sentenceId": "tdc_3",
+      "startMs": 4490,
+      "endMs": 6338,
+      "durationMs": 1848,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_3.mp3"
+    },
+    {
+      "sentenceId": "tdc_4",
+      "startMs": 6138,
+      "endMs": 7894,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_4.mp3"
+    },
+    {
+      "sentenceId": "tdc_5",
+      "startMs": 7694,
+      "endMs": 10378,
+      "durationMs": 2684,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_5.mp3"
+    },
+    {
+      "sentenceId": "tdc_6",
+      "startMs": 10178,
+      "endMs": 12898,
+      "durationMs": 2720,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_6.mp3"
+    },
+    {
+      "sentenceId": "tdc_7",
+      "startMs": 12698,
+      "endMs": 14605,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_7.mp3"
+    },
+    {
+      "sentenceId": "tdc_8",
+      "startMs": 14405,
+      "endMs": 16869,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_8.mp3"
+    },
+    {
+      "sentenceId": "tdc_9",
+      "startMs": 16669,
+      "endMs": 18088,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_9.mp3"
+    },
+    {
+      "sentenceId": "tdc_10",
+      "startMs": 17888,
+      "endMs": 20874,
+      "durationMs": 2986,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_10.mp3"
+    },
+    {
+      "sentenceId": "tdc_11",
+      "startMs": 20674,
+      "endMs": 22662,
+      "durationMs": 1988,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_11.mp3"
+    },
+    {
+      "sentenceId": "tdc_12",
+      "startMs": 22462,
+      "endMs": 24322,
+      "durationMs": 1860,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_12.mp3"
+    },
+    {
+      "sentenceId": "tdc_13",
+      "startMs": 24122,
+      "endMs": 26749,
+      "durationMs": 2627,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_13.mp3"
+    },
+    {
+      "sentenceId": "tdc_14",
+      "startMs": 26549,
+      "endMs": 29558,
+      "durationMs": 3009,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_14.mp3"
+    },
+    {
+      "sentenceId": "tdc_15",
+      "startMs": 29358,
+      "endMs": 31880,
+      "durationMs": 2522,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_15.mp3"
+    },
+    {
+      "sentenceId": "tdc_16",
+      "startMs": 31680,
+      "endMs": 32809,
+      "durationMs": 1129,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_16.mp3"
+    },
+    {
+      "sentenceId": "tdc_17",
+      "startMs": 32609,
+      "endMs": 34400,
+      "durationMs": 1791,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_17.mp3"
+    },
+    {
+      "sentenceId": "tdc_18",
+      "startMs": 34200,
+      "endMs": 36861,
+      "durationMs": 2661,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_18.mp3"
+    },
+    {
+      "sentenceId": "tdc_19",
+      "startMs": 36661,
+      "endMs": 38753,
+      "durationMs": 2092,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_19.mp3"
+    },
+    {
+      "sentenceId": "tdc_20",
+      "startMs": 38553,
+      "endMs": 41261,
+      "durationMs": 2708,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_20.mp3"
+    },
+    {
+      "sentenceId": "tdc_21",
+      "startMs": 41061,
+      "endMs": 43618,
+      "durationMs": 2557,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_21.mp3"
+    },
+    {
+      "sentenceId": "tdc_22",
+      "startMs": 43418,
+      "endMs": 44535,
+      "durationMs": 1117,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_22.mp3"
+    },
+    {
+      "sentenceId": "tdc_23",
+      "startMs": 44335,
+      "endMs": 46509,
+      "durationMs": 2174,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_23.mp3"
+    },
+    {
+      "sentenceId": "tdc_24",
+      "startMs": 46309,
+      "endMs": 49632,
+      "durationMs": 3323,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_24.mp3"
+    },
+    {
+      "sentenceId": "tdc_25",
+      "startMs": 49432,
+      "endMs": 51884,
+      "durationMs": 2452,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_25.mp3"
+    },
+    {
+      "sentenceId": "tdc_26",
+      "startMs": 51684,
+      "endMs": 54055,
+      "durationMs": 2371,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_26.mp3"
+    },
+    {
+      "sentenceId": "tdc_27",
+      "startMs": 53855,
+      "endMs": 55181,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_27.mp3"
+    },
+    {
+      "sentenceId": "tdc_28",
+      "startMs": 54981,
+      "endMs": 56284,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_28.mp3"
+    },
+    {
+      "sentenceId": "tdc_29",
+      "startMs": 56084,
+      "endMs": 57631,
+      "durationMs": 1547,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_29.mp3"
+    },
+    {
+      "sentenceId": "tdc_30",
+      "startMs": 57431,
+      "endMs": 60533,
+      "durationMs": 3102,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_30.mp3"
+    },
+    {
+      "sentenceId": "tdc_31",
+      "startMs": 60333,
+      "endMs": 62588,
+      "durationMs": 2255,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_31.mp3"
+    },
+    {
+      "sentenceId": "tdc_32",
+      "startMs": 62388,
+      "endMs": 64214,
+      "durationMs": 1826,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_32.mp3"
+    },
+    {
+      "sentenceId": "tdc_33",
+      "startMs": 64014,
+      "endMs": 66571,
+      "durationMs": 2557,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_33.mp3"
+    },
+    {
+      "sentenceId": "tdc_34",
+      "startMs": 66371,
+      "endMs": 69903,
+      "durationMs": 3532,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_34.mp3"
+    },
+    {
+      "sentenceId": "tdc_35",
+      "startMs": 69703,
+      "endMs": 72364,
+      "durationMs": 2661,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_35.mp3"
+    },
+    {
+      "sentenceId": "tdc_36",
+      "startMs": 72164,
+      "endMs": 73281,
+      "durationMs": 1117,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_36.mp3"
+    },
+    {
+      "sentenceId": "tdc_37",
+      "startMs": 73081,
+      "endMs": 75382,
+      "durationMs": 2301,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_37.mp3"
+    },
+    {
+      "sentenceId": "tdc_38",
+      "startMs": 75182,
+      "endMs": 77495,
+      "durationMs": 2313,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_38.mp3"
+    },
+    {
+      "sentenceId": "tdc_39",
+      "startMs": 77295,
+      "endMs": 79504,
+      "durationMs": 2209,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_39.mp3"
+    },
+    {
+      "sentenceId": "tdc_40",
+      "startMs": 79304,
+      "endMs": 82244,
+      "durationMs": 2940,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_40.mp3"
+    },
+    {
+      "sentenceId": "tdc_41",
+      "startMs": 82044,
+      "endMs": 84752,
+      "durationMs": 2708,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_41.mp3"
+    },
+    {
+      "sentenceId": "tdc_42",
+      "startMs": 84552,
+      "endMs": 85669,
+      "durationMs": 1117,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_42.mp3"
+    },
+    {
+      "sentenceId": "tdc_43",
+      "startMs": 85469,
+      "endMs": 87700,
+      "durationMs": 2231,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_43.mp3"
+    },
+    {
+      "sentenceId": "tdc_44",
+      "startMs": 87500,
+      "endMs": 90823,
+      "durationMs": 3323,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_44.mp3"
+    },
+    {
+      "sentenceId": "tdc_45",
+      "startMs": 90623,
+      "endMs": 93006,
+      "durationMs": 2383,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_45.mp3"
+    },
+    {
+      "sentenceId": "tdc_46",
+      "startMs": 92806,
+      "endMs": 95108,
+      "durationMs": 2302,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_46.mp3"
+    },
+    {
+      "sentenceId": "tdc_47",
+      "startMs": 94908,
+      "endMs": 96234,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_47.mp3"
+    },
+    {
+      "sentenceId": "tdc_48",
+      "startMs": 96034,
+      "endMs": 97464,
+      "durationMs": 1430,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_48.mp3"
+    },
+    {
+      "sentenceId": "tdc_49",
+      "startMs": 97264,
+      "endMs": 98289,
+      "durationMs": 1025,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_49.mp3"
+    },
+    {
+      "sentenceId": "tdc_50",
+      "startMs": 98089,
+      "endMs": 100262,
+      "durationMs": 2173,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_50.mp3"
+    },
+    {
+      "sentenceId": "tdc_51",
+      "startMs": 100062,
+      "endMs": 102306,
+      "durationMs": 2244,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_51.mp3"
+    },
+    {
+      "sentenceId": "tdc_52",
+      "startMs": 102106,
+      "endMs": 104221,
+      "durationMs": 2115,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_52.mp3"
+    },
+    {
+      "sentenceId": "tdc_53",
+      "startMs": 104021,
+      "endMs": 107298,
+      "durationMs": 3277,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_53.mp3"
+    },
+    {
+      "sentenceId": "tdc_54",
+      "startMs": 107098,
+      "endMs": 109725,
+      "durationMs": 2627,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_54.mp3"
+    },
+    {
+      "sentenceId": "tdc_55",
+      "startMs": 109525,
+      "endMs": 110619,
+      "durationMs": 1094,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_55.mp3"
+    },
+    {
+      "sentenceId": "tdc_56",
+      "startMs": 110419,
+      "endMs": 112592,
+      "durationMs": 2173,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_56.mp3"
+    },
+    {
+      "sentenceId": "tdc_57",
+      "startMs": 112392,
+      "endMs": 115530,
+      "durationMs": 3138,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_57.mp3"
+    },
+    {
+      "sentenceId": "tdc_58",
+      "startMs": 115330,
+      "endMs": 117816,
+      "durationMs": 2486,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_58.mp3"
+    },
+    {
+      "sentenceId": "tdc_59",
+      "startMs": 117616,
+      "endMs": 119999,
+      "durationMs": 2383,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_59.mp3"
+    },
+    {
+      "sentenceId": "tdc_60",
+      "startMs": 119799,
+      "endMs": 120649,
+      "durationMs": 850,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_60.mp3"
+    },
+    {
+      "sentenceId": "tdc_61",
+      "startMs": 120449,
+      "endMs": 121497,
+      "durationMs": 1048,
+      "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_61.mp3"
+    }
+  ]
+}

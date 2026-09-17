@@ -1,0 +1,274 @@
+{
+  "contentId": "chanson_nanshuo",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_nanshuo.mp3",
+  "totalDurationMs": 63190,
+  "sentences": [
+    {
+      "sentenceId": "ns_1",
+      "startMs": 0,
+      "endMs": 1683,
+      "durationMs": 1683,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_1.mp3"
+    },
+    {
+      "sentenceId": "ns_2",
+      "startMs": 1483,
+      "endMs": 3877,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_2.mp3"
+    },
+    {
+      "sentenceId": "ns_3",
+      "startMs": 3677,
+      "endMs": 5073,
+      "durationMs": 1396,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_3.mp3"
+    },
+    {
+      "sentenceId": "ns_4",
+      "startMs": 4873,
+      "endMs": 6454,
+      "durationMs": 1581,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_4.mp3"
+    },
+    {
+      "sentenceId": "ns_5",
+      "startMs": 6254,
+      "endMs": 8172,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_5.mp3"
+    },
+    {
+      "sentenceId": "ns_6",
+      "startMs": 7972,
+      "endMs": 10065,
+      "durationMs": 2093,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_6.mp3"
+    },
+    {
+      "sentenceId": "ns_7",
+      "startMs": 9865,
+      "endMs": 12213,
+      "durationMs": 2348,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_7.mp3"
+    },
+    {
+      "sentenceId": "ns_8",
+      "startMs": 12013,
+      "endMs": 13374,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_8.mp3"
+    },
+    {
+      "sentenceId": "ns_9",
+      "startMs": 13174,
+      "endMs": 15742,
+      "durationMs": 2568,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_9.mp3"
+    },
+    {
+      "sentenceId": "ns_10",
+      "startMs": 15542,
+      "endMs": 17472,
+      "durationMs": 1930,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_10.mp3"
+    },
+    {
+      "sentenceId": "ns_11",
+      "startMs": 17272,
+      "endMs": 19062,
+      "durationMs": 1790,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_11.mp3"
+    },
+    {
+      "sentenceId": "ns_12",
+      "startMs": 18862,
+      "endMs": 21117,
+      "durationMs": 2255,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_12.mp3"
+    },
+    {
+      "sentenceId": "ns_13",
+      "startMs": 20917,
+      "endMs": 22058,
+      "durationMs": 1141,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_13.mp3"
+    },
+    {
+      "sentenceId": "ns_14",
+      "startMs": 21858,
+      "endMs": 24740,
+      "durationMs": 2882,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_14.mp3"
+    },
+    {
+      "sentenceId": "ns_15",
+      "startMs": 24540,
+      "endMs": 26144,
+      "durationMs": 1604,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_15.mp3"
+    },
+    {
+      "sentenceId": "ns_16",
+      "startMs": 25944,
+      "endMs": 27781,
+      "durationMs": 1837,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_16.mp3"
+    },
+    {
+      "sentenceId": "ns_17",
+      "startMs": 27581,
+      "endMs": 29871,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_17.mp3"
+    },
+    {
+      "sentenceId": "ns_18",
+      "startMs": 29671,
+      "endMs": 30498,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_18.mp3"
+    },
+    {
+      "sentenceId": "ns_19",
+      "startMs": 30298,
+      "endMs": 32216,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_19.mp3"
+    },
+    {
+      "sentenceId": "ns_20",
+      "startMs": 32016,
+      "endMs": 34225,
+      "durationMs": 2209,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_20.mp3"
+    },
+    {
+      "sentenceId": "ns_21",
+      "startMs": 34025,
+      "endMs": 36268,
+      "durationMs": 2243,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_21.mp3"
+    },
+    {
+      "sentenceId": "ns_22",
+      "startMs": 36068,
+      "endMs": 37905,
+      "durationMs": 1837,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_22.mp3"
+    },
+    {
+      "sentenceId": "ns_23",
+      "startMs": 37705,
+      "endMs": 39682,
+      "durationMs": 1977,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_23.mp3"
+    },
+    {
+      "sentenceId": "ns_24",
+      "startMs": 39482,
+      "endMs": 41388,
+      "durationMs": 1906,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_24.mp3"
+    },
+    {
+      "sentenceId": "ns_25",
+      "startMs": 41188,
+      "endMs": 42863,
+      "durationMs": 1675,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_25.mp3"
+    },
+    {
+      "sentenceId": "ns_26",
+      "startMs": 42663,
+      "endMs": 44813,
+      "durationMs": 2150,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_26.mp3"
+    },
+    {
+      "sentenceId": "ns_27",
+      "startMs": 44613,
+      "endMs": 45673,
+      "durationMs": 1060,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_27.mp3"
+    },
+    {
+      "sentenceId": "ns_28",
+      "startMs": 45473,
+      "endMs": 48494,
+      "durationMs": 3021,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_28.mp3"
+    },
+    {
+      "sentenceId": "ns_29",
+      "startMs": 48294,
+      "endMs": 49376,
+      "durationMs": 1082,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_29.mp3"
+    },
+    {
+      "sentenceId": "ns_30",
+      "startMs": 49176,
+      "endMs": 51454,
+      "durationMs": 2278,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_30.mp3"
+    },
+    {
+      "sentenceId": "ns_31",
+      "startMs": 51254,
+      "endMs": 53556,
+      "durationMs": 2302,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_31.mp3"
+    },
+    {
+      "sentenceId": "ns_32",
+      "startMs": 53356,
+      "endMs": 54171,
+      "durationMs": 815,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_32.mp3"
+    },
+    {
+      "sentenceId": "ns_33",
+      "startMs": 53971,
+      "endMs": 55402,
+      "durationMs": 1431,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_33.mp3"
+    },
+    {
+      "sentenceId": "ns_34",
+      "startMs": 55202,
+      "endMs": 57736,
+      "durationMs": 2534,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_34.mp3"
+    },
+    {
+      "sentenceId": "ns_35",
+      "startMs": 57536,
+      "endMs": 58676,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_35.mp3"
+    },
+    {
+      "sentenceId": "ns_36",
+      "startMs": 58476,
+      "endMs": 60777,
+      "durationMs": 2301,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_36.mp3"
+    },
+    {
+      "sentenceId": "ns_37",
+      "startMs": 60577,
+      "endMs": 62322,
+      "durationMs": 1745,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_37.mp3"
+    },
+    {
+      "sentenceId": "ns_38",
+      "startMs": 62122,
+      "endMs": 63190,
+      "durationMs": 1068,
+      "audioUrl": "/audio/readings/chanson_nanshuo_ns_38.mp3"
+    }
+  ]
+}

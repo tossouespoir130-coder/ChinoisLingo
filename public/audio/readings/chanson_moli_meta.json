@@ -1,0 +1,155 @@
+{
+  "contentId": "chanson_moli",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_moli.mp3",
+  "totalDurationMs": 40990,
+  "sentences": [
+    {
+      "sentenceId": "ch3_1",
+      "startMs": 0,
+      "endMs": 2797,
+      "durationMs": 2797,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_1.mp3"
+    },
+    {
+      "sentenceId": "ch3_2",
+      "startMs": 2597,
+      "endMs": 4852,
+      "durationMs": 2255,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_2.mp3"
+    },
+    {
+      "sentenceId": "ch3_3",
+      "startMs": 4652,
+      "endMs": 7162,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_3.mp3"
+    },
+    {
+      "sentenceId": "ch3_4",
+      "startMs": 6962,
+      "endMs": 9090,
+      "durationMs": 2128,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_4.mp3"
+    },
+    {
+      "sentenceId": "ch3_5",
+      "startMs": 8890,
+      "endMs": 10901,
+      "durationMs": 2011,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_5.mp3"
+    },
+    {
+      "sentenceId": "ch3_6",
+      "startMs": 10701,
+      "endMs": 12306,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_6.mp3"
+    },
+    {
+      "sentenceId": "ch3_7",
+      "startMs": 12106,
+      "endMs": 14268,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_7.mp3"
+    },
+    {
+      "sentenceId": "ch3_8",
+      "startMs": 14068,
+      "endMs": 16717,
+      "durationMs": 2649,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_8.mp3"
+    },
+    {
+      "sentenceId": "ch3_9",
+      "startMs": 16517,
+      "endMs": 19295,
+      "durationMs": 2778,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_9.mp3"
+    },
+    {
+      "sentenceId": "ch3_10",
+      "startMs": 19095,
+      "endMs": 20177,
+      "durationMs": 1082,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_10.mp3"
+    },
+    {
+      "sentenceId": "ch3_11",
+      "startMs": 19977,
+      "endMs": 22418,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_11.mp3"
+    },
+    {
+      "sentenceId": "ch3_12",
+      "startMs": 22218,
+      "endMs": 24612,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_12.mp3"
+    },
+    {
+      "sentenceId": "ch3_13",
+      "startMs": 24412,
+      "endMs": 26598,
+      "durationMs": 2186,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_13.mp3"
+    },
+    {
+      "sentenceId": "ch3_14",
+      "startMs": 26398,
+      "endMs": 28409,
+      "durationMs": 2011,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_14.mp3"
+    },
+    {
+      "sentenceId": "ch3_15",
+      "startMs": 28209,
+      "endMs": 30986,
+      "durationMs": 2777,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_15.mp3"
+    },
+    {
+      "sentenceId": "ch3_16",
+      "startMs": 30786,
+      "endMs": 33610,
+      "durationMs": 2824,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_16.mp3"
+    },
+    {
+      "sentenceId": "ch3_17",
+      "startMs": 33410,
+      "endMs": 34504,
+      "durationMs": 1094,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_17.mp3"
+    },
+    {
+      "sentenceId": "ch3_18",
+      "startMs": 34304,
+      "endMs": 36374,
+      "durationMs": 2070,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_18.mp3"
+    },
+    {
+      "sentenceId": "ch3_19",
+      "startMs": 36174,
+      "endMs": 37871,
+      "durationMs": 1697,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_19.mp3"
+    },
+    {
+      "sentenceId": "ch3_20",
+      "startMs": 37671,
+      "endMs": 39485,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_20.mp3"
+    },
+    {
+      "sentenceId": "ch3_21",
+      "startMs": 39285,
+      "endMs": 40990,
+      "durationMs": 1705,
+      "audioUrl": "/audio/readings/chanson_moli_ch3_21.mp3"
+    }
+  ]
+}

@@ -1,0 +1,680 @@
+{
+  "contentId": "chanson_beijing",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_beijing.mp3",
+  "totalDurationMs": 168520,
+  "sentences": [
+    {
+      "sentenceId": "bj_1",
+      "startMs": 0,
+      "endMs": 1543,
+      "durationMs": 1543,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_1.mp3"
+    },
+    {
+      "sentenceId": "bj_2",
+      "startMs": 1343,
+      "endMs": 2727,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_2.mp3"
+    },
+    {
+      "sentenceId": "bj_3",
+      "startMs": 2527,
+      "endMs": 4945,
+      "durationMs": 2418,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_3.mp3"
+    },
+    {
+      "sentenceId": "bj_4",
+      "startMs": 4745,
+      "endMs": 6884,
+      "durationMs": 2139,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_4.mp3"
+    },
+    {
+      "sentenceId": "bj_5",
+      "startMs": 6684,
+      "endMs": 8231,
+      "durationMs": 1547,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_5.mp3"
+    },
+    {
+      "sentenceId": "bj_6",
+      "startMs": 8031,
+      "endMs": 10007,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_6.mp3"
+    },
+    {
+      "sentenceId": "bj_7",
+      "startMs": 9807,
+      "endMs": 11957,
+      "durationMs": 2150,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_7.mp3"
+    },
+    {
+      "sentenceId": "bj_8",
+      "startMs": 11757,
+      "endMs": 13490,
+      "durationMs": 1733,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_8.mp3"
+    },
+    {
+      "sentenceId": "bj_9",
+      "startMs": 13290,
+      "endMs": 15092,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_9.mp3"
+    },
+    {
+      "sentenceId": "bj_10",
+      "startMs": 14892,
+      "endMs": 16636,
+      "durationMs": 1744,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_10.mp3"
+    },
+    {
+      "sentenceId": "bj_11",
+      "startMs": 16436,
+      "endMs": 18726,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_11.mp3"
+    },
+    {
+      "sentenceId": "bj_12",
+      "startMs": 18526,
+      "endMs": 20003,
+      "durationMs": 1477,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_12.mp3"
+    },
+    {
+      "sentenceId": "bj_13",
+      "startMs": 19803,
+      "endMs": 21350,
+      "durationMs": 1547,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_13.mp3"
+    },
+    {
+      "sentenceId": "bj_14",
+      "startMs": 21150,
+      "endMs": 23056,
+      "durationMs": 1906,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_14.mp3"
+    },
+    {
+      "sentenceId": "bj_15",
+      "startMs": 22856,
+      "endMs": 25227,
+      "durationMs": 2371,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_15.mp3"
+    },
+    {
+      "sentenceId": "bj_16",
+      "startMs": 25027,
+      "endMs": 26632,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_16.mp3"
+    },
+    {
+      "sentenceId": "bj_17",
+      "startMs": 26432,
+      "endMs": 28652,
+      "durationMs": 2220,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_17.mp3"
+    },
+    {
+      "sentenceId": "bj_18",
+      "startMs": 28452,
+      "endMs": 29569,
+      "durationMs": 1117,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_18.mp3"
+    },
+    {
+      "sentenceId": "bj_19",
+      "startMs": 29369,
+      "endMs": 31694,
+      "durationMs": 2325,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_19.mp3"
+    },
+    {
+      "sentenceId": "bj_20",
+      "startMs": 31494,
+      "endMs": 32634,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_20.mp3"
+    },
+    {
+      "sentenceId": "bj_21",
+      "startMs": 32434,
+      "endMs": 34039,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_21.mp3"
+    },
+    {
+      "sentenceId": "bj_22",
+      "startMs": 33839,
+      "endMs": 35107,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_22.mp3"
+    },
+    {
+      "sentenceId": "bj_23",
+      "startMs": 34907,
+      "endMs": 37011,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_23.mp3"
+    },
+    {
+      "sentenceId": "bj_24",
+      "startMs": 36811,
+      "endMs": 38532,
+      "durationMs": 1721,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_24.mp3"
+    },
+    {
+      "sentenceId": "bj_25",
+      "startMs": 38332,
+      "endMs": 40018,
+      "durationMs": 1686,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_25.mp3"
+    },
+    {
+      "sentenceId": "bj_26",
+      "startMs": 39818,
+      "endMs": 41992,
+      "durationMs": 2174,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_26.mp3"
+    },
+    {
+      "sentenceId": "bj_27",
+      "startMs": 41792,
+      "endMs": 43838,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_27.mp3"
+    },
+    {
+      "sentenceId": "bj_28",
+      "startMs": 43638,
+      "endMs": 45556,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_28.mp3"
+    },
+    {
+      "sentenceId": "bj_29",
+      "startMs": 45356,
+      "endMs": 47182,
+      "durationMs": 1826,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_29.mp3"
+    },
+    {
+      "sentenceId": "bj_30",
+      "startMs": 46982,
+      "endMs": 48784,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_30.mp3"
+    },
+    {
+      "sentenceId": "bj_31",
+      "startMs": 48584,
+      "endMs": 52197,
+      "durationMs": 3613,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_31.mp3"
+    },
+    {
+      "sentenceId": "bj_32",
+      "startMs": 51997,
+      "endMs": 53474,
+      "durationMs": 1477,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_32.mp3"
+    },
+    {
+      "sentenceId": "bj_33",
+      "startMs": 53274,
+      "endMs": 54310,
+      "durationMs": 1036,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_33.mp3"
+    },
+    {
+      "sentenceId": "bj_34",
+      "startMs": 54110,
+      "endMs": 56272,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_34.mp3"
+    },
+    {
+      "sentenceId": "bj_35",
+      "startMs": 56072,
+      "endMs": 57840,
+      "durationMs": 1768,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_35.mp3"
+    },
+    {
+      "sentenceId": "bj_36",
+      "startMs": 57640,
+      "endMs": 59616,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_36.mp3"
+    },
+    {
+      "sentenceId": "bj_37",
+      "startMs": 59416,
+      "endMs": 61625,
+      "durationMs": 2209,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_37.mp3"
+    },
+    {
+      "sentenceId": "bj_38",
+      "startMs": 61425,
+      "endMs": 63505,
+      "durationMs": 2080,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_38.mp3"
+    },
+    {
+      "sentenceId": "bj_39",
+      "startMs": 63305,
+      "endMs": 65003,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_39.mp3"
+    },
+    {
+      "sentenceId": "bj_40",
+      "startMs": 64803,
+      "endMs": 66977,
+      "durationMs": 2174,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_40.mp3"
+    },
+    {
+      "sentenceId": "bj_41",
+      "startMs": 66777,
+      "endMs": 68010,
+      "durationMs": 1233,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_41.mp3"
+    },
+    {
+      "sentenceId": "bj_42",
+      "startMs": 67810,
+      "endMs": 69914,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_42.mp3"
+    },
+    {
+      "sentenceId": "bj_43",
+      "startMs": 69714,
+      "endMs": 71934,
+      "durationMs": 2220,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_43.mp3"
+    },
+    {
+      "sentenceId": "bj_44",
+      "startMs": 71734,
+      "endMs": 73815,
+      "durationMs": 2081,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_44.mp3"
+    },
+    {
+      "sentenceId": "bj_45",
+      "startMs": 73615,
+      "endMs": 75940,
+      "durationMs": 2325,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_45.mp3"
+    },
+    {
+      "sentenceId": "bj_46",
+      "startMs": 75740,
+      "endMs": 77507,
+      "durationMs": 1767,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_46.mp3"
+    },
+    {
+      "sentenceId": "bj_47",
+      "startMs": 77307,
+      "endMs": 78993,
+      "durationMs": 1686,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_47.mp3"
+    },
+    {
+      "sentenceId": "bj_48",
+      "startMs": 78793,
+      "endMs": 80839,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_48.mp3"
+    },
+    {
+      "sentenceId": "bj_49",
+      "startMs": 80639,
+      "endMs": 82836,
+      "durationMs": 2197,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_49.mp3"
+    },
+    {
+      "sentenceId": "bj_50",
+      "startMs": 82636,
+      "endMs": 84787,
+      "durationMs": 2151,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_50.mp3"
+    },
+    {
+      "sentenceId": "bj_51",
+      "startMs": 84587,
+      "endMs": 86772,
+      "durationMs": 2185,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_51.mp3"
+    },
+    {
+      "sentenceId": "bj_52",
+      "startMs": 86572,
+      "endMs": 88061,
+      "durationMs": 1489,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_52.mp3"
+    },
+    {
+      "sentenceId": "bj_53",
+      "startMs": 87861,
+      "endMs": 89744,
+      "durationMs": 1883,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_53.mp3"
+    },
+    {
+      "sentenceId": "bj_54",
+      "startMs": 89544,
+      "endMs": 91683,
+      "durationMs": 2139,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_54.mp3"
+    },
+    {
+      "sentenceId": "bj_55",
+      "startMs": 91483,
+      "endMs": 93192,
+      "durationMs": 1709,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_55.mp3"
+    },
+    {
+      "sentenceId": "bj_56",
+      "startMs": 92992,
+      "endMs": 95154,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_56.mp3"
+    },
+    {
+      "sentenceId": "bj_57",
+      "startMs": 94954,
+      "endMs": 96756,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_57.mp3"
+    },
+    {
+      "sentenceId": "bj_58",
+      "startMs": 96556,
+      "endMs": 99183,
+      "durationMs": 2627,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_58.mp3"
+    },
+    {
+      "sentenceId": "bj_59",
+      "startMs": 98983,
+      "endMs": 100065,
+      "durationMs": 1082,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_59.mp3"
+    },
+    {
+      "sentenceId": "bj_60",
+      "startMs": 99865,
+      "endMs": 101667,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_60.mp3"
+    },
+    {
+      "sentenceId": "bj_61",
+      "startMs": 101467,
+      "endMs": 102689,
+      "durationMs": 1222,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_61.mp3"
+    },
+    {
+      "sentenceId": "bj_62",
+      "startMs": 102489,
+      "endMs": 105150,
+      "durationMs": 2661,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_62.mp3"
+    },
+    {
+      "sentenceId": "bj_63",
+      "startMs": 104950,
+      "endMs": 106903,
+      "durationMs": 1953,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_63.mp3"
+    },
+    {
+      "sentenceId": "bj_64",
+      "startMs": 106703,
+      "endMs": 109016,
+      "durationMs": 2313,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_64.mp3"
+    },
+    {
+      "sentenceId": "bj_65",
+      "startMs": 108816,
+      "endMs": 111199,
+      "durationMs": 2383,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_65.mp3"
+    },
+    {
+      "sentenceId": "bj_66",
+      "startMs": 110999,
+      "endMs": 112964,
+      "durationMs": 1965,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_66.mp3"
+    },
+    {
+      "sentenceId": "bj_67",
+      "startMs": 112764,
+      "endMs": 114671,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_67.mp3"
+    },
+    {
+      "sentenceId": "bj_68",
+      "startMs": 114471,
+      "endMs": 116227,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_68.mp3"
+    },
+    {
+      "sentenceId": "bj_69",
+      "startMs": 116027,
+      "endMs": 117701,
+      "durationMs": 1674,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_69.mp3"
+    },
+    {
+      "sentenceId": "bj_70",
+      "startMs": 117501,
+      "endMs": 120662,
+      "durationMs": 3161,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_70.mp3"
+    },
+    {
+      "sentenceId": "bj_71",
+      "startMs": 120462,
+      "endMs": 122508,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_71.mp3"
+    },
+    {
+      "sentenceId": "bj_72",
+      "startMs": 122308,
+      "endMs": 123343,
+      "durationMs": 1035,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_72.mp3"
+    },
+    {
+      "sentenceId": "bj_73",
+      "startMs": 123143,
+      "endMs": 124957,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_73.mp3"
+    },
+    {
+      "sentenceId": "bj_74",
+      "startMs": 124757,
+      "endMs": 126606,
+      "durationMs": 1849,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_74.mp3"
+    },
+    {
+      "sentenceId": "bj_75",
+      "startMs": 126406,
+      "endMs": 128974,
+      "durationMs": 2568,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_75.mp3"
+    },
+    {
+      "sentenceId": "bj_76",
+      "startMs": 128774,
+      "endMs": 130530,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_76.mp3"
+    },
+    {
+      "sentenceId": "bj_77",
+      "startMs": 130330,
+      "endMs": 132503,
+      "durationMs": 2173,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_77.mp3"
+    },
+    {
+      "sentenceId": "bj_78",
+      "startMs": 132303,
+      "endMs": 135092,
+      "durationMs": 2789,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_78.mp3"
+    },
+    {
+      "sentenceId": "bj_79",
+      "startMs": 134892,
+      "endMs": 136648,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_79.mp3"
+    },
+    {
+      "sentenceId": "bj_80",
+      "startMs": 136448,
+      "endMs": 137728,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_80.mp3"
+    },
+    {
+      "sentenceId": "bj_81",
+      "startMs": 137528,
+      "endMs": 140119,
+      "durationMs": 2591,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_81.mp3"
+    },
+    {
+      "sentenceId": "bj_82",
+      "startMs": 139919,
+      "endMs": 142337,
+      "durationMs": 2418,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_82.mp3"
+    },
+    {
+      "sentenceId": "bj_83",
+      "startMs": 142137,
+      "endMs": 144438,
+      "durationMs": 2301,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_83.mp3"
+    },
+    {
+      "sentenceId": "bj_84",
+      "startMs": 144238,
+      "endMs": 146040,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_84.mp3"
+    },
+    {
+      "sentenceId": "bj_85",
+      "startMs": 145840,
+      "endMs": 148246,
+      "durationMs": 2406,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_85.mp3"
+    },
+    {
+      "sentenceId": "bj_86",
+      "startMs": 148046,
+      "endMs": 149825,
+      "durationMs": 1779,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_86.mp3"
+    },
+    {
+      "sentenceId": "bj_87",
+      "startMs": 149625,
+      "endMs": 151671,
+      "durationMs": 2046,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_87.mp3"
+    },
+    {
+      "sentenceId": "bj_88",
+      "startMs": 151471,
+      "endMs": 153831,
+      "durationMs": 2360,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_88.mp3"
+    },
+    {
+      "sentenceId": "bj_89",
+      "startMs": 153631,
+      "endMs": 155735,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_89.mp3"
+    },
+    {
+      "sentenceId": "bj_90",
+      "startMs": 155535,
+      "endMs": 157267,
+      "durationMs": 1732,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_90.mp3"
+    },
+    {
+      "sentenceId": "bj_91",
+      "startMs": 157067,
+      "endMs": 159229,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_91.mp3"
+    },
+    {
+      "sentenceId": "bj_92",
+      "startMs": 159029,
+      "endMs": 161156,
+      "durationMs": 2127,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_92.mp3"
+    },
+    {
+      "sentenceId": "bj_93",
+      "startMs": 160956,
+      "endMs": 162654,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_93.mp3"
+    },
+    {
+      "sentenceId": "bj_94",
+      "startMs": 162454,
+      "endMs": 164744,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_94.mp3"
+    },
+    {
+      "sentenceId": "bj_95",
+      "startMs": 164544,
+      "endMs": 166671,
+      "durationMs": 2127,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_95.mp3"
+    },
+    {
+      "sentenceId": "bj_96",
+      "startMs": 166471,
+      "endMs": 168520,
+      "durationMs": 2049,
+      "audioUrl": "/audio/readings/chanson_beijing_bj_96.mp3"
+    }
+  ]
+}

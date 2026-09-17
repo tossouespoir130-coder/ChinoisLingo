@@ -1,0 +1,183 @@
+{
+  "contentId": "chanson_star",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_star.mp3",
+  "totalDurationMs": 47670,
+  "sentences": [
+    {
+      "sentenceId": "st_1",
+      "startMs": 0,
+      "endMs": 1566,
+      "durationMs": 1566,
+      "audioUrl": "/audio/readings/chanson_star_st_1.mp3"
+    },
+    {
+      "sentenceId": "st_2",
+      "startMs": 1366,
+      "endMs": 2878,
+      "durationMs": 1512,
+      "audioUrl": "/audio/readings/chanson_star_st_2.mp3"
+    },
+    {
+      "sentenceId": "st_3",
+      "startMs": 2678,
+      "endMs": 4179,
+      "durationMs": 1501,
+      "audioUrl": "/audio/readings/chanson_star_st_3.mp3"
+    },
+    {
+      "sentenceId": "st_4",
+      "startMs": 3979,
+      "endMs": 6443,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/chanson_star_st_4.mp3"
+    },
+    {
+      "sentenceId": "st_5",
+      "startMs": 6243,
+      "endMs": 7824,
+      "durationMs": 1581,
+      "audioUrl": "/audio/readings/chanson_star_st_5.mp3"
+    },
+    {
+      "sentenceId": "st_6",
+      "startMs": 7624,
+      "endMs": 9194,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/chanson_star_st_6.mp3"
+    },
+    {
+      "sentenceId": "st_7",
+      "startMs": 8994,
+      "endMs": 10135,
+      "durationMs": 1141,
+      "audioUrl": "/audio/readings/chanson_star_st_7.mp3"
+    },
+    {
+      "sentenceId": "st_8",
+      "startMs": 9935,
+      "endMs": 12898,
+      "durationMs": 2963,
+      "audioUrl": "/audio/readings/chanson_star_st_8.mp3"
+    },
+    {
+      "sentenceId": "st_9",
+      "startMs": 12698,
+      "endMs": 15219,
+      "durationMs": 2521,
+      "audioUrl": "/audio/readings/chanson_star_st_9.mp3"
+    },
+    {
+      "sentenceId": "st_10",
+      "startMs": 15019,
+      "endMs": 16821,
+      "durationMs": 1802,
+      "audioUrl": "/audio/readings/chanson_star_st_10.mp3"
+    },
+    {
+      "sentenceId": "st_11",
+      "startMs": 16621,
+      "endMs": 19016,
+      "durationMs": 2395,
+      "audioUrl": "/audio/readings/chanson_star_st_11.mp3"
+    },
+    {
+      "sentenceId": "st_12",
+      "startMs": 18816,
+      "endMs": 21106,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_star_st_12.mp3"
+    },
+    {
+      "sentenceId": "st_13",
+      "startMs": 20906,
+      "endMs": 23462,
+      "durationMs": 2556,
+      "audioUrl": "/audio/readings/chanson_star_st_13.mp3"
+    },
+    {
+      "sentenceId": "st_14",
+      "startMs": 23262,
+      "endMs": 25552,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_star_st_14.mp3"
+    },
+    {
+      "sentenceId": "st_15",
+      "startMs": 25352,
+      "endMs": 26969,
+      "durationMs": 1617,
+      "audioUrl": "/audio/readings/chanson_star_st_15.mp3"
+    },
+    {
+      "sentenceId": "st_16",
+      "startMs": 26769,
+      "endMs": 29186,
+      "durationMs": 2417,
+      "audioUrl": "/audio/readings/chanson_star_st_16.mp3"
+    },
+    {
+      "sentenceId": "st_17",
+      "startMs": 28986,
+      "endMs": 31879,
+      "durationMs": 2893,
+      "audioUrl": "/audio/readings/chanson_star_st_17.mp3"
+    },
+    {
+      "sentenceId": "st_18",
+      "startMs": 31679,
+      "endMs": 33621,
+      "durationMs": 1942,
+      "audioUrl": "/audio/readings/chanson_star_st_18.mp3"
+    },
+    {
+      "sentenceId": "st_19",
+      "startMs": 33421,
+      "endMs": 35792,
+      "durationMs": 2371,
+      "audioUrl": "/audio/readings/chanson_star_st_19.mp3"
+    },
+    {
+      "sentenceId": "st_20",
+      "startMs": 35592,
+      "endMs": 37951,
+      "durationMs": 2359,
+      "audioUrl": "/audio/readings/chanson_star_st_20.mp3"
+    },
+    {
+      "sentenceId": "st_21",
+      "startMs": 37751,
+      "endMs": 40366,
+      "durationMs": 2615,
+      "audioUrl": "/audio/readings/chanson_star_st_21.mp3"
+    },
+    {
+      "sentenceId": "st_22",
+      "startMs": 40166,
+      "endMs": 42967,
+      "durationMs": 2801,
+      "audioUrl": "/audio/readings/chanson_star_st_22.mp3"
+    },
+    {
+      "sentenceId": "st_23",
+      "startMs": 42767,
+      "endMs": 44302,
+      "durationMs": 1535,
+      "audioUrl": "/audio/readings/chanson_star_st_23.mp3"
+    },
+    {
+      "sentenceId": "st_24",
+      "startMs": 44102,
+      "endMs": 46136,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_star_st_24.mp3"
+    },
+    {
+      "sentenceId": "st_25",
+      "startMs": 45936,
+      "endMs": 47670,
+      "durationMs": 1734,
+      "audioUrl": "/audio/readings/chanson_star_st_25.mp3"
+    }
+  ]
+}

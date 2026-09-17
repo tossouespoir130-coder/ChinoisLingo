@@ -1,0 +1,246 @@
+{
+  "contentId": "chanson_qianbainian",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_qianbainian.mp3",
+  "totalDurationMs": 72390,
+  "sentences": [
+    {
+      "sentenceId": "qbn_1",
+      "startMs": 0,
+      "endMs": 2286,
+      "durationMs": 2286,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_1.mp3"
+    },
+    {
+      "sentenceId": "qbn_2",
+      "startMs": 2086,
+      "endMs": 3981,
+      "durationMs": 1895,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_2.mp3"
+    },
+    {
+      "sentenceId": "qbn_3",
+      "startMs": 3781,
+      "endMs": 5363,
+      "durationMs": 1582,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_3.mp3"
+    },
+    {
+      "sentenceId": "qbn_4",
+      "startMs": 5163,
+      "endMs": 6942,
+      "durationMs": 1779,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_4.mp3"
+    },
+    {
+      "sentenceId": "qbn_5",
+      "startMs": 6742,
+      "endMs": 9113,
+      "durationMs": 2371,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_5.mp3"
+    },
+    {
+      "sentenceId": "qbn_6",
+      "startMs": 8913,
+      "endMs": 11423,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_6.mp3"
+    },
+    {
+      "sentenceId": "qbn_7",
+      "startMs": 11223,
+      "endMs": 12921,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_7.mp3"
+    },
+    {
+      "sentenceId": "qbn_8",
+      "startMs": 12721,
+      "endMs": 15080,
+      "durationMs": 2359,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_8.mp3"
+    },
+    {
+      "sentenceId": "qbn_9",
+      "startMs": 14880,
+      "endMs": 17588,
+      "durationMs": 2708,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_9.mp3"
+    },
+    {
+      "sentenceId": "qbn_10",
+      "startMs": 17388,
+      "endMs": 20595,
+      "durationMs": 3207,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_10.mp3"
+    },
+    {
+      "sentenceId": "qbn_11",
+      "startMs": 20395,
+      "endMs": 21849,
+      "durationMs": 1454,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_11.mp3"
+    },
+    {
+      "sentenceId": "qbn_12",
+      "startMs": 21649,
+      "endMs": 23927,
+      "durationMs": 2278,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_12.mp3"
+    },
+    {
+      "sentenceId": "qbn_13",
+      "startMs": 23727,
+      "endMs": 27096,
+      "durationMs": 3369,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_13.mp3"
+    },
+    {
+      "sentenceId": "qbn_14",
+      "startMs": 26896,
+      "endMs": 29186,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_14.mp3"
+    },
+    {
+      "sentenceId": "qbn_15",
+      "startMs": 28986,
+      "endMs": 31497,
+      "durationMs": 2511,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_15.mp3"
+    },
+    {
+      "sentenceId": "qbn_16",
+      "startMs": 31297,
+      "endMs": 32820,
+      "durationMs": 1523,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_16.mp3"
+    },
+    {
+      "sentenceId": "qbn_17",
+      "startMs": 32620,
+      "endMs": 34597,
+      "durationMs": 1977,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_17.mp3"
+    },
+    {
+      "sentenceId": "qbn_18",
+      "startMs": 34397,
+      "endMs": 36210,
+      "durationMs": 1813,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_18.mp3"
+    },
+    {
+      "sentenceId": "qbn_19",
+      "startMs": 36010,
+      "endMs": 38358,
+      "durationMs": 2348,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_19.mp3"
+    },
+    {
+      "sentenceId": "qbn_20",
+      "startMs": 38158,
+      "endMs": 40750,
+      "durationMs": 2592,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_20.mp3"
+    },
+    {
+      "sentenceId": "qbn_21",
+      "startMs": 40550,
+      "endMs": 42328,
+      "durationMs": 1778,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_21.mp3"
+    },
+    {
+      "sentenceId": "qbn_22",
+      "startMs": 42128,
+      "endMs": 44697,
+      "durationMs": 2569,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_22.mp3"
+    },
+    {
+      "sentenceId": "qbn_23",
+      "startMs": 44497,
+      "endMs": 47123,
+      "durationMs": 2626,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_23.mp3"
+    },
+    {
+      "sentenceId": "qbn_24",
+      "startMs": 46923,
+      "endMs": 50026,
+      "durationMs": 3103,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_24.mp3"
+    },
+    {
+      "sentenceId": "qbn_25",
+      "startMs": 49826,
+      "endMs": 51210,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_25.mp3"
+    },
+    {
+      "sentenceId": "qbn_26",
+      "startMs": 51010,
+      "endMs": 53404,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_26.mp3"
+    },
+    {
+      "sentenceId": "qbn_27",
+      "startMs": 53204,
+      "endMs": 56608,
+      "durationMs": 3404,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_27.mp3"
+    },
+    {
+      "sentenceId": "qbn_28",
+      "startMs": 56408,
+      "endMs": 58663,
+      "durationMs": 2255,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_28.mp3"
+    },
+    {
+      "sentenceId": "qbn_29",
+      "startMs": 58463,
+      "endMs": 60985,
+      "durationMs": 2522,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_29.mp3"
+    },
+    {
+      "sentenceId": "qbn_30",
+      "startMs": 60785,
+      "endMs": 63818,
+      "durationMs": 3033,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_30.mp3"
+    },
+    {
+      "sentenceId": "qbn_31",
+      "startMs": 63618,
+      "endMs": 65060,
+      "durationMs": 1442,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_31.mp3"
+    },
+    {
+      "sentenceId": "qbn_32",
+      "startMs": 64860,
+      "endMs": 67324,
+      "durationMs": 2464,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_32.mp3"
+    },
+    {
+      "sentenceId": "qbn_33",
+      "startMs": 67124,
+      "endMs": 70540,
+      "durationMs": 3416,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_33.mp3"
+    },
+    {
+      "sentenceId": "qbn_34",
+      "startMs": 70340,
+      "endMs": 72390,
+      "durationMs": 2050,
+      "audioUrl": "/audio/readings/chanson_qianbainian_qbn_34.mp3"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "contentId": "chanson_shinian",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_shinian.mp3",
+  "totalDurationMs": 70110,
+  "sentences": [
+    {
+      "sentenceId": "sn_1",
+      "startMs": 0,
+      "endMs": 2414,
+      "durationMs": 2414,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_1.mp3"
+    },
+    {
+      "sentenceId": "sn_2",
+      "startMs": 2214,
+      "endMs": 4481,
+      "durationMs": 2267,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_2.mp3"
+    },
+    {
+      "sentenceId": "sn_3",
+      "startMs": 4281,
+      "endMs": 5850,
+      "durationMs": 1569,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_3.mp3"
+    },
+    {
+      "sentenceId": "sn_4",
+      "startMs": 5650,
+      "endMs": 7499,
+      "durationMs": 1849,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_4.mp3"
+    },
+    {
+      "sentenceId": "sn_5",
+      "startMs": 7299,
+      "endMs": 9333,
+      "durationMs": 2034,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_5.mp3"
+    },
+    {
+      "sentenceId": "sn_6",
+      "startMs": 9133,
+      "endMs": 11203,
+      "durationMs": 2070,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_6.mp3"
+    },
+    {
+      "sentenceId": "sn_7",
+      "startMs": 11003,
+      "endMs": 13664,
+      "durationMs": 2661,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_7.mp3"
+    },
+    {
+      "sentenceId": "sn_8",
+      "startMs": 13464,
+      "endMs": 14987,
+      "durationMs": 1523,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_8.mp3"
+    },
+    {
+      "sentenceId": "sn_9",
+      "startMs": 14787,
+      "endMs": 17054,
+      "durationMs": 2267,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_9.mp3"
+    },
+    {
+      "sentenceId": "sn_10",
+      "startMs": 16854,
+      "endMs": 18830,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_10.mp3"
+    },
+    {
+      "sentenceId": "sn_11",
+      "startMs": 18630,
+      "endMs": 19666,
+      "durationMs": 1036,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_11.mp3"
+    },
+    {
+      "sentenceId": "sn_12",
+      "startMs": 19466,
+      "endMs": 20409,
+      "durationMs": 943,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_12.mp3"
+    },
+    {
+      "sentenceId": "sn_13",
+      "startMs": 20209,
+      "endMs": 21640,
+      "durationMs": 1431,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_13.mp3"
+    },
+    {
+      "sentenceId": "sn_14",
+      "startMs": 21440,
+      "endMs": 22859,
+      "durationMs": 1419,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_14.mp3"
+    },
+    {
+      "sentenceId": "sn_15",
+      "startMs": 22659,
+      "endMs": 24159,
+      "durationMs": 1500,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_15.mp3"
+    },
+    {
+      "sentenceId": "sn_16",
+      "startMs": 23959,
+      "endMs": 25239,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_16.mp3"
+    },
+    {
+      "sentenceId": "sn_17",
+      "startMs": 25039,
+      "endMs": 27328,
+      "durationMs": 2289,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_17.mp3"
+    },
+    {
+      "sentenceId": "sn_18",
+      "startMs": 27128,
+      "endMs": 28884,
+      "durationMs": 1756,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_18.mp3"
+    },
+    {
+      "sentenceId": "sn_19",
+      "startMs": 28684,
+      "endMs": 30114,
+      "durationMs": 1430,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_19.mp3"
+    },
+    {
+      "sentenceId": "sn_20",
+      "startMs": 29914,
+      "endMs": 31020,
+      "durationMs": 1106,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_20.mp3"
+    },
+    {
+      "sentenceId": "sn_21",
+      "startMs": 30820,
+      "endMs": 32378,
+      "durationMs": 1558,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_21.mp3"
+    },
+    {
+      "sentenceId": "sn_22",
+      "startMs": 32178,
+      "endMs": 33481,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_22.mp3"
+    },
+    {
+      "sentenceId": "sn_23",
+      "startMs": 33281,
+      "endMs": 35072,
+      "durationMs": 1791,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_23.mp3"
+    },
+    {
+      "sentenceId": "sn_24",
+      "startMs": 34872,
+      "endMs": 37614,
+      "durationMs": 2742,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_24.mp3"
+    },
+    {
+      "sentenceId": "sn_25",
+      "startMs": 37414,
+      "endMs": 39786,
+      "durationMs": 2372,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_25.mp3"
+    },
+    {
+      "sentenceId": "sn_26",
+      "startMs": 39586,
+      "endMs": 41516,
+      "durationMs": 1930,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_26.mp3"
+    },
+    {
+      "sentenceId": "sn_27",
+      "startMs": 41316,
+      "endMs": 42944,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_27.mp3"
+    },
+    {
+      "sentenceId": "sn_28",
+      "startMs": 42744,
+      "endMs": 43756,
+      "durationMs": 1012,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_28.mp3"
+    },
+    {
+      "sentenceId": "sn_29",
+      "startMs": 43556,
+      "endMs": 45057,
+      "durationMs": 1501,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_29.mp3"
+    },
+    {
+      "sentenceId": "sn_30",
+      "startMs": 44857,
+      "endMs": 46345,
+      "durationMs": 1488,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_30.mp3"
+    },
+    {
+      "sentenceId": "sn_31",
+      "startMs": 46145,
+      "endMs": 47843,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_31.mp3"
+    },
+    {
+      "sentenceId": "sn_32",
+      "startMs": 47643,
+      "endMs": 48876,
+      "durationMs": 1233,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_32.mp3"
+    },
+    {
+      "sentenceId": "sn_33",
+      "startMs": 48676,
+      "endMs": 50792,
+      "durationMs": 2116,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_33.mp3"
+    },
+    {
+      "sentenceId": "sn_34",
+      "startMs": 50592,
+      "endMs": 53219,
+      "durationMs": 2627,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_34.mp3"
+    },
+    {
+      "sentenceId": "sn_35",
+      "startMs": 53019,
+      "endMs": 54495,
+      "durationMs": 1476,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_35.mp3"
+    },
+    {
+      "sentenceId": "sn_36",
+      "startMs": 54295,
+      "endMs": 55738,
+      "durationMs": 1443,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_36.mp3"
+    },
+    {
+      "sentenceId": "sn_37",
+      "startMs": 55538,
+      "endMs": 57108,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_37.mp3"
+    },
+    {
+      "sentenceId": "sn_38",
+      "startMs": 56908,
+      "endMs": 58663,
+      "durationMs": 1755,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_38.mp3"
+    },
+    {
+      "sentenceId": "sn_39",
+      "startMs": 58463,
+      "endMs": 60370,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_39.mp3"
+    },
+    {
+      "sentenceId": "sn_40",
+      "startMs": 60170,
+      "endMs": 62959,
+      "durationMs": 2789,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_40.mp3"
+    },
+    {
+      "sentenceId": "sn_41",
+      "startMs": 62759,
+      "endMs": 65896,
+      "durationMs": 3137,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_41.mp3"
+    },
+    {
+      "sentenceId": "sn_42",
+      "startMs": 65696,
+      "endMs": 67603,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_42.mp3"
+    },
+    {
+      "sentenceId": "sn_43",
+      "startMs": 67403,
+      "endMs": 68764,
+      "durationMs": 1361,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_43.mp3"
+    },
+    {
+      "sentenceId": "sn_44",
+      "startMs": 68564,
+      "endMs": 70110,
+      "durationMs": 1546,
+      "audioUrl": "/audio/readings/chanson_shinian_sn_44.mp3"
+    }
+  ]
+}

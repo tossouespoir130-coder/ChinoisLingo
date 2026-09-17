@@ -1,0 +1,470 @@
+{
+  "contentId": "chanson_pengyou",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_pengyou.mp3",
+  "totalDurationMs": 71780,
+  "sentences": [
+    {
+      "sentenceId": "ch2_1",
+      "startMs": 0,
+      "endMs": 812,
+      "durationMs": 812,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_1.mp3"
+    },
+    {
+      "sentenceId": "ch2_2",
+      "startMs": 612,
+      "endMs": 1230,
+      "durationMs": 618,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_2.mp3"
+    },
+    {
+      "sentenceId": "ch2_3",
+      "startMs": 1030,
+      "endMs": 2368,
+      "durationMs": 1338,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_3.mp3"
+    },
+    {
+      "sentenceId": "ch2_4",
+      "startMs": 2168,
+      "endMs": 2936,
+      "durationMs": 768,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_4.mp3"
+    },
+    {
+      "sentenceId": "ch2_5",
+      "startMs": 2736,
+      "endMs": 3981,
+      "durationMs": 1245,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_5.mp3"
+    },
+    {
+      "sentenceId": "ch2_6",
+      "startMs": 3781,
+      "endMs": 5131,
+      "durationMs": 1350,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_6.mp3"
+    },
+    {
+      "sentenceId": "ch2_7",
+      "startMs": 4931,
+      "endMs": 6837,
+      "durationMs": 1906,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_7.mp3"
+    },
+    {
+      "sentenceId": "ch2_8",
+      "startMs": 6637,
+      "endMs": 7534,
+      "durationMs": 897,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_8.mp3"
+    },
+    {
+      "sentenceId": "ch2_9",
+      "startMs": 7334,
+      "endMs": 8056,
+      "durationMs": 722,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_9.mp3"
+    },
+    {
+      "sentenceId": "ch2_10",
+      "startMs": 7856,
+      "endMs": 9136,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_10.mp3"
+    },
+    {
+      "sentenceId": "ch2_11",
+      "startMs": 8936,
+      "endMs": 9763,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_11.mp3"
+    },
+    {
+      "sentenceId": "ch2_12",
+      "startMs": 9563,
+      "endMs": 10762,
+      "durationMs": 1199,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_12.mp3"
+    },
+    {
+      "sentenceId": "ch2_13",
+      "startMs": 10562,
+      "endMs": 12399,
+      "durationMs": 1837,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_13.mp3"
+    },
+    {
+      "sentenceId": "ch2_14",
+      "startMs": 12199,
+      "endMs": 14361,
+      "durationMs": 2162,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_14.mp3"
+    },
+    {
+      "sentenceId": "ch2_15",
+      "startMs": 14161,
+      "endMs": 15626,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_15.mp3"
+    },
+    {
+      "sentenceId": "ch2_16",
+      "startMs": 15426,
+      "endMs": 16555,
+      "durationMs": 1129,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_16.mp3"
+    },
+    {
+      "sentenceId": "ch2_17",
+      "startMs": 16355,
+      "endMs": 17252,
+      "durationMs": 897,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_17.mp3"
+    },
+    {
+      "sentenceId": "ch2_18",
+      "startMs": 17052,
+      "endMs": 18378,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_18.mp3"
+    },
+    {
+      "sentenceId": "ch2_19",
+      "startMs": 18178,
+      "endMs": 19016,
+      "durationMs": 838,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_19.mp3"
+    },
+    {
+      "sentenceId": "ch2_20",
+      "startMs": 18816,
+      "endMs": 20793,
+      "durationMs": 1977,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_20.mp3"
+    },
+    {
+      "sentenceId": "ch2_21",
+      "startMs": 20593,
+      "endMs": 22418,
+      "durationMs": 1825,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_21.mp3"
+    },
+    {
+      "sentenceId": "ch2_22",
+      "startMs": 22218,
+      "endMs": 23451,
+      "durationMs": 1233,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_22.mp3"
+    },
+    {
+      "sentenceId": "ch2_23",
+      "startMs": 23251,
+      "endMs": 24078,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_23.mp3"
+    },
+    {
+      "sentenceId": "ch2_24",
+      "startMs": 23878,
+      "endMs": 25100,
+      "durationMs": 1222,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_24.mp3"
+    },
+    {
+      "sentenceId": "ch2_25",
+      "startMs": 24900,
+      "endMs": 26168,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_25.mp3"
+    },
+    {
+      "sentenceId": "ch2_26",
+      "startMs": 25968,
+      "endMs": 26725,
+      "durationMs": 757,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_26.mp3"
+    },
+    {
+      "sentenceId": "ch2_27",
+      "startMs": 26525,
+      "endMs": 27166,
+      "durationMs": 641,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_27.mp3"
+    },
+    {
+      "sentenceId": "ch2_28",
+      "startMs": 26966,
+      "endMs": 28269,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_28.mp3"
+    },
+    {
+      "sentenceId": "ch2_29",
+      "startMs": 28069,
+      "endMs": 29303,
+      "durationMs": 1234,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_29.mp3"
+    },
+    {
+      "sentenceId": "ch2_30",
+      "startMs": 29103,
+      "endMs": 29988,
+      "durationMs": 885,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_30.mp3"
+    },
+    {
+      "sentenceId": "ch2_31",
+      "startMs": 29788,
+      "endMs": 31091,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_31.mp3"
+    },
+    {
+      "sentenceId": "ch2_32",
+      "startMs": 30891,
+      "endMs": 32368,
+      "durationMs": 1477,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_32.mp3"
+    },
+    {
+      "sentenceId": "ch2_33",
+      "startMs": 32168,
+      "endMs": 33494,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_33.mp3"
+    },
+    {
+      "sentenceId": "ch2_34",
+      "startMs": 33294,
+      "endMs": 34063,
+      "durationMs": 769,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_34.mp3"
+    },
+    {
+      "sentenceId": "ch2_35",
+      "startMs": 33863,
+      "endMs": 35131,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_35.mp3"
+    },
+    {
+      "sentenceId": "ch2_36",
+      "startMs": 34931,
+      "endMs": 35723,
+      "durationMs": 792,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_36.mp3"
+    },
+    {
+      "sentenceId": "ch2_37",
+      "startMs": 35523,
+      "endMs": 36675,
+      "durationMs": 1152,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_37.mp3"
+    },
+    {
+      "sentenceId": "ch2_38",
+      "startMs": 36475,
+      "endMs": 38289,
+      "durationMs": 1814,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_38.mp3"
+    },
+    {
+      "sentenceId": "ch2_39",
+      "startMs": 38089,
+      "endMs": 39996,
+      "durationMs": 1907,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_39.mp3"
+    },
+    {
+      "sentenceId": "ch2_40",
+      "startMs": 39796,
+      "endMs": 41784,
+      "durationMs": 1988,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_40.mp3"
+    },
+    {
+      "sentenceId": "ch2_41",
+      "startMs": 41584,
+      "endMs": 42840,
+      "durationMs": 1256,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_41.mp3"
+    },
+    {
+      "sentenceId": "ch2_42",
+      "startMs": 42640,
+      "endMs": 43897,
+      "durationMs": 1257,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_42.mp3"
+    },
+    {
+      "sentenceId": "ch2_43",
+      "startMs": 43697,
+      "endMs": 45069,
+      "durationMs": 1372,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_43.mp3"
+    },
+    {
+      "sentenceId": "ch2_44",
+      "startMs": 44869,
+      "endMs": 46126,
+      "durationMs": 1257,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_44.mp3"
+    },
+    {
+      "sentenceId": "ch2_45",
+      "startMs": 45926,
+      "endMs": 48030,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_45.mp3"
+    },
+    {
+      "sentenceId": "ch2_46",
+      "startMs": 47830,
+      "endMs": 50062,
+      "durationMs": 2232,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_46.mp3"
+    },
+    {
+      "sentenceId": "ch2_47",
+      "startMs": 49862,
+      "endMs": 51130,
+      "durationMs": 1268,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_47.mp3"
+    },
+    {
+      "sentenceId": "ch2_48",
+      "startMs": 50930,
+      "endMs": 51757,
+      "durationMs": 827,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_48.mp3"
+    },
+    {
+      "sentenceId": "ch2_49",
+      "startMs": 51557,
+      "endMs": 52697,
+      "durationMs": 1140,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_49.mp3"
+    },
+    {
+      "sentenceId": "ch2_50",
+      "startMs": 52497,
+      "endMs": 53684,
+      "durationMs": 1187,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_50.mp3"
+    },
+    {
+      "sentenceId": "ch2_51",
+      "startMs": 53484,
+      "endMs": 55344,
+      "durationMs": 1860,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_51.mp3"
+    },
+    {
+      "sentenceId": "ch2_52",
+      "startMs": 55144,
+      "endMs": 56993,
+      "durationMs": 1849,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_52.mp3"
+    },
+    {
+      "sentenceId": "ch2_53",
+      "startMs": 56793,
+      "endMs": 57864,
+      "durationMs": 1071,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_53.mp3"
+    },
+    {
+      "sentenceId": "ch2_54",
+      "startMs": 57664,
+      "endMs": 58850,
+      "durationMs": 1186,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_54.mp3"
+    },
+    {
+      "sentenceId": "ch2_55",
+      "startMs": 58650,
+      "endMs": 59559,
+      "durationMs": 909,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_55.mp3"
+    },
+    {
+      "sentenceId": "ch2_56",
+      "startMs": 59359,
+      "endMs": 60673,
+      "durationMs": 1314,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_56.mp3"
+    },
+    {
+      "sentenceId": "ch2_57",
+      "startMs": 60473,
+      "endMs": 63007,
+      "durationMs": 2534,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_57.mp3"
+    },
+    {
+      "sentenceId": "ch2_58",
+      "startMs": 62807,
+      "endMs": 65201,
+      "durationMs": 2394,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_58.mp3"
+    },
+    {
+      "sentenceId": "ch2_59",
+      "startMs": 65001,
+      "endMs": 66281,
+      "durationMs": 1280,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_59.mp3"
+    },
+    {
+      "sentenceId": "ch2_60",
+      "startMs": 66081,
+      "endMs": 67384,
+      "durationMs": 1303,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_60.mp3"
+    },
+    {
+      "sentenceId": "ch2_61",
+      "startMs": 67184,
+      "endMs": 68463,
+      "durationMs": 1279,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_61.mp3"
+    },
+    {
+      "sentenceId": "ch2_62",
+      "startMs": 68263,
+      "endMs": 68986,
+      "durationMs": 723,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_62.mp3"
+    },
+    {
+      "sentenceId": "ch2_63",
+      "startMs": 68786,
+      "endMs": 69532,
+      "durationMs": 746,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_63.mp3"
+    },
+    {
+      "sentenceId": "ch2_64",
+      "startMs": 69332,
+      "endMs": 70425,
+      "durationMs": 1093,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_64.mp3"
+    },
+    {
+      "sentenceId": "ch2_65",
+      "startMs": 70225,
+      "endMs": 71087,
+      "durationMs": 862,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_65.mp3"
+    },
+    {
+      "sentenceId": "ch2_66",
+      "startMs": 70887,
+      "endMs": 71780,
+      "durationMs": 893,
+      "audioUrl": "/audio/readings/chanson_pengyou_ch2_66.mp3"
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "contentId": "chanson_tonghua",
+  "type": "chansons",
+  "fullAudioUrl": "/audio/readings/chanson_tonghua.mp3",
+  "totalDurationMs": 86780,
+  "sentences": [
+    {
+      "sentenceId": "ch4_1",
+      "startMs": 0,
+      "endMs": 1683,
+      "durationMs": 1683,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_1.mp3"
+    },
+    {
+      "sentenceId": "ch4_2",
+      "startMs": 1483,
+      "endMs": 3006,
+      "durationMs": 1523,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_2.mp3"
+    },
+    {
+      "sentenceId": "ch4_3",
+      "startMs": 2806,
+      "endMs": 5456,
+      "durationMs": 2650,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_3.mp3"
+    },
+    {
+      "sentenceId": "ch4_4",
+      "startMs": 5256,
+      "endMs": 6872,
+      "durationMs": 1616,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_4.mp3"
+    },
+    {
+      "sentenceId": "ch4_5",
+      "startMs": 6672,
+      "endMs": 8323,
+      "durationMs": 1651,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_5.mp3"
+    },
+    {
+      "sentenceId": "ch4_6",
+      "startMs": 8123,
+      "endMs": 11087,
+      "durationMs": 2964,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_6.mp3"
+    },
+    {
+      "sentenceId": "ch4_7",
+      "startMs": 10887,
+      "endMs": 13200,
+      "durationMs": 2313,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_7.mp3"
+    },
+    {
+      "sentenceId": "ch4_8",
+      "startMs": 13000,
+      "endMs": 15150,
+      "durationMs": 2150,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_8.mp3"
+    },
+    {
+      "sentenceId": "ch4_9",
+      "startMs": 14950,
+      "endMs": 17159,
+      "durationMs": 2209,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_9.mp3"
+    },
+    {
+      "sentenceId": "ch4_10",
+      "startMs": 16959,
+      "endMs": 18865,
+      "durationMs": 1906,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_10.mp3"
+    },
+    {
+      "sentenceId": "ch4_11",
+      "startMs": 18665,
+      "endMs": 21826,
+      "durationMs": 3161,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_11.mp3"
+    },
+    {
+      "sentenceId": "ch4_12",
+      "startMs": 21626,
+      "endMs": 22534,
+      "durationMs": 908,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_12.mp3"
+    },
+    {
+      "sentenceId": "ch4_13",
+      "startMs": 22334,
+      "endMs": 24055,
+      "durationMs": 1721,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_13.mp3"
+    },
+    {
+      "sentenceId": "ch4_14",
+      "startMs": 23855,
+      "endMs": 25982,
+      "durationMs": 2127,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_14.mp3"
+    },
+    {
+      "sentenceId": "ch4_15",
+      "startMs": 25782,
+      "endMs": 27120,
+      "durationMs": 1338,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_15.mp3"
+    },
+    {
+      "sentenceId": "ch4_16",
+      "startMs": 26920,
+      "endMs": 28420,
+      "durationMs": 1500,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_16.mp3"
+    },
+    {
+      "sentenceId": "ch4_17",
+      "startMs": 28220,
+      "endMs": 30429,
+      "durationMs": 2209,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_17.mp3"
+    },
+    {
+      "sentenceId": "ch4_18",
+      "startMs": 30229,
+      "endMs": 31706,
+      "durationMs": 1477,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_18.mp3"
+    },
+    {
+      "sentenceId": "ch4_19",
+      "startMs": 31506,
+      "endMs": 33796,
+      "durationMs": 2290,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_19.mp3"
+    },
+    {
+      "sentenceId": "ch4_20",
+      "startMs": 33596,
+      "endMs": 36362,
+      "durationMs": 2766,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_20.mp3"
+    },
+    {
+      "sentenceId": "ch4_21",
+      "startMs": 36162,
+      "endMs": 37987,
+      "durationMs": 1825,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_21.mp3"
+    },
+    {
+      "sentenceId": "ch4_22",
+      "startMs": 37787,
+      "endMs": 40065,
+      "durationMs": 2278,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_22.mp3"
+    },
+    {
+      "sentenceId": "ch4_23",
+      "startMs": 39865,
+      "endMs": 42097,
+      "durationMs": 2232,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_23.mp3"
+    },
+    {
+      "sentenceId": "ch4_24",
+      "startMs": 41897,
+      "endMs": 43815,
+      "durationMs": 1918,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_24.mp3"
+    },
+    {
+      "sentenceId": "ch4_25",
+      "startMs": 43615,
+      "endMs": 46207,
+      "durationMs": 2592,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_25.mp3"
+    },
+    {
+      "sentenceId": "ch4_26",
+      "startMs": 46007,
+      "endMs": 46962,
+      "durationMs": 955,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_26.mp3"
+    },
+    {
+      "sentenceId": "ch4_27",
+      "startMs": 46762,
+      "endMs": 48494,
+      "durationMs": 1732,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_27.mp3"
+    },
+    {
+      "sentenceId": "ch4_28",
+      "startMs": 48294,
+      "endMs": 50306,
+      "durationMs": 2012,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_28.mp3"
+    },
+    {
+      "sentenceId": "ch4_29",
+      "startMs": 50106,
+      "endMs": 51478,
+      "durationMs": 1372,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_29.mp3"
+    },
+    {
+      "sentenceId": "ch4_30",
+      "startMs": 51278,
+      "endMs": 52918,
+      "durationMs": 1640,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_30.mp3"
+    },
+    {
+      "sentenceId": "ch4_31",
+      "startMs": 52718,
+      "endMs": 55263,
+      "durationMs": 2545,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_31.mp3"
+    },
+    {
+      "sentenceId": "ch4_32",
+      "startMs": 55063,
+      "endMs": 56563,
+      "durationMs": 1500,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_32.mp3"
+    },
+    {
+      "sentenceId": "ch4_33",
+      "startMs": 56363,
+      "endMs": 59268,
+      "durationMs": 2905,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_33.mp3"
+    },
+    {
+      "sentenceId": "ch4_34",
+      "startMs": 59068,
+      "endMs": 61521,
+      "durationMs": 2453,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_34.mp3"
+    },
+    {
+      "sentenceId": "ch4_35",
+      "startMs": 61321,
+      "endMs": 63390,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_35.mp3"
+    },
+    {
+      "sentenceId": "ch4_36",
+      "startMs": 63190,
+      "endMs": 64539,
+      "durationMs": 1349,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_36.mp3"
+    },
+    {
+      "sentenceId": "ch4_37",
+      "startMs": 64339,
+      "endMs": 66025,
+      "durationMs": 1686,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_37.mp3"
+    },
+    {
+      "sentenceId": "ch4_38",
+      "startMs": 65825,
+      "endMs": 67918,
+      "durationMs": 2093,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_38.mp3"
+    },
+    {
+      "sentenceId": "ch4_39",
+      "startMs": 67718,
+      "endMs": 69172,
+      "durationMs": 1454,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_39.mp3"
+    },
+    {
+      "sentenceId": "ch4_40",
+      "startMs": 68972,
+      "endMs": 71343,
+      "durationMs": 2371,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_40.mp3"
+    },
+    {
+      "sentenceId": "ch4_41",
+      "startMs": 71143,
+      "endMs": 73885,
+      "durationMs": 2742,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_41.mp3"
+    },
+    {
+      "sentenceId": "ch4_42",
+      "startMs": 73685,
+      "endMs": 75789,
+      "durationMs": 2104,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_42.mp3"
+    },
+    {
+      "sentenceId": "ch4_43",
+      "startMs": 75589,
+      "endMs": 76927,
+      "durationMs": 1338,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_43.mp3"
+    },
+    {
+      "sentenceId": "ch4_44",
+      "startMs": 76727,
+      "endMs": 77786,
+      "durationMs": 1059,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_44.mp3"
+    },
+    {
+      "sentenceId": "ch4_45",
+      "startMs": 77586,
+      "endMs": 79667,
+      "durationMs": 2081,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_45.mp3"
+    },
+    {
+      "sentenceId": "ch4_46",
+      "startMs": 79467,
+      "endMs": 80851,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_46.mp3"
+    },
+    {
+      "sentenceId": "ch4_47",
+      "startMs": 80651,
+      "endMs": 82964,
+      "durationMs": 2313,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_47.mp3"
+    },
+    {
+      "sentenceId": "ch4_48",
+      "startMs": 82764,
+      "endMs": 85217,
+      "durationMs": 2453,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_48.mp3"
+    },
+    {
+      "sentenceId": "ch4_49",
+      "startMs": 85017,
+      "endMs": 85774,
+      "durationMs": 757,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_49.mp3"
+    },
+    {
+      "sentenceId": "ch4_50",
+      "startMs": 85574,
+      "endMs": 86780,
+      "durationMs": 1206,
+      "audioUrl": "/audio/readings/chanson_tonghua_ch4_50.mp3"
+    }
+  ]
+}
