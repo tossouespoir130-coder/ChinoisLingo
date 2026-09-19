@@ -56,27 +56,27 @@ export default function LandingFooter() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Histoires & Lectures
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Chansons Karaoké
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Méthode Combinatoire
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Formations Vidéos
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Dictionnaire HSK 1–6
                 </Link>
               </li>
@@ -90,22 +90,22 @@ export default function LandingFooter() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Niveaux HSK 1 à HSK 6
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Chinois des Affaires & Sourcing
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Flashcards 3D & SRS
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Synthèse Vocale Native
                 </Link>
               </li>
@@ -119,22 +119,22 @@ export default function LandingFooter() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Conditions Générales (CGV)
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Politique de Confidentialité
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Mentions Légales
                 </Link>
               </li>
               <li>
-                <Link href="/connexion" className="hover:text-[#6200EE] transition-colors">
+                <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
                   Gestion des Cookies
                 </Link>
               </li>

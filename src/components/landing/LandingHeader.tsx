@@ -87,7 +87,7 @@ export default function LandingHeader() {
               href="/onboarding"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#6200EE] hover:bg-[#5000CC] text-white font-bold text-sm shadow-md shadow-[#6200EE]/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Commencer rapidement</span>
+              <span>Commencer gratuitement</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -149,7 +149,7 @@ export default function LandingHeader() {
               href="/onboarding"
               className="w-full py-3 text-center text-sm font-bold text-white bg-[#6200EE] rounded-full shadow-md"
             >
-              Commencer rapidement
+              Commencer gratuitement
             </Link>
           </div>
         </div>

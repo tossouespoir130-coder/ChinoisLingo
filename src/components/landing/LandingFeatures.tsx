@@ -76,7 +76,7 @@ export default function LandingFeatures() {
 
               <div className="mt-5 pt-3 border-t border-gray-200/60 flex items-center justify-end">
                 <Link
-                  href="/connexion"
+                  href="/onboarding"
                   className="text-xs font-bold text-[#6200EE] flex items-center gap-1 hover:underline"
                 >
                   <span>Découvrir</span>

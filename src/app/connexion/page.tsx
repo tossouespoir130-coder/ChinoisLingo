@@ -318,7 +318,7 @@ export default function ConnexionPage() {
                   href="/onboarding"
                   className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline"
                 >
-                  Commencer rapidement
+                  Commencer gratuitement
                 </Link>
               </div>
             </div>

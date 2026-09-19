@@ -132,7 +132,7 @@ export function OnboardingContainer() {
                 key={i}
                 className={`h-2 flex-1 rounded-full transition-all duration-300 ${
                   isDoneOrCurrent
-                    ? 'bg-[#FFA000] dark:bg-[#FFB300]'
+                    ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
                     : 'bg-[#ECEFF1] dark:bg-[#2C3437]'
                 }`}
               />

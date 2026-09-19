@@ -85,23 +85,23 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
                 key={opt.id}
                 type="button"
                 onClick={() => handleSelect(opt.id)}
-                className="w-full flex items-center gap-4 p-4 rounded-2xl text-left bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#FFA000]/60 dark:hover:border-[#FFA000]/60 hover:shadow-xs transition-all duration-200 btn-press cursor-pointer"
+                className="w-full flex items-center gap-4 p-4 rounded-2xl text-left bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#6200EE]/60 dark:hover:border-[#6200EE]/60 hover:shadow-xs transition-all duration-200 btn-press cursor-pointer"
               >
-                {/* Signal bars indicator */}
+                {/* Signal bars indicator (Violet / Turquoise) */}
                 <div className="flex items-end gap-1 w-8 h-8 justify-center shrink-0">
                   <div
                     className={`w-1.5 h-3 rounded-full ${
-                      opt.bars >= 1 ? 'bg-[#FFA000]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
+                      opt.bars >= 1 ? 'bg-[#6200EE] dark:bg-[#03DAC5]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                     }`}
                   />
                   <div
                     className={`w-1.5 h-5 rounded-full ${
-                      opt.bars >= 2 ? 'bg-[#FFA000]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
+                      opt.bars >= 2 ? 'bg-[#6200EE] dark:bg-[#03DAC5]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                     }`}
                   />
                   <div
                     className={`w-1.5 h-7 rounded-full ${
-                      opt.bars >= 3 ? 'bg-[#FFA000]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
+                      opt.bars >= 3 ? 'bg-[#6200EE] dark:bg-[#03DAC5]' : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                     }`}
                   />
                 </div>
@@ -126,12 +126,12 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
             <button
               type="button"
               onClick={() => setShowLevelGuide(true)}
-              className="w-full flex items-center justify-between p-4 pl-16 rounded-2xl bg-[#E1F5FE] dark:bg-[#0288D1]/15 border border-[#B3E5FC] dark:border-[#0288D1]/30 hover:bg-[#B3E5FC]/50 dark:hover:bg-[#0288D1]/25 transition-all text-left cursor-pointer"
+              className="w-full flex items-center justify-between p-4 pl-16 rounded-2xl bg-[#03DAC5]/10 dark:bg-[#03DAC5]/15 border border-[#03DAC5]/30 hover:bg-[#03DAC5]/20 dark:hover:bg-[#03DAC5]/25 transition-all text-left cursor-pointer"
             >
-              <span className="text-sm font-semibold text-[#0277BD] dark:text-[#4FC3F7]">
+              <span className="text-sm font-semibold text-[#00796B] dark:text-[#03DAC5]">
                 Aide-moi à connaître mon niveau
               </span>
-              <div className="w-7 h-7 rounded-full bg-[#0288D1] text-white flex items-center justify-center shrink-0 shadow-xs">
+              <div className="w-7 h-7 rounded-full bg-[#00897B] text-white flex items-center justify-center shrink-0 shadow-xs">
                 <ChevronRight className="w-4 h-4" />
               </div>
             </button>
@@ -158,27 +158,27 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
             </div>
           </div>
 
-          {/* Highlighted selected card */}
-          <div className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[#FFF8E1] dark:bg-[#FFA000]/15 border border-[#FFA000] dark:border-[#FFA000] shadow-sm">
+          {/* Highlighted selected card with Violet brand color */}
+          <div className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[#6200EE]/8 dark:bg-[#6200EE]/20 border border-[#6200EE] dark:border-[#BB86FC] shadow-sm ring-1 ring-[#6200EE] dark:ring-[#BB86FC]">
             <div className="flex items-end gap-1 w-8 h-8 justify-center shrink-0">
               <div
                 className={`w-1.5 h-3 rounded-full ${
                   (chosenObj?.bars || 1) >= 1
-                    ? 'bg-[#FFA000]'
+                    ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
                     : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                 }`}
               />
               <div
                 className={`w-1.5 h-5 rounded-full ${
                   (chosenObj?.bars || 1) >= 2
-                    ? 'bg-[#FFA000]'
+                    ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
                     : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                 }`}
               />
               <div
                 className={`w-1.5 h-7 rounded-full ${
                   (chosenObj?.bars || 1) >= 3
-                    ? 'bg-[#FFA000]'
+                    ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
                     : 'bg-[#CFD8DC] dark:bg-[#455A64]'
                 }`}
               />
@@ -207,12 +207,12 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
             </div>
           </div>
 
-          {/* Continue button */}
+          {/* Continue button with Violet Signature Color */}
           <div className="pt-2">
             <button
               type="submit"
               onClick={handleProceed}
-              className="w-full py-4 rounded-2xl bg-[#FFA000] hover:bg-[#FF8F00] text-white font-bold text-base shadow-md hover:shadow-lg transition-all btn-press cursor-pointer"
+              className="w-full py-4 rounded-2xl bg-[#6200EE] hover:bg-[#5000CA] text-white font-bold text-base shadow-md hover:shadow-lg transition-all btn-press cursor-pointer"
             >
               Continuer
             </button>
@@ -225,7 +225,7 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-fade-in">
           <div className="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 max-w-md w-full border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xl space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#E1F5FE] dark:bg-[#0288D1]/20 flex items-center justify-center text-[#0288D1]">
+              <div className="w-10 h-10 rounded-2xl bg-[#03DAC5]/20 flex items-center justify-center text-[#00897B] dark:text-[#03DAC5]">
                 <HelpCircle className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-[#212121] dark:text-white">
@@ -235,7 +235,7 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
 
             <div className="space-y-3 text-sm text-[#424242] dark:text-[#E0E0E0]">
               <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                <p className="font-bold text-[#FFA000]">1. Débutant complet (HSK 1)</p>
+                <p className="font-bold text-[#00897B] dark:text-[#03DAC5]">1. Débutant complet (HSK 1)</p>
                 <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
                   Idéal si vous découvrez le chinois. Apprenez la phonétique (Pinyin), les tons et les 150 premiers mots.
                 </p>
@@ -249,7 +249,7 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
               </div>
 
               <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                <p className="font-bold text-[#6200EE] dark:text-[#03DAC5]">3. Conversation fluide (HSK 4 - 6)</p>
+                <p className="font-bold text-[#6200EE] dark:text-[#BB86FC]">3. Conversation fluide (HSK 4 - 6)</p>
                 <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
                   Vous comprenez les échanges complexes, les articles d’actualité et les séries business.
                 </p>

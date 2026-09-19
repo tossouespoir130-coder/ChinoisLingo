@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Briefcase, Camera, GraduationCap, Globe, Telescope } from 'lucide-react';
+import { Building2, Briefcase, Laptop, GraduationCap, Telescope } from 'lucide-react';
 import { ProfilType } from './types';
 
 interface StepProfileProps {
@@ -13,10 +13,19 @@ interface StepProfileProps {
 export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
   const options = [
     {
-      id: 'salarie' as ProfilType,
-      label: 'Professionnel(le) salarié(e)',
+      id: 'entrepreneur' as ProfilType,
+      label: 'Entrepreneur',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-amber-700 dark:text-amber-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#6200EE]/12 text-[#6200EE] dark:bg-[#6200EE]/20 dark:text-[#BB86FC] flex items-center justify-center shrink-0 shadow-2xs">
+          <Building2 className="w-5 h-5" />
+        </div>
+      ),
+    },
+    {
+      id: 'salarie' as ProfilType,
+      label: 'Professionnel salarié',
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-[#00897B]/12 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] flex items-center justify-center shrink-0 shadow-2xs">
           <Briefcase className="w-5 h-5" />
         </div>
       ),
@@ -25,26 +34,17 @@ export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
       id: 'freelance' as ProfilType,
       label: 'Freelance',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950/40 flex items-center justify-center text-sky-600 dark:text-sky-300 shrink-0 shadow-xs">
-          <Camera className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-xl bg-[#0288D1]/12 text-[#0288D1] dark:bg-[#0288D1]/20 dark:text-[#4FC3F7] flex items-center justify-center shrink-0 shadow-2xs">
+          <Laptop className="w-5 h-5" />
         </div>
       ),
     },
     {
       id: 'etudiant' as ProfilType,
-      label: 'Étudiant(e) à l’université',
+      label: 'Étudiant',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#FFA000]/12 text-[#E65100] dark:bg-[#FFA000]/20 dark:text-[#FFB74D] flex items-center justify-center shrink-0 shadow-2xs">
           <GraduationCap className="w-5 h-5" />
-        </div>
-      ),
-    },
-    {
-      id: 'lyceen' as ProfilType,
-      label: 'Collégien / Lycéen',
-      icon: (
-        <div className="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-950/40 flex items-center justify-center text-pink-600 dark:text-pink-300 shrink-0 shadow-xs">
-          <Globe className="w-5 h-5" />
         </div>
       ),
     },
@@ -52,7 +52,7 @@ export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
       id: 'autre' as ProfilType,
       label: 'Autre',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 dark:text-amber-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#8E24AA]/12 text-[#8E24AA] dark:bg-[#8E24AA]/20 dark:text-[#CE93D8] flex items-center justify-center shrink-0 shadow-2xs">
           <Telescope className="w-5 h-5" />
         </div>
       ),
@@ -92,8 +92,8 @@ export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
               onClick={() => onSelect(opt.id, opt.label)}
               className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left border transition-all duration-200 btn-press cursor-pointer ${
                 isSelected
-                  ? 'bg-[#FFF8E1] dark:bg-[#FFA000]/15 border-[#FFA000] dark:border-[#FFA000] shadow-sm ring-1 ring-[#FFA000]'
-                  : 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#FFA000]/60 dark:hover:border-[#FFA000]/60 hover:shadow-xs'
+                  ? 'bg-[#6200EE]/8 dark:bg-[#6200EE]/20 border-[#6200EE] dark:border-[#BB86FC] shadow-sm ring-1 ring-[#6200EE] dark:ring-[#BB86FC]'
+                  : 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#6200EE]/60 dark:hover:border-[#6200EE]/60 hover:shadow-xs'
               }`}
             >
               {opt.icon}

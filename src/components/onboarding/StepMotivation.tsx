@@ -16,7 +16,7 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
       id: 'etudes' as MotivationType,
       label: 'Étudier à l’étranger',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-950/40 flex items-center justify-center text-cyan-600 dark:text-cyan-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#0288D1]/12 text-[#0288D1] dark:bg-[#0288D1]/20 dark:text-[#4FC3F7] flex items-center justify-center shrink-0 shadow-2xs">
           <Plane className="w-5 h-5" />
         </div>
       ),
@@ -25,7 +25,7 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
       id: 'voyage' as MotivationType,
       label: 'Voyager',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/40 flex items-center justify-center text-emerald-600 dark:text-emerald-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#00897B]/12 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] flex items-center justify-center shrink-0 shadow-2xs">
           <Palmtree className="w-5 h-5" />
         </div>
       ),
@@ -34,7 +34,7 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
       id: 'travail' as MotivationType,
       label: 'Pour le travail & les affaires',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#6200EE]/12 text-[#6200EE] dark:bg-[#6200EE]/20 dark:text-[#BB86FC] flex items-center justify-center shrink-0 shadow-2xs">
           <TrendingUp className="w-5 h-5" />
         </div>
       ),
@@ -43,7 +43,7 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
       id: 'passion' as MotivationType,
       label: 'Intérêt personnel & culture',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/40 flex items-center justify-center text-rose-600 dark:text-rose-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#E91E63]/12 text-[#D81B60] dark:bg-[#E91E63]/20 dark:text-[#F48FB1] flex items-center justify-center shrink-0 shadow-2xs">
           <Heart className="w-5 h-5" />
         </div>
       ),
@@ -52,7 +52,7 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
       id: 'autre' as MotivationType,
       label: 'Autre',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/40 flex items-center justify-center text-indigo-600 dark:text-indigo-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-[#8E24AA]/12 text-[#8E24AA] dark:bg-[#8E24AA]/20 dark:text-[#CE93D8] flex items-center justify-center shrink-0 shadow-2xs">
           <Sparkles className="w-5 h-5" />
         </div>
       ),
@@ -92,8 +92,8 @@ export function StepMotivation({ selectedMotivation, onSelect }: StepMotivationP
               onClick={() => onSelect(opt.id, opt.label)}
               className={`w-full flex items-center gap-4 p-4 rounded-2xl text-left border transition-all duration-200 btn-press cursor-pointer ${
                 isSelected
-                  ? 'bg-[#FFF8E1] dark:bg-[#FFA000]/15 border-[#FFA000] dark:border-[#FFA000] shadow-sm ring-1 ring-[#FFA000]'
-                  : 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#FFA000]/60 dark:hover:border-[#FFA000]/60 hover:shadow-xs'
+                  ? 'bg-[#6200EE]/8 dark:bg-[#6200EE]/20 border-[#6200EE] dark:border-[#BB86FC] shadow-sm ring-1 ring-[#6200EE] dark:ring-[#BB86FC]'
+                  : 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0]/80 dark:border-[#2D2D2D] hover:border-[#6200EE]/60 dark:hover:border-[#6200EE]/60 hover:shadow-xs'
               }`}
             >
               {opt.icon}

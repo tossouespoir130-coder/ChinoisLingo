@@ -1,29 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Volume2, ArrowRight, Play, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2 } from 'lucide-react';
 
 export default function LandingHero() {
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-
-  const handlePlayVoice = (text: string) => {
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'zh-CN';
-      utterance.rate = 0.88;
-      setIsPlayingAudio(true);
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 2000);
-    }
-  };
-
   return (
     <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden bg-gradient-to-b from-[#F7F5FF]/80 via-white to-white">
       {/* Background Soft Glow Orbs */}
@@ -62,7 +44,7 @@ export default function LandingHero() {
               href="/onboarding"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#6200EE] hover:bg-[#5000CC] text-white font-black text-base shadow-xl shadow-[#6200EE]/25 hover:scale-105 active:scale-95 transition-all"
             >
-              <span>Commencer rapidement</span>
+              <span>Commencer gratuitement</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 
@@ -114,17 +96,17 @@ export default function LandingHero() {
                   Apprenez dans des situations réelles
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-200 max-w-md mt-1">
-                  Des leçons scénarisées, du vocabulaire contextualisé et des pistes audio natives pour parler avec fluidité.
+                  Des leçons scénarisées, du vocabulaire contextualisé et des dialogues immersifs pour parler avec fluidité.
                 </p>
               </div>
 
-              <button
-                onClick={() => handlePlayVoice('你好！欢迎来到中文世界，跟我一起学中文吧！')}
-                className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-gray-900 font-bold text-xs sm:text-sm shadow-xl hover:scale-105 active:scale-95 transition-all"
+              <Link
+                href="/onboarding"
+                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-gray-950 font-black text-xs sm:text-sm shadow-xl hover:scale-105 active:scale-95 transition-all"
               >
-                <Volume2 className={`w-4 h-4 text-[#6200EE] ${isPlayingAudio ? 'animate-bounce' : ''}`} />
-                <span>Écouter un extrait audio</span>
-              </button>
+                <span>Commencer gratuitement</span>
+                <ArrowRight className="w-4 h-4 text-[#6200EE]" />
+              </Link>
             </div>
           </div>
         </div>

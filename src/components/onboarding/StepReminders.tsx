@@ -30,17 +30,17 @@ export function StepReminders({ onChoose }: StepRemindersProps) {
       {/* 2 Benefit Cards */}
       <div className="w-full flex flex-col gap-3 text-left">
         <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-xs">
-          <div className="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/40 flex items-center justify-center text-orange-600 dark:text-orange-300 shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-[#6200EE]/12 text-[#6200EE] dark:bg-[#6200EE]/20 dark:text-[#BB86FC] flex items-center justify-center shrink-0">
             <TrendingUp className="w-5 h-5" />
           </div>
           <p className="text-sm font-medium text-[#424242] dark:text-[#E0E0E0] leading-snug">
             Les personnes qui activent les rappels ont un taux d’atteinte des objectifs supérieur de{' '}
-            <strong className="text-[#E65100] dark:text-[#FFB74D] font-bold">51%</strong> à celui des autres.
+            <strong className="text-[#6200EE] dark:text-[#BB86FC] font-bold">51%</strong> à celui des autres.
           </p>
         </div>
 
         <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-xs">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 dark:text-amber-300 shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-[#00897B]/12 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] flex items-center justify-center shrink-0">
             <Bell className="w-5 h-5" />
           </div>
           <p className="text-sm font-medium text-[#424242] dark:text-[#E0E0E0] leading-snug">
@@ -54,7 +54,7 @@ export function StepReminders({ onChoose }: StepRemindersProps) {
         <button
           type="button"
           onClick={() => onChoose(true)}
-          className="w-full py-4 rounded-2xl bg-[#FFA000] hover:bg-[#FF8F00] text-white font-bold text-base shadow-md hover:shadow-lg transition-all btn-press cursor-pointer"
+          className="w-full py-4 rounded-2xl bg-[#6200EE] hover:bg-[#5000CA] text-white font-bold text-base shadow-md hover:shadow-lg transition-all btn-press cursor-pointer"
         >
           Oui ! Je vais continuer à apprendre !
         </button>
