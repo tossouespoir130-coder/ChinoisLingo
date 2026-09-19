@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function LandingHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,7 +21,7 @@ export default function LandingHeader() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/90 dark:bg-[#121212]/90 backdrop-blur-md border-b border-gray-100 dark:border-white/5 py-3 shadow-sm'
+          ? 'bg-[#0E0E12]/90 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg'
           : 'bg-transparent py-5'
       }`}
     >
@@ -30,7 +30,7 @@ export default function LandingHeader() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-[#6200EE] to-[#03DAC5] p-[2px] shadow-sm transition-transform group-hover:scale-105">
-              <div className="w-full h-full bg-white dark:bg-[#1E1E1E] rounded-[10px] flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full bg-[#181820] rounded-[10px] flex items-center justify-center overflow-hidden">
                 <Image
                   src="/chinoislingo-icon.png"
                   alt="ChinoisLingo"
@@ -41,8 +41,8 @@ export default function LandingHeader() {
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-black tracking-tight text-gray-900 dark:text-white font-display">
-                Chinois<span className="text-[#6200EE] dark:text-[#BB86FC]">Lingo</span>
+              <span className="text-lg sm:text-xl font-black tracking-tight text-white font-display">
+                Chinois<span className="text-[#BB86FC]">Lingo</span>
               </span>
             </div>
           </Link>
@@ -51,25 +51,25 @@ export default function LandingHeader() {
           <nav className="hidden md:flex items-center gap-8">
             <a
               href="#personnages"
-              className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#6200EE] dark:hover:text-white transition-colors"
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors"
             >
-              Personnages & Histoires
+              Personnages
             </a>
             <a
               href="#methode"
-              className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#6200EE] dark:hover:text-white transition-colors"
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors"
             >
               Méthode Combinatoire
             </a>
             <a
               href="#fonctionnalites"
-              className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#6200EE] dark:hover:text-white transition-colors"
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors"
             >
               Modules HSK 1–6
             </a>
             <a
               href="#tarifs"
-              className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-[#6200EE] dark:hover:text-white transition-colors"
+              className="text-sm font-semibold text-gray-300 hover:text-white transition-colors"
             >
               Tarifs
             </a>
@@ -79,13 +79,13 @@ export default function LandingHeader() {
           <div className="hidden sm:flex items-center gap-3">
             <Link
               href="/connexion"
-              className="px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-200 hover:text-[#6200EE] dark:hover:text-white transition-colors"
+              className="px-4 py-2 text-sm font-bold text-gray-300 hover:text-white transition-colors"
             >
               Connexion
             </Link>
             <Link
               href="/connexion"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#6200EE] to-[#7C4DFF] hover:from-[#5000CC] hover:to-[#651FFF] text-white font-bold text-sm shadow-md shadow-[#6200EE]/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#6200EE] to-[#7C4DFF] hover:from-[#5000CC] hover:to-[#651FFF] text-white font-bold text-sm shadow-md shadow-[#6200EE]/30 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Commencer</span>
               <ArrowRight className="w-4 h-4" />
@@ -96,7 +96,7 @@ export default function LandingHeader() {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5"
+              className="p-2 rounded-xl text-gray-300 hover:bg-white/5"
               aria-label="Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -106,32 +106,39 @@ export default function LandingHeader() {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-gray-100 dark:border-white/10 shadow-xl space-y-3">
+          <div className="md:hidden mt-3 p-4 rounded-2xl bg-[#181820] border border-white/10 shadow-2xl space-y-3">
             <a
               href="#personnages"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200"
+              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-200"
             >
-              Personnages & Histoires
+              Personnages
             </a>
             <a
               href="#methode"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200"
+              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-200"
             >
               Méthode Combinatoire
             </a>
             <a
+              href="#fonctionnalites"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-200"
+            >
+              Modules HSK 1–6
+            </a>
+            <a
               href="#tarifs"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 dark:text-gray-200"
+              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-200"
             >
               Tarifs
             </a>
-            <div className="pt-2 border-t border-gray-100 dark:border-white/5 flex flex-col gap-2">
+            <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
               <Link
                 href="/connexion"
-                className="w-full text-center py-2.5 text-sm font-bold text-gray-700 dark:text-gray-200"
+                className="w-full text-center py-2.5 text-sm font-bold text-gray-200"
               >
                 Connexion
               </Link>

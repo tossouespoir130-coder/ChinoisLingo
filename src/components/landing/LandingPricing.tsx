@@ -3,124 +3,142 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import confetti from 'canvas-confetti';
-import { Check, Sparkles, ArrowRight } from 'lucide-react';
+import { Check, Sparkles, Gift } from 'lucide-react';
+import { PLANS, Devise, formaterMontant, prixMensuelEquivalent } from '@/lib/payments/plans';
 
 export default function LandingPricing() {
-  const [isYearly, setIsYearly] = useState(true);
+  const [devise, setDevise] = useState<Devise>('EUR');
 
   const handleConfetti = () => {
     confetti({
-      particleCount: 40,
-      spread: 60,
+      particleCount: 50,
+      spread: 70,
       origin: { y: 0.7 },
       colors: ['#6200EE', '#03DAC5', '#FFD54F']
     });
   };
 
+  const planMensuel = PLANS.find((p) => p.id === 'mensuel')!;
+  const planSemestriel = PLANS.find((p) => p.id === 'semestriel')!;
+  const planAnnuel = PLANS.find((p) => p.id === 'annuel')!;
+
   return (
-    <section id="tarifs" className="py-16 sm:py-24 bg-gray-50/70 dark:bg-[#151515] relative overflow-hidden">
+    <section id="tarifs" className="py-16 sm:py-24 bg-[#0E0E12] relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#6200EE] dark:text-[#BB86FC] block mb-2">
-            Tarifs Transparents
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-950 dark:text-white font-display tracking-tight">
-            Commencez gratuitement, évoluez à votre rythme.
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6200EE]/20 border border-[#6200EE]/30 text-[#BB86FC] text-xs font-bold uppercase tracking-wider mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Offres & Abonnements Officiels</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-black text-white font-display tracking-tight">
+            Des tarifs simples et sans engagement.
           </h2>
 
-          {/* Toggle */}
-          <div className="inline-flex items-center gap-3 bg-white dark:bg-white/10 p-1.5 rounded-full border border-gray-200 dark:border-white/10 mt-6 shadow-sm">
+          {/* Devise Switcher EUR / XOF */}
+          <div className="inline-flex items-center gap-1.5 bg-[#181820] p-1.5 rounded-full border border-white/10 mt-6 shadow-sm">
             <button
-              onClick={() => setIsYearly(false)}
+              onClick={() => setDevise('EUR')}
               className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
-                !isYearly ? 'bg-[#6200EE] text-white shadow-sm' : 'text-gray-600 dark:text-gray-400'
+                devise === 'EUR' ? 'bg-[#6200EE] text-white shadow-md' : 'text-gray-400 hover:text-white'
               }`}
             >
-              Mensuel
+              International (€ EUR)
             </button>
             <button
-              onClick={() => setIsYearly(true)}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all ${
-                isYearly ? 'bg-[#6200EE] text-white shadow-sm' : 'text-gray-600 dark:text-gray-400'
+              onClick={() => setDevise('XOF')}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                devise === 'XOF' ? 'bg-[#6200EE] text-white shadow-md' : 'text-gray-400 hover:text-white'
               }`}
             >
-              <span>Annuel</span>
-              <span className="px-1.5 py-0.5 rounded-md bg-[#03DAC5] text-black text-[9px] font-black uppercase">
-                -35%
-              </span>
+              Afrique / Mobile Money (FCFA)
             </button>
+          </div>
+
+          {/* Bonus pill */}
+          <div className="flex items-center justify-center gap-2 mt-4 text-xs font-semibold text-[#03DAC5]">
+            <Gift className="w-4 h-4" />
+            <span>+7 jours offerts lors de votre premier abonnement !</span>
           </div>
         </div>
 
-        {/* 3 Pricing Cards */}
+        {/* 3 Real Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           
-          {/* Gratuit */}
-          <div className="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col justify-between">
+          {/* Plan 1 : Pass Mensuel */}
+          <div className="bg-[#16161D] rounded-3xl p-6 border border-white/5 shadow-lg flex flex-col justify-between hover:border-white/10 transition-all">
             <div>
-              <span className="text-xs font-bold uppercase text-gray-400">Découverte</span>
-              <h3 className="text-xl font-black text-gray-900 dark:text-white mt-1">Gratuit</h3>
+              <span className="text-xs font-bold uppercase text-gray-400">Flexibilité Totale</span>
+              <h3 className="text-xl font-black text-white mt-1">{planMensuel.nom}</h3>
+              
               <div className="my-4">
-                <span className="text-3xl font-black text-gray-900 dark:text-white">0 €</span>
-                <span className="text-xs text-gray-400 ml-1">/ toujours</span>
+                <span className="text-3xl font-black text-white">
+                  {formaterMontant(planMensuel.montant[devise], devise)}
+                </span>
+                <span className="text-xs text-gray-400 ml-1">/ mois</span>
               </div>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
+
+              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 mb-6">
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#00BFA5] shrink-0" />
-                  <span>Accès complet au niveau HSK 1</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Accès complet aux niveaux <strong>HSK 1 à HSK 6</strong></span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#00BFA5] shrink-0" />
-                  <span>Premières leçons de Mon Chat</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Toutes les histoires & séries vidéos</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#00BFA5] shrink-0" />
-                  <span>Simulateur combinatoire</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Chansons synchronisées & Audio ElevenLabs</span>
                 </li>
               </ul>
             </div>
 
             <Link
               href="/connexion"
-              className="w-full text-center py-3 rounded-xl border border-gray-200 dark:border-white/10 text-xs font-bold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-all"
+              className="w-full text-center py-3 rounded-xl border border-white/10 text-xs font-bold text-white hover:bg-white/5 transition-all"
             >
-              Commencer Gratuitement
+              Choisir le Pass Mensuel
             </Link>
           </div>
 
-          {/* Immersion Premium (Featured) */}
-          <div className="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 border-2 border-[#6200EE] shadow-xl flex flex-col justify-between relative transform md:-translate-y-2">
+          {/* Plan 2 : Pass 6 Mois (Populaire) */}
+          <div className="bg-[#181824] rounded-3xl p-6 border-2 border-[#6200EE] shadow-2xl flex flex-col justify-between relative transform md:-translate-y-2">
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#6200EE] text-white text-[10px] font-black uppercase tracking-wider shadow-md">
-              Recommandé
+              Le Plus Populaire
             </span>
 
             <div>
-              <span className="text-xs font-bold uppercase text-[#6200EE] dark:text-[#BB86FC]">Pass Immersion</span>
-              <h3 className="text-xl font-black text-gray-900 dark:text-white mt-1">Premium</h3>
+              <span className="text-xs font-bold uppercase text-[#BB86FC]">Immersion 6 Mois</span>
+              <h3 className="text-xl font-black text-white mt-1">{planSemestriel.nom}</h3>
+              
               <div className="my-4">
-                <span className="text-3xl font-black text-gray-900 dark:text-white">
-                  {isYearly ? '12 €' : '19 €'}
+                <span className="text-3xl font-black text-white">
+                  {formaterMontant(planSemestriel.montant[devise], devise)}
                 </span>
-                <span className="text-xs text-gray-400 ml-1">/ mois</span>
+                <span className="text-xs text-[#03DAC5] block mt-1 font-semibold">
+                  soit {prixMensuelEquivalent(planSemestriel, devise)} / mois (-28%)
+                </span>
               </div>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
-                <li className="flex items-center gap-2 font-semibold">
-                  <Check className="w-4 h-4 text-[#6200EE] shrink-0" />
-                  <span>Tous les niveaux HSK 1 à HSK 6</span>
+
+              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 mb-6">
+                <li className="flex items-center gap-2 font-semibold text-white">
+                  <Check className="w-4 h-4 text-[#BB86FC] shrink-0" />
+                  <span>Tout le catalogue HSK 1 à 6 illimité</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#6200EE] shrink-0" />
-                  <span>Toutes les séries vidéos & histoires</span>
+                  <Check className="w-4 h-4 text-[#BB86FC] shrink-0" />
+                  <span>Séries business, quotidien & voyages</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#6200EE] shrink-0" />
-                  <span>Chansons karaoké synchronisées</span>
+                  <Check className="w-4 h-4 text-[#BB86FC] shrink-0" />
+                  <span>Méthode combinatoire & Flashcards 3D</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#6200EE] shrink-0" />
-                  <span>Synthèse vocale native ElevenLabs</span>
+                  <Check className="w-4 h-4 text-[#BB86FC] shrink-0" />
+                  <span>Suivi de progression & statistiques</span>
                 </li>
               </ul>
             </div>
@@ -128,42 +146,48 @@ export default function LandingPricing() {
             <Link
               href="/connexion"
               onClick={handleConfetti}
-              className="w-full text-center py-3 rounded-xl bg-[#6200EE] text-white text-xs font-bold shadow-md shadow-[#6200EE]/30 hover:bg-[#5000CC] transition-all"
+              className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-[#6200EE] to-[#7C4DFF] hover:from-[#5000CC] hover:to-[#651FFF] text-white text-xs font-bold shadow-lg shadow-[#6200EE]/30 transition-all"
             >
-              Rejoindre le Pass Immersion
+              Rejoindre le Pass 6 Mois
             </Link>
           </div>
 
-          {/* VIP Business */}
-          <div className="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col justify-between">
+          {/* Plan 3 : Pass Annuel (Meilleure Offre) */}
+          <div className="bg-[#16161D] rounded-3xl p-6 border border-white/5 shadow-lg flex flex-col justify-between hover:border-white/10 transition-all">
             <div>
-              <span className="text-xs font-bold uppercase text-gray-400">Business & Sourcing</span>
-              <h3 className="text-xl font-black text-gray-900 dark:text-white mt-1">VIP Pro</h3>
+              <span className="text-xs font-bold uppercase text-amber-400">Meilleure Économie</span>
+              <h3 className="text-xl font-black text-white mt-1">{planAnnuel.nom}</h3>
+              
               <div className="my-4">
-                <span className="text-3xl font-black text-gray-900 dark:text-white">49 €</span>
-                <span className="text-xs text-gray-400 ml-1">/ mois</span>
+                <span className="text-3xl font-black text-white">
+                  {formaterMontant(planAnnuel.montant[devise], devise)}
+                </span>
+                <span className="text-xs text-[#03DAC5] block mt-1 font-semibold">
+                  soit {prixMensuelEquivalent(planAnnuel, devise)} / mois (-40%)
+                </span>
               </div>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-6">
+
+              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-300 mb-6">
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>Tout le contenu Premium inclus</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Accès 12 mois complets sans interruption</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>Formations négociation & usines</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Toutes les futures histoires & masterclasses</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-emerald-500 shrink-0" />
-                  <span>E-books & guides business en Chine</span>
+                  <Check className="w-4 h-4 text-[#03DAC5] shrink-0" />
+                  <span>Support prioritaire par Espoir Chinois</span>
                 </li>
               </ul>
             </div>
 
             <Link
               href="/connexion"
-              className="w-full text-center py-3 rounded-xl border border-gray-200 dark:border-white/10 text-xs font-bold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-all"
+              className="w-full text-center py-3 rounded-xl border border-white/10 text-xs font-bold text-white hover:bg-white/5 transition-all"
             >
-              Accéder au Programme VIP
+              Choisir le Pass Annuel
             </Link>
           </div>
 

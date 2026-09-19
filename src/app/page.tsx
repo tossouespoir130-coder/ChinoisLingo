@@ -17,32 +17,32 @@ export const metadata: Metadata = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#121212] text-gray-900 dark:text-[#F5F5F5] selection:bg-[#6200EE] selection:text-white transition-colors duration-300">
-      {/* Header */}
+    <div className="min-h-screen bg-[#0E0E12] text-[#F5F5F7] selection:bg-[#6200EE] selection:text-white antialiased">
+      {/* Navigation Header */}
       <LandingHeader />
 
       {/* Main Content */}
       <main className="relative">
-        {/* 1. Hero with Floating Story Card & Streak Badge */}
+        {/* 1. Hero Section Épurée */}
         <LandingHero />
 
-        {/* 2. Visual Character & Animal Photo Cards */}
+        {/* 2. Présentation des Personnages & Storytelling */}
         <LandingCharacters />
 
-        {/* 3. The 3-Block Combination Method Playground */}
+        {/* 3. La Méthode Combinatoire en 3 Blocs */}
         <LandingCombinationMethod />
 
-        {/* 4. The 3 Core Pillars (Audio & Karaoke, Video Series, 3D Flashcards) */}
+        {/* 4. Les 3 Piliers d'Immersion */}
         <LandingFeatures />
 
-        {/* 5. Clean Transparent Pricing */}
+        {/* 5. Tarifs Réels Officiels ChinoisLingo (EUR / FCFA) */}
         <LandingPricing />
 
-        {/* 6. Grand Finale Conversion CTA */}
+        {/* 6. Grand Finale CTA */}
         <LandingCTA />
       </main>
 
-      {/* Footer */}
+      {/* Footer Complet et Conforme */}
       <LandingFooter />
     </div>
   );
