@@ -2,7 +2,7 @@
   "contentId": "chanson_tianmimi",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_tianmimi.mp3",
-  "totalDurationMs": 56370,
+  "totalDurationMs": 58880,
   "sentences": [
     {
       "sentenceId": "tm_1",
@@ -319,5 +319,6 @@
       "durationMs": 1041,
       "audioUrl": "/audio/readings/chanson_tianmimi_tm_46.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

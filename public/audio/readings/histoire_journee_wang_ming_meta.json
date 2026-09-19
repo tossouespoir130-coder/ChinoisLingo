@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 27800,
+  "totalDurationMs": 30120,
   "sentences": [
     {
       "sentenceId": "h_wm_1",
@@ -48,5 +48,6 @@
       "durationMs": 2120,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

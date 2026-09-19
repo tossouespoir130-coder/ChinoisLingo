@@ -4,7 +4,7 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_1.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 15600,
+  "totalDurationMs": 18000,
   "sentences": [
     {
       "sentenceId": "a1_1",
@@ -34,5 +34,6 @@
       "durationMs": 4130,
       "audioUrl": "/audio/readings/article_1_a1_4.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

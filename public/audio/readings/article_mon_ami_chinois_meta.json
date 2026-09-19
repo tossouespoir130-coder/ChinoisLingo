@@ -4,7 +4,7 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_mon_ami_chinois.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 21610,
+  "totalDurationMs": 23930,
   "sentences": [
     {
       "sentenceId": "art_friend_1",
@@ -41,5 +41,6 @@
       "durationMs": 5640,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

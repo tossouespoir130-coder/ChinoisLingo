@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_chat_li_yue.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 21360,
+  "totalDurationMs": 23690,
   "sentences": [
     {
       "sentenceId": "h_cat_1",
@@ -41,5 +41,6 @@
       "durationMs": 2770,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

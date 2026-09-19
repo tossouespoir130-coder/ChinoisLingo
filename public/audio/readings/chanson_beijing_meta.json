@@ -2,7 +2,7 @@
   "contentId": "chanson_beijing",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_beijing.mp3",
-  "totalDurationMs": 168520,
+  "totalDurationMs": 171020,
   "sentences": [
     {
       "sentenceId": "bj_1",
@@ -676,5 +676,6 @@
       "durationMs": 2049,
       "audioUrl": "/audio/readings/chanson_beijing_bj_96.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

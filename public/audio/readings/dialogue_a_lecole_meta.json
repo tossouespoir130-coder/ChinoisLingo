@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_a_lecole.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 5540,
+  "totalDurationMs": 7920,
   "sentences": [
     {
       "sentenceId": "dae_1",
@@ -34,5 +34,6 @@
       "durationMs": 1490,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_4.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

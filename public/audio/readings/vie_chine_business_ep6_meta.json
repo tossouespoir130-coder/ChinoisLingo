@@ -1,0 +1,81 @@
+{
+  "contentId": "vie_chine_business_ep6",
+  "aliases": [],
+  "type": "histoire",
+  "fullAudioUrl": "/audio/readings/vie_chine_business_ep6.mp3",
+  "pauseBetweenSec": 0.75,
+  "endSilenceSec": 2.5,
+  "totalDurationMs": 29520,
+  "sentences": [
+    {
+      "sentenceId": "vc_b6_1",
+      "startMs": 0,
+      "endMs": 1820,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_1.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_2",
+      "startMs": 1820,
+      "endMs": 3880,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_2.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_3",
+      "startMs": 3880,
+      "endMs": 5860,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_3.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_4",
+      "startMs": 5860,
+      "endMs": 8180,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_4.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_5",
+      "startMs": 8180,
+      "endMs": 12170,
+      "durationMs": 3240,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_5.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_6",
+      "startMs": 12170,
+      "endMs": 18330,
+      "durationMs": 5410,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_6.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_7",
+      "startMs": 18330,
+      "endMs": 20390,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_7.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_8",
+      "startMs": 20390,
+      "endMs": 22370,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_8.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_9",
+      "startMs": 22370,
+      "endMs": 25810,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_9.mp3"
+    },
+    {
+      "sentenceId": "vc_b6_10",
+      "startMs": 25810,
+      "endMs": 27380,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_10.mp3"
+    }
+  ]
+}

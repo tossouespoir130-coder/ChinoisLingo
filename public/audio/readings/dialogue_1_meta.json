@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_1.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 18460,
+  "totalDurationMs": 20770,
   "sentences": [
     {
       "sentenceId": "d1_1",
@@ -48,5 +48,6 @@
       "durationMs": 2510,
       "audioUrl": "/audio/readings/dialogue_1_d1_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

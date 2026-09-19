@@ -2,7 +2,7 @@
   "contentId": "chanson_anniversaire",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_anniversaire.mp3",
-  "totalDurationMs": 13790,
+  "totalDurationMs": 16270,
   "sentences": [
     {
       "sentenceId": "sa_1",
@@ -60,5 +60,6 @@
       "durationMs": 1615,
       "audioUrl": "/audio/readings/chanson_anniversaire_sa_8.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

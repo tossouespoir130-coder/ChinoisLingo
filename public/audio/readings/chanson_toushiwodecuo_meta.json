@@ -2,7 +2,7 @@
   "contentId": "chanson_toushiwodecuo",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_toushiwodecuo.mp3",
-  "totalDurationMs": 121760,
+  "totalDurationMs": 124260,
   "sentences": [
     {
       "sentenceId": "tdc_1",
@@ -431,5 +431,6 @@
       "durationMs": 1048,
       "audioUrl": "/audio/readings/chanson_toushiwodecuo_tdc_61.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

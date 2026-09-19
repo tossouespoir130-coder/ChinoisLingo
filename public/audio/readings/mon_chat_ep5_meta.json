@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/mon_chat_ep5.mp3",
   "pauseBetweenSec": 0.5,
-  "totalDurationMs": 10610,
+  "totalDurationMs": 13110,
   "sentences": [
     {
       "sentenceId": "mc_e5_1",
@@ -41,5 +41,6 @@
       "durationMs": 2304,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

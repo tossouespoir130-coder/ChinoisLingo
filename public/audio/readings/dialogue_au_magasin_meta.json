@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_au_magasin.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 8850,
+  "totalDurationMs": 11180,
   "sentences": [
     {
       "sentenceId": "dam_1",
@@ -48,5 +48,6 @@
       "durationMs": 1070,
       "audioUrl": "/audio/readings/dialogue_au_magasin_dam_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

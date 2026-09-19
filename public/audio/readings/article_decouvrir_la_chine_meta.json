@@ -4,7 +4,7 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_decouvrir_la_chine.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 11750,
+  "totalDurationMs": 14160,
   "sentences": [
     {
       "sentenceId": "art_cn_1",
@@ -34,5 +34,6 @@
       "durationMs": 3080,
       "audioUrl": "/audio/readings/article_decouvrir_la_chine_art_cn_4.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

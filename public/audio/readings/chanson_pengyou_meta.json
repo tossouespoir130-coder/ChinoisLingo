@@ -2,7 +2,7 @@
   "contentId": "chanson_pengyou",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_pengyou.mp3",
-  "totalDurationMs": 71780,
+  "totalDurationMs": 74290,
   "sentences": [
     {
       "sentenceId": "ch2_1",
@@ -466,5 +466,6 @@
       "durationMs": 893,
       "audioUrl": "/audio/readings/chanson_pengyou_ch2_66.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_appel_telephonique.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 19280,
+  "totalDurationMs": 21450,
   "sentences": [
     {
       "sentenceId": "dat_1",
@@ -76,5 +76,6 @@
       "durationMs": 680,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_10.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

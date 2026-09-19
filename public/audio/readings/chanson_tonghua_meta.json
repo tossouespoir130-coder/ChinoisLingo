@@ -2,7 +2,7 @@
   "contentId": "chanson_tonghua",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_tonghua.mp3",
-  "totalDurationMs": 86780,
+  "totalDurationMs": 89290,
   "sentences": [
     {
       "sentenceId": "ch4_1",
@@ -354,5 +354,6 @@
       "durationMs": 1206,
       "audioUrl": "/audio/readings/chanson_tonghua_ch4_50.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

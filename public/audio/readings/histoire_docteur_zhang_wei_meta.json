@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_docteur_zhang_wei.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 18050,
+  "totalDurationMs": 20430,
   "sentences": [
     {
       "sentenceId": "h_zw_1",
@@ -41,5 +41,6 @@
       "durationMs": 3400,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

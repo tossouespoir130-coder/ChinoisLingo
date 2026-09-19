@@ -2,7 +2,7 @@
   "contentId": "chanson_moon",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_moon.mp3",
-  "totalDurationMs": 50390,
+  "totalDurationMs": 52870,
   "sentences": [
     {
       "sentenceId": "ch1_1",
@@ -221,5 +221,6 @@
       "durationMs": 1806,
       "audioUrl": "/audio/readings/chanson_moon_ch1_31.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

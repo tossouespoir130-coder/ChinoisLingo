@@ -2,7 +2,7 @@
   "contentId": "chanson_star",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_star.mp3",
-  "totalDurationMs": 47670,
+  "totalDurationMs": 50180,
   "sentences": [
     {
       "sentenceId": "st_1",
@@ -179,5 +179,6 @@
       "durationMs": 1734,
       "audioUrl": "/audio/readings/chanson_star_st_25.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

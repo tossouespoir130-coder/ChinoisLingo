@@ -2,7 +2,7 @@
   "contentId": "chanson_yeguang",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_yeguang.mp3",
-  "totalDurationMs": 60630,
+  "totalDurationMs": 63140,
   "sentences": [
     {
       "sentenceId": "yg_1",
@@ -249,5 +249,6 @@
       "durationMs": 715,
       "audioUrl": "/audio/readings/chanson_yeguang_yg_35.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

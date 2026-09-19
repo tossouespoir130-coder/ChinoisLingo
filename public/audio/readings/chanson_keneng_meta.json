@@ -2,7 +2,7 @@
   "contentId": "chanson_keneng",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_keneng.mp3",
-  "totalDurationMs": 89030,
+  "totalDurationMs": 91510,
   "sentences": [
     {
       "sentenceId": "kn_1",
@@ -382,5 +382,6 @@
       "durationMs": 1599,
       "audioUrl": "/audio/readings/chanson_keneng_kn_54.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

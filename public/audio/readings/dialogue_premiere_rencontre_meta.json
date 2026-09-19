@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_premiere_rencontre.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 7880,
+  "totalDurationMs": 10270,
   "sentences": [
     {
       "sentenceId": "dpr_1",
@@ -41,5 +41,6 @@
       "durationMs": 1230,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

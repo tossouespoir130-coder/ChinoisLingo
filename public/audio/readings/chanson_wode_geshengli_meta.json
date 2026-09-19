@@ -2,7 +2,7 @@
   "contentId": "chanson_wode_geshengli",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_wode_geshengli.mp3",
-  "totalDurationMs": 80140,
+  "totalDurationMs": 82650,
   "sentences": [
     {
       "sentenceId": "wgs_1",
@@ -445,5 +445,6 @@
       "durationMs": 1406,
       "audioUrl": "/audio/readings/chanson_wode_geshengli_wgs_63.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

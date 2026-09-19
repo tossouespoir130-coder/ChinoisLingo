@@ -2,7 +2,7 @@
   "contentId": "chanson_shinian",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_shinian.mp3",
-  "totalDurationMs": 70110,
+  "totalDurationMs": 72620,
   "sentences": [
     {
       "sentenceId": "sn_1",
@@ -312,5 +312,6 @@
       "durationMs": 1546,
       "audioUrl": "/audio/readings/chanson_shinian_sn_44.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

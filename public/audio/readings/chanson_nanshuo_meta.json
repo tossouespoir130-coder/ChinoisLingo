@@ -2,7 +2,7 @@
   "contentId": "chanson_nanshuo",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_nanshuo.mp3",
-  "totalDurationMs": 63190,
+  "totalDurationMs": 65700,
   "sentences": [
     {
       "sentenceId": "ns_1",
@@ -270,5 +270,6 @@
       "durationMs": 1068,
       "audioUrl": "/audio/readings/chanson_nanshuo_ns_38.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

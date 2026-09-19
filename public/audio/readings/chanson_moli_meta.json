@@ -2,7 +2,7 @@
   "contentId": "chanson_moli",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_moli.mp3",
-  "totalDurationMs": 40990,
+  "totalDurationMs": 43490,
   "sentences": [
     {
       "sentenceId": "ch3_1",
@@ -151,5 +151,6 @@
       "durationMs": 1705,
       "audioUrl": "/audio/readings/chanson_moli_ch3_21.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

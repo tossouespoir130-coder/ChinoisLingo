@@ -3,7 +3,7 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep4.mp3",
-  "totalDurationMs": 15180,
+  "totalDurationMs": 17680,
   "sentences": [
     {
       "sentenceId": "jsx_e4_1",
@@ -47,5 +47,6 @@
       "durationMs": 1967,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

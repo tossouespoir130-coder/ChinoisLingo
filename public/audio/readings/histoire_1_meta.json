@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/histoire_1.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12840,
+  "totalDurationMs": 15230,
   "sentences": [
     {
       "sentenceId": "h1_1",
@@ -41,5 +41,6 @@
       "durationMs": 2350,
       "audioUrl": "/audio/readings/histoire_1_h1_5.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

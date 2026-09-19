@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_acheter_fruits.mp3",
   "pauseBetweenSec": 0.45,
-  "totalDurationMs": 10270,
+  "totalDurationMs": 12770,
   "sentences": [
     {
       "sentenceId": "daf_1",
@@ -48,5 +48,6 @@
       "durationMs": 1280,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

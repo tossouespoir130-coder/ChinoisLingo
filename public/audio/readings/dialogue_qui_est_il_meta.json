@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_qui_est_il.mp3",
   "pauseBetweenSec": 0.45,
-  "totalDurationMs": 9670,
+  "totalDurationMs": 12170,
   "sentences": [
     {
       "sentenceId": "dqi_1",
@@ -48,5 +48,6 @@
       "durationMs": 1670,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

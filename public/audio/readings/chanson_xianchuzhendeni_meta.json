@@ -2,7 +2,7 @@
   "contentId": "chanson_xianchuzhendeni",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_xianchuzhendeni.mp3",
-  "totalDurationMs": 77270,
+  "totalDurationMs": 79780,
   "sentences": [
     {
       "sentenceId": "xcz_1",
@@ -382,5 +382,6 @@
       "durationMs": 1842,
       "audioUrl": "/audio/readings/chanson_xianchuzhendeni_xcz_54.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

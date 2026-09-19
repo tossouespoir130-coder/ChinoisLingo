@@ -4,7 +4,7 @@
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep5.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 33140,
+  "totalDurationMs": 35080,
   "sentences": [
     {
       "sentenceId": "vc_b5_1",
@@ -118,5 +118,6 @@
       "durationMs": 990,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_16.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

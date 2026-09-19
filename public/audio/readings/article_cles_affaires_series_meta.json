@@ -7,7 +7,7 @@
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_carte_visite.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12960,
+  "totalDurationMs": 15360,
   "sentences": [
     {
       "sentenceId": "cdv_1",
@@ -37,5 +37,6 @@
       "durationMs": 3160,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_4.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

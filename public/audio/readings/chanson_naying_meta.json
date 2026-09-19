@@ -2,7 +2,7 @@
   "contentId": "chanson_naying",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_naying.mp3",
-  "totalDurationMs": 64390,
+  "totalDurationMs": 66900,
   "sentences": [
     {
       "sentenceId": "ny_1",
@@ -298,5 +298,6 @@
       "durationMs": 1281,
       "audioUrl": "/audio/readings/chanson_naying_ny_42.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

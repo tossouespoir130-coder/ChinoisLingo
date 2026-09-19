@@ -2,7 +2,7 @@
   "contentId": "chanson_jinshengyuan",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_jinshengyuan.mp3",
-  "totalDurationMs": 67000,
+  "totalDurationMs": 69510,
   "sentences": [
     {
       "sentenceId": "jsy_1",
@@ -249,5 +249,6 @@
       "durationMs": 2290,
       "audioUrl": "/audio/readings/chanson_jinshengyuan_jsy_35.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

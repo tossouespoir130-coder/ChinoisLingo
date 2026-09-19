@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_mon_passeport.mp3",
   "pauseBetweenSec": 0.45,
-  "totalDurationMs": 47620,
+  "totalDurationMs": 50130,
   "sentences": [
     {
       "sentenceId": "dmp_1",
@@ -111,5 +111,6 @@
       "durationMs": 1380,
       "audioUrl": "/audio/readings/dialogue_mon_passeport_dmp_15.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

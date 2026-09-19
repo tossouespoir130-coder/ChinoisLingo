@@ -2,7 +2,7 @@
   "contentId": "chanson_wings",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_wings.mp3",
-  "totalDurationMs": 56870,
+  "totalDurationMs": 59380,
   "sentences": [
     {
       "sentenceId": "wg_1",
@@ -312,5 +312,6 @@
       "durationMs": 1447,
       "audioUrl": "/audio/readings/chanson_wings_wg_44.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

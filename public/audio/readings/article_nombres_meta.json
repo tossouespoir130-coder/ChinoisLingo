@@ -1,39 +1,40 @@
 {
-  "contentId": "article_2",
+  "contentId": "article_nombres",
   "aliases": [
     "article_nombres"
   ],
   "type": "article",
   "fullAudioUrl": "/audio/readings/article_2.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 17300,
+  "pauseBetweenSec": 0.75,
+  "endSilenceSec": 2.5,
+  "totalDurationMs": 21320,
   "sentences": [
     {
       "sentenceId": "a2_1",
       "startMs": 0,
-      "endMs": 3280,
-      "durationMs": 2930,
+      "endMs": 4120,
+      "durationMs": 3370,
       "audioUrl": "/audio/readings/article_2_a2_1.mp3"
     },
     {
       "sentenceId": "a2_2",
-      "startMs": 3280,
-      "endMs": 7180,
-      "durationMs": 3550,
+      "startMs": 4120,
+      "endMs": 8240,
+      "durationMs": 3370,
       "audioUrl": "/audio/readings/article_2_a2_2.mp3"
     },
     {
       "sentenceId": "a2_3",
-      "startMs": 7180,
-      "endMs": 13020,
-      "durationMs": 5490,
+      "startMs": 8240,
+      "endMs": 14500,
+      "durationMs": 5510,
       "audioUrl": "/audio/readings/article_2_a2_3.mp3"
     },
     {
       "sentenceId": "a2_4",
-      "startMs": 13020,
-      "endMs": 17300,
-      "durationMs": 4280,
+      "startMs": 14500,
+      "endMs": 18910,
+      "durationMs": 4410,
       "audioUrl": "/audio/readings/article_2_a2_4.mp3"
     }
   ]

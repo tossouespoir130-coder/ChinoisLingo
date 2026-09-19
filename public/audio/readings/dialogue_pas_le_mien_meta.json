@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_pas_le_mien.mp3",
   "pauseBetweenSec": 0.45,
-  "totalDurationMs": 10480,
+  "totalDurationMs": 12960,
   "sentences": [
     {
       "sentenceId": "dpm_1",
@@ -48,5 +48,6 @@
       "durationMs": 1620,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

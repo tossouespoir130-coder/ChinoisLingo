@@ -2,7 +2,7 @@
   "contentId": "chanson_renjian_yanhuo",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_renjian_yanhuo.mp3",
-  "totalDurationMs": 61340,
+  "totalDurationMs": 63840,
   "sentences": [
     {
       "sentenceId": "ry_1",
@@ -312,5 +312,6 @@
       "durationMs": 1366,
       "audioUrl": "/audio/readings/chanson_renjian_yanhuo_ry_44.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

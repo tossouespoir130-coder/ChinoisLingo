@@ -4,7 +4,7 @@
   "type": "dialogue",
   "fullAudioUrl": "/audio/readings/dialogue_a_la_maison.mp3",
   "pauseBetweenSec": 0.35,
-  "totalDurationMs": 7550,
+  "totalDurationMs": 9900,
   "sentences": [
     {
       "sentenceId": "dlm_1",
@@ -48,5 +48,6 @@
       "durationMs": 990,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_6.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }

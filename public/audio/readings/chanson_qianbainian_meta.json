@@ -2,7 +2,7 @@
   "contentId": "chanson_qianbainian",
   "type": "chansons",
   "fullAudioUrl": "/audio/readings/chanson_qianbainian.mp3",
-  "totalDurationMs": 72390,
+  "totalDurationMs": 74890,
   "sentences": [
     {
       "sentenceId": "qbn_1",
@@ -242,5 +242,6 @@
       "durationMs": 2050,
       "audioUrl": "/audio/readings/chanson_qianbainian_qbn_34.mp3"
     }
-  ]
+  ],
+  "endSilenceSec": 2.5
 }
