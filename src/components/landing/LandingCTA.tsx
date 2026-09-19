@@ -35,7 +35,7 @@ export default function LandingCTA() {
             </p>
 
             <Link
-              href="/connexion"
+              href="/connexion?mode=signup"
               onClick={triggerConfetti}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-gray-950 font-black text-sm shadow-xl hover:scale-105 active:scale-95 transition-all"
             >

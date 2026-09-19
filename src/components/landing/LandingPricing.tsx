@@ -97,7 +97,7 @@ export default function LandingPricing() {
             </div>
 
             <Link
-              href="/connexion"
+              href="/connexion?mode=signup"
               className="w-full text-center py-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-800 hover:bg-gray-50 transition-all"
             >
               Choisir le Pass Mensuel
@@ -144,7 +144,7 @@ export default function LandingPricing() {
             </div>
 
             <Link
-              href="/connexion"
+              href="/connexion?mode=signup"
               onClick={handleConfetti}
               className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-[#6200EE] to-[#7C4DFF] hover:from-[#5000CC] hover:to-[#651FFF] text-white text-xs font-bold shadow-lg shadow-[#6200EE]/30 transition-all"
             >
@@ -184,7 +184,7 @@ export default function LandingPricing() {
             </div>
 
             <Link
-              href="/connexion"
+              href="/connexion?mode=signup"
               className="w-full text-center py-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-800 hover:bg-gray-50 transition-all"
             >
               Choisir le Pass Annuel

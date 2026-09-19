@@ -79,15 +79,15 @@ export default function LandingHeader() {
           <div className="hidden sm:flex items-center gap-3">
             <Link
               href="/connexion"
-              className="px-4 py-2 text-sm font-bold text-gray-700 hover:text-[#6200EE] transition-colors"
+              className="px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
             >
-              Connexion
+              Se connecter
             </Link>
             <Link
-              href="/connexion"
+              href="/connexion?mode=signup"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#6200EE] hover:bg-[#5000CC] text-white font-bold text-sm shadow-md shadow-[#6200EE]/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Commencer</span>
+              <span>Commencer Gratuitement</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

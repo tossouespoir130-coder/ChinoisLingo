@@ -70,6 +70,8 @@ export default function ConnexionPage() {
       setErrorMessage(
         'Votre adresse e-mail n’est pas encore confirmée. Ouvrez le lien reçu par e-mail pour activer votre compte.'
       );
+    } else if (params.get('mode') === 'signup') {
+      setMode('signup');
     }
   }, []);
 
