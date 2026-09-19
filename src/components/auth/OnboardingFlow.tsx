@@ -650,7 +650,7 @@ export function OnboardingFlow({ onSwitchToSignIn }: OnboardingFlowProps) {
                 <Bell className="w-5 h-5" />
               </div>
               <p className="text-sm font-medium text-[#424242] dark:text-[#E0E0E0] leading-snug">
-                Rassure-toi : je ne te rappellerai que lorsque tu en auras vraiment besoin, sans jamais te déranger.
+                Rassure-toi : Xiao Li ne te rappellera que lorsque tu en auras vraiment besoin, sans jamais te déranger.
               </p>
             </div>
           </div>
