@@ -297,7 +297,7 @@ export default function ConnexionPage() {
               </div>
             </form>
 
-            {/* Bas de page : Mot de passe oublié & Redirection vers Inscription */}
+            {/* Bas de page : Mot de passe oublié & Redirection vers Création de compte */}
             <div className="pt-4 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
               <button
                 type="button"
@@ -307,18 +307,18 @@ export default function ConnexionPage() {
                   setForgotMessage(null);
                   setIsForgotModalOpen(true);
                 }}
-                className="font-semibold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer"
+                className="font-semibold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer py-1"
               >
                 Mot de passe oublié ?
               </button>
 
-              <div className="text-center sm:text-right">
-                <span className="text-[#757575] dark:text-[#9E9E9E]">Pas encore de compte ? </span>
+              <div className="text-center sm:text-right flex items-center justify-center sm:justify-end gap-1.5 flex-wrap">
+                <span className="text-[#757575] dark:text-[#9E9E9E]">Pas encore de compte ?</span>
                 <Link
                   href="/onboarding"
-                  className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline"
+                  className="font-bold text-[#6200EE] dark:text-[#03DAC5] hover:underline whitespace-nowrap"
                 >
-                  Commencer gratuitement
+                  Créer un compte
                 </Link>
               </div>
             </div>
