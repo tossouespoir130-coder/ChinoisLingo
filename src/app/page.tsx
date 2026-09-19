@@ -8,6 +8,7 @@ import LandingFeatures from '@/components/landing/LandingFeatures';
 import LandingPricing from '@/components/landing/LandingPricing';
 import LandingCTA from '@/components/landing/LandingCTA';
 import LandingFooter from '@/components/landing/LandingFooter';
+import { RootRedirectGuard } from '@/components/landing/RootRedirectGuard';
 
 export const metadata: Metadata = {
   title: 'ChinoisLingo — Le chinois devient facile | Immersion & Histoires en Mandarin',
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white text-gray-900 selection:bg-[#6200EE] selection:text-white antialiased">
+      {/* Redirection instantanée pour utilisateur connecté */}
+      <RootRedirectGuard />
+
       {/* Navigation Header */}
       <LandingHeader />
 

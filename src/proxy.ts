@@ -29,8 +29,8 @@ import { COOKIE_SESSION_EPHEMERE, adapterDuree } from '@/lib/supabase/session-ep
  * plutôt qu'une redirection HTML.
  */
 
-/** Pages accessibles sans session. */
-const ROUTES_PUBLIQUES = ['/', '/abonnement/retour'];
+/** Pages accessibles sans session (visiteurs). */
+const ROUTES_PUBLIQUES = ['/abonnement/retour', '/onboarding', '/inscription', '/desabonnement'];
 
 /** Pages d'entrée d'authentification : un apprenant connecté est renvoyé vers son tableau de bord. */
 const PAGES_ENTREE = ['/connexion'];
@@ -40,17 +40,14 @@ export async function proxy(request: NextRequest) {
 
   const chemin = request.nextUrl.pathname;
   const estEntree = PAGES_ENTREE.includes(chemin);
+  const estRacine = chemin === '/';
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  // Route d'accueil (Landing Page) : accessible librement à tous les visiteurs
-  if (chemin === '/') {
-    return response;
-  }
-
-  // Configuration absente : on refuse l'accès plutôt que de laisser passer.
+  // Configuration absente : on refuse l'accès protégé plutôt que de laisser passer.
   if (!supabaseUrl || !supabaseAnonKey) {
+    if (estRacine || ROUTES_PUBLIQUES.some((r) => chemin.startsWith(r))) return response;
     return estEntree ? response : NextResponse.redirect(new URL('/tableau-de-bord', request.url));
   }
 
@@ -60,8 +57,6 @@ export async function proxy(request: NextRequest) {
         return request.cookies.getAll();
       },
       setAll(cookiesToSet) {
-        // « Rester connecté » décoché : les jetons rafraîchis ici restent des
-        // cookies de session, sinon ce rafraîchissement les rendrait permanents.
         const ephemere = request.cookies.has(COOKIE_SESSION_EPHEMERE);
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
@@ -73,9 +68,7 @@ export async function proxy(request: NextRequest) {
   });
 
   /**
-   * Redirection qui conserve les cookies de session rafraîchis par
-   * `getUser()` : une redirection nue les perdrait, et le navigateur
-   * présenterait ensuite un jeton de rafraîchissement déjà consommé.
+   * Redirection qui conserve les cookies de session rafraîchis par `getUser()`.
    */
   const rediriger = (cible: string, parametres: Record<string, string> = {}) => {
     const url = new URL(cible, request.url);
@@ -85,7 +78,26 @@ export async function proxy(request: NextRequest) {
     return redirection;
   };
 
-  if (ROUTES_PUBLIQUES.some((r) => chemin === r || (r !== '/' && chemin.startsWith(r)))) {
+  // Traitement spécial de la Racine ("/")
+  if (estRacine) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        if (user.email_confirmed_at) {
+          return rediriger('/tableau-de-bord');
+        } else {
+          // Compte non confirmé : guider vers l'écran d'activation
+          return rediriger('/connexion', { confirmation: 'requise' });
+        }
+      }
+    } catch {
+      // Si Supabase est momentanément indisponible, laisser passer la landing
+    }
+    return response;
+  }
+
+  // Autres routes publiques (ex: /onboarding, /inscription)
+  if (ROUTES_PUBLIQUES.some((r) => chemin === r || chemin.startsWith(r + '/'))) {
     return response;
   }
 
@@ -96,8 +108,6 @@ export async function proxy(request: NextRequest) {
   }
 
   try {
-    // getUser() valide le jeton auprès de Supabase — contrairement à
-    // getSession(), qui se contente de lire le cookie sans le vérifier.
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -112,7 +122,6 @@ export async function proxy(request: NextRequest) {
     }
 
     // Adresse non confirmée : le compte existe mais n'est pas encore actif.
-    // C'est ce contrôle qui manquait — un inscrit non vérifié accédait à tout.
     if (!user.email_confirmed_at) {
       return rediriger('/connexion', { confirmation: 'requise' });
     }
