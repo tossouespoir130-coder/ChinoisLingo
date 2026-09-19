@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { OnboardingState, ProfilType, MotivationType, NiveauType } from './types';
+import { StepIntro } from './StepIntro';
 import { StepProfile } from './StepProfile';
 import { StepMotivation } from './StepMotivation';
 import { StepLevel } from './StepLevel';
@@ -13,7 +14,7 @@ import { StepRegister } from './StepRegister';
 const STORAGE_KEY = 'chinoislingo_onboarding_draft';
 
 export function OnboardingContainer() {
-  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
+  const [step, setStep] = useState<0 | 1 | 2 | 3 | 4 | 5 | 6>(0);
 
   const [state, setState] = useState<OnboardingState>({
     profil: '',
@@ -58,12 +59,17 @@ export function OnboardingContainer() {
     });
   };
 
+  // Step 0 -> Step 1: Start questions
+  const handleStartQuestions = () => {
+    setStep(1);
+  };
+
   // Step 1: Profile selected
   const handleSelectProfile = (id: ProfilType, label: string) => {
     updateState({ profil: id, profilLabel: label });
     setTimeout(() => {
       setStep(2);
-    }, 180);
+    }, 200);
   };
 
   // Step 2: Motivation selected
@@ -71,7 +77,7 @@ export function OnboardingContainer() {
     updateState({ motivation: id, motivationLabel: label });
     setTimeout(() => {
       setStep(3);
-    }, 180);
+    }, 200);
   };
 
   // Step 3: Level confirmed
@@ -101,16 +107,16 @@ export function OnboardingContainer() {
 
   // Back button handler
   const handlePrevStep = () => {
-    if (step > 1) {
-      setStep((prev) => (prev - 1) as 1 | 2 | 3 | 4 | 5 | 6);
+    if (step > 0) {
+      setStep((prev) => (prev - 1) as 0 | 1 | 2 | 3 | 4 | 5 | 6);
     }
   };
 
   return (
     <div className="w-full max-w-lg mx-auto flex flex-col justify-center min-h-[90vh] py-6 px-4 sm:px-6">
-      {/* Top Header : Back Arrow + Pill Progress Bars */}
-      <div className="flex items-center gap-3 mb-6">
-        {step > 1 ? (
+      {/* Top Header : Back Arrow + Pill Progress Bars (visible from Step 1) */}
+      {step > 0 && (
+        <div className="flex items-center gap-3 mb-6 animate-fade-in">
           <button
             type="button"
             onClick={handlePrevStep}
@@ -119,32 +125,34 @@ export function OnboardingContainer() {
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-        ) : (
+
+          {/* Progress Pills (Steps 1 to 5) */}
+          <div className="flex-1 flex items-center gap-2">
+            {[1, 2, 3, 4, 5].map((i) => {
+              const isDoneOrCurrent = step >= i;
+              return (
+                <div
+                  key={i}
+                  className={`h-2 flex-1 rounded-full transition-all duration-300 ${
+                    isDoneOrCurrent
+                      ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
+                      : 'bg-[#ECEFF1] dark:bg-[#2C3437]'
+                  }`}
+                />
+              );
+            })}
+          </div>
+
+          {/* Empty Spacer to balance the back button */}
           <div className="w-10 h-10 shrink-0" />
-        )}
-
-        {/* Progress Pills (Steps 1 to 5) */}
-        <div className="flex-1 flex items-center gap-2">
-          {[1, 2, 3, 4, 5].map((i) => {
-            const isDoneOrCurrent = step >= i;
-            return (
-              <div
-                key={i}
-                className={`h-2 flex-1 rounded-full transition-all duration-300 ${
-                  isDoneOrCurrent
-                    ? 'bg-[#6200EE] dark:bg-[#03DAC5]'
-                    : 'bg-[#ECEFF1] dark:bg-[#2C3437]'
-                }`}
-              />
-            );
-          })}
         </div>
-
-        {/* Empty Spacer to balance the back button */}
-        <div className="w-10 h-10 shrink-0" />
-      </div>
+      )}
 
       {/* Steps Render */}
+      {step === 0 && (
+        <StepIntro onStart={handleStartQuestions} />
+      )}
+
       {step === 1 && (
         <StepProfile
           selectedProfil={state.profil}
