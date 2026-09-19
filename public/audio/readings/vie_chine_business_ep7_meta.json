@@ -5,61 +5,61 @@
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep7.mp3",
   "pauseBetweenSec": 0.75,
   "endSilenceSec": 2.5,
-  "totalDurationMs": 23220,
+  "totalDurationMs": 24190,
   "sentences": [
     {
       "sentenceId": "vc_b7_1",
       "startMs": 0,
-      "endMs": 1980,
-      "durationMs": 1230,
+      "endMs": 2240,
+      "durationMs": 1490,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_1.mp3"
     },
     {
       "sentenceId": "vc_b7_2",
-      "startMs": 1980,
-      "endMs": 4220,
-      "durationMs": 1490,
+      "startMs": 2240,
+      "endMs": 4560,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_2.mp3"
     },
     {
       "sentenceId": "vc_b7_3",
-      "startMs": 4220,
-      "endMs": 8290,
-      "durationMs": 3320,
+      "startMs": 4560,
+      "endMs": 8550,
+      "durationMs": 3240,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_3.mp3"
     },
     {
       "sentenceId": "vc_b7_4",
-      "startMs": 8290,
-      "endMs": 10530,
-      "durationMs": 1490,
+      "startMs": 8550,
+      "endMs": 10870,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_4.mp3"
     },
     {
       "sentenceId": "vc_b7_5",
-      "startMs": 10530,
-      "endMs": 13000,
+      "startMs": 10870,
+      "endMs": 13340,
       "durationMs": 1720,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_5.mp3"
     },
     {
       "sentenceId": "vc_b7_6",
-      "startMs": 13000,
-      "endMs": 16440,
-      "durationMs": 2690,
+      "startMs": 13340,
+      "endMs": 17090,
+      "durationMs": 3000,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_6.mp3"
     },
     {
       "sentenceId": "vc_b7_7",
-      "startMs": 16440,
-      "endMs": 19880,
-      "durationMs": 2690,
+      "startMs": 17090,
+      "endMs": 20840,
+      "durationMs": 3000,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_7.mp3"
     },
     {
       "sentenceId": "vc_b7_8",
-      "startMs": 19880,
-      "endMs": 21030,
+      "startMs": 20840,
+      "endMs": 21990,
       "durationMs": 1150,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_8.mp3"
     }

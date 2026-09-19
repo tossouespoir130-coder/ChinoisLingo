@@ -3,50 +3,50 @@
   "aliases": [],
   "type": "histoire",
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep5.mp3",
-  "pauseBetweenSec": 0.75,
+  "pauseBetweenSec": 0.5,
   "endSilenceSec": 2.5,
-  "totalDurationMs": 16120,
+  "totalDurationMs": 12770,
   "sentences": [
     {
       "sentenceId": "jsx_e5_1",
       "startMs": 0,
-      "endMs": 2290,
-      "durationMs": 1540,
+      "endMs": 1460,
+      "durationMs": 1460,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_1.mp3"
     },
     {
       "sentenceId": "jsx_e5_2",
-      "startMs": 2290,
-      "endMs": 4580,
-      "durationMs": 1540,
+      "startMs": 1320,
+      "endMs": 2980,
+      "durationMs": 1660,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_2.mp3"
     },
     {
       "sentenceId": "jsx_e5_3",
-      "startMs": 4580,
-      "endMs": 7080,
-      "durationMs": 1750,
+      "startMs": 2960,
+      "endMs": 5140,
+      "durationMs": 2180,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_3.mp3"
     },
     {
       "sentenceId": "jsx_e5_4",
-      "startMs": 7080,
-      "endMs": 9680,
-      "durationMs": 1850,
+      "startMs": 5200,
+      "endMs": 7300,
+      "durationMs": 2100,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_4.mp3"
     },
     {
       "sentenceId": "jsx_e5_5",
-      "startMs": 9680,
-      "endMs": 12130,
-      "durationMs": 1700,
+      "startMs": 7120,
+      "endMs": 9220,
+      "durationMs": 2100,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_5.mp3"
     },
     {
       "sentenceId": "jsx_e5_6",
-      "startMs": 12130,
-      "endMs": 13830,
-      "durationMs": 1700,
+      "startMs": 9080,
+      "endMs": 10270,
+      "durationMs": 1190,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_6.mp3"
     }
   ]
