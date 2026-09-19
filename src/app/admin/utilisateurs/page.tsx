@@ -20,6 +20,10 @@ interface Utilisateur {
   derniereConnexion: string | null;
   joursConnexion: number;
   role: string;
+  profil: string | null;
+  objectif: string | null;
+  niveau: string | null;
+  rappels: boolean | null;
   premium: boolean;
   plan: string | null;
   finPeriode: string | null;
@@ -163,10 +167,10 @@ export default function UtilisateursPage() {
         {/* Le tableau défile dans son propre conteneur : la page ne doit
             jamais partir en défilement horizontal sur mobile. */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[960px]">
+          <table className="w-full text-left border-collapse min-w-[1080px]">
             <thead>
               <tr className="bg-[#FAFAFA] dark:bg-[#181818] border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-                {['Nom', 'E-mail', 'Inscription', 'Jours Actifs', 'Dernière Connexion', 'Statut', 'Actions'].map((t) => (
+                {['Nom & Profil', 'E-mail', 'Objectif & Niveau', 'Inscription', 'Jours Actifs', 'Dernière Connexion', 'Statut', 'Actions'].map((t) => (
                   <th
                     key={t}
                     className="px-4 py-3 text-[11px] font-extrabold uppercase tracking-wider text-[#757575] dark:text-[#A0A0A0]"
@@ -179,13 +183,13 @@ export default function UtilisateursPage() {
             <tbody>
               {chargement && !donnees ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-12 text-center">
+                  <td colSpan={8} className="px-4 py-12 text-center">
                     <Loader2 className="w-5 h-5 animate-spin text-[#6200EE] mx-auto" />
                   </td>
                 </tr>
               ) : donnees && donnees.utilisateurs.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-4 py-12 text-center text-sm text-[#757575]">
+                  <td colSpan={8} className="px-4 py-12 text-center text-sm text-[#757575]">
                     Aucun compte ne correspond à cette recherche.
                   </td>
                 </tr>
@@ -202,23 +206,53 @@ export default function UtilisateursPage() {
                       }`}
                     >
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span className="text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] truncate">
-                            {u.nom}
-                          </span>
-                          {estAdmin && (
-                            <span
-                              title="Administrateur du Système"
-                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#6200EE] text-white text-[10px] font-black tracking-wide shadow-xs shrink-0"
-                            >
-                              <Shield className="w-2.5 h-2.5 fill-white" />
-                              ADMIN
+                        <div className="flex flex-col gap-1 min-w-0">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] truncate">
+                              {u.nom}
+                            </span>
+                            {estAdmin && (
+                              <span
+                                title="Administrateur du Système"
+                                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#6200EE] text-white text-[10px] font-black tracking-wide shadow-xs shrink-0"
+                              >
+                                <Shield className="w-2.5 h-2.5 fill-white" />
+                                ADMIN
+                              </span>
+                            )}
+                          </div>
+                          {u.profil && (
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#757575] dark:text-[#A0A0A0]">
+                              💼 {u.profil}
                             </span>
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[220px]">
+                      <td className="px-4 py-3 text-sm text-[#757575] dark:text-[#A0A0A0] truncate max-w-[200px]">
                         {u.email}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex flex-col gap-1">
+                          {u.objectif ? (
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#00796B] dark:text-[#03DAC5]">
+                              🎯 {u.objectif}
+                            </span>
+                          ) : (
+                            <span className="text-xs text-[#9E9E9E]">—</span>
+                          )}
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            {u.niveau && (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#FFA000]/10 text-[#E65100] dark:text-[#FFB74D] text-[10.5px] font-bold">
+                                📶 {u.niveau}
+                              </span>
+                            )}
+                            {u.rappels !== null && (
+                              <span className="inline-flex items-center text-[10px] text-[#757575] dark:text-[#A0A0A0]">
+                                {u.rappels ? '🔔 Rappels' : '🔕 Sans rappels'}
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </td>
                       <td className="px-4 py-3 text-xs text-[#757575] dark:text-[#A0A0A0] whitespace-nowrap">
                         {formaterDate(u.inscritLe)}

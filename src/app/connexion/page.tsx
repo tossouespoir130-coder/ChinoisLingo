@@ -21,6 +21,7 @@ import {
 import { useAuth } from '@/lib/auth/AuthContext';
 import { createClient } from '@/lib/supabase/client';
 import { Logo } from '@/components/ui/Logo';
+import { OnboardingFlow } from '@/components/auth/OnboardingFlow';
 
 export default function ConnexionPage() {
   const router = useRouter();
@@ -233,231 +234,162 @@ export default function ConnexionPage() {
         </span>
       </div>
 
-      {/* ================= CARTE CENTRALE SPLIT MODERNE ================= */}
-      <div className="relative z-10 w-full max-w-md lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn my-auto">
-        
-        {/* ================= GAUCHE / HAUT : VITRINE PÉDAGOGIQUE COMPLÈTE ================= */}
-        {/* Sur mobile : visible en mode connexion pour afficher l'en-tête, masqué en mode création de compte pour que le formulaire tienne sur l'écran */}
-        <div className={`lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-4 sm:p-7 lg:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${
-          mode === 'signup' ? 'hidden lg:flex' : 'flex'
-        }`}>
-          {/* Subtle Background Glows */}
-          <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#03DAC5]/15 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#E91E63]/20 blur-3xl pointer-events-none" />
-
-          {/* Top Brand Header */}
-          <div className="relative z-10 space-y-2 sm:space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-white flex items-center justify-center shadow-md shrink-0 p-1.5">
-                {/* href vide : sur la page de connexion, le logo ne doit pas
-                    renvoyer vers une page protégée. */}
-                <Logo variant="icon" size="sm" href="" />
-              </div>
-              <div>
-                <span className="font-display font-black text-lg sm:text-2xl text-white tracking-tight block leading-tight">
-                  ChinoisLingo
-                </span>
-                <span className="text-[9.5px] sm:text-[11px] font-bold text-[#03DAC5] uppercase tracking-wider block">
-                  « Le chinois devient facile »
-                </span>
-              </div>
-            </div>
-
-            <div className="pt-0.5 sm:pt-2">
-              <h1 className="font-display font-black text-base sm:text-2xl lg:text-3xl text-white leading-snug">
-                Maîtrisez le mandarin par immersion active.
-              </h1>
-              <p className="text-[10.5px] sm:text-xs text-white/80 mt-0.5 sm:mt-2 leading-relaxed">
-                Apprenez avec des dialogues du quotidien, des flashcards intelligentes et des leçons vidéo interactives.
-              </p>
-            </div>
-          </div>
-
-          {/* 3 Core Highlights (Masqués sur mobile en mode connexion pour tenir sur un seul écran, affichés sur desktop) */}
-          <div className="relative z-10 space-y-2 sm:space-y-2.5 my-3.5 sm:my-5 hidden lg:block">
-            <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
-                <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-bold text-xs text-white">Vocabulaire HSK & Flashcards 3D</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-white/70">Mémorisation durable par répétition espacée</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
-                <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-bold text-xs text-white">Écoute & Paroles Synchronisées</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
-                <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-bold text-xs text-white">Formations Vidéos Pratiques</h3>
-                <p className="text-[10px] sm:text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Culture • Carrière • Business</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Trust Note */}
-          <div className="relative z-10 pt-2.5 border-t border-white/10 hidden lg:flex items-center justify-between text-[10.5px] sm:text-[11px] text-white/60">
-            <span>Plateforme d’apprentissage</span>
-            <span className="font-bold text-[#03DAC5]">100% Francophone</span>
-          </div>
+      {/* ================= CONTENU PRINCIPAL ================= */}
+      {mode === 'signup' ? (
+        <div className="relative z-10 w-full max-w-xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden animate-fadeIn my-auto">
+          <OnboardingFlow onSwitchToSignIn={() => setMode('signin')} />
         </div>
+      ) : (
+        /* ================= CARTE CENTRALE SPLIT MODERNE (CONNEXION) ================= */
+        <div className="relative z-10 w-full max-w-md lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn my-auto">
+          
+          {/* ================= GAUCHE / HAUT : VITRINE PÉDAGOGIQUE COMPLÈTE ================= */}
+          <div className="lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-4 sm:p-7 lg:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-300">
+            {/* Subtle Background Glows */}
+            <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#03DAC5]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#E91E63]/20 blur-3xl pointer-events-none" />
 
-        {/* ================= DROITE : FORMULAIRE PROPRE & ÉPURÉ ================= */}
-        <div className="lg:col-span-6 p-4 sm:p-7 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#1E1E28]">
-          <div className="space-y-3 sm:space-y-5 w-full">
-            
-            {/* Header Mobile Exclusif en Mode Inscription */}
-            {mode === 'signup' && (
-              <div className="lg:hidden flex items-center gap-2 pb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D3D]/60">
-                <div className="w-7 h-7 flex items-center justify-center shrink-0">
+            {/* Top Brand Header */}
+            <div className="relative z-10 space-y-2 sm:space-y-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-white flex items-center justify-center shadow-md shrink-0 p-1.5">
                   <Logo variant="icon" size="sm" href="" />
                 </div>
                 <div>
-                  <span className="font-display font-black text-sm text-[#212121] dark:text-[#F5F5F5] block leading-tight">
+                  <span className="font-display font-black text-lg sm:text-2xl text-white tracking-tight block leading-tight">
                     ChinoisLingo
                   </span>
-                  <span className="text-[8.5px] font-bold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider block">
+                  <span className="text-[9.5px] sm:text-[11px] font-bold text-[#03DAC5] uppercase tracking-wider block">
                     « Le chinois devient facile »
                   </span>
                 </div>
               </div>
-            )}
-            
-            {/* Header Formulaire */}
-            <div className="text-left space-y-0.5 sm:space-y-1">
-              <h2 className="font-display font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5]">
-                {mode === 'signin' ? 'Connexion' : 'Créer un compte'}
-              </h2>
-              <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
-                {mode === 'signin' 
-                  ? 'Accédez à votre espace d’apprentissage ChinoisLingo.'
-                  : 'Rejoignez ChinoisLingo pour maîtriser le mandarin.'}
-              </p>
+
+              <div className="pt-0.5 sm:pt-2">
+                <h1 className="font-display font-black text-base sm:text-2xl lg:text-3xl text-white leading-snug">
+                  Maîtrisez le mandarin par immersion active.
+                </h1>
+                <p className="text-[10.5px] sm:text-xs text-white/80 mt-0.5 sm:mt-2 leading-relaxed">
+                  Apprenez avec des dialogues du quotidien, des flashcards intelligentes et des leçons vidéo interactives.
+                </p>
+              </div>
             </div>
 
-            {/* Error or Success Alerts */}
-            {errorMessage && (
-              <div className="p-2.5 sm:p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
-                <AlertCircle className="w-4 h-4 shrink-0" />
-                <span>{errorMessage}</span>
+            {/* 3 Core Highlights */}
+            <div className="relative z-10 space-y-2 sm:space-y-2.5 my-3.5 sm:my-5 hidden lg:block">
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
+                  <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-xs text-white">Vocabulaire HSK & Flashcards 3D</h3>
+                  <p className="text-[10px] sm:text-[10.5px] text-white/70">Mémorisation durable par répétition espacée</p>
+                </div>
               </div>
-            )}
 
-            {successMessage && (
-              <div className="p-2.5 sm:p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>{successMessage}</span>
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
+                  <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-xs text-white">Écoute & Paroles Synchronisées</h3>
+                  <p className="text-[10px] sm:text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
+                </div>
               </div>
-            )}
 
-            {/* Formulaire avec font-size 16px sur mobile pour éliminer le zoom iOS */}
-            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-              
-              {/* Champ Pseudo (uniquement en mode inscription) */}
-              {mode === 'signup' && (
-                <div className="space-y-1 animate-fadeIn">
-                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                    Pseudo *
-                  </label>
-                  <div className="relative">
-                    <User className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="text"
-                      required
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      placeholder="Espoir Chinois"
-                      className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs font-bold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
-                    />
-                  </div>
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
+                  <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-xs text-white">Formations Vidéos Pratiques</h3>
+                  <p className="text-[10px] sm:text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Culture • Carrière • Business</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Trust Note */}
+            <div className="relative z-10 pt-2.5 border-t border-white/10 hidden lg:flex items-center justify-between text-[10.5px] sm:text-[11px] text-white/60">
+              <span>Plateforme d’apprentissage</span>
+              <span className="font-bold text-[#03DAC5]">100% Francophone</span>
+            </div>
+          </div>
+
+          {/* ================= DROITE : FORMULAIRE DE CONNEXION ================= */}
+          <div className="lg:col-span-6 p-4 sm:p-7 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#1E1E28]">
+            <div className="space-y-3 sm:space-y-5 w-full">
+              {/* Header Formulaire */}
+              <div className="text-left space-y-0.5 sm:space-y-1">
+                <h2 className="font-display font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5]">
+                  Connexion
+                </h2>
+                <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
+                  Accédez à votre espace d’apprentissage ChinoisLingo.
+                </p>
+              </div>
+
+              {/* Error or Success Alerts */}
+              {errorMessage && (
+                <div className="p-2.5 sm:p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMessage}</span>
                 </div>
               )}
 
-              {/* 1. Champ Adresse E-mail */}
-              <div className="space-y-1">
-                <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                  Adresse e-mail *
-                </label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
-                  />
+              {successMessage && (
+                <div className="p-2.5 sm:p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>{successMessage}</span>
                 </div>
-              </div>
+              )}
 
-              {/* 2. Champ Mot de Passe */}
-              <div className="space-y-1">
-                <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                  Mot de passe *
-                </label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575] hover:text-[#212121] dark:hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
-                    title={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
-
-              {/* Champ Confirmation du Mot de Passe (uniquement en mode inscription) */}
-              {mode === 'signup' && (
-                <div className="space-y-1 animate-fadeIn">
+              {/* Formulaire avec font-size 16px sur mobile pour éliminer le zoom iOS */}
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+                {/* 1. Champ Adresse E-mail */}
+                <div className="space-y-1">
                   <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                    Confirmer le mot de passe *
+                    Adresse e-mail *
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="votre.email@exemple.com"
+                      className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                {/* 2. Champ Mot de Passe */}
+                <div className="space-y-1">
+                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                    Mot de passe *
                   </label>
                   <div className="relative">
                     <Lock className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
-                      type={showConfirmPassword ? 'text' : 'password'}
+                      type={showPassword ? 'text' : 'password'}
                       required
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="••••••••"
                       className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
                     />
                     <button
                       type="button"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575] hover:text-[#212121] dark:hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
-                      title={showConfirmPassword ? 'Masquer' : 'Afficher'}
+                      title={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                     >
-                      {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
-              )}
 
-              {/* « Rester connecté » : la session survit à la fermeture du navigateur */}
-              {mode === 'signin' && (
+                {/* « Rester connecté » */}
                 <label className="flex items-center gap-2.5 w-fit py-0.5 cursor-pointer select-none">
                   <input
                     type="checkbox"
@@ -472,51 +404,51 @@ export default function ConnexionPage() {
                     sur cet appareil
                   </span>
                 </label>
-              )}
 
-              {/* 3. Bouton Se Connecter / Créer mon compte */}
-              <div className="pt-1 sm:pt-2">
+                {/* Bouton Se Connecter */}
+                <div className="pt-1 sm:pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3 sm:py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs sm:text-sm font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>{isSubmitting ? 'Validation...' : 'Se connecter'}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </form>
+
+              {/* Liens en bas : Mot de passe oublié & Créer un compte */}
+              <div className="pt-3 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex items-center justify-between gap-2 text-[11px] sm:text-xs">
                 <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 sm:py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs sm:text-sm font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
+                  type="button"
+                  onClick={() => {
+                    setForgotEmail(email);
+                    setForgotError(null);
+                    setForgotMessage(null);
+                    setIsForgotModalOpen(true);
+                  }}
+                  className="font-bold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer text-left"
                 >
-                  <span>{isSubmitting ? 'Validation...' : mode === 'signin' ? 'Se connecter' : 'Créer mon compte'}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  Mot de passe oublié ?
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode('signup');
+                    setErrorMessage(null);
+                    setSuccessMessage(null);
+                  }}
+                  className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline transition-all cursor-pointer text-right"
+                >
+                  Créer un compte
                 </button>
               </div>
-            </form>
-
-            {/* Liens en bas : Mot de passe oublié & Créer un compte / Se connecter */}
-            <div className="pt-3 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex items-center justify-between gap-2 text-[11px] sm:text-xs">
-              <button
-                type="button"
-                onClick={() => {
-                  setForgotEmail(email);
-                  setForgotError(null);
-                  setForgotMessage(null);
-                  setIsForgotModalOpen(true);
-                }}
-                className="font-bold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer text-left"
-              >
-                Mot de passe oublié ?
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMode(mode === 'signin' ? 'signup' : 'signin');
-                  setErrorMessage(null);
-                  setSuccessMessage(null);
-                }}
-                className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline transition-all cursor-pointer text-right"
-              >
-                {mode === 'signin' ? 'Créer un compte' : 'Se connecter'}
-              </button>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ================= MODAL ÉPURÉ : MOT DE PASSE OUBLIÉ ================= */}
       {isForgotModalOpen && (

@@ -22,7 +22,13 @@ interface AuthContextType {
     password?: string,
     firstName?: string,
     lastName?: string,
-    username?: string
+    username?: string,
+    metadata?: {
+      onboarding_profil?: string;
+      onboarding_objectif?: string;
+      onboarding_niveau?: string;
+      onboarding_rappels?: boolean;
+    }
   ) => Promise<{ error: Error | null; besoinConfirmation?: boolean }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
@@ -112,7 +118,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     password?: string,
     firstName?: string,
     lastName?: string,
-    username?: string
+    username?: string,
+    metadata?: {
+      onboarding_profil?: string;
+      onboarding_objectif?: string;
+      onboarding_niveau?: string;
+      onboarding_rappels?: boolean;
+    }
   ) => {
     if (!password) {
       return signInWithEmail(email);
@@ -143,6 +155,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           first_name: cleanFirstName,
           last_name: cleanLastName,
           full_name: computedFullName,
+          onboarding_profil: metadata?.onboarding_profil,
+          onboarding_objectif: metadata?.onboarding_objectif,
+          onboarding_niveau: metadata?.onboarding_niveau,
+          onboarding_rappels: metadata?.onboarding_rappels ?? true,
         },
       },
     });
@@ -169,6 +185,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         full_name: computedFullName,
         first_name: cleanFirstName,
         last_name: cleanLastName,
+        onboarding_profil: metadata?.onboarding_profil,
+        onboarding_objectif: metadata?.onboarding_objectif,
+        onboarding_niveau: metadata?.onboarding_niveau,
+        onboarding_rappels: metadata?.onboarding_rappels ?? true,
       });
 
       await refreshProfile();

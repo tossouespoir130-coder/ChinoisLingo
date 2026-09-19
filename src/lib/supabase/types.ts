@@ -420,6 +420,10 @@ export type Database = {
           last_name: string | null
           last_sign_in_at: string | null
           pinyin_enabled: boolean | null
+          onboarding_profil?: string | null
+          onboarding_objectif?: string | null
+          onboarding_niveau?: string | null
+          onboarding_rappels?: boolean | null
           relances_desactivees?: boolean
           role: string
           streak_days: number | null
@@ -455,6 +459,10 @@ export type Database = {
           last_name?: string | null
           last_sign_in_at?: string | null
           pinyin_enabled?: boolean | null
+          onboarding_profil?: string | null
+          onboarding_objectif?: string | null
+          onboarding_niveau?: string | null
+          onboarding_rappels?: boolean | null
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
@@ -490,6 +498,10 @@ export type Database = {
           last_name?: string | null
           last_sign_in_at?: string | null
           pinyin_enabled?: boolean | null
+          onboarding_profil?: string | null
+          onboarding_objectif?: string | null
+          onboarding_niveau?: string | null
+          onboarding_rappels?: boolean | null
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
