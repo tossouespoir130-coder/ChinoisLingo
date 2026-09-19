@@ -79,7 +79,7 @@ export default function LandingHero() {
           </div>
 
           {/* Trust Guarantees */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-14">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mb-10">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#00BFA5]" />
               <span>100% Caractères Simplifiés (简体字)</span>
@@ -91,6 +91,48 @@ export default function LandingHero() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-[#00BFA5]" />
               <span>Accès immédiat sans carte bancaire</span>
+            </div>
+          </div>
+
+          {/* Ligne des 7 Personnages des Séries Vidéos */}
+          <div className="mb-12">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-4 flex items-center justify-center gap-2">
+              <Sparkles className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+              <span>Les 7 Personnages Récurrents de vos Séries Vidéos</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+            </p>
+            <div className="flex items-center justify-center gap-2.5 sm:gap-4 flex-wrap">
+              {[
+                { name: 'Espoir', nameZh: '苏波', role: 'Mentor', flag: '🇧🇯', color: 'from-[#6200EE] to-[#7C4DFF]', quote: '我叫苏波。' },
+                { name: 'Lily', nameZh: '丽丽', role: 'Guide', flag: '🇨🇳', color: 'from-[#E91E63] to-[#F06292]', quote: '你好！欢迎来到中国！' },
+                { name: 'Katia', nameZh: '卡蒂娅', role: 'Business', flag: '🇫🇷', color: 'from-[#00897B] to-[#03DAC5]', quote: '你们有这个包吗？' },
+                { name: 'Brice', nameZh: '布里斯', role: 'Négociation', flag: '🇨🇮', color: 'from-[#0288D1] to-[#29B6F6]', quote: '可以便宜一点吗？' },
+                { name: 'Anthony', nameZh: '安东尼', role: 'Acheteur', flag: '🇧🇫', color: 'from-[#3F51B5] to-[#7986CB]', quote: '我每天学习中文。' },
+                { name: 'Claire', nameZh: '克莱尔', role: 'Immersion', flag: '🇫🇷', color: 'from-[#8E24AA] to-[#BA68C8]', quote: '我在中国生活。' },
+                { name: 'M. Li', nameZh: '李老师', role: 'Professeur', flag: '🇨🇳', color: 'from-[#D81B60] to-[#E91E63]', quote: '跟我一起读！' },
+              ].map((c, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handlePlayVoice(c.quote)}
+                  className="group relative flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-gray-200/90 dark:border-white/10 shadow-sm hover:shadow-md hover:border-[#6200EE] dark:hover:border-[#BB86FC] hover:-translate-y-1 transition-all"
+                  title={`Écouter ${c.name} (${c.nameZh})`}
+                >
+                  <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr ${c.color} p-[1.5px] shrink-0`}>
+                    <div className="w-full h-full bg-white dark:bg-[#1E1E1E] rounded-full flex items-center justify-center font-hanzi font-bold text-[11px] sm:text-xs text-gray-900 dark:text-white">
+                      {c.nameZh[0]}
+                    </div>
+                  </div>
+                  <div className="text-left">
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs font-bold text-gray-900 dark:text-white">{c.name}</span>
+                      <span className="text-[11px]">{c.flag}</span>
+                    </div>
+                    <span className="text-[10px] text-gray-500 dark:text-gray-400 font-medium block">
+                      {c.role}
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </div>
