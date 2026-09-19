@@ -30,10 +30,10 @@ import { COOKIE_SESSION_EPHEMERE, adapterDuree } from '@/lib/supabase/session-ep
  */
 
 /** Pages accessibles sans session. */
-const ROUTES_PUBLIQUES = ['/abonnement/retour'];
+const ROUTES_PUBLIQUES = ['/', '/abonnement/retour'];
 
-/** Pages d'entrée : un apprenant connecté n'a rien à y faire. */
-const PAGES_ENTREE = ['/', '/connexion'];
+/** Pages d'entrée d'authentification : un apprenant connecté est renvoyé vers son tableau de bord. */
+const PAGES_ENTREE = ['/connexion'];
 
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -43,6 +43,11 @@ export async function proxy(request: NextRequest) {
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  // Route d'accueil (Landing Page) : accessible librement à tous les visiteurs
+  if (chemin === '/') {
+    return response;
+  }
 
   // Configuration absente : on refuse l'accès plutôt que de laisser passer.
   if (!supabaseUrl || !supabaseAnonKey) {
@@ -80,7 +85,7 @@ export async function proxy(request: NextRequest) {
     return redirection;
   };
 
-  if (ROUTES_PUBLIQUES.some((r) => chemin.startsWith(r))) {
+  if (ROUTES_PUBLIQUES.some((r) => chemin === r || (r !== '/' && chemin.startsWith(r)))) {
     return response;
   }
 
@@ -99,7 +104,7 @@ export async function proxy(request: NextRequest) {
 
     if (estEntree) {
       if (user?.email_confirmed_at) return rediriger('/tableau-de-bord');
-      return chemin === '/' ? rediriger('/connexion') : response;
+      return response;
     }
 
     if (!user) {
@@ -133,21 +138,11 @@ export async function proxy(request: NextRequest) {
   } catch (erreur) {
     /**
      * Supabase injoignable, lent ou en panne.
-     *
-     * Sans ce filet, l'exception remonterait et Next renverrait 500 sur
-     * CHAQUE page de l'application : une panne du fournisseur d'identite
-     * ferait tomber tout le site, pas seulement l'authentification.
-     *
-     * On echoue en mode ferme — impossible de verifier la session, donc on
-     * traite l'appelant comme non connecte. Jamais l'inverse : laisser
-     * passer en cas de panne ouvrirait le contenu payant a tout le monde.
      */
     console.error('[proxy] verification de session impossible', erreur);
 
-    // Page d'entrée : on l'affiche. Rediriger /connexion vers /connexion
-    // bouclerait tant que Supabase reste injoignable.
     if (estEntree) {
-      return chemin === '/' ? rediriger('/connexion') : response;
+      return response;
     }
     return rediriger('/connexion', { session: 'indisponible' });
   }
