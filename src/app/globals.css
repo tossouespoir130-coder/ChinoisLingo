@@ -207,6 +207,53 @@ body {
   animation: flameBurning 1.6s ease-in-out infinite;
 }
 
+/* Mascot Interactive Animations */
+@keyframes mascotFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(1.5deg);
+  }
+}
+
+@keyframes mascotGlow {
+  0%, 100% {
+    filter: drop-shadow(0 6px 16px rgba(98, 0, 238, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 10px 24px rgba(3, 218, 197, 0.45));
+  }
+}
+
+.animate-mascot-float {
+  animation: mascotFloat 3.2s ease-in-out infinite, mascotGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes slideUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up-1 {
+  animation: slideUpSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+.animate-slide-up-2 {
+  animation: slideUpSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+.animate-slide-up-3 {
+  animation: slideUpSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+.animate-slide-up-4 {
+  animation: slideUpSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
 /* Tab Navigation Smooth Transition */
 .tab-transition {
   transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
