@@ -61,13 +61,13 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         {/* Avatar Xiao Li */}
-        <div className="w-14 h-14 relative shrink-0">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
           <Image
             src="/images/onboarding/xiao-li-avatar.png"
             alt="Xiao Li"
-            width={56}
-            height={56}
-            className="object-contain"
+            width={80}
+            height={80}
+            className="object-contain w-full h-full drop-shadow-xs"
           />
         </div>
 

@@ -57,19 +57,19 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
       {!showFeedback ? (
         <>
           {/* Xiao Li Mascot + Speech Bubble */}
-          <div className="flex items-start gap-3.5">
-            <div className="w-14 h-14 relative shrink-0">
+          <div className="flex items-center gap-3.5">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
               <Image
                 src="/images/onboarding/xiao-li-avatar.png"
                 alt="Xiao Li - Mascotte ChinoisLingo"
-                width={56}
-                height={56}
-                className="object-contain"
+                width={80}
+                height={80}
+                className="object-contain w-full h-full drop-shadow-xs"
                 priority
               />
             </div>
             <div className="relative flex-1 bg-white dark:bg-[#1E1E1E] p-4 rounded-2xl border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-sm">
-              <div className="absolute top-4 -left-2 w-3 h-3 bg-white dark:bg-[#1E1E1E] border-l border-b border-[#E0E0E0]/80 dark:border-[#2D2D2D] transform rotate-45" />
+              <div className="absolute top-1/2 -translate-y-1/2 -left-2 w-3 h-3 bg-white dark:bg-[#1E1E1E] border-l border-b border-[#E0E0E0]/80 dark:border-[#2D2D2D] transform rotate-45" />
               <p className="text-base font-semibold text-[#212121] dark:text-[#F5F5F5] leading-snug">
                 Quel est ton niveau de chinois ?
               </p>
@@ -114,14 +114,14 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
         /* Selected Feedback View */
         <div className="animate-fade-in flex flex-col gap-6">
           {/* Question header */}
-          <div className="flex items-start gap-3.5">
-            <div className="w-14 h-14 relative shrink-0">
+          <div className="flex items-center gap-3.5">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
               <Image
                 src="/images/onboarding/xiao-li-avatar.png"
                 alt="Xiao Li - Mascotte ChinoisLingo"
-                width={56}
-                height={56}
-                className="object-contain"
+                width={80}
+                height={80}
+                className="object-contain w-full h-full drop-shadow-xs"
               />
             </div>
             <div className="relative flex-1 bg-white dark:bg-[#1E1E1E] p-4 rounded-2xl border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-sm">
@@ -162,18 +162,18 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
           </div>
 
           {/* Xiao Li Sparkling Mascot Speech bubble */}
-          <div className="flex items-start gap-3.5">
-            <div className="w-14 h-14 relative shrink-0">
+          <div className="flex items-center gap-3.5">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
               <Image
                 src="/images/onboarding/mascot-sparkle.png"
                 alt="Xiao Li motivé"
-                width={56}
-                height={56}
-                className="object-contain"
+                width={80}
+                height={80}
+                className="object-contain w-full h-full drop-shadow-xs"
               />
             </div>
             <div className="relative flex-1 bg-white dark:bg-[#1E1E1E] p-4 rounded-2xl border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-sm">
-              <div className="absolute top-4 -left-2 w-3 h-3 bg-white dark:bg-[#1E1E1E] border-l border-b border-[#E0E0E0]/80 dark:border-[#2D2D2D] transform rotate-45" />
+              <div className="absolute top-1/2 -translate-y-1/2 -left-2 w-3 h-3 bg-white dark:bg-[#1E1E1E] border-l border-b border-[#E0E0E0]/80 dark:border-[#2D2D2D] transform rotate-45" />
               <p className="text-sm sm:text-base font-medium text-[#212121] dark:text-[#F5F5F5] leading-relaxed">
                 {chosenObj?.feedback}
               </p>
