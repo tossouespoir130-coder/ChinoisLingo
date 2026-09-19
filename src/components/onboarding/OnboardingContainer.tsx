@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { OnboardingState, ProfilType, MotivationType, NiveauType } from './types';
 import { StepProfile } from './StepProfile';
@@ -141,14 +140,8 @@ export function OnboardingContainer() {
           })}
         </div>
 
-        <div className="w-10 h-10 shrink-0 flex items-center justify-end">
-          <Link
-            href="/connexion"
-            className="text-xs font-bold text-[#6200EE] dark:text-[#03DAC5] hover:underline whitespace-nowrap"
-          >
-            Connexion
-          </Link>
-        </div>
+        {/* Empty Spacer to balance the back button */}
+        <div className="w-10 h-10 shrink-0" />
       </div>
 
       {/* Steps Render */}

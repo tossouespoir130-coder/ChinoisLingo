@@ -335,15 +335,7 @@ export function OnboardingFlow({ onSwitchToSignIn }: OnboardingFlowProps) {
           })}
         </div>
 
-        <div className="w-10 h-10 shrink-0 flex items-center justify-end">
-          <button
-            type="button"
-            onClick={onSwitchToSignIn}
-            className="text-xs font-semibold text-[#6200EE] dark:text-[#03DAC5] hover:underline whitespace-nowrap"
-          >
-            Connexion
-          </button>
-        </div>
+        <div className="w-10 h-10 shrink-0" />
       </div>
 
       {/* ================= ÉTAPE 1 : PROFIL ================= */}
