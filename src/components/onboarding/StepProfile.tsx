@@ -22,20 +22,11 @@ export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
       ),
     },
     {
-      id: 'salarie' as ProfilType,
-      label: 'Professionnel salarié',
+      id: 'professionnel' as ProfilType,
+      label: 'Professionnel',
       icon: (
         <div className="w-10 h-10 rounded-xl bg-[#00897B]/12 text-[#00796B] dark:bg-[#00897B]/20 dark:text-[#03DAC5] flex items-center justify-center shrink-0 shadow-2xs">
           <Briefcase className="w-5 h-5" />
-        </div>
-      ),
-    },
-    {
-      id: 'freelance' as ProfilType,
-      label: 'Freelance',
-      icon: (
-        <div className="w-10 h-10 rounded-xl bg-[#0288D1]/12 text-[#0288D1] dark:bg-[#0288D1]/20 dark:text-[#4FC3F7] flex items-center justify-center shrink-0 shadow-2xs">
-          <Laptop className="w-5 h-5" />
         </div>
       ),
     },
@@ -45,6 +36,15 @@ export function StepProfile({ selectedProfil, onSelect }: StepProfileProps) {
       icon: (
         <div className="w-10 h-10 rounded-xl bg-[#FFA000]/12 text-[#E65100] dark:bg-[#FFA000]/20 dark:text-[#FFB74D] flex items-center justify-center shrink-0 shadow-2xs">
           <GraduationCap className="w-5 h-5" />
+        </div>
+      ),
+    },
+    {
+      id: 'independant' as ProfilType,
+      label: 'Indépendant',
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-[#0288D1]/12 text-[#0288D1] dark:bg-[#0288D1]/20 dark:text-[#4FC3F7] flex items-center justify-center shrink-0 shadow-2xs">
+          <Laptop className="w-5 h-5" />
         </div>
       ),
     },

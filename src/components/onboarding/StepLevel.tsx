@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { ChevronRight, HelpCircle } from 'lucide-react';
 import { NiveauType } from './types';
 
 interface StepLevelProps {
@@ -13,7 +12,6 @@ interface StepLevelProps {
 export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
   const [currentChoice, setCurrentChoice] = useState<NiveauType | ''>(selectedNiveau);
   const [showFeedback, setShowFeedback] = useState<boolean>(!!selectedNiveau);
-  const [showLevelGuide, setShowLevelGuide] = useState<boolean>(false);
 
   const options = [
     {
@@ -111,31 +109,6 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
               </button>
             ))}
           </div>
-
-          {/* Bottom Helper Banner */}
-          <div className="relative pt-6">
-            <div className="absolute top-0 left-4 w-12 h-12 z-10">
-              <Image
-                src="/images/onboarding/mascot-search.png"
-                alt="Aide au niveau"
-                width={48}
-                height={48}
-                className="object-contain"
-              />
-            </div>
-            <button
-              type="button"
-              onClick={() => setShowLevelGuide(true)}
-              className="w-full flex items-center justify-between p-4 pl-16 rounded-2xl bg-[#03DAC5]/10 dark:bg-[#03DAC5]/15 border border-[#03DAC5]/30 hover:bg-[#03DAC5]/20 dark:hover:bg-[#03DAC5]/25 transition-all text-left cursor-pointer"
-            >
-              <span className="text-sm font-semibold text-[#00796B] dark:text-[#03DAC5]">
-                Aide-moi à connaître mon niveau
-              </span>
-              <div className="w-7 h-7 rounded-full bg-[#00897B] text-white flex items-center justify-center shrink-0 shadow-xs">
-                <ChevronRight className="w-4 h-4" />
-              </div>
-            </button>
-          </div>
         </>
       ) : (
         /* Selected Feedback View */
@@ -215,53 +188,6 @@ export function StepLevel({ selectedNiveau, onConfirmLevel }: StepLevelProps) {
               className="w-full py-4 rounded-2xl bg-[#6200EE] hover:bg-[#5000CA] text-white font-bold text-base shadow-md hover:shadow-lg transition-all btn-press cursor-pointer"
             >
               Continuer
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Modal Aide Niveau */}
-      {showLevelGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-fade-in">
-          <div className="bg-white dark:bg-[#1E1E1E] rounded-3xl p-6 max-w-md w-full border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xl space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#03DAC5]/20 flex items-center justify-center text-[#00897B] dark:text-[#03DAC5]">
-                <HelpCircle className="w-6 h-6" />
-              </div>
-              <h3 className="text-lg font-bold text-[#212121] dark:text-white">
-                Repères de Niveau HSK
-              </h3>
-            </div>
-
-            <div className="space-y-3 text-sm text-[#424242] dark:text-[#E0E0E0]">
-              <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                <p className="font-bold text-[#00897B] dark:text-[#03DAC5]">1. Débutant complet (HSK 1)</p>
-                <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
-                  Idéal si vous découvrez le chinois. Apprenez la phonétique (Pinyin), les tons et les 150 premiers mots.
-                </p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                <p className="font-bold text-[#0288D1]">2. Petite conversation (HSK 2 - 3)</p>
-                <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
-                  Vous savez poser des questions simples, vous repérer et commander. Consolidez les dialogues du quotidien.
-                </p>
-              </div>
-
-              <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                <p className="font-bold text-[#6200EE] dark:text-[#BB86FC]">3. Conversation fluide (HSK 4 - 6)</p>
-                <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
-                  Vous comprenez les échanges complexes, les articles d’actualité et les séries business.
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setShowLevelGuide(false)}
-              className="w-full py-3 rounded-xl bg-[#6200EE] text-white font-bold text-sm shadow-sm hover:bg-[#5000CA] transition-colors cursor-pointer"
-            >
-              Compris !
             </button>
           </div>
         </div>

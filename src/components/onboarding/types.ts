@@ -1,8 +1,8 @@
 export type ProfilType = 
   | 'entrepreneur'
-  | 'salarie' 
-  | 'freelance' 
+  | 'professionnel' 
   | 'etudiant' 
+  | 'independant' 
   | 'autre';
 
 export type MotivationType = 
