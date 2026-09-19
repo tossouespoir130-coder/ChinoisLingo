@@ -35,11 +35,11 @@ export default function LandingCTA() {
             </p>
 
             <Link
-              href="/connexion?mode=signup"
+              href="/onboarding"
               onClick={triggerConfetti}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-gray-950 font-black text-sm shadow-xl hover:scale-105 active:scale-95 transition-all"
             >
-              <span>Créer mon Compte Gratuit</span>
+              <span>Commencer rapidement</span>
               <ArrowRight className="w-4 h-4 text-[#6200EE]" />
             </Link>
           </div>

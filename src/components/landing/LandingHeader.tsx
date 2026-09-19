@@ -79,15 +79,15 @@ export default function LandingHeader() {
           <div className="hidden sm:flex items-center gap-3">
             <Link
               href="/connexion"
-              className="px-3.5 py-2 text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"
+              className="px-4 py-2 text-xs sm:text-sm font-bold text-gray-700 hover:text-[#6200EE] transition-colors"
             >
               Se connecter
             </Link>
             <Link
-              href="/connexion?mode=signup"
+              href="/onboarding"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#6200EE] hover:bg-[#5000CC] text-white font-bold text-sm shadow-md shadow-[#6200EE]/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Commencer Gratuitement</span>
+              <span>Commencer rapidement</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -103,55 +103,57 @@ export default function LandingHeader() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Dropdown */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 rounded-2xl bg-white border border-gray-100 shadow-xl space-y-3">
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white/98 backdrop-blur-lg border-b border-gray-100 px-4 pt-3 pb-6 space-y-3 animate-fade-in shadow-xl mt-3">
+          <nav className="flex flex-col gap-2">
             <a
               href="#personnages"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700"
+              className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
             >
               Personnages
             </a>
             <a
               href="#methode"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700"
+              className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
             >
               Méthode Combinatoire
             </a>
             <a
               href="#fonctionnalites"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700"
+              className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
             >
               Modules HSK 1–6
             </a>
             <a
               href="#tarifs"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700"
+              className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
             >
               Tarifs
             </a>
-            <div className="pt-2 border-t border-gray-100 flex flex-col gap-2">
-              <Link
-                href="/connexion"
-                className="w-full text-center py-2.5 text-sm font-bold text-gray-700"
-              >
-                Connexion
-              </Link>
-              <Link
-                href="/connexion"
-                className="w-full text-center py-2.5 rounded-full bg-[#6200EE] text-white font-bold text-sm"
-              >
-                Commencer
-              </Link>
-            </div>
+          </nav>
+          <div className="pt-3 border-t border-gray-100 flex flex-col gap-2.5">
+            <Link
+              href="/connexion"
+              className="w-full py-2.5 text-center text-sm font-bold text-gray-700 border border-gray-200 rounded-full"
+            >
+              Se connecter
+            </Link>
+            <Link
+              href="/onboarding"
+              className="w-full py-3 text-center text-sm font-bold text-white bg-[#6200EE] rounded-full shadow-md"
+            >
+              Commencer rapidement
+            </Link>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }

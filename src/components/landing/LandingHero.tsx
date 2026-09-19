@@ -59,10 +59,10 @@ export default function LandingHero() {
           {/* Action Button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <Link
-              href="/connexion?mode=signup"
+              href="/onboarding"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#6200EE] hover:bg-[#5000CC] text-white font-black text-base shadow-xl shadow-[#6200EE]/25 hover:scale-105 active:scale-95 transition-all"
             >
-              <span>Commencer Gratuitement</span>
+              <span>Commencer rapidement</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 

@@ -1,12 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { 
-  Sparkles, 
   Mail, 
   Lock, 
-  User, 
   ArrowRight, 
   CheckCircle2, 
   AlertCircle,
@@ -21,22 +20,16 @@ import {
 import { useAuth } from '@/lib/auth/AuthContext';
 import { createClient } from '@/lib/supabase/client';
 import { Logo } from '@/components/ui/Logo';
-import { OnboardingFlow } from '@/components/auth/OnboardingFlow';
 
 export default function ConnexionPage() {
   const router = useRouter();
   const supabase = createClient();
-  const { signInWithEmail, signUpWithEmail } = useAuth();
+  const { signInWithEmail } = useAuth();
 
-  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  // Décochée par défaut : l'apprenant choisit de rester connecté sur cet appareil.
   const [resterConnecte, setResterConnecte] = useState(false);
-  const [username, setUsername] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -48,31 +41,19 @@ export default function ConnexionPage() {
   const [forgotMessage, setForgotMessage] = useState<string | null>(null);
   const [forgotError, setForgotError] = useState<string | null>(null);
 
-  // Retour depuis le lien de confirmation reçu par e-mail.
-  // `window.location` n'existe qu'après montage : lire cette valeur dans un
-  // initialiseur d'état provoquerait une divergence d'hydratation, le serveur
-  // ne pouvant pas connaître les paramètres d'URL du navigateur.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     if (params.get('confirme') === '1') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
     } else if (params.get('session') === 'indisponible') {
-      // Le garde serveur n'a pas pu joindre Supabase.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setErrorMessage(
         'Vérification de session impossible pour le moment. Réessayez dans un instant.'
       );
     } else if (params.get('confirmation') === 'requise') {
-      // Renvoyé par le garde serveur quand un compte non vérifié tente
-      // d'atteindre une page de l'application.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setErrorMessage(
         'Votre adresse e-mail n’est pas encore confirmée. Ouvrez le lien reçu par e-mail pour activer votre compte.'
       );
-    } else if (params.get('mode') === 'signup') {
-      setMode('signup');
     }
   }, []);
 
@@ -88,62 +69,14 @@ export default function ConnexionPage() {
       return;
     }
 
-    if (mode === 'signup') {
-      if (!username.trim()) {
-        setErrorMessage('Veuillez renseigner votre pseudo.');
-        setIsSubmitting(false);
-        return;
-      }
-      if (!password || password.length < 6) {
-        setErrorMessage('Le mot de passe doit contenir au moins 6 caractères.');
-        setIsSubmitting(false);
-        return;
-      }
-      if (password !== confirmPassword) {
-        setErrorMessage('Les mots de passe ne correspondent pas.');
-        setIsSubmitting(false);
-        return;
-      }
-
-      const { error, besoinConfirmation } = await signUpWithEmail(
-        email,
-        password,
-        username,
-        '',
-        username
-      );
-
-      if (error) {
-        setErrorMessage(error.message || "Une erreur s'est produite lors de l'inscription.");
-      } else if (besoinConfirmation) {
-        /**
-         * Aucune session n'a été ouverte : l'adresse doit être confirmée.
-         * On NE redirige pas — auparavant l'apprenant était connecté
-         * directement, sans avoir jamais validé son adresse.
-         */
-        setSuccessMessage(
-          `Compte créé. Un lien de confirmation vient d'être envoyé à ${email}. ` +
-            'Ouvrez-le pour activer votre compte, puis revenez vous connecter.'
-        );
-        setPassword('');
-        setConfirmPassword('');
-        setMode('signin');
-      } else {
-        setSuccessMessage('Compte créé avec succès ! Bienvenue.');
-        setTimeout(() => {
-          router.push('/tableau-de-bord');
-        }, 1000);
-      }
+    const { error } = await signInWithEmail(email, password, resterConnecte);
+    if (error) {
+      setErrorMessage(error.message || 'Identifiants incorrects.');
     } else {
-      const { error } = await signInWithEmail(email, password, resterConnecte);
-      if (error) {
-        setErrorMessage(error.message || 'Identifiants incorrects.');
-      } else {
-        setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
-        setTimeout(() => {
-          router.push('/tableau-de-bord');
-        }, 800);
-      }
+      setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
+      setTimeout(() => {
+        router.push('/tableau-de-bord');
+      }, 600);
     }
 
     setIsSubmitting(false);
@@ -171,7 +104,7 @@ export default function ConnexionPage() {
         setForgotMessage('E-mail de réinitialisation envoyé ! Vérifiez votre boîte de réception.');
       }
     } catch {
-      setForgotError("Une erreur inattendue est survenue.");
+      setForgotError('Une erreur inattendue est survenue.');
     } finally {
       setIsForgotSubmitting(false);
     }
@@ -180,282 +113,224 @@ export default function ConnexionPage() {
   return (
     <div className="min-h-[100dvh] w-full relative flex items-center justify-center p-2.5 sm:p-6 lg:p-10 overflow-hidden bg-[#ECEFF8] dark:bg-[#111218]">
       
-      {/* ================= ARRIÈRE-PLAN SUBTILEMENT ASSOMBRI AVEC CARACTÈRES CHINOIS VARIÉS ET PORTEURS DE SENS ================= */}
+      {/* Background Orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
-        {/* Soft Pastel Glowing Orbs */}
         <div className="absolute top-[-10%] left-[-10%] w-[450px] sm:w-[750px] h-[450px] sm:h-[750px] rounded-full bg-[#6200EE]/09 dark:bg-[#6200EE]/18 blur-[140px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[450px] sm:w-[750px] h-[450px] sm:h-[750px] rounded-full bg-[#03DAC5]/11 dark:bg-[#03DAC5]/18 blur-[150px]" />
         <div className="absolute top-[30%] right-[15%] w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] rounded-full bg-[#E91E63]/08 dark:bg-[#E91E63]/14 blur-[130px]" />
-        <div className="absolute bottom-[20%] left-[10%] w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] rounded-full bg-[#FFC107]/08 dark:bg-[#FFC107]/12 blur-[130px]" />
-
-        {/* 1. 学 (Apprendre) - Coin Haut Gauche - Incliné */}
-        <span className="font-hanzi text-[140px] sm:text-[230px] font-black text-[#6200EE]/[0.045] dark:text-white/[0.045] absolute -top-4 left-3 sm:left-6 blur-[1px] rotate-[-12deg]" title="学 (Apprendre)">
-          学
-        </span>
-
-        {/* 2. 大 (Grand) - Haut Gauche Intermédiaire */}
-        <span className="font-hanzi text-[90px] sm:text-[150px] font-black text-[#03DAC5]/[0.05] absolute top-14 sm:top-20 left-[20%] sm:left-[24%] blur-[1.5px] rotate-[8deg]" title="大 (Grand)">
-          大
-        </span>
-
-        {/* 3. 龙 (Dragon / Excellence) - Coin Haut Droite - Incliné et Symétrique */}
-        <span className="font-hanzi text-[130px] sm:text-[220px] font-black text-[#6200EE]/[0.042] dark:text-white/[0.042] absolute -top-4 right-3 sm:right-6 blur-[1px] rotate-[12deg]" title="龙 (Dragon)">
-          龙
-        </span>
-
-        {/* 4. 富 (Richesse) - Haut Droite Intermédiaire */}
-        <span className="font-hanzi text-[90px] sm:text-[150px] font-black text-[#FFC107]/[0.045] absolute top-14 sm:top-20 right-[20%] sm:right-[24%] blur-[1.5px] rotate-[-8deg]" title="富 (Richesse)">
-          富
-        </span>
-
-        {/* 5. 强 (Fort) - Bas Gauche */}
-        <span className="font-hanzi text-[130px] sm:text-[220px] font-black text-[#6200EE]/[0.04] absolute -bottom-6 left-[4%] sm:left-[8%] blur-[2px] rotate-[-6deg]" title="强 (Fort)">
-          强
-        </span>
-
-        {/* 6. 恒 (Persévérance) - Centre Bas - Équilibré */}
-        <span className="font-hanzi text-[100px] sm:text-[160px] font-black text-[#03DAC5]/[0.04] absolute -bottom-8 left-[46%] blur-[1.5px] rotate-[-4deg]" title="恒 (Persévérance)">
-          恒
-        </span>
-
-        {/* 7. 财 (Fortune) - Bas Droite */}
-        <span className="font-hanzi text-[110px] sm:text-[180px] font-black text-[#E91E63]/[0.04] absolute -bottom-8 right-3 sm:right-6 blur-[2px] rotate-[-8deg]" title="财 (Fortune)">
-          财
-        </span>
-
-        {/* 8. 福 (Bonheur) - Centre Gauche - Compact */}
-        <span className="font-hanzi text-[85px] sm:text-[140px] font-black text-[#03DAC5]/[0.04] absolute top-[44%] left-[-2%] blur-[2px] rotate-[10deg]" title="福 (Bonheur)">
-          福
-        </span>
-
-        {/* 9. 智 (Sagesse) - Centre Droite - Compact */}
-        <span className="font-hanzi text-[90px] sm:text-[150px] font-black text-[#6200EE]/[0.035] absolute top-[46%] right-[-2%] blur-[2px] rotate-[-10deg]" title="智 (Sagesse)">
-          智
-        </span>
       </div>
 
-      {/* ================= CONTENU PRINCIPAL ================= */}
-      {mode === 'signup' ? (
-        <div className="relative z-10 w-full max-w-xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden animate-fadeIn my-auto">
-          <OnboardingFlow onSwitchToSignIn={() => setMode('signin')} />
-        </div>
-      ) : (
-        /* ================= CARTE CENTRALE SPLIT MODERNE (CONNEXION) ================= */
-        <div className="relative z-10 w-full max-w-md lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn my-auto">
-          
-          {/* ================= GAUCHE / HAUT : VITRINE PÉDAGOGIQUE COMPLÈTE ================= */}
-          <div className="lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-4 sm:p-7 lg:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-300">
-            {/* Subtle Background Glows */}
-            <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#03DAC5]/15 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#E91E63]/20 blur-3xl pointer-events-none" />
+      {/* Carte Centrale Split */}
+      <div className="relative z-10 w-full max-w-md lg:max-w-4xl bg-white dark:bg-[#1E1E28] rounded-3xl sm:rounded-[36px] border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl shadow-[#6200EE]/08 dark:shadow-black/50 overflow-hidden grid grid-cols-1 lg:grid-cols-12 animate-fadeIn my-auto">
+        
+        {/* Volet Gauche : Vitrine Pédagogique */}
+        <div className="lg:col-span-6 bg-gradient-to-br from-[#6200EE] via-[#3700B3] to-[#1E1E28] text-white p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full bg-[#03DAC5]/15 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full bg-[#E91E63]/20 blur-3xl pointer-events-none" />
 
-            {/* Top Brand Header */}
-            <div className="relative z-10 space-y-2 sm:space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-white flex items-center justify-center shadow-md shrink-0 p-1.5">
-                  <Logo variant="icon" size="sm" href="" />
-                </div>
-                <div>
-                  <span className="font-display font-black text-lg sm:text-2xl text-white tracking-tight block leading-tight">
-                    ChinoisLingo
-                  </span>
-                  <span className="text-[9.5px] sm:text-[11px] font-bold text-[#03DAC5] uppercase tracking-wider block">
-                    « Le chinois devient facile »
-                  </span>
-                </div>
+          {/* Top Brand Header */}
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center shadow-md shrink-0 p-1.5">
+                <Logo variant="icon" size="sm" href="" />
               </div>
-
-              <div className="pt-0.5 sm:pt-2">
-                <h1 className="font-display font-black text-base sm:text-2xl lg:text-3xl text-white leading-snug">
-                  Maîtrisez le mandarin par immersion active.
-                </h1>
-                <p className="text-[10.5px] sm:text-xs text-white/80 mt-0.5 sm:mt-2 leading-relaxed">
-                  Apprenez avec des dialogues du quotidien, des flashcards intelligentes et des leçons vidéo interactives.
-                </p>
+              <div>
+                <span className="font-display font-black text-xl text-white tracking-tight block leading-tight">
+                  ChinoisLingo
+                </span>
+                <span className="text-[10px] font-bold text-[#03DAC5] uppercase tracking-wider block">
+                  « Le chinois devient facile »
+                </span>
               </div>
             </div>
 
-            {/* 3 Core Highlights */}
-            <div className="relative z-10 space-y-2 sm:space-y-2.5 my-3.5 sm:my-5 hidden lg:block">
-              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
-                  <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-bold text-xs text-white">Vocabulaire HSK & Flashcards 3D</h3>
-                  <p className="text-[10px] sm:text-[10.5px] text-white/70">Mémorisation durable par répétition espacée</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
-                  <Headphones className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-bold text-xs text-white">Écoute & Paroles Synchronisées</h3>
-                  <p className="text-[10px] sm:text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 sm:gap-3 p-2 sm:p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
-                  <Video className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-bold text-xs text-white">Formations Vidéos Pratiques</h3>
-                  <p className="text-[10px] sm:text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Culture • Carrière • Business</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Trust Note */}
-            <div className="relative z-10 pt-2.5 border-t border-white/10 hidden lg:flex items-center justify-between text-[10.5px] sm:text-[11px] text-white/60">
-              <span>Plateforme d’apprentissage</span>
-              <span className="font-bold text-[#03DAC5]">100% Francophone</span>
+            <div className="pt-2">
+              <h1 className="font-display font-black text-xl sm:text-2xl text-white leading-snug">
+                Heureux de vous revoir !
+              </h1>
+              <p className="text-xs text-white/80 mt-1 leading-relaxed">
+                Reprenez vos histoires, dialogues et révisions de vocabulaire là où vous vous étiez arrêté.
+              </p>
             </div>
           </div>
 
-          {/* ================= DROITE : FORMULAIRE DE CONNEXION ================= */}
-          <div className="lg:col-span-6 p-4 sm:p-7 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#1E1E28]">
-            <div className="space-y-3 sm:space-y-5 w-full">
-              {/* Header Formulaire */}
-              <div className="text-left space-y-0.5 sm:space-y-1">
-                <h2 className="font-display font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5]">
-                  Connexion
-                </h2>
-                <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0]">
-                  Accédez à votre espace d’apprentissage ChinoisLingo.
-                </p>
+          {/* Highlights */}
+          <div className="relative z-10 space-y-2.5 my-6 hidden lg:block">
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center shrink-0">
+                <BookOpen className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-xs text-white">Vocabulaire HSK & Flashcards 3D</h3>
+                <p className="text-[10.5px] text-white/70">Mémorisation fluide et répétition espacée</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#E91E63]/25 text-[#FF80AB] flex items-center justify-center shrink-0">
+                <Headphones className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-xs text-white">Écoute & Paroles Synchronisées</h3>
+                <p className="text-[10.5px] text-white/70">Chansons, dialogues et podcasts immersifs</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 p-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
+              <div className="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center shrink-0">
+                <Video className="w-4 h-4" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-xs text-white">Formations Vidéos Pratiques</h3>
+                <p className="text-[10.5px] text-[#03DAC5] font-semibold">Quotidien • Carrière • Business</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Trust Note */}
+          <div className="relative z-10 pt-3 border-t border-white/10 hidden lg:flex items-center justify-between text-xs text-white/60">
+            <span>Plateforme d’apprentissage</span>
+            <span className="font-bold text-[#03DAC5]">100% Francophone</span>
+          </div>
+        </div>
+
+        {/* Volet Droit : Formulaire de Connexion */}
+        <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-center bg-white dark:bg-[#1E1E28]">
+          <div className="space-y-4 w-full">
+            {/* Header Formulaire */}
+            <div className="text-left space-y-1">
+              <h2 className="font-display font-black text-2xl text-[#212121] dark:text-[#F5F5F5]">
+                Se connecter
+              </h2>
+              <p className="text-xs text-[#757575] dark:text-[#A0A0A0]">
+                Entrez vos identifiants pour accéder à votre tableau de bord.
+              </p>
+            </div>
+
+            {/* Error or Success Alerts */}
+            {errorMessage && (
+              <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            {successMessage && (
+              <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>{successMessage}</span>
+              </div>
+            )}
+
+            {/* Formulaire */}
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              {/* Adresse E-mail */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Adresse e-mail *
+                </label>
+                <div className="relative">
+                  <Mail className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="votre.email@exemple.com"
+                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                  />
+                </div>
               </div>
 
-              {/* Error or Success Alerts */}
-              {errorMessage && (
-                <div className="p-2.5 sm:p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2 animate-fadeIn">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMessage}</span>
-                </div>
-              )}
-
-              {successMessage && (
-                <div className="p-2.5 sm:p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[#00897B] dark:text-[#03DAC5] text-xs font-bold flex items-center gap-2 animate-fadeIn">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
-                  <span>{successMessage}</span>
-                </div>
-              )}
-
-              {/* Formulaire avec font-size 16px sur mobile pour éliminer le zoom iOS */}
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-                {/* 1. Champ Adresse E-mail */}
-                <div className="space-y-1">
-                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                    Adresse e-mail *
-                  </label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="votre.email@exemple.com"
-                      className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
-                    />
-                  </div>
-                </div>
-
-                {/* 2. Champ Mot de Passe */}
-                <div className="space-y-1">
-                  <label className="text-[10px] sm:text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                    Mot de passe *
-                  </label>
-                  <div className="relative">
-                    <Lock className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575] hover:text-[#212121] dark:hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
-                      title={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
-                    >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-
-                {/* « Rester connecté » */}
-                <label className="flex items-center gap-2.5 w-fit py-0.5 cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={resterConnecte}
-                    onChange={(e) => setResterConnecte(e.target.checked)}
-                    className="w-4 h-4 rounded accent-[#6200EE] cursor-pointer"
-                  />
-                  <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
-                    Rester connecté
-                  </span>
-                  <span className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0]">
-                    sur cet appareil
-                  </span>
+              {/* Mot de Passe */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Mot de passe *
                 </label>
-
-                {/* Bouton Se Connecter */}
-                <div className="pt-1 sm:pt-2">
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-[#757575] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
+                  />
                   <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 sm:py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-xs sm:text-sm font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575] hover:text-[#212121] dark:hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
+                    title={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
                   >
-                    <span>{isSubmitting ? 'Validation...' : 'Se connecter'}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
-              </form>
+              </div>
 
-              {/* Liens en bas : Mot de passe oublié & Créer un compte */}
-              <div className="pt-3 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex items-center justify-between gap-2 text-[11px] sm:text-xs">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setForgotEmail(email);
-                    setForgotError(null);
-                    setForgotMessage(null);
-                    setIsForgotModalOpen(true);
-                  }}
-                  className="font-bold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer text-left"
-                >
-                  Mot de passe oublié ?
-                </button>
+              {/* « Rester connecté » */}
+              <label className="flex items-center gap-2.5 w-fit py-0.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={resterConnecte}
+                  onChange={(e) => setResterConnecte(e.target.checked)}
+                  className="w-4 h-4 rounded accent-[#6200EE] cursor-pointer"
+                />
+                <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
+                  Rester connecté
+                </span>
+                <span className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0]">
+                  sur cet appareil
+                </span>
+              </label>
 
+              {/* Bouton Se Connecter */}
+              <div className="pt-2">
                 <button
-                  type="button"
-                  onClick={() => {
-                    setMode('signup');
-                    setErrorMessage(null);
-                    setSuccessMessage(null);
-                  }}
-                  className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline transition-all cursor-pointer text-right"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-sm font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  Créer un compte
+                  <span>{isSubmitting ? 'Connexion en cours...' : 'Se connecter'}</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
+              </div>
+            </form>
+
+            {/* Bas de page : Mot de passe oublié & Redirection vers Inscription */}
+            <div className="pt-4 border-t border-[#E0E0E0] dark:border-[#2D2D3D] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <button
+                type="button"
+                onClick={() => {
+                  setForgotEmail(email);
+                  setForgotError(null);
+                  setForgotMessage(null);
+                  setIsForgotModalOpen(true);
+                }}
+                className="font-semibold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer"
+              >
+                Mot de passe oublié ?
+              </button>
+
+              <div className="text-center sm:text-right">
+                <span className="text-[#757575] dark:text-[#9E9E9E]">Pas encore de compte ? </span>
+                <Link
+                  href="/onboarding"
+                  className="font-bold text-[#6200EE] dark:text-[#BB86FC] hover:underline"
+                >
+                  Commencer rapidement
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* ================= MODAL ÉPURÉ : MOT DE PASSE OUBLIÉ ================= */}
+      {/* Modal Mot de passe oublié */}
       {isForgotModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
           <div className="w-full max-w-md bg-white dark:bg-[#1E1E28] rounded-3xl border border-[#E0E0E0] dark:border-[#2D2D3D] shadow-2xl p-6 space-y-4 animate-slideUp">
             
-            {/* Header Modal */}
             <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0] dark:border-[#2D2D3D]">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
@@ -466,7 +341,7 @@ export default function ConnexionPage() {
                     Mot de passe oublié
                   </h3>
                   <p className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0]">
-                    Réinitialisez votre mot de passe par e-mail
+                    Recevez un lien de réinitialisation par e-mail
                   </p>
                 </div>
               </div>
@@ -479,7 +354,6 @@ export default function ConnexionPage() {
               </button>
             </div>
 
-            {/* Error / Success Alerts */}
             {forgotError && (
               <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0" />
@@ -494,7 +368,6 @@ export default function ConnexionPage() {
               </div>
             )}
 
-            {/* Formulaire Mot de passe oublié */}
             <form onSubmit={handleForgotPassword} className="space-y-3.5">
               <div className="space-y-1.5">
                 <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
@@ -508,7 +381,7 @@ export default function ConnexionPage() {
                     value={forgotEmail}
                     onChange={(e) => setForgotEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                   />
                 </div>
               </div>

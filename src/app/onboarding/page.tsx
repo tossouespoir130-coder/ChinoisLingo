@@ -3,7 +3,7 @@
 import React from 'react';
 import { OnboardingContainer } from '@/components/onboarding/OnboardingContainer';
 
-export default function InscriptionPage() {
+export default function OnboardingPage() {
   return (
     <div className="min-h-[100dvh] w-full relative flex items-center justify-center p-2.5 sm:p-6 lg:p-10 overflow-hidden bg-[#ECEFF8] dark:bg-[#111218]">
       {/* Background Soft Glow Orbs */}

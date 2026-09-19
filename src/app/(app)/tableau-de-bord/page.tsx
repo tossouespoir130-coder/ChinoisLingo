@@ -8,6 +8,7 @@ import { StudentProgressCard } from '@/components/ui/StudentProgressCard';
 import { CommunityLeaderboardCard } from '@/components/ui/CommunityLeaderboardCard';
 import { RecentActivityCard } from '@/components/ui/RecentActivityCard';
 import { AnimatedStreakBanner } from '@/components/ui/AnimatedStreakBanner';
+import { OnboardingWelcomeBanner } from '@/components/ui/OnboardingWelcomeBanner';
 import { GuideModal } from '@/components/guides/GuideModal';
 import { LearningTipsModal } from '@/components/guides/LearningTipsModal';
 import { AboutModal } from '@/components/guides/AboutModal';
@@ -165,6 +166,9 @@ export default function DashboardPage() {
           {motivationalMessage}
         </p>
       </div>
+
+      {/* Recommandation personnalisée Onboarding Xiao Li */}
+      <OnboardingWelcomeBanner profile={profile} />
 
       {/* 2. Animated Streak Banner with glowing pulse & animated counter */}
       <AnimatedStreakBanner />
