@@ -176,19 +176,19 @@ export function TopNav() {
             {(() => {
               const displayAvatar = (profile?.avatar_url && !profile.avatar_url.includes('photo-1534528741775')) 
                 ? profile.avatar_url 
-                : (profile?.avatar_url || userAvatar || '');
+                : '';
 
-              // Sans photo, on affiche les initiales plutot qu'une image
-              // cassee — et surtout jamais le portrait d'un autre compte.
+              // Sans photo personnalisée, on affiche les initiales de l'utilisateur
+              // avec un badge élégant — et jamais le portrait d'un autre compte.
               const nomAffiche =
-                profile?.full_name || profile?.username || userName || '';
+                profile?.full_name || profile?.username || '';
               const initiales =
                 nomAffiche
                   .split(/\s+/)
                   .filter(Boolean)
                   .slice(0, 2)
                   .map((m) => m[0]?.toUpperCase() ?? '')
-                  .join('') || '?';
+                  .join('') || (user?.email ? user.email[0]?.toUpperCase() : '?');
 
               return (
                 <>
@@ -196,7 +196,7 @@ export function TopNav() {
                     type="button"
                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
                     className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-xs ring-2 ring-transparent hover:ring-[#6200EE] cursor-pointer"
-                    title={`Profil : ${profile?.full_name || profile?.username || userName || 'Mon compte'}`}
+                    title={`Profil : ${nomAffiche || user?.email || 'Mon compte'}`}
                   >
                     {displayAvatar ? (
                       /* eslint-disable-next-line @next/next/no-img-element */
@@ -231,10 +231,10 @@ export function TopNav() {
                         )}
                         <div className="min-w-0 flex-1">
                           <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
-                            {profile?.full_name || profile?.username || userName || 'Mon compte'}
+                            {nomAffiche || 'Mon compte'}
                           </h4>
                           <p className="text-[10px] text-[#757575] dark:text-[#A0A0A0] truncate">
-                            {profile?.email || user?.email || 'espoirchinois@gmail.com'}
+                            {profile?.email || user?.email || ''}
                           </p>
                         </div>
                       </div>

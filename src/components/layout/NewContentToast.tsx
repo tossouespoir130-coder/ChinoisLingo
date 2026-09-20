@@ -75,6 +75,16 @@ export function NewContentToast() {
     checkLatest();
   }, [pathname]);
 
+  // Disparition automatique après 8 secondes pour ne pas encombrer l'écran
+  useEffect(() => {
+    if (isVisible && !isClosing) {
+      const autoDismissTimer = setTimeout(() => {
+        handleDismiss();
+      }, 8000);
+      return () => clearTimeout(autoDismissTimer);
+    }
+  }, [isVisible, isClosing]);
+
   const handleDismiss = () => {
     setIsClosing(true);
     setTimeout(() => {
@@ -110,6 +120,14 @@ export function NewContentToast() {
     return null;
   }
 
+  const isMascot = latestNotif.source === 'mascot';
+  const isFounder = latestNotif.source === 'founder';
+  const toastAvatar = isMascot
+    ? (latestNotif.mascotAvatar || '/images/onboarding/xiao-li-avatar.png')
+    : isFounder
+    ? (latestNotif.founderAvatar || '/espoir-chinois.jpg')
+    : null;
+
   return (
     <div 
       className={`fixed bottom-20 sm:bottom-6 right-3 sm:right-6 z-50 transition-all duration-400 pointer-events-auto ${
@@ -126,7 +144,7 @@ export function NewContentToast() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00897B] dark:bg-[#03DAC5]"></span>
             </span>
             <span className="text-[10px] font-black uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] truncate">
-              {latestNotif.source === 'founder' ? 'Nouveau • Espoir Chinois' : 'Nouveau Contenu'}
+              {isFounder ? 'Nouveau • Espoir Chinois' : isMascot ? 'Nouveau • Xiao Li 🐾' : 'Nouveau Contenu'}
             </span>
           </div>
 
@@ -142,12 +160,14 @@ export function NewContentToast() {
 
         {/* Corps : Avatar + Titre & Description */}
         <div className="flex items-start gap-3">
-          {latestNotif.founderAvatar ? (
+          {toastAvatar ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={latestNotif.founderAvatar}
-              alt={latestNotif.founderName || 'Espoir Chinois'}
-              className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/30 shrink-0 shadow-2xs"
+              src={toastAvatar}
+              alt={isFounder ? (latestNotif.founderName || 'Espoir Chinois') : 'Xiao Li'}
+              className={`w-10 h-10 rounded-2xl object-contain shrink-0 shadow-2xs ${
+                isMascot ? 'p-0.5 bg-black/5 dark:bg-white/10 ring-2 ring-[#00897B]/30' : 'object-cover ring-2 ring-[#6200EE]/30'
+              }`}
             />
           ) : (
             <div className="w-10 h-10 rounded-2xl bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center shrink-0 shadow-2xs">

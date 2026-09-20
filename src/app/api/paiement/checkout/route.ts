@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient, configurationAdminPrete } from '@/lib/supabase/admin';
 import { utilisateurDeLaRequete, urlDeBase } from '@/lib/payments/session-serveur';
+import { verifierRateLimit, verifierRateLimitCheckoutDB } from '@/lib/security/rateLimiter';
 import {
   getPlan,
   fournisseurPourDevise,
@@ -37,6 +38,40 @@ export async function POST(requete: Request) {
     return NextResponse.json({ erreur: 'Session invalide ou expirée.' }, { status: 401 });
   }
 
+  // ── 1. Limitation de débit distribuée (Upstash Redis ou glissante) ────────
+  const rateLimit = await verifierRateLimit(`checkout:${utilisateur.id}`, 5, 300);
+  if (!rateLimit.autorise) {
+    return NextResponse.json(
+      {
+        erreur: `Trop de tentatives d'initialisation de paiement. Veuillez patienter ${rateLimit.attenteSecondes} secondes avant de réessayer.`,
+      },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rateLimit.attenteSecondes),
+        },
+      }
+    );
+  }
+
+  const admin = createAdminClient();
+
+  // ── 2. Limitation persistante en base de données (100% garantie Vercel Serverless) ──
+  const rateLimitDB = await verifierRateLimitCheckoutDB(admin, utilisateur.id, 5, 5);
+  if (!rateLimitDB.autorise) {
+    return NextResponse.json(
+      {
+        erreur: 'Trop de sessions de paiement en attente créées récemment. Veuillez patienter quelques minutes avant d\'en initier une nouvelle.',
+      },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rateLimitDB.attenteSecondes),
+        },
+      }
+    );
+  }
+
   let corps: { plan?: string; devise?: string };
   try {
     corps = await requete.json();
@@ -54,8 +89,6 @@ export async function POST(requete: Request) {
   }
   const devise: Devise = corps.devise;
   const fournisseur = fournisseurPourDevise(devise);
-
-  const admin = createAdminClient();
 
   const { data: profil } = await admin
     .from('profiles')

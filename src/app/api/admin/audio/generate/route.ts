@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
+import { exigerAdmin } from '@/lib/admin/garde';
 import { getVoiceConfigs } from '@/lib/audio/voiceAllocator';
 import { 
   generateSentenceAudio, 
@@ -9,9 +10,14 @@ import {
 } from '@/lib/services/elevenlabsService';
 
 /**
- * GET: Liste toutes les voix et leur statut de configuration (voice_id renseigné ou manquant)
+ * GET: Liste toutes les voix et leur statut de configuration (réservé aux admins)
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const garde = await exigerAdmin(req);
+  if (!garde.ok) {
+    return NextResponse.json({ success: false, error: garde.erreur }, { status: garde.statut });
+  }
+
   try {
     const voiceMap = await getVoiceConfigs();
     const voices = Array.from(voiceMap.values());
@@ -47,23 +53,12 @@ export async function GET() {
  * PATCH: Met à jour le voice_id ou les réglages d'un personnage dans la table `personnages_voix`
  */
 export async function PATCH(req: NextRequest) {
+  const garde = await exigerAdmin(req);
+  if (!garde.ok) {
+    return NextResponse.json({ success: false, error: garde.erreur }, { status: garde.statut });
+  }
+
   try {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    // Vérification droits admin si connecté
-    if (user) {
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single();
-
-      if (profile?.role !== 'admin') {
-        return NextResponse.json({ success: false, error: 'Accès réservé aux administrateurs.' }, { status: 403 });
-      }
-    }
-
     const body = await req.json();
     const { id, voiceId, stability, similarityBoost, modelId } = body;
 
@@ -79,7 +74,8 @@ export async function PATCH(req: NextRequest) {
     if (similarityBoost !== undefined) updatePayload.similarity_boost = Number(similarityBoost);
     if (modelId !== undefined) updatePayload.model_id = modelId;
 
-    const { data, error } = await supabase
+    const adminClient = createAdminClient();
+    const { data, error } = await adminClient
       .from('personnages_voix')
       .update(updatePayload)
       .eq('id', id)
@@ -101,6 +97,11 @@ export async function PATCH(req: NextRequest) {
  * POST: Génère l'audio (test d'une voix, ou assemblage complet d'une histoire/dialogue)
  */
 export async function POST(req: NextRequest) {
+  const garde = await exigerAdmin(req);
+  if (!garde.ok) {
+    return NextResponse.json({ success: false, error: garde.erreur }, { status: garde.statut });
+  }
+
   try {
     const body = await req.json();
     const { type, contentId, characters, sentences, testText, voiceKey, apiKey } = body;

@@ -25,6 +25,16 @@ export const QUOTA_GRATUIT: Record<ContentTypeAcces, number> = {
   videos: 0,
 };
 
+/** Identifiants des histoires ouvertes au palier gratuit : 1 série (« Mon chat ») + 2 histoires individuelles */
+export const HISTOIRES_GRATUITES_IDS = [
+  'series_mon_chat',
+  'histoire_journee_wang_ming',
+  'histoire_chat_li_yue',
+];
+
+/** Nombre maximum d'épisodes/parties accessibles par série au palier gratuit */
+export const EPISODES_GRATUITS_SERIE_MAX = 3;
+
 /** Formations ouvertes au palier gratuit, par identifiant de cours. */
 export const FORMATIONS_GRATUITES = [
   'course_initiation_5_cours',   // Initiation au Chinois en 5 Vidéos
@@ -46,18 +56,30 @@ export const NIVEAUX_GRATUITS = ['HSK 1'];
  * abonné ET pour un administrateur. Ne jamais lui passer `estAbonne`, qui
  * ignorerait le rôle.
  *
- * `rang` est la position (à partir de 0) du contenu DANS SA RUBRIQUE, telle
- * qu'elle est affichée — c'est-à-dire après le tri par niveau HSK croissant.
- * Les contenus offerts sont donc toujours les plus faciles.
+ * Pour les histoires : 1 série (« Mon chat ») et 2 histoires individuelles.
+ * Pour les autres rubriques : les N premiers contenus par ordre HSK croissant.
  */
 export function contenuAccessible(
   type: string,
   rang: number,
+  accesComplet: boolean,
+  itemId?: string
+): boolean {
+  if (accesComplet) return true;
+  if (type === 'histoires' && itemId) {
+    return HISTOIRES_GRATUITES_IDS.includes(itemId);
+  }
+  const quota = QUOTA_GRATUIT[type as ContentTypeAcces];
+  return quota !== undefined && rang < quota;
+}
+
+/** Un épisode / partie d'une série est-il accessible ? */
+export function episodeAccessible(
+  episodeIndex: number,
   accesComplet: boolean
 ): boolean {
   if (accesComplet) return true;
-  const quota = QUOTA_GRATUIT[type as ContentTypeAcces];
-  return quota !== undefined && rang < quota;
+  return episodeIndex < EPISODES_GRATUITS_SERIE_MAX;
 }
 
 /** Une formation est-elle accessible ? */
@@ -82,7 +104,7 @@ export function rubriqueFermee(type: string, accesComplet: boolean): boolean {
 /** Résumé lisible du palier gratuit, pour l'argumentaire commercial. */
 export function resumeOffreGratuite(): string[] {
   return [
-    `${QUOTA_GRATUIT.chansons} chansons, ${QUOTA_GRATUIT.dialogues} dialogues, ${QUOTA_GRATUIT.articles} articles et ${QUOTA_GRATUIT.histoires} histoires`,
+    `${QUOTA_GRATUIT.chansons} chansons, ${QUOTA_GRATUIT.dialogues} dialogues, ${QUOTA_GRATUIT.articles} articles et la série Mon chat (3 parties) + 2 histoires`,
     'Le vocabulaire HSK 1 en entier',
     `${FORMATIONS_GRATUITES.length} formations pour débuter`,
   ];

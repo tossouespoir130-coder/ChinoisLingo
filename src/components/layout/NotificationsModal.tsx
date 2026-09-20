@@ -27,10 +27,11 @@ import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsA
 export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: NotificationsModalProps) {
   const router = useRouter();
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
-  const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'system'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'mascot' | 'system'>('all');
 
   const unreadCount = notifications.filter(n => !n.isRead).length;
   const founderUnreadCount = notifications.filter(n => n.source === 'founder' && !n.isRead).length;
+  const mascotUnreadCount = notifications.filter(n => n.source === 'mascot' && !n.isRead).length;
 
   // Load live notifications merged with persistent read status
   useEffect(() => {
@@ -97,6 +98,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
   const filteredNotifications = notifications.filter(n => {
     if (activeFilter === 'founder') return n.source === 'founder';
+    if (activeFilter === 'mascot') return n.source === 'mascot';
     if (activeFilter === 'system') return n.source === 'system';
     return true;
   });
@@ -152,7 +154,8 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
           </div>
 
           {/* Segmented Filter Pills */}
-          <div className="px-4 py-2 bg-[#FAFAFA] dark:bg-[#181818] border-b border-[#E0E0E0] dark:border-[#2D2D2D] flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+          <div className="px-4 py-2 bg-[#FAFAFA] dark:bg-[#181818] border-b border-[#E0E0E0] dark:border-[#2D2D2D] flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+            {/* Tous */}
             <button
               type="button"
               onClick={(e) => {
@@ -167,7 +170,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
               Tous ({notifications.length})
             </button>
 
-            {/* Founder Exclusive Purple Tab */}
+            {/* Espoir Chinois Tab */}
             <button
               type="button"
               onClick={(e) => {
@@ -176,16 +179,34 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
               }}
               className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all btn-press ${activeFilter === 'founder'
                   ? 'bg-[#6200EE] text-white shadow-xs shadow-[#6200EE]/30'
-                  : 'text-[#6200EE] dark:text-[#BB86FC] bg-[#6200EE]/10 hover:bg-[#6200EE]/20'
+                  : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#6200EE] dark:hover:text-[#BB86FC] hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
             >
-              <span>Espoir Chinois (Fondateur)</span>
+              <span>Espoir Chinois</span>
               {founderUnreadCount > 0 && (
-                <span className="w-2 h-2 rounded-full bg-[#DD2C00]" />
+                <span className={`w-1.5 h-1.5 rounded-full ${activeFilter === 'founder' ? 'bg-white' : 'bg-[#6200EE]'}`} />
               )}
             </button>
 
-            {/* System Tab */}
+            {/* Xiao Li Tab */}
+            <button
+              type="button"
+              onClick={(e) => {
+                setActiveFilter('mascot');
+                e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+              }}
+              className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap flex items-center gap-1.5 transition-all btn-press ${activeFilter === 'mascot'
+                  ? 'bg-[#00897B] dark:bg-[#03DAC5] text-white dark:text-[#004D40] shadow-xs'
+                  : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#00897B] dark:hover:text-[#03DAC5] hover:bg-black/5 dark:hover:bg-white/5'
+                }`}
+            >
+              <span>Xiao Li</span>
+              {mascotUnreadCount > 0 && (
+                <span className={`w-1.5 h-1.5 rounded-full ${activeFilter === 'mascot' ? 'bg-white dark:bg-[#004D40]' : 'bg-[#00897B] dark:bg-[#03DAC5]'}`} />
+              )}
+            </button>
+
+            {/* Système Tab */}
             <button
               type="button"
               onClick={(e) => {
@@ -193,7 +214,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
               }}
               className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap transition-all btn-press ${activeFilter === 'system'
-                  ? 'bg-[#03DAC5] text-[#004D40] dark:text-black font-extrabold shadow-xs'
+                  ? 'bg-[#212121] dark:bg-white text-white dark:text-[#212121] shadow-xs'
                   : 'text-[#757575] dark:text-[#A0A0A0] hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
             >
@@ -205,14 +226,82 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
           <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
             {filteredNotifications.map((notif) => {
               const isFounder = notif.source === 'founder';
+              const isMascot = notif.source === 'mascot';
+
+              if (isMascot) {
+                /* ========================================================
+                   REFINED ELEGANT STYLING FOR XIAO LI (MASCOTTE)
+                   ======================================================== */
+                const mascotImage = notif.mascotAvatar || '/images/onboarding/xiao-li-avatar.png';
+
+                return (
+                  <div
+                    key={notif.id}
+                    onClick={() => handleAction(notif)}
+                    className={`p-4 rounded-2xl transition-all cursor-pointer border relative overflow-hidden group btn-press ${notif.isRead
+                        ? 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#00897B]/40'
+                        : 'bg-[#00897B]/[0.03] dark:bg-[#03DAC5]/[0.06] border-[#00897B]/30 dark:border-[#03DAC5]/40 shadow-xs'
+                      }`}
+                  >
+                    {/* Top Mascot Identity Row */}
+                    <div className="flex items-start justify-between gap-3 mb-2.5">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="relative">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={mascotImage}
+                            alt={notif.mascotName || 'Xiao Li'}
+                            className="w-10 h-10 rounded-full object-contain p-0.5 bg-white dark:bg-[#252525] ring-2 ring-[#00897B]/30 dark:ring-[#03DAC5]/40 shadow-xs shrink-0"
+                          />
+                          <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#00897B] dark:bg-[#03DAC5] text-white dark:text-black flex items-center justify-center text-[9px] shadow-xs">
+                            🐾
+                          </span>
+                        </div>
+
+                        <div className="min-w-0">
+                          <span className="font-display font-black text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate block">
+                            {notif.mascotName || 'Xiao Li'}
+                          </span>
+                          <p className="text-[10.5px] font-semibold text-[#00897B] dark:text-[#03DAC5] truncate">
+                            {notif.mascotRole || 'Compagnon d’apprentissage 🐾'}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <div className="flex items-center gap-1 text-[10px] text-[#757575] dark:text-[#A0A0A0]">
+                          <Clock className="w-2.5 h-2.5" />
+                          <span>{notif.timestamp}</span>
+                        </div>
+                        {!notif.isRead && (
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#00897B] dark:bg-[#03DAC5] ring-2 ring-white dark:ring-[#1E1E1E] animate-pulse" />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Subject & Message Body */}
+                    <div className="space-y-1 pl-12">
+                      <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] whitespace-pre-line leading-snug">
+                        {notif.title}
+                      </h4>
+                      <p className="text-xs text-[#555555] dark:text-[#CCCCCC] leading-relaxed">
+                        {notif.message}
+                      </p>
+                      {notif.actionLabel && (
+                        <div className="pt-1.5 flex items-center gap-1 text-xs font-bold text-[#00897B] dark:text-[#03DAC5] group-hover:translate-x-0.5 transition-transform">
+                          <span>{notif.actionLabel}</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              }
 
               if (isFounder) {
                 /* ========================================================
-                   EXCLUSIVE VIOLET/PURPLE STYLING FOR ESPOIR CHINOIS (FOUNDER)
+                   EXCLUSIVE VIOLET/PURPLE STYLING FOR ESPOIR CHINOIS
                    ======================================================== */
-                // Une annonce du fondateur doit porter SON portrait, pas
-                // celui de la personne qui la lit : `userAvatar` n'a rien a
-                // faire ici, il passait avant tout le reste.
                 const founderImage = notif.founderAvatar || '/espoir-chinois.jpg';
 
                 return (
@@ -220,8 +309,8 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                     key={notif.id}
                     onClick={() => handleAction(notif)}
                     className={`p-4 rounded-2xl transition-all cursor-pointer border relative overflow-hidden group btn-press ${notif.isRead
-                        ? 'bg-[#6200EE]/[0.03] dark:bg-[#6200EE]/10 border-[#6200EE]/20'
-                        : 'bg-gradient-to-br from-[#6200EE]/[0.10] via-[#BB86FC]/[0.06] to-[#6200EE]/[0.03] dark:from-[#6200EE]/25 dark:to-[#1E1E1E] border-[#6200EE] shadow-md shadow-[#6200EE]/15 ring-1 ring-[#6200EE]/30'
+                        ? 'bg-white dark:bg-[#1E1E1E] border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE]/40'
+                        : 'bg-[#6200EE]/[0.04] dark:bg-[#6200EE]/10 border-[#6200EE]/30 dark:border-[#6200EE]/45 shadow-xs'
                       }`}
                   >
                     {/* Top Founder Identity Row */}
@@ -232,7 +321,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                           <img
                             src={founderImage}
                             alt={notif.founderName}
-                            className="w-10 h-10 rounded-full object-cover ring-2 ring-[#6200EE] shadow-sm shrink-0"
+                            className="w-10 h-10 rounded-full object-cover ring-2 ring-[#6200EE]/30 shadow-xs shrink-0"
                           />
                           <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#6200EE] text-white flex items-center justify-center text-[9px] shadow-xs">
                             <Sparkles className="w-2.5 h-2.5" />
@@ -243,7 +332,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                           <span className="font-display font-black text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate block">
                             {notif.founderName}
                           </span>
-                          <p className="text-[10px] font-semibold text-[#6200EE] dark:text-[#BB86FC] truncate">
+                          <p className="text-[10.5px] font-semibold text-[#6200EE] dark:text-[#BB86FC] truncate">
                             {notif.founderRole}
                           </p>
                         </div>

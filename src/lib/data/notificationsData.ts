@@ -1,9 +1,12 @@
 export interface NotificationItem {
   id: string;
-  source: 'founder' | 'system';
+  source: 'founder' | 'mascot' | 'system';
   founderName?: string;
   founderRole?: string;
   founderAvatar?: string;
+  mascotName?: string;
+  mascotRole?: string;
+  mascotAvatar?: string;
   type?: 'streak' | 'audio' | 'vocab' | 'video';
   title: string;
   message: string;
@@ -14,6 +17,34 @@ export interface NotificationItem {
 }
 
 export const initialNotifications: NotificationItem[] = [
+  {
+    id: 'notif_xiao_li_recommandation_mon_chat',
+    source: 'mascot',
+    mascotName: 'Xiao Li',
+    mascotRole: 'Mascotte & Guide ChinoisLingo 🐾',
+    mascotAvatar: '/images/onboarding/xiao-li-avatar.png',
+    type: 'audio',
+    title: 'Xiao Li te recommande : La série Mon chat\n我的猫 (HSK 1) 🐱',
+    message: 'Coucou ! J’ai une superbe histoire pour toi aujourd’hui : suis les 3 premières aventures de Xiaobai, idéales pour démarrer doucement le chinois !',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_mon_chat',
+    actionLabel: 'Lire avec Xiao Li'
+  },
+  {
+    id: 'notif_xiao_li_combinaisons_tip',
+    source: 'mascot',
+    mascotName: 'Xiao Li',
+    mascotRole: 'Mascotte & Guide ChinoisLingo 🐾',
+    mascotAvatar: '/images/onboarding/xiao-li-avatar.png',
+    type: 'vocab',
+    title: 'Astuce de Xiao Li : Construis tes premières phrases !\n组合方法 💡',
+    message: 'Savais-tu qu’avec 10 mots bien combinés, tu peux créer plus de 50 phrases en mandarin ? Viens essayer la Méthode de la Combinaison !',
+    timestamp: 'Aujourd’hui',
+    isRead: false,
+    actionUrl: '/vocabulaire?tab=combination',
+    actionLabel: 'Pratiquer la combinaison'
+  },
   {
     id: 'notif_chanson_jinshengyuan',
     source: 'founder',

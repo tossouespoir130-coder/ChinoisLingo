@@ -33,7 +33,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { fetchContentProgress, toggleContentCompletedInDb } from '@/lib/services/progressService';
 import { ChinoisLingoVideoPlayer } from '@/components/ui/ChinoisLingoVideoPlayer';
 import { useAbonnement } from '@/lib/payments/useAbonnement';
-import { contenuAccessible } from '@/lib/payments/acces';
+import { contenuAccessible, episodeAccessible } from '@/lib/payments/acces';
 import { EcranPremium, BadgeVerrou } from '@/components/subscription/EcranPremium';
 import { Portal } from '@/components/ui/Portal';
 import { recordOpenedActivity } from '@/lib/services/activityTrackingService';
@@ -5663,7 +5663,20 @@ function EcouteLectureContent() {
         return na - nb;
       })
       .findIndex((r) => r.id === item.id);
-    return contenuAccessible(item.type, rang, accesComplet);
+    return contenuAccessible(item.type, rang, accesComplet, item.id);
+  };
+
+  /**
+   * Un épisode spécifique d'une série est-il accessible ?
+   * Sur le plan gratuit, seuls les 3 premiers épisodes (0, 1, 2) sont offerts.
+   */
+  const estEpisodeAccessible = (item: ReadingItem, episodeIdx: number): boolean => {
+    if (accesComplet) return true;
+    if (!estAccessible(item)) return false;
+    if (item.seriesEpisodes && item.seriesEpisodes.length > 0) {
+      return episodeAccessible(episodeIdx, accesComplet);
+    }
+    return true;
   };
 
   /** Libellé de rubrique pour l'écran « réservé aux abonnés ». */
@@ -5683,7 +5696,10 @@ function EcouteLectureContent() {
    * mur : un abonné dont le profil charge encore ne doit pas voir clignoter
    * un écran « réservé ».
    */
-  const lectureAutorisee = activeReading !== null && estAccessible(activeReading);
+  const lectureAutorisee =
+    activeReading !== null &&
+    estAccessible(activeReading) &&
+    estEpisodeAccessible(activeReading, activeEpisodeIndex);
   const lectureEnAttente = activeReading !== null && !lectureAutorisee && accesIndetermine;
   const lectureRefusee = activeReading !== null && !lectureAutorisee && !accesIndetermine;
 
@@ -5691,7 +5707,7 @@ function EcouteLectureContent() {
   const openReading = (item: ReadingItem, episodeIdx = 0) => {
     // Point de passage unique : la carte du catalogue ET les liens profonds
     // (?type=&id=) passent par ici, le verrou couvre donc les deux.
-    if (!estAccessible(item)) {
+    if (!estAccessible(item) || !estEpisodeAccessible(item, episodeIdx)) {
       setItemVerrouille(item);
       return;
     }
@@ -6544,6 +6560,7 @@ function EcouteLectureContent() {
                 </span>
                 {activeReading.seriesEpisodes.map((ep, eIdx) => {
                   const isCurrent = activeEpisodeIndex === eIdx;
+                  const episodeVerrouille = !estEpisodeAccessible(activeReading, eIdx);
                   const labelPrefix = activeReading.type === 'videos' 
                     ? `Épisode ${ep.episodeNumber}` 
                     : activeReading.type === 'histoires' 
@@ -6557,6 +6574,10 @@ function EcouteLectureContent() {
                       type="button"
                       onClick={(e) => {
                         e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                        if (episodeVerrouille) {
+                          setItemVerrouille(activeReading);
+                          return;
+                        }
                         if (activeAudioRef.current) {
                           activeAudioRef.current.pause();
                           activeAudioRef.current = null;
@@ -6579,11 +6600,14 @@ function EcouteLectureContent() {
                         }
                       }}
                       className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all shrink-0 btn-press cursor-pointer flex items-center gap-1.5 active:scale-95 ${
-                        isCurrent
+                        episodeVerrouille
+                          ? 'bg-black/5 dark:bg-white/5 text-[#757575]/70 dark:text-[#A0A0A0]/70 border border-dashed border-[#E0E0E0] dark:border-[#2D2D2D]'
+                          : isCurrent
                           ? 'bg-[#6200EE] text-white shadow-md ring-2 ring-[#6200EE]/30'
                           : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC]'
                       }`}
                     >
+                      {episodeVerrouille && <Lock className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />}
                       <span>{labelPrefix}</span>
                       {cleanSubtitle && cleanSubtitle !== labelPrefix && (
                         <span className="opacity-80 font-normal truncate max-w-[130px] sm:max-w-[190px]">• {cleanSubtitle}</span>
@@ -7050,13 +7074,20 @@ function EcouteLectureContent() {
           {/* Grille des Cadres d'Épisodes / Articles (Adaptative 1 à 4 colonnes) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {activeSeries.seriesEpisodes?.map((ep, eIdx) => {
+              const episodeVerrouille = !estEpisodeAccessible(activeSeries, eIdx);
               return (
                 <div
                   key={ep.id}
                   onClick={() => {
+                    if (episodeVerrouille) {
+                      setItemVerrouille(activeSeries);
+                      return;
+                    }
                     openReading(activeSeries, eIdx);
                   }}
-                  className="nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE] transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square"
+                  className={`nixtio-card flex flex-col bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] hover:border-[#6200EE] transition-all duration-300 group cursor-pointer shadow-xs hover:shadow-xl rounded-3xl overflow-hidden aspect-square ${
+                    episodeVerrouille ? 'grayscale-[0.7] opacity-75' : ''
+                  }`}
                 >
                   {/* Moitié Supérieure du Cadre (Image avec Cover Fit & Badges Flottants) */}
                   <div className="relative w-full h-1/2 overflow-hidden bg-black/5 shrink-0">
@@ -7068,6 +7099,11 @@ function EcouteLectureContent() {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+                    {/* Floating Lock Badge if Episode Locked */}
+                    {episodeVerrouille && (
+                      <BadgeVerrou className="absolute top-2.5 left-2.5 z-10" />
+                    )}
 
                     {/* Floating HSK Level Badge on Top-Right */}
                     <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(ep.level || activeSeries.level)}`}>
@@ -7095,9 +7131,18 @@ function EcouteLectureContent() {
 
                       <button
                         type="button"
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs bg-[#6200EE] group-hover:bg-[#4A00B0] text-white transition-all btn-press"
+                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold shadow-xs transition-all btn-press ${
+                          episodeVerrouille
+                            ? 'bg-[#E0E0E0] dark:bg-[#2D2D2D] text-[#757575] dark:text-[#A0A0A0]'
+                            : 'bg-[#6200EE] group-hover:bg-[#4A00B0] text-white'
+                        }`}
                       >
-                        {activeSeries.type === 'videos' ? (
+                        {episodeVerrouille ? (
+                          <>
+                            <Lock className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
+                            <span>Réservé</span>
+                          </>
+                        ) : activeSeries.type === 'videos' ? (
                           <>
                             <Play className="w-3 h-3 fill-current" />
                             <span>Regarder</span>

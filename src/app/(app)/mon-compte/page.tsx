@@ -121,7 +121,7 @@ function MonCompteContent() {
     firstName: profile?.first_name || '',
     lastName: profile?.last_name || '',
     email: profile?.email || user?.email || '',
-    avatarUrl: profile?.avatar_url || userAvatar || '',
+    avatarUrl: profile?.avatar_url || '',
     bio: profile?.bio || '',
     country: profile?.country || '',
     city: profile?.city || '',
@@ -145,7 +145,7 @@ function MonCompteContent() {
         firstName: profile.first_name || '',
         lastName: profile.last_name || '',
         email: profile.email || user?.email || '',
-        avatarUrl: profile.avatar_url || userAvatar || '',
+        avatarUrl: profile.avatar_url || '',
         bio: profile.bio || '',
         country: profile.country || '',
         city: profile.city || '',
@@ -155,33 +155,7 @@ function MonCompteContent() {
       setProfileData(updated);
       setTempProfileData(updated);
     }
-  }, [profile, user, userAvatar]);
-
-  useEffect(() => {
-    setMounted(true);
-    // Load persisted profile data if available
-    try {
-      const savedProfile = localStorage.getItem(PROFILE_STORAGE_KEY);
-      if (savedProfile && !profile) {
-        const parsed = JSON.parse(savedProfile);
-        setProfileData(parsed);
-        setTempProfileData(parsed);
-      }
-      const savedRaw = localStorage.getItem('chinoislingo_user_raw_photo');
-      if (savedRaw) {
-        setRawOriginalPhoto(savedRaw);
-      }
-    } catch {
-      // ignore
-    }
-  }, [profile]);
-
-  // Synchronize when global avatar changes
-  useEffect(() => {
-    if (userAvatar) {
-      setProfileData((prev) => ({ ...prev, avatarUrl: userAvatar }));
-    }
-  }, [userAvatar]);
+  }, [profile, user]);
 
   useEffect(() => {
     if (tabParam === 'subscription' || tabParam === 'preferences' || tabParam === 'profile') {
@@ -413,16 +387,16 @@ function MonCompteContent() {
                 {/* Un `src` vide fait retelecharger la page entiere selon le
                     navigateur, en plus d'afficher une vignette cassee : on
                     n'affiche l'image que si une source existe reellement. */}
-                {(userAvatar || profileData.avatarUrl) ? (
+                {profileData.avatarUrl ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
-                    src={userAvatar || profileData.avatarUrl}
+                    src={profileData.avatarUrl}
                     alt={profileData.displayName || 'Votre profil'}
                     className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover ring-2 ring-[#6200EE]/30 group-hover:ring-[#6200EE] shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6200EE] text-white text-xl sm:text-2xl font-black flex items-center justify-center ring-2 ring-[#6200EE]/30 group-hover:ring-[#6200EE] shadow-sm transition-all duration-300 group-hover:scale-105">
-                    {initialesDe(profileData.displayName)}
+                    {initialesDe(profileData.displayName || profileData.email)}
                   </span>
                 )}
                 
