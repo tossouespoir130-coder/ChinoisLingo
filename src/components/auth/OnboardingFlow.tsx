@@ -67,38 +67,38 @@ export function OnboardingFlow({ onSwitchToSignIn }: OnboardingFlowProps) {
   // Options Étape 1 : Profil
   const profilOptions = [
     {
-      id: 'salarie',
-      label: 'Professionnel(le) salarié(e)',
+      id: 'entrepreneur',
+      label: 'Entrepreneur',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-amber-700 dark:text-amber-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/40 flex items-center justify-center text-[#6200EE] dark:text-[#BB86FC] shrink-0 shadow-xs">
           <Briefcase className="w-5 h-5" />
         </div>
       ),
     },
     {
-      id: 'freelance',
-      label: 'Freelance',
+      id: 'cadre',
+      label: 'Cadre d’entreprise',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950/40 flex items-center justify-center text-sky-600 dark:text-sky-300 shrink-0 shadow-xs">
-          <Camera className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/40 flex items-center justify-center text-[#00796B] dark:text-[#03DAC5] shrink-0 shadow-xs">
+          <Briefcase className="w-5 h-5" />
         </div>
       ),
     },
     {
       id: 'etudiant',
-      label: 'Étudiant(e) à l’université',
+      label: 'Étudiant(e)',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-[#E65100] dark:text-[#FFB74D] shrink-0 shadow-xs">
           <GraduationCap className="w-5 h-5" />
         </div>
       ),
     },
     {
-      id: 'lyceen',
-      label: 'Collégien / Lycéen',
+      id: 'ingenieur',
+      label: 'Ingénieur / Technicien',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-950/40 flex items-center justify-center text-pink-600 dark:text-pink-300 shrink-0 shadow-xs">
-          <Globe className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950/40 flex items-center justify-center text-[#0288D1] dark:text-[#4FC3F7] shrink-0 shadow-xs">
+          <TrendingUp className="w-5 h-5" />
         </div>
       ),
     },
@@ -106,7 +106,7 @@ export function OnboardingFlow({ onSwitchToSignIn }: OnboardingFlowProps) {
       id: 'autre',
       label: 'Autre',
       icon: (
-        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/40 flex items-center justify-center text-amber-600 dark:text-amber-300 shrink-0 shadow-xs">
+        <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/40 flex items-center justify-center text-[#8E24AA] dark:text-[#CE93D8] shrink-0 shadow-xs">
           <Telescope className="w-5 h-5" />
         </div>
       ),

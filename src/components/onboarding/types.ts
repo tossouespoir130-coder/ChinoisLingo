@@ -1,9 +1,12 @@
 export type ProfilType = 
   | 'entrepreneur'
-  | 'professionnel' 
+  | 'cadre'
   | 'etudiant' 
-  | 'independant' 
-  | 'autre';
+  | 'ingenieur' 
+  | 'autre'
+  // Types historiques pour rétrocompatibilité
+  | 'professionnel'
+  | 'independant';
 
 export type MotivationType = 
   | 'etudes' 

@@ -1,42 +1,50 @@
 {
   "contentId": "article_carte_visite",
-  "aliases": [
-    "article_cles_affaires_series",
-    "series_affaires_chine_ep1"
-  ],
-  "type": "article",
+  "title": "Les Clés des Affaires en Chine - Comment échanger une carte de visite en Chine",
+  "type": "articles",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/article_carte_visite.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 15360,
+  "totalDurationMs": 15840,
   "sentences": [
     {
       "sentenceId": "cdv_1",
+      "hanzi": "在中国，第一次见面递名片要用双手。",
       "startMs": 0,
-      "endMs": 3750,
-      "durationMs": 3400,
+      "endMs": 3760,
+      "durationMs": 3760,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_1.mp3"
     },
     {
       "sentenceId": "cdv_2",
-      "startMs": 3750,
-      "endMs": 6450,
-      "durationMs": 2350,
+      "hanzi": "这是尊重的表现，非常重要。",
+      "startMs": 3760,
+      "endMs": 7600,
+      "durationMs": 3200,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_2.mp3"
     },
     {
       "sentenceId": "cdv_3",
-      "startMs": 6450,
-      "endMs": 9800,
-      "durationMs": 3000,
+      "hanzi": "你可以说：这是我的名片，请多关照。",
+      "startMs": 7600,
+      "endMs": 11920,
+      "durationMs": 3440,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_3.mp3"
     },
     {
       "sentenceId": "cdv_4",
-      "startMs": 9800,
-      "endMs": 12960,
-      "durationMs": 3160,
+      "hanzi": "对方会觉得你很有礼貌，合作会更顺利。",
+      "startMs": 11920,
+      "endMs": 15760,
+      "durationMs": 3840,
       "audioUrl": "/audio/readings/article_carte_visite_cdv_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

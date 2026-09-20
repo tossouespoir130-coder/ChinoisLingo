@@ -33,7 +33,38 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
   2. Vérifier la conformité stricte du fichier de métadonnées `_meta.json` (`contentId`, `fullAudioUrl`, tableau `sentences` avec `sentenceId`, `startMs`, `endMs`, `durationMs`, `audioUrl`).
   3. Vérifier que le lecteur immersif charge et joue bien les fichiers audio réels d'ElevenLabs (Master continu et audio phrase par phrase) sans aucun basculement intempestif sur la synthèse vocale du navigateur.
 - **Règle Permanente de Distinction : « Épisode » (Vidéos) vs « Partie » (Histoires & Lectures)** : Le terme **« Épisode »** est réservé exclusivement aux contenus vidéos (`type: 'videos'`). Pour les histoires et lectures scénarisées (`type: 'histoires'`), utiliser systématiquement le terme **« Partie »** (`Partie 1`, `Partie 2`...) et **`X parties`** pour la durée globale.
-- **Règle Permanente de Synthèse Audio en Bloc Unique pour les Histoires et Articles Narratifs (Sans Dialogue)** : Pour tout contenu narratif continu (histoires sans dialogue, articles, podcasts narrés), interdiction formelle de générer les phrases une par une pour les concaténer ensuite (ce qui crée des cuts, des chutes d'intonation et des glitchs audio). Envoyer systématiquement le texte complet du paragraphe ou de la leçon en un **SEUL bloc continu à ElevenLabs (`/v1/text-to-speech/{voice_id}/with-timestamps`)** pour garantir une intonation fluide, mélodieuse, naturelle et parfaitement uniforme. Les phrases individuelles et leurs métadonnées de synchronisation sont extraites directement de ce Master audio unifié.
+
+### Les 11 Règles Permanentes de Génération Audio
+1. **Modèle Obligatoire** : Toujours `eleven_v3`, jamais `eleven_multilingual_v2` ni aucun autre modèle.
+2. **Réglages de Voix Obligatoires (Identiques sur tous les contenus)** :
+   - `stability`: `0.50`
+   - `similarity_boost`: `0.85`
+   - `style`: `0.0`
+   - `use_speaker_boost`: `true`
+   - `output_format`: `mp3_44100_128`
+3. **Structure de Génération selon le Type de Contenu** :
+   - *Histoires et articles* : UN SEUL bloc, un seul appel API (`/v1/text-to-speech/{voice_id}/with-timestamps`), jamais fragmenté.
+   - *Dialogues* : Groupés par répliques consécutives du même personnage avec Request Stitching, crossfade et normalisation du volume.
+4. **Émotion et Expressivité Naturelles** : `eleven_v3` interprète nativement le contexte et la ponctuation. Pas de balises manuelles par défaut.
+5. **Timestamps Obligatoires** : Extraction systématique des timestamps via `/with-timestamps` dans `_meta.json`.
+6. **Régénération Propre** : Remplacement complet et homogène de tous les anciens fichiers existants.
+7. **Validation Avant Génération de Masse** : Générer 2-3 exemples représentatifs et attendre la validation d'Espoir Chinois avant de lancer sur l'ensemble.
+8. **Sauvegarde de Sécurité** : Sauvegarder systématiquement l'existant (`public/audio/readings_backup_*`) avant écrasement.
+9. **Documentation Permanente** : Règle inscrite dans `AGENTS.md` et `GEMINI.md`.
+10. **Rotation des Narrateurs pour les Histoires (5 Narrateurs Officiels)** :
+    - Les 5 narrateurs officiels du catalogue sont classés dans cet ordre :
+      1. **Narratrice 1 (Voix Principale)** : **Anna Su** (`9lHjugDhwqoxA5MhX0az`) — *Voix énergique et dynamique*
+      2. **Narrateur 2** : **Ethan Zhang** (`brChkoggsUHF1stW6omH`)
+      3. **Narratrice 3** : **Siqi Liu** (`W8lBaQb9YIoddhxfQNLP`)
+      4. **Narratrice 4** : **Sage** (`APSIkVZudNbPAwyPoeVO`)
+      5. **Narrateur 5** : **Hua Feng** (`rtRocV7drsrJFSQPxlD3`)
+    - *Histoires indépendantes* : Rotation circulaire stricte entre les 5 narrateurs (Histoire 1 = Anna Su, Histoire 2 = Ethan, Histoire 3 = Siqi, Histoire 4 = Sage, Histoire 5 = Hua Feng, Histoire 6 = retour à Anna Su...).
+    - *Séries d'histoires* : UN SEUL narrateur lit toute la série d'épisodes sans changement.
+11. **Traitement des Débuts/Fins de Segments Audio (Anti-Glitch, Anti-Cut & Padding)** :
+    - Micro fade-in (20-30ms) et fade-out (30-40ms) systématiques sur chaque segment découpé.
+    - Padding de fin (+80ms) pour préserver la résonance naturelle et les consonnes finales sans aucune coupure abrupte.
+    - Assemblage fluide avec pause naturelle (350ms) et normalisation sonore (`loudnorm`). S'applique à tous les contenus (histoires, dialogues, articles, vocabulaire).
+
 
 ---
 

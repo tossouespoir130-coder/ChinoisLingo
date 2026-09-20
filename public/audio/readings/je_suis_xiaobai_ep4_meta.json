@@ -1,52 +1,66 @@
 {
   "contentId": "je_suis_xiaobai_ep4",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Partie 4 : Ma maman",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep4.mp3",
-  "totalDurationMs": 17680,
+  "totalDurationMs": 13040,
   "sentences": [
     {
       "sentenceId": "jsx_e4_1",
+      "hanzi": "我的妈妈叫李月。",
       "startMs": 0,
-      "endMs": 2976,
-      "durationMs": 2976,
+      "endMs": 1360,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_1.mp3"
     },
     {
       "sentenceId": "jsx_e4_2",
-      "startMs": 2776,
-      "endMs": 5948,
-      "durationMs": 3172,
+      "hanzi": "她今年二十三岁。",
+      "startMs": 1360,
+      "endMs": 3680,
+      "durationMs": 2240,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_2.mp3"
     },
     {
       "sentenceId": "jsx_e4_3",
-      "startMs": 5748,
-      "endMs": 8131,
-      "durationMs": 2383,
+      "hanzi": "她在医院工作。",
+      "startMs": 3680,
+      "endMs": 5840,
+      "durationMs": 2080,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_3.mp3"
     },
     {
       "sentenceId": "jsx_e4_4",
-      "startMs": 7931,
-      "endMs": 11033,
-      "durationMs": 3102,
+      "hanzi": "她喜欢吃中国菜。",
+      "startMs": 5840,
+      "endMs": 8400,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_4.mp3"
     },
     {
       "sentenceId": "jsx_e4_5",
-      "startMs": 10833,
-      "endMs": 13413,
-      "durationMs": 2580,
+      "hanzi": "她是中国人。",
+      "startMs": 8400,
+      "endMs": 10480,
+      "durationMs": 1920,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_5.mp3"
     },
     {
       "sentenceId": "jsx_e4_6",
-      "startMs": 13213,
-      "endMs": 15180,
-      "durationMs": 1967,
+      "hanzi": "我很喜欢我的妈妈。",
+      "startMs": 10480,
+      "endMs": 12987,
+      "durationMs": 2507,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep4_jsx_e4_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

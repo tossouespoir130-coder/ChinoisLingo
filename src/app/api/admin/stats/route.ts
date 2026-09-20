@@ -23,7 +23,7 @@ export async function GET(requete: Request) {
   // qui ferait chuter le chiffre à zéro chaque lundi matin.
   const ilYaSeptJours = new Date(maintenant.getTime() - 7 * 86_400_000).toISOString();
 
-  const [total, abonnes, semaine] = await Promise.all([
+  const [total, abonnes, semaine, tousProfils] = await Promise.all([
     admin.from('profiles').select('*', { count: 'exact', head: true }),
     admin
       .from('profiles')
@@ -33,11 +33,46 @@ export async function GET(requete: Request) {
       .from('profiles')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', ilYaSeptJours),
+    admin
+      .from('profiles')
+      .select('onboarding_profil, onboarding_objectif, onboarding_niveau, onboarding_rappels'),
   ]);
+
+  // Agrégation des profils
+  const profilsCompte: Record<string, number> = {};
+  const objectifsCompte: Record<string, number> = {};
+  const niveauxCompte: Record<string, number> = {};
+  let rappelsActifs = 0;
+  let totalAvecOnboarding = 0;
+
+  (tousProfils.data ?? []).forEach((p) => {
+    if (p.onboarding_profil || p.onboarding_objectif || p.onboarding_niveau) {
+      totalAvecOnboarding++;
+    }
+    if (p.onboarding_profil) {
+      profilsCompte[p.onboarding_profil] = (profilsCompte[p.onboarding_profil] || 0) + 1;
+    }
+    if (p.onboarding_objectif) {
+      objectifsCompte[p.onboarding_objectif] = (objectifsCompte[p.onboarding_objectif] || 0) + 1;
+    }
+    if (p.onboarding_niveau) {
+      niveauxCompte[p.onboarding_niveau] = (niveauxCompte[p.onboarding_niveau] || 0) + 1;
+    }
+    if (p.onboarding_rappels !== false) {
+      rappelsActifs++;
+    }
+  });
 
   return NextResponse.json({
     totalUtilisateurs: total.count ?? 0,
     abonnesActifs: abonnes.count ?? 0,
     inscriptionsSemaine: semaine.count ?? 0,
+    onboarding: {
+      totalRenseignes: totalAvecOnboarding,
+      profils: profilsCompte,
+      objectifs: objectifsCompte,
+      niveaux: niveauxCompte,
+      rappelsActifs,
+    },
   });
 }

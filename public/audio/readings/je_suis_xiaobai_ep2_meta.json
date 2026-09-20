@@ -1,52 +1,66 @@
 {
   "contentId": "je_suis_xiaobai_ep2",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Partie 2 : Mon ami",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep2.mp3",
-  "totalDurationMs": 14160,
+  "totalDurationMs": 15040,
   "sentences": [
     {
       "sentenceId": "jsx_e2_1",
+      "hanzi": "我有一个朋友。",
       "startMs": 0,
-      "endMs": 2326,
-      "durationMs": 2326,
+      "endMs": 1920,
+      "durationMs": 1920,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_1.mp3"
     },
     {
       "sentenceId": "jsx_e2_2",
-      "startMs": 2126,
-      "endMs": 4601,
-      "durationMs": 2475,
+      "hanzi": "他也是一只猫。",
+      "startMs": 1920,
+      "endMs": 4240,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_2.mp3"
     },
     {
       "sentenceId": "jsx_e2_3",
-      "startMs": 4401,
-      "endMs": 6099,
-      "durationMs": 1698,
+      "hanzi": "他叫小花。",
+      "startMs": 4240,
+      "endMs": 5800,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_3.mp3"
     },
     {
       "sentenceId": "jsx_e2_4",
-      "startMs": 5899,
-      "endMs": 7643,
-      "durationMs": 1744,
+      "hanzi": "他两岁。",
+      "startMs": 5800,
+      "endMs": 7440,
+      "durationMs": 1640,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_4.mp3"
     },
     {
       "sentenceId": "jsx_e2_5",
-      "startMs": 7443,
-      "endMs": 10116,
-      "durationMs": 2673,
+      "hanzi": "他也喜欢吃鱼。",
+      "startMs": 7440,
+      "endMs": 9840,
+      "durationMs": 1280,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_5.mp3"
     },
     {
       "sentenceId": "jsx_e2_6",
-      "startMs": 9916,
-      "endMs": 11650,
-      "durationMs": 1734,
+      "hanzi": "他也住在中国。",
+      "startMs": 9840,
+      "endMs": 10960,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep2_jsx_e2_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

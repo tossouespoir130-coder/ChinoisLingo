@@ -1,123 +1,146 @@
 {
   "contentId": "vie_chine_business_ep4",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 4 : Acheter à manger",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep4.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 37880,
+  "totalDurationMs": 46240,
   "sentences": [
     {
       "sentenceId": "vc_b4_1",
+      "hanzi": "早上，卡蒂娅、布里斯和安东尼去饭馆。",
       "startMs": 0,
-      "endMs": 3350,
-      "durationMs": 3000,
+      "endMs": 4480,
+      "durationMs": 4480,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_1.mp3"
     },
     {
       "sentenceId": "vc_b4_2",
-      "startMs": 3350,
-      "endMs": 7550,
-      "durationMs": 3400,
+      "hanzi": "他们要吃中国菜。饭馆里人很多。",
+      "startMs": 4480,
+      "endMs": 9600,
+      "durationMs": 3920,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_2.mp3"
     },
     {
       "sentenceId": "vc_b4_3",
-      "startMs": 7550,
-      "endMs": 8810,
-      "durationMs": 910,
+      "hanzi": "你们吃什么？",
+      "startMs": 9600,
+      "endMs": 11600,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_3.mp3"
     },
     {
       "sentenceId": "vc_b4_4",
-      "startMs": 8810,
-      "endMs": 10810,
-      "durationMs": 1650,
+      "hanzi": "我吃米饭。你呢？",
+      "startMs": 11600,
+      "endMs": 14160,
+      "durationMs": 1600,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_4.mp3"
     },
     {
       "sentenceId": "vc_b4_5",
-      "startMs": 10810,
-      "endMs": 13510,
-      "durationMs": 2350,
+      "hanzi": "我也吃米饭。卡蒂娅，你呢？",
+      "startMs": 14160,
+      "endMs": 17840,
+      "durationMs": 2560,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_5.mp3"
     },
     {
       "sentenceId": "vc_b4_6",
-      "startMs": 13510,
-      "endMs": 15980,
-      "durationMs": 2120,
+      "hanzi": "我吃面条。",
+      "startMs": 17840,
+      "endMs": 19920,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_6.mp3"
     },
     {
       "sentenceId": "vc_b4_7",
-      "startMs": 15980,
-      "endMs": 18600,
-      "durationMs": 2270,
+      "hanzi": "老板，两碗米饭，一碗面条。",
+      "startMs": 19920,
+      "endMs": 23440,
+      "durationMs": 2640,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_7.mp3"
     },
     {
       "sentenceId": "vc_b4_8",
-      "startMs": 18600,
-      "endMs": 20440,
-      "durationMs": 1490,
+      "hanzi": "好。还要什么？",
+      "startMs": 23440,
+      "endMs": 25920,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_8.mp3"
     },
     {
       "sentenceId": "vc_b4_9",
-      "startMs": 20440,
-      "endMs": 22360,
-      "durationMs": 1570,
+      "hanzi": "有茶吗？",
+      "startMs": 25920,
+      "endMs": 27680,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_9.mp3"
     },
     {
       "sentenceId": "vc_b4_10",
-      "startMs": 22360,
-      "endMs": 23620,
-      "durationMs": 910,
+      "hanzi": "有。",
+      "startMs": 27680,
+      "endMs": 28640,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_10.mp3"
     },
     {
       "sentenceId": "vc_b4_11",
-      "startMs": 23620,
-      "endMs": 24960,
-      "durationMs": 990,
+      "hanzi": "我要一杯茶。",
+      "startMs": 28640,
+      "endMs": 30640,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_11.mp3"
     },
     {
       "sentenceId": "vc_b4_12",
-      "startMs": 24960,
-      "endMs": 26220,
-      "durationMs": 910,
+      "hanzi": "我要一杯水。",
+      "startMs": 30640,
+      "endMs": 32800,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_12.mp3"
     },
     {
       "sentenceId": "vc_b4_13",
-      "startMs": 26220,
-      "endMs": 27560,
-      "durationMs": 990,
+      "hanzi": "我也要水。",
+      "startMs": 32800,
+      "endMs": 34640,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_13.mp3"
     },
     {
       "sentenceId": "vc_b4_14",
-      "startMs": 27560,
-      "endMs": 29430,
-      "durationMs": 1070,
+      "hanzi": "好，请等一下。",
+      "startMs": 34640,
+      "endMs": 37280,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_14.mp3"
     },
     {
       "sentenceId": "vc_b4_15",
-      "startMs": 29430,
-      "endMs": 32940,
-      "durationMs": 3160,
+      "hanzi": "他们吃米饭，吃面条，喝茶，喝水。",
+      "startMs": 37280,
+      "endMs": 42320,
+      "durationMs": 4160,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_15.mp3"
     },
     {
       "sentenceId": "vc_b4_16",
-      "startMs": 32940,
-      "endMs": 35940,
-      "durationMs": 3000,
+      "hanzi": "中国菜很好吃。他们很高兴。",
+      "startMs": 42320,
+      "endMs": 46160,
+      "durationMs": 3840,
       "audioUrl": "/audio/readings/vie_chine_business_ep4_vc_b4_16.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

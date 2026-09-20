@@ -1,39 +1,52 @@
 {
   "contentId": "dialogue_4",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Prendre le Taxi pour Aller à l’Hôtel",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_4.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 13740,
+  "totalDurationMs": 11850,
   "sentences": [
     {
       "sentenceId": "d4_1",
+      "speaker": "Espoir",
+      "hanzi": "师傅，您好！我想去北京酒店。",
       "startMs": 0,
-      "endMs": 3040,
-      "durationMs": 2690,
+      "endMs": 2800,
+      "durationMs": 2800,
       "audioUrl": "/audio/readings/dialogue_4_d4_1.mp3"
     },
     {
       "sentenceId": "d4_2",
-      "startMs": 3040,
-      "endMs": 5740,
-      "durationMs": 2350,
+      "speaker": "师傅",
+      "hanzi": "好的，请上车，请系好安全带。",
+      "startMs": 3150,
+      "endMs": 6030,
+      "durationMs": 2880,
       "audioUrl": "/audio/readings/dialogue_4_d4_2.mp3"
     },
     {
       "sentenceId": "d4_3",
-      "startMs": 5740,
-      "endMs": 9560,
-      "durationMs": 3470,
+      "speaker": "Espoir",
+      "hanzi": "请问，到北京酒店要坐几分钟？",
+      "startMs": 6380,
+      "endMs": 9980,
+      "durationMs": 3600,
       "audioUrl": "/audio/readings/dialogue_4_d4_3.mp3"
     },
     {
       "sentenceId": "d4_4",
-      "startMs": 9560,
-      "endMs": 11360,
-      "durationMs": 1800,
+      "speaker": "师傅",
+      "hanzi": "大概十五分钟就到了。",
+      "startMs": 10330,
+      "endMs": 11850,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/dialogue_4_d4_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

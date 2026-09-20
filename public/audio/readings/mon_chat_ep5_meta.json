@@ -1,46 +1,58 @@
 {
   "contentId": "mon_chat_ep5",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Mon chat - Partie 5 : Un ami vient chez moi",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/mon_chat_ep5.mp3",
-  "pauseBetweenSec": 0.5,
-  "totalDurationMs": 13110,
+  "totalDurationMs": 12320,
   "sentences": [
     {
       "sentenceId": "mc_e5_1",
+      "hanzi": "今天，我的朋友来我家。",
       "startMs": 0,
-      "endMs": 3172,
-      "durationMs": 3172,
+      "endMs": 3440,
+      "durationMs": 3440,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_1.mp3"
     },
     {
       "sentenceId": "mc_e5_2",
-      "startMs": 3106,
-      "endMs": 4772,
-      "durationMs": 1666,
+      "hanzi": "他叫李华。",
+      "startMs": 3440,
+      "endMs": 5240,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_2.mp3"
     },
     {
       "sentenceId": "mc_e5_3",
-      "startMs": 4750,
-      "endMs": 6461,
-      "durationMs": 1711,
+      "hanzi": "他七岁。",
+      "startMs": 5240,
+      "endMs": 6800,
+      "durationMs": 1560,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_3.mp3"
     },
     {
       "sentenceId": "mc_e5_4",
-      "startMs": 6394,
-      "endMs": 8328,
-      "durationMs": 1934,
+      "hanzi": "他也有一只猫。",
+      "startMs": 6800,
+      "endMs": 8800,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_4.mp3"
     },
     {
       "sentenceId": "mc_e5_5",
-      "startMs": 8306,
-      "endMs": 10610,
-      "durationMs": 2304,
+      "hanzi": "他的猫也叫小白。",
+      "startMs": 8800,
+      "endMs": 10800,
+      "durationMs": 2000,
       "audioUrl": "/audio/readings/mon_chat_ep5_mc_e5_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

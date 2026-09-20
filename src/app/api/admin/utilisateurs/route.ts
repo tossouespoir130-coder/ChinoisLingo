@@ -20,8 +20,13 @@ export async function GET(requete: Request) {
   const params = new URL(requete.url).searchParams;
   const page = Math.max(1, parseInt(params.get('page') ?? '1', 10) || 1);
   const recherche = (params.get('recherche') ?? '').trim();
+  const filtreProfil = (params.get('profil') ?? '').trim();
+  const filtreObjectif = (params.get('objectif') ?? '').trim();
+  const filtreNiveau = (params.get('niveau') ?? '').trim();
+  const filtreStatut = (params.get('statut') ?? '').trim();
 
   const admin = createAdminClient();
+  const maintenant = new Date();
 
   let requeteSql = admin
     .from('profiles')
@@ -36,12 +41,28 @@ export async function GET(requete: Request) {
     .range((page - 1) * PAR_PAGE, page * PAR_PAGE - 1);
 
   if (recherche) {
-    // Les virgules et parenthèses sont des séparateurs dans la syntaxe `or`
-    // de PostgREST : les laisser passer casserait le filtre.
     const motif = recherche.replace(/[,()]/g, ' ');
     requeteSql = requeteSql.or(
-      `full_name.ilike.%${motif}%,email.ilike.%${motif}%,username.ilike.%${motif}%,onboarding_profil.ilike.%${motif}%,onboarding_objectif.ilike.%${motif}%`
+      `full_name.ilike.%${motif}%,email.ilike.%${motif}%,username.ilike.%${motif}%,onboarding_profil.ilike.%${motif}%,onboarding_objectif.ilike.%${motif}%,onboarding_niveau.ilike.%${motif}%`
     );
+  }
+
+  if (filtreProfil) {
+    requeteSql = requeteSql.ilike('onboarding_profil', `%${filtreProfil}%`);
+  }
+
+  if (filtreObjectif) {
+    requeteSql = requeteSql.ilike('onboarding_objectif', `%${filtreObjectif}%`);
+  }
+
+  if (filtreNiveau) {
+    requeteSql = requeteSql.ilike('onboarding_niveau', `%${filtreNiveau}%`);
+  }
+
+  if (filtreStatut === 'premium') {
+    requeteSql = requeteSql.gt('current_period_end', maintenant.toISOString());
+  } else if (filtreStatut === 'gratuit') {
+    requeteSql = requeteSql.or(`current_period_end.is.null,current_period_end.lte.${maintenant.toISOString()}`);
   }
 
   const { data, count, error } = await requeteSql;
@@ -51,7 +72,7 @@ export async function GET(requete: Request) {
     return NextResponse.json({ erreur: 'Lecture impossible.' }, { status: 500 });
   }
 
-  const maintenant = Date.now();
+  const maintenantMs = maintenant.getTime();
 
   const utilisateurs = (data ?? []).map((u) => {
     const joursActifs = Math.max(u.total_login_days || 0, u.streak_days || 0, 1);
@@ -71,7 +92,7 @@ export async function GET(requete: Request) {
       // Le statut est recalculé ici plutôt que lu dans subscription_status :
       // la date de fin de période est la seule source fiable.
       premium: u.current_period_end
-        ? new Date(u.current_period_end).getTime() > maintenant
+        ? new Date(u.current_period_end).getTime() > maintenantMs
         : false,
       plan: u.subscription_plan,
       // Nécessaire au récapitulatif « avant / après » de la modale.

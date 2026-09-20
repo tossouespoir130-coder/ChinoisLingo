@@ -1,39 +1,52 @@
 {
   "contentId": "dialogue_3",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Commander au Restaurant",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_3.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 14160,
+  "totalDurationMs": 12090,
   "sentences": [
     {
       "sentenceId": "d3_1",
+      "speaker": "Brice",
+      "hanzi": "服务员，请给我菜单。",
       "startMs": 0,
-      "endMs": 2230,
-      "durationMs": 1880,
+      "endMs": 1920,
+      "durationMs": 1920,
       "audioUrl": "/audio/readings/dialogue_3_d3_1.mp3"
     },
     {
       "sentenceId": "d3_2",
-      "startMs": 2230,
-      "endMs": 6370,
-      "durationMs": 3790,
+      "speaker": "服务员",
+      "hanzi": "好的，这是菜单。请问您想吃什么？",
+      "startMs": 2270,
+      "endMs": 6270,
+      "durationMs": 4000,
       "audioUrl": "/audio/readings/dialogue_3_d3_2.mp3"
     },
     {
       "sentenceId": "d3_3",
-      "startMs": 6370,
-      "endMs": 9720,
-      "durationMs": 3000,
+      "speaker": "Brice",
+      "hanzi": "我要一碗牛肉面，和一瓶水。",
+      "startMs": 6620,
+      "endMs": 9580,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/dialogue_3_d3_3.mp3"
     },
     {
       "sentenceId": "d3_4",
-      "startMs": 9720,
-      "endMs": 11760,
-      "durationMs": 2040,
+      "speaker": "服务员",
+      "hanzi": "好的，请稍等，马上来！",
+      "startMs": 9930,
+      "endMs": 12090,
+      "durationMs": 2160,
       "audioUrl": "/audio/readings/dialogue_3_d3_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

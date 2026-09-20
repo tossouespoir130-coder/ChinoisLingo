@@ -1,39 +1,50 @@
 {
   "contentId": "article_1",
-  "aliases": [],
-  "type": "article",
+  "title": "La Culture du Thé en Chine",
+  "type": "articles",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/article_1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 18000,
+  "totalDurationMs": 16560,
   "sentences": [
     {
       "sentenceId": "a1_1",
+      "hanzi": "中国人非常喜欢喝茶。",
       "startMs": 0,
-      "endMs": 2780,
-      "durationMs": 2430,
+      "endMs": 2800,
+      "durationMs": 2800,
       "audioUrl": "/audio/readings/article_1_a1_1.mp3"
     },
     {
       "sentenceId": "a1_2",
-      "startMs": 2780,
-      "endMs": 6370,
-      "durationMs": 3240,
+      "hanzi": "绿茶、红茶和乌龙茶都很有名。",
+      "startMs": 2800,
+      "endMs": 7520,
+      "durationMs": 3760,
       "audioUrl": "/audio/readings/article_1_a1_2.mp3"
     },
     {
       "sentenceId": "a1_3",
-      "startMs": 6370,
-      "endMs": 11470,
-      "durationMs": 4750,
+      "hanzi": "带客户参观工厂前，大家喜欢一起喝杯热茶。",
+      "startMs": 7520,
+      "endMs": 12960,
+      "durationMs": 4400,
       "audioUrl": "/audio/readings/article_1_a1_3.mp3"
     },
     {
       "sentenceId": "a1_4",
-      "startMs": 11470,
-      "endMs": 15600,
-      "durationMs": 4130,
+      "hanzi": "喝茶能让人放松，也能促进合作。",
+      "startMs": 12960,
+      "endMs": 16400,
+      "durationMs": 3440,
       "audioUrl": "/audio/readings/article_1_a1_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

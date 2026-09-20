@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_au_restaurant",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Choisir son repas entre amis",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_au_restaurant.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 12460,
+  "totalDurationMs": 11750,
   "sentences": [
     {
       "sentenceId": "dar_1",
+      "speaker": "张伟",
+      "hanzi": "你喝什么？",
       "startMs": 0,
-      "endMs": 1920,
-      "durationMs": 1570,
+      "endMs": 1360,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_1.mp3"
     },
     {
       "sentenceId": "dar_2",
-      "startMs": 1920,
-      "endMs": 3840,
-      "durationMs": 1570,
+      "speaker": "刘芳",
+      "hanzi": "我喝茶。你呢？",
+      "startMs": 1710,
+      "endMs": 4350,
+      "durationMs": 2640,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_2.mp3"
     },
     {
       "sentenceId": "dar_3",
-      "startMs": 3840,
-      "endMs": 5760,
-      "durationMs": 1570,
+      "speaker": "张伟",
+      "hanzi": "我喝水。",
+      "startMs": 4700,
+      "endMs": 6060,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_3.mp3"
     },
     {
       "sentenceId": "dar_4",
-      "startMs": 5760,
-      "endMs": 7020,
-      "durationMs": 910,
+      "speaker": "刘芳",
+      "hanzi": "你吃什么？",
+      "startMs": 6410,
+      "endMs": 8090,
+      "durationMs": 1680,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_4.mp3"
     },
     {
       "sentenceId": "dar_5",
-      "startMs": 7020,
-      "endMs": 9090,
-      "durationMs": 1720,
+      "speaker": "张伟",
+      "hanzi": "我吃米饭。你呢？",
+      "startMs": 8440,
+      "endMs": 10280,
+      "durationMs": 1840,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_5.mp3"
     },
     {
       "sentenceId": "dar_6",
-      "startMs": 9090,
-      "endMs": 10160,
-      "durationMs": 1070,
+      "speaker": "刘芳",
+      "hanzi": "我也吃米饭。",
+      "startMs": 10630,
+      "endMs": 11750,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/dialogue_au_restaurant_dar_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

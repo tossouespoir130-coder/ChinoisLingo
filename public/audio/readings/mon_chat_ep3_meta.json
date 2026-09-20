@@ -1,39 +1,50 @@
 {
   "contentId": "mon_chat_ep3",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Mon chat - Partie 3 : Aller à l’école",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/mon_chat_ep3.mp3",
-  "pauseBetweenSec": 0.5,
-  "totalDurationMs": 15330,
+  "totalDurationMs": 12880,
   "sentences": [
     {
       "sentenceId": "mc_e3_1",
+      "hanzi": "我去学校。小白在家。",
       "startMs": 0,
-      "endMs": 4683,
-      "durationMs": 4683,
+      "endMs": 4480,
+      "durationMs": 4480,
       "audioUrl": "/audio/readings/mon_chat_ep3_mc_e3_1.mp3"
     },
     {
       "sentenceId": "mc_e3_2",
-      "startMs": 4617,
-      "endMs": 8594,
-      "durationMs": 3977,
+      "hanzi": "我在学校看书。我也写字。",
+      "startMs": 4480,
+      "endMs": 8400,
+      "durationMs": 2640,
       "audioUrl": "/audio/readings/mon_chat_ep3_mc_e3_2.mp3"
     },
     {
       "sentenceId": "mc_e3_3",
-      "startMs": 8483,
-      "endMs": 11528,
-      "durationMs": 3045,
+      "hanzi": "小白在家睡觉。",
+      "startMs": 8400,
+      "endMs": 11360,
+      "durationMs": 1600,
       "audioUrl": "/audio/readings/mon_chat_ep3_mc_e3_3.mp3"
     },
     {
       "sentenceId": "mc_e3_4",
-      "startMs": 11564,
-      "endMs": 12830,
-      "durationMs": 1266,
+      "hanzi": "下午，我回家。",
+      "startMs": 11360,
+      "endMs": 12800,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/mon_chat_ep3_mc_e3_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

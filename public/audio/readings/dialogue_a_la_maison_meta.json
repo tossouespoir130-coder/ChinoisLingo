@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_a_la_maison",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Maman, à quelle heure part-on dîner ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_a_la_maison.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 9900,
+  "totalDurationMs": 10550,
   "sentences": [
     {
       "sentenceId": "dlm_1",
+      "speaker": "王小明",
+      "hanzi": "妈妈，现在几点？",
       "startMs": 0,
-      "endMs": 1660,
-      "durationMs": 1310,
+      "endMs": 1200,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_1.mp3"
     },
     {
       "sentenceId": "dlm_2",
-      "startMs": 1660,
-      "endMs": 3080,
-      "durationMs": 1070,
+      "speaker": "李月",
+      "hanzi": "现在七点。",
+      "startMs": 1550,
+      "endMs": 4030,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_2.mp3"
     },
     {
       "sentenceId": "dlm_3",
-      "startMs": 3080,
-      "endMs": 4580,
-      "durationMs": 1150,
+      "speaker": "王小明",
+      "hanzi": "我们几点去饭馆？",
+      "startMs": 4380,
+      "endMs": 5580,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_3.mp3"
     },
     {
       "sentenceId": "dlm_4",
-      "startMs": 4580,
-      "endMs": 5610,
-      "durationMs": 680,
+      "speaker": "李月",
+      "hanzi": "七点半。",
+      "startMs": 5930,
+      "endMs": 7290,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_4.mp3"
     },
     {
       "sentenceId": "dlm_5",
-      "startMs": 5610,
-      "endMs": 6560,
-      "durationMs": 600,
+      "speaker": "王小明",
+      "hanzi": "爸爸呢？",
+      "startMs": 7640,
+      "endMs": 9320,
+      "durationMs": 1680,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_5.mp3"
     },
     {
       "sentenceId": "dlm_6",
-      "startMs": 6560,
-      "endMs": 7550,
-      "durationMs": 990,
+      "speaker": "李月",
+      "hanzi": "他在睡觉。",
+      "startMs": 9670,
+      "endMs": 10550,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/dialogue_a_la_maison_dlm_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

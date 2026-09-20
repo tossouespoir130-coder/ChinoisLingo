@@ -1,39 +1,50 @@
 {
   "contentId": "mon_chat_ep4",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Mon chat - Partie 4 : Aller au parc",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/mon_chat_ep4.mp3",
-  "pauseBetweenSec": 0.5,
-  "totalDurationMs": 10450,
+  "totalDurationMs": 9920,
   "sentences": [
     {
       "sentenceId": "mc_e4_1",
+      "hanzi": "我和小白去公园。",
       "startMs": 0,
-      "endMs": 2550,
-      "durationMs": 2550,
+      "endMs": 2960,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_1.mp3"
     },
     {
       "sentenceId": "mc_e4_2",
-      "startMs": 2439,
-      "endMs": 4417,
-      "durationMs": 1978,
+      "hanzi": "公园很大。",
+      "startMs": 2960,
+      "endMs": 5440,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_2.mp3"
     },
     {
       "sentenceId": "mc_e4_3",
-      "startMs": 4306,
-      "endMs": 6817,
-      "durationMs": 2511,
+      "hanzi": "公园里有很多人。",
+      "startMs": 5440,
+      "endMs": 8400,
+      "durationMs": 1760,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_3.mp3"
     },
     {
       "sentenceId": "mc_e4_4",
-      "startMs": 6750,
-      "endMs": 7940,
-      "durationMs": 1190,
+      "hanzi": "小白看大家。",
+      "startMs": 8400,
+      "endMs": 9760,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/mon_chat_ep4_mc_e4_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

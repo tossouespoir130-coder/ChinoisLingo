@@ -1,41 +1,50 @@
 {
   "contentId": "mon_chat_ep1",
-  "aliases": [
-    "series_mon_chat"
-  ],
-  "type": "histoire",
+  "title": "Mon chat - Partie 1 : Mon chat",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/mon_chat_ep1.mp3",
-  "pauseBetweenSec": 0.5,
-  "totalDurationMs": 15520,
+  "totalDurationMs": 13840,
   "sentences": [
     {
       "sentenceId": "mc_e1_1",
+      "hanzi": "我是王小明。我六岁。",
       "startMs": 0,
-      "endMs": 3350,
-      "durationMs": 3350,
+      "endMs": 2400,
+      "durationMs": 2400,
       "audioUrl": "/audio/readings/mon_chat_ep1_mc_e1_1.mp3"
     },
     {
       "sentenceId": "mc_e1_2",
-      "startMs": 3239,
-      "endMs": 5661,
-      "durationMs": 2422,
+      "hanzi": "我的猫叫小白。",
+      "startMs": 2400,
+      "endMs": 5680,
+      "durationMs": 2320,
       "audioUrl": "/audio/readings/mon_chat_ep1_mc_e1_2.mp3"
     },
     {
       "sentenceId": "mc_e1_3",
-      "startMs": 5594,
-      "endMs": 9217,
-      "durationMs": 3623,
+      "hanzi": "小白很小。小白很漂亮。",
+      "startMs": 5680,
+      "endMs": 9680,
+      "durationMs": 3120,
       "audioUrl": "/audio/readings/mon_chat_ep1_mc_e1_3.mp3"
     },
     {
       "sentenceId": "mc_e1_4",
-      "startMs": 9150,
-      "endMs": 13010,
-      "durationMs": 3860,
+      "hanzi": "我很喜欢小白。小白也很喜欢我。",
+      "startMs": 9680,
+      "endMs": 13680,
+      "durationMs": 4000,
       "audioUrl": "/audio/readings/mon_chat_ep1_mc_e1_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

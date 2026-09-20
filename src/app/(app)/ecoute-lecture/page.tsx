@@ -25,7 +25,8 @@ import {
   Users,
   Layers,
   Languages,
-  X
+  X,
+  ArrowUp
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { usePreferences } from '@/context/PreferencesContext';
@@ -3074,6 +3075,121 @@ export const readingCatalog: ReadingItem[] = [
       },
     ],
   },
+  {
+    id: 'histoire_telephone_frigo',
+    titleFr: 'Le téléphone dans le frigo',
+    titleZh: '手机在冰箱里',
+    titlePinyin: 'Shǒujī zài bīngxiāng lǐ',
+    type: 'histoires',
+    level: 'HSK 3',
+    duration: '2 min',
+    description: 'Une histoire amusante : le petit frère ne retrouve plus son téléphone portable jusqu’à ce que sa mère découvre où il l’a rangé.',
+    imageUrl: '/images/readings/telephone_dans_frigo.jpg',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: 'Didi',
+        nameZh: '弟弟',
+        pinyin: 'Dìdi',
+        role: 'Petit frère',
+        description: 'Jeune garçon curieux et naïf qui a pensé bien faire en voulant refroidir son téléphone portable dans le frigo.',
+        color: 'turquoise'
+      },
+      {
+        name: 'Maman',
+        nameZh: '妈妈',
+        pinyin: 'Māma',
+        role: 'Mère',
+        description: 'Maman bienveillante et amusée par la logique enfantine de son fils.',
+        color: 'pink'
+      }
+    ],
+    sentences: [
+      {
+        id: 'htf_1',
+        hanzi: '弟弟找不到他的手机。',
+        pinyin: 'Dìdi zhǎo bú dào tā de shǒujī.',
+        french: 'Le petit frère ne trouve pas son téléphone portable.',
+      },
+      {
+        id: 'htf_2',
+        hanzi: '他问妈妈：“妈妈，你看见我的手机了吗？”',
+        pinyin: 'Tā wèn māma: “Māma, nǐ kànjiàn wǒ de shǒujī le ma?”',
+        french: 'Il demande à sa mère : « Maman, as-tu vu mon téléphone portable ? »',
+      },
+      {
+        id: 'htf_3',
+        hanzi: '妈妈说：“没有。你打一下电话吧。”',
+        pinyin: 'Māma shuō: “Méiyǒu. Nǐ dǎ yí xià diànhuà ba.”',
+        french: 'Maman répond : « Non. Passe un coup de fil pour voir. »',
+      },
+      {
+        id: 'htf_4',
+        hanzi: '弟弟说：“我的手机在哪儿？我怎么打？”',
+        pinyin: 'Dìdi shuō: “Wǒ de shǒujī zài nǎr? Wǒ zěnme dǎ?”',
+        french: 'Le petit frère dit : « Où est mon téléphone ? Comment puis-je appeler ? »',
+      },
+      {
+        id: 'htf_5',
+        hanzi: '妈妈笑了：“用我的手机打。”',
+        pinyin: 'Māma xiào le: “Yòng wǒ de shǒujī dǎ.”',
+        french: 'Maman sourit : « Utilise mon téléphone portable pour appeler. »',
+      },
+      {
+        id: 'htf_6',
+        hanzi: '妈妈打电话。他们听见冰箱里有声音。',
+        pinyin: 'Māma dǎ diànhuà. Tāmen tīngjiàn bīngxiāng lǐ yǒu shēngyīn.',
+        french: 'Maman passe l’appel. Ils entendent un bruit venant de l’intérieur du réfrigérateur.',
+      },
+      {
+        id: 'htf_7',
+        hanzi: '弟弟打开冰箱，手机在里面！',
+        pinyin: 'Dìdi dǎkāi bīngxiāng, shǒujī zài lǐmiàn!',
+        french: 'Le petit frère ouvre le frigo, le téléphone est à l’intérieur !',
+      },
+      {
+        id: 'htf_8',
+        hanzi: '妈妈问：“手机为什么在冰箱里？”',
+        pinyin: 'Māma wèn: “Shǒujī wèishénme zài bīngxiāng lǐ?”',
+        french: 'Maman demande : « Pourquoi le téléphone est-il dans le réfrigérateur ? »',
+      },
+      {
+        id: 'htf_9',
+        hanzi: '弟弟说：“因为手机太热了，我把它放进冰箱里，让它冷一点。”',
+        pinyin: 'Dìdi shuō: “Yīnwèi shǒujī tài rè le, wǒ bǎ tā fàng jìn bīngxiāng lǐ, ràng tā lěng yì diǎn.”',
+        french: 'Le petit frère explique : « Parce que le téléphone était trop chaud, je l’ai mis au frigo pour le refroidir un peu. »',
+      },
+      {
+        id: 'htf_10',
+        hanzi: '妈妈说：“手机不是人，不怕热。”',
+        pinyin: 'Māma shuō: “Shǒujī bú shì rén, bú pà rè.”',
+        french: 'Maman dit : « Un téléphone n’est pas un être humain, il ne craint pas la chaleur. »',
+      },
+      {
+        id: 'htf_11',
+        hanzi: '弟弟说：“但是它现在很冷。”',
+        pinyin: 'Dìdi shuō: “Dànshì tā xiànzài hěn lěng.”',
+        french: 'Le petit frère réplique : « Mais maintenant il est tout froid. »',
+      },
+      {
+        id: 'htf_12',
+        hanzi: '妈妈笑着说：“那你给它拿一件衣服吧。”',
+        pinyin: 'Māma xiàozhe shuō: “Nà nǐ gěi tā ná yí jiàn yīfu ba.”',
+        french: 'Maman répond en riant : « Alors va lui chercher un manteau ! »',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '手机', pinyin: 'shǒujī', french: 'téléphone portable', role: 'Nom commun' },
+      { hanzi: '冰箱', pinyin: 'bīngxiāng', french: 'réfrigérateur, frigo', role: 'Nom commun' },
+      { hanzi: '声音', pinyin: 'shēngyīn', french: 'son, bruit, voix', role: 'Nom commun' },
+      { hanzi: '放', pinyin: 'fàng', french: 'poser, placer, mettre', role: 'Verbe' },
+      { hanzi: '热', pinyin: 'rè', french: 'chaud, chaleur', role: 'Adjectif' },
+      { hanzi: '冷', pinyin: 'lěng', french: 'froid, frais', role: 'Adjectif' },
+      { hanzi: '怕', pinyin: 'pà', french: 'avoir peur, craindre', role: 'Verbe' },
+      { hanzi: '衣服', pinyin: 'yīfu', french: 'vêtement, habit', role: 'Nom commun' },
+      { hanzi: '件', pinyin: 'jiàn', french: 'spécificateur pour vêtements', role: 'Spécificateur' },
+    ]
+  },
 
   // ================= 3. DIALOGUES AVEC PERSONNAGES DÉTAILLÉS & COULEURS DISTINCTES =================
   {
@@ -6043,16 +6159,24 @@ function EcouteLectureContent() {
     }
   };
 
-  // Filtered and strictly sorted catalogue based on HSK level ascending (HSK 1 -> HSK 2 -> HSK 3 -> HSK 4 -> HSK 5 -> HSK 6)
+  // Catalogue filtré et ordonné : contenus accessibles/déverrouillés en premier en haut, verrouillés en bas, triés par niveau HSK croissant
   const filteredCatalog = useMemo(() => {
     return readingCatalog
       .filter((item) => item.type === activeCategory)
       .sort((a, b) => {
+        // 1. Contenus déverrouillés en haut (0), verrouillés en bas (1)
+        const accessibleA = estAccessible(a) ? 0 : 1;
+        const accessibleB = estAccessible(b) ? 0 : 1;
+        if (accessibleA !== accessibleB) {
+          return accessibleA - accessibleB;
+        }
+
+        // 2. Ordre croissant de niveau HSK (HSK 1 -> HSK 6)
         const levelA = parseInt(a.level.replace(/\D/g, '') || '99', 10);
         const levelB = parseInt(b.level.replace(/\D/g, '') || '99', 10);
         return levelA - levelB;
       });
-  }, [activeCategory]);
+  }, [activeCategory, accesComplet]);
 
   // Audio Metadata for smooth continuous master track playback
   const [readingAudioMeta, setReadingAudioMeta] = useState<{
@@ -7023,13 +7147,28 @@ function EcouteLectureContent() {
                 <span>{completedItemIds.has(activeReading.id) ? '✓ Terminé' : 'Marquer comme terminé'}</span>
               </button>
 
+              {/* Bouton Retour en haut spécifique aux paroles de chansons (lyrics longs) */}
+              {activeReading.type === 'chansons' && (
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  type="button"
+                  className="px-4 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs transition-all btn-press flex items-center gap-1.5 cursor-pointer shadow-xs shrink-0"
+                  title="Retourner tout en haut des paroles"
+                >
+                  <ArrowUp className="w-3.5 h-3.5" />
+                  <span>Retour en haut</span>
+                </button>
+              )}
+
               <button
                 onClick={() => {
                   setActiveReading(null);
                   setIsPlayingAll(false);
                 }}
                 type="button"
-                className="px-5 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs transition-all btn-press"
+                className="px-5 py-3 rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-xs transition-all btn-press shrink-0"
               >
                 {activeSeries ? 'Retour à la série' : 'Retour'}
               </button>

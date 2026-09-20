@@ -39,5 +39,9 @@ app/.env*
 *.tsbuildinfo
 app/next-env.d.ts
 
+# Utility scripts & local audio backups
+scripts/
+public/audio/readings_backup*/
+
 # Internal generation scripts & tools
 scripts/

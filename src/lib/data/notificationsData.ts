@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_xiao_li_bienvenue_recommandation',
+    source: 'mascot',
+    mascotName: 'Xiao Li',
+    mascotRole: 'Mascotte & Guide ChinoisLingo 🐾',
+    mascotAvatar: '/images/onboarding/xiao-li-avatar.png',
+    type: 'vocab',
+    title: 'Bienvenue sur ChinoisLingo ! Vos premières étapes recommandées\n欢迎学习 🐾',
+    message: 'Xiao Li vous accompagne pas à pas ! Commencez par explorer le vocabulaire HSK 1 ou la Méthode de la Combinaison pour former vos premières phrases avec aisance.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/vocabulaire',
+    actionLabel: 'Explorer le Vocabulaire'
+  },
+  {
     id: 'notif_xiao_li_recommandation_mon_chat',
     source: 'mascot',
     mascotName: 'Xiao Li',

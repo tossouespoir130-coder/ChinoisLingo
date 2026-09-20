@@ -1,34 +1,42 @@
 {
-  "contentId": "vie_chine_business_ep1",
-  "aliases": [
-    "series_vie_chine_business"
-  ],
-  "type": "histoire",
-  "fullAudioUrl": "/audio/readings/vie_chine_business_ep1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 11810,
+  "contentId": "series_vie_chine_business",
+  "title": "Vie en Chine : Business",
+  "type": "histoires",
+  "narrator": "Siqi Liu",
+  "voiceId": "W8lBaQb9YIoddhxfQNLP",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/series_vie_chine_business.mp3",
+  "totalDurationMs": 11280,
   "sentences": [
     {
       "sentenceId": "vc_b1_1",
+      "hanzi": "星期二早上，布里斯先到了中国。",
       "startMs": 0,
-      "endMs": 2700,
-      "durationMs": 2350,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_1.mp3"
+      "endMs": 3320,
+      "durationMs": 3320,
+      "audioUrl": "/audio/readings/series_vie_chine_business_vc_b1_1.mp3"
     },
     {
       "sentenceId": "vc_b1_2",
-      "startMs": 2700,
-      "endMs": 5980,
-      "durationMs": 2930,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_2.mp3"
+      "hanzi": "两天后，星期四晚上，安东尼也到了。",
+      "startMs": 3320,
+      "endMs": 7760,
+      "durationMs": 3880,
+      "audioUrl": "/audio/readings/series_vie_chine_business_vc_b1_2.mp3"
     },
     {
       "sentenceId": "vc_b1_3",
-      "startMs": 5980,
-      "endMs": 9380,
-      "durationMs": 3400,
-      "audioUrl": "/audio/readings/vie_chine_business_ep1_vc_b1_3.mp3"
+      "hanzi": "最后，星期六早上十点，卡蒂娅到了。",
+      "startMs": 7760,
+      "endMs": 11280,
+      "durationMs": 3520,
+      "audioUrl": "/audio/readings/series_vie_chine_business_vc_b1_3.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

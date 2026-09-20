@@ -1,38 +1,49 @@
 {
   "contentId": "mon_chat_ep2",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Mon chat - Partie 2 : L’heure du repas",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/mon_chat_ep2.mp3",
-  "pauseBetweenSec": 0.75,
-  "endSilenceSec": 3,
-  "totalDurationMs": 12980,
+  "totalDurationMs": 15360,
   "sentences": [
     {
       "sentenceId": "mc_e2_1",
+      "hanzi": "今天天气很好。不冷，也不热。",
       "startMs": 0,
-      "endMs": 3497,
-      "durationMs": 3497,
+      "endMs": 5280,
+      "durationMs": 5280,
       "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_1.mp3"
     },
     {
       "sentenceId": "mc_e2_2",
-      "startMs": 3217,
-      "endMs": 5750,
-      "durationMs": 2533,
+      "hanzi": "我吃米饭。我喝水。",
+      "startMs": 5280,
+      "endMs": 8480,
+      "durationMs": 2080,
       "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_2.mp3"
     },
     {
       "sentenceId": "mc_e2_3",
-      "startMs": 5470,
-      "endMs": 8907,
-      "durationMs": 3437,
+      "hanzi": "小白也喝水。小白不吃米饭。",
+      "startMs": 8480,
+      "endMs": 13680,
+      "durationMs": 4240,
       "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_3.mp3"
     },
     {
       "sentenceId": "mc_e2_4",
-      "startMs": 8627,
-      "endMs": 10138,
-      "durationMs": 1511,
+      "hanzi": "小白吃鱼。",
+      "startMs": 13680,
+      "endMs": 15280,
+      "durationMs": 1600,
       "audioUrl": "/audio/readings/mon_chat_ep2_mc_e2_4.mp3"
     }
   ]

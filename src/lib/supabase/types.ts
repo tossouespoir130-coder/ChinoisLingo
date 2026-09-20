@@ -233,6 +233,89 @@ export type Database = {
           },
         ]
       }
+      emails_log: {
+        Row: {
+          id: string
+          user_id: string | null
+          destinataire: string
+          sujet: string
+          type: string
+          statut: string
+          resend_id: string | null
+          erreur: string | null
+          envoye_par: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id?: string | null
+          destinataire: string
+          sujet: string
+          type: string
+          statut: string
+          resend_id?: string | null
+          erreur?: string | null
+          envoye_par?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string | null
+          destinataire?: string
+          sujet?: string
+          type?: string
+          statut?: string
+          resend_id?: string | null
+          erreur?: string | null
+          envoye_par?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emails_log_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      nouveaux_contenus: {
+        Row: {
+          id: string
+          rubrique: string
+          sous_categorie: string | null
+          titre: string
+          description: string | null
+          lien: string
+          niveau_hsk: string | null
+          profil_cible: string | null
+          created_at: string
+        }
+        Insert: {
+          id: string
+          rubrique: string
+          sous_categorie?: string | null
+          titre: string
+          description?: string | null
+          lien: string
+          niveau_hsk?: string | null
+          profil_cible?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          rubrique?: string
+          sous_categorie?: string | null
+          titre?: string
+          description?: string | null
+          lien?: string
+          niveau_hsk?: string | null
+          profil_cible?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
       notifications: {
         Row: {
           action_url: string | null

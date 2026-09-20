@@ -43,7 +43,39 @@
   2. Vérifier la conformité stricte du fichier de métadonnées `_meta.json` (`contentId`, `fullAudioUrl`, tableau `sentences` avec `sentenceId`, `startMs`, `endMs`, `durationMs`, `audioUrl`).
   3. Vérifier que le lecteur immersif charge et joue bien les fichiers audio réels d'ElevenLabs (Master continu et audio phrase par phrase) sans aucun basculement intempestif sur la synthèse vocale du navigateur.
 - **Règle Permanente de Distinction : « Épisode » (Vidéos) vs « Partie » (Histoires & Lectures)** : Le terme **« Épisode »** est réservé exclusivement aux contenus vidéos (`type: 'videos'`). Pour les histoires et lectures scénarisées (`type: 'histoires'`), utiliser systématiquement le terme **« Partie »** (`Partie 1`, `Partie 2`...) et **`X parties`** pour la durée globale.
-- **Règle Permanente de Synthèse Audio en Bloc Unique pour les Histoires et Articles Narratifs (Sans Dialogue)** : Pour tout contenu narratif continu (histoires sans dialogue, articles, podcasts narrés), interdiction formelle de générer les phrases une par une pour les concaténer ensuite (ce qui crée des cuts, des chutes d'intonation et des glitchs audio). Envoyer systématiquement le texte complet du paragraphe ou de la leçon en un **SEUL bloc continu à ElevenLabs (`/v1/text-to-speech/{voice_id}/with-timestamps`)** pour garantir une intonation fluide, mélodieuse, naturelle et parfaitement uniforme. Les phrases individuelles et leurs métadonnées de synchronisation sont extraites directement de ce Master audio unifié.
+
+## 🎙️ Les 11 Règles Permanentes de Génération Audio (Obligatoires & Sans Exception)
+1. **Modèle Obligatoire** : Toujours `eleven_v3`, jamais `eleven_multilingual_v2` ni aucun autre modèle sans validation explicite préalable d'Espoir Chinois.
+2. **Réglages de Voix Obligatoires (Identiques sur tous les contenus)** :
+   - `stability`: `0.50`
+   - `similarity_boost`: `0.85`
+   - `style`: `0.0`
+   - `use_speaker_boost`: `true`
+   - `output_format`: `mp3_44100_128`
+3. **Structure de Génération selon le Type de Contenu** :
+   - *Histoires et articles* : UN SEUL bloc, un seul appel API (`/v1/text-to-speech/{voice_id}/with-timestamps`, texte complet d'un coup), jamais fragmenté ligne par ligne.
+   - *Dialogues* : Générés par groupe de répliques consécutives du même personnage (un nouveau segment uniquement au changement de locuteur), avec Request Stitching (`previous_request_ids`), crossfade aux jonctions, et normalisation du volume entre les voix.
+4. **Émotion et Expressivité Naturelles** : Le modèle `eleven_v3` interprète nativement l'émotion à partir du contexte et de la ponctuation du texte chinois. Aucune balise audio manuelle intrusive systématique (`[warmly]`, `[excited]`, etc.).
+5. **Timestamps Obligatoires** : Chaque génération extrait et persiste les timestamps exacts via l'endpoint `/with-timestamps` dans `_meta.json` pour garantir le surlignage synchronisé et la lecture isolée phrase par phrase.
+6. **Régénération Propre & Remplacement Intégral** : Traiter toute régénération comme un remplacement propre et complet (aucun mixage ancien/nouveau).
+7. **Validation Avant Génération de Masse** : Générer systématiquement 2-3 exemples représentatifs (1 histoire, 1 dialogue multi-personnages, 1 article) et attendre la validation explicite d'Espoir Chinois avant de lancer la régénération sur tout le catalogue.
+8. **Sauvegarde de Sécurité** : Sauvegarder systématiquement le dossier audio existant (`public/audio/readings_backup_*`) avant tout écrasement pour garantir un retour arrière instantané.
+9. **Documentation Permanente** : Ces règles sont inscrites de façon immuable dans `AGENTS.md` et `GEMINI.md`.
+10. **Rotation des Narrateurs pour les Histoires (5 Narrateurs Officiels)** :
+    - Les 5 narrateurs officiels du catalogue sont classés dans cet ordre :
+      1. **Narratrice 1 (Voix Principale)** : **Anna Su** (`9lHjugDhwqoxA5MhX0az`) — *Voix énergique et expressive*
+      2. **Narrateur 2** : **Ethan Zhang** (`brChkoggsUHF1stW6omH`)
+      3. **Narratrice 3** : **Siqi Liu** (`W8lBaQb9YIoddhxfQNLP`)
+      4. **Narratrice 4** : **Sage** (`APSIkVZudNbPAwyPoeVO`)
+      5. **Narrateur 5** : **Hua Feng** (`rtRocV7drsrJFSQPxlD3`)
+    - *Histoires indépendantes* : Rotation circulaire stricte entre les 5 narrateurs (Histoire 1 = Narratrice 1 Anna Su ➔ Histoire 2 = Narrateur 2 Ethan ➔ Histoire 3 = Narratrice 3 Siqi ➔ Histoire 4 = Narratrice 4 Sage ➔ Histoire 5 = Narrateur 5 Hua Feng ➔ Histoire 6 = retour à la Narratrice 1 Anna Su...).
+    - *Séries d'histoires (plusieurs épisodes liés)* : UN SEUL narrateur lit toute la série du début à la fin (la rotation ne s'applique qu'entre séries différentes).
+11. **Traitement des Débuts/Fins de Segments Audio (Anti-Glitch, Anti-Cut & Padding)** :
+    - Supprimer tout silence brut ou artefact de coupure en tout début et toute fin de segment avant l'assemblage.
+    - Appliquer systématiquement un léger micro fade-in (20 à 30ms) au début et un fade-out (30 à 40ms) à la fin de chaque segment pour éliminer tout clic ou coupure nette audible.
+    - Lors de l'assemblage de dialogues multi-locuteurs, ne jamais coller les segments bord à bord : appliquer le fade-out/fade-in et une pause naturelle fluide de 350ms avec normalisation du volume (`loudnorm`).
+    - Conserver un padding de fin naturel (+80ms) pour garantir qu'aucune consonne finale ou respiration ne soit tronquée. S'applique à tous les types de contenu : histoires, articles, dialogues, vocabulaire.
+
 
 ## Design System & Normes UI
 Toute page ou composant créé dans ce projet DOIT respecter le **Design System ChinoisLingo** documenté dans [.agents/rules/chinoislingo-design-system.md](file:///.agents/rules/chinoislingo-design-system.md) :

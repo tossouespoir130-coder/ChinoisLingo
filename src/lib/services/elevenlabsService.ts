@@ -103,7 +103,7 @@ export async function generateSentenceAudio(
 
   const promptText = formatChineseTextWithNaturalPacing(textZh);
 
-  const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceConfig.voiceId}`, {
+  const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceConfig.voiceId}?output_format=mp3_44100_128`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -112,10 +112,13 @@ export async function generateSentenceAudio(
     },
     body: JSON.stringify({
       text: promptText,
-      model_id: voiceConfig.modelId || 'eleven_v3',
+      model_id: voiceConfig.modelId || 'eleven_multilingual_v2',
+      language_code: 'zh',
       voice_settings: {
         stability: voiceConfig.stability ?? 0.50,
-        similarity_boost: voiceConfig.similarityBoost ?? 0.75,
+        similarity_boost: voiceConfig.similarityBoost ?? 0.85,
+        style: 0.0,
+        use_speaker_boost: true,
       },
     }),
   });

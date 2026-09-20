@@ -1,53 +1,66 @@
 {
   "contentId": "histoire_journee_wang_ming",
-  "aliases": [],
-  "type": "histoire",
+  "title": "La journée bien remplie de Wang Ming",
+  "type": "histoires",
+  "narrator": "Sage",
+  "voiceId": "APSIkVZudNbPAwyPoeVO",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/histoire_journee_wang_ming.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 30120,
+  "totalDurationMs": 34720,
   "sentences": [
     {
       "sentenceId": "h_wm_1",
+      "hanzi": "王明是学生，他有一个好朋友叫李月。",
       "startMs": 0,
-      "endMs": 3900,
-      "durationMs": 3550,
+      "endMs": 4240,
+      "durationMs": 4240,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_1.mp3"
     },
     {
       "sentenceId": "h_wm_2",
-      "startMs": 3900,
-      "endMs": 8530,
-      "durationMs": 4280,
+      "hanzi": "李月也是学生。今天天气很好，不冷也不热。",
+      "startMs": 4240,
+      "endMs": 9920,
+      "durationMs": 4720,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_2.mp3"
     },
     {
       "sentenceId": "h_wm_3",
-      "startMs": 8530,
-      "endMs": 14840,
-      "durationMs": 5960,
+      "hanzi": "上午，王明去学校学习汉语。他看见李月，李月很高兴。",
+      "startMs": 9920,
+      "endMs": 16560,
+      "durationMs": 5600,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_3.mp3"
     },
     {
       "sentenceId": "h_wm_4",
-      "startMs": 14840,
-      "endMs": 21620,
-      "durationMs": 6430,
+      "hanzi": "中午，王明和李月去饭店。王明吃米饭、喝茶，李月吃米饭、喝水。",
+      "startMs": 16560,
+      "endMs": 25600,
+      "durationMs": 8000,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_4.mp3"
     },
     {
       "sentenceId": "h_wm_5",
-      "startMs": 21620,
-      "endMs": 25680,
-      "durationMs": 3710,
+      "hanzi": "下午，他们回家。王明看电视，李月看书。",
+      "startMs": 25600,
+      "endMs": 31200,
+      "durationMs": 4640,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_5.mp3"
     },
     {
       "sentenceId": "h_wm_6",
-      "startMs": 25680,
-      "endMs": 27800,
-      "durationMs": 2120,
+      "hanzi": "今天，王明和李月都很高兴。",
+      "startMs": 31200,
+      "endMs": 34560,
+      "durationMs": 3360,
       "audioUrl": "/audio/readings/histoire_journee_wang_ming_h_wm_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

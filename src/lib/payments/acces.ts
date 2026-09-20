@@ -25,9 +25,10 @@ export const QUOTA_GRATUIT: Record<ContentTypeAcces, number> = {
   videos: 0,
 };
 
-/** Identifiants des histoires ouvertes au palier gratuit : 1 série (« Mon chat ») + 2 histoires individuelles */
+/** Identifiants des histoires ouvertes au palier gratuit : séries (« Mon chat », « Vie en Chine : Business ») + 2 histoires individuelles */
 export const HISTOIRES_GRATUITES_IDS = [
   'series_mon_chat',
+  'series_vie_chine_business',
   'histoire_journee_wang_ming',
   'histoire_chat_li_yue',
 ];

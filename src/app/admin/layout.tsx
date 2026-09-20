@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   Users,
-  Megaphone,
+  Mail,
+  Bell,
   ScrollText,
   ArrowLeft,
   Menu,
@@ -15,26 +16,11 @@ import {
 import { useAuth } from '@/lib/auth/AuthContext';
 import { Logo } from '@/components/ui/Logo';
 
-/**
- * Habillage de l'espace d'administration.
- *
- * Volontairement HORS du groupe de routes `(app)` : pas de TopNav, pas de
- * MobileTabBar, pas de carte conteneur arrondie. L'administrateur doit voir
- * au premier coup d'œil qu'il a changé d'univers.
- *
- * Structure : une bande sombre PLEINE HAUTEUR à gauche, qui porte l'identité
- * de marque en haut, et une zone de contenu sans barre supérieure. Le retour
- * vers l'application est un bouton flottant en bas à droite, présent sur les
- * quatre pages.
- *
- * Le contrôle du rôle est fait côté serveur par `src/proxy.ts` avant même que
- * ce composant ne soit rendu — il n'y a donc pas de garde ici.
- */
-
 const LIENS = [
   { href: '/admin', libelle: "Vue d'ensemble", icone: LayoutDashboard },
   { href: '/admin/utilisateurs', libelle: 'Utilisateurs', icone: Users },
-  { href: '/admin/message-fondateur', libelle: 'Message du Fondateur', icone: Megaphone },
+  { href: '/admin/emails', libelle: 'Emails (Resend)', icone: Mail },
+  { href: '/admin/notifications', libelle: 'Notifications In-App', icone: Bell },
   { href: '/admin/historique', libelle: 'Historique des actions', icone: ScrollText },
 ];
 

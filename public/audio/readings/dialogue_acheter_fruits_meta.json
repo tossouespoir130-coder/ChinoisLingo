@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_acheter_fruits",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Qu’est-ce que vous voulez acheter ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_acheter_fruits.mp3",
-  "pauseBetweenSec": 0.45,
-  "totalDurationMs": 12770,
+  "totalDurationMs": 9510,
   "sentences": [
     {
       "sentenceId": "daf_1",
+      "speaker": "售货员",
+      "hanzi": "你要买什么？",
       "startMs": 0,
-      "endMs": 1330,
-      "durationMs": 1330,
+      "endMs": 1040,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_1.mp3"
     },
     {
       "sentenceId": "daf_2",
-      "startMs": 1780,
-      "endMs": 3160,
-      "durationMs": 1380,
+      "speaker": "顾客",
+      "hanzi": "我要买水果。",
+      "startMs": 1390,
+      "endMs": 2350,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_2.mp3"
     },
     {
       "sentenceId": "daf_3",
-      "startMs": 3610,
-      "endMs": 5130,
-      "durationMs": 1520,
+      "speaker": "售货员",
+      "hanzi": "你要买什么水果？",
+      "startMs": 2700,
+      "endMs": 3980,
+      "durationMs": 1280,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_3.mp3"
     },
     {
       "sentenceId": "daf_4",
-      "startMs": 5580,
-      "endMs": 6910,
-      "durationMs": 1330,
+      "speaker": "顾客",
+      "hanzi": "我要买苹果。",
+      "startMs": 4330,
+      "endMs": 5370,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_4.mp3"
     },
     {
       "sentenceId": "daf_5",
-      "startMs": 7360,
-      "endMs": 8690,
-      "durationMs": 1330,
+      "speaker": "售货员",
+      "hanzi": "你要买几个？",
+      "startMs": 5720,
+      "endMs": 6680,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_5.mp3"
     },
     {
       "sentenceId": "daf_6",
-      "startMs": 9140,
-      "endMs": 10420,
-      "durationMs": 1280,
+      "speaker": "顾客",
+      "hanzi": "我要买三个。",
+      "startMs": 7030,
+      "endMs": 9510,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/dialogue_acheter_fruits_daf_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

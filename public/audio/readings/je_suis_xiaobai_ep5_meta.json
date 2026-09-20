@@ -1,52 +1,65 @@
 {
   "contentId": "je_suis_xiaobai_ep5",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Partie 5 : Je veux manger du poisson",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep5.mp3",
-  "pauseBetweenSec": 0.75,
-  "endSilenceSec": 3,
-  "totalDurationMs": 12750,
+  "totalDurationMs": 9680,
   "sentences": [
     {
       "sentenceId": "jsx_e5_1",
+      "hanzi": "我想吃鱼。",
       "startMs": 0,
-      "endMs": 1570,
-      "durationMs": 1570,
+      "endMs": 1240,
+      "durationMs": 1240,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_1.mp3"
     },
     {
       "sentenceId": "jsx_e5_2",
-      "startMs": 1290,
-      "endMs": 3114,
-      "durationMs": 1824,
+      "hanzi": "家里没有鱼。",
+      "startMs": 1240,
+      "endMs": 3040,
+      "durationMs": 1000,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_2.mp3"
     },
     {
       "sentenceId": "jsx_e5_3",
-      "startMs": 2834,
-      "endMs": 4786,
-      "durationMs": 1952,
+      "hanzi": "妈妈没有买鱼。",
+      "startMs": 3040,
+      "endMs": 4880,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_3.mp3"
     },
     {
       "sentenceId": "jsx_e5_4",
-      "startMs": 4506,
-      "endMs": 6655,
-      "durationMs": 2149,
+      "hanzi": "妈妈给我一个苹果。",
+      "startMs": 4880,
+      "endMs": 6720,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_4.mp3"
     },
     {
       "sentenceId": "jsx_e5_5",
-      "startMs": 6375,
-      "endMs": 8373,
-      "durationMs": 1998,
+      "hanzi": "我不想吃苹果。",
+      "startMs": 6720,
+      "endMs": 8240,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_5.mp3"
     },
     {
       "sentenceId": "jsx_e5_6",
-      "startMs": 8093,
-      "endMs": 9906,
-      "durationMs": 1813,
+      "hanzi": "我不喜欢苹果。",
+      "startMs": 8240,
+      "endMs": 9440,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep5_jsx_e5_6.mp3"
     }
   ]

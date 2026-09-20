@@ -1,61 +1,74 @@
 {
   "contentId": "je_suis_xiaobai_ep1",
-  "aliases": [
-    "series_je_suis_xiaobai"
-  ],
-  "type": "histoire",
+  "title": "Partie 1 : Je suis un chat",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep1.mp3",
-  "totalDurationMs": 16610,
+  "totalDurationMs": 11040,
   "sentences": [
     {
       "sentenceId": "jsx_e1_1",
+      "hanzi": "我是猫。",
       "startMs": 0,
-      "endMs": 1780,
-      "durationMs": 1780,
+      "endMs": 1680,
+      "durationMs": 1680,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_1.mp3"
     },
     {
       "sentenceId": "jsx_e1_2",
-      "startMs": 1580,
-      "endMs": 3603,
-      "durationMs": 2023,
+      "hanzi": "我叫小白。",
+      "startMs": 1680,
+      "endMs": 3240,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_2.mp3"
     },
     {
       "sentenceId": "jsx_e1_3",
-      "startMs": 3403,
-      "endMs": 5344,
-      "durationMs": 1941,
+      "hanzi": "我一岁。",
+      "startMs": 3240,
+      "endMs": 4640,
+      "durationMs": 1400,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_3.mp3"
     },
     {
       "sentenceId": "jsx_e1_4",
-      "startMs": 5144,
-      "endMs": 7701,
-      "durationMs": 2557,
+      "hanzi": "我喜欢吃鱼。",
+      "startMs": 4640,
+      "endMs": 6320,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_4.mp3"
     },
     {
       "sentenceId": "jsx_e1_5",
-      "startMs": 7501,
-      "endMs": 9965,
-      "durationMs": 2464,
+      "hanzi": "我不喜欢水。",
+      "startMs": 6320,
+      "endMs": 8240,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_5.mp3"
     },
     {
       "sentenceId": "jsx_e1_6",
-      "startMs": 9765,
-      "endMs": 12485,
-      "durationMs": 2720,
+      "hanzi": "我住在中国。",
+      "startMs": 8240,
+      "endMs": 10080,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_6.mp3"
     },
     {
       "sentenceId": "jsx_e1_7",
-      "startMs": 12285,
-      "endMs": 14110,
-      "durationMs": 1825,
+      "hanzi": "我有很多朋友。",
+      "startMs": 10080,
+      "endMs": 10960,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep1_jsx_e1_7.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

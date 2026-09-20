@@ -1,80 +1,97 @@
 {
   "contentId": "vie_chine_business_ep6",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 6 : À la recherche du sac (1) — Le premier magasin",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep6.mp3",
-  "pauseBetweenSec": 0.75,
-  "endSilenceSec": 2.5,
-  "totalDurationMs": 29520,
+  "totalDurationMs": 32080,
   "sentences": [
     {
       "sentenceId": "vc_b6_1",
+      "hanzi": "卡蒂娅想买包。",
       "startMs": 0,
-      "endMs": 1820,
-      "durationMs": 1070,
+      "endMs": 1440,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_1.mp3"
     },
     {
       "sentenceId": "vc_b6_2",
-      "startMs": 1820,
-      "endMs": 3880,
-      "durationMs": 1310,
+      "hanzi": "她有一个包的样品。",
+      "startMs": 1440,
+      "endMs": 4080,
+      "durationMs": 2560,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_2.mp3"
     },
     {
       "sentenceId": "vc_b6_3",
-      "startMs": 3880,
-      "endMs": 5860,
-      "durationMs": 1230,
+      "hanzi": "她想找一样的包。",
+      "startMs": 4080,
+      "endMs": 6640,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_3.mp3"
     },
     {
       "sentenceId": "vc_b6_4",
-      "startMs": 5860,
-      "endMs": 8180,
-      "durationMs": 1570,
+      "hanzi": "她一个人去第一家店。",
+      "startMs": 6640,
+      "endMs": 9680,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_4.mp3"
     },
     {
       "sentenceId": "vc_b6_5",
-      "startMs": 8180,
-      "endMs": 12170,
-      "durationMs": 3240,
+      "hanzi": "你好，请问你们这儿有这个包吗？",
+      "startMs": 9680,
+      "endMs": 14400,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_5.mp3"
     },
     {
       "sentenceId": "vc_b6_6",
-      "startMs": 12170,
-      "endMs": 18330,
-      "durationMs": 5410,
+      "hanzi": "这个？我看看。……不好意思，这个包我们没有了。",
+      "startMs": 14400,
+      "endMs": 21920,
+      "durationMs": 6320,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_6.mp3"
     },
     {
       "sentenceId": "vc_b6_7",
-      "startMs": 18330,
-      "endMs": 20390,
-      "durationMs": 1310,
+      "hanzi": "那有类似的吗？",
+      "startMs": 21920,
+      "endMs": 24560,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_7.mp3"
     },
     {
       "sentenceId": "vc_b6_8",
-      "startMs": 20390,
-      "endMs": 22370,
-      "durationMs": 1230,
+      "hanzi": "有，您看看这个。",
+      "startMs": 24560,
+      "endMs": 27600,
+      "durationMs": 1760,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_8.mp3"
     },
     {
       "sentenceId": "vc_b6_9",
-      "startMs": 22370,
-      "endMs": 25810,
-      "durationMs": 2690,
+      "hanzi": "谢谢，但是我不想要这种。",
+      "startMs": 27600,
+      "endMs": 31600,
+      "durationMs": 2720,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_9.mp3"
     },
     {
       "sentenceId": "vc_b6_10",
-      "startMs": 25810,
-      "endMs": 27380,
-      "durationMs": 1570,
+      "hanzi": "好的。",
+      "startMs": 31600,
+      "endMs": 32080,
+      "durationMs": 480,
       "audioUrl": "/audio/readings/vie_chine_business_ep6_vc_b6_10.mp3"
     }
   ]

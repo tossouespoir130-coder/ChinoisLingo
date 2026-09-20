@@ -1,59 +1,74 @@
 {
   "contentId": "je_suis_xiaobai_ep3",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Partie 3 : Moi et mon ami",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/je_suis_xiaobai_ep3.mp3",
-  "totalDurationMs": 18890,
+  "totalDurationMs": 11760,
   "sentences": [
     {
       "sentenceId": "jsx_e3_1",
+      "hanzi": "我和小花是朋友。",
       "startMs": 0,
-      "endMs": 2906,
-      "durationMs": 2906,
+      "endMs": 1840,
+      "durationMs": 1840,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_1.mp3"
     },
     {
       "sentenceId": "jsx_e3_2",
-      "startMs": 2706,
-      "endMs": 4961,
-      "durationMs": 2255,
+      "hanzi": "我们一起玩。",
+      "startMs": 1840,
+      "endMs": 3280,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_2.mp3"
     },
     {
       "sentenceId": "jsx_e3_3",
-      "startMs": 4761,
-      "endMs": 7272,
-      "durationMs": 2511,
+      "hanzi": "我们一起吃鱼。",
+      "startMs": 3280,
+      "endMs": 4960,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_3.mp3"
     },
     {
       "sentenceId": "jsx_e3_4",
-      "startMs": 7072,
-      "endMs": 9663,
-      "durationMs": 2591,
+      "hanzi": "我们一起喝水。",
+      "startMs": 4960,
+      "endMs": 6720,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_4.mp3"
     },
     {
       "sentenceId": "jsx_e3_5",
-      "startMs": 9463,
-      "endMs": 12508,
-      "durationMs": 3045,
+      "hanzi": "我们一起看电视。",
+      "startMs": 6720,
+      "endMs": 8560,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_5.mp3"
     },
     {
       "sentenceId": "jsx_e3_6",
-      "startMs": 12308,
-      "endMs": 15039,
-      "durationMs": 2731,
+      "hanzi": "我们一起睡觉。",
+      "startMs": 8560,
+      "endMs": 10480,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_6.mp3"
     },
     {
       "sentenceId": "jsx_e3_7",
-      "startMs": 14839,
-      "endMs": 16380,
-      "durationMs": 1541,
+      "hanzi": "我们是好朋友。",
+      "startMs": 10480,
+      "endMs": 11600,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/je_suis_xiaobai_ep3_jsx_e3_7.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_qui_est_il",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Qui est-il ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_qui_est_il.mp3",
-  "pauseBetweenSec": 0.45,
-  "totalDurationMs": 12170,
+  "totalDurationMs": 9750,
   "sentences": [
     {
       "sentenceId": "dqi_1",
+      "speaker": "小明",
+      "hanzi": "他是谁？",
       "startMs": 0,
-      "endMs": 1100,
-      "durationMs": 1100,
+      "endMs": 1200,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_1.mp3"
     },
     {
       "sentenceId": "dqi_2",
+      "speaker": "小红",
+      "hanzi": "他是王明。",
       "startMs": 1550,
-      "endMs": 2750,
-      "durationMs": 1200,
+      "endMs": 3710,
+      "durationMs": 2160,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_2.mp3"
     },
     {
       "sentenceId": "dqi_3",
-      "startMs": 3200,
-      "endMs": 4220,
-      "durationMs": 1020,
+      "speaker": "小明",
+      "hanzi": "她是谁？",
+      "startMs": 4060,
+      "endMs": 4780,
+      "durationMs": 720,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_3.mp3"
     },
     {
       "sentenceId": "dqi_4",
-      "startMs": 4670,
-      "endMs": 5820,
-      "durationMs": 1150,
+      "speaker": "小红",
+      "hanzi": "她是李月。",
+      "startMs": 5130,
+      "endMs": 6010,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_4.mp3"
     },
     {
       "sentenceId": "dqi_5",
-      "startMs": 6270,
-      "endMs": 7760,
-      "durationMs": 1490,
+      "speaker": "小明",
+      "hanzi": "王明是你朋友吗？",
+      "startMs": 6360,
+      "endMs": 7720,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_5.mp3"
     },
     {
       "sentenceId": "dqi_6",
-      "startMs": 8210,
-      "endMs": 9880,
-      "durationMs": 1670,
+      "speaker": "小红",
+      "hanzi": "是，他是我朋友。",
+      "startMs": 8070,
+      "endMs": 9750,
+      "durationMs": 1680,
       "audioUrl": "/audio/readings/dialogue_qui_est_il_dqi_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

@@ -1,123 +1,146 @@
 {
   "contentId": "vie_chine_business_ep5",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 5 : Acheter à boire",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep5.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 35080,
+  "totalDurationMs": 47840,
   "sentences": [
     {
       "sentenceId": "vc_b5_1",
+      "hanzi": "下午，天气很热。",
       "startMs": 0,
-      "endMs": 1840,
-      "durationMs": 1490,
+      "endMs": 2480,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_1.mp3"
     },
     {
       "sentenceId": "vc_b5_2",
-      "startMs": 1840,
-      "endMs": 4780,
-      "durationMs": 2590,
+      "hanzi": "卡蒂娅、布里斯和安东尼去商店。",
+      "startMs": 2480,
+      "endMs": 6640,
+      "durationMs": 3440,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_2.mp3"
     },
     {
       "sentenceId": "vc_b5_3",
-      "startMs": 4780,
-      "endMs": 8090,
-      "durationMs": 2510,
+      "hanzi": "他们要买水，也要买咖啡和牛奶。",
+      "startMs": 6640,
+      "endMs": 11360,
+      "durationMs": 3600,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_3.mp3"
     },
     {
       "sentenceId": "vc_b5_4",
-      "startMs": 8090,
-      "endMs": 9510,
-      "durationMs": 1070,
+      "hanzi": "你们想喝什么？",
+      "startMs": 11360,
+      "endMs": 13600,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_4.mp3"
     },
     {
       "sentenceId": "vc_b5_5",
-      "startMs": 9510,
-      "endMs": 11170,
-      "durationMs": 1310,
+      "hanzi": "我要一瓶水。",
+      "startMs": 13600,
+      "endMs": 15760,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_5.mp3"
     },
     {
       "sentenceId": "vc_b5_6",
-      "startMs": 11170,
-      "endMs": 13480,
-      "durationMs": 1960,
+      "hanzi": "我要咖啡。卡蒂娅，你呢？",
+      "startMs": 15760,
+      "endMs": 19440,
+      "durationMs": 2560,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_6.mp3"
     },
     {
       "sentenceId": "vc_b5_7",
-      "startMs": 13480,
-      "endMs": 14510,
-      "durationMs": 680,
+      "hanzi": "我要牛奶。",
+      "startMs": 19440,
+      "endMs": 21360,
+      "durationMs": 960,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_7.mp3"
     },
     {
       "sentenceId": "vc_b5_8",
-      "startMs": 14510,
-      "endMs": 16010,
-      "durationMs": 1150,
+      "hanzi": "还要什么？",
+      "startMs": 21360,
+      "endMs": 23280,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_8.mp3"
     },
     {
       "sentenceId": "vc_b5_9",
-      "startMs": 16010,
-      "endMs": 17350,
-      "durationMs": 990,
+      "hanzi": "还要一瓶咖啡。",
+      "startMs": 23280,
+      "endMs": 25680,
+      "durationMs": 1920,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_9.mp3"
     },
     {
       "sentenceId": "vc_b5_10",
-      "startMs": 17350,
-      "endMs": 19190,
-      "durationMs": 1490,
+      "hanzi": "好。多少钱？",
+      "startMs": 25680,
+      "endMs": 28280,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_10.mp3"
     },
     {
       "sentenceId": "vc_b5_11",
-      "startMs": 19190,
-      "endMs": 21030,
-      "durationMs": 1490,
+      "hanzi": "三十块。",
+      "startMs": 28280,
+      "endMs": 29760,
+      "durationMs": 1480,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_11.mp3"
     },
     {
       "sentenceId": "vc_b5_12",
-      "startMs": 21030,
-      "endMs": 22530,
-      "durationMs": 1150,
+      "hanzi": "好，谢谢。",
+      "startMs": 29760,
+      "endMs": 31520,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_12.mp3"
     },
     {
       "sentenceId": "vc_b5_13",
-      "startMs": 22530,
-      "endMs": 25050,
-      "durationMs": 1720,
+      "hanzi": "不客气。欢迎再来。",
+      "startMs": 31520,
+      "endMs": 34640,
+      "durationMs": 2160,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_13.mp3"
     },
     {
       "sentenceId": "vc_b5_14",
-      "startMs": 25050,
-      "endMs": 28560,
-      "durationMs": 3160,
+      "hanzi": "他们买了一瓶水，两瓶咖啡，一瓶牛奶。",
+      "startMs": 34640,
+      "endMs": 40000,
+      "durationMs": 4400,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_14.mp3"
     },
     {
       "sentenceId": "vc_b5_15",
-      "startMs": 28560,
-      "endMs": 32150,
-      "durationMs": 3240,
+      "hanzi": "天气很热，他们喝水，喝咖啡，喝牛奶。",
+      "startMs": 40000,
+      "endMs": 45840,
+      "durationMs": 5120,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_15.mp3"
     },
     {
       "sentenceId": "vc_b5_16",
-      "startMs": 32150,
-      "endMs": 33140,
-      "durationMs": 990,
+      "hanzi": "他们很高兴。",
+      "startMs": 45840,
+      "endMs": 47760,
+      "durationMs": 1920,
       "audioUrl": "/audio/readings/vie_chine_business_ep5_vc_b5_16.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

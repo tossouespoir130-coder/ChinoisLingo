@@ -1,40 +1,49 @@
 {
   "contentId": "article_2",
-  "aliases": [
-    "article_nombres"
-  ],
+  "title": "L’Importance des Nombres en Chine",
   "type": "articles",
+  "narrator": "Hua Feng",
+  "voiceId": "rtRocV7drsrJFSQPxlD3",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/article_2.mp3",
-  "pauseBetweenSec": 0.75,
-  "endSilenceSec": 3,
-  "totalDurationMs": 20580,
+  "totalDurationMs": 24480,
   "sentences": [
     {
       "sentenceId": "a2_1",
+      "hanzi": "在中国文化中，数字有特别的意思。",
       "startMs": 0,
-      "endMs": 3753,
-      "durationMs": 3753,
+      "endMs": 5520,
+      "durationMs": 5520,
       "audioUrl": "/audio/readings/article_2_a2_1.mp3"
     },
     {
       "sentenceId": "a2_2",
-      "startMs": 3473,
-      "endMs": 7398,
-      "durationMs": 3925,
+      "hanzi": "数字八代表发财，大家都很喜欢。",
+      "startMs": 5520,
+      "endMs": 10560,
+      "durationMs": 3760,
       "audioUrl": "/audio/readings/article_2_a2_2.mp3"
     },
     {
       "sentenceId": "a2_3",
-      "startMs": 7118,
-      "endMs": 13389,
-      "durationMs": 6271,
+      "hanzi": "数字六也很受欢迎，因为“六六大顺”，代表做什么都顺利。",
+      "startMs": 10560,
+      "endMs": 18720,
+      "durationMs": 6640,
       "audioUrl": "/audio/readings/article_2_a2_3.mp3"
     },
     {
       "sentenceId": "a2_4",
-      "startMs": 13109,
-      "endMs": 17754,
-      "durationMs": 4645,
+      "hanzi": "数字四的发音像“死”，所以很多人不太喜欢它。",
+      "startMs": 18720,
+      "endMs": 24400,
+      "durationMs": 5680,
       "audioUrl": "/audio/readings/article_2_a2_4.mp3"
     }
   ]

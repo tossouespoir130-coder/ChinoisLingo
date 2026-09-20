@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { usePreferences } from '@/context/PreferencesContext';
-import { Clock, X, Sparkles } from 'lucide-react';
+import { X, Sparkles } from 'lucide-react';
 import { countWordsDueForReview } from '@/lib/services/vocabularyService';
 import { reserverEmplacement, libererEmplacement } from '@/lib/ui/coordinateurToasts';
 
@@ -19,40 +20,47 @@ export function SrsReminderToast() {
   const [nbCartes, setNbCartes] = useState(0);
 
   useEffect(() => {
-    // Montage cote navigateur : indispensable avant createPortal, qui a besoin
-    // de document.body. C'est le seul moyen de le savoir.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // Montage côté navigateur
     setMounted(true);
   }, []);
 
   useEffect(() => {
     if (!dailyReminder || pathname === '/vocabulaire' || pathname === '/connexion') {
-      // Masquage immediat au changement de page : laisser le rappel visible
-      // sur /vocabulaire n'aurait aucun sens, l'apprenant y est deja.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsVisible(false);
       return;
     }
 
-    const dismissed =
-      typeof window !== 'undefined'
-        ? sessionStorage.getItem('chinoislingo_srs_reminder_dismissed')
-        : null;
-    if (dismissed) return;
+    // Cooldown 24h pour ne pas être insistant (pop-up discret une fois en passant)
+    const lastShown = typeof window !== 'undefined'
+      ? localStorage.getItem('chinoislingo_srs_reminder_last_shown')
+      : null;
+    if (lastShown) {
+      const diffMs = Date.now() - parseInt(lastShown, 10);
+      const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+      if (diffMs < TWENTY_FOUR_HOURS) {
+        return; // Pas encore 24h écoulées
+      }
+    }
+
+    const dismissedSession = typeof window !== 'undefined'
+      ? sessionStorage.getItem('chinoislingo_srs_reminder_dismissed')
+      : null;
+    if (dismissedSession) return;
 
     let annule = false;
     let minuteur: ReturnType<typeof setTimeout> | undefined;
 
-    // Le rappel n'apparaît QUE s'il y a réellement des cartes à réviser.
-    // Il annonçait auparavant « 12 cartes » en dur, même pour un compte
-    // venant d'être créé et n'ayant enregistré aucun mot.
     countWordsDueForReview().then((n) => {
       if (annule || n === 0) return;
       setNbCartes(n);
       minuteur = setTimeout(() => {
-        // Une seule notification a la fois : voir coordinateurToasts.
-        if (reserverEmplacement('srs')) setIsVisible(true);
-      }, 3000);
+        if (reserverEmplacement('srs')) {
+          setIsVisible(true);
+          try {
+            localStorage.setItem('chinoislingo_srs_reminder_last_shown', Date.now().toString());
+          } catch {}
+        }
+      }, 3500);
     });
 
     return () => {
@@ -64,11 +72,9 @@ export function SrsReminderToast() {
 
   const handleDismiss = () => {
     setIsClosing(true);
-    // Disparaît complètement après la douce transition de fermeture
     setTimeout(() => {
       setIsVisible(false);
       setIsClosing(false);
-      // Liberation : l'annonce de nouveau contenu peut prendre la place.
       libererEmplacement('srs');
       try {
         sessionStorage.setItem('chinoislingo_srs_reminder_dismissed', 'true');
@@ -81,7 +87,6 @@ export function SrsReminderToast() {
     router.push('/vocabulaire?tab=my-words');
   };
 
-  // Ne rien afficher si invisible ou non monté
   if (!isVisible || !dailyReminder || pathname === '/vocabulaire' || pathname === '/connexion' || !mounted) {
     return null;
   }
@@ -92,36 +97,52 @@ export function SrsReminderToast() {
         isClosing ? 'opacity-0 translate-y-3 scale-95' : 'opacity-100 translate-y-0 scale-100 animate-slideUp'
       }`}
     >
-      <div className="w-[280px] sm:w-[310px] bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#6200EE]/25 dark:border-[#6200EE]/35 rounded-2xl shadow-xl shadow-[#6200EE]/10 p-3 sm:p-3.5 space-y-2.5 transition-all">
+      <div className="w-[300px] sm:w-[330px] bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#6200EE]/25 dark:border-[#6200EE]/35 rounded-2xl shadow-xl shadow-[#6200EE]/10 p-3.5 space-y-2.5 transition-all">
         
-        {/* En-tête compact */}
+        {/* En-tête avec Xiao Li Mascot Avatar */}
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5 min-w-0">
-            <div className="w-5 h-5 rounded-lg bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center shrink-0">
-              <Clock className="w-3 h-3" />
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-8 h-8 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 p-0.5 shrink-0 overflow-hidden border border-[#6200EE]/20">
+              <Image
+                src="/images/onboarding/xiao-li-avatar.png"
+                alt="Xiao Li"
+                width={32}
+                height={32}
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] truncate">
-              Rappel SRS
-            </span>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1">
+                <span className="text-[11px] font-black text-[#6200EE] dark:text-[#BB86FC] truncate">
+                  Xiao Li 🐾
+                </span>
+                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5]">
+                  SRS
+                </span>
+              </div>
+              <p className="text-[10px] text-[#757575] dark:text-[#A0A0A0] leading-none mt-0.5">
+                Rappel de révision
+              </p>
+            </div>
           </div>
 
           <button
             onClick={handleDismiss}
             type="button"
-            className="w-5 h-5 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all shrink-0"
+            className="w-6 h-6 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-all shrink-0 cursor-pointer"
             title="Fermer"
           >
-            <X className="w-3 h-3" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Message discret */}
+        {/* Message de Xiao Li */}
         <div>
           <h6 className="font-display font-bold text-xs text-[#212121] dark:text-[#F5F5F5] leading-snug">
-            {nbCartes} carte{nbCartes > 1 ? 's' : ''} à réviser aujourd’hui
+            {nbCartes} mot{nbCartes > 1 ? 's' : ''} à consolider aujourd’hui !
           </h6>
           <p className="text-[10.5px] text-[#757575] dark:text-[#A0A0A0] mt-0.5 leading-snug">
-            Gardez votre série de pratique active.
+            Quelques minutes pour ancrer votre vocabulaire durablement.
           </p>
         </div>
 
@@ -133,7 +154,7 @@ export function SrsReminderToast() {
             className="flex-1 py-1.5 px-3 rounded-full bg-[#6200EE] hover:bg-[#3700B3] text-white text-[11px] font-bold shadow-xs transition-all btn-press flex items-center justify-center gap-1 cursor-pointer"
           >
             <Sparkles className="w-3 h-3 text-[#03DAC5]" />
-            <span>Réviser</span>
+            <span>Réviser maintenant</span>
           </button>
 
           <button

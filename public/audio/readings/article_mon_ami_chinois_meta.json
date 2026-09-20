@@ -1,46 +1,58 @@
 {
   "contentId": "article_mon_ami_chinois",
-  "aliases": [],
-  "type": "article",
+  "title": "Mon ami chinois de Pékin",
+  "type": "articles",
+  "narrator": "Sage",
+  "voiceId": "APSIkVZudNbPAwyPoeVO",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/article_mon_ami_chinois.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 23930,
+  "totalDurationMs": 17680,
   "sentences": [
     {
       "sentenceId": "art_friend_1",
+      "hanzi": "我有一个中国朋友，他叫王明，他是北京人。",
       "startMs": 0,
-      "endMs": 4870,
-      "durationMs": 4520,
+      "endMs": 4560,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_1.mp3"
     },
     {
       "sentenceId": "art_friend_2",
-      "startMs": 4870,
-      "endMs": 7910,
-      "durationMs": 2690,
+      "hanzi": "他说汉语，也写汉字。",
+      "startMs": 4560,
+      "endMs": 6400,
+      "durationMs": 1760,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_2.mp3"
     },
     {
       "sentenceId": "art_friend_3",
-      "startMs": 7910,
-      "endMs": 11340,
-      "durationMs": 3080,
+      "hanzi": "他喜欢喝茶，也喜欢吃中国菜。",
+      "startMs": 6400,
+      "endMs": 9520,
+      "durationMs": 3040,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_3.mp3"
     },
     {
       "sentenceId": "art_friend_4",
-      "startMs": 11340,
-      "endMs": 15970,
-      "durationMs": 4280,
+      "hanzi": "他请我喝茶，我说：“谢谢。”",
+      "startMs": 9520,
+      "endMs": 12960,
+      "durationMs": 3400,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_4.mp3"
     },
     {
       "sentenceId": "art_friend_5",
-      "startMs": 15970,
-      "endMs": 21610,
-      "durationMs": 5640,
+      "hanzi": "我们说话，看书，写字，他是我的好朋友。",
+      "startMs": 12960,
+      "endMs": 17520,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/article_mon_ami_chinois_art_friend_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

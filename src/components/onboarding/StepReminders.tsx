@@ -10,25 +10,25 @@ interface StepRemindersProps {
 
 export function StepReminders({ onChoose }: StepRemindersProps) {
   return (
-    <div className="animate-fade-in flex flex-col items-center text-center gap-6">
-      <h2 className="text-xl sm:text-2xl font-bold text-[#212121] dark:text-[#F5F5F5] max-w-sm">
+    <div className="animate-fade-in flex flex-col items-center text-center gap-4 sm:gap-5">
+      <h2 className="text-xl sm:text-2xl font-bold text-[#212121] dark:text-[#F5F5F5] max-w-sm leading-snug">
         Veux-tu que je te rappelle de continuer à étudier ?
       </h2>
 
-      {/* Central Mascot with Bell */}
-      <div className="w-40 h-40 relative my-1 animate-bounce-subtle">
+      {/* Central Mascot with Bell - Positionnée légèrement plus haut avec espacement propre */}
+      <div className="w-32 h-32 sm:w-36 sm:h-36 relative -mt-1 mb-1 animate-bounce-subtle shrink-0">
         <Image
           src="/images/onboarding/mascot-bell.png"
           alt="Xiao Li - Rappels d'étude"
-          width={160}
-          height={160}
-          className="object-contain"
+          width={144}
+          height={144}
+          className="object-contain w-full h-full drop-shadow-xs"
           priority
         />
       </div>
 
       {/* 2 Benefit Cards */}
-      <div className="w-full flex flex-col gap-3 text-left">
+      <div className="w-full flex flex-col gap-3 text-left pt-1">
         <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0]/80 dark:border-[#2D2D2D] shadow-xs">
           <div className="w-10 h-10 rounded-xl bg-[#6200EE]/12 text-[#6200EE] dark:bg-[#6200EE]/20 dark:text-[#BB86FC] flex items-center justify-center shrink-0">
             <TrendingUp className="w-5 h-5" />

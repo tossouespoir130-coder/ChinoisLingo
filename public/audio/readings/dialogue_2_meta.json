@@ -1,39 +1,52 @@
 {
   "contentId": "dialogue_2",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Demander le Prix au Marché",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_2.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 14000,
+  "totalDurationMs": 13130,
   "sentences": [
     {
       "sentenceId": "d2_1",
+      "speaker": "Katia",
+      "hanzi": "老板，请问这个多少钱一个？",
       "startMs": 0,
-      "endMs": 3280,
-      "durationMs": 2930,
+      "endMs": 2800,
+      "durationMs": 2800,
       "audioUrl": "/audio/readings/dialogue_2_d2_1.mp3"
     },
     {
       "sentenceId": "d2_2",
-      "startMs": 3280,
-      "endMs": 6400,
-      "durationMs": 2770,
+      "speaker": "摊主",
+      "hanzi": "这个二十块钱一个。您要多少个？",
+      "startMs": 3150,
+      "endMs": 6030,
+      "durationMs": 2880,
       "audioUrl": "/audio/readings/dialogue_2_d2_2.mp3"
     },
     {
       "sentenceId": "d2_3",
-      "startMs": 6400,
-      "endMs": 9990,
-      "durationMs": 3240,
+      "speaker": "Katia",
+      "hanzi": "如果我要一百个，可以便宜一点吗？",
+      "startMs": 6380,
+      "endMs": 10700,
+      "durationMs": 4320,
       "audioUrl": "/audio/readings/dialogue_2_d2_3.mp3"
     },
     {
       "sentenceId": "d2_4",
-      "startMs": 9990,
-      "endMs": 11640,
-      "durationMs": 1650,
+      "speaker": "摊主",
+      "hanzi": "可以，给您十五块一个！",
+      "startMs": 11050,
+      "endMs": 13130,
+      "durationMs": 2080,
       "audioUrl": "/audio/readings/dialogue_2_d2_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

@@ -1,46 +1,58 @@
 {
   "contentId": "histoire_1",
-  "aliases": [],
-  "type": "histoire",
+  "title": "David prend son petit-déjeuner à Pékin",
+  "type": "histoires",
+  "narrator": "Ethan Zhang",
+  "voiceId": "brChkoggsUHF1stW6omH",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/histoire_1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 15230,
+  "totalDurationMs": 12640,
   "sentences": [
     {
       "sentenceId": "h1_1",
+      "hanzi": "早上七点，大卫起床了。",
       "startMs": 0,
-      "endMs": 2310,
-      "durationMs": 1960,
+      "endMs": 2400,
+      "durationMs": 2400,
       "audioUrl": "/audio/readings/histoire_1_h1_1.mp3"
     },
     {
       "sentenceId": "h1_2",
-      "startMs": 2310,
-      "endMs": 4930,
-      "durationMs": 2270,
+      "hanzi": "天气很好。",
+      "startMs": 2400,
+      "endMs": 4000,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/histoire_1_h1_2.mp3"
     },
     {
       "sentenceId": "h1_3",
-      "startMs": 4930,
-      "endMs": 7870,
-      "durationMs": 2590,
+      "hanzi": "他去饭店喝茶，吃米饭和鱼。",
+      "startMs": 4000,
+      "endMs": 7040,
+      "durationMs": 2320,
       "audioUrl": "/audio/readings/histoire_1_h1_3.mp3"
     },
     {
       "sentenceId": "h1_4",
-      "startMs": 7870,
-      "endMs": 10490,
-      "durationMs": 2270,
+      "hanzi": "服务员说：“欢迎你来北京！”",
+      "startMs": 7040,
+      "endMs": 10240,
+      "durationMs": 2720,
       "audioUrl": "/audio/readings/histoire_1_h1_4.mp3"
     },
     {
       "sentenceId": "h1_5",
-      "startMs": 10490,
-      "endMs": 12840,
-      "durationMs": 2350,
+      "hanzi": "大卫很高兴，他说：“谢谢！”",
+      "startMs": 10240,
+      "endMs": 12613,
+      "durationMs": 2373,
       "audioUrl": "/audio/readings/histoire_1_h1_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_pas_le_mien",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Ce n’est pas le mien",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_pas_le_mien.mp3",
-  "pauseBetweenSec": 0.45,
-  "totalDurationMs": 12960,
+  "totalDurationMs": 10310,
   "sentences": [
     {
       "sentenceId": "dpm_1",
+      "speaker": "王小云",
+      "hanzi": "这是你的书吗？",
       "startMs": 0,
-      "endMs": 1380,
-      "durationMs": 1380,
+      "endMs": 1040,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_1.mp3"
     },
     {
       "sentenceId": "dpm_2",
-      "startMs": 1830,
-      "endMs": 3210,
-      "durationMs": 1380,
+      "speaker": "李小明",
+      "hanzi": "这不是我的书。",
+      "startMs": 1390,
+      "endMs": 2750,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_2.mp3"
     },
     {
       "sentenceId": "dpm_3",
-      "startMs": 3660,
-      "endMs": 5040,
-      "durationMs": 1380,
+      "speaker": "王小云",
+      "hanzi": "那是你的笔吗？",
+      "startMs": 3100,
+      "endMs": 4220,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_3.mp3"
     },
     {
       "sentenceId": "dpm_4",
-      "startMs": 5490,
-      "endMs": 6770,
+      "speaker": "李小明",
+      "hanzi": "那也不是我的笔。",
+      "startMs": 4570,
+      "endMs": 5850,
       "durationMs": 1280,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_4.mp3"
     },
     {
       "sentenceId": "dpm_5",
-      "startMs": 7220,
-      "endMs": 8550,
-      "durationMs": 1330,
+      "speaker": "王小云",
+      "hanzi": "你的书在哪儿？",
+      "startMs": 6200,
+      "endMs": 7640,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_5.mp3"
     },
     {
       "sentenceId": "dpm_6",
-      "startMs": 9000,
-      "endMs": 10620,
-      "durationMs": 1620,
+      "speaker": "李小明",
+      "hanzi": "我的书在桌子上。",
+      "startMs": 7990,
+      "endMs": 10310,
+      "durationMs": 2320,
       "audioUrl": "/audio/readings/dialogue_pas_le_mien_dpm_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

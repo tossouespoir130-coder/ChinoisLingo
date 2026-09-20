@@ -1,53 +1,70 @@
 {
   "contentId": "dialogue_1",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Premier accueil chez le fournisseur",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_1.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 20770,
+  "totalDurationMs": 18150,
   "sentences": [
     {
       "sentenceId": "d1_1",
+      "speaker": "Espoir",
+      "hanzi": "王总，您好！很高兴能来到这里。",
       "startMs": 0,
-      "endMs": 2940,
-      "durationMs": 2590,
+      "endMs": 2560,
+      "durationMs": 2560,
       "audioUrl": "/audio/readings/dialogue_1_d1_1.mp3"
     },
     {
       "sentenceId": "d1_2",
-      "startMs": 2940,
-      "endMs": 6220,
-      "durationMs": 2930,
+      "speaker": "王总",
+      "hanzi": "您好，欢迎欢迎！请坐，先喝杯茶。",
+      "startMs": 2910,
+      "endMs": 5790,
+      "durationMs": 2880,
       "audioUrl": "/audio/readings/dialogue_1_d1_2.mp3"
     },
     {
       "sentenceId": "d1_3",
-      "startMs": 6220,
-      "endMs": 8450,
-      "durationMs": 1880,
+      "speaker": "Espoir",
+      "hanzi": "谢谢王总，您太客气了。",
+      "startMs": 6140,
+      "endMs": 7900,
+      "durationMs": 1760,
       "audioUrl": "/audio/readings/dialogue_1_d1_3.mp3"
     },
     {
       "sentenceId": "d1_4",
-      "startMs": 8450,
-      "endMs": 12200,
-      "durationMs": 3400,
+      "speaker": "王总",
+      "hanzi": "应该的。您什么时候到的？休息好了吗？",
+      "startMs": 8250,
+      "endMs": 11210,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/dialogue_1_d1_4.mp3"
     },
     {
       "sentenceId": "d1_5",
-      "startMs": 12200,
-      "endMs": 15950,
-      "durationMs": 3400,
+      "speaker": "Espoir",
+      "hanzi": "昨天晚上到的，休息得挺好，谢谢关心。",
+      "startMs": 11560,
+      "endMs": 14840,
+      "durationMs": 3280,
       "audioUrl": "/audio/readings/dialogue_1_d1_5.mp3"
     },
     {
       "sentenceId": "d1_6",
-      "startMs": 15950,
-      "endMs": 18460,
-      "durationMs": 2510,
+      "speaker": "王总",
+      "hanzi": "好，咱们先聊聊，等会儿再看产品目录。",
+      "startMs": 15190,
+      "endMs": 18150,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/dialogue_1_d1_6.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

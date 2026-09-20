@@ -79,22 +79,37 @@ export function StepRegister({ state }: StepRegisterProps) {
 
       if (error) {
         setErrorMessage(error.message || "Une erreur s'est produite lors de l'inscription.");
-      } else if (besoinConfirmation) {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-        });
-        setSuccessMessage(
-          'Compte créé avec succès ! Un e-mail de confirmation vient de vous être envoyé. Cliquez sur le lien pour activer votre accès.'
-        );
       } else {
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 },
-        });
-        router.push('/tableau-de-bord?bienvenue=1');
+        // Envoi automatique de l'email de bienvenue via Resend
+        fetch('/api/emails/bienvenue', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            nom: username,
+            profil: state.profilLabel || 'Apprenant',
+            objectif: state.motivationLabel || 'Pour le travail',
+            niveau: state.niveauLabel || 'Je débute complètement',
+          }),
+        }).catch((err) => console.error('[onboarding] Erreur envoi email bienvenue', err));
+
+        if (besoinConfirmation) {
+          confetti({
+            particleCount: 80,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+          setSuccessMessage(
+            'Compte créé avec succès ! Un e-mail de confirmation vient de vous être envoyé. Cliquez sur le lien pour activer votre accès.'
+          );
+        } else {
+          confetti({
+            particleCount: 100,
+            spread: 80,
+            origin: { y: 0.6 },
+          });
+          router.push('/tableau-de-bord?bienvenue=1');
+        }
       }
     } catch {
       setErrorMessage('Une erreur inattendue est survenue. Veuillez réessayer.');

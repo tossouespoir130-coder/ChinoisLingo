@@ -1,88 +1,106 @@
 {
   "contentId": "vie_chine_business_ep3",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 3 : À l’hôtel",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep3.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 26800,
+  "totalDurationMs": 31440,
   "sentences": [
     {
       "sentenceId": "vc_b3_1",
+      "hanzi": "酒店很大，也很漂亮，有很多房间。",
       "startMs": 0,
-      "endMs": 3670,
-      "durationMs": 3320,
+      "endMs": 3600,
+      "durationMs": 3600,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_1.mp3"
     },
     {
       "sentenceId": "vc_b3_2",
-      "startMs": 3670,
-      "endMs": 6660,
-      "durationMs": 2190,
+      "hanzi": "卡蒂娅在房间给布里斯打电话。",
+      "startMs": 3600,
+      "endMs": 8160,
+      "durationMs": 3520,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_2.mp3"
     },
     {
       "sentenceId": "vc_b3_3",
-      "startMs": 6660,
-      "endMs": 7690,
-      "durationMs": 680,
+      "hanzi": "喂，你好。",
+      "startMs": 8160,
+      "endMs": 10160,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_3.mp3"
     },
     {
       "sentenceId": "vc_b3_4",
-      "startMs": 7690,
-      "endMs": 11040,
-      "durationMs": 3000,
+      "hanzi": "布里斯，你好！我是卡蒂娅。",
+      "startMs": 10160,
+      "endMs": 13920,
+      "durationMs": 3200,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_4.mp3"
     },
     {
       "sentenceId": "vc_b3_5",
-      "startMs": 11040,
-      "endMs": 13190,
-      "durationMs": 1800,
+      "hanzi": "卡蒂娅！你到了吗？",
+      "startMs": 13920,
+      "endMs": 16480,
+      "durationMs": 1600,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_5.mp3"
     },
     {
       "sentenceId": "vc_b3_6",
-      "startMs": 13190,
-      "endMs": 15730,
-      "durationMs": 2190,
+      "hanzi": "到了。我在酒店。你在哪儿？",
+      "startMs": 16480,
+      "endMs": 20240,
+      "durationMs": 2560,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_6.mp3"
     },
     {
       "sentenceId": "vc_b3_7",
-      "startMs": 15730,
-      "endMs": 18850,
-      "durationMs": 2770,
+      "hanzi": "我也在酒店。我在房间。",
+      "startMs": 20240,
+      "endMs": 23280,
+      "durationMs": 2160,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_7.mp3"
     },
     {
       "sentenceId": "vc_b3_8",
-      "startMs": 18850,
-      "endMs": 20110,
-      "durationMs": 910,
+      "hanzi": "安东尼呢？",
+      "startMs": 23280,
+      "endMs": 25400,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_8.mp3"
     },
     {
       "sentenceId": "vc_b3_9",
-      "startMs": 20110,
-      "endMs": 21450,
-      "durationMs": 990,
+      "hanzi": "他也在。",
+      "startMs": 25400,
+      "endMs": 27200,
+      "durationMs": 1800,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_9.mp3"
     },
     {
       "sentenceId": "vc_b3_10",
-      "startMs": 21450,
-      "endMs": 23600,
-      "durationMs": 1800,
+      "hanzi": "好。我们明天见。",
+      "startMs": 27200,
+      "endMs": 30000,
+      "durationMs": 1680,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_10.mp3"
     },
     {
       "sentenceId": "vc_b3_11",
-      "startMs": 23600,
-      "endMs": 24670,
-      "durationMs": 1070,
+      "hanzi": "好，明天见。",
+      "startMs": 30000,
+      "endMs": 31360,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/vie_chine_business_ep3_vc_b3_11.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

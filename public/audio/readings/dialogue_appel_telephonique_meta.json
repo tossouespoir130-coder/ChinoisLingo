@@ -1,81 +1,106 @@
 {
   "contentId": "dialogue_appel_telephonique",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Y a-t-il cours demain, professeur Wang ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_appel_telephonique.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 21450,
+  "totalDurationMs": 16750,
   "sentences": [
     {
       "sentenceId": "dat_1",
+      "speaker": "王老师",
+      "hanzi": "喂，你好。",
       "startMs": 0,
-      "endMs": 1260,
-      "durationMs": 910,
+      "endMs": 800,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_1.mp3"
     },
     {
       "sentenceId": "dat_2",
-      "startMs": 1260,
-      "endMs": 4300,
-      "durationMs": 2690,
+      "speaker": "李月",
+      "hanzi": "你好，请问王老师在吗？",
+      "startMs": 1150,
+      "endMs": 3150,
+      "durationMs": 2000,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_2.mp3"
     },
     {
       "sentenceId": "dat_3",
-      "startMs": 4300,
-      "endMs": 5560,
-      "durationMs": 910,
+      "speaker": "王老师",
+      "hanzi": "我就是。",
+      "startMs": 3500,
+      "endMs": 4220,
+      "durationMs": 720,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_3.mp3"
     },
     {
       "sentenceId": "dat_4",
-      "startMs": 5560,
-      "endMs": 8260,
-      "durationMs": 2350,
+      "speaker": "李月",
+      "hanzi": "王老师，您好。我是李月。",
+      "startMs": 4570,
+      "endMs": 6970,
+      "durationMs": 2400,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_4.mp3"
     },
     {
       "sentenceId": "dat_5",
-      "startMs": 8260,
-      "endMs": 9680,
-      "durationMs": 1070,
+      "speaker": "王老师",
+      "hanzi": "李月，你好。",
+      "startMs": 7320,
+      "endMs": 8440,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_5.mp3"
     },
     {
       "sentenceId": "dat_6",
-      "startMs": 9680,
-      "endMs": 11910,
-      "durationMs": 1880,
+      "speaker": "李月",
+      "hanzi": "老师，明天上课吗？",
+      "startMs": 8790,
+      "endMs": 10870,
+      "durationMs": 2080,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_6.mp3"
     },
     {
       "sentenceId": "dat_7",
-      "startMs": 11910,
-      "endMs": 13250,
-      "durationMs": 990,
+      "speaker": "王老师",
+      "hanzi": "明天上课。",
+      "startMs": 11220,
+      "endMs": 12100,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_7.mp3"
     },
     {
       "sentenceId": "dat_8",
-      "startMs": 13250,
-      "endMs": 15090,
-      "durationMs": 1490,
+      "speaker": "李月",
+      "hanzi": "好，谢谢老师。",
+      "startMs": 12450,
+      "endMs": 13890,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_8.mp3"
     },
     {
       "sentenceId": "dat_9",
-      "startMs": 15090,
-      "endMs": 18600,
-      "durationMs": 3160,
+      "speaker": "王老师",
+      "hanzi": "不客气。明天见。",
+      "startMs": 14240,
+      "endMs": 15680,
+      "durationMs": 1440,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_9.mp3"
     },
     {
       "sentenceId": "dat_10",
-      "startMs": 18600,
-      "endMs": 19280,
-      "durationMs": 680,
+      "speaker": "李月",
+      "hanzi": "明天见。",
+      "startMs": 16030,
+      "endMs": 16750,
+      "durationMs": 720,
       "audioUrl": "/audio/readings/dialogue_appel_telephonique_dat_10.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

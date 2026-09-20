@@ -1,46 +1,58 @@
 {
   "contentId": "histoire_docteur_zhang_wei",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Le quotidien du docteur Zhang Wei",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/histoire_docteur_zhang_wei.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 20430,
+  "totalDurationMs": 26320,
   "sentences": [
     {
       "sentenceId": "h_zw_1",
+      "hanzi": "张伟是医生，他在医院工作。",
       "startMs": 0,
-      "endMs": 2540,
-      "durationMs": 2190,
+      "endMs": 3920,
+      "durationMs": 3920,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_1.mp3"
     },
     {
       "sentenceId": "h_zw_2",
-      "startMs": 2540,
-      "endMs": 5010,
-      "durationMs": 2120,
+      "hanzi": "医院很大，里面有很多人。",
+      "startMs": 3920,
+      "endMs": 7760,
+      "durationMs": 2720,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_2.mp3"
     },
     {
       "sentenceId": "h_zw_3",
-      "startMs": 5010,
-      "endMs": 10510,
-      "durationMs": 5150,
+      "hanzi": "张伟喜欢他的工作，他的朋友都是医生，他们一起工作、吃饭。",
+      "startMs": 7760,
+      "endMs": 15840,
+      "durationMs": 6880,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_3.mp3"
     },
     {
       "sentenceId": "h_zw_4",
-      "startMs": 10510,
-      "endMs": 14650,
-      "durationMs": 3790,
+      "hanzi": "张伟有女儿，叫张小月，张小月是学生。",
+      "startMs": 15840,
+      "endMs": 21840,
+      "durationMs": 5200,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_4.mp3"
     },
     {
       "sentenceId": "h_zw_5",
-      "startMs": 14650,
-      "endMs": 18050,
-      "durationMs": 3400,
+      "hanzi": "她学习汉语，也写字，她想做医生。",
+      "startMs": 21840,
+      "endMs": 26240,
+      "durationMs": 4400,
       "audioUrl": "/audio/readings/histoire_docteur_zhang_wei_h_zw_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

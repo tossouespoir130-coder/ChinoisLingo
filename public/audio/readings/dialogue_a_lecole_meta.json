@@ -1,39 +1,52 @@
 {
   "contentId": "dialogue_a_lecole",
-  "aliases": [],
-  "type": "dialogue",
+  "title": "Qui est ton professeur ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_a_lecole.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 7920,
+  "totalDurationMs": 5370,
   "sentences": [
     {
       "sentenceId": "dae_1",
+      "speaker": "周杰",
+      "hanzi": "他是谁？",
       "startMs": 0,
-      "endMs": 1340,
-      "durationMs": 990,
+      "endMs": 800,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_1.mp3"
     },
     {
       "sentenceId": "dae_2",
-      "startMs": 1340,
-      "endMs": 3100,
-      "durationMs": 1410,
+      "speaker": "孙丽",
+      "hanzi": "他是我的老师。",
+      "startMs": 1150,
+      "endMs": 2510,
+      "durationMs": 1360,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_2.mp3"
     },
     {
       "sentenceId": "dae_3",
-      "startMs": 3100,
-      "endMs": 4050,
-      "durationMs": 600,
+      "speaker": "周杰",
+      "hanzi": "她呢？",
+      "startMs": 2860,
+      "endMs": 3500,
+      "durationMs": 640,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_3.mp3"
     },
     {
       "sentenceId": "dae_4",
-      "startMs": 4050,
-      "endMs": 5540,
-      "durationMs": 1490,
+      "speaker": "孙丽",
+      "hanzi": "她是我的同学。",
+      "startMs": 3850,
+      "endMs": 5370,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/dialogue_a_lecole_dae_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

@@ -27,23 +27,20 @@ const AVANTAGES = [
 ];
 
 export function GrilleTarifs({ paysProfil }: { paysProfil?: string | null }) {
-  // Pays connu et hors zone franc → l'euro est le choix pertinent d'entrée.
-  // Pays inconnu → FCFA, le marché principal.
-  const deviseInitiale: Devise =
-    paysProfil && !PAYS_FCFA.includes(paysProfil) ? 'EUR' : 'XOF';
-  const [devise, setDevise] = useState<Devise>(deviseInitiale);
+  // Carte bancaire (EUR) est l'option prioritaire et recommandée par défaut
+  const [devise, setDevise] = useState<Devise>('EUR');
 
   const { demarrerPaiement, enCours, erreur, effacerErreur, estConnecte } = useAbonnement();
 
   return (
     <div className="space-y-6">
-      {/* Bascule de devise — chaque devise engage un fournisseur différent */}
+      {/* Bascule de mode de paiement : Carte bancaire en premier, puis Mobile Money */}
       <div className="flex flex-col items-center gap-3">
         <div className="inline-flex p-1 rounded-full bg-[#FAFAFA] dark:bg-[#181818] border border-[#E0E0E0] dark:border-[#2D2D2D]">
           {(
             [
-              { valeur: 'XOF' as Devise, libelle: 'Mobile Money', icone: Smartphone },
               { valeur: 'EUR' as Devise, libelle: 'Carte bancaire', icone: CreditCard },
+              { valeur: 'XOF' as Devise, libelle: 'Mobile Money', icone: Smartphone },
             ]
           ).map(({ valeur, libelle, icone: Icone }) => (
             <button
@@ -66,9 +63,9 @@ export function GrilleTarifs({ paysProfil }: { paysProfil?: string | null }) {
         </div>
 
         <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] text-center max-w-md">
-          {devise === 'XOF'
-            ? 'Réglez avec MTN MoMo, Moov Money, Orange Money, Wave ou T-Money.'
-            : 'Réglez par carte Visa ou Mastercard.'}
+          {devise === 'EUR'
+            ? 'Réglez en toute sécurité par carte Visa ou Mastercard (Stripe).'
+            : 'Réglez avec MTN MoMo, Moov Money, Orange Money, Wave ou T-Money (Moneroo).'}
         </p>
       </div>
 

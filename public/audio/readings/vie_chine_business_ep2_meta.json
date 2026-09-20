@@ -1,60 +1,74 @@
 {
   "contentId": "vie_chine_business_ep2",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 2 : Katia prend le taxi",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep2.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 16850,
+  "totalDurationMs": 13440,
   "sentences": [
     {
       "sentenceId": "vc_b2_1",
+      "hanzi": "卡蒂娅坐出租车从机场去酒店。",
       "startMs": 0,
-      "endMs": 3310,
-      "durationMs": 2510,
+      "endMs": 4320,
+      "durationMs": 4320,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_1.mp3"
     },
     {
       "sentenceId": "vc_b2_2",
-      "startMs": 3310,
-      "endMs": 5460,
-      "durationMs": 1800,
+      "hanzi": "您好，您去哪儿？",
+      "startMs": 4320,
+      "endMs": 6560,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_2.mp3"
     },
     {
       "sentenceId": "vc_b2_3",
-      "startMs": 5460,
-      "endMs": 6960,
-      "durationMs": 1150,
+      "hanzi": "我去北京酒店。",
+      "startMs": 6560,
+      "endMs": 8920,
+      "durationMs": 1200,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_3.mp3"
     },
     {
       "sentenceId": "vc_b2_4",
-      "startMs": 6960,
-      "endMs": 7990,
+      "hanzi": "好。",
+      "startMs": 8920,
+      "endMs": 9720,
       "durationMs": 680,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_4.mp3"
     },
     {
       "sentenceId": "vc_b2_5",
-      "startMs": 7990,
-      "endMs": 10610,
-      "durationMs": 2270,
+      "hanzi": "多少钱？",
+      "startMs": 9720,
+      "endMs": 11240,
+      "durationMs": 1400,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_5.mp3"
     },
     {
       "sentenceId": "vc_b2_6",
-      "startMs": 10610,
-      "endMs": 12450,
-      "durationMs": 1490,
+      "hanzi": "四十块。",
+      "startMs": 11240,
+      "endMs": 12560,
+      "durationMs": 1320,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_6.mp3"
     },
     {
       "sentenceId": "vc_b2_7",
-      "startMs": 12450,
-      "endMs": 14570,
-      "durationMs": 2120,
+      "hanzi": "好，谢谢。",
+      "startMs": 12560,
+      "endMs": 13360,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/vie_chine_business_ep2_vc_b2_7.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

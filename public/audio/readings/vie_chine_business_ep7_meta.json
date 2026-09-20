@@ -1,66 +1,81 @@
 {
   "contentId": "vie_chine_business_ep7",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Vie en Chine : Business - Partie 7 : À la recherche du sac (2) — Le deuxième magasin",
+  "type": "histoires",
+  "narrator": "Anna Su",
+  "voiceId": "9lHjugDhwqoxA5MhX0az",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep7.mp3",
-  "pauseBetweenSec": 0.75,
-  "endSilenceSec": 2.5,
-  "totalDurationMs": 24190,
+  "totalDurationMs": 23760,
   "sentences": [
     {
       "sentenceId": "vc_b7_1",
+      "hanzi": "卡蒂娅去第二家店。",
       "startMs": 0,
-      "endMs": 2240,
-      "durationMs": 1490,
+      "endMs": 1840,
+      "durationMs": 1840,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_1.mp3"
     },
     {
       "sentenceId": "vc_b7_2",
-      "startMs": 2240,
-      "endMs": 4560,
-      "durationMs": 1570,
+      "hanzi": "她还是想找一样的包。",
+      "startMs": 1840,
+      "endMs": 4400,
+      "durationMs": 2480,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_2.mp3"
     },
     {
       "sentenceId": "vc_b7_3",
-      "startMs": 4560,
-      "endMs": 8550,
-      "durationMs": 3240,
+      "hanzi": "你好，请问你们有这个牌子的包吗？",
+      "startMs": 4400,
+      "endMs": 9360,
+      "durationMs": 4080,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_3.mp3"
     },
     {
       "sentenceId": "vc_b7_4",
-      "startMs": 8550,
-      "endMs": 10870,
-      "durationMs": 1570,
+      "hanzi": "有，您要哪一款？",
+      "startMs": 9360,
+      "endMs": 10960,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_4.mp3"
     },
     {
       "sentenceId": "vc_b7_5",
-      "startMs": 10870,
-      "endMs": 13340,
-      "durationMs": 1720,
+      "hanzi": "我要这个样品一样的。",
+      "startMs": 10960,
+      "endMs": 14560,
+      "durationMs": 2640,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_5.mp3"
     },
     {
       "sentenceId": "vc_b7_6",
-      "startMs": 13340,
-      "endMs": 17090,
-      "durationMs": 3000,
+      "hanzi": "这个款我们没有了。您看看别的款？",
+      "startMs": 14560,
+      "endMs": 18640,
+      "durationMs": 3040,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_6.mp3"
     },
     {
       "sentenceId": "vc_b7_7",
-      "startMs": 17090,
-      "endMs": 20840,
-      "durationMs": 3000,
+      "hanzi": "谢谢，不用了。我只要这个款。",
+      "startMs": 18640,
+      "endMs": 22160,
+      "durationMs": 2640,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_7.mp3"
     },
     {
       "sentenceId": "vc_b7_8",
-      "startMs": 20840,
-      "endMs": 21990,
-      "durationMs": 1150,
+      "hanzi": "好的，不好意思。",
+      "startMs": 22160,
+      "endMs": 23680,
+      "durationMs": 1520,
       "audioUrl": "/audio/readings/vie_chine_business_ep7_vc_b7_8.mp3"
     }
   ]

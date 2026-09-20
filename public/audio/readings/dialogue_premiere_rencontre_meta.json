@@ -1,46 +1,61 @@
 {
   "contentId": "dialogue_premiere_rencontre",
-  "aliases": [],
+  "title": "Heureux de faire votre connaissance (HSK 1 - Dialogue)",
   "type": "dialogue",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/dialogue_premiere_rencontre.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 10270,
+  "totalDurationMs": 7080,
   "sentences": [
     {
       "sentenceId": "dpr_1",
+      "speaker": "王明",
+      "hanzi": "你好！",
       "startMs": 0,
-      "endMs": 1260,
-      "durationMs": 910,
+      "endMs": 800,
+      "durationMs": 800,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_1.mp3"
     },
     {
       "sentenceId": "dpr_2",
-      "startMs": 1260,
-      "endMs": 2760,
-      "durationMs": 1150,
+      "speaker": "李月",
+      "hanzi": "你好！",
+      "startMs": 1150,
+      "endMs": 2190,
+      "durationMs": 1040,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_2.mp3"
     },
     {
       "sentenceId": "dpr_3",
-      "startMs": 2760,
-      "endMs": 4180,
-      "durationMs": 1070,
+      "speaker": "王明",
+      "hanzi": "你叫什么名字？",
+      "startMs": 2540,
+      "endMs": 3660,
+      "durationMs": 1120,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_3.mp3"
     },
     {
       "sentenceId": "dpr_4",
-      "startMs": 4180,
-      "endMs": 6650,
-      "durationMs": 2120,
+      "speaker": "李月",
+      "hanzi": "我叫李月。你呢？",
+      "startMs": 4010,
+      "endMs": 5850,
+      "durationMs": 1840,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_4.mp3"
     },
     {
       "sentenceId": "dpr_5",
-      "startMs": 6650,
-      "endMs": 7880,
-      "durationMs": 1230,
+      "speaker": "王明",
+      "hanzi": "我叫王明。",
+      "startMs": 6200,
+      "endMs": 7080,
+      "durationMs": 880,
       "audioUrl": "/audio/readings/dialogue_premiere_rencontre_dpr_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

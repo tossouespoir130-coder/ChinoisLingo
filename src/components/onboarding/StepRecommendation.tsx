@@ -11,7 +11,7 @@ interface StepRecommendationProps {
 }
 
 export function StepRecommendation({ state, onProceed }: StepRecommendationProps) {
-  // Calcul dynamique des recommandations
+  // Calcul dynamique des recommandations de niveau
   let niveauTitre = 'Niveau 1 — Débutant Immersion';
   let niveauBadge = 'HSK 1';
   let niveauCouleur = 'bg-[#00BFA5]/15 text-[#00796B] dark:text-[#03DAC5] border-[#00BFA5]/30';
@@ -21,27 +21,86 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
     niveauBadge = 'HSK 2';
     niveauCouleur = 'bg-[#0288D1]/15 text-[#0288D1] dark:text-[#4FC3F7] border-[#0288D1]/30';
   } else if (state.niveau === 'intermediaire_avance') {
-    niveauTitre = 'Niveau 3-4 — Maîtrise & Fluidité';
+    niveauTitre = 'Niveau 3-4 — Maîtrise, Fluidité & Perfectionnement';
     niveauBadge = 'HSK 3–4';
     niveauCouleur = 'bg-[#6200EE]/15 text-[#6200EE] dark:text-[#BB86FC] border-[#6200EE]/30';
   }
 
-  // Module de départ suggéré selon la motivation
+  // Croisement intelligent : Profil x Niveau x Motivation
   let moduleTitre = 'Histoires immersives & premiers dialogues du quotidien';
   let moduleDesc = 'Découvrez vos premiers mots avec Xiao Li, les sons essentiels et des phrases courtes.';
 
-  if (state.motivation === 'travail') {
-    moduleTitre = 'Mandarin des Affaires & Dialogues Commerciaux';
-    moduleDesc = 'Formations pratiques de négociation, vocabulaire pro et phrases clés en entreprise.';
-  } else if (state.motivation === 'voyage') {
-    moduleTitre = 'Survie en Chine, Transports & Restauration';
-    moduleDesc = 'Dialogues interactifs pour commander, demander son chemin et échanger avec les locaux.';
-  } else if (state.motivation === 'etudes') {
-    moduleTitre = 'Méthode Combinatoire & Packs Vocabulaire HSK';
-    moduleDesc = 'Multipliez les phrases naturelles en combinant les mots pivots sans surcharge cognitive.';
-  } else if (state.motivation === 'passion') {
-    moduleTitre = 'Chansons Bilingues, Histoires & Podcasts Culturels';
-    moduleDesc = 'Paroles synchronisées, chansons populaires et contes narrés pour un plaisir immédiat.';
+  if (state.profil === 'entrepreneur') {
+    if (state.niveau === 'debutant' || !state.niveau) {
+      moduleTitre = 'Mandarin Commercial & Négociation Débutant (HSK 1)';
+      moduleDesc = 'Apprenez les chiffres, les prix, la monnaie chinoise (RMB), les salutations formelles d’affaires et vos premiers échanges commerciaux.';
+    } else if (state.niveau === 'intermediaire_bas') {
+      moduleTitre = 'Masterclass Sourcing & Négociation Usines (HSK 2–3)';
+      moduleDesc = 'Dialogues d’achat direct, commandes d’échantillons, contrôle qualité et logistique de fret à Guangzhou & Yiwu.';
+    } else {
+      moduleTitre = 'Contrats Commerciaux & Stratégie d’Affaires en Chine (HSK 4)';
+      moduleDesc = 'Négociations complexes, accords de distribution, lexique douanier maritime et droit des affaires en mandarin.';
+    }
+  } else if (state.profil === 'cadre') {
+    if (state.niveau === 'debutant' || !state.niveau) {
+      moduleTitre = 'Communication & Politesse en Entreprise (HSK 1)';
+      moduleDesc = 'Présentations formelles, formules de courtoisie professionnelle, salutations en réunion et vocabulaire clé du bureau.';
+    } else if (state.niveau === 'intermediaire_bas') {
+      moduleTitre = 'Réunions & Gestion d’Équipe Bilingue (HSK 2–3)';
+      moduleDesc = 'Conduire un point projet, rédiger des emails professionnels concis et collaborer au quotidien avec des partenaires chinois.';
+    } else {
+      moduleTitre = 'Management Stratégique & Partenariats Internationaux (HSK 4)';
+      moduleDesc = 'Présentations de rapports trimestriels, leadership biculturel et négociations corporate de haut niveau.';
+    }
+  } else if (state.profil === 'ingenieur') {
+    if (state.niveau === 'debutant' || !state.niveau) {
+      moduleTitre = 'Mandarin Technique & Chantier Débutant (HSK 1)';
+      moduleDesc = 'Consignes de sécurité, outils, mesures, termes techniques élémentaires et communication terrain avec les équipes chinoises.';
+    } else if (state.niveau === 'intermediaire_bas') {
+      moduleTitre = 'Vocabulaire BTP, Industrie & Matériel Technique (HSK 2–3)';
+      moduleDesc = 'Dialogues d’ateliers, maintenance préventive, spécifications de plans et coordination technique avec les ingénieurs chinois.';
+    } else {
+      moduleTitre = 'Ingénierie & Suivi de Grands Chantiers (HSK 4)';
+      moduleDesc = 'Rédaction de rapports techniques détaillés, normes industrielles, audits qualité et conduite de projets BTP complexes.';
+    }
+  } else if (state.profil === 'etudiant') {
+    if (state.niveau === 'debutant' || !state.niveau) {
+      moduleTitre = 'Pack Essentiel HSK 1 & Méthode Combinatoire';
+      moduleDesc = 'Maîtrisez les 150 premiers mots indispensables et assemblez des phrases fluides naturellement pour réussir vos examens.';
+    } else if (state.niveau === 'intermediaire_bas') {
+      moduleTitre = 'Préparation HSK 2–3 & Histoires Écrites';
+      moduleDesc = 'Consolidez votre grammaire, préparez votre certification officielle et enrichissez votre vocabulaire par la lecture active.';
+    } else {
+      moduleTitre = 'Perfectionnement HSK 4–5 & Articles Académiques';
+      moduleDesc = 'Podcasts universitaires, compréhension de textes longs et perfectionnement écrit pour bourses d’études en Chine.';
+    }
+  } else {
+    // Autre / Voyage / Passion
+    if (state.motivation === 'voyage') {
+      if (state.niveau === 'debutant' || !state.niveau) {
+        moduleTitre = 'Survie en Chine, Transports & Restauration (HSK 1)';
+        moduleDesc = 'Dialogues pratiques pour commander au restaurant, prendre le taxi, réserver l’hôtel et demander son chemin.';
+      } else {
+        moduleTitre = 'Dialogues de Voyage & Podcasts Culturels (HSK 2–3)';
+        moduleDesc = 'Échanges spontanés avec les locaux, récits de voyage immersifs et anecdotes culturelles chinoises captivantes.';
+      }
+    } else if (state.motivation === 'passion') {
+      if (state.niveau === 'debutant' || !state.niveau) {
+        moduleTitre = 'Chansons Bilingues & Premiers Contes Narrés (HSK 1)';
+        moduleDesc = 'Paroles synchronisées, musiques populaires faciles et contes bilingues pour un apprentissage mélodieux et passionnant.';
+      } else {
+        moduleTitre = 'Immersion Totale : Articles de Société & Podcasts sans filtre';
+        moduleDesc = 'Podcasts thématiques, légendes chinoises, chansons poétiques et exploration approfondie de la culture.';
+      }
+    } else {
+      if (state.niveau === 'debutant' || !state.niveau) {
+        moduleTitre = 'Histoires immersives & Dialogues du quotidien (HSK 1)';
+        moduleDesc = 'Découvrez vos premiers mots avec Xiao Li, les sons essentiels et des phrases courtes de la vie courante.';
+      } else {
+        moduleTitre = 'Articles Bilingues & Dialogues de Conversation (HSK 2–3)';
+        moduleDesc = 'Approfondissez votre compréhension orale et écrite avec des contenus variés et captivants.';
+      }
+    }
   }
 
   return (

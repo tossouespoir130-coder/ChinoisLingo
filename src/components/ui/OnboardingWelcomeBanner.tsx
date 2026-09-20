@@ -15,36 +15,79 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
 
   if (isDismissed || !profile) return null;
 
-  // Calcul du contenu recommandé selon les réponses d'onboarding
-  const profil = profile.onboarding_profil;
-  const objectif = profile.onboarding_objectif;
+  // Calcul du contenu recommandé selon les réponses d'onboarding (Profil x Niveau x Objectif)
+  const profil = profile.onboarding_profil || '';
+  const objectif = profile.onboarding_objectif || '';
   const niveau = profile.onboarding_niveau || 'Débutant';
+
+  const profilMin = profil.toLowerCase();
+  const niveauMin = niveau.toLowerCase();
+  const estDebutant = niveauMin.includes('début') || niveauMin.includes('debut');
+  const estIntermediaire = niveauMin.includes('base') || niveauMin.includes('intermédiaire') || niveauMin.includes('intermediaire') || niveauMin.includes('hsk 2');
 
   let titreRecommandation = 'Commencez avec les bases du mandarin et vos premières histoires';
   let lienCible = '/vocabulaire';
   let boutonTexte = 'Explorer le Vocabulaire';
   let sousTitre = 'Xiao Li vous accompagne pas à pas pour progresser chaque jour.';
 
-  if (objectif?.toLowerCase().includes('travail') || objectif?.toLowerCase().includes('affaires')) {
-    titreRecommandation = 'Parcours suggéré : Mandarin des Affaires & Dialogues Pros';
-    lienCible = '/formation';
-    boutonTexte = 'Découvrir les Formations Vidéo';
-    sousTitre = 'Apprenez le vocabulaire des négociations, du sourcing et des affaires en Chine.';
-  } else if (objectif?.toLowerCase().includes('voyage')) {
-    titreRecommandation = 'Parcours suggéré : Dialogues de Voyage & Survie en Chine';
+  if (profilMin.includes('entrepreneur') || profilMin.includes('commerç') || profilMin.includes('commerc')) {
+    if (estDebutant) {
+      titreRecommandation = 'Parcours Entrepreneur : Mandarin Commercial & Négociation Débutant';
+      lienCible = '/formation';
+      boutonTexte = 'Découvrir la Formation';
+      sousTitre = 'Apprenez les chiffres, les devises RMB, les salutations d’affaires et les bases de la négociation.';
+    } else {
+      titreRecommandation = 'Masterclass Sourcing, Usines & Négociation à Guangzhou';
+      lienCible = '/formation';
+      boutonTexte = 'Lancer la Masterclass';
+      sousTitre = 'Commandes d’échantillons, contrats commerciaux, audits d’usine et logistique de fret maritime.';
+    }
+  } else if (profilMin.includes('cadre')) {
+    if (estDebutant) {
+      titreRecommandation = 'Parcours Cadre : Politesse & Présentations en Entreprise';
+      lienCible = '/formation';
+      boutonTexte = 'Voir le Parcours Pro';
+      sousTitre = 'Maîtrisez les formules de courtoisie en réunion et le vocabulaire essentiel du bureau.';
+    } else {
+      titreRecommandation = 'Management Stratégique & Réunions d’Affaires Bilingues';
+      lienCible = '/formation';
+      boutonTexte = 'Accéder aux Formations';
+      sousTitre = 'Conduisez des réunions de projet, rédigez des comptes-rendus et échangez avec vos partenaires.';
+    }
+  } else if (profilMin.includes('ingénieur') || profilMin.includes('ingenieur') || profilMin.includes('technicien') || profilMin.includes('btp')) {
+    if (estDebutant) {
+      titreRecommandation = 'Mandarin Technique, Chantier & Consignes de Sécurité';
+      lienCible = '/vocabulaire';
+      boutonTexte = 'Consulter le Vocabulaire BTP';
+      sousTitre = 'Vocabulaire des outils, mesures, sécurité sur le terrain et consignes techniques élémentaires.';
+    } else {
+      titreRecommandation = 'Vocabulaire BTP, Industrie & Coordination de Chantier';
+      lienCible = '/formation';
+      boutonTexte = 'Lancer les Modules Techniques';
+      sousTitre = 'Dialogues d’ateliers, maintenance préventive, spécifications de plans et gestion de chantier.';
+    }
+  } else if (profilMin.includes('étudiant') || profilMin.includes('etudiant')) {
+    if (estDebutant) {
+      titreRecommandation = 'Pack Essentiel HSK 1 & Méthode Combinatoire Active';
+      lienCible = '/vocabulaire';
+      boutonTexte = 'Tester la Combinaison';
+      sousTitre = 'Mémorisez les mots indispensables et créez des phrases naturelles sans effort.';
+    } else {
+      titreRecommandation = 'Préparation Avancée aux Certifications HSK & Articles Académiques';
+      lienCible = '/ecoute-lecture';
+      boutonTexte = 'Lire & Écouter';
+      sousTitre = 'Préparez vos examens HSK, enrichissez votre vocabulaire et perfectionnez votre compréhension.';
+    }
+  } else if (objectif.toLowerCase().includes('voyage')) {
+    titreRecommandation = 'Parcours Voyage : Survie en Chine & Dialogues du Quotidien';
     lienCible = '/ecoute-lecture';
     boutonTexte = 'Lancer les Dialogues';
-    sousTitre = 'Pratiquez la commande au restaurant, les transports et les échanges du quotidien.';
-  } else if (objectif?.toLowerCase().includes('etudes')) {
-    titreRecommandation = 'Parcours suggéré : Méthode Combinatoire & Packs HSK';
-    lienCible = '/vocabulaire';
-    boutonTexte = 'Tester la Combinaison';
-    sousTitre = 'Multipliez les phrases naturelles sans surcharge de mémorisation.';
-  } else if (objectif?.toLowerCase().includes('passion')) {
-    titreRecommandation = 'Parcours suggéré : Chansons Bilingues & Histoires Narrées';
+    sousTitre = 'Pratiquez la commande au restaurant, les transports, les hôtels et les échanges avec les locaux.';
+  } else if (objectif.toLowerCase().includes('passion')) {
+    titreRecommandation = 'Parcours Passion : Chansons Bilingues & Contes Narrés';
     lienCible = '/ecoute-lecture';
-    boutonTexte = 'Écouter & Lire';
-    sousTitre = 'Plongez dans les paroles synchronisées et les contes en immersion active.';
+    boutonTexte = 'Écouter & Chanter';
+    sousTitre = 'Plongez dans les paroles synchronisées et les histoires immersives en immersion active.';
   }
 
   return (

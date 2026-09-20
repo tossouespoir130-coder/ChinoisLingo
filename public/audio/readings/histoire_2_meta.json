@@ -1,39 +1,50 @@
 {
   "contentId": "histoire_2",
-  "aliases": [],
-  "type": "histoire",
+  "title": "La Première Visite d’Usine",
+  "type": "histoires",
+  "narrator": "Siqi Liu",
+  "voiceId": "W8lBaQb9YIoddhxfQNLP",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/histoire_2.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 15670,
+  "totalDurationMs": 15040,
   "sentences": [
     {
       "sentenceId": "h2_1",
+      "hanzi": "今天，李经理带客户参观工厂。",
       "startMs": 0,
-      "endMs": 3200,
-      "durationMs": 2850,
+      "endMs": 3120,
+      "durationMs": 3120,
       "audioUrl": "/audio/readings/histoire_2_h2_1.mp3"
     },
     {
       "sentenceId": "h2_2",
-      "startMs": 3200,
-      "endMs": 7180,
-      "durationMs": 3630,
+      "hanzi": "工厂很大，工人们都在认真工作。",
+      "startMs": 3120,
+      "endMs": 8280,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/histoire_2_h2_2.mp3"
     },
     {
       "sentenceId": "h2_3",
-      "startMs": 7180,
-      "endMs": 9720,
-      "durationMs": 2190,
+      "hanzi": "客户看了样品，非常满意。",
+      "startMs": 8280,
+      "endMs": 10880,
+      "durationMs": 2520,
       "audioUrl": "/audio/readings/histoire_2_h2_3.mp3"
     },
     {
       "sentenceId": "h2_4",
-      "startMs": 9720,
-      "endMs": 13270,
-      "durationMs": 3550,
+      "hanzi": "他们喝了乌龙茶，约定明天签合同。",
+      "startMs": 10880,
+      "endMs": 15040,
+      "durationMs": 4160,
       "audioUrl": "/audio/readings/histoire_2_h2_4.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }

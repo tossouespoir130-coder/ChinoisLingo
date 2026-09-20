@@ -1,46 +1,58 @@
 {
   "contentId": "histoire_chat_li_yue",
-  "aliases": [],
-  "type": "histoire",
+  "title": "Le petit chat blanc de Li Yue",
+  "type": "histoires",
+  "narrator": "Hua Feng",
+  "voiceId": "rtRocV7drsrJFSQPxlD3",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
   "fullAudioUrl": "/audio/readings/histoire_chat_li_yue.mp3",
-  "pauseBetweenSec": 0.35,
-  "totalDurationMs": 23690,
+  "totalDurationMs": 26560,
   "sentences": [
     {
       "sentenceId": "h_cat_1",
+      "hanzi": "李月家有猫，猫叫小白。",
       "startMs": 0,
-      "endMs": 3120,
-      "durationMs": 2770,
+      "endMs": 3600,
+      "durationMs": 3600,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_1.mp3"
     },
     {
       "sentenceId": "h_cat_2",
-      "startMs": 3120,
-      "endMs": 7340,
-      "durationMs": 3870,
+      "hanzi": "小白很小，很漂亮，李月很喜欢小白。",
+      "startMs": 3600,
+      "endMs": 9680,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_2.mp3"
     },
     {
       "sentenceId": "h_cat_3",
-      "startMs": 7340,
-      "endMs": 11970,
-      "durationMs": 4280,
+      "hanzi": "今天上午，李月在家看书，小白睡觉。",
+      "startMs": 9680,
+      "endMs": 14880,
+      "durationMs": 4640,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_3.mp3"
     },
     {
       "sentenceId": "h_cat_4",
-      "startMs": 11970,
-      "endMs": 18590,
-      "durationMs": 6270,
+      "hanzi": "中午李月吃米饭，小白喝水。下午李月去商店买水果。",
+      "startMs": 14880,
+      "endMs": 23520,
+      "durationMs": 7760,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_4.mp3"
     },
     {
       "sentenceId": "h_cat_5",
-      "startMs": 18590,
-      "endMs": 21360,
-      "durationMs": 2770,
+      "hanzi": "她回家，看见小白在椅子上。",
+      "startMs": 23520,
+      "endMs": 26480,
+      "durationMs": 2960,
       "audioUrl": "/audio/readings/histoire_chat_li_yue_h_cat_5.mp3"
     }
-  ],
-  "endSilenceSec": 2.5
+  ]
 }
