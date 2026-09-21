@@ -80,7 +80,7 @@ export default function LandingCombinationMethod() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           <span className="text-xs font-bold uppercase tracking-widest text-[#00897B] block mb-2">
-            Méthode Combinatoire
+            Méthode de la Combinaison
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-950 font-display tracking-tight">
             Assemblez 3 blocs. Parlez chinois instantanément.

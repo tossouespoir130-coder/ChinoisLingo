@@ -46,7 +46,7 @@ export function StepIntro({ onStart }: StepIntroProps) {
       {/* Presentation Message (Stagger 3) */}
       <div className="animate-slide-up-3 space-y-3 max-w-md w-full px-2">
         <h2 className="text-2xl sm:text-3xl font-black text-[#212121] dark:text-white font-display tracking-tight">
-          Nǐ hǎo ! Je suis Xiao Li (小狸) 🐱
+          Nǐhǎo ! Je suis Xiao Li (小狸) 🐱
         </h2>
         <p className="text-sm sm:text-base text-[#616161] dark:text-[#E0E0E0] leading-relaxed">
           Je suis là pour t’accompagner et rendre ton apprentissage du mandarin simple, motivant et agréable au quotidien.

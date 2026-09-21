@@ -1,97 +1,80 @@
 {
   "contentId": "vie_chine_business_ep8",
-  "title": "Vie en Chine : Business - Partie 8 : À la recherche du sac (3) — Le troisième magasin",
-  "type": "histoires",
-  "narrator": "Anna Su",
-  "voiceId": "9lHjugDhwqoxA5MhX0az",
-  "model": "eleven_v3",
-  "voiceSettings": {
-    "stability": 0.5,
-    "similarity_boost": 0.85,
-    "style": 0,
-    "use_speaker_boost": true
-  },
+  "aliases": [],
+  "type": "histoire",
   "fullAudioUrl": "/audio/readings/vie_chine_business_ep8.mp3",
-  "totalDurationMs": 33280,
+  "pauseBetweenSec": 0.75,
+  "endSilenceSec": 2.5,
+  "totalDurationMs": 33540,
   "sentences": [
     {
       "sentenceId": "vc_b8_1",
-      "hanzi": "卡蒂娅继续找包。",
       "startMs": 0,
-      "endMs": 1880,
-      "durationMs": 1880,
+      "endMs": 2160,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_1.mp3"
     },
     {
       "sentenceId": "vc_b8_2",
-      "hanzi": "她去了第三家店。",
-      "startMs": 1880,
-      "endMs": 4880,
-      "durationMs": 1880,
+      "startMs": 2160,
+      "endMs": 4220,
+      "durationMs": 1310,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_2.mp3"
     },
     {
       "sentenceId": "vc_b8_3",
-      "hanzi": "你好，请问你们有这个包吗？",
-      "startMs": 4880,
-      "endMs": 8240,
-      "durationMs": 2320,
+      "startMs": 4220,
+      "endMs": 7820,
+      "durationMs": 2850,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_3.mp3"
     },
     {
       "sentenceId": "vc_b8_4",
-      "hanzi": "有。您要什么颜色的？",
-      "startMs": 8240,
-      "endMs": 11200,
-      "durationMs": 2080,
+      "startMs": 7820,
+      "endMs": 10610,
+      "durationMs": 2040,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_4.mp3"
     },
     {
       "sentenceId": "vc_b8_5",
-      "hanzi": "你们有什么颜色？",
-      "startMs": 11200,
-      "endMs": 13680,
-      "durationMs": 1440,
+      "startMs": 10610,
+      "endMs": 12770,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_5.mp3"
     },
     {
       "sentenceId": "vc_b8_6",
-      "hanzi": "我们有黑色、白色、红色、蓝色和棕色。您看看。",
-      "startMs": 13680,
-      "endMs": 21440,
-      "durationMs": 6480,
+      "startMs": 12770,
+      "endMs": 19160,
+      "durationMs": 5640,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_6.mp3"
     },
     {
       "sentenceId": "vc_b8_7",
-      "hanzi": "我比较喜欢黑色、红色和蓝色。",
-      "startMs": 21440,
-      "endMs": 26400,
-      "durationMs": 3920,
+      "startMs": 19160,
+      "endMs": 23070,
+      "durationMs": 3160,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_7.mp3"
     },
     {
       "sentenceId": "vc_b8_8",
-      "hanzi": "好的。那您要几个？",
-      "startMs": 26400,
-      "endMs": 29600,
-      "durationMs": 2080,
+      "startMs": 23070,
+      "endMs": 26750,
+      "durationMs": 2930,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_8.mp3"
     },
     {
       "sentenceId": "vc_b8_9",
-      "hanzi": "我先看看。",
-      "startMs": 29600,
-      "endMs": 31360,
-      "durationMs": 960,
+      "startMs": 26750,
+      "endMs": 29850,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_9.mp3"
     },
     {
       "sentenceId": "vc_b8_10",
-      "hanzi": "好的，您慢慢看。",
-      "startMs": 31360,
-      "endMs": 33120,
-      "durationMs": 1760,
+      "startMs": 29850,
+      "endMs": 31420,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/vie_chine_business_ep8_vc_b8_10.mp3"
     }
   ]

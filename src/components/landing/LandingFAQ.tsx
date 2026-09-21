@@ -12,7 +12,7 @@ const FAQS = [
   {
     question: 'Pourquoi la méthode de la combinaison est-elle plus efficace que l’apprentissage classique ?',
     answer:
-      'Dans les méthodes traditionnelles, on vous demande d’apprendre des listes isolées de vocabulaire. Avec notre méthode combinatoire, vous apprenez la mécanique interne du chinois : assembler des blocs modulaires (Sujet + Verbe + Complément). Avec 18 mots clés, vous pouvez composer plus de 200 phrases naturelles dès la première heure !'
+      'Dans les méthodes traditionnelles, on vous demande d’apprendre des listes isolées de vocabulaire. Avec la Méthode de la Combinaison, vous apprenez la mécanique interne du chinois : assembler des blocs modulaires (Sujet + Verbe + Complément). Avec 18 mots clés, vous pouvez composer plus de 200 phrases naturelles dès la première heure !'
   },
   {
     question: 'Comment fonctionnent les voix et pistes audio sur la plateforme ?',

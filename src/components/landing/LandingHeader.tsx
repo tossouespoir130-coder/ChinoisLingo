@@ -59,7 +59,7 @@ export default function LandingHeader() {
               href="#methode"
               className="text-sm font-semibold text-gray-600 hover:text-[#6200EE] transition-colors"
             >
-              Méthode Combinatoire
+              Méthode de la Combinaison
             </a>
             <a
               href="#fonctionnalites"
@@ -121,7 +121,7 @@ export default function LandingHeader() {
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 rounded-lg"
             >
-              Méthode Combinatoire
+              Méthode de la Combinaison
             </a>
             <a
               href="#fonctionnalites"

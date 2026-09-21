@@ -858,7 +858,7 @@ export function OnboardingFlow({ onSwitchToSignIn }: OnboardingFlowProps) {
               <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
                 <p className="font-bold text-[#FFA000]">1. Débutant complet (HSK 1)</p>
                 <p className="text-xs text-[#757575] dark:text-[#9E9E9E] mt-0.5">
-                  Vous ne connaissez aucun mot ou seulement « Nǐ hǎo ». Idéal pour apprendre les sons, tons et bases.
+                  Vous ne connaissez aucun mot ou seulement « Nǐhǎo ». Idéal pour apprendre les sons, tons et bases.
                 </p>
               </div>
 

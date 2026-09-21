@@ -1070,7 +1070,7 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Wǒ de māo',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '8 parties',
+    duration: '9 parties',
     description: 'Une adorable série d’histoires simples et douces pour débutant absolu (HSK 1) : suivez les journées de Wang Xiaoming et de son petit chat Xiaobai.',
     imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
@@ -2577,7 +2577,7 @@ export const readingCatalog: ReadingItem[] = [
         titlePinyin: 'Dì bā piān: Zhǎo bāo (sān) — Dì sān jiā diàn',
         duration: '1 min 45',
         level: 'HSK 3',
-        description: 'Dans une troisième boutique, le vendeur dispose du sac en plusieurs coloris. Katia examine les couleurs disponibles avant de faire son choix.',
+        description: 'Dans une troisième boutique, la vendeuse dispose du sac en plusieurs coloris. Katia examine les couleurs disponibles avant de faire son choix.',
         imageUrl: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&auto=format&fit=crop&q=80',
         characters: [
           {
@@ -2585,14 +2585,14 @@ export const readingCatalog: ReadingItem[] = [
             nameZh: '卡蒂娅',
             pinyin: 'Kǎdìyà',
             role: 'Femme d’affaires',
-            description: 'Compare les différentes couleurs de sacs proposées par le vendeur.',
+            description: 'Compare les différentes couleurs de sacs proposées par la vendeuse.',
             color: 'pink'
           },
           {
-            name: 'Vendeur',
+            name: 'Vendeuse',
             nameZh: '店员',
             pinyin: 'Diànyuán',
-            role: 'Vendeur en boutique',
+            role: 'Vendeuse en boutique',
             description: 'Présente les 5 coloris en stock et invite cordialement Katia à prendre son temps.',
             color: 'turquoise'
           }
@@ -2621,8 +2621,7 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'vc_b8_4',
-            speaker: 'Vendeur',
-            speakerRole: 'Vendeur',
+            speaker: 'Vendeuse',
             speakerColor: 'turquoise',
             hanzi: '有。您要什么颜色的？',
             pinyin: 'Yǒu. Nín yào shénme yánsè de?',
@@ -2639,8 +2638,7 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'vc_b8_6',
-            speaker: 'Vendeur',
-            speakerRole: 'Vendeur',
+            speaker: 'Vendeuse',
             speakerColor: 'turquoise',
             hanzi: '我们有黑色、白色、红色、蓝色和棕色。您看看。',
             pinyin: 'Wǒmen yǒu hēisè, báisè, hóngsè, lánsè hé zōngsè. Nín kànkan.',
@@ -2657,8 +2655,7 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'vc_b8_8',
-            speaker: 'Vendeur',
-            speakerRole: 'Vendeur',
+            speaker: 'Vendeuse',
             speakerColor: 'turquoise',
             hanzi: '好的。那您要几个？',
             pinyin: 'Hǎo de. Nà nín yào jǐ ge?',
@@ -2675,8 +2672,7 @@ export const readingCatalog: ReadingItem[] = [
           },
           {
             id: 'vc_b8_10',
-            speaker: 'Vendeur',
-            speakerRole: 'Vendeur',
+            speaker: 'Vendeuse',
             speakerColor: 'turquoise',
             hanzi: '好的，您慢慢看。',
             pinyin: 'Hǎo de, nín mànman kàn.',
@@ -2694,6 +2690,136 @@ export const readingCatalog: ReadingItem[] = [
           { hanzi: '棕色', pinyin: 'zōngsè', french: 'marron, brun', role: 'Nom / Adjectif' },
           { hanzi: '比较', pinyin: 'bǐjiào', french: 'relativement, plutôt, préférer', role: 'Adverbe' },
           { hanzi: '慢慢', pinyin: 'mànman', french: 'lentement, tranquillement, prendre son temps', role: 'Adverbe' },
+        ]
+      },
+      {
+        id: 'vie_chine_business_ep9',
+        episodeNumber: 9,
+        titleFr: 'Partie 9 : La négociation (1) — Les quantités et les prix',
+        titleZh: '第九篇：讨价还价（一）',
+        titlePinyin: 'Dì jiǔ piān: Tǎojià huánjià (yī)',
+        duration: '1 min 50',
+        level: 'HSK 3',
+        description: 'Katia négocie la commande de 100 sacs répartis en trois couleurs dans le troisième magasin et demande un premier rabais sur le prix unitaire.',
+        imageUrl: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Katia',
+            nameZh: '卡蒂娅',
+            pinyin: 'Kǎdìyà',
+            role: 'Femme d’affaires',
+            description: 'Négocie une commande de 100 sacs auprès de la vendeuse et demande un premier rabais.',
+            color: 'pink'
+          },
+          {
+            name: 'Vendeuse',
+            nameZh: '店员',
+            pinyin: 'Diànyuán',
+            role: 'Vendeuse de la boutique',
+            description: 'Calcule le montant initial de la commande et propose un prix unitaire réduit.',
+            color: 'turquoise'
+          }
+        ],
+        sentences: [
+          {
+            id: 'vc_b9_1',
+            hanzi: '卡蒂娅还在第三家店。',
+            pinyin: 'Kǎdìyà hái zài dì sān jiā diàn.',
+            french: 'Katia est encore dans le troisième magasin.',
+          },
+          {
+            id: 'vc_b9_2',
+            hanzi: '她要买黑色、红色和蓝色的包。',
+            pinyin: 'Tā yào mǎi hēisè, hóngsè hé lánsè de bāo.',
+            french: 'Elle veut acheter des sacs noirs, rouges et bleus.',
+          },
+          {
+            id: 'vc_b9_3',
+            hanzi: '现在她要和店员说买多少和多少钱。',
+            pinyin: 'Xiànzài tā yào hé diànyuán shuō mǎi duōshao hé duōshao qián.',
+            french: 'Maintenant, elle doit parler à la vendeuse des quantités et du prix.',
+          },
+          {
+            id: 'vc_b9_4',
+            speaker: 'Katia',
+            speakerRole: 'Femme d’affaires',
+            speakerColor: 'pink',
+            hanzi: '我想好了。我要买一百个包。',
+            pinyin: 'Wǒ xiǎng hǎo le. Wǒ yào mǎi yìbǎi ge bāo.',
+            french: 'J’ai bien réfléchi. Je veux acheter cent sacs.',
+          },
+          {
+            id: 'vc_b9_5',
+            speaker: 'Vendeuse',
+            speakerColor: 'turquoise',
+            hanzi: '好的。黑的、红的、蓝的，要多少？',
+            pinyin: 'Hǎo de. Hēi de, hóng de, lán de, yào duōshao?',
+            french: 'D’accord. En noir, rouge et bleu, combien en voulez-vous ?',
+          },
+          {
+            id: 'vc_b9_6',
+            speaker: 'Katia',
+            speakerRole: 'Femme d’affaires',
+            speakerColor: 'pink',
+            hanzi: '黑的五十个，红的三十个，蓝的二十个。',
+            pinyin: 'Hēi de wǔshí ge, hóng de sānshí ge, lán de èrshí ge.',
+            french: 'Cinquante noirs, trente rouges et vingt bleus.',
+          },
+          {
+            id: 'vc_b9_7',
+            speaker: 'Vendeuse',
+            speakerColor: 'turquoise',
+            hanzi: '好。一个五十块，一百个五千块。',
+            pinyin: 'Hǎo. Yí gè wǔshí kuài, yìbǎi ge wǔqiān kuài.',
+            french: 'Bien. Cinquante yuans l’unité, cinq mille yuans pour cent.',
+          },
+          {
+            id: 'vc_b9_8',
+            speaker: 'Katia',
+            speakerRole: 'Femme d’affaires',
+            speakerColor: 'pink',
+            hanzi: '太贵了。可以便宜一点吗？我买很多。',
+            pinyin: 'Tài guì le. Kěyǐ piányi yìdiǎn ma? Wǒ mǎi hěn duō.',
+            french: 'C’est trop cher. Est-ce que vous pouvez baisser un peu le prix ? J’en achète beaucoup.',
+          },
+          {
+            id: 'vc_b9_9',
+            speaker: 'Vendeuse',
+            speakerColor: 'turquoise',
+            hanzi: '这个价钱已经很便宜了。好的，我再便宜一点。四十三块一个，怎么样？',
+            pinyin: 'Zhège jiàqián yǐjīng hěn piányi le. Hǎo de, wǒ zài piányi yìdiǎn. Sìshísān kuài yí gè, zěnmeyàng?',
+            french: 'Ce prix est déjà très avantageux. D’accord, je baisse encore un peu. Quarante-trois yuans l’unité, qu’en pensez-vous ?',
+          },
+          {
+            id: 'vc_b9_10',
+            speaker: 'Katia',
+            speakerRole: 'Femme d’affaires',
+            speakerColor: 'pink',
+            hanzi: '谢谢，但是很贵。我再想一下。',
+            pinyin: 'Xièxie, dànshì hěn guì. Wǒ zài xiǎng yíxià.',
+            french: 'Merci, mais c’est encore cher. Je vais encore réfléchir un peu.',
+          },
+          {
+            id: 'vc_b9_11',
+            speaker: 'Vendeuse',
+            speakerColor: 'turquoise',
+            hanzi: '好的。您想吧。',
+            pinyin: 'Hǎo de. Nín xiǎng ba.',
+            french: 'D’accord. Réfléchissez-y.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '讨价还价', pinyin: 'tǎojià huánjià', french: 'négocier, marchander', role: 'Expression / Verbe' },
+          { hanzi: '想好', pinyin: 'xiǎng hǎo', french: 'avoir réfléchi, être décidé', role: 'Verbe' },
+          { hanzi: '店员', pinyin: 'diànyuán', french: 'vendeuse, employée de boutique', role: 'Nom commun' },
+          { hanzi: '包', pinyin: 'bāo', french: 'sac', role: 'Nom commun' },
+          { hanzi: '五千', pinyin: 'wǔqiān', french: 'cinq mille (5 000)', role: 'Nombre' },
+          { hanzi: '便宜', pinyin: 'piányi', french: 'bon marché, réduire le prix', role: 'Adjectif / Verbe' },
+          { hanzi: '价钱', pinyin: 'jiàqián', french: 'prix', role: 'Nom commun' },
+          { hanzi: '已经', pinyin: 'yǐjīng', french: 'déjà', role: 'Adverbe' },
+          { hanzi: '四十三', pinyin: 'sìshísān', french: 'quarante-trois (43)', role: 'Nombre' },
+          { hanzi: '但是', pinyin: 'dànshì', french: 'mais, cependant', role: 'Conjonction' },
+          { hanzi: '一下', pinyin: 'yíxià', french: 'un peu, un instant (action courte)', role: 'Expression' },
         ]
       }
     ],
@@ -6885,7 +7011,7 @@ function EcouteLectureContent() {
                         }`}>
                           {sent.speaker}
                         </span>
-                        {sent.speakerRole && (
+                        {sent.speakerRole && sent.speakerRole !== sent.speaker && (
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
                             isViolet
                               ? 'bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] border border-[#6200EE]/20'

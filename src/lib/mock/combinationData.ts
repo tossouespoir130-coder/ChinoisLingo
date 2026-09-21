@@ -1599,7 +1599,7 @@ export function analyzeAndGenerateCombinations(rawInput: string): CombinatoryAna
     if (!isOfficialHsk) {
       return {
         success: false,
-        errorMessage: `Le terme « ${cleanInput} » n’a pas de structure combinatoire certifiée à 100%. Essayez l'un des mots pivots vérifiés ci-dessous.`,
+        errorMessage: `Le terme « ${cleanInput} » n’a pas de combinaison certifiée à 100%. Essayez l'un des mots pivots vérifiés ci-dessous.`,
         suggestedPivots: [
           { hanzi: '去', pinyin: 'qù', meaning: 'Aller' },
           { hanzi: '吃', pinyin: 'chī', meaning: 'Manger' },

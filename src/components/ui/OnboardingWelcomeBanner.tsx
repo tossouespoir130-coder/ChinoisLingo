@@ -68,7 +68,7 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
     }
   } else if (profilMin.includes('étudiant') || profilMin.includes('etudiant')) {
     if (estDebutant) {
-      titreRecommandation = 'Pack Essentiel HSK 1 & Méthode Combinatoire Active';
+      titreRecommandation = 'Pack Essentiel HSK 1 & Méthode de la Combinaison';
       lienCible = '/vocabulaire';
       boutonTexte = 'Tester la Combinaison';
       sousTitre = 'Mémorisez les mots indispensables et créez des phrases naturelles sans effort.';

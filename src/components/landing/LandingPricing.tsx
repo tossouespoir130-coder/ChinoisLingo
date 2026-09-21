@@ -134,7 +134,7 @@ export default function LandingPricing() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-[#6200EE] shrink-0" />
-                  <span>Méthode combinatoire & Flashcards 3D</span>
+                  <span>Méthode de la Combinaison & Flashcards 3D</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-[#6200EE] shrink-0" />

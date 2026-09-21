@@ -35,40 +35,40 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
   const niveauMin = niveau.toLowerCase();
   const estDebutant = niveauMin.includes('début') || niveauMin.includes('debut');
 
-  // Conseils et orientation personnalisés
-  let conseilSpecifique = 'Commencez par découvrir les sons fondamentaux et les 150 premiers mots clés.';
+  // Conseils et orientation personnalisés (tutoiement)
+  let conseilSpecifique = 'Commence par découvrir les sons fondamentaux et les 150 premiers mots clés.';
   let parcoursRecommande = 'Pack Vocabulaire HSK 1 & Histoires courtes';
 
   if (profilMin.includes('entrepreneur') || profilMin.includes('commerc')) {
     if (estDebutant) {
-      conseilSpecifique = 'Votre priorité : maîtriser les chiffres, les prix, la monnaie chinoise (RMB) et les formules de politesse commerciale avant de passer aux négociations.';
+      conseilSpecifique = 'Ta priorité : maîtriser les chiffres, les prix, la monnaie chinoise (RMB) et les formules de politesse commerciale avant de passer aux négociations.';
       parcoursRecommande = 'Mandarin Commercial & Négociation Débutant';
     } else {
-      conseilSpecifique = 'Plongez directement dans nos masterclasses de sourcing et nos simulations de négociation à Guangzhou et Yiwu.';
+      conseilSpecifique = 'Plonge directement dans nos masterclasses de sourcing et nos simulations de négociation à Guangzhou et Yiwu.';
       parcoursRecommande = 'Masterclass Sourcing Usines & Négociation';
     }
   } else if (profilMin.includes('cadre')) {
     if (estDebutant) {
-      conseilSpecifique = 'Votre priorité : acquérir les présentations formelles, les formules de courtoisie et le vocabulaire essentiel du bureau.';
+      conseilSpecifique = 'Ta priorité : acquérir les présentations formelles, les formules de courtoisie et le vocabulaire essentiel du bureau.';
       parcoursRecommande = 'Politesse & Communication en Entreprise';
     } else {
-      conseilSpecifique = 'Pratiquez les réunions de projet bilingues et la rédaction de communications professionnelles avec nos dialogues de travail.';
+      conseilSpecifique = 'Pratique les réunions de projet bilingues et la rédaction de communications professionnelles avec nos dialogues de travail.';
       parcoursRecommande = 'Management & Réunions d’Affaires';
     }
   } else if (profilMin.includes('ingénieur') || profilMin.includes('ingenieur') || profilMin.includes('technicien') || profilMin.includes('btp')) {
     if (estDebutant) {
-      conseilSpecifique = 'Votre priorité : apprendre les consignes de sécurité, les mesures et les termes techniques de base pour échanger sur le terrain.';
+      conseilSpecifique = 'Ta priorité : apprendre les consignes de sécurité, les mesures et les termes techniques de base pour échanger sur le terrain.';
       parcoursRecommande = 'Mandarin Technique, Chantier & Sécurité';
     } else {
-      conseilSpecifique = 'Découvrez notre lexique BTP, les dialogues d’atelier, la maintenance et la coordination de chantier.';
+      conseilSpecifique = 'Découvre notre lexique BTP, les dialogues d’atelier, la maintenance et la coordination de chantier.';
       parcoursRecommande = 'Vocabulaire BTP & Industrie Approfondi';
     }
   } else if (profilMin.includes('étudiant') || profilMin.includes('etudiant')) {
     if (estDebutant) {
-      conseilSpecifique = 'Votre priorité : activer la Méthode de la Combinaison pour former des dizaines de phrases sans surcharge de mémorisation.';
-      parcoursRecommande = 'Méthode Combinatoire & Pack HSK 1';
+      conseilSpecifique = 'Ta priorité : activer la Méthode de la Combinaison pour former des dizaines de phrases sans surcharge de mémorisation.';
+      parcoursRecommande = 'Méthode de la Combinaison & Pack HSK 1';
     } else {
-      conseilSpecifique = 'Préparez vos examens certifiants HSK 2 à 4 avec nos histoires et nos exercices d’écoute active.';
+      conseilSpecifique = 'Prépare tes examens certifiants HSK 2 à 4 avec nos histoires et nos exercices d’écoute active.';
       parcoursRecommande = 'Préparation Certifiante HSK & Lectures';
     }
   }
@@ -90,8 +90,10 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
           <!-- En-tête Violet Signature -->
           <tr>
             <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 35px 30px; text-align: center;">
-              <h1 style="color: #FFFFFF; font-size: 26px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">ChinoisLingo</h1>
-              <p style="color: #03DAC5; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 8px 0 0 0;">
+              <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
+                <img src="${siteUrl}/logo-white.png" alt="ChinoisLingo" width="180" style="display: block; margin: 0 auto 10px auto; max-width: 180px; height: auto; border: 0;" />
+              </a>
+              <p style="color: #03DAC5; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0;">
                 « Le chinois devient facile »
               </p>
             </td>
@@ -101,16 +103,16 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
           <tr>
             <td style="padding: 35px 30px;">
               <h2 style="font-size: 20px; font-weight: 700; color: #212121; margin: 0 0 16px 0;">
-                Ni Hao ${params.nom} ! 👋
+                Nǐhǎo ${params.nom} ! 👋
               </h2>
               <p style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 16px 0;">
-                Je suis ravi de vous accueillir sur <strong>ChinoisLingo</strong>. Vous venez de franchir le premier pas vers la maîtrise concrète du mandarin !
+                Je suis ravi de t'accueillir sur <strong>ChinoisLingo</strong>. Tu viens de faire le premier pas d'une aventure qui va changer ta vie !
               </p>
 
               <!-- Carte Récapitulative du Parcours Recommandé -->
               <div style="background-color: #F9F7FE; border-left: 4px solid #6200EE; border-radius: 12px; padding: 18px 20px; margin: 24px 0;">
                 <p style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #6200EE; letter-spacing: 1px; margin: 0 0 6px 0;">
-                  🎯 Votre Parcours Personnalisé (${profil} • ${niveau})
+                  🎯 Ton Parcours Personnalisé (${profil} • ${niveau})
                 </p>
                 <p style="font-size: 15px; font-weight: 700; color: #212121; margin: 0 0 8px 0;">
                   ${parcoursRecommande}
@@ -126,8 +128,8 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
               </h3>
               <ul style="padding-left: 20px; margin: 0 0 24px 0; color: #424242; font-size: 14px; line-height: 1.7;">
                 <li><strong>10 à 15 minutes par jour</strong> valent mieux que 2 heures une fois par semaine.</li>
-                <li><strong>Écoutez et répétez à voix haute</strong> chaque phrase pour ancrer les 4 tons naturellement.</li>
-                <li><strong>Explorez la Méthode de la Combinaison</strong> pour construire vos propres phrases dès le premier jour.</li>
+                <li><strong>Écoute et répète à voix haute</strong> chaque phrase pour ancrer les 4 tons naturellement.</li>
+                <li><strong>Explore la Méthode de la Combinaison</strong> pour construire tes propres phrases dès le premier jour.</li>
               </ul>
 
               <!-- Bouton d'action principal -->
@@ -142,7 +144,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
               </table>
 
               <p style="font-size: 14px; line-height: 1.6; color: #757575; margin: 25px 0 0 0; text-align: center;">
-                Toute l'équipe et notre mascotte Xiao Li sont à vos côtés pour cette aventure.
+                Toute l'équipe sera à tes côtés tout au long de cette aventure. 加油 💪🏾
               </p>
             </td>
           </tr>
@@ -173,20 +175,22 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
 Bienvenue sur ChinoisLingo, ${params.nom} !
 « Le chinois devient facile »
 
-Ni Hao ${params.nom} !
+Nǐhǎo ${params.nom} !
 
-Je suis ravi de vous accueillir sur ChinoisLingo. Vous venez de franchir le premier pas vers la maîtrise concrète du mandarin !
+Je suis ravi de t'accueillir sur ChinoisLingo. Tu viens de faire le premier pas d'une aventure qui va changer ta vie !
 
-🎯 Votre Parcours Recommandé (${profil} • ${niveau}) :
+🎯 Ton Parcours Recommandé (${profil} • ${niveau}) :
 ${parcoursRecommande}
 ${conseilSpecifique}
 
 💡 3 conseils pour progresser rapidement :
 1. 10 à 15 minutes par jour valent mieux que 2 heures le week-end.
-2. Écoutez et répétez à voix haute pour ancrer les 4 tons.
-3. Testez la Méthode de la Combinaison pour parler dès le premier jour.
+2. Écoute et répète à voix haute pour ancrer les 4 tons.
+3. Teste la Méthode de la Combinaison pour parler dès le premier jour.
 
-Commencez votre première session ici : ${lienApp}
+Commence ta première session ici : ${lienApp}
+
+Toute l'équipe sera à tes côtés tout au long de cette aventure. 加油 💪🏾
 
 Espoir Chinois,
 Fondateur de ChinoisLingo

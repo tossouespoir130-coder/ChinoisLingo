@@ -35,7 +35,7 @@ export default function LandingHero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-10 font-normal">
-            Fini l’apprentissage rébarbatif. Progressez à travers des histoires immersives, des dialogues vivants et notre méthode combinatoire exclusive.
+            Fini l’apprentissage rébarbatif. Progressez à travers des histoires immersives, des dialogues vivants et la Méthode de la Combinaison exclusive.
           </p>
 
           {/* Action Button */}

@@ -5,6 +5,9 @@
 - Demander confirmation avant toute publication ou déploiement en ligne.
 - Ne pas hésiter à proposer des idées constructives et innovantes.
 - Slogan officiel de la marque : **« Le chinois devient facile »** (ou *« Avec ChinoisLingo, le chinois devient facile »*).
+- **Règle Permanente de Salutation Officielle (`Nǐhǎo`)** : La formule de salutation officielle en pinyin sur TOUTE la plateforme (emails de bienvenue, récapitulatifs hebdomadaires, onboarding, notifications, messages et interface) s'écrit obligatoirement et exclusivement **`Nǐhǎo`** (attaché en un seul mot avec le 3ème ton `ǐ` sur le i).
+- **Règle Permanente de Tutoiement dans les E-mails** : Tous les e-mails de la plateforme (bienvenue, récapitulatifs hebdomadaires, abonnements, notifications et messages d'Espoir Chinois) tutoient systématiquement et chaleureusement l'utilisateur (« tu », « ton », « ta », « tes »).
+- **Règle Permanente d'Appellation Exclusive de la Méthode** : L'unique appellation officielle sur toute la plateforme, dans le code, les emails, les landing pages, les composants et la documentation est **« Méthode de la Combinaison »**. **Bannissement strict et absolu de l'expression *« méthode combinatoire »***.
 - **Règle Permanente de Sécurité Absolue des Clés API & Secrets** : Ne **JAMAIS** écrire une clé d'API, un token ou un secret en dur dans le code, même comme valeur de repli (*fallback*), valeur temporaire ou pour un test rapide. Utiliser **systématiquement et obligatoirement une variable d'environnement (`process.env.*`) stockée exclusivement dans `.env.local`** dès la toute première ligne de code qui en a besoin, quel que soit le service (ElevenLabs, Resend, Stripe, Moneroo, Supabase, etc.). Tout script utilitaire ou d'administration doit être situé dans un dossier exclu du suivi Git (`scripts/` dans `.gitignore`).
 - **Règle d'Unicité Absolue et Stricte des Images dans TOUTE l'Application** : Ne JAMAIS réutiliser deux fois la même image dans tout l'outil. Chaque ressource (vocabulaire, article, chanson, histoire, dialogue, podcast, cours, livre, tableau de bord) DOIT posséder sa propre image haute définition unique, exclusive et dédiée. Interdiction absolue de dupliquer une URL ou un visuel d'une rubrique à une autre.
 - **Règle Globale de Célébration (Confettis & Paillettes)** : Dès qu'un utilisateur marque une ressource (cours, leçon, chanson, dialogue, article, podcast, mot, livre) comme terminée, déclencher **systématiquement une animation festive de confettis et paillettes** (`confetti({ ... })`) pour le féliciter.
@@ -177,7 +180,7 @@ Pour chaque rubrique, article, chanson, histoire, dialogue ou podcast ajouté da
 ## Règles de Contenu & Structure de la Rubrique Vocabulaire
 La rubrique **Vocabulaire** est structurée autour de 4 onglets fondamentaux et des 6 niveaux officiels HSK :
 - **Onglet 1 : Vocabulaire HSK** (les 6 modules officiels HSK 1, HSK 2, HSK 3, HSK 4, HSK 5, HSK 6).
-- **Onglet 2 : Méthode de la Combinaison** (moteur combinatoire interactif Sujet + Verbe + Complément avec multiplicateur mathématique, phrases aléatoires, synthèse vocale et sauvegarde dans Mes Mots).
+- **Onglet 2 : Méthode de la Combinaison** (moteur d'assemblage interactif Sujet + Verbe + Complément avec multiplicateur mathématique, phrases aléatoires, synthèse vocale et sauvegarde dans Mes Mots).
 - **Onglet 3 : Mes Mots** (les mots et phrases combinées enregistrés par l'apprenant + ajout de mot personnalisé).
 - **Onglet 4 : Dictionnaire (HSK 1–6)** (moteur de recherche et filtres de tous les termes).
 

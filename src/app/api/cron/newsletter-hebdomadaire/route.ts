@@ -15,7 +15,7 @@ function pause(ms: number) {
 /**
  * GET /api/cron/newsletter-hebdomadaire
  *
- * Déclenché chaque dimanche matin (ex: 09h00) par le planificateur cron.
+ * Déclenché chaque jeudi après-midi (entre 16h00 et 17h30, ex: 16h30) par le planificateur cron.
  * 1. Scanne les nouveautés publiées sur les 7 derniers jours.
  * 2. Si AUCUN contenu n'a été ajouté : annule l'envoi cette semaine.
  * 3. Si des contenus existent : envoie le récapitulatif structuré par rubriques

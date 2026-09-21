@@ -81,7 +81,7 @@ const systemNavigationLinks = [
   {
     id: 'nav_vocab_combo',
     title: 'Méthode de la Combinaison (Sujet + Verbe + Complément)',
-    description: 'Créez des centaines de phrases fluides grâce au multiplicateur combinatoire.',
+    description: 'Créez des centaines de phrases fluides grâce à la Méthode de la Combinaison.',
     url: '/vocabulaire?tab=combination',
     category: 'navigation',
     icon: Shuffle,

@@ -11,7 +11,7 @@ const TESTIMONIALS = [
     avatarBg: 'from-blue-500 to-indigo-600',
     stars: 5,
     quote:
-      'Grâce aux séries de dialogues avec Brice et Katia et aux masterclasses d’Espoir Chinois, j’ai pu négocier mes premiers conteneurs directement à Yiwu sans interprète. La méthode combinatoire est tout simplement révolutionnaire !',
+      'Grâce aux séries de dialogues avec Brice et Katia et aux masterclasses d’Espoir Chinois, j’ai pu négocier mes premiers conteneurs directement à Yiwu sans interprète. La Méthode de la Combinaison est tout simplement révolutionnaire !',
     tag: 'Importateur'
   },
   {

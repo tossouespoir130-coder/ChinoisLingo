@@ -561,7 +561,7 @@ export function CombinationMethod({
               </div>
               <div>
                 <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider block">
-                  Richesse Combinatoire
+                  Richesse de la Combinaison
                 </span>
                 <div className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5]">
                   {multiplierFormula} = <span className="text-[#6200EE] dark:text-[#BB86FC]">{totalCombinations} phrases générées avec ce mot</span>

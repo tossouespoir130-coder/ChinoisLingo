@@ -65,7 +65,7 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
     }
   } else if (state.profil === 'etudiant') {
     if (state.niveau === 'debutant' || !state.niveau) {
-      moduleTitre = 'Pack Essentiel HSK 1 & Méthode Combinatoire';
+      moduleTitre = 'Pack Essentiel HSK 1 & Méthode de la Combinaison';
       moduleDesc = 'Maîtrisez les 150 premiers mots indispensables et assemblez des phrases fluides naturellement pour réussir vos examens.';
     } else if (state.niveau === 'intermediaire_bas') {
       moduleTitre = 'Préparation HSK 2–3 & Histoires Écrites';

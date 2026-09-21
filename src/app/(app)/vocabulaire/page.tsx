@@ -789,7 +789,7 @@ function VocabulaireContent() {
         </div>
       )}
 
-      {/* TAB 2: MÉTHODE DE LA COMBINAISON (MOTEUR COMBINATOIRE INTERACTIF) */}
+      {/* TAB 2: MÉTHODE DE LA COMBINAISON */}
       {!isSessionActive && !selectedLevelForList && activeTab === 'combinations' && (
         <CombinationMethod
           isPinyinVisible={isPinyinVisible}

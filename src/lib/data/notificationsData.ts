@@ -60,6 +60,20 @@ export const initialNotifications: NotificationItem[] = [
     actionLabel: 'Pratiquer la combinaison'
   },
   {
+    id: 'notif_vie_chine_business_ep9',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Vie en Chine (Business) : Partie 9\n第九集：讨价还价（一）📖',
+    message: 'Katia négocie une commande de 100 sacs en 3 couleurs et obtient une première remise fournisseur. Écoute et pratique dès maintenant !',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=histoires&id=series_vie_chine_business&episode=vie_chine_business_ep9',
+    actionLabel: 'Lire la partie'
+  },
+  {
     id: 'notif_chanson_jinshengyuan',
     source: 'founder',
     founderName: 'Espoir Chinois',

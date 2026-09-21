@@ -9,6 +9,9 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 - **Nom de la plateforme** : **ChinoisLingo**
 - **Slogan officiel** : **« Le chinois devient facile »** (ou *« Avec ChinoisLingo, le chinois devient facile »*).
 - **Nom de l'utilisateur / Propriétaire** : **Espoir Chinois** (toujours s'adresser à lui sous ce nom).
+- **Règle Permanente de Salutation Officielle (`Nǐhǎo`)** : La formule de salutation officielle en pinyin sur TOUTE la plateforme (emails de bienvenue, récapitulatifs hebdomadaires, onboarding, notifications, messages et interface) s'écrit obligatoirement et exclusivement **`Nǐhǎo`** (attaché en un seul mot avec le 3ème ton `ǐ` sur le i).
+- **Règle Permanente de Tutoiement dans les E-mails** : Tous les e-mails de la plateforme (bienvenue, récapitulatifs hebdomadaires, abonnements, notifications et messages d'Espoir Chinois) tutoient systématiquement et chaleureusement l'utilisateur (« tu », « ton », « ta », « tes »).
+- **Règle Permanente d'Appellation Exclusive de la Méthode** : L'unique appellation officielle sur toute la plateforme, dans le code, les emails, les landing pages, les composants et la documentation est **« Méthode de la Combinaison »**. **Bannissement strict et absolu de l'expression *« méthode combinatoire »***.
 - **Règle de Déploiement** : Toujours demander confirmation explicite à Espoir Chinois avant toute publication ou déploiement en ligne.
 - **Règle Permanente de Sécurité Absolue des Clés API & Secrets** : Ne **JAMAIS** écrire une clé d'API, un token ou un secret en dur dans le code, même comme valeur de repli (*fallback*), valeur temporaire ou pour un test rapide. Utiliser **systématiquement et obligatoirement une variable d'environnement (`process.env.*`) stockée exclusivement dans `.env.local`** dès la toute première ligne de code qui en a besoin, quel que soit le service (ElevenLabs, Resend, Stripe, Moneroo, Supabase, etc.). Tout script utilitaire ou d'administration doit être situé dans un dossier exclu du suivi Git (`scripts/` dans `.gitignore`).
 - **Règle d'Unicité Absolue des Images** : Ne **JAMAIS** réutiliser la même image deux fois dans tout l'outil. Chaque ressource (mot, pack, article, chanson, histoire, dialogue, podcast, formation, livre) possède son image HD dédiée et exclusive.
@@ -105,8 +108,8 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 Comprend 4 sous-sections fondamentales :
 1. **Vocabulaire HSK** : Les 6 packs officiels (HSK 1 à HSK 6) avec images HD d'étude, jauge de maîtrise, consultation de la liste complète des mots et sessions de **Flashcards 3D** (verso avec prononciation et vraies phrases contextuelles certifiées).
 2. **Méthode de la Combinaison** :
-   - Moteur combinatoire interactif (Sujet + Verbe & Modalité + Complément / Sujet + Adjectif / Verbe + Complément).
-   - Richesse combinatoire mathématique (multiplicateur de phrases affiché en bas de page).
+   - Moteur d'assemblage interactif (Sujet + Verbe & Modalité + Complément / Sujet + Adjectif / Verbe + Complément).
+   - Richesse de la combinaison mathématique (multiplicateur de phrases affiché en bas de page).
    - Structure 100% vérifiée (zéro structure approximative ; orientation bienveillante vers les mots pivots en cas d'entrée hors base).
    - Prononciation vocale instantanée, copie et sauvegarde dans *Mes Mots*.
 3. **Mes Mots** :

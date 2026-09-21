@@ -33,7 +33,7 @@ export default function LandingFooter() {
             </Link>
 
             <p className="text-xs text-gray-500 leading-relaxed max-w-sm">
-              La plateforme d’immersion active en mandarin. Avec ChinoisLingo, le chinois devient facile grâce aux histoires, aux chansons et à la méthode combinatoire.
+              La plateforme d’immersion active en mandarin. Avec ChinoisLingo, le chinois devient facile grâce aux histoires, aux chansons et à la Méthode de la Combinaison.
             </p>
 
             <div className="flex items-center gap-3 text-[11px] text-gray-500 mt-2">
@@ -67,7 +67,7 @@ export default function LandingFooter() {
               </li>
               <li>
                 <Link href="/onboarding" className="hover:text-[#6200EE] transition-colors">
-                  Méthode Combinatoire
+                  Méthode de la Combinaison
                 </Link>
               </li>
               <li>

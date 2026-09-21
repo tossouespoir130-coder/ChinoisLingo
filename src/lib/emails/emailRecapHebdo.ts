@@ -24,24 +24,24 @@ interface ParamsRecapHebdo {
   contenus: NouvelItemContenu[];
 }
 
-const NOMS_RUBRIQUES: Record<string, string> = {
-  vocabulaire: '📚 Vocabulaire & Méthode Combinatoire',
-  ecoute_lecture: '🎧 Écoute & Lecture Active',
-  formation: '🎓 Formations & Masterclasses',
-  livres: '📖 Livres & Programmes VIP',
+export const NOMS_RUBRIQUES: Record<string, string> = {
+  vocabulaire: 'Vocabulaire & Méthode de la Combinaison',
+  ecoute_lecture: 'Écoute & Lecture Active',
+  formation: 'Formations & Masterclasses',
+  livres: 'Livres & Programmes VIP',
 };
 
-const NOMS_SOUS_CATEGORIES: Record<string, string> = {
-  chansons: '🎵 Chansons Bilingues',
-  articles: '📰 Articles de Presse & Société',
-  histoires: '📖 Histoires & Contes Narrés',
-  dialogues: '💬 Dialogues Immersifs',
-  podcasts: '🎙️ Podcasts Thématiques',
-  videos: '🎬 Vidéos Scénarisées',
-  packs_hsk: '📚 Packs Vocabulaire HSK',
-  combinaison: '💡 Combinaison de Mots Pivots',
-  masterclass: '🎓 Masterclasses Pratiques',
-  ouvrages: '📖 Guides & Lexiques Professionnels',
+export const NOMS_SOUS_CATEGORIES: Record<string, string> = {
+  chansons: 'Chansons Bilingues',
+  articles: 'Articles de Presse & Société',
+  histoires: 'Histoires & Contes Narrés',
+  dialogues: 'Dialogues Immersifs',
+  podcasts: 'Podcasts Thématiques',
+  videos: 'Vidéos Scénarisées',
+  packs_hsk: 'Packs Vocabulaire HSK',
+  combinaison: 'Combinaison de Mots Pivots',
+  masterclass: 'Masterclasses Pratiques',
+  ouvrages: 'Guides & Lexiques Professionnels',
 };
 
 export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<boolean> {
@@ -52,32 +52,6 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://chinoislingo.com';
   const liensDesabo = lienDesabonnement(siteUrl, params.userId);
-
-  const profil = params.profil || 'Apprenant';
-  const niveau = params.niveau || 'Débutant';
-  const profilMin = profil.toLowerCase();
-  const niveauMin = niveau.toLowerCase();
-  const estDebutant = niveauMin.includes('début') || niveauMin.includes('debut');
-
-  // Phrases d'encouragement personnalisées selon profil et niveau
-  let phraseEncouragement = 'Chaque minute consacrée au mandarin renforce vos réflexes et vous rapproche de la fluidité naturelle.';
-  let conseilNiveau = 'Prenez le temps d’écouter chaque phrase et de répéter à voix haute.';
-
-  if (estDebutant) {
-    conseilNiveau = 'Conseil débutant : Concentrez-vous d’abord sur les mots et dialogues de base (HSK 1) avant d’explorer les contenus plus avancés.';
-  } else {
-    conseilNiveau = 'Conseil intermédiaire/avancé : Testez votre compréhension sans afficher le pinyin au premier passage pour stimuler votre écoute active.';
-  }
-
-  if (profilMin.includes('entrepreneur') || profilMin.includes('commerc')) {
-    phraseEncouragement = 'Votre maîtrise du chinois est un avantage concurrentiel décisif pour négocier directement avec les fabricants en Chine sans intermédiaire.';
-  } else if (profilMin.includes('ingenieur') || profilMin.includes('technicien') || profilMin.includes('btp')) {
-    phraseEncouragement = 'La précision technique combinée au vocabulaire chinois du terrain facilitera grandement vos coordinations sur les projets et chantiers.';
-  } else if (profilMin.includes('cadre')) {
-    phraseEncouragement = 'Comprendre les subtilités de la communication d’entreprise chinoise valorise votre leadership international et vos relations de travail.';
-  } else if (profilMin.includes('etudiant')) {
-    phraseEncouragement = 'La régularité est votre meilleur allié : chaque nouveau caractère assimilé est un point de gagné pour votre future certification HSK.';
-  }
 
   // Regroupement hiérarchique strict par rubrique
   const ordreRubriques: ('vocabulaire' | 'ecoute_lecture' | 'formation' | 'livres')[] = [
@@ -104,35 +78,54 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
     if (!items || items.length === 0) return;
 
     const nomRubrique = NOMS_RUBRIQUES[rub] || rub;
+    let iconeRubrique = '📖';
+    if (rub === 'vocabulaire') iconeRubrique = '📚';
+    else if (rub === 'ecoute_lecture') iconeRubrique = '🎧';
+    else if (rub === 'formation') iconeRubrique = '🎬';
+    else if (rub === 'livres') iconeRubrique = '💎';
+
     sectionsHtml += `
-      <div style="margin-bottom: 24px;">
-        <h3 style="font-size: 16px; font-weight: 800; color: #6200EE; margin: 0 0 12px 0; border-bottom: 2px solid #6200EE/15; padding-bottom: 6px;">
-          ${nomRubrique}
-        </h3>
-        <ul style="list-style-type: none; padding: 0; margin: 0;">
+      <div style="margin-bottom: 26px;">
+        <div style="margin-bottom: 12px; border-bottom: 2px solid #F0EDF9; padding-bottom: 6px;">
+          <h3 style="font-size: 15px; font-weight: 800; color: #6200EE; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">
+            ${iconeRubrique} ${nomRubrique}
+          </h3>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
     `;
     sectionsTexte += `\n--- ${nomRubrique} ---\n`;
 
-    // Regrouper par sous-catégorie si écoute & lecture
     items.forEach((item) => {
-      const sousCatLabel = item.sous_categorie ? `[${NOMS_SOUS_CATEGORIES[item.sous_categorie] || item.sous_categorie}] ` : '';
-      const badgeHsk = item.niveau_hsk ? ` • ${item.niveau_hsk}` : '';
+      const sousCatNom = item.sous_categorie ? (NOMS_SOUS_CATEGORIES[item.sous_categorie] || item.sous_categorie) : '';
+      const badgeHsk = item.niveau_hsk || '';
       const lienComplet = item.lien.startsWith('http') ? item.lien : `${siteUrl}${item.lien}`;
 
       sectionsHtml += `
-        <li style="margin-bottom: 12px; padding: 12px 14px; background-color: #FAFAFA; border: 1px solid #EAEAEA; border-radius: 12px;">
-          <a href="${lienComplet}" target="_blank" style="font-size: 14.5px; font-weight: 700; color: #212121; text-decoration: none;">
-            ${sousCatLabel}${item.titre} <span style="font-size: 12px; color: #00897B; font-weight: 600;">${badgeHsk}</span> →
-          </a>
-          ${item.description ? `<p style="font-size: 12.5px; color: #616161; margin: 4px 0 0 0; line-height: 1.4;">${item.description}</p>` : ''}
-        </li>
+        <tr>
+          <td style="padding-bottom: 12px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAFAFA; border: 1px solid #E8E8E8; border-radius: 14px; padding: 14px 16px;">
+              <tr>
+                <td>
+                  <div style="margin-bottom: 6px;">
+                    ${sousCatNom ? `<span style="display: inline-block; background-color: #EDE7F6; color: #6200EE; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-right: 6px; text-transform: uppercase;">${sousCatNom}</span>` : ''}
+                    ${badgeHsk ? `<span style="display: inline-block; background-color: #E0F2F1; color: #00897B; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px;">${badgeHsk}</span>` : ''}
+                  </div>
+                  <a href="${lienComplet}" target="_blank" style="font-size: 15px; font-weight: 700; color: #212121; text-decoration: none; line-height: 1.4; display: block;">
+                    ${item.titre}
+                  </a>
+                  ${item.description ? `<p style="font-size: 13px; color: #616161; margin: 6px 0 0 0; line-height: 1.45;">${item.description}</p>` : ''}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
       `;
 
-      sectionsTexte += `• ${sousCatLabel}${item.titre}${badgeHsk} : ${lienComplet}\n`;
+      sectionsTexte += `• ${sousCatNom ? `[${sousCatNom}] ` : ''}${item.titre}${badgeHsk ? ` (${badgeHsk})` : ''} : ${lienComplet}\n`;
       if (item.description) sectionsTexte += `  ${item.description}\n`;
     });
 
-    sectionsHtml += `</ul></div>`;
+    sectionsHtml += `</table></div>`;
   });
 
   const sujet = `Nouveautés de la semaine sur ChinoisLingo 🇨🇳 (« Le chinois devient facile »)`;
@@ -149,11 +142,13 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
     <tr>
       <td align="center">
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(98, 0, 238, 0.06); border: 1px solid #EAEAEA;">
-          <!-- En-tête Violet -->
+          <!-- En-tête Violet Signature -->
           <tr>
-            <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 30px; text-align: center;">
-              <h1 style="color: #FFFFFF; font-size: 24px; font-weight: 800; margin: 0;">ChinoisLingo</h1>
-              <p style="color: #03DAC5; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 6px 0 0 0;">
+            <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 35px 30px; text-align: center;">
+              <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
+                <img src="${siteUrl}/logo-white.png" alt="ChinoisLingo" width="180" style="display: block; margin: 0 auto 10px auto; max-width: 180px; height: auto; border: 0;" />
+              </a>
+              <p style="color: #03DAC5; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0;">
                 « Le chinois devient facile »
               </p>
             </td>
@@ -161,41 +156,27 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
 
           <!-- Corps du message -->
           <tr>
-            <td style="padding: 30px;">
-              <h2 style="font-size: 19px; font-weight: 700; color: #212121; margin: 0 0 14px 0;">
-                Bonjour ${params.nom} ! 👋
+            <td style="padding: 35px 30px;">
+              <h2 style="font-size: 20px; font-weight: 700; color: #212121; margin: 0 0 14px 0;">
+                Nǐhǎo ${params.nom} ! 👋
               </h2>
-              <p style="font-size: 14.5px; line-height: 1.6; color: #424242; margin: 0 0 18px 0;">
-                Voici les nouveaux contenus et leçons ajoutés sur la plateforme cette semaine pour enrichir votre immersion en mandarin.
+              <p style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">
+                Voici les nouveaux contenus et leçons ajoutés sur <strong>ChinoisLingo</strong> cette semaine pour accélérer ton immersion en mandarin.
               </p>
-
-              <!-- Conseil Niveau & Profil -->
-              <div style="background-color: #E8F5E9; border-left: 4px solid #00897B; border-radius: 10px; padding: 14px 16px; margin: 0 0 24px 0;">
-                <p style="font-size: 13px; font-weight: 600; color: #00796B; margin: 0;">
-                  💡 ${conseilNiveau}
-                </p>
-              </div>
 
               <!-- Liste des nouveautés par rubriques -->
               ${sectionsHtml}
 
               <!-- Bouton d'accès direct -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 25px 0;">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 30px 0 10px 0;">
                 <tr>
                   <td align="center">
-                    <a href="${siteUrl}/tableau-de-bord" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 14.5px; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 100px; box-shadow: 0 4px 12px rgba(98, 0, 238, 0.25);">
+                    <a href="${siteUrl}/tableau-de-bord" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none; padding: 15px 35px; border-radius: 100px; box-shadow: 0 4px 15px rgba(98, 0, 238, 0.3);">
                       Découvrir mes nouveaux contenus →
                     </a>
                   </td>
                 </tr>
               </table>
-
-              <!-- Phrase d'encouragement motivante -->
-              <div style="background-color: #FFF8E1; border-radius: 12px; padding: 16px; margin-top: 20px; text-align: center;">
-                <p style="font-size: 13.5px; font-weight: 600; color: #F57F17; margin: 0; line-height: 1.5;">
-                  🔥 ${phraseEncouragement}
-                </p>
-              </div>
             </td>
           </tr>
 
@@ -209,7 +190,7 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
                 Fondateur de ChinoisLingo
               </p>
               <p style="font-size: 11px; color: #9E9E9E; margin: 0 0 6px 0;">
-                Vous recevez cet e-mail car vous êtes inscrit sur ChinoisLingo.
+                Tu reçois cet e-mail car tu es inscrit sur ChinoisLingo.
               </p>
               <p style="font-size: 11px; margin: 0;">
                 <a href="${liensDesabo.page}" style="color: #6200EE; text-decoration: underline;">
@@ -230,17 +211,13 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
 Nouveautés de la semaine sur ChinoisLingo 🇨🇳
 « Le chinois devient facile »
 
-Bonjour ${params.nom} !
+Nǐhǎo ${params.nom} !
 
-Voici les nouveaux contenus ajoutés sur ChinoisLingo cette semaine pour votre apprentissage :
+Voici les nouveaux contenus ajoutés sur ChinoisLingo cette semaine pour ton apprentissage :
 
 ${sectionsTexte}
 
-💡 ${conseilNiveau}
-
-Accédez à votre espace : ${siteUrl}/tableau-de-bord
-
-🔥 ${phraseEncouragement}
+Accède à ton espace : ${siteUrl}/tableau-de-bord
 
 Espoir Chinois,
 Fondateur de ChinoisLingo
