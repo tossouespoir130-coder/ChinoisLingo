@@ -250,8 +250,8 @@ export const dailyWordsCatalog: WordOfTheDay[] = [
       {
         level: 'Débutant',
         levelNumber: 1,
-        hanzi: '我相信你。',
-        pinyin: 'Wǒ xiāngxìn nǐ.',
+        hanzi: '我信任你。',
+        pinyin: 'Wǒ xìnrèn nǐ.',
         french: 'Je te fais confiance.',
         contextNote: 'Expression de sincérité directe et chaleureuse.',
       },

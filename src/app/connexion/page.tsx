@@ -20,6 +20,7 @@ import {
 import { useAuth } from '@/lib/auth/AuthContext';
 import { createClient } from '@/lib/supabase/client';
 import { Logo } from '@/components/ui/Logo';
+import { traduireErreurAuth } from '@/lib/auth/authErrors';
 
 export default function ConnexionPage() {
   const router = useRouter();
@@ -43,6 +44,21 @@ export default function ConnexionPage() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    // Détecter si l'utilisateur arrive via un lien de récupération de mot de passe
+    const hash = window.location.hash;
+    const search = window.location.search;
+    if (hash.includes('type=recovery') || search.includes('type=recovery')) {
+      router.push('/reinitialisation-mot-de-passe' + hash);
+      return;
+    }
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        router.push('/reinitialisation-mot-de-passe');
+      }
+    });
+
     const params = new URLSearchParams(window.location.search);
     if (params.get('confirme') === '1') {
       setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
@@ -55,7 +71,11 @@ export default function ConnexionPage() {
         'Votre adresse e-mail n’est pas encore confirmée. Ouvrez le lien reçu par e-mail pour activer votre compte.'
       );
     }
-  }, []);
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [router, supabase]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +91,7 @@ export default function ConnexionPage() {
 
     const { error } = await signInWithEmail(email, password, resterConnecte);
     if (error) {
-      setErrorMessage(error.message || 'Identifiants incorrects.');
+      setErrorMessage(traduireErreurAuth(error, 'connexion'));
     } else {
       setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
       setTimeout(() => {
@@ -95,16 +115,16 @@ export default function ConnexionPage() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(forgotEmail, {
-        redirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/connexion`,
+        redirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/reinitialisation-mot-de-passe`,
       });
 
       if (error) {
-        setForgotError(error.message || "Impossible d'envoyer l'e-mail de réinitialisation.");
+        setForgotError(traduireErreurAuth(error, 'reinitialisation'));
       } else {
         setForgotMessage('E-mail de réinitialisation envoyé ! Vérifiez votre boîte de réception.');
       }
-    } catch {
-      setForgotError('Une erreur inattendue est survenue.');
+    } catch (err: any) {
+      setForgotError(traduireErreurAuth(err, 'reinitialisation'));
     } finally {
       setIsForgotSubmitting(false);
     }

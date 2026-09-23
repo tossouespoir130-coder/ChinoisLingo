@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Bell, Flame, User, LogOut, Settings, CreditCard, UserCheck, ChevronDown, Shield } from 'lucide-react';
+import { Search, Bell, Flame, User, LogOut, Settings, CreditCard, UserCheck, ChevronDown, Shield, KeyRound } from 'lucide-react';
 import { usePreferences } from '@/context/PreferencesContext';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { GlobalSearchModal } from './GlobalSearchModal';
@@ -266,6 +266,15 @@ export function TopNav() {
                   >
                     <Settings className="w-4 h-4 text-[#757575]" />
                     <span>Préférences</span>
+                  </Link>
+
+                  <Link
+                    href="/mon-compte?tab=password"
+                    onClick={() => setIsProfileMenuOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-2xl text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:bg-[#6200EE]/10 hover:text-[#6200EE] dark:hover:text-[#BB86FC] transition-colors"
+                  >
+                    <KeyRound className="w-4 h-4 text-[#757575]" />
+                    <span>Mot de passe</span>
                   </Link>
 
                   {/* Accès à l'espace d'administration — invisible pour les

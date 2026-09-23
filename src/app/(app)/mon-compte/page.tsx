@@ -29,7 +29,13 @@ import {
   Crop,
   LogOut,
   Receipt,
-  RotateCcw
+  RotateCcw,
+  Lock,
+  KeyRound,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  CheckCircle2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '@/context/ThemeContext';
@@ -45,13 +51,14 @@ import { fetchPaymentHistory, PaiementHistorique } from '@/lib/services/paymentS
 import { Portal } from '@/components/ui/Portal';
 import { resumeOffreGratuite } from '@/lib/payments/acces';
 import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
+import { traduireErreurAuth } from '@/lib/auth/authErrors';
 
 function MonCompteContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tabParam = searchParams.get('tab');
   const { theme, toggleTheme } = useTheme();
-  const { user, profile, signOut } = useAuth();
+  const { user, profile, signOut, updatePassword } = useAuth();
 
   // Directly consume and update the Global Preferences
   const {
@@ -87,9 +94,19 @@ function MonCompteContent() {
 
   const PROFILE_STORAGE_KEY = 'chinoislingo_user_profile_data';
 
-  const [activeTab, setActiveTab] = useState<'profile' | 'subscription' | 'preferences'>('profile');
+  const [activeTab, setActiveTab] = useState<'profile' | 'subscription' | 'preferences' | 'password'>('profile');
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [profileSaveSuccess, setProfileSaveSuccess] = useState(false);
+
+  // État du changement de mot de passe
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const [isPasswordLoading, setIsPasswordLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [passwordSuccess, setPasswordSuccess] = useState<string | null>(null);
+
   // Annulation / réactivation de l'abonnement par carte
   const [modalAnnulationOuvert, setModalAnnulationOuvert] = useState(false);
   const [modificationEnCours, setModificationEnCours] = useState(false);
@@ -158,10 +175,54 @@ function MonCompteContent() {
   }, [profile, user]);
 
   useEffect(() => {
-    if (tabParam === 'subscription' || tabParam === 'preferences' || tabParam === 'profile') {
-      setActiveTab(tabParam);
+    if (tabParam === 'subscription' || tabParam === 'preferences' || tabParam === 'profile' || tabParam === 'password' || tabParam === 'security') {
+      setActiveTab(tabParam === 'security' ? 'password' : (tabParam as 'profile' | 'subscription' | 'preferences' | 'password'));
     }
   }, [tabParam]);
+
+  const handleUpdatePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordError(null);
+    setPasswordSuccess(null);
+
+    if (!newPassword) {
+      setPasswordError('Veuillez saisir votre nouveau mot de passe.');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      setPasswordError('Le mot de passe doit comporter au moins 6 caractères.');
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      setPasswordError('Les deux mots de passe ne correspondent pas.');
+      return;
+    }
+
+    setIsPasswordLoading(true);
+
+    try {
+      const { error } = await updatePassword(newPassword);
+      if (error) {
+        setPasswordError(traduireErreurAuth(error, 'reinitialisation'));
+      } else {
+        setPasswordSuccess('Votre mot de passe a été mis à jour avec succès !');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        setTimeout(() => setPasswordSuccess(null), 4000);
+      }
+    } catch (err: any) {
+      setPasswordError(traduireErreurAuth(err, 'reinitialisation'));
+    } finally {
+      setIsPasswordLoading(false);
+    }
+  };
 
   // Abonnement : état réel du profil + ouverture du portail de facturation
   const { etat: etatAbonnement, ouvrirPortail, modifierRenouvellement } = useAbonnement();
@@ -335,11 +396,14 @@ function MonCompteContent() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center p-1 rounded-full bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] self-start sm:self-auto">
+        <div className="flex items-center gap-1 p-1 rounded-full bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] self-start sm:self-auto overflow-x-auto max-w-full scrollbar-none">
           <button
-            onClick={() => setActiveTab('profile')}
+            onClick={(e) => {
+              setActiveTab('profile');
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            }}
             type="button"
-            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press ${
+            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press whitespace-nowrap shrink-0 ${
               activeTab === 'profile'
                 ? 'bg-[#6200EE] text-white shadow-xs'
                 : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
@@ -348,9 +412,12 @@ function MonCompteContent() {
             Profil
           </button>
           <button
-            onClick={() => setActiveTab('subscription')}
+            onClick={(e) => {
+              setActiveTab('subscription');
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            }}
             type="button"
-            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press ${
+            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press whitespace-nowrap shrink-0 ${
               activeTab === 'subscription'
                 ? 'bg-[#6200EE] text-white shadow-xs'
                 : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
@@ -359,15 +426,32 @@ function MonCompteContent() {
             Abonnement
           </button>
           <button
-            onClick={() => setActiveTab('preferences')}
+            onClick={(e) => {
+              setActiveTab('preferences');
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            }}
             type="button"
-            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press ${
+            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press whitespace-nowrap shrink-0 ${
               activeTab === 'preferences'
                 ? 'bg-[#6200EE] text-white shadow-xs'
                 : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
             }`}
           >
             Préférences
+          </button>
+          <button
+            onClick={(e) => {
+              setActiveTab('password');
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            }}
+            type="button"
+            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all btn-press whitespace-nowrap shrink-0 ${
+              activeTab === 'password'
+                ? 'bg-[#6200EE] text-white shadow-xs'
+                : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
+            }`}
+          >
+            Mot de passe
           </button>
         </div>
       </div>
@@ -1235,6 +1319,112 @@ function MonCompteContent() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: MOT DE PASSE & SÉCURITÉ */}
+      {activeTab === 'password' && (
+        <div className="space-y-6 animate-fadeIn">
+          {/* Header Card */}
+          <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-2xl sm:rounded-3xl">
+            <div className="flex items-center gap-3.5 mb-2">
+              <div className="w-10 h-10 rounded-2xl bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center shrink-0">
+                <KeyRound className="w-5 h-5" />
+              </div>
+              <div>
+                <h2 className="font-display font-black text-lg sm:text-xl text-[#212121] dark:text-[#F5F5F5]">
+                  Modifier votre mot de passe
+                </h2>
+                <p className="text-xs text-[#757575] dark:text-[#A0A0A0]">
+                  Sécurisez l&apos;accès à votre compte et à votre progression ChinoisLingo.
+                </p>
+              </div>
+            </div>
+
+            {/* Messages */}
+            {passwordError && (
+              <div className="mt-4 p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold flex items-center gap-2.5 animate-shake">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{passwordError}</span>
+              </div>
+            )}
+
+            {passwordSuccess && (
+              <div className="mt-4 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold flex items-center gap-2.5 animate-fadeIn">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>{passwordSuccess}</span>
+              </div>
+            )}
+
+            {/* Form */}
+            <form onSubmit={handleUpdatePassword} className="mt-6 space-y-4 max-w-lg">
+              {/* Nouveau mot de passe */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Nouveau mot de passe *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#757575] dark:text-[#A0A0A0]">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <input
+                    type={showNewPassword ? 'text' : 'password'}
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="6 caractères minimum"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#757575] hover:text-[#212121] dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Confirmer le mot de passe */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Confirmer le nouveau mot de passe *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#757575] dark:text-[#A0A0A0]">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <input
+                    type={showConfirmNewPassword ? 'text' : 'password'}
+                    required
+                    value={confirmNewPassword}
+                    onChange={(e) => setConfirmNewPassword(e.target.value)}
+                    placeholder="Répétez votre nouveau mot de passe"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmNewPassword(!showConfirmNewPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#757575] hover:text-[#212121] dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    {showConfirmNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Bouton de sauvegarde */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={isPasswordLoading}
+                  className="px-6 py-3 rounded-full bg-[#6200EE] hover:bg-[#3700B3] disabled:opacity-50 text-white text-xs font-black shadow-md shadow-[#6200EE]/25 active:scale-95 transition-all btn-press inline-flex items-center gap-2 cursor-pointer"
+                >
+                  <Save className="w-4 h-4" />
+                  <span>{isPasswordLoading ? 'Mise à jour en cours...' : 'Mettre à jour mon mot de passe'}</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

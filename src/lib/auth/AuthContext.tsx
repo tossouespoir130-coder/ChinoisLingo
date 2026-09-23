@@ -30,6 +30,8 @@ interface AuthContextType {
       onboarding_rappels?: boolean;
     }
   ) => Promise<{ error: Error | null; besoinConfirmation?: boolean }>;
+  resetPasswordForEmail: (email: string, redirectTo?: string) => Promise<{ error: Error | null }>;
+  updatePassword: (newPassword: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -197,6 +199,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return { error: null, besoinConfirmation };
   };
 
+  const resetPasswordForEmail = async (email: string, redirectTo?: string) => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const targetRedirect = redirectTo || `${origin}/reinitialisation-mot-de-passe`;
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: targetRedirect,
+    });
+    return { error: error ? new Error(error.message) : null };
+  };
+
+  const updatePassword = async (newPassword: string) => {
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    return { error: error ? new Error(error.message) : null };
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     // Le prochain apprenant sur cet appareil repart du choix par défaut.
@@ -219,6 +235,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         signInWithEmail,
         signUpWithEmail,
+        resetPasswordForEmail,
+        updatePassword,
         signOut,
         refreshProfile,
       }}

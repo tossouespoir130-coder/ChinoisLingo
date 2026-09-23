@@ -102,12 +102,17 @@ export function SrsReminderToast() {
         {/* En-tête avec Xiao Li Mascot Avatar */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
-            <div className="w-8 h-8 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 p-0.5 shrink-0 overflow-hidden border border-[#6200EE]/20">
-              <Image
+            <div className="w-8 h-8 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 p-0.5 shrink-0 overflow-hidden border border-[#6200EE]/20 flex items-center justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/images/onboarding/xiao-li-avatar.png"
                 alt="Xiao Li"
-                width={32}
-                height={32}
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src.indexOf('/images/mascot/xiao-li.png') === -1) {
+                    target.src = '/images/mascot/xiao-li.png';
+                  }
+                }}
                 className="w-full h-full object-contain"
               />
             </div>

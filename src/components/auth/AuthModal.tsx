@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Mail, Lock, User, Sparkles, ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { traduireErreurAuth } from '@/lib/auth/authErrors';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -60,7 +61,7 @@ export function AuthModal({ isOpen, onClose, initialMode = 'signin' }: AuthModal
 
       const { error } = await signUpWithEmail(email, password, effectiveFirstName, lastName, effectiveUsername);
       if (error) {
-        setErrorMessage(error.message || "Une erreur s'est produite lors de l'inscription.");
+        setErrorMessage(traduireErreurAuth(error, 'inscription'));
       } else {
         setSuccessMessage('Compte créé avec succès ! Bienvenue.');
         setTimeout(() => {
@@ -70,7 +71,7 @@ export function AuthModal({ isOpen, onClose, initialMode = 'signin' }: AuthModal
     } else {
       const { error } = await signInWithEmail(email, password);
       if (error) {
-        setErrorMessage(error.message || "Identifiants invalides.");
+        setErrorMessage(traduireErreurAuth(error, 'connexion'));
       } else {
         setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
         setTimeout(() => {
