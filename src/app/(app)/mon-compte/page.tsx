@@ -52,6 +52,7 @@ import { Portal } from '@/components/ui/Portal';
 import { resumeOffreGratuite } from '@/lib/payments/acces';
 import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
+import { createClient } from '@/lib/supabase/client';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -59,6 +60,7 @@ function MonCompteContent() {
   const tabParam = searchParams.get('tab');
   const { theme, toggleTheme } = useTheme();
   const { user, profile, signOut, updatePassword } = useAuth();
+  const supabase = createClient();
 
   // Directly consume and update the Global Preferences
   const {
@@ -98,7 +100,9 @@ function MonCompteContent() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [profileSaveSuccess, setProfileSaveSuccess] = useState(false);
 
-  // État du changement de mot de passe
+  // État du changement de mot de passe (Ancien + Nouveau + Confirmation)
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -185,29 +189,56 @@ function MonCompteContent() {
     setPasswordError(null);
     setPasswordSuccess(null);
 
+    if (!currentPassword) {
+      setPasswordError('Veuillez saisir votre mot de passe actuel.');
+      return;
+    }
+
     if (!newPassword) {
       setPasswordError('Veuillez saisir votre nouveau mot de passe.');
       return;
     }
 
     if (newPassword.length < 6) {
-      setPasswordError('Le mot de passe doit comporter au moins 6 caractères.');
+      setPasswordError('Le nouveau mot de passe doit comporter au moins 6 caractères.');
+      return;
+    }
+
+    if (newPassword === currentPassword) {
+      setPasswordError('Le nouveau mot de passe doit être différent de l’ancien.');
       return;
     }
 
     if (newPassword !== confirmNewPassword) {
-      setPasswordError('Les deux mots de passe ne correspondent pas.');
+      setPasswordError('Les deux nouveaux mots de passe ne correspondent pas.');
       return;
     }
 
     setIsPasswordLoading(true);
 
     try {
+      const userEmail = user?.email || profileData.email;
+      if (userEmail) {
+        // 1. Vérification de sécurité : vérifier l'ancien mot de passe via Supabase Auth
+        const { error: signInErr } = await supabase.auth.signInWithPassword({
+          email: userEmail,
+          password: currentPassword,
+        });
+
+        if (signInErr) {
+          setPasswordError('L’ancien mot de passe est incorrect.');
+          setIsPasswordLoading(false);
+          return;
+        }
+      }
+
+      // 2. Mettre à jour avec le nouveau mot de passe
       const { error } = await updatePassword(newPassword);
       if (error) {
         setPasswordError(traduireErreurAuth(error, 'reinitialisation'));
       } else {
         setPasswordSuccess('Votre mot de passe a été mis à jour avec succès !');
+        setCurrentPassword('');
         setNewPassword('');
         setConfirmNewPassword('');
         confetti({
@@ -1359,6 +1390,33 @@ function MonCompteContent() {
 
             {/* Form */}
             <form onSubmit={handleUpdatePassword} className="mt-6 space-y-4 max-w-lg">
+              {/* Ancien mot de passe */}
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Ancien mot de passe (actuel) *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#757575] dark:text-[#A0A0A0]">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <input
+                    type={showCurrentPassword ? 'text' : 'password'}
+                    required
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    placeholder="Votre mot de passe actuel"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#757575] hover:text-[#212121] dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
               {/* Nouveau mot de passe */}
               <div className="space-y-1.5">
                 <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
