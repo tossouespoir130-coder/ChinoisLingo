@@ -69,11 +69,8 @@ export async function envoyerEmailManuel(params: ParamsEmailManuel): Promise<{ o
           <!-- Signature & Footer -->
           <tr>
             <td style="background-color: #FAFAFA; border-top: 1px solid #EAEAEA; padding: 25px 30px; text-align: center;">
-              <p style="font-size: 13px; font-weight: 700; color: #212121; margin: 0;">
-                Espoir Chinois
-              </p>
-              <p style="font-size: 12px; color: #757575; margin: 2px 0 12px 0;">
-                Fondateur de ChinoisLingo
+              <p style="font-size: 13px; font-weight: 700; color: #212121; margin: 0 0 12px 0;">
+                L'équipe ChinoisLingo
               </p>
               <p style="font-size: 11px; color: #9E9E9E; margin: 0;">
                 © ${new Date().getFullYear()} ChinoisLingo. Tous droits réservés.
@@ -97,8 +94,7 @@ ${params.message}
 
 Accéder à votre compte : ${siteUrl}/tableau-de-bord
 
-Espoir Chinois,
-Fondateur de ChinoisLingo
+L'équipe ChinoisLingo
   `.trim();
 
   if (!configurationEmailPrete()) {

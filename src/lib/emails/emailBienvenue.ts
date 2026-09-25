@@ -152,11 +152,8 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
           <!-- Signature & Footer -->
           <tr>
             <td style="background-color: #FAFAFA; border-top: 1px solid #EAEAEA; padding: 25px 30px; text-align: center;">
-              <p style="font-size: 13px; font-weight: 700; color: #212121; margin: 0;">
-                Espoir Chinois
-              </p>
-              <p style="font-size: 12px; color: #757575; margin: 2px 0 12px 0;">
-                Fondateur de ChinoisLingo
+              <p style="font-size: 13px; font-weight: 700; color: #212121; margin: 0 0 12px 0;">
+                L'équipe ChinoisLingo
               </p>
               <p style="font-size: 11px; color: #9E9E9E; margin: 0;">
                 © ${new Date().getFullYear()} ChinoisLingo. Tous droits réservés.
@@ -192,8 +189,7 @@ Commence ta première session ici : ${lienApp}
 
 Toute l'équipe sera à tes côtés tout au long de cette aventure. 加油 💪🏾
 
-Espoir Chinois,
-Fondateur de ChinoisLingo
+L'équipe ChinoisLingo
   `.trim();
 
   const resultat = await envoyerEmail({
