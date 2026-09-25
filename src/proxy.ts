@@ -35,7 +35,8 @@ const ROUTES_PUBLIQUES = [
   '/onboarding',
   '/inscription',
   '/desabonnement',
-  '/reinitialisation-mot-de-passe'
+  '/reinitialisation-mot-de-passe',
+  '/auth'
 ];
 
 /** Pages d'entrée d'authentification : un apprenant connecté est renvoyé vers son tableau de bord. */

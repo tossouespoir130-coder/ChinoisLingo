@@ -115,8 +115,11 @@ export default function ConnexionPage() {
     setForgotMessage(null);
 
     try {
+      const siteUrl =
+        process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+        (typeof window !== 'undefined' ? window.location.origin : '');
       const { error } = await supabase.auth.resetPasswordForEmail(forgotEmail, {
-        redirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/reinitialisation-mot-de-passe`,
+        redirectTo: `${siteUrl}/reinitialisation-mot-de-passe`,
       });
 
       if (error) {

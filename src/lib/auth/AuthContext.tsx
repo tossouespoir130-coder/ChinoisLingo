@@ -52,6 +52,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    // 0. Vérification immédiate si l'URL contient un jeton de récupération de mot de passe
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash || '';
+      const search = window.location.search || '';
+      if (
+        (hash.includes('type=recovery') || search.includes('type=recovery')) &&
+        !window.location.pathname.startsWith('/reinitialisation-mot-de-passe')
+      ) {
+        window.location.href = `/reinitialisation-mot-de-passe${search}${hash}`;
+        return;
+      }
+    }
+
     // 1. Check current session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
@@ -72,7 +85,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
 
     // 2. Listen to auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/reinitialisation-mot-de-passe')) {
+          window.location.href = `/reinitialisation-mot-de-passe${window.location.search}${window.location.hash}`;
+          return;
+        }
+      }
+
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -200,8 +220,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetPasswordForEmail = async (email: string, redirectTo?: string) => {
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const targetRedirect = redirectTo || `${origin}/reinitialisation-mot-de-passe`;
+    const siteUrl =
+      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+      (typeof window !== 'undefined' ? window.location.origin : '');
+    const targetRedirect = redirectTo || `${siteUrl}/reinitialisation-mot-de-passe`;
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: targetRedirect,
     });

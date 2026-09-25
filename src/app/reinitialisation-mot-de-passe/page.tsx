@@ -51,11 +51,19 @@ export default function ReinitialisationMotDePassePage() {
         setIsRecoveryActive(true);
       }
 
-      // Vérifier également si le hash de l'URL contient un access_token ou type=recovery
+      // Vérifier également si le hash de l'URL ou les paramètres contiennent une erreur ou un jeton
       if (typeof window !== 'undefined') {
         const hash = window.location.hash;
         const search = window.location.search;
-        if (hash.includes('type=recovery') || hash.includes('access_token') || search.includes('code=')) {
+        const params = new URLSearchParams(search);
+
+        if (hash.includes('error=') || params.has('error') || params.get('erreur') === 'invalide') {
+          if (hash.includes('otp_expired') || search.includes('otp_expired')) {
+            setErrorMessage('Ce lien de réinitialisation a expiré. Veuillez faire une nouvelle demande depuis la page de connexion.');
+          } else {
+            setErrorMessage('Ce lien de réinitialisation est invalide ou a déjà été utilisé. Veuillez faire une nouvelle demande.');
+          }
+        } else if (hash.includes('type=recovery') || hash.includes('access_token') || search.includes('code=')) {
           setIsRecoveryActive(true);
         }
       }
