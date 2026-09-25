@@ -5,6 +5,7 @@ import { User, Session } from '@supabase/supabase-js';
 import { createClient, definirSessionEphemere } from '@/lib/supabase/client';
 import { Profile } from '@/lib/supabase/types';
 import { fetchUserProfile, recordDailyActivity } from '@/lib/services/profileService';
+import { effacerRecuperation, marquerRecuperation } from '@/lib/auth/motDePasse';
 
 interface AuthContextType {
   user: User | null;
@@ -31,7 +32,11 @@ interface AuthContextType {
     }
   ) => Promise<{ error: Error | null; besoinConfirmation?: boolean }>;
   resetPasswordForEmail: (email: string, redirectTo?: string) => Promise<{ error: Error | null }>;
-  updatePassword: (newPassword: string) => Promise<{ error: Error | null }>;
+  /**
+   * `currentPassword` : obligatoire depuis Mon Compte, absent lors d'une
+   * réinitialisation (l'apprenant l'a justement oublié).
+   */
+  updatePassword: (newPassword: string, currentPassword?: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -87,6 +92,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // 2. Listen to auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === 'PASSWORD_RECOVERY') {
+        // Seule preuve, côté navigateur, que cette session vient d'un lien
+        // « mot de passe oublié » : la page de réinitialisation l'exige.
+        marquerRecuperation();
         if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/reinitialisation-mot-de-passe')) {
           window.location.href = `/reinitialisation-mot-de-passe${window.location.search}${window.location.hash}`;
           return;
@@ -230,13 +238,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return { error: error ? new Error(error.message) : null };
   };
 
-  const updatePassword = async (newPassword: string) => {
-    const { error } = await supabase.auth.updateUser({ password: newPassword });
-    return { error: error ? new Error(error.message) : null };
+  const updatePassword = async (newPassword: string, currentPassword?: string) => {
+    // `current_password` est vérifié par Supabase lorsque l'option
+    // « Require current password » est activée ; sinon il est ignoré.
+    const { error } = await supabase.auth.updateUser({
+      password: newPassword,
+      ...(currentPassword ? { current_password: currentPassword } : {}),
+    });
+    if (error) {
+      // On conserve le code Supabase (same_password, weak_password…) pour traduireErreurAuth.
+      return { error: Object.assign(new Error(error.message), { code: error.code }) };
+    }
+    // Un mot de passe changé doit fermer les autres appareils : si quelqu'un
+    // d'autre avait accès au compte, il perd sa session.
+    await supabase.auth.signOut({ scope: 'others' });
+    return { error: null };
   };
 
   const signOut = async () => {
     await supabase.auth.signOut();
+    effacerRecuperation();
     // Le prochain apprenant sur cet appareil repart du choix par défaut.
     definirSessionEphemere(false);
     setUser(null);

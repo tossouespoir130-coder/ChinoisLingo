@@ -49,7 +49,8 @@ export default function ConnexionPage() {
     const hash = window.location.hash;
     const search = window.location.search;
     if (hash.includes('type=recovery') || search.includes('type=recovery')) {
-      router.push('/reinitialisation-mot-de-passe' + hash);
+      // Conserver `?code=` (flux PKCE) autant que le fragment (flux implicite).
+      router.push('/reinitialisation-mot-de-passe' + search + hash);
       return;
     }
 
@@ -125,9 +126,12 @@ export default function ConnexionPage() {
       if (error) {
         setForgotError(traduireErreurAuth(error, 'reinitialisation'));
       } else {
-        setForgotMessage('E-mail de réinitialisation envoyé ! Vérifiez votre boîte de réception.');
+        // Même message que l'adresse existe ou non : ne pas révéler qui possède un compte.
+        setForgotMessage(
+          'Si un compte existe pour cette adresse, un lien de réinitialisation vient de lui être envoyé. Pensez à vérifier vos courriers indésirables.'
+        );
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       setForgotError(traduireErreurAuth(err, 'reinitialisation'));
     } finally {
       setIsForgotSubmitting(false);
@@ -259,6 +263,7 @@ export default function ConnexionPage() {
                     type="email"
                     required
                     value={email}
+                    autoComplete="email"
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
                     className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
@@ -277,6 +282,7 @@ export default function ConnexionPage() {
                     type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
+                    autoComplete="current-password"
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
@@ -403,6 +409,7 @@ export default function ConnexionPage() {
                     type="email"
                     required
                     value={forgotEmail}
+                    autoComplete="email"
                     onChange={(e) => setForgotEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
                     className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"

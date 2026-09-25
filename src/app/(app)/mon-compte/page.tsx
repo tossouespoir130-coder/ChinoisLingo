@@ -53,6 +53,7 @@ import { resumeOffreGratuite } from '@/lib/payments/acces';
 import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
 import { createClient } from '@/lib/supabase/client';
+import { CONSIGNE_MOT_DE_PASSE, validerNouveauMotDePasse } from '@/lib/auth/motDePasse';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -194,13 +195,9 @@ function MonCompteContent() {
       return;
     }
 
-    if (!newPassword) {
-      setPasswordError('Veuillez saisir votre nouveau mot de passe.');
-      return;
-    }
-
-    if (newPassword.length < 6) {
-      setPasswordError('Le nouveau mot de passe doit comporter au moins 6 caractères.');
+    const erreurValidation = validerNouveauMotDePasse(newPassword, confirmNewPassword);
+    if (erreurValidation) {
+      setPasswordError(erreurValidation);
       return;
     }
 
@@ -209,35 +206,39 @@ function MonCompteContent() {
       return;
     }
 
-    if (newPassword !== confirmNewPassword) {
-      setPasswordError('Les deux nouveaux mots de passe ne correspondent pas.');
+    // Uniquement l'adresse de la session Supabase : c'est elle que l'on authentifie.
+    const userEmail = user?.email;
+    if (!userEmail) {
+      // Sans adresse, impossible de vérifier l'ancien mot de passe : on refuse
+      // plutôt que de changer le mot de passe sans contrôle.
+      setPasswordError('Session introuvable. Reconnectez-vous puis réessayez.');
       return;
     }
 
     setIsPasswordLoading(true);
 
     try {
-      const userEmail = user?.email || profileData.email;
-      if (userEmail) {
-        // 1. Vérification de sécurité : vérifier l'ancien mot de passe via Supabase Auth
-        const { error: signInErr } = await supabase.auth.signInWithPassword({
-          email: userEmail,
-          password: currentPassword,
-        });
+      // 1. Vérification de l'ancien mot de passe auprès de Supabase Auth.
+      const { error: signInErr } = await supabase.auth.signInWithPassword({
+        email: userEmail,
+        password: currentPassword,
+      });
 
-        if (signInErr) {
-          setPasswordError('L’ancien mot de passe est incorrect.');
-          setIsPasswordLoading(false);
-          return;
-        }
+      if (signInErr) {
+        setPasswordError(
+          signInErr.code === 'invalid_credentials'
+            ? 'L’ancien mot de passe est incorrect.'
+            : traduireErreurAuth(signInErr, 'connexion')
+        );
+        return;
       }
 
-      // 2. Mettre à jour avec le nouveau mot de passe
-      const { error } = await updatePassword(newPassword);
+      // 2. Mise à jour — l'ancien mot de passe est aussi transmis, pour que Supabase le revérifie côté serveur si l'option est active.
+      const { error } = await updatePassword(newPassword, currentPassword);
       if (error) {
-        setPasswordError(traduireErreurAuth(error, 'reinitialisation'));
+        setPasswordError(traduireErreurAuth(error, 'motDePasse'));
       } else {
-        setPasswordSuccess('Votre mot de passe a été mis à jour avec succès !');
+        setPasswordSuccess('Votre mot de passe a été mis à jour. Vos autres appareils ont été déconnectés.');
         setCurrentPassword('');
         setNewPassword('');
         setConfirmNewPassword('');
@@ -246,10 +247,10 @@ function MonCompteContent() {
           spread: 70,
           origin: { y: 0.6 }
         });
-        setTimeout(() => setPasswordSuccess(null), 4000);
+        setTimeout(() => setPasswordSuccess(null), 5000);
       }
-    } catch (err: any) {
-      setPasswordError(traduireErreurAuth(err, 'reinitialisation'));
+    } catch (err: unknown) {
+      setPasswordError(traduireErreurAuth(err, 'motDePasse'));
     } finally {
       setIsPasswordLoading(false);
     }
@@ -1403,6 +1404,7 @@ function MonCompteContent() {
                     type={showCurrentPassword ? 'text' : 'password'}
                     required
                     value={currentPassword}
+                    autoComplete="current-password"
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Votre mot de passe actuel"
                     className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
@@ -1430,8 +1432,9 @@ function MonCompteContent() {
                     type={showNewPassword ? 'text' : 'password'}
                     required
                     value={newPassword}
+                    autoComplete="new-password"
                     onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="6 caractères minimum"
+                    placeholder={CONSIGNE_MOT_DE_PASSE}
                     className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
                   />
                   <button
@@ -1457,6 +1460,7 @@ function MonCompteContent() {
                     type={showConfirmNewPassword ? 'text' : 'password'}
                     required
                     value={confirmNewPassword}
+                    autoComplete="new-password"
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
                     placeholder="Répétez votre nouveau mot de passe"
                     className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"

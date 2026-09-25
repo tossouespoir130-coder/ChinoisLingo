@@ -19,6 +19,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import confetti from 'canvas-confetti';
 import { OnboardingState } from './types';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
+import { CONSIGNE_MOT_DE_PASSE, validerNouveauMotDePasse } from '@/lib/auth/motDePasse';
 
 interface StepRegisterProps {
   state: OnboardingState;
@@ -52,12 +53,9 @@ export function StepRegister({ state }: StepRegisterProps) {
       setErrorMessage('Veuillez renseigner votre adresse e-mail.');
       return;
     }
-    if (!password || password.length < 6) {
-      setErrorMessage('Le mot de passe doit contenir au moins 6 caractères.');
-      return;
-    }
-    if (password !== confirmPassword) {
-      setErrorMessage('Les mots de passe ne correspondent pas.');
+    const erreurMotDePasse = validerNouveauMotDePasse(password, confirmPassword);
+    if (erreurMotDePasse) {
+      setErrorMessage(erreurMotDePasse);
       return;
     }
 
@@ -221,8 +219,9 @@ export function StepRegister({ state }: StepRegisterProps) {
               type={showPassword ? 'text' : 'password'}
               required
               value={password}
+              autoComplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="6 caractères minimum"
+              placeholder={CONSIGNE_MOT_DE_PASSE}
               className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
             />
             <button
@@ -245,6 +244,7 @@ export function StepRegister({ state }: StepRegisterProps) {
               type={showConfirmPassword ? 'text' : 'password'}
               required
               value={confirmPassword}
+              autoComplete="new-password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Répétez le mot de passe"
               className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
