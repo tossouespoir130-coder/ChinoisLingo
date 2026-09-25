@@ -61,7 +61,8 @@ export default function ConnexionPage() {
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('confirme') === '1') {
-      setSuccessMessage('Adresse confirmée. Vous pouvez maintenant vous connecter.');
+      supabase.auth.signOut();
+      setSuccessMessage('Adresse e-mail confirmée avec succès ! Vous pouvez maintenant vous connecter à votre compte.');
     } else if (params.get('session') === 'indisponible') {
       setErrorMessage(
         'Vérification de session impossible pour le moment. Réessayez dans un instant.'

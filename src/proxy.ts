@@ -30,7 +30,13 @@ import { COOKIE_SESSION_EPHEMERE, adapterDuree } from '@/lib/supabase/session-ep
  */
 
 /** Pages accessibles sans session (visiteurs). */
-const ROUTES_PUBLIQUES = ['/abonnement/retour', '/onboarding', '/inscription', '/desabonnement'];
+const ROUTES_PUBLIQUES = [
+  '/abonnement/retour',
+  '/onboarding',
+  '/inscription',
+  '/desabonnement',
+  '/reinitialisation-mot-de-passe'
+];
 
 /** Pages d'entrée d'authentification : un apprenant connecté est renvoyé vers son tableau de bord. */
 const PAGES_ENTREE = ['/connexion'];
@@ -101,9 +107,15 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  // Retour d'un lien reçu par e-mail (confirmation, mot de passe oublié) :
-  // la page doit elle-même échanger le code, on ne redirige pas.
-  if (chemin === '/connexion' && request.nextUrl.searchParams.has('code')) {
+  // Retour d'un lien reçu par e-mail (confirmation, mot de passe oublié, activation) :
+  // la page doit afficher le message et le formulaire de connexion sans redirection automatique.
+  if (
+    chemin === '/connexion' &&
+    (request.nextUrl.searchParams.has('code') ||
+      request.nextUrl.searchParams.has('confirme') ||
+      request.nextUrl.searchParams.has('confirmation') ||
+      request.nextUrl.searchParams.has('session'))
+  ) {
     return response;
   }
 
