@@ -18,6 +18,7 @@ import {
 import { useAuth } from '@/lib/auth/AuthContext';
 import confetti from 'canvas-confetti';
 import { OnboardingState } from './types';
+import { traduireErreurAuth } from '@/lib/auth/authErrors';
 
 interface StepRegisterProps {
   state: OnboardingState;
@@ -78,7 +79,7 @@ export function StepRegister({ state }: StepRegisterProps) {
       );
 
       if (error) {
-        setErrorMessage(error.message || "Une erreur s'est produite lors de l'inscription.");
+        setErrorMessage(traduireErreurAuth(error, 'inscription'));
       } else {
         // Envoi automatique de l'email de bienvenue via Resend
         fetch('/api/emails/bienvenue', {
