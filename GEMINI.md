@@ -19,6 +19,7 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
 - **Règle Globale de Célébration (Confettis & Paillettes)** : Dès qu'une ressource ou leçon est marquée comme terminée, déclencher systématiquement `confetti({ ... })`.
 - **Règle Globale du Bouton Terminé (`✓ Terminé`)** : Sur toute l'application, l'état validé utilise le bouton avec fond rouge/corail (`#E53935` / `#E91E63`), texte blanc net, icône `Check`, intitulé exact **`✓ Terminé`** (sans le mot "Revoir").
 - **Règle Globale d'Auto-Alignement des Onglets sur Mobile (`scrollIntoView`)** : Dès qu'un utilisateur clique sur un onglet ou filtre dans un ruban horizontal, l'élément défile automatiquement et de façon fluide pour venir se positionner au tout début visible à gauche (`inline: 'start'`).
+- **Règle Permanente du Mot du Jour & Nature Grammaticale** : Pour chaque mot du jour affiché sur la plateforme (Tableau de bord, cartes, notifications), indiquer **systématiquement et explicitement sa nature grammaticale** (*Verbe*, *Nom*, *Adjectif*, *Verbe / Nom*) avec une traduction française précise et contextuelle (ex: `合作` = *Collaborer / Coopérer (Verbe) • Coopération / Partenariat (Nom)*).
 - **Règle Permanente de Nommage des Personnages Récurrents & Mascotte** :
   - **Mascotte Officielle ChinoisLingo** : **`小李`** (Pinyin : **`Xiǎo Lǐ`** / Français : **`Xiao Li`** ou **`Xiao Li (小李)`**) — Bannissement strict et absolu de toute variante comme *小狸*.
   - **Espoir** : `苏波` (Pinyin : `Sūbō`)

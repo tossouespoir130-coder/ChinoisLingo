@@ -165,8 +165,8 @@ export function WordOfTheDayCard() {
 
       {/* Main Character Display */}
       <div className="mt-4 flex items-center justify-between gap-4">
-        <div>
-          <div className="flex items-baseline gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center flex-wrap gap-2.5">
             <h3 className="font-hanzi font-black text-4xl sm:text-5xl text-[#212121] dark:text-[#F5F5F5] tracking-tight">
               {dailyWord.hanzi}
             </h3>
@@ -175,9 +175,14 @@ export function WordOfTheDayCard() {
                 {dailyWord.pinyin}
               </span>
             )}
+            {dailyWord.nature && (
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10.5px] font-extrabold tracking-wide bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#03DAC5]/30">
+                {dailyWord.nature}
+              </span>
+            )}
           </div>
           {showFrenchTranslation && (
-            <p className="text-sm sm:text-base font-semibold text-[#212121] dark:text-[#F5F5F5] mt-1">
+            <p className="text-sm sm:text-base font-semibold text-[#212121] dark:text-[#F5F5F5] mt-1.5">
               {dailyWord.french}
             </p>
           )}

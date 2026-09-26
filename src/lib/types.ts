@@ -34,6 +34,7 @@ export interface WordOfTheDay {
   hanzi: string;
   pinyin: string;
   french: string;
+  nature?: string;
   category: string;
   businessContext: string;
   exampleSentences: ExampleSentenceTier[];
