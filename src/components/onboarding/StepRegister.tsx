@@ -79,17 +79,12 @@ export function StepRegister({ state }: StepRegisterProps) {
       if (error) {
         setErrorMessage(traduireErreurAuth(error, 'inscription'));
       } else {
-        // Envoi automatique de l'email de bienvenue via Resend
+        // Envoi automatique de l'email de bienvenue via Resend : le serveur
+        // relit nom, profil et niveau dans le profil tout juste créé.
         fetch('/api/emails/bienvenue', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            nom: username,
-            profil: state.profilLabel || 'Apprenant',
-            objectif: state.motivationLabel || 'Pour le travail',
-            niveau: state.niveauLabel || 'Je débute complètement',
-          }),
+          body: JSON.stringify({ email }),
         }).catch((err) => console.error('[onboarding] Erreur envoi email bienvenue', err));
 
         if (besoinConfirmation) {

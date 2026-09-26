@@ -1,8 +1,8 @@
-import crypto from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { createAdminClient, configurationAdminPrete } from '@/lib/supabase/admin';
 import { configurationEmailPrete } from '@/lib/emails/resend';
 import { envoyerRappelsEcheance } from '@/lib/emails/abonnement';
+import { appelCronAutorise } from '@/lib/security/cron';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -22,7 +22,7 @@ export const maxDuration = 60;
  * n'importe qui pourrait sinon déclencher des envois.
  */
 export async function GET(requete: Request) {
-  if (!appelAutorise(requete.headers.get('authorization'))) {
+  if (!appelCronAutorise(requete.headers.get('authorization'))) {
     return NextResponse.json({ erreur: 'Non autorisé.' }, { status: 401 });
   }
 
@@ -35,15 +35,4 @@ export async function GET(requete: Request) {
   console.log('[cron rappels] bilan', bilan);
 
   return NextResponse.json(bilan, { status: bilan.erreur ? 500 : 200 });
-}
-
-/** Comparaison à temps constant, comme pour la signature des webhooks. */
-function appelAutorise(entete: string | null): boolean {
-  const secret = process.env.CRON_SECRET;
-  if (!secret || !entete) return false;
-
-  const attendu = Buffer.from(`Bearer ${secret}`);
-  const recu = Buffer.from(entete);
-  // timingSafeEqual lève une exception si les longueurs diffèrent.
-  return recu.length === attendu.length && crypto.timingSafeEqual(recu, attendu);
 }

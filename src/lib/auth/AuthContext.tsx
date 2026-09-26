@@ -6,6 +6,7 @@ import { createClient, definirSessionEphemere } from '@/lib/supabase/client';
 import { Profile } from '@/lib/supabase/types';
 import { fetchUserProfile, recordDailyActivity } from '@/lib/services/profileService';
 import { effacerRecuperation, marquerRecuperation } from '@/lib/auth/motDePasse';
+import { associerDonneesLocalesAuCompte, purgerDonneesLocalesDuCompte } from '@/lib/auth/donneesLocales';
 
 interface AuthContextType {
   user: User | null;
@@ -72,6 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // 1. Check current session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (session?.user) associerDonneesLocalesAuCompte(session.user.id);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -101,6 +103,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
 
+      // Avant tout affichage : efface les données d'un autre compte resté dans ce navigateur.
+      if (session?.user) associerDonneesLocalesAuCompte(session.user.id);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -256,13 +260,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      // Réseau coupé ou Supabase injoignable : Supabase garde alors la session
+      // locale, et le proxy renverrait l'apprenant sur son tableau de bord.
+      // La déconnexion locale, elle, ne dépend pas du réseau.
+      console.error('[auth] déconnexion globale impossible, déconnexion locale', error);
+      await supabase.auth.signOut({ scope: 'local' });
+    }
     effacerRecuperation();
+    purgerDonneesLocalesDuCompte();
     // Le prochain apprenant sur cet appareil repart du choix par défaut.
     definirSessionEphemere(false);
     setUser(null);
     setSession(null);
     setProfile(null);
+    // Rechargement complet : aucun état en mémoire (préférences, caches des
+    // pages) ne survit au compte précédent.
+    if (typeof window !== 'undefined') window.location.assign('/connexion');
   };
 
   function splitEmail(email: string) {

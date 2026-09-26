@@ -1,14 +1,22 @@
 import { NextResponse } from 'next/server';
+import { echapper } from '@/lib/emails/modeles';
 import { NOMS_RUBRIQUES, NOMS_SOUS_CATEGORIES, type NouvelItemContenu } from '@/lib/emails/emailRecapHebdo';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(requete: Request) {
+  // Outil d'aperçu pour le développement uniquement. En production, cette page
+  // servie depuis notre domaine permettait d'injecter du HTML/JS via ?nom=
+  // (XSS réfléchi) et donc de dérober la session d'un apprenant.
+  if (process.env.NODE_ENV === 'production') {
+    return new NextResponse('Not Found', { status: 404 });
+  }
+
   const { searchParams } = new URL(requete.url);
-  const nom = searchParams.get('nom') || 'Espoir Chinois';
-  const profil = searchParams.get('profil') || 'Entrepreneur';
-  const niveau = searchParams.get('niveau') || 'Débutant';
+  const nom = echapper(searchParams.get('nom') || 'Espoir Chinois');
+  const profil = echapper(searchParams.get('profil') || 'Entrepreneur');
+  const niveau = echapper(searchParams.get('niveau') || 'Débutant');
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://chinoislingo.com';
 

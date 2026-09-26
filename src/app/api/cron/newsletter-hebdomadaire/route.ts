@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { appelCronAutorise } from '@/lib/security/cron';
 import { configurationEmailPrete } from '@/lib/emails/resend';
 import { envoyerEmailRecapHebdo, type NouvelItemContenu } from '@/lib/emails/emailRecapHebdo';
 
@@ -22,16 +23,10 @@ function pause(ms: number) {
  *    à tous les utilisateurs n'ayant pas désactivé les relances.
  */
 export async function GET(requete: Request) {
-  // Protection optionnelle par secret cron
-  const authHeader = requete.headers.get('authorization');
-  const secretAttendu = process.env.CRON_SECRET;
-  if (secretAttendu && authHeader !== `Bearer ${secretAttendu}`) {
-    // Si CRON_SECRET est défini dans l'environnement, on l'exige
-    const url = new URL(requete.url);
-    const keyParam = url.searchParams.get('key');
-    if (keyParam !== secretAttendu) {
-      return NextResponse.json({ erreur: 'Non autorisé.' }, { status: 401 });
-    }
+  // Secret obligatoire, uniquement dans l'en-tête : un `?key=` dans l'URL
+  // finirait en clair dans les journaux d'accès.
+  if (!appelCronAutorise(requete.headers.get('authorization'))) {
+    return NextResponse.json({ erreur: 'Non autorisé.' }, { status: 401 });
   }
 
   const admin = createAdminClient();

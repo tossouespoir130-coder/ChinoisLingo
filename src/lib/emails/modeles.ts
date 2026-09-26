@@ -399,7 +399,8 @@ interface Message {
   desabonnement?: LiensDesabonnement;
 }
 
-function echapper(valeur: string): string {
+/** Neutralise le HTML d'une donnée saisie par un utilisateur avant de l'insérer dans un e-mail. */
+export function echapper(valeur: string): string {
   return valeur
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

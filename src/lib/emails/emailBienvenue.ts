@@ -2,6 +2,7 @@ import 'server-only';
 
 import { envoyerEmail, configurationEmailPrete } from './resend';
 import { journaliserEmail } from './journal';
+import { echapper } from './modeles';
 
 interface ParamsBienvenue {
   userId: string;
@@ -73,6 +74,11 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
     }
   }
 
+  // Nom, profil et niveau viennent de l'inscription : saisis par l'apprenant, donc échappés dans le HTML.
+  const nomHtml = echapper(params.nom);
+  const profilHtml = echapper(profil);
+  const niveauHtml = echapper(niveau);
+
   const sujet = `Bienvenue sur ChinoisLingo, ${params.nom} ! 🇨🇳 « Le chinois devient facile »`;
 
   const html = `
@@ -80,7 +86,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>${sujet}</title>
+  <title>${echapper(sujet)}</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #F4F6FB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #212121;">
   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F6FB; padding: 30px 15px;">
@@ -103,7 +109,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
           <tr>
             <td style="padding: 35px 30px;">
               <h2 style="font-size: 20px; font-weight: 700; color: #212121; margin: 0 0 16px 0;">
-                Nǐhǎo ${params.nom} ! 👋
+                Nǐhǎo ${nomHtml} ! 👋
               </h2>
               <p style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 16px 0;">
                 Je suis ravi de t'accueillir sur <strong>ChinoisLingo</strong>. Tu viens de faire le premier pas d'une aventure qui va changer ta vie !
@@ -112,7 +118,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
               <!-- Carte Récapitulative du Parcours Recommandé -->
               <div style="background-color: #F9F7FE; border-left: 4px solid #6200EE; border-radius: 12px; padding: 18px 20px; margin: 24px 0;">
                 <p style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #6200EE; letter-spacing: 1px; margin: 0 0 6px 0;">
-                  🎯 Ton Parcours Personnalisé (${profil} • ${niveau})
+                  🎯 Ton Parcours Personnalisé (${profilHtml} • ${niveauHtml})
                 </p>
                 <p style="font-size: 15px; font-weight: 700; color: #212121; margin: 0 0 8px 0;">
                   ${parcoursRecommande}
