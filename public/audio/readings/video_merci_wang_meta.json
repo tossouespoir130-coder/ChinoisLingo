@@ -1,0 +1,24 @@
+{
+  "contentId": "video_merci_wang",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_merci_wang.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 1910,
+  "sentences": [
+    {
+      "sentenceId": "merci_1",
+      "startMs": 0,
+      "endMs": 760,
+      "durationMs": 760,
+      "audioUrl": "/audio/readings/video_merci_wang_merci_1.mp3"
+    },
+    {
+      "sentenceId": "merci_2",
+      "startMs": 1110,
+      "endMs": 1950,
+      "durationMs": 840,
+      "audioUrl": "/audio/readings/video_merci_wang_merci_2.mp3"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
   let titreRecommandation = 'Commencez avec les bases du mandarin et vos premières histoires';
   let lienCible = '/vocabulaire';
   let boutonTexte = 'Explorer le Vocabulaire';
-  let sousTitre = 'Xiao Li vous accompagne pas à pas pour progresser chaque jour.';
+  let sousTitre = 'Xiao Li (小李) vous accompagne pas à pas pour progresser chaque jour.';
 
   if (profilMin.includes('entrepreneur') || profilMin.includes('commerç') || profilMin.includes('commerc')) {
     if (estDebutant) {
@@ -103,11 +103,11 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
       </button>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        {/* Avatar Xiao Li */}
+        {/* Avatar Xiao Li (小李) */}
         <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
           <Image
             src="/images/onboarding/xiao-li-avatar.png"
-            alt="Xiao Li"
+            alt="Xiao Li (小李)"
             width={80}
             height={80}
             className="object-contain w-full h-full drop-shadow-xs"
@@ -119,7 +119,7 @@ export function OnboardingWelcomeBanner({ profile }: OnboardingWelcomeBannerProp
           <div className="flex items-center gap-2 flex-wrap mb-1">
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#6200EE] text-white text-[10.5px] font-extrabold shadow-2xs">
               <Sparkles className="w-3 h-3" />
-              Recommandation Xiao Li
+              Recommandation Xiao Li (小李)
             </span>
             {profil && (
               <span className="text-[11px] font-semibold text-[#616161] dark:text-[#BDBDBD]">

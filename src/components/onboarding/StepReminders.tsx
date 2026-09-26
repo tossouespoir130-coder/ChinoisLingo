@@ -19,7 +19,7 @@ export function StepReminders({ onChoose }: StepRemindersProps) {
       <div className="w-32 h-32 sm:w-36 sm:h-36 relative -mt-1 mb-1 animate-bounce-subtle shrink-0">
         <Image
           src="/images/onboarding/mascot-bell.png"
-          alt="Xiao Li - Rappels d'étude"
+          alt="Xiao Li (小李) - Rappels d'étude"
           width={144}
           height={144}
           className="object-contain w-full h-full drop-shadow-xs"
@@ -44,7 +44,7 @@ export function StepReminders({ onChoose }: StepRemindersProps) {
             <Bell className="w-5 h-5" />
           </div>
           <p className="text-sm font-medium text-[#424242] dark:text-[#E0E0E0] leading-snug">
-            Rassure-toi : Xiao Li ne te rappellera que lorsque tu en auras vraiment besoin, sans jamais te déranger.
+            Rassure-toi : Xiao Li (小李) ne te rappellera que lorsque tu en auras vraiment besoin, sans jamais te déranger.
           </p>
         </div>
       </div>

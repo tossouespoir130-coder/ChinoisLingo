@@ -7,7 +7,7 @@ const FAQS = [
   {
     question: 'Je suis débutant absolu, ChinoisLingo est-il fait pour moi ?',
     answer:
-      'Absolument ! ChinoisLingo a été pensé dès le premier jour pour les débutants complets. Vous démarrez par le niveau HSK 1 et découvrez pas à pas le Pinyin, la phonétique avec les 4 tons, et les premières phrases du quotidien avec notre chaton Xiaobai et nos personnages bienveillants.'
+      'Absolument ! ChinoisLingo a été pensé dès le premier jour pour les débutants complets. Vous démarrez par le niveau HSK 1 et découvrez pas à pas le Pinyin, la phonétique avec les 4 tons, et les premières phrases du quotidien avec notre mascotte Xiao Li (小李) et nos personnages bienveillants.'
   },
   {
     question: 'Pourquoi la méthode de la combinaison est-elle plus efficace que l’apprentissage classique ?',

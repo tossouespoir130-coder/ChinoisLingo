@@ -1,0 +1,52 @@
+{
+  "contentId": "video_prendre_taxi",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_prendre_taxi.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 10840,
+  "sentences": [
+    {
+      "sentenceId": "taxi_1",
+      "startMs": 0,
+      "endMs": 1880,
+      "durationMs": 1880,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_1.mp3"
+    },
+    {
+      "sentenceId": "taxi_2",
+      "startMs": 2230,
+      "endMs": 5160,
+      "durationMs": 2930,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_2.mp3"
+    },
+    {
+      "sentenceId": "taxi_3",
+      "startMs": 5510,
+      "endMs": 6820,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_3.mp3"
+    },
+    {
+      "sentenceId": "taxi_4",
+      "startMs": 7170,
+      "endMs": 8320,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_4.mp3"
+    },
+    {
+      "sentenceId": "taxi_5",
+      "startMs": 8670,
+      "endMs": 9660,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_5.mp3"
+    },
+    {
+      "sentenceId": "taxi_6",
+      "startMs": 10010,
+      "endMs": 11000,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/video_prendre_taxi_taxi_6.mp3"
+    }
+  ]
+}

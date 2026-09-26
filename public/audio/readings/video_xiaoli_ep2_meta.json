@@ -1,0 +1,59 @@
+{
+  "contentId": "video_xiaoli_ep2",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_xiaoli_ep2.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 14050,
+  "sentences": [
+    {
+      "sentenceId": "xl2_1",
+      "startMs": 0,
+      "endMs": 2190,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_1.mp3"
+    },
+    {
+      "sentenceId": "xl2_2",
+      "startMs": 2540,
+      "endMs": 4340,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_2.mp3"
+    },
+    {
+      "sentenceId": "xl2_3",
+      "startMs": 4690,
+      "endMs": 6650,
+      "durationMs": 1960,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_3.mp3"
+    },
+    {
+      "sentenceId": "xl2_4",
+      "startMs": 7000,
+      "endMs": 9040,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_4.mp3"
+    },
+    {
+      "sentenceId": "xl2_5",
+      "startMs": 9390,
+      "endMs": 10620,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_5.mp3"
+    },
+    {
+      "sentenceId": "xl2_6",
+      "startMs": 10970,
+      "endMs": 12280,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_6.mp3"
+    },
+    {
+      "sentenceId": "xl2_7",
+      "startMs": 12630,
+      "endMs": 14280,
+      "durationMs": 1650,
+      "audioUrl": "/audio/readings/video_xiaoli_ep2_xl2_7.mp3"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "contentId": "video_acheter_pommes",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_acheter_pommes.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 17030,
+  "sentences": [
+    {
+      "sentenceId": "pommes_1",
+      "startMs": 0,
+      "endMs": 2040,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_1.mp3"
+    },
+    {
+      "sentenceId": "pommes_2",
+      "startMs": 2390,
+      "endMs": 4040,
+      "durationMs": 1650,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_2.mp3"
+    },
+    {
+      "sentenceId": "pommes_3",
+      "startMs": 4390,
+      "endMs": 6660,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_3.mp3"
+    },
+    {
+      "sentenceId": "pommes_4",
+      "startMs": 7010,
+      "endMs": 11690,
+      "durationMs": 4680,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_4.mp3"
+    },
+    {
+      "sentenceId": "pommes_5",
+      "startMs": 12040,
+      "endMs": 13610,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_5.mp3"
+    },
+    {
+      "sentenceId": "pommes_6",
+      "startMs": 13960,
+      "endMs": 15030,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_6.mp3"
+    },
+    {
+      "sentenceId": "pommes_7",
+      "startMs": 15380,
+      "endMs": 17260,
+      "durationMs": 1880,
+      "audioUrl": "/audio/readings/video_acheter_pommes_pommes_7.mp3"
+    }
+  ]
+}

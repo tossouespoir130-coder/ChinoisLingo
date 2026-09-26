@@ -1,0 +1,24 @@
+{
+  "contentId": "video_comment_tu_tappelles",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_comment_tu_tappelles.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 2300,
+  "sentences": [
+    {
+      "sentenceId": "nom_1",
+      "startMs": 0,
+      "endMs": 1230,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/video_comment_tu_tappelles_nom_1.mp3"
+    },
+    {
+      "sentenceId": "nom_2",
+      "startMs": 1580,
+      "endMs": 2340,
+      "durationMs": 760,
+      "audioUrl": "/audio/readings/video_comment_tu_tappelles_nom_2.mp3"
+    }
+  ]
+}

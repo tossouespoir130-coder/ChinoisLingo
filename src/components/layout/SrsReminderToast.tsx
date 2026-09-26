@@ -99,14 +99,14 @@ export function SrsReminderToast() {
     >
       <div className="w-[300px] sm:w-[330px] bg-white/95 dark:bg-[#1E1E1E]/95 backdrop-blur-xl border border-[#6200EE]/25 dark:border-[#6200EE]/35 rounded-2xl shadow-xl shadow-[#6200EE]/10 p-3.5 space-y-2.5 transition-all">
         
-        {/* En-tête avec Xiao Li Mascot Avatar */}
+        {/* En-tête avec Xiao Li (小李) Mascot Avatar */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 p-0.5 shrink-0 overflow-hidden border border-[#6200EE]/20 flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/onboarding/xiao-li-avatar.png"
-                alt="Xiao Li"
+                alt="Xiao Li (小李)"
                 onError={(e) => {
                   const target = e.currentTarget as HTMLImageElement;
                   if (target.src.indexOf('/images/mascot/xiao-li.png') === -1) {
@@ -119,7 +119,7 @@ export function SrsReminderToast() {
             <div className="min-w-0">
               <div className="flex items-center gap-1">
                 <span className="text-[11px] font-black text-[#6200EE] dark:text-[#BB86FC] truncate">
-                  Xiao Li 🐾
+                  Xiao Li (小李) 🐾
                 </span>
                 <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5]">
                   SRS

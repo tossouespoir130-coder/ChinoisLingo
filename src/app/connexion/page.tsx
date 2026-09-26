@@ -64,6 +64,8 @@ export default function ConnexionPage() {
     if (params.get('confirme') === '1') {
       supabase.auth.signOut();
       setSuccessMessage('Adresse e-mail confirmée avec succès ! Vous pouvez maintenant vous connecter à votre compte.');
+    } else if (params.get('compte') === 'supprime') {
+      setSuccessMessage('Votre compte a bien été supprimé. Merci d’avoir appris le chinois avec nous.');
     } else if (params.get('session') === 'indisponible') {
       setErrorMessage(
         'Vérification de session impossible pour le moment. Réessayez dans un instant.'
@@ -96,9 +98,13 @@ export default function ConnexionPage() {
       setErrorMessage(traduireErreurAuth(error, 'connexion'));
     } else {
       setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
-      setTimeout(() => {
-        router.push('/tableau-de-bord');
-      }, 600);
+      // Navigation complète, pas router.push : le serveur reçoit les cookies de
+      // la nouvelle session, et aucun état du compte précédent ne reste en
+      // mémoire. Avec router.push, un refus du serveur renvoyait en silence
+      // sur cette même page : « Connexion réussie » s'affichait sans jamais
+      // ouvrir le tableau de bord. Désormais, la page se recharge avec le motif.
+      window.location.assign('/tableau-de-bord');
+      return;
     }
 
     setIsSubmitting(false);

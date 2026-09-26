@@ -145,7 +145,7 @@ export default function AdminNotificationsPage() {
             <div className="grid grid-cols-3 gap-2 sm:w-96">
               {[
                 { id: 'founder', label: 'Espoir Chinois (Fondateur)' },
-                { id: 'mascot', label: 'Xiao Li (Mascotte 🐾)' },
+                { id: 'mascot', label: 'Xiao Li (小李) (Mascotte 🐾)' },
                 { id: 'system', label: 'Système' },
               ].map((s) => (
                 <button
@@ -348,7 +348,7 @@ export default function AdminNotificationsPage() {
                         ? 'bg-[#FFA000]/15 text-[#E65100] dark:text-[#FFB74D]'
                         : 'bg-[#757575]/10 text-[#757575]'
                     }`}>
-                      {n.source === 'founder' ? 'Espoir Chinois' : n.source === 'mascot' ? 'Xiao Li 🐾' : 'Système'}
+                      {n.source === 'founder' ? 'Espoir Chinois' : n.source === 'mascot' ? 'Xiao Li (小李) 🐾' : 'Système'}
                     </span>
                     <span className="text-[11px] font-semibold text-[#757575] dark:text-[#A0A0A0]">
                       {n.user_id ? 'Utilisateur ciblé' : 'Diffusé à tous'}

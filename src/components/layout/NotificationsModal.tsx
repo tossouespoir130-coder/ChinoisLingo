@@ -200,7 +200,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                   : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#00897B] dark:hover:text-[#03DAC5] hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
             >
-              <span>Xiao Li</span>
+              <span>Xiao Li (小李)</span>
               {mascotUnreadCount > 0 && (
                 <span className={`w-1.5 h-1.5 rounded-full ${activeFilter === 'mascot' ? 'bg-white dark:bg-[#004D40]' : 'bg-[#00897B] dark:bg-[#03DAC5]'}`} />
               )}
@@ -250,7 +250,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={mascotImage}
-                            alt={notif.mascotName || 'Xiao Li'}
+                            alt={notif.mascotName || 'Xiao Li (小李)'}
                             className="w-10 h-10 rounded-full object-contain p-0.5 bg-white dark:bg-[#252525] ring-2 ring-[#00897B]/30 dark:ring-[#03DAC5]/40 shadow-xs shrink-0"
                           />
                           <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#00897B] dark:bg-[#03DAC5] text-white dark:text-black flex items-center justify-center text-[9px] shadow-xs">
@@ -260,7 +260,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
                         <div className="min-w-0">
                           <span className="font-display font-black text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate block">
-                            {notif.mascotName || 'Xiao Li'}
+                            {notif.mascotName || 'Xiao Li (小李)'}
                           </span>
                           <p className="text-[10.5px] font-semibold text-[#00897B] dark:text-[#03DAC5] truncate">
                             {notif.mascotRole || 'Compagnon d’apprentissage 🐾'}

@@ -35,7 +35,8 @@ import {
   Eye,
   EyeOff,
   AlertCircle,
-  CheckCircle2
+  CheckCircle2,
+  Trash2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '@/context/ThemeContext';
@@ -54,6 +55,7 @@ import { AVATARS_PROPOSES, initialesDe } from '@/lib/avatars';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
 import { createClient } from '@/lib/supabase/client';
 import { CONSIGNE_MOT_DE_PASSE, validerNouveauMotDePasse } from '@/lib/auth/motDePasse';
+import { purgerDonneesLocalesDuCompte } from '@/lib/auth/donneesLocales';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -253,6 +255,64 @@ function MonCompteContent() {
       setPasswordError(traduireErreurAuth(err, 'motDePasse'));
     } finally {
       setIsPasswordLoading(false);
+    }
+  };
+
+  // Suppression définitive du compte
+  const [modalSuppressionOuvert, setModalSuppressionOuvert] = useState(false);
+  const [motDePasseSuppression, setMotDePasseSuppression] = useState('');
+  const [confirmationSuppression, setConfirmationSuppression] = useState('');
+  const [suppressionEnCours, setSuppressionEnCours] = useState(false);
+  const [erreurSuppression, setErreurSuppression] = useState<string | null>(null);
+
+  const fermerModalSuppression = () => {
+    if (suppressionEnCours) return;
+    setModalSuppressionOuvert(false);
+    setMotDePasseSuppression('');
+    setConfirmationSuppression('');
+    setErreurSuppression(null);
+  };
+
+  const supprimerCompte = async () => {
+    setErreurSuppression(null);
+    if (confirmationSuppression !== 'SUPPRIMER') {
+      setErreurSuppression('Saisissez SUPPRIMER en majuscules pour confirmer.');
+      return;
+    }
+    if (!motDePasseSuppression) {
+      setErreurSuppression('Saisissez votre mot de passe.');
+      return;
+    }
+
+    setSuppressionEnCours(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        setErreurSuppression('Session expirée. Reconnectez-vous puis réessayez.');
+        return;
+      }
+      const reponse = await fetch('/api/moi/supprimer-compte', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ motDePasse: motDePasseSuppression, confirmation: confirmationSuppression }),
+      });
+      const resultat = await reponse.json().catch(() => ({}));
+      if (!reponse.ok || !resultat.ok) {
+        setErreurSuppression(resultat.erreur || 'La suppression n’a pas pu aboutir. Réessayez dans un instant.');
+        return;
+      }
+
+      // Le compte n'existe plus : on efface tout ce qui reste dans ce navigateur.
+      purgerDonneesLocalesDuCompte();
+      await supabase.auth.signOut({ scope: 'local' });
+      window.location.assign('/connexion?compte=supprime');
+    } catch {
+      setErreurSuppression('Problème de connexion réseau. Réessayez dans un instant.');
+    } finally {
+      setSuppressionEnCours(false);
     }
   };
 
@@ -1488,6 +1548,40 @@ function MonCompteContent() {
               </div>
             </form>
           </div>
+
+          {/* Zone de danger : suppression du compte */}
+          <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-rose-500/25 rounded-2xl sm:rounded-3xl">
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                <Trash2 className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0 space-y-3">
+                <div>
+                  <h2 className="font-display font-black text-lg text-[#212121] dark:text-[#F5F5F5]">
+                    Supprimer mon compte
+                  </h2>
+                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
+                    Votre compte, votre progression, vos mots enregistrés et votre historique seront effacés définitivement.
+                    Un abonnement par carte en cours sera arrêté immédiatement, sans remboursement de la période entamée.
+                  </p>
+                </div>
+                {profile?.role === 'admin' ? (
+                  <p className="text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                    Un compte administrateur ne peut pas être supprimé depuis l’interface.
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setModalSuppressionOuvert(true)}
+                    className="px-5 py-2.5 rounded-full border border-rose-500/40 text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 text-xs font-bold transition-all btn-press inline-flex items-center gap-2 cursor-pointer"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                    <span>Supprimer mon compte</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
@@ -1853,6 +1947,95 @@ function MonCompteContent() {
                   className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-60"
                 >
                   {modificationEnCours ? 'Annulation…' : 'Confirmer l’annulation'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </Portal>
+      )}
+
+      {/* MODAL DE SUPPRESSION DU COMPTE */}
+      {modalSuppressionOuvert && (
+        <Portal>
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-fadeIn"
+            onClick={fermerModalSuppression}
+          >
+            <div
+              className="w-full max-w-md bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4 animate-scaleUp text-left"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <h3 className="font-display font-bold text-base text-[#212121] dark:text-[#F5F5F5]">
+                  Supprimer définitivement mon compte
+                </h3>
+                <button
+                  type="button"
+                  onClick={fermerModalSuppression}
+                  disabled={suppressionEnCours}
+                  aria-label="Fermer"
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <ul className="space-y-1.5 text-xs text-[#757575] dark:text-[#A0A0A0] bg-[#FAFAFA] dark:bg-[#252525] p-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <li>• Cette action est <strong className="text-rose-600 dark:text-rose-400">irréversible</strong>.</li>
+                <li>• Progression, mots enregistrés, série de jours et historique sont effacés.</li>
+                <li>• Un abonnement par carte est arrêté immédiatement, sans remboursement.</li>
+              </ul>
+
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Votre mot de passe *
+                </label>
+                <input
+                  type="password"
+                  value={motDePasseSuppression}
+                  onChange={(e) => setMotDePasseSuppression(e.target.value)}
+                  autoComplete="current-password"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] text-[#212121] dark:text-[#F5F5F5] outline-none transition-all"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                  Saisissez SUPPRIMER pour confirmer *
+                </label>
+                <input
+                  type="text"
+                  value={confirmationSuppression}
+                  onChange={(e) => setConfirmationSuppression(e.target.value)}
+                  autoComplete="off"
+                  autoCapitalize="characters"
+                  placeholder="SUPPRIMER"
+                  className="w-full px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] font-bold tracking-wider text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#BDBDBD]"
+                />
+              </div>
+
+              {erreurSuppression && (
+                <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs font-bold text-rose-600 dark:text-rose-400">
+                  {erreurSuppression}
+                </div>
+              )}
+
+              <div className="flex flex-wrap items-center justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={fermerModalSuppression}
+                  disabled={suppressionEnCours}
+                  className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
+                >
+                  Garder mon compte
+                </button>
+                <button
+                  type="button"
+                  onClick={supprimerCompte}
+                  disabled={suppressionEnCours || confirmationSuppression !== 'SUPPRIMER' || !motDePasseSuppression}
+                  className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {suppressionEnCours ? 'Suppression…' : 'Supprimer définitivement'}
                 </button>
               </div>
             </div>

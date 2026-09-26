@@ -19,7 +19,8 @@
 - **Règle d'Harmonisation Stricte de l'Icône « Aléatoire » (`Shuffle`)** : Sur **TOUTE l'application et dans tous les réglages/préférences** (sens d'apprentissage, ordre des cartes, etc.), le choix aléatoire utilise **exclusivement l'icône de croisement de flèches (`Shuffle`)**. Bannissement absolu de l'émoji ou du symbole du dé (`🎲`).
 - **Règle Globale de Chargement par Squelette Animé (`Skeleton Loader`)** : Lors du chargement initial ou de la reconnexion d'un utilisateur, afficher systématiquement un **Skeleton Loader fluide et animé** (`animate-pulse`) le temps de récupérer les données réelles depuis la base de données (profil, série de jours, mots appris, leçons complétées, activités récentes), garantissant une transition sans clignotement ni affichage temporaire de données fictives.
 - **Règle d'Animation Garantie du Graphique de Performance** : Le graphique de performance anime systématiquement ses barres verticales de 0 à leur hauteur réelle dès l'arrivée des données (`requestAnimationFrame` + `transition` fluide sur 950ms) sans dépendre d'un rafraîchissement manuel de la page. Les données sont transmises directement depuis l'état racine du Tableau de Bord avec calcul adaptatif de l'échelle (`MAX_WORDS` / `MAX_STUDY_HOURS`) pour une visibilité majestueuse et immédiate à chaque connexion.
-- **Règle Permanente de Nommage des Personnages Récurrents** :
+- **Règle Permanente de Nommage des Personnages Récurrents & Mascotte** :
+  - **Mascotte Officielle ChinoisLingo** : **`小李`** (Pinyin : **`Xiǎo Lǐ`** / Français : **`Xiao Li`** ou **`Xiao Li (小李)`**) — Bannissement strict et absolu de toute variante comme *小狸*.
   - **Espoir** : `苏波` (Pinyin : `Sūbō`)
   - **Lily** : `丽丽` (Pinyin : `Lìli`) — Bannissement strict de la variante 莉莉.
   - **Katia** : `卡蒂娅` (Pinyin : `Kǎdìyà`)

@@ -28,7 +28,7 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
 
   // Croisement intelligent : Profil x Niveau x Motivation
   let moduleTitre = 'Histoires immersives & premiers dialogues du quotidien';
-  let moduleDesc = 'Découvrez vos premiers mots avec Xiao Li, les sons essentiels et des phrases courtes.';
+  let moduleDesc = 'Découvrez vos premiers mots avec Xiao Li (小李), les sons essentiels et des phrases courtes.';
 
   if (state.profil === 'entrepreneur') {
     if (state.niveau === 'debutant' || !state.niveau) {
@@ -95,7 +95,7 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
     } else {
       if (state.niveau === 'debutant' || !state.niveau) {
         moduleTitre = 'Histoires immersives & Dialogues du quotidien (HSK 1)';
-        moduleDesc = 'Découvrez vos premiers mots avec Xiao Li, les sons essentiels et des phrases courtes de la vie courante.';
+        moduleDesc = 'Découvrez vos premiers mots avec Xiao Li (小李), les sons essentiels et des phrases courtes de la vie courante.';
       } else {
         moduleTitre = 'Articles Bilingues & Dialogues de Conversation (HSK 2–3)';
         moduleDesc = 'Approfondissez votre compréhension orale et écrite avec des contenus variés et captivants.';
@@ -105,12 +105,12 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
 
   return (
     <div className="animate-fade-in flex flex-col gap-6">
-      {/* Header with Xiao Li */}
+      {/* Header with Xiao Li (小李) */}
       <div className="flex items-center gap-3.5">
         <div className="w-16 h-16 sm:w-20 sm:h-20 relative shrink-0">
           <Image
             src="/images/onboarding/mascot-sparkle.png"
-            alt="Xiao Li - Mascotte ChinoisLingo"
+            alt="Xiao Li (小李) - Mascotte ChinoisLingo"
             width={80}
             height={80}
             className="object-contain w-full h-full drop-shadow-xs"
@@ -126,7 +126,7 @@ export function StepRecommendation({ state, onProceed }: StepRecommendationProps
             </span>
           </div>
           <p className="text-sm sm:text-base font-semibold text-[#212121] dark:text-[#F5F5F5] leading-snug">
-            Voici ton parcours recommandé par Xiao Li !
+            Voici ton parcours recommandé par Xiao Li (小李) !
           </p>
         </div>
       </div>

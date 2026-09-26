@@ -44,6 +44,21 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+/** Pages d'authentification : elles naviguent elles-mêmes après la connexion. */
+const PAGES_AUTH = ['/connexion', '/onboarding', '/inscription', '/reinitialisation-mot-de-passe', '/auth'];
+
+/**
+ * Après une purge des données d'un autre compte, une page déjà affichée a pu
+ * lire ces données avant la purge (caches du tableau de bord) : on la recharge.
+ * Ne boucle pas : au rechargement, le navigateur est déjà associé au compte.
+ */
+function rechargerSiPageApplicative() {
+  if (typeof window === 'undefined') return;
+  const chemin = window.location.pathname;
+  if (chemin === '/' || PAGES_AUTH.some((p) => chemin.startsWith(p))) return;
+  window.location.reload();
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
@@ -73,7 +88,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // 1. Check current session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (session?.user) associerDonneesLocalesAuCompte(session.user.id);
+      if (session?.user && associerDonneesLocalesAuCompte(session.user.id)) {
+        rechargerSiPageApplicative();
+      }
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -104,7 +121,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Avant tout affichage : efface les données d'un autre compte resté dans ce navigateur.
-      if (session?.user) associerDonneesLocalesAuCompte(session.user.id);
+      if (session?.user && associerDonneesLocalesAuCompte(session.user.id)) {
+        rechargerSiPageApplicative();
+      }
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {

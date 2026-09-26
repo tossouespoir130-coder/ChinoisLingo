@@ -56,7 +56,9 @@ export async function POST(requete: Request) {
       .from('emails_log')
       .select('id', { count: 'exact', head: true })
       .eq('user_id', profil.id)
-      .eq('type', 'bienvenue');
+      .eq('type', 'bienvenue')
+      // Seul un envoi réussi compte : un envoi simulé (Resend non configuré) ou en échec ne doit pas bloquer le suivant.
+      .eq('statut', 'envoye');
     if ((count ?? 0) > 0) return refus();
 
     const succes = await envoyerEmailBienvenue({

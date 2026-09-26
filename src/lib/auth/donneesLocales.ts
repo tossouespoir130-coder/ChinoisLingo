@@ -60,19 +60,39 @@ export function purgerDonneesLocalesDuCompte(): void {
   }
 }
 
+/** Le navigateur contient-il des données d'un compte ? */
+function contientDonneesDuCompte(): boolean {
+  return (
+    CLES_LOCALES_DU_COMPTE.some((cle) => localStorage.getItem(cle) !== null) ||
+    Object.keys(localStorage).some((cle) => PREFIXES_LOCAUX_DU_COMPTE.some((prefixe) => cle.startsWith(prefixe))) ||
+    CLES_SESSION_DU_COMPTE.some((cle) => sessionStorage.getItem(cle) !== null)
+  );
+}
+
 /**
- * À appeler dès qu'une session est connue : si un AUTRE compte avait utilisé
- * ce navigateur, ses données sont effacées avant tout affichage.
+ * À appeler dès qu'une session est connue : si ce navigateur contient les
+ * données d'un AUTRE compte — ou de propriétaire inconnu, comme au premier
+ * passage après cette mise à jour —, elles sont effacées.
  * Couvre les cas sans déconnexion explicite (session expirée, lien de
  * réinitialisation ouvert pour un autre compte…).
+ *
+ * Retourne `true` si des données ont été effacées : la page affichée peut
+ * alors contenir des chiffres de l'autre compte et doit être rechargée.
  */
-export function associerDonneesLocalesAuCompte(userId: string): void {
-  if (typeof window === 'undefined') return;
+export function associerDonneesLocalesAuCompte(userId: string): boolean {
+  if (typeof window === 'undefined') return false;
   try {
     const precedent = localStorage.getItem(CLE_PROPRIETAIRE);
-    if (precedent && precedent !== userId) purgerDonneesLocalesDuCompte();
+    let purge = false;
+    if (precedent !== userId && contientDonneesDuCompte()) {
+      // Toutes ces données sont des caches : la base Supabase fait foi et les reconstruit.
+      purgerDonneesLocalesDuCompte();
+      purge = true;
+    }
     localStorage.setItem(CLE_PROPRIETAIRE, userId);
+    return purge;
   } catch {
     // Stockage indisponible : rien à associer.
+    return false;
   }
 }

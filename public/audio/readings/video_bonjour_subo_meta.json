@@ -1,0 +1,24 @@
+{
+  "contentId": "video_bonjour_subo",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_bonjour_subo.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 2640,
+  "sentences": [
+    {
+      "sentenceId": "bonjour_1",
+      "startMs": 0,
+      "endMs": 1490,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/video_bonjour_subo_bonjour_1.mp3"
+    },
+    {
+      "sentenceId": "bonjour_2",
+      "startMs": 1840,
+      "endMs": 2680,
+      "durationMs": 840,
+      "audioUrl": "/audio/readings/video_bonjour_subo_bonjour_2.mp3"
+    }
+  ]
+}

@@ -144,7 +144,7 @@ export function NewContentToast() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00897B] dark:bg-[#03DAC5]"></span>
             </span>
             <span className="text-[10px] font-black uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] truncate">
-              {isFounder ? 'Nouveau • Espoir Chinois' : isMascot ? 'Nouveau • Xiao Li 🐾' : 'Nouveau Contenu'}
+              {isFounder ? 'Nouveau • Espoir Chinois' : isMascot ? 'Nouveau • Xiao Li (小李) 🐾' : 'Nouveau Contenu'}
             </span>
           </div>
 
@@ -164,7 +164,7 @@ export function NewContentToast() {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={toastAvatar}
-              alt={isFounder ? (latestNotif.founderName || 'Espoir Chinois') : 'Xiao Li'}
+              alt={isFounder ? (latestNotif.founderName || 'Espoir Chinois') : 'Xiao Li (小李)'}
               className={`w-10 h-10 rounded-2xl object-contain shrink-0 shadow-2xs ${
                 isMascot ? 'p-0.5 bg-black/5 dark:bg-white/10 ring-2 ring-[#00897B]/30' : 'object-cover ring-2 ring-[#6200EE]/30'
               }`}

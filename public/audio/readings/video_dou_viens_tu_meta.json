@@ -1,0 +1,45 @@
+{
+  "contentId": "video_dou_viens_tu",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_dou_viens_tu.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 6320,
+  "sentences": [
+    {
+      "sentenceId": "dvt_1",
+      "startMs": 0,
+      "endMs": 1070,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/video_dou_viens_tu_dvt_1.mp3"
+    },
+    {
+      "sentenceId": "dvt_2",
+      "startMs": 1420,
+      "endMs": 2570,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/video_dou_viens_tu_dvt_2.mp3"
+    },
+    {
+      "sentenceId": "dvt_3",
+      "startMs": 2920,
+      "endMs": 3990,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/video_dou_viens_tu_dvt_3.mp3"
+    },
+    {
+      "sentenceId": "dvt_4",
+      "startMs": 4340,
+      "endMs": 5100,
+      "durationMs": 760,
+      "audioUrl": "/audio/readings/video_dou_viens_tu_dvt_4.mp3"
+    },
+    {
+      "sentenceId": "dvt_5",
+      "startMs": 5450,
+      "endMs": 6440,
+      "durationMs": 990,
+      "audioUrl": "/audio/readings/video_dou_viens_tu_dvt_5.mp3"
+    }
+  ]
+}

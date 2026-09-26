@@ -1,0 +1,38 @@
+{
+  "contentId": "video_xiaoli_ep1",
+  "aliases": [],
+  "type": "video",
+  "fullAudioUrl": "/audio/readings/video_xiaoli_ep1.mp3",
+  "pauseBetweenSec": 0.35,
+  "totalDurationMs": 10060,
+  "sentences": [
+    {
+      "sentenceId": "xl1_1",
+      "startMs": 0,
+      "endMs": 1880,
+      "durationMs": 1880,
+      "audioUrl": "/audio/readings/video_xiaoli_ep1_xl1_1.mp3"
+    },
+    {
+      "sentenceId": "xl1_2",
+      "startMs": 2230,
+      "endMs": 5000,
+      "durationMs": 2770,
+      "audioUrl": "/audio/readings/video_xiaoli_ep1_xl1_2.mp3"
+    },
+    {
+      "sentenceId": "xl1_3",
+      "startMs": 5350,
+      "endMs": 8280,
+      "durationMs": 2930,
+      "audioUrl": "/audio/readings/video_xiaoli_ep1_xl1_3.mp3"
+    },
+    {
+      "sentenceId": "xl1_4",
+      "startMs": 8630,
+      "endMs": 10200,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/video_xiaoli_ep1_xl1_4.mp3"
+    }
+  ]
+}
