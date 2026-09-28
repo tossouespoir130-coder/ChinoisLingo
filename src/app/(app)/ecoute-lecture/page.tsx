@@ -5898,7 +5898,7 @@ export const readingCatalog: ReadingItem[] = [
       { id: 'tdc_3', hanzi: '多年在外想你的心情', pinyin: 'Duōnián zàiwài xiǎng nǐ de xīnqíng', french: 'Après tant d’années loin de toi, le manque' },
       { id: 'tdc_4', hanzi: '越来越强烈', pinyin: 'Yuèláiyuè qiángliè', french: 'Devient de plus en plus intense' },
       { id: 'tdc_5', hanzi: '想你从前依偎在我怀里', pinyin: 'Xiǎng nǐ cóngqián yīwēi zài wǒ huái lǐ', french: 'Je me rappelle quand tu te blottissais dans mes bras' },
-      { id: 'tdc_6', hanzi: '想你生气时噘嘴的样子', pinyin: 'Xiǎng nǐ shēngqì shí juēzuǐ de yàngzi', french: 'Je revois ta petite moue quand tu étais fâchée' },
+      { id: 'tdc_6', hanzi: '想你生气时撅嘴的样子', pinyin: 'Xiǎng nǐ shēngqì shí juēzuǐ de yàngzi', french: 'Je revois ta petite moue quand tu étais fâchée' },
       { id: 'tdc_7', hanzi: '想你在没有人时', pinyin: 'Xiǎng nǐ zài méiyǒu rén shí', french: 'Je me souviens qu’en secret, loin des regards' },
       { id: 'tdc_8', hanzi: '曾偷偷地说着我帅', pinyin: 'Céng tōutōu de shuōzhe wǒ shuài', french: 'Tu me murmurais que j’étais beau' },
       { id: 'tdc_9', section: 'Pré-refrain', hanzi: '你一个女人不容易', pinyin: 'Nǐ yí gè nǚrén bù róngyì', french: 'Ce n’est pas facile pour une femme seule' },
