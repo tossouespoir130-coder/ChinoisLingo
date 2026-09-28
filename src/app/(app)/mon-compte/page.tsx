@@ -292,13 +292,45 @@ function MonCompteContent() {
     setEtapeSuppression(2);
   };
 
-  const passerEtape3 = () => {
+  const [verificationMotDePasseEnCours, setVerificationMotDePasseEnCours] = useState(false);
+
+  const passerEtape3 = async () => {
     setErreurSuppression(null);
     if (!motDePasseSuppression.trim()) {
       setErreurSuppression('Veuillez saisir votre mot de passe pour continuer.');
       return;
     }
-    setEtapeSuppression(3);
+
+    const userEmail = user?.email || profileData.email;
+    if (!userEmail) {
+      setErreurSuppression('Session introuvable. Reconnectez-vous puis réessayez.');
+      return;
+    }
+
+    setVerificationMotDePasseEnCours(true);
+    try {
+      // Vérification réelle et stricte du mot de passe auprès de Supabase Auth
+      const { error: signInErr } = await supabase.auth.signInWithPassword({
+        email: userEmail,
+        password: motDePasseSuppression,
+      });
+
+      if (signInErr) {
+        setErreurSuppression(
+          signInErr.code === 'invalid_credentials' || signInErr.message?.toLowerCase().includes('invalid')
+            ? 'Mot de passe incorrect. Veuillez saisir votre mot de passe réel.'
+            : traduireErreurAuth(signInErr, 'connexion')
+        );
+        return;
+      }
+
+      // Mot de passe authentifié avec succès -> passage à l'étape 3
+      setEtapeSuppression(3);
+    } catch {
+      setErreurSuppression('Erreur de connexion. Impossible de vérifier le mot de passe.');
+    } finally {
+      setVerificationMotDePasseEnCours(false);
+    }
   };
 
   const supprimerCompte = async () => {
@@ -698,9 +730,9 @@ function MonCompteContent() {
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
               <div className="flex items-center justify-between gap-1">
                 <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Série</span>
-                {(profile?.max_streak ?? profile?.streak_days ?? 0) > 0 && (
+                {(profile?.max_streak ?? 0) > (profile?.streak_days ?? 0) && (
                   <span className="text-[10px] sm:text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20 whitespace-nowrap">
-                    🏆 Record : {profile?.max_streak ?? profile?.streak_days ?? 0} j
+                    🏆 Record : {profile?.max_streak} j
                   </span>
                 )}
               </div>
@@ -709,11 +741,6 @@ function MonCompteContent() {
                 <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">
                   {(profile?.streak_days ?? 0) > 1 ? 'jours' : 'jour'}
                 </span>
-                {(profile?.max_streak ?? 0) > 0 && (
-                  <span className="text-xs sm:text-sm font-bold text-[#757575] dark:text-[#A0A0A0] ml-1.5 font-sans">
-                    (Record : {profile?.max_streak ?? profile?.streak_days ?? 0} {(profile?.max_streak ?? profile?.streak_days ?? 0) > 1 ? 'jours' : 'jour'})
-                  </span>
-                )}
               </p>
               <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">
                 Jours consécutifs de pratique
@@ -2198,10 +2225,10 @@ function MonCompteContent() {
                     <button
                       type="button"
                       onClick={passerEtape3}
-                      disabled={!motDePasseSuppression.trim()}
+                      disabled={verificationMotDePasseEnCours || !motDePasseSuppression.trim()}
                       className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Continuer (Étape 3/3) →
+                      {verificationMotDePasseEnCours ? 'Vérification…' : 'Continuer (Étape 3/3) →'}
                     </button>
                   )}
 
