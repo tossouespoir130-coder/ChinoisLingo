@@ -27,6 +27,8 @@ const PREFIXES_LOCAUX_DU_COMPTE = [
   'chinoislingo_study_min_',
   'chinoislingo_user_dashboard_stats_',
   'chinoislingo_recent_activities_',
+  'chinoislingo_read_notifications_',
+  'chinoislingo_dismissed_content_toast_',
 ];
 
 const CLES_SESSION_DU_COMPTE = [

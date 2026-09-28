@@ -31,11 +31,13 @@ export function TopNav() {
   const [unreadCount, setUnreadCount] = useState(0);
   const profileMenuRef = useRef<HTMLDivElement>(null);
 
-  // Sync and update unread count persistently
+  // Sync and update unread count persistently per user
   useEffect(() => {
+    const activeUid = profile?.id || user?.id;
+
     async function updateCount() {
       try {
-        const notifs = await fetchMergedNotifications();
+        const notifs = await fetchMergedNotifications(activeUid);
         const unread = notifs.filter(n => !n.isRead).length;
         setUnreadCount(unread);
       } catch {
@@ -53,7 +55,7 @@ export function TopNav() {
     return () => {
       window.removeEventListener('chinoislingo_notifications_updated', handleNotificationsUpdated);
     };
-  }, []);
+  }, [profile?.id, user?.id]);
 
   // Close profile menu upon clicking outside
   useEffect(() => {
@@ -148,14 +150,15 @@ export function TopNav() {
           <button
             type="button"
             onClick={async () => {
+              const activeUid = profile?.id || user?.id;
               setIsNotificationsOpen(true);
               setUnreadCount(0);
               try {
-                const notifs = await fetchMergedNotifications();
+                const notifs = await fetchMergedNotifications(activeUid);
                 const unreadIds = notifs.filter(n => !n.isRead).map(n => n.id);
                 if (unreadIds.length > 0) {
-                  saveAllReadNotificationIds(unreadIds);
-                  markAllNotificationsAsRead(unreadIds);
+                  saveAllReadNotificationIds(unreadIds, activeUid);
+                  markAllNotificationsAsRead(unreadIds, activeUid);
                 }
               } catch {}
             }}
@@ -166,7 +169,7 @@ export function TopNav() {
             <Bell className="w-3.5 h-3.5" />
             {unreadCount > 0 && (
               <span className="absolute -top-1 -right-1 min-w-[17px] h-[17px] px-1 rounded-full bg-[#E53935] text-white font-extrabold text-[9px] sm:text-[9.5px] leading-none flex items-center justify-center shadow-xs ring-2 ring-white dark:ring-[#1E1E1E]">
-                {unreadCount > 9 ? '9+' : unreadCount}
+                {unreadCount > 9 ? '+9' : unreadCount}
               </span>
             )}
           </button>

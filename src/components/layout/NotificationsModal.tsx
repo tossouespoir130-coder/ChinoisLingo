@@ -22,10 +22,13 @@ interface NotificationsModalProps {
   onNotificationsChange?: (unreadCount: number) => void;
 }
 
+import { useAuth } from '@/lib/auth/AuthContext';
 import { fetchMergedNotifications, markNotificationAsRead, markAllNotificationsAsRead, saveAllReadNotificationIds, saveReadNotificationId } from '@/lib/services/notificationService';
 
 export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: NotificationsModalProps) {
   const router = useRouter();
+  const { user, profile } = useAuth();
+  const activeUid = profile?.id || user?.id;
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [activeFilter, setActiveFilter] = useState<'all' | 'founder' | 'mascot' | 'system'>('all');
 
@@ -37,7 +40,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
   useEffect(() => {
     async function loadNotifs() {
       try {
-        const notifs = await fetchMergedNotifications();
+        const notifs = await fetchMergedNotifications(activeUid);
         setNotifications(notifs);
       } catch {
         setNotifications(initialNotifications);
@@ -54,7 +57,7 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
     return () => {
       window.removeEventListener('chinoislingo_notifications_updated', handleUpdate);
     };
-  }, []);
+  }, [activeUid]);
 
   useEffect(() => {
     if (isOpen) {
@@ -63,25 +66,25 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
       }
       const unreadIds = notifications.filter(n => !n.isRead).map(n => n.id);
       if (unreadIds.length > 0) {
-        saveAllReadNotificationIds(unreadIds);
-        markAllNotificationsAsRead(unreadIds);
+        saveAllReadNotificationIds(unreadIds, activeUid);
+        markAllNotificationsAsRead(unreadIds, activeUid);
         setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
       }
     }
-  }, [isOpen]);
+  }, [isOpen, activeUid]);
 
   const markAllAsRead = async () => {
     const allIds = notifications.map(n => n.id);
-    saveAllReadNotificationIds(allIds);
+    saveAllReadNotificationIds(allIds, activeUid);
     setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
     if (onNotificationsChange) onNotificationsChange(0);
-    await markAllNotificationsAsRead(allIds);
+    await markAllNotificationsAsRead(allIds, activeUid);
   };
 
   const markAsRead = async (id: string) => {
-    saveReadNotificationId(id);
+    saveReadNotificationId(id, activeUid);
     setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
-    await markNotificationAsRead(id);
+    await markNotificationAsRead(id, activeUid);
   };
 
   const handleAction = (notif: NotificationItem) => {

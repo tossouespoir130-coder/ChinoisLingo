@@ -2,42 +2,60 @@ import { createClient } from '@/lib/supabase/client';
 import { NotificationItem as DbNotificationItem } from '@/lib/supabase/types';
 import { initialNotifications, NotificationItem } from '@/lib/data/notificationsData';
 
-const LOCAL_STORAGE_KEY = 'chinoislingo_read_notifications';
+function getCurrentUserId(): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return localStorage.getItem('chinoislingo_proprietaire_local') || null;
+  } catch {
+    return null;
+  }
+}
 
-export function getReadNotificationIds(): string[] {
+export function getReadNotificationsKey(userId?: string | null): string {
+  const uid = userId || getCurrentUserId();
+  return uid ? `chinoislingo_read_notifications_${uid}` : 'chinoislingo_read_notifications';
+}
+
+export function getReadNotificationIds(userId?: string | null): string[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const key = getReadNotificationsKey(userId);
+    const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
   }
 }
 
-export function saveReadNotificationId(id: string): void {
+export function saveReadNotificationId(id: string, userId?: string | null): void {
   if (typeof window === 'undefined') return;
   try {
-    const existing = getReadNotificationIds();
+    const key = getReadNotificationsKey(userId);
+    const existing = getReadNotificationIds(userId);
     if (!existing.includes(id)) {
       const updated = [...existing, id];
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+      localStorage.setItem(key, JSON.stringify(updated));
       window.dispatchEvent(new CustomEvent('chinoislingo_notifications_updated'));
     }
   } catch {}
 }
 
-export function saveAllReadNotificationIds(ids: string[]): void {
+export function saveAllReadNotificationIds(ids: string[], userId?: string | null): void {
   if (typeof window === 'undefined') return;
   try {
-    const existing = getReadNotificationIds();
+    const key = getReadNotificationsKey(userId);
+    const existing = getReadNotificationIds(userId);
     const merged = Array.from(new Set([...existing, ...ids]));
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(merged));
+    localStorage.setItem(key, JSON.stringify(merged));
     window.dispatchEvent(new CustomEvent('chinoislingo_notifications_updated'));
   } catch {}
 }
 
-export async function fetchMergedNotifications(): Promise<NotificationItem[]> {
-  const readIds = getReadNotificationIds();
+export async function fetchMergedNotifications(userId?: string | null): Promise<NotificationItem[]> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const activeUserId = userId || user?.id || getCurrentUserId();
+  const readIds = getReadNotificationIds(activeUserId);
   let dbNotifs: DbNotificationItem[] = [];
 
   try {
@@ -94,8 +112,8 @@ export async function fetchNotifications(): Promise<DbNotificationItem[]> {
   return data || [];
 }
 
-export async function markNotificationAsRead(id: string): Promise<boolean> {
-  saveReadNotificationId(id);
+export async function markNotificationAsRead(id: string, userId?: string | null): Promise<boolean> {
+  saveReadNotificationId(id, userId);
 
   const supabase = createClient();
   const { error } = await supabase
@@ -106,8 +124,8 @@ export async function markNotificationAsRead(id: string): Promise<boolean> {
   return !error;
 }
 
-export async function markAllNotificationsAsRead(ids: string[]): Promise<void> {
-  saveAllReadNotificationIds(ids);
+export async function markAllNotificationsAsRead(ids: string[], userId?: string | null): Promise<void> {
+  saveAllReadNotificationIds(ids, userId);
 
   const supabase = createClient();
   try {

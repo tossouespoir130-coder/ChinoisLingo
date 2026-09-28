@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { NotificationItem } from '@/lib/data/notificationsData';
+import { useAuth } from '@/lib/auth/AuthContext';
 import { fetchMergedNotifications, saveReadNotificationId, markNotificationAsRead } from '@/lib/services/notificationService';
 import { X, Sparkles, Play, ArrowRight, Bell } from 'lucide-react';
 import {
@@ -12,6 +13,8 @@ import {
 export function NewContentToast() {
   const router = useRouter();
   const pathname = usePathname();
+  const { user, profile } = useAuth();
+  const activeUid = profile?.id || user?.id;
   const [latestNotif, setLatestNotif] = useState<NotificationItem | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -30,7 +33,7 @@ export function NewContentToast() {
 
     async function checkLatest() {
       try {
-        const notifs = await fetchMergedNotifications();
+        const notifs = await fetchMergedNotifications(activeUid);
         // Trouver la notification la plus récente non lue uniquement
         const unreadLatest = notifs.find((n) => !n.isRead);
         if (!unreadLatest) {
@@ -93,9 +96,10 @@ export function NewContentToast() {
       libererEmplacement('contenu');
       if (latestNotif) {
         try {
-          localStorage.setItem('chinoislingo_dismissed_content_toast', latestNotif.id);
-          saveReadNotificationId(latestNotif.id);
-          markNotificationAsRead(latestNotif.id);
+          const dismissedKey = activeUid ? `chinoislingo_dismissed_content_toast_${activeUid}` : 'chinoislingo_dismissed_content_toast';
+          localStorage.setItem(dismissedKey, latestNotif.id);
+          saveReadNotificationId(latestNotif.id, activeUid);
+          markNotificationAsRead(latestNotif.id, activeUid);
         } catch {}
       }
     }, 300);
@@ -103,8 +107,8 @@ export function NewContentToast() {
 
   const handleAction = () => {
     if (!latestNotif) return;
-    saveReadNotificationId(latestNotif.id);
-    markNotificationAsRead(latestNotif.id);
+    saveReadNotificationId(latestNotif.id, activeUid);
+    markNotificationAsRead(latestNotif.id, activeUid);
     const actionUrl = latestNotif.actionUrl;
     handleDismiss();
     if (actionUrl) {
