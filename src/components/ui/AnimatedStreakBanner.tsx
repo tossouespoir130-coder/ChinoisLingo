@@ -21,17 +21,17 @@ export function AnimatedStreakBanner() {
   const [animated, setAnimated] = useState(false);
 
     // Real user streak and true record (never simulated)
-    const realStreak = profile?.streak_days || 1;
-    const bestStreak = Math.max(realStreak, profile?.max_streak || (profile as any)?.longest_streak || realStreak);
+    const realStreak = profile?.streak_days ?? 0;
+    const bestStreak = Math.max(realStreak, profile?.max_streak ?? (profile as any)?.longest_streak ?? realStreak);
 
     // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
     const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
     const todayDayIndex = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
 
-    // Real active days of the streak during current week (e.g. if today is Samedi (6) and streak is 2 => Ven (5) & Sam (6) are active)
-    const startActiveIndex = Math.max(1, todayDayIndex - realStreak + 1);
+    // Real active days of the streak during current week
+    const startActiveIndex = realStreak > 0 ? Math.max(1, todayDayIndex - realStreak + 1) : 999;
     const isDayInActiveStreak = (dayNum: number) => {
-      return dayNum >= startActiveIndex && dayNum <= todayDayIndex;
+      return realStreak > 0 && dayNum >= startActiveIndex && dayNum <= todayDayIndex;
     };
 
     useEffect(() => {

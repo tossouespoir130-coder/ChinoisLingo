@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/client';
 import { fetchUserSavedWords } from './vocabularyService';
 import { fetchContentProgress, fetchCourseProgress } from './progressService';
 import { fetchUserProfile } from './profileService';
-import { getLocalRecentActivities, resolveContentDetails } from './activityTrackingService';
+import { getLocalRecentActivities, resolveContentDetails, getStudyMinStorageKey } from './activityTrackingService';
 
 export interface RealDashboardStats {
   streakDays: number;
@@ -64,8 +64,8 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     fetchCourseProgress(),
   ]);
 
-  const streakDays = profile?.streak_days || 1;
-  const totalMinutesLearned = profile?.total_minutes_learned || 15;
+  const streakDays = profile?.streak_days ?? 0;
+  const totalMinutesLearned = profile?.total_minutes_learned ?? 0;
   const totalSavedWords = savedWords.length;
   const masteredWordsList = savedWords.filter((w) => (w.mastery_level || 0) >= 3);
   const totalWordsMastered = Math.max(profile?.total_words_mastered || 0, masteredWordsList.length);
@@ -122,14 +122,14 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     },
   };
 
-  // Recent Real Activities (No generic fallback text)
+  // Recent Real Activities (Uniquement les vraies activités de l'utilisateur)
   let recentActivities: RealDashboardStats['recentActivities'] = [];
 
   const completedLessonKeys = Object.keys(courseProgress).filter((k) => courseProgress[k]);
   const completedContentKeys = Object.keys(contentProgress).filter((k) => contentProgress[k]?.isCompleted);
 
-  // 1. Priorité absolue aux activités récemment ouvertes ou étudiées localement
-  const localActivities = getLocalRecentActivities();
+  // 1. Priorité absolue aux activités récemment ouvertes ou étudiées localement par cet utilisateur
+  const localActivities = getLocalRecentActivities(profile?.id);
   const seenIds = new Set<string>();
 
   localActivities.forEach((act) => {
@@ -185,49 +185,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     });
   }
 
-  // 3. Fallback élégant si le compte est 100% neuf sans aucune activité
-  if (recentActivities.length === 0) {
-    recentActivities.push(
-      {
-        id: 'chanson_star',
-        title: 'L’Étoile la Plus Brillante (夜空中最亮的星)',
-        category: 'Chanson',
-        categoryBadge: 'CHANSON IMMERSIVE',
-        hskLevel: 'HSK 3',
-        progressPercentage: 60,
-        duration: '4 min 12',
-        thumbnailUrl: 'https://img.youtube.com/vi/-uzuhqQIaTM/hqdefault.jpg',
-        href: '/ecoute-lecture?type=chansons&id=chanson_star',
-        isCompleted: false,
-      },
-      {
-        id: 'dialogue_restaurant',
-        title: 'Commander au Restaurant (在饭馆点菜)',
-        category: 'Dialogue',
-        categoryBadge: 'ORAL & IMMERSION',
-        hskLevel: 'HSK 2',
-        progressPercentage: 35,
-        duration: '4 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&auto=format&fit=crop&q=80',
-        href: '/ecoute-lecture?type=dialogues&id=dialogue_restaurant',
-        isCompleted: false,
-      },
-      {
-        id: 'prononciation-tons',
-        title: 'Les 4 Tons du Mandarin',
-        category: 'Formation',
-        categoryBadge: 'FORMATION VIDÉO',
-        hskLevel: 'Débutant',
-        progressPercentage: 35,
-        duration: '18 min',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
-        href: '/formation?course=prononciation-tons',
-        isCompleted: false,
-      }
-    );
-  }
-
-  // Limiter à 3 éléments maximum pour la carte Continuer
+  // Limiter à 3 éléments maximum pour la carte Continuer (sans aucune fausse activité injectée)
   recentActivities = recentActivities.slice(0, 3);
 
   /**
@@ -253,9 +211,9 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
   const cle = (d: Date) => d.toISOString().split('T')[0];
 
   // Intégrer les minutes trackées localement pour aujourd'hui et hier si non encore synchronisées
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && user?.id) {
     const todayStr = cle(new Date());
-    const localTodayMin = Number(localStorage.getItem(`chinoislingo_study_min_${todayStr}`) || '0');
+    const localTodayMin = Number(localStorage.getItem(getStudyMinStorageKey(todayStr, user.id)) || '0');
     if (localTodayMin > 0) {
       const existing = parJour.get(todayStr);
       parJour.set(todayStr, {
@@ -277,8 +235,8 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
     let minutes = Math.round(e?.minutes ?? 0);
 
     // Vérification locale pour le jour si présent dans localStorage
-    if (typeof window !== 'undefined') {
-      const localMin = Number(localStorage.getItem(`chinoislingo_study_min_${dayKey}`) || '0');
+    if (typeof window !== 'undefined' && user?.id) {
+      const localMin = Number(localStorage.getItem(getStudyMinStorageKey(dayKey, user.id)) || '0');
       if (localMin > minutes) minutes = localMin;
     }
 

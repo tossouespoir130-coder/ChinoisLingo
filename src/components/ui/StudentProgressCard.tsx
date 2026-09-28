@@ -70,7 +70,9 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
     },
     {
       label: 'Taux de Rétention Globale',
-      current: realData?.totalWordsMastered ? Math.min(100, Math.round((realData.totalWordsMastered / Math.max(1, realData.totalSavedWords)) * 100)) : 95,
+      current: (realData?.totalSavedWords && realData.totalSavedWords > 0)
+        ? Math.min(100, Math.round(((realData.totalWordsMastered || 0) / realData.totalSavedWords) * 100))
+        : 0,
       target: 100,
       color: 'bg-[#E91E63]',
       bgTrack: 'bg-[#E91E63]/15 dark:bg-[#E91E63]/25',

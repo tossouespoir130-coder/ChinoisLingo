@@ -1,0 +1,399 @@
+{
+  "contentId": "chanson_women_buyiyang",
+  "fullAudioUrl": "/audio/readings/chanson_women_buyiyang.mp3",
+  "totalDurationMs": 92370,
+  "sentences": [
+    {
+      "sentenceId": "wmbyy_1",
+      "startMs": 0,
+      "endMs": 1694,
+      "durationMs": 1694,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_1.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_2",
+      "startMs": 1494,
+      "endMs": 3714,
+      "durationMs": 2220,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_2.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_3",
+      "startMs": 3514,
+      "endMs": 5630,
+      "durationMs": 2116,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_3.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_4",
+      "startMs": 5430,
+      "endMs": 7859,
+      "durationMs": 2429,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_4.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_5",
+      "startMs": 7659,
+      "endMs": 9635,
+      "durationMs": 1976,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_5.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_6",
+      "startMs": 9435,
+      "endMs": 11052,
+      "durationMs": 1617,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_6.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_7",
+      "startMs": 10852,
+      "endMs": 12921,
+      "durationMs": 2069,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_7.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_8",
+      "startMs": 12721,
+      "endMs": 13896,
+      "durationMs": 1175,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_8.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_9",
+      "startMs": 13696,
+      "endMs": 16253,
+      "durationMs": 2557,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_9.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_10",
+      "startMs": 16053,
+      "endMs": 18320,
+      "durationMs": 2267,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_10.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_11",
+      "startMs": 18120,
+      "endMs": 19307,
+      "durationMs": 1187,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_11.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_12",
+      "startMs": 19107,
+      "endMs": 21675,
+      "durationMs": 2568,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_12.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_13",
+      "startMs": 21475,
+      "endMs": 24090,
+      "durationMs": 2615,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_13.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_14",
+      "startMs": 23890,
+      "endMs": 25355,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_14.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_15",
+      "startMs": 25155,
+      "endMs": 27596,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_15.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_16",
+      "startMs": 27396,
+      "endMs": 28722,
+      "durationMs": 1326,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_16.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_17",
+      "startMs": 28522,
+      "endMs": 30150,
+      "durationMs": 1628,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_17.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_18",
+      "startMs": 29950,
+      "endMs": 31636,
+      "durationMs": 1686,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_18.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_19",
+      "startMs": 31436,
+      "endMs": 33842,
+      "durationMs": 2406,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_19.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_20",
+      "startMs": 33642,
+      "endMs": 34678,
+      "durationMs": 1036,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_20.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_21",
+      "startMs": 34478,
+      "endMs": 36187,
+      "durationMs": 1709,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_21.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_22",
+      "startMs": 35987,
+      "endMs": 37685,
+      "durationMs": 1698,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_22.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_23",
+      "startMs": 37485,
+      "endMs": 40018,
+      "durationMs": 2533,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_23.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_24",
+      "startMs": 39818,
+      "endMs": 41307,
+      "durationMs": 1489,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_24.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_25",
+      "startMs": 41107,
+      "endMs": 43699,
+      "durationMs": 2592,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_25.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_26",
+      "startMs": 43499,
+      "endMs": 45580,
+      "durationMs": 2081,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_26.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_27",
+      "startMs": 45380,
+      "endMs": 47042,
+      "durationMs": 1662,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_27.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_28",
+      "startMs": 46842,
+      "endMs": 48877,
+      "durationMs": 2035,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_28.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_29",
+      "startMs": 48677,
+      "endMs": 49864,
+      "durationMs": 1187,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_29.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_30",
+      "startMs": 49664,
+      "endMs": 52174,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_30.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_31",
+      "startMs": 51974,
+      "endMs": 54380,
+      "durationMs": 2406,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_31.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_32",
+      "startMs": 54180,
+      "endMs": 55425,
+      "durationMs": 1245,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_32.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_33",
+      "startMs": 55225,
+      "endMs": 57073,
+      "durationMs": 1848,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_33.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_34",
+      "startMs": 56873,
+      "endMs": 59477,
+      "durationMs": 2604,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_34.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_35",
+      "startMs": 59277,
+      "endMs": 60742,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_35.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_36",
+      "startMs": 60542,
+      "endMs": 62890,
+      "durationMs": 2348,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_36.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_37",
+      "startMs": 62690,
+      "endMs": 63761,
+      "durationMs": 1071,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_37.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_38",
+      "startMs": 63561,
+      "endMs": 64945,
+      "durationMs": 1384,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_38.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_39",
+      "startMs": 64745,
+      "endMs": 66350,
+      "durationMs": 1605,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_39.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_40",
+      "startMs": 66150,
+      "endMs": 68579,
+      "durationMs": 2429,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_40.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_41",
+      "startMs": 68379,
+      "endMs": 69403,
+      "durationMs": 1024,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_41.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_42",
+      "startMs": 69203,
+      "endMs": 70971,
+      "durationMs": 1768,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_42.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_43",
+      "startMs": 70771,
+      "endMs": 72387,
+      "durationMs": 1616,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_43.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_44",
+      "startMs": 72187,
+      "endMs": 74535,
+      "durationMs": 2348,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_44.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_45",
+      "startMs": 74335,
+      "endMs": 75789,
+      "durationMs": 1454,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_45.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_46",
+      "startMs": 75589,
+      "endMs": 77147,
+      "durationMs": 1558,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_46.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_47",
+      "startMs": 76947,
+      "endMs": 78436,
+      "durationMs": 1489,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_47.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_48",
+      "startMs": 78236,
+      "endMs": 80688,
+      "durationMs": 2452,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_48.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_49",
+      "startMs": 80488,
+      "endMs": 81536,
+      "durationMs": 1048,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_49.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_50",
+      "startMs": 81336,
+      "endMs": 83127,
+      "durationMs": 1791,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_50.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_51",
+      "startMs": 82927,
+      "endMs": 84392,
+      "durationMs": 1465,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_51.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_52",
+      "startMs": 84192,
+      "endMs": 86633,
+      "durationMs": 2441,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_52.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_53",
+      "startMs": 86433,
+      "endMs": 87469,
+      "durationMs": 1036,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_53.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_54",
+      "startMs": 87269,
+      "endMs": 89593,
+      "durationMs": 2324,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_54.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_55",
+      "startMs": 89393,
+      "endMs": 90499,
+      "durationMs": 1106,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_55.mp3"
+    },
+    {
+      "sentenceId": "wmbyy_56",
+      "startMs": 90299,
+      "endMs": 92370,
+      "durationMs": 2071,
+      "audioUrl": "/audio/readings/chanson_women_buyiyang_wmbyy_56.mp3"
+    }
+  ]
+}

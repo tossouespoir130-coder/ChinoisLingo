@@ -113,6 +113,7 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
     chanson_keneng: { title: 'Peut-être (可能)', level: 'HSK 3', duration: '3 min 50', youtubeId: 'errNa-R3vDM' },
     chanson_wode_geshengli: { title: 'Dans Mon Chant (我的歌声里)', level: 'HSK 3', duration: '3 min 40', youtubeId: 'w0dMz8RBG7g' },
     chanson_shinian: { title: 'Dix Ans (十年)', level: 'HSK 3', duration: '3 min 25', youtubeId: 'ZUc6mnHGzIM' },
+    chanson_women_buyiyang: { title: 'Nous Sommes Différents (我们不一样)', level: 'HSK 3', duration: '4 min 30', youtubeId: 'Fp-8YM36CVA' },
     chanson_jinshengyuan: { title: 'Le Destin de cette Vie (今生缘)', level: 'HSK 4', duration: '4 min 10', youtubeId: 'uPfhib9zHtc' },
     chanson_xianchuzhendeni: { title: 'Montre qui tu es vraiment (现出真的你)', level: 'HSK 5', duration: '4 min 39', youtubeId: 'ISK2emgbm4c' },
     chanson_yeguang: { title: 'Lueur Nocturne (夜光)', level: 'HSK 5', duration: '4 min 30', youtubeId: '5JXOLr-32Wc' },
@@ -170,27 +171,53 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
   };
 }
 
-const STORAGE_KEY = 'chinoislingo_recent_activities';
+function getCurrentUserId(): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return localStorage.getItem('chinoislingo_proprietaire_local') || null;
+  } catch {
+    return null;
+  }
+}
+
+export function getActivityStorageKey(userId?: string | null): string {
+  const uid = userId || getCurrentUserId();
+  return uid ? `chinoislingo_recent_activities_${uid}` : 'chinoislingo_recent_activities';
+}
+
+export function getStudyMinStorageKey(dateStr: string, userId?: string | null): string {
+  const uid = userId || getCurrentUserId();
+  return uid ? `chinoislingo_study_min_${uid}_${dateStr}` : `chinoislingo_study_min_${dateStr}`;
+}
+
+export function getDashboardStatsStorageKey(userId?: string | null): string {
+  const uid = userId || getCurrentUserId();
+  return uid ? `chinoislingo_user_dashboard_stats_${uid}` : 'chinoislingo_user_dashboard_stats';
+}
 
 /**
  * Enregistre immédiatement un contenu ou une leçon dès qu'il est ouvert ou consulté.
  */
-export function recordOpenedActivity(activity: {
-  id: string;
-  title?: string;
-  category?: TrackedActivityItem['category'];
-  categoryBadge?: string;
-  hskLevel?: string;
-  duration?: string;
-  thumbnailUrl?: string;
-  href?: string;
-  progressPercentage?: number;
-  isCompleted?: boolean;
-}): void {
+export function recordOpenedActivity(
+  activity: {
+    id: string;
+    title?: string;
+    category?: TrackedActivityItem['category'];
+    categoryBadge?: string;
+    hskLevel?: string;
+    duration?: string;
+    thumbnailUrl?: string;
+    href?: string;
+    progressPercentage?: number;
+    isCompleted?: boolean;
+  },
+  userId?: string | null
+): void {
   if (typeof window === 'undefined' || !activity.id) return;
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const storageKey = getActivityStorageKey(userId);
+    const raw = localStorage.getItem(storageKey);
     let list: TrackedActivityItem[] = raw ? JSON.parse(raw) : [];
 
     const resolved = resolveContentDetails(activity.id);
@@ -217,15 +244,16 @@ export function recordOpenedActivity(activity: {
     // Garder les 5 plus récents
     list = list.slice(0, 5);
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    localStorage.setItem(storageKey, JSON.stringify(list));
 
-    // Mettre à jour le cache dashboard pour affichage immédiat
-    const dashStats = localStorage.getItem('chinoislingo_user_dashboard_stats');
+    // Mettre à jour le cache dashboard de cet utilisateur pour affichage immédiat
+    const dashKey = getDashboardStatsStorageKey(userId);
+    const dashStats = localStorage.getItem(dashKey);
     if (dashStats) {
       try {
         const parsed = JSON.parse(dashStats);
         parsed.recentActivities = list;
-        localStorage.setItem('chinoislingo_user_dashboard_stats', JSON.stringify(parsed));
+        localStorage.setItem(dashKey, JSON.stringify(parsed));
       } catch {}
     }
 
@@ -239,10 +267,11 @@ export function recordOpenedActivity(activity: {
 /**
  * Récupère les activités récentes depuis le stockage local avec dates relatives à jour.
  */
-export function getLocalRecentActivities(): TrackedActivityItem[] {
+export function getLocalRecentActivities(userId?: string | null): TrackedActivityItem[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const storageKey = getActivityStorageKey(userId);
+    const raw = localStorage.getItem(storageKey);
     if (!raw) return [];
     const list: TrackedActivityItem[] = JSON.parse(raw);
     return list.map((item) => ({
@@ -261,7 +290,10 @@ export async function trackStudyMinutes(minutesToAdd: number = 1): Promise<void>
   if (typeof window === 'undefined' || minutesToAdd <= 0) return;
 
   const today = new Date().toISOString().split('T')[0];
-  const TODAY_KEY = `chinoislingo_study_min_${today}`;
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const userId = user?.id || getCurrentUserId();
+  const TODAY_KEY = getStudyMinStorageKey(today, userId);
 
   try {
     // 1. Mise à jour locale du jour
@@ -270,7 +302,8 @@ export async function trackStudyMinutes(minutesToAdd: number = 1): Promise<void>
     localStorage.setItem(TODAY_KEY, String(newDayMin));
 
     // 2. Mettre à jour le dashboard stats en cache
-    const dashStats = localStorage.getItem('chinoislingo_user_dashboard_stats');
+    const dashKey = getDashboardStatsStorageKey(userId);
+    const dashStats = localStorage.getItem(dashKey);
     if (dashStats) {
       try {
         const parsed = JSON.parse(dashStats);
@@ -284,7 +317,7 @@ export async function trackStudyMinutes(minutesToAdd: number = 1): Promise<void>
           }
         }
         parsed.totalMinutesLearned = (parsed.totalMinutesLearned || 0) + minutesToAdd;
-        localStorage.setItem('chinoislingo_user_dashboard_stats', JSON.stringify(parsed));
+        localStorage.setItem(dashKey, JSON.stringify(parsed));
       } catch {}
     }
 

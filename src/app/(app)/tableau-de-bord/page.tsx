@@ -32,66 +32,55 @@ const motivationalQuotes = [
   '15 minutes de révision aujourd’hui font la différence lors de votre prochaine négociation.',
   'Votre régularité est la clé pour parler avec assurance sur les marchés et en usine.',
   'Avec ChinoisLingo, le chinois devient facile pas à pas chaque jour.',
-  'Votre série de 18 jours est impressionnante. Prêt pour la session d’apprentissage du jour ?',
+  'Chaque jour de pratique renforce votre maîtrise. Prêt pour la session d’apprentissage du jour ?',
   'Développez votre Guanxi et ouvrez de nouvelles opportunités commerciales durables.',
   'La persévérance transforme chaque caractère chinois en un atout stratégique pour vos affaires.',
 ];
 
 import { useAuth } from '@/lib/auth/AuthContext';
-import { usePreferences } from '@/context/PreferencesContext';
 import { fetchRealDashboardStats } from '@/lib/services/dashboardService';
-import { getLocalRecentActivities } from '@/lib/services/activityTrackingService';
+import { getLocalRecentActivities, getDashboardStatsStorageKey } from '@/lib/services/activityTrackingService';
 import { DashboardSkeleton } from '@/components/ui/DashboardSkeleton';
 
 export default function DashboardPage() {
-  const { profile, isLoading: authLoading } = useAuth();
-  const { userName } = usePreferences();
+  const { profile, user, isLoading: authLoading } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
-  const [dashboardData, setDashboardData] = useState<any>(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const cached = localStorage.getItem('chinoislingo_user_dashboard_stats');
-        return cached ? JSON.parse(cached) : null;
-      } catch {
-        return null;
-      }
-    }
-    return null;
-  });
+  const [dashboardData, setDashboardData] = useState<any>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [isTipsOpen, setIsTipsOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [motivationalMessage, setMotivationalMessage] = useState(motivationalQuotes[0]);
-  const [realActivities, setRealActivities] = useState<any[]>(() => {
-    if (typeof window !== 'undefined') {
-      const locals = getLocalRecentActivities();
-      if (locals.length > 0) return locals;
-      try {
-        const cached = localStorage.getItem('chinoislingo_user_dashboard_stats');
-        if (cached) {
-          const parsed = JSON.parse(cached);
-          return parsed.recentActivities || [];
-        }
-      } catch {
-        // ignore
-      }
-    }
-    return [];
-  });
+  const [realActivities, setRealActivities] = useState<any[]>([]);
 
   useEffect(() => {
+    if (!profile?.id) return;
     let isMounted = true;
-    setIsLoading(true);
 
+    // 1. Lire le cache isolé spécifique à CET utilisateur s'il existe
+    try {
+      const userDashKey = getDashboardStatsStorageKey(profile.id);
+      const cached = localStorage.getItem(userDashKey);
+      if (cached && isMounted) {
+        const parsed = JSON.parse(cached);
+        setDashboardData(parsed);
+        if (parsed.recentActivities) {
+          setRealActivities(parsed.recentActivities);
+        }
+      }
+    } catch {
+      // ignore
+    }
+
+    // 2. Charger les vraies données fraîches depuis Supabase pour cet utilisateur
+    setIsLoading(true);
     fetchRealDashboardStats()
       .then((res) => {
         if (isMounted && res) {
           setDashboardData(res);
-          if (res.recentActivities && res.recentActivities.length > 0) {
-            setRealActivities(res.recentActivities);
-          }
+          setRealActivities(res.recentActivities || []);
           try {
-            localStorage.setItem('chinoislingo_user_dashboard_stats', JSON.stringify(res));
+            const userDashKey = getDashboardStatsStorageKey(profile.id);
+            localStorage.setItem(userDashKey, JSON.stringify(res));
           } catch {
             // ignore
           }
@@ -109,7 +98,7 @@ export default function DashboardPage() {
     return () => {
       isMounted = false;
     };
-  }, [profile]);
+  }, [profile?.id]);
 
   // Écoute en temps réel des activités ouvertes ou complétées et du temps d'étude
   useEffect(() => {
@@ -152,7 +141,7 @@ export default function DashboardPage() {
     return <DashboardSkeleton />;
   }
 
-  const displayName = profile?.username || profile?.first_name || profile?.full_name || userName || 'Apprenant';
+  const displayName = profile?.first_name || profile?.full_name || profile?.username || user?.user_metadata?.first_name || user?.user_metadata?.full_name || 'Apprenant';
 
   return (
     <div className="space-y-5 sm:space-y-6 w-full max-w-full min-w-0 pb-6">
@@ -275,15 +264,34 @@ export default function DashboardPage() {
             </div>
 
             {/* Recent Activities List */}
-            <div className="space-y-3.5 sm:space-y-4">
-              {realActivities.map((item, idx) => (
-                <RecentActivityCard
-                  key={item.id}
-                  item={item}
-                  cascadeClass={`animate-cascade-${Math.min(idx + 1, 4)}`}
-                />
-              ))}
-            </div>
+            {realActivities.length > 0 ? (
+              <div className="space-y-3.5 sm:space-y-4">
+                {realActivities.map((item, idx) => (
+                  <RecentActivityCard
+                    key={item.id}
+                    item={item}
+                    cascadeClass={`animate-cascade-${Math.min(idx + 1, 4)}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="py-6 px-4 text-center rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-dashed border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <BookOpen className="w-7 h-7 text-[#6200EE]/60 mx-auto mb-2" />
+                <p className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
+                  Aucune activité récente
+                </p>
+                <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] mt-1 leading-relaxed">
+                  Lancez votre première formation ou immersion audio pour la reprendre ici à tout moment.
+                </p>
+                <Link
+                  href="/ecoute-lecture"
+                  className="inline-flex items-center gap-1.5 mt-3 px-3.5 py-1.5 rounded-full bg-[#6200EE] text-white text-xs font-bold shadow-xs hover:opacity-90 active:scale-95 transition-all btn-press"
+                >
+                  <span>Découvrir le catalogue</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            )}
 
             {/* Livres & Programmes Banner Card */}
             <Link
@@ -332,15 +340,34 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="space-y-3.5">
-            {realActivities.map((item, idx) => (
-              <RecentActivityCard
-                key={item.id}
-                item={item}
-                cascadeClass={`animate-cascade-${Math.min(idx + 1, 4)}`}
-              />
-            ))}
-          </div>
+          {realActivities.length > 0 ? (
+            <div className="space-y-3.5">
+              {realActivities.map((item, idx) => (
+                <RecentActivityCard
+                  key={item.id}
+                  item={item}
+                  cascadeClass={`animate-cascade-${Math.min(idx + 1, 4)}`}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="py-5 px-3 text-center rounded-2xl bg-[#FAFAFA] dark:bg-[#181818] border border-dashed border-[#E0E0E0] dark:border-[#2D2D2D]">
+              <BookOpen className="w-6 h-6 text-[#6200EE]/60 mx-auto mb-1.5" />
+              <p className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
+                Aucune activité récente
+              </p>
+              <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] mt-0.5 leading-relaxed">
+                Démarrez une leçon ou immersion pour la reprendre ici.
+              </p>
+              <Link
+                href="/ecoute-lecture"
+                className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1.5 rounded-full bg-[#6200EE] text-white text-xs font-bold shadow-xs hover:opacity-90 active:scale-95 transition-all btn-press"
+              >
+                <span>Découvrir le catalogue</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* 6. Progression de l'Élève */}

@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_chanson_women_buyiyang',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Nouvelle chanson : Nous Sommes Différents\n我们不一样 (HSK 3) 🎵',
+    message: 'Découvre l’hymne culte et émouvant de Da Zhuang sur la fraternité sincère avec paroles synchronisées et prononciation pour perfectionner ton chinois.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=chansons&id=chanson_women_buyiyang',
+    actionLabel: 'Écouter la chanson'
+  },
+  {
     id: 'notif_xiao_li_bienvenue_recommandation',
     source: 'mascot',
     mascotName: 'Xiao Li (小李)',
@@ -95,7 +109,7 @@ export const initialNotifications: NotificationItem[] = [
     founderAvatar: '/espoir-chinois.jpg',
     type: 'video',
     title: 'Nouvelle chanson : Dix Ans\n十年 (HSK 3) 🎵',
-    message: 'Découvrez le chef-d’œuvre culte d’Eason Chan avec paroles synchronisées et traduction pour enrichir votre vocabulaire.',
+    message: 'Découvre le chef-d’œuvre culte d’Eason Chan avec paroles synchronisées et traduction pour enrichir ton vocabulaire.',
     timestamp: 'Nouveau',
     isRead: false,
     actionUrl: '/ecoute-lecture?type=chansons&id=chanson_shinian',

@@ -23,7 +23,11 @@ const CLES_LOCALES_DU_COMPTE = [
   'chinoislingo_srs_reminder_last_shown',
 ];
 
-const PREFIXES_LOCAUX_DU_COMPTE = ['chinoislingo_study_min_'];
+const PREFIXES_LOCAUX_DU_COMPTE = [
+  'chinoislingo_study_min_',
+  'chinoislingo_user_dashboard_stats_',
+  'chinoislingo_recent_activities_',
+];
 
 const CLES_SESSION_DU_COMPTE = [
   'chinoislingo_active_reading_id',
