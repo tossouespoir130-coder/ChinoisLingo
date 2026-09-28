@@ -91,10 +91,19 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
     ? (profile.total_login_days || 0) + 1
     : (profile.total_login_days || 1);
 
+  // Le Record (max_streak) conserve toujours la plus haute série atteinte par l'apprenant
+  const currentRecord = Math.max(
+    profile.max_streak || 1,
+    profile.streak_days || 1,
+    (profile as any)?.longest_streak || 1
+  );
+  const newMaxStreak = Math.max(currentRecord, newStreak);
+
   const { data: updatedProfile, error: updateError } = await supabase
     .from('profiles')
     .update({
       streak_days: newStreak,
+      max_streak: newMaxStreak,
       last_active_date: today,
       last_sign_in_at: new Date().toISOString(),
       total_login_days: newTotalLoginDays,

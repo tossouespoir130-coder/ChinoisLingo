@@ -1,27 +1,26 @@
 import { NextResponse } from 'next/server';
+import { exigerAdmin } from '@/lib/admin/garde';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { appelCronAutorise } from '@/lib/security/cron';
 import { envoyerEmailRecapHebdo, type NouvelItemContenu } from '@/lib/emails/emailRecapHebdo';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-export const maxDuration = 300; // 5 minutes max pour cron
+export const maxDuration = 300; // 5 minutes max
 
-/** Attente douce entre deux envois pour respecter les quotas de Resend (max 10 req/s). */
 function pause(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
- * GET /api/cron/newsletter-hebdomadaire
+ * POST /api/admin/emails/envoyer-newsletter-hebdo
  *
- * Déclenché chaque jeudi après-midi par le planificateur cron.
- * Envoie le récapitulatif structuré par rubriques à ABSOLUMENT TOUT LE MONDE
- * (tous les utilisateurs inscrits, y compris l'administrateur).
+ * Déclenche manuellement l'envoi de la newsletter hebdomadaire
+ * à ABSOLUMENT TOUT LE MONDE (tous les utilisateurs enregistrés y compris l'administrateur).
  */
-export async function GET(requete: Request) {
-  if (!appelCronAutorise(requete.headers.get('authorization'))) {
-    return NextResponse.json({ erreur: 'Non autorisé.' }, { status: 401 });
+export async function POST(requete: Request) {
+  const garde = await exigerAdmin(requete);
+  if (!garde.ok) {
+    return NextResponse.json({ erreur: garde.erreur }, { status: garde.statut });
   }
 
   const admin = createAdminClient();
@@ -45,11 +44,10 @@ export async function GET(requete: Request) {
   }
 
   if (!nouveautes || nouveautes.length === 0) {
-    return NextResponse.json({
-      statut: 'ignore',
-      message: 'Aucun contenu disponible pour la newsletter cette semaine.',
-      nouveautesCount: 0,
-    });
+    return NextResponse.json(
+      { erreur: 'Aucun contenu disponible dans la base pour constituer la newsletter.' },
+      { status: 400 }
+    );
   }
 
   const contenus: NouvelItemContenu[] = nouveautes.map((n: any) => ({
@@ -66,19 +64,19 @@ export async function GET(requete: Request) {
   // 2. Récupération de TOUS les utilisateurs inscrits (y compris l'administrateur)
   const { data: profils, error: errProfils } = await admin
     .from('profiles')
-    .select('id, email, username, full_name, first_name, role, onboarding_profil, onboarding_niveau, relances_desactivees')
+    .select('id, email, username, full_name, first_name, role, onboarding_profil, onboarding_niveau')
     .not('email', 'is', null);
 
   if (errProfils) {
-    console.error('[cron newsletter] Erreur lecture profils:', errProfils);
     return NextResponse.json({ erreur: 'Lecture des profils impossible.' }, { status: 500 });
   }
 
-  // Filtrer les adresses valides (envoi à absolument tout le monde)
-  const destinataires = (profils ?? []).filter((p) => {
-    if (!p.email || !p.email.includes('@')) return false;
-    return true;
-  });
+  // Tous les utilisateurs avec email valide (y compris administrateur)
+  const destinataires = (profils ?? []).filter((p) => p.email && p.email.includes('@'));
+
+  if (destinataires.length === 0) {
+    return NextResponse.json({ erreur: 'Aucun destinataire avec adresse valide trouvé.' }, { status: 400 });
+  }
 
   let totalEnvoyes = 0;
   let totalEchecs = 0;
@@ -99,16 +97,15 @@ export async function GET(requete: Request) {
       if (ok) totalEnvoyes++;
       else totalEchecs++;
     } catch (e) {
-      console.error('[cron newsletter] Erreur envoi à', dest.email, e);
+      console.error('[admin newsletter manual] Erreur envoi à', dest.email, e);
       totalEchecs++;
     }
 
-    // Pause de 200 ms entre chaque envoi
     await pause(200);
   }
 
   return NextResponse.json({
-    statut: 'termine',
+    ok: true,
     nouveautesCount: contenus.length,
     destinatairesTotal: destinataires.length,
     totalEnvoyes,

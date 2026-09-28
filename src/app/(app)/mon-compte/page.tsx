@@ -258,9 +258,14 @@ function MonCompteContent() {
     }
   };
 
-  // Suppression définitive du compte
+  // Suppression définitive du compte (Parcours multi-confirmations sécurisé en 3 étapes)
   const [modalSuppressionOuvert, setModalSuppressionOuvert] = useState(false);
+  const [etapeSuppression, setEtapeSuppression] = useState<1 | 2 | 3>(1);
+  const [consentementPerteDonnees, setConsentementPerteDonnees] = useState(false);
+  const [consentementAbonnement, setConsentementAbonnement] = useState(false);
+  const [consentementIrreversible, setConsentementIrreversible] = useState(false);
   const [motDePasseSuppression, setMotDePasseSuppression] = useState('');
+  const [showMotDePasseSuppression, setShowMotDePasseSuppression] = useState(false);
   const [confirmationSuppression, setConfirmationSuppression] = useState('');
   const [suppressionEnCours, setSuppressionEnCours] = useState(false);
   const [erreurSuppression, setErreurSuppression] = useState<string | null>(null);
@@ -268,9 +273,32 @@ function MonCompteContent() {
   const fermerModalSuppression = () => {
     if (suppressionEnCours) return;
     setModalSuppressionOuvert(false);
+    setEtapeSuppression(1);
+    setConsentementPerteDonnees(false);
+    setConsentementAbonnement(false);
+    setConsentementIrreversible(false);
     setMotDePasseSuppression('');
+    setShowMotDePasseSuppression(false);
     setConfirmationSuppression('');
     setErreurSuppression(null);
+  };
+
+  const passerEtape2 = () => {
+    setErreurSuppression(null);
+    if (!consentementPerteDonnees || !consentementAbonnement || !consentementIrreversible) {
+      setErreurSuppression('Veuillez cocher toutes les cases pour confirmer votre prise de conscience.');
+      return;
+    }
+    setEtapeSuppression(2);
+  };
+
+  const passerEtape3 = () => {
+    setErreurSuppression(null);
+    if (!motDePasseSuppression.trim()) {
+      setErreurSuppression('Veuillez saisir votre mot de passe pour continuer.');
+      return;
+    }
+    setEtapeSuppression(3);
   };
 
   const supprimerCompte = async () => {
@@ -668,12 +696,24 @@ function MonCompteContent() {
             </div>
 
             <div className="nixtio-card p-3 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-center sm:text-left flex flex-col justify-between">
-              <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Série</span>
+              <div className="flex items-center justify-between gap-1">
+                <span className="text-[9px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider line-clamp-1">Série</span>
+                {(profile?.max_streak ?? profile?.streak_days ?? 0) > 0 && (
+                  <span className="text-[10px] sm:text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20 whitespace-nowrap">
+                    🏆 Record : {profile?.max_streak ?? profile?.streak_days ?? 0} j
+                  </span>
+                )}
+              </div>
               <p className="font-display font-black text-base sm:text-2xl text-[#00897B] dark:text-[#03DAC5] my-0.5 sm:mt-1">
                 {profile?.streak_days ?? 0}{' '}
                 <span className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0]">
                   {(profile?.streak_days ?? 0) > 1 ? 'jours' : 'jour'}
                 </span>
+                {(profile?.max_streak ?? 0) > 0 && (
+                  <span className="text-xs sm:text-sm font-bold text-[#757575] dark:text-[#A0A0A0] ml-1.5 font-sans">
+                    (Record : {profile?.max_streak ?? profile?.streak_days ?? 0} {(profile?.max_streak ?? profile?.streak_days ?? 0) > 1 ? 'jours' : 'jour'})
+                  </span>
+                )}
               </p>
               <span className="text-[9px] sm:text-[11px] text-[#757575] dark:text-[#A0A0A0] line-clamp-1">
                 Jours consécutifs de pratique
@@ -1954,7 +1994,7 @@ function MonCompteContent() {
         </Portal>
       )}
 
-      {/* MODAL DE SUPPRESSION DU COMPTE */}
+      {/* MODAL DE SUPPRESSION DU COMPTE (PARCOURS PROGRESSIF EN 3 ÉTAPES) */}
       {modalSuppressionOuvert && (
         <Portal>
           <div
@@ -1962,81 +2002,220 @@ function MonCompteContent() {
             onClick={fermerModalSuppression}
           >
             <div
-              className="w-full max-w-md bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl p-6 sm:p-7 shadow-2xl space-y-4 animate-scaleUp text-left"
+              className="w-full max-w-lg bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 animate-scaleUp text-left"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between pb-2 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
-                <h3 className="font-display font-bold text-base text-[#212121] dark:text-[#F5F5F5]">
-                  Supprimer définitivement mon compte
-                </h3>
+              {/* En-tête du modal */}
+              <div className="flex items-center justify-between pb-3 border-b border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-600 dark:text-rose-400">
+                    <Trash2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-base text-[#212121] dark:text-[#F5F5F5] leading-tight">
+                      Supprimer définitivement mon compte
+                    </h3>
+                    <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
+                      Étape {etapeSuppression} sur 3 • Confirmation renforcée
+                    </p>
+                  </div>
+                </div>
                 <button
                   type="button"
                   onClick={fermerModalSuppression}
                   disabled={suppressionEnCours}
                   aria-label="Fermer"
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-[#757575] hover:text-[#212121] dark:hover:text-white bg-[#FAFAFA] dark:bg-[#252525] transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <ul className="space-y-1.5 text-xs text-[#757575] dark:text-[#A0A0A0] bg-[#FAFAFA] dark:bg-[#252525] p-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
-                <li>• Cette action est <strong className="text-rose-600 dark:text-rose-400">irréversible</strong>.</li>
-                <li>• Progression, mots enregistrés, série de jours et historique sont effacés.</li>
-                <li>• Un abonnement par carte est arrêté immédiatement, sans remboursement.</li>
-              </ul>
-
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                  Votre mot de passe *
-                </label>
-                <input
-                  type="password"
-                  value={motDePasseSuppression}
-                  onChange={(e) => setMotDePasseSuppression(e.target.value)}
-                  autoComplete="current-password"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] text-[#212121] dark:text-[#F5F5F5] outline-none transition-all"
-                />
+              {/* Indicateur visuel des 3 étapes */}
+              <div className="grid grid-cols-3 gap-2">
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${etapeSuppression >= 1 ? 'bg-rose-500' : 'bg-[#E0E0E0] dark:bg-[#333333]'}`} />
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${etapeSuppression >= 2 ? 'bg-rose-500' : 'bg-[#E0E0E0] dark:bg-[#333333]'}`} />
+                <div className={`h-1.5 rounded-full transition-all duration-300 ${etapeSuppression === 3 ? 'bg-rose-500' : 'bg-[#E0E0E0] dark:bg-[#333333]'}`} />
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
-                  Saisissez SUPPRIMER pour confirmer *
-                </label>
-                <input
-                  type="text"
-                  value={confirmationSuppression}
-                  onChange={(e) => setConfirmationSuppression(e.target.value)}
-                  autoComplete="off"
-                  autoCapitalize="characters"
-                  placeholder="SUPPRIMER"
-                  className="w-full px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] font-bold tracking-wider text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#BDBDBD]"
-                />
-              </div>
+              {/* ÉTAPE 1 SUR 3 : AVERTISSEMENT & CONSENTEMENTS OBLIGATOIRES */}
+              {etapeSuppression === 1 && (
+                <div className="space-y-4 animate-fadeIn">
+                  <div className="p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-2xl flex items-start gap-2.5">
+                    <AlertCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
+                    <p className="text-xs text-rose-700 dark:text-rose-300 leading-relaxed font-medium">
+                      Cette démarche est <strong>strictement irréversible</strong>. Avant de poursuivre, vous devez lire et accepter chacune des conséquences suivantes :
+                    </p>
+                  </div>
 
+                  <div className="space-y-2.5 bg-[#FAFAFA] dark:bg-[#252525] p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
+                    <label className="flex items-start gap-3 cursor-pointer group select-none">
+                      <input
+                        type="checkbox"
+                        checked={consentementPerteDonnees}
+                        onChange={(e) => setConsentementPerteDonnees(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded border-[#BDBDBD] text-rose-600 focus:ring-rose-500 accent-rose-600 cursor-pointer shrink-0"
+                      />
+                      <span className="text-xs text-[#212121] dark:text-[#E0E0E0] leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <strong>1. Perte intégrale de ma progression :</strong> Mes mots enregistrés, mes scores, mon historique et ma série de <strong>{profile?.streak_days ?? 0} jours (record : {profile?.max_streak ?? profile?.streak_days ?? 0} j)</strong> seront définitivement supprimés.
+                      </span>
+                    </label>
+
+                    <label className="flex items-start gap-3 cursor-pointer group select-none">
+                      <input
+                        type="checkbox"
+                        checked={consentementAbonnement}
+                        onChange={(e) => setConsentementAbonnement(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded border-[#BDBDBD] text-rose-600 focus:ring-rose-500 accent-rose-600 cursor-pointer shrink-0"
+                      />
+                      <span className="text-xs text-[#212121] dark:text-[#E0E0E0] leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <strong>2. Résiliation immédiate de mes accès :</strong> Tout abonnement actif sera clôturé sur-le-champ, sans aucun remboursement au prorata temporis.
+                      </span>
+                    </label>
+
+                    <label className="flex items-start gap-3 cursor-pointer group select-none">
+                      <input
+                        type="checkbox"
+                        checked={consentementIrreversible}
+                        onChange={(e) => setConsentementIrreversible(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 rounded border-[#BDBDBD] text-rose-600 focus:ring-rose-500 accent-rose-600 cursor-pointer shrink-0"
+                      />
+                      <span className="text-xs text-[#212121] dark:text-[#E0E0E0] leading-snug group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <strong>3. Démarche définitive :</strong> Je confirme que je ne pourrai pas récupérer les données de ce compte ({profileData.email}) ultérieurement.
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              {/* ÉTAPE 2 SUR 3 : VÉRIFICATION D'IDENTITÉ PAR MOT DE PASSE */}
+              {etapeSuppression === 2 && (
+                <div className="space-y-4 animate-fadeIn">
+                  <div className="p-3 bg-[#F5F5F7] dark:bg-[#252533] rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D]">
+                    <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed">
+                      Pour des raisons évidentes de sécurité, veuillez saisir le mot de passe actuel de votre compte <strong>{profileData.email}</strong>.
+                    </p>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                      Votre mot de passe actuel *
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showMotDePasseSuppression ? 'text' : 'password'}
+                        value={motDePasseSuppression}
+                        onChange={(e) => setMotDePasseSuppression(e.target.value)}
+                        autoComplete="current-password"
+                        placeholder="••••••••••••"
+                        className="w-full pl-4 pr-11 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] text-[#212121] dark:text-[#F5F5F5] outline-none transition-all"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowMotDePasseSuppression(!showMotDePasseSuppression)}
+                        aria-label={showMotDePasseSuppression ? 'Masquer' : 'Afficher'}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#757575] hover:text-[#212121] dark:hover:text-white transition-colors p-1"
+                      >
+                        {showMotDePasseSuppression ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* ÉTAPE 3 SUR 3 : CONFIRMATION TEXTUELLE IRREVOCABLE */}
+              {etapeSuppression === 3 && (
+                <div className="space-y-4 animate-fadeIn">
+                  <div className="p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-xs text-rose-700 dark:text-rose-300 leading-relaxed font-semibold">
+                    ⚠️ Dernière étape : La validation de cette action effacera irrémédiablement le compte <strong>{profileData.email}</strong> de nos serveurs.
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] uppercase tracking-wider">
+                      Tapez <span className="text-rose-600 dark:text-rose-400 font-mono font-black">SUPPRIMER</span> en majuscules pour exécuter *
+                    </label>
+                    <input
+                      type="text"
+                      value={confirmationSuppression}
+                      onChange={(e) => setConfirmationSuppression(e.target.value)}
+                      autoComplete="off"
+                      autoCapitalize="characters"
+                      placeholder="SUPPRIMER"
+                      className="w-full px-4 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-rose-500 text-[16px] font-bold tracking-wider text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#BDBDBD]"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Message d'erreur */}
               {erreurSuppression && (
-                <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs font-bold text-rose-600 dark:text-rose-400">
+                <div className="p-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-xs font-bold text-rose-600 dark:text-rose-400 animate-fadeIn">
                   {erreurSuppression}
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={fermerModalSuppression}
-                  disabled={suppressionEnCours}
-                  className="px-4 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
-                >
-                  Garder mon compte
-                </button>
-                <button
-                  type="button"
-                  onClick={supprimerCompte}
-                  disabled={suppressionEnCours || confirmationSuppression !== 'SUPPRIMER' || !motDePasseSuppression}
-                  className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {suppressionEnCours ? 'Suppression…' : 'Supprimer définitivement'}
-                </button>
+              {/* Boutons d'actions selon l'étape */}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#E0E0E0] dark:border-[#2D2D2D]">
+                <div>
+                  {etapeSuppression > 1 ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setErreurSuppression(null);
+                        setEtapeSuppression((prev) => (prev === 3 ? 2 : 1));
+                      }}
+                      disabled={suppressionEnCours}
+                      className="px-3.5 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press flex items-center gap-1.5"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      Précédent
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={fermerModalSuppression}
+                      disabled={suppressionEnCours}
+                      className="px-3.5 py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#757575] hover:text-[#212121] dark:hover:text-white transition-all btn-press"
+                    >
+                      Garder mon compte
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  {etapeSuppression === 1 && (
+                    <button
+                      type="button"
+                      onClick={passerEtape2}
+                      disabled={!consentementPerteDonnees || !consentementAbonnement || !consentementIrreversible}
+                      className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Continuer (Étape 2/3) →
+                    </button>
+                  )}
+
+                  {etapeSuppression === 2 && (
+                    <button
+                      type="button"
+                      onClick={passerEtape3}
+                      disabled={!motDePasseSuppression.trim()}
+                      className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Continuer (Étape 3/3) →
+                    </button>
+                  )}
+
+                  {etapeSuppression === 3 && (
+                    <button
+                      type="button"
+                      onClick={supprimerCompte}
+                      disabled={suppressionEnCours || confirmationSuppression !== 'SUPPRIMER' || !motDePasseSuppression}
+                      className="px-4 py-2 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition-all btn-press cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {suppressionEnCours ? 'Suppression en cours…' : 'Confirmer la suppression définitive'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

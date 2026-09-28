@@ -36,7 +36,7 @@ interface QuotaStats {
 export default function AdminEmailsPage() {
   const { appeler, pret } = useApiAdmin();
 
-  // Formulaire d'envoi
+  // Formulaire d'envoi manuel
   const [cibleType, setCibleType] = useState<'tous' | 'profil' | 'niveau' | 'manuel'>('tous');
   const [cibleProfil, setCibleProfil] = useState('Entrepreneur');
   const [cibleNiveau, setCibleNiveau] = useState('Débutant');
@@ -48,6 +48,10 @@ export default function AdminEmailsPage() {
 
   const [envoiEnCours, setEnvoiEnCours] = useState(false);
   const [resultatEnvoi, setResultatEnvoi] = useState<{ succes: boolean; message: string } | null>(null);
+
+  // Déclencheur Newsletter Hebdomadaire
+  const [envoiNewsletterEnCours, setEnvoiNewsletterEnCours] = useState(false);
+  const [resultatNewsletter, setResultatNewsletter] = useState<{ succes: boolean; message: string } | null>(null);
 
   // Historique et Quota
   const [historique, setHistorique] = useState<EmailLogItem[]>([]);
@@ -149,6 +153,47 @@ export default function AdminEmailsPage() {
     }
   };
 
+  const handleEnvoyerNewsletter = async () => {
+    if (!confirm('Confirmez-vous l’envoi immédiat de la newsletter hebdomadaire à ABSOLUMENT TOUT LE MONDE (inscrits et administrateur) ?')) {
+      return;
+    }
+
+    setEnvoiNewsletterEnCours(true);
+    setResultatNewsletter(null);
+
+    try {
+      const res = await appeler<{
+        ok: boolean;
+        nouveautesCount: number;
+        destinatairesTotal: number;
+        totalEnvoyes: number;
+        totalEchecs: number;
+        erreur?: string;
+      }>('/api/admin/emails/envoyer-newsletter-hebdo', {
+        method: 'POST',
+      });
+
+      if (!res.ok) {
+        throw new Error(res.erreur || 'Erreur lors de l’envoi de la newsletter.');
+      }
+
+      setResultatNewsletter({
+        succes: true,
+        message: `Newsletter hebdomadaire envoyée avec succès à ${res.totalEnvoyes}/${res.destinatairesTotal} destinataire(s) (${res.nouveautesCount} nouveauté(s) incluses).`,
+      });
+
+      chargerHistorique();
+      chargerQuota();
+    } catch (err) {
+      setResultatNewsletter({
+        succes: false,
+        message: (err as Error).message || 'Erreur lors du déclenchement de la newsletter.',
+      });
+    } finally {
+      setEnvoiNewsletterEnCours(false);
+    }
+  };
+
   const totalPages = Math.ceil(totalItems / 15) || 1;
 
   return (
@@ -175,6 +220,57 @@ export default function AdminEmailsPage() {
               <span className="text-[#757575] dark:text-[#A0A0A0]">Ce mois : </span>
               <strong className="text-[#00796B] dark:text-[#03DAC5]">{quota.ceMois}/{quota.limiteMois}</strong>
             </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── CARTE SPÉCIALE : NEWSLETTER HEBDOMADAIRE (DÉCLENCHEMENT IMMÉDIAT) ── */}
+      <div className="nixtio-card p-5 sm:p-7 bg-gradient-to-br from-[#6200EE]/5 via-white to-[#03DAC5]/5 dark:from-[#6200EE]/15 dark:via-[#1E1E1E] dark:to-[#03DAC5]/10 border border-[#6200EE]/30 dark:border-[#6200EE]/40 shadow-md space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#6200EE] to-[#3700B3] text-white flex items-center justify-center shadow-md shadow-[#6200EE]/30 shrink-0">
+              <Mail className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base sm:text-lg font-black text-[#212121] dark:text-[#F5F5F5]">
+                  Newsletter & Récapitulatif Hebdomadaire
+                </h2>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#00897B]/10 text-[#00897B] dark:text-[#03DAC5] text-[10px] font-extrabold uppercase tracking-wider border border-[#00897B]/20">
+                  Automatique & Manuel
+                </span>
+              </div>
+              <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-0.5">
+                Envoyé à <strong>absolument tout le monde</strong> (tous les utilisateurs enregistrés, y compris l&apos;administrateur).
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleEnvoyerNewsletter}
+            disabled={envoiNewsletterEnCours}
+            className="px-5 py-3 rounded-full bg-gradient-to-r from-[#6200EE] to-[#00897B] hover:opacity-95 text-white font-extrabold text-xs shadow-md shadow-[#6200EE]/25 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 whitespace-nowrap self-start sm:self-auto"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>{envoiNewsletterEnCours ? 'Diffusion en cours…' : 'Envoyer la Newsletter à Tout le Monde'}</span>
+          </button>
+        </div>
+
+        {resultatNewsletter && (
+          <div
+            className={`p-4 rounded-2xl flex items-start gap-3 text-xs font-semibold animate-fadeIn ${
+              resultatNewsletter.succes
+                ? 'bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#03DAC5]/30'
+                : 'bg-[#E53935]/15 text-[#E53935] border border-[#E53935]/30'
+            }`}
+          >
+            {resultatNewsletter.succes ? (
+              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+            ) : (
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            )}
+            <p>{resultatNewsletter.message}</p>
           </div>
         )}
       </div>

@@ -510,6 +510,7 @@ export type Database = {
           relances_desactivees?: boolean
           role: string
           streak_days: number | null
+          max_streak?: number | null
           stripe_customer_id: string | null
           stripe_subscription_id: string | null
           subscription_currency: string | null
@@ -549,6 +550,7 @@ export type Database = {
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
+          max_streak?: number | null
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
           subscription_currency?: string | null
@@ -588,6 +590,7 @@ export type Database = {
           relances_desactivees?: boolean
           role?: string
           streak_days?: number | null
+          max_streak?: number | null
           stripe_customer_id?: string | null
           stripe_subscription_id?: string | null
           subscription_currency?: string | null

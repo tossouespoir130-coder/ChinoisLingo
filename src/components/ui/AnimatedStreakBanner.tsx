@@ -20,66 +20,69 @@ export function AnimatedStreakBanner() {
   const { profile } = useAuth();
   const [animated, setAnimated] = useState(false);
 
-  // Real user streak and true record (never simulated)
-  const realStreak = profile?.streak_days || 1;
-  const bestStreak = Math.max(realStreak, (profile as any)?.longest_streak || realStreak);
+    // Real user streak and true record (never simulated)
+    const realStreak = profile?.streak_days || 1;
+    const bestStreak = Math.max(realStreak, profile?.max_streak || (profile as any)?.longest_streak || realStreak);
 
-  // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
-  const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
-  const todayDayIndex = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
+    // Day of week calculation (1 = Lun, 2 = Mar, ..., 6 = Sam, 7 = Dim)
+    const currentDayOfWeek = new Date().getDay(); // 0 is Dim, 1 is Lun...
+    const todayDayIndex = currentDayOfWeek === 0 ? 7 : currentDayOfWeek;
 
-  // Real active days of the streak during current week (e.g. if today is Samedi (6) and streak is 2 => Ven (5) & Sam (6) are active)
-  const startActiveIndex = Math.max(1, todayDayIndex - realStreak + 1);
-  const isDayInActiveStreak = (dayNum: number) => {
-    return dayNum >= startActiveIndex && dayNum <= todayDayIndex;
-  };
+    // Real active days of the streak during current week (e.g. if today is Samedi (6) and streak is 2 => Ven (5) & Sam (6) are active)
+    const startActiveIndex = Math.max(1, todayDayIndex - realStreak + 1);
+    const isDayInActiveStreak = (dayNum: number) => {
+      return dayNum >= startActiveIndex && dayNum <= todayDayIndex;
+    };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimated(true);
-    }, 200);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setAnimated(true);
+      }, 200);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }, []);
 
-  const triggerConfetti = () => {
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      origin: { y: 0.75 },
-      colors: ['#FFC107', '#FF3D00', '#6200EE', '#03DAC5'],
-    });
-  };
+    const triggerConfetti = () => {
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.75 },
+        colors: ['#FFC107', '#FF3D00', '#6200EE', '#03DAC5'],
+      });
+    };
 
-  return (
-    <div className="nixtio-card p-4 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-4 min-w-0 overflow-hidden relative">
-      
-      {/* Left: Interactive Flame with Vivid Fire Burning Animation */}
-      <div className="flex items-center gap-3.5 min-w-0">
-        <button
-          onClick={triggerConfetti}
-          type="button"
-          className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white flex items-center justify-center shadow-lg shadow-[#FF9800]/40 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 btn-press relative overflow-hidden cursor-pointer"
-          title="Cliquez pour célébrer votre série !"
-        >
-          <Flame className="w-6 h-6 fill-[#FFE082] text-[#FF3D00] flame-burn-vivid" />
-        </button>
+    return (
+      <div className="nixtio-card p-4 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs flex flex-col lg:flex-row lg:items-center justify-between gap-4 min-w-0 overflow-hidden relative">
+        
+        {/* Left: Interactive Flame with Vivid Fire Burning Animation */}
+        <div className="flex items-center gap-3.5 min-w-0">
+          <button
+            onClick={triggerConfetti}
+            type="button"
+            className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white flex items-center justify-center shadow-lg shadow-[#FF9800]/40 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 btn-press relative overflow-hidden cursor-pointer"
+            title="Cliquez pour célébrer votre série !"
+          >
+            <Flame className="w-6 h-6 fill-[#FFE082] text-[#FF3D00] flame-burn-vivid" />
+          </button>
 
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-            <span className="font-display font-black text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5] whitespace-nowrap tracking-tight">
-              Série de <AnimatedCounter value={realStreak} duration={380} /> {realStreak > 1 ? 'jours' : 'jour'}
-            </span>
-            <span className="text-[#E0E0E0] dark:text-[#333333] hidden sm:inline">•</span>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] font-bold text-xs shrink-0">
-              <Trophy className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
-              <span>
-                Record : <AnimatedCounter value={bestStreak} duration={380} /> j
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              <span className="font-display font-black text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5] whitespace-nowrap tracking-tight">
+                Série de <AnimatedCounter value={realStreak} duration={380} /> {realStreak > 1 ? 'jours' : 'jour'}{' '}
+                <span className="text-[#757575] dark:text-[#A0A0A0] text-xs sm:text-sm font-semibold tracking-normal">
+                  (Record : <AnimatedCounter value={bestStreak} duration={380} /> {bestStreak > 1 ? 'jours' : 'jour'})
+                </span>
               </span>
+              <span className="text-[#E0E0E0] dark:text-[#333333] hidden sm:inline">•</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] font-bold text-xs shrink-0">
+                <Trophy className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
+                <span>
+                  Record : <AnimatedCounter value={bestStreak} duration={380} /> j
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
       {/* Right: Modern Streak Days Track with Real Active Days Lighting & Flame Crescendo */}
       <div className="w-full lg:w-96 bg-[#FAFAFA] dark:bg-[#181818] p-3 sm:p-3.5 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xs flex flex-col justify-center gap-2">
