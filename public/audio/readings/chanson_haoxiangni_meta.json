@@ -1,0 +1,454 @@
+{
+  "contentId": "chanson_haoxiangni",
+  "fullAudioUrl": "/audio/readings/chanson_haoxiangni.mp3",
+  "sentences": [
+    {
+      "sentenceId": "sn_1",
+      "startMs": 0,
+      "endMs": 2430,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_1.mp3"
+    },
+    {
+      "sentenceId": "sn_2",
+      "startMs": 2780,
+      "endMs": 4660,
+      "durationMs": 1880,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_2.mp3"
+    },
+    {
+      "sentenceId": "sn_3",
+      "startMs": 5010,
+      "endMs": 7700,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_3.mp3"
+    },
+    {
+      "sentenceId": "sn_4",
+      "startMs": 8050,
+      "endMs": 9850,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_4.mp3"
+    },
+    {
+      "sentenceId": "sn_5",
+      "startMs": 10200,
+      "endMs": 12240,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_5.mp3"
+    },
+    {
+      "sentenceId": "sn_6",
+      "startMs": 12590,
+      "endMs": 15020,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_6.mp3"
+    },
+    {
+      "sentenceId": "sn_7",
+      "startMs": 15370,
+      "endMs": 17410,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_7.mp3"
+    },
+    {
+      "sentenceId": "sn_8",
+      "startMs": 17760,
+      "endMs": 20350,
+      "durationMs": 2590,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_8.mp3"
+    },
+    {
+      "sentenceId": "sn_9",
+      "startMs": 20700,
+      "endMs": 22970,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_9.mp3"
+    },
+    {
+      "sentenceId": "sn_10",
+      "startMs": 23320,
+      "endMs": 24230,
+      "durationMs": 910,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_10.mp3"
+    },
+    {
+      "sentenceId": "sn_11",
+      "startMs": 24580,
+      "endMs": 26070,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_11.mp3"
+    },
+    {
+      "sentenceId": "sn_12",
+      "startMs": 26420,
+      "endMs": 27490,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_12.mp3"
+    },
+    {
+      "sentenceId": "sn_13",
+      "startMs": 27840,
+      "endMs": 30110,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_13.mp3"
+    },
+    {
+      "sentenceId": "sn_14",
+      "startMs": 30460,
+      "endMs": 32650,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_14.mp3"
+    },
+    {
+      "sentenceId": "sn_15",
+      "startMs": 33000,
+      "endMs": 34410,
+      "durationMs": 1410,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_15.mp3"
+    },
+    {
+      "sentenceId": "sn_16",
+      "startMs": 34760,
+      "endMs": 36410,
+      "durationMs": 1650,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_16.mp3"
+    },
+    {
+      "sentenceId": "sn_17",
+      "startMs": 36760,
+      "endMs": 37910,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_17.mp3"
+    },
+    {
+      "sentenceId": "sn_18",
+      "startMs": 38260,
+      "endMs": 39490,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_18.mp3"
+    },
+    {
+      "sentenceId": "sn_19",
+      "startMs": 39840,
+      "endMs": 40990,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_19.mp3"
+    },
+    {
+      "sentenceId": "sn_20",
+      "startMs": 41340,
+      "endMs": 42490,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_20.mp3"
+    },
+    {
+      "sentenceId": "sn_21",
+      "startMs": 42840,
+      "endMs": 45190,
+      "durationMs": 2350,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_21.mp3"
+    },
+    {
+      "sentenceId": "sn_22",
+      "startMs": 45540,
+      "endMs": 48390,
+      "durationMs": 2850,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_22.mp3"
+    },
+    {
+      "sentenceId": "sn_23",
+      "startMs": 48740,
+      "endMs": 49650,
+      "durationMs": 910,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_23.mp3"
+    },
+    {
+      "sentenceId": "sn_24",
+      "startMs": 50000,
+      "endMs": 51490,
+      "durationMs": 1490,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_24.mp3"
+    },
+    {
+      "sentenceId": "sn_25",
+      "startMs": 51840,
+      "endMs": 52520,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_25.mp3"
+    },
+    {
+      "sentenceId": "sn_26",
+      "startMs": 52870,
+      "endMs": 54020,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_26.mp3"
+    },
+    {
+      "sentenceId": "sn_27",
+      "startMs": 54370,
+      "endMs": 57450,
+      "durationMs": 3080,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_27.mp3"
+    },
+    {
+      "sentenceId": "sn_28",
+      "startMs": 57800,
+      "endMs": 60650,
+      "durationMs": 2850,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_28.mp3"
+    },
+    {
+      "sentenceId": "sn_29",
+      "startMs": 61000,
+      "endMs": 63350,
+      "durationMs": 2350,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_29.mp3"
+    },
+    {
+      "sentenceId": "sn_30",
+      "startMs": 63700,
+      "endMs": 65110,
+      "durationMs": 1410,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_30.mp3"
+    },
+    {
+      "sentenceId": "sn_31",
+      "startMs": 65460,
+      "endMs": 66870,
+      "durationMs": 1410,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_31.mp3"
+    },
+    {
+      "sentenceId": "sn_32",
+      "startMs": 67220,
+      "endMs": 68290,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_32.mp3"
+    },
+    {
+      "sentenceId": "sn_33",
+      "startMs": 68640,
+      "endMs": 70680,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_33.mp3"
+    },
+    {
+      "sentenceId": "sn_34",
+      "startMs": 71030,
+      "endMs": 73540,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_34.mp3"
+    },
+    {
+      "sentenceId": "sn_35",
+      "startMs": 73890,
+      "endMs": 75460,
+      "durationMs": 1570,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_35.mp3"
+    },
+    {
+      "sentenceId": "sn_36",
+      "startMs": 75810,
+      "endMs": 77530,
+      "durationMs": 1720,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_36.mp3"
+    },
+    {
+      "sentenceId": "sn_37",
+      "startMs": 77880,
+      "endMs": 79190,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_37.mp3"
+    },
+    {
+      "sentenceId": "sn_38",
+      "startMs": 79540,
+      "endMs": 80850,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_38.mp3"
+    },
+    {
+      "sentenceId": "sn_39",
+      "startMs": 81200,
+      "endMs": 82430,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_39.mp3"
+    },
+    {
+      "sentenceId": "sn_40",
+      "startMs": 82780,
+      "endMs": 83850,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_40.mp3"
+    },
+    {
+      "sentenceId": "sn_41",
+      "startMs": 84200,
+      "endMs": 86390,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_41.mp3"
+    },
+    {
+      "sentenceId": "sn_42",
+      "startMs": 86740,
+      "endMs": 89170,
+      "durationMs": 2430,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_42.mp3"
+    },
+    {
+      "sentenceId": "sn_43",
+      "startMs": 89520,
+      "endMs": 90830,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_43.mp3"
+    },
+    {
+      "sentenceId": "sn_44",
+      "startMs": 91180,
+      "endMs": 92330,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_44.mp3"
+    },
+    {
+      "sentenceId": "sn_45",
+      "startMs": 92680,
+      "endMs": 93750,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_45.mp3"
+    },
+    {
+      "sentenceId": "sn_46",
+      "startMs": 94100,
+      "endMs": 95250,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_46.mp3"
+    },
+    {
+      "sentenceId": "sn_47",
+      "startMs": 95600,
+      "endMs": 97790,
+      "durationMs": 2190,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_47.mp3"
+    },
+    {
+      "sentenceId": "sn_48",
+      "startMs": 98140,
+      "endMs": 100830,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_48.mp3"
+    },
+    {
+      "sentenceId": "sn_49",
+      "startMs": 101180,
+      "endMs": 102410,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_49.mp3"
+    },
+    {
+      "sentenceId": "sn_50",
+      "startMs": 102760,
+      "endMs": 103440,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_50.mp3"
+    },
+    {
+      "sentenceId": "sn_51",
+      "startMs": 103790,
+      "endMs": 105020,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_51.mp3"
+    },
+    {
+      "sentenceId": "sn_52",
+      "startMs": 105370,
+      "endMs": 106600,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_52.mp3"
+    },
+    {
+      "sentenceId": "sn_53",
+      "startMs": 106950,
+      "endMs": 108670,
+      "durationMs": 1720,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_53.mp3"
+    },
+    {
+      "sentenceId": "sn_54",
+      "startMs": 109020,
+      "endMs": 111530,
+      "durationMs": 2510,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_54.mp3"
+    },
+    {
+      "sentenceId": "sn_55",
+      "startMs": 111880,
+      "endMs": 113030,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_55.mp3"
+    },
+    {
+      "sentenceId": "sn_56",
+      "startMs": 113380,
+      "endMs": 114610,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_56.mp3"
+    },
+    {
+      "sentenceId": "sn_57",
+      "startMs": 114960,
+      "endMs": 115640,
+      "durationMs": 680,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_57.mp3"
+    },
+    {
+      "sentenceId": "sn_58",
+      "startMs": 115990,
+      "endMs": 117140,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_58.mp3"
+    },
+    {
+      "sentenceId": "sn_59",
+      "startMs": 117490,
+      "endMs": 120180,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_59.mp3"
+    },
+    {
+      "sentenceId": "sn_60",
+      "startMs": 120530,
+      "endMs": 122800,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_60.mp3"
+    },
+    {
+      "sentenceId": "sn_61",
+      "startMs": 123150,
+      "endMs": 124380,
+      "durationMs": 1230,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_61.mp3"
+    },
+    {
+      "sentenceId": "sn_62",
+      "startMs": 124730,
+      "endMs": 125640,
+      "durationMs": 910,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_62.mp3"
+    },
+    {
+      "sentenceId": "sn_63",
+      "startMs": 125990,
+      "endMs": 127060,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_63.mp3"
+    },
+    {
+      "sentenceId": "sn_64",
+      "startMs": 127410,
+      "endMs": 128720,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/chanson_haoxiangni_sn_64.mp3"
+    }
+  ]
+}

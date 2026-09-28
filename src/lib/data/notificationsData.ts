@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_chanson_haoxiangni',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Nouvelle chanson : Tu Me Manques Tellement\n好想你 (HSK 2) 🎵',
+    message: 'Découvre le tube pop ultra-joyeux et entraînant de Joyce Chu (四叶草) pour exprimer tes sentiments et enrichir ton vocabulaire avec fraîcheur !',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=chansons&id=chanson_haoxiangni',
+    actionLabel: 'Écouter la chanson'
+  },
+  {
     id: 'notif_chanson_shaonian',
     source: 'founder',
     founderName: 'Espoir Chinois',

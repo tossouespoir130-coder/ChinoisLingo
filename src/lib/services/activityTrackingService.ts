@@ -107,6 +107,7 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
     chanson_pengyou: { title: 'Amis pour la Vie (朋友)', level: 'HSK 2', duration: '4 min 15', youtubeId: '6lbPgfKK7m4' },
     chanson_wings: { title: 'Des Ailes Invisibles (隐形的翅膀)', level: 'HSK 2', duration: '3 min 50', youtubeId: 'be2wvNFTLMc' },
     chanson_nanshuo: { title: 'Difficile de dire au Revoir (难说再见)', level: 'HSK 2', duration: '4 min 20', youtubeId: '2cKrIXnRDG8' },
+    chanson_haoxiangni: { title: 'Tu Me Manques Tellement (好想你)', level: 'HSK 2', duration: '3 min 42', youtubeId: 'fdQgPu3iUYk' },
     chanson_star: { title: 'L’Étoile la Plus Brillante (夜空中最亮的星)', level: 'HSK 3', duration: '4 min 12', youtubeId: '-uzuhqQIaTM' },
     chanson_naying: { title: 'Silence (默)', level: 'HSK 3', duration: '5 min 25', youtubeId: 'XJVuKRMogfE' },
     chanson_tonghua: { title: 'Conte de Fées (童话)', level: 'HSK 3', duration: '4 min 05', youtubeId: 'IBTmypxD2mU' },
