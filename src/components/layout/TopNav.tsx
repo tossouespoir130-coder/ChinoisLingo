@@ -137,13 +137,10 @@ export function TopNav() {
           {(profile?.streak_days ?? 0) > 0 && (
             <div
               className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-xs font-extrabold shadow-2xs"
-              title={`Série en cours : ${profile?.streak_days} jour${(profile?.streak_days ?? 0) > 1 ? 's' : ''} • Record : ${Math.max(profile?.streak_days ?? 1, profile?.max_streak || (profile as any)?.longest_streak || profile?.streak_days || 1)} jour${Math.max(profile?.streak_days ?? 1, profile?.max_streak || (profile as any)?.longest_streak || profile?.streak_days || 1) > 1 ? 's' : ''}`}
+              title={`Série en cours : ${profile?.streak_days} jour${(profile?.streak_days ?? 0) > 1 ? 's' : ''}${profile?.max_streak ? ` • Record : ${profile.max_streak} jour${profile.max_streak > 1 ? 's' : ''}` : ''}`}
             >
               <Flame className="w-4 h-4 fill-amber-500 text-amber-500 animate-bounce" />
               <span className="font-mono">{profile?.streak_days} j</span>
-              <span className="text-amber-600/75 dark:text-amber-400/75 font-medium text-[11px]">
-                (Record : {Math.max(profile?.streak_days ?? 1, profile?.max_streak || (profile as any)?.longest_streak || profile?.streak_days || 1)} j)
-              </span>
             </div>
           )}
 

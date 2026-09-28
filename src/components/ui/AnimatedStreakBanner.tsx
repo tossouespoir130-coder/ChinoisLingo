@@ -68,18 +68,19 @@ export function AnimatedStreakBanner() {
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
               <span className="font-display font-black text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5] whitespace-nowrap tracking-tight">
-                Série de <AnimatedCounter value={realStreak} duration={380} /> {realStreak > 1 ? 'jours' : 'jour'}{' '}
-                <span className="text-[#757575] dark:text-[#A0A0A0] text-xs sm:text-sm font-semibold tracking-normal">
-                  (Record : <AnimatedCounter value={bestStreak} duration={380} /> {bestStreak > 1 ? 'jours' : 'jour'})
-                </span>
+                Série de <AnimatedCounter value={realStreak} duration={380} /> {realStreak > 1 ? 'jours' : 'jour'}
               </span>
-              <span className="text-[#E0E0E0] dark:text-[#333333] hidden sm:inline">•</span>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] font-bold text-xs shrink-0">
-                <Trophy className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
-                <span>
-                  Record : <AnimatedCounter value={bestStreak} duration={380} /> j
-                </span>
-              </div>
+              {bestStreak > realStreak && (
+                <>
+                  <span className="text-[#E0E0E0] dark:text-[#333333] hidden sm:inline">•</span>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#6200EE]/10 dark:bg-[#6200EE]/20 text-[#6200EE] dark:text-[#BB86FC] font-bold text-xs shrink-0">
+                    <Trophy className="w-3 h-3 text-[#6200EE] dark:text-[#BB86FC]" />
+                    <span>
+                      Record : <AnimatedCounter value={bestStreak} duration={380} /> j
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -57,7 +57,12 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
 
   if (!profile) return null;
 
-  const today = new Date().toISOString().split('T')[0];
+  // Date locale calendaire de l'utilisateur pour éviter les coupures de minuit UTC
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const today = `${year}-${month}-${day}`;
   const lastActive = profile.last_active_date ? String(profile.last_active_date).split('T')[0] : null;
   let newStreak = profile.streak_days || 1;
 
