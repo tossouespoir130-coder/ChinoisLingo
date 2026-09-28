@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_chanson_shaonian',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'video',
+    title: 'Nouvelle chanson : L’Éternel Adolescent\n少年 (HSK 3) 🎵',
+    message: 'Découvre l’hymne pop inspirant et énergique de Meng Ran pour garder ton âme de jeunesse, ta fougue et persévérer dans ton apprentissage.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=chansons&id=chanson_shaonian',
+    actionLabel: 'Écouter la chanson'
+  },
+  {
     id: 'notif_chanson_women_buyiyang',
     source: 'founder',
     founderName: 'Espoir Chinois',

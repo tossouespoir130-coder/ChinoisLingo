@@ -114,6 +114,7 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
     chanson_wode_geshengli: { title: 'Dans Mon Chant (我的歌声里)', level: 'HSK 3', duration: '3 min 40', youtubeId: 'w0dMz8RBG7g' },
     chanson_shinian: { title: 'Dix Ans (十年)', level: 'HSK 3', duration: '3 min 25', youtubeId: 'ZUc6mnHGzIM' },
     chanson_women_buyiyang: { title: 'Nous Sommes Différents (我们不一样)', level: 'HSK 3', duration: '4 min 30', youtubeId: 'Fp-8YM36CVA' },
+    chanson_shaonian: { title: 'L’Éternel Adolescent (少年)', level: 'HSK 3', duration: '3 min 55', youtubeId: 'efKva-XmV48' },
     chanson_jinshengyuan: { title: 'Le Destin de cette Vie (今生缘)', level: 'HSK 4', duration: '4 min 10', youtubeId: 'uPfhib9zHtc' },
     chanson_xianchuzhendeni: { title: 'Montre qui tu es vraiment (现出真的你)', level: 'HSK 5', duration: '4 min 39', youtubeId: 'ISK2emgbm4c' },
     chanson_yeguang: { title: 'Lueur Nocturne (夜光)', level: 'HSK 5', duration: '4 min 30', youtubeId: '5JXOLr-32Wc' },
