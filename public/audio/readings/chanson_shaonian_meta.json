@@ -1,420 +1,426 @@
 {
   "contentId": "chanson_shaonian",
   "fullAudioUrl": "/audio/readings/chanson_shaonian.mp3",
-  "totalDurationMs": 119010,
   "sentences": [
     {
       "sentenceId": "sn_1",
       "startMs": 0,
-      "endMs": 1613,
-      "durationMs": 1613,
+      "endMs": 1070,
+      "durationMs": 1070,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_1.mp3"
     },
     {
       "sentenceId": "sn_2",
-      "startMs": 1413,
-      "endMs": 3540,
-      "durationMs": 2127,
+      "startMs": 1420,
+      "endMs": 2830,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_2.mp3"
     },
     {
       "sentenceId": "sn_3",
-      "startMs": 3340,
-      "endMs": 4411,
-      "durationMs": 1071,
+      "startMs": 3180,
+      "endMs": 4170,
+      "durationMs": 990,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_3.mp3"
     },
     {
       "sentenceId": "sn_4",
-      "startMs": 4211,
-      "endMs": 6698,
-      "durationMs": 2487,
+      "startMs": 4520,
+      "endMs": 6010,
+      "durationMs": 1490,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_4.mp3"
     },
     {
       "sentenceId": "sn_5",
-      "startMs": 6498,
-      "endMs": 7522,
-      "durationMs": 1024,
+      "startMs": 6360,
+      "endMs": 7040,
+      "durationMs": 680,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_5.mp3"
     },
     {
       "sentenceId": "sn_6",
-      "startMs": 7322,
-      "endMs": 9113,
-      "durationMs": 1791,
+      "startMs": 7390,
+      "endMs": 8960,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_6.mp3"
     },
     {
       "sentenceId": "sn_7",
-      "startMs": 8913,
-      "endMs": 9798,
-      "durationMs": 885,
+      "startMs": 9310,
+      "endMs": 12080,
+      "durationMs": 2770,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_7.mp3"
     },
     {
       "sentenceId": "sn_8",
-      "startMs": 9598,
-      "endMs": 11238,
-      "durationMs": 1640,
+      "startMs": 12430,
+      "endMs": 13580,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_8.mp3"
     },
     {
       "sentenceId": "sn_9",
-      "startMs": 11038,
-      "endMs": 13455,
-      "durationMs": 2417,
+      "startMs": 13930,
+      "endMs": 15810,
+      "durationMs": 1880,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_9.mp3"
     },
     {
       "sentenceId": "sn_10",
-      "startMs": 13255,
-      "endMs": 16625,
-      "durationMs": 3370,
+      "startMs": 16160,
+      "endMs": 18510,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_10.mp3"
     },
     {
       "sentenceId": "sn_11",
-      "startMs": 16425,
-      "endMs": 19817,
-      "durationMs": 3392,
+      "startMs": 18860,
+      "endMs": 21630,
+      "durationMs": 2770,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_11.mp3"
     },
     {
       "sentenceId": "sn_12",
-      "startMs": 19617,
-      "endMs": 22000,
-      "durationMs": 2383,
+      "startMs": 21980,
+      "endMs": 23860,
+      "durationMs": 1880,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_12.mp3"
     },
     {
       "sentenceId": "sn_13",
-      "startMs": 21800,
-      "endMs": 23649,
-      "durationMs": 1849,
+      "startMs": 24210,
+      "endMs": 25860,
+      "durationMs": 1650,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_13.mp3"
     },
     {
       "sentenceId": "sn_14",
-      "startMs": 23449,
-      "endMs": 25483,
-      "durationMs": 2034,
+      "startMs": 26210,
+      "endMs": 27520,
+      "durationMs": 1310,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_14.mp3"
     },
     {
       "sentenceId": "sn_15",
-      "startMs": 25283,
-      "endMs": 27584,
-      "durationMs": 2301,
+      "startMs": 27870,
+      "endMs": 29590,
+      "durationMs": 1720,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_15.mp3"
     },
     {
       "sentenceId": "sn_16",
-      "startMs": 27384,
-      "endMs": 30115,
-      "durationMs": 2731,
+      "startMs": 29940,
+      "endMs": 32450,
+      "durationMs": 2510,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_16.mp3"
     },
     {
       "sentenceId": "sn_17",
-      "startMs": 29915,
-      "endMs": 32054,
-      "durationMs": 2139,
+      "startMs": 32800,
+      "endMs": 34210,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_17.mp3"
     },
     {
       "sentenceId": "sn_18",
-      "startMs": 31854,
-      "endMs": 33285,
-      "durationMs": 1431,
+      "startMs": 34560,
+      "endMs": 35870,
+      "durationMs": 1310,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_18.mp3"
     },
     {
       "sentenceId": "sn_19",
-      "startMs": 33085,
-      "endMs": 35757,
-      "durationMs": 2672,
+      "startMs": 36220,
+      "endMs": 38650,
+      "durationMs": 2430,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_19.mp3"
     },
     {
       "sentenceId": "sn_20",
-      "startMs": 35557,
-      "endMs": 37917,
-      "durationMs": 2360,
+      "startMs": 39000,
+      "endMs": 41190,
+      "durationMs": 2190,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_20.mp3"
     },
     {
       "sentenceId": "sn_21",
-      "startMs": 37717,
-      "endMs": 39206,
-      "durationMs": 1489,
+      "startMs": 41540,
+      "endMs": 42690,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_21.mp3"
     },
     {
       "sentenceId": "sn_22",
-      "startMs": 39006,
-      "endMs": 41098,
-      "durationMs": 2092,
+      "startMs": 43040,
+      "endMs": 44450,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_22.mp3"
     },
     {
       "sentenceId": "sn_23",
-      "startMs": 40898,
-      "endMs": 42027,
-      "durationMs": 1129,
+      "startMs": 44800,
+      "endMs": 46030,
+      "durationMs": 1230,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_23.mp3"
     },
     {
       "sentenceId": "sn_24",
-      "startMs": 41827,
-      "endMs": 44082,
-      "durationMs": 2255,
+      "startMs": 46380,
+      "endMs": 47950,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_24.mp3"
     },
     {
       "sentenceId": "sn_25",
-      "startMs": 43882,
-      "endMs": 44976,
-      "durationMs": 1094,
+      "startMs": 48300,
+      "endMs": 49370,
+      "durationMs": 1070,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_25.mp3"
     },
     {
       "sentenceId": "sn_26",
-      "startMs": 44776,
-      "endMs": 46090,
-      "durationMs": 1314,
+      "startMs": 49720,
+      "endMs": 50870,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_26.mp3"
     },
     {
       "sentenceId": "sn_27",
-      "startMs": 45890,
-      "endMs": 46775,
-      "durationMs": 885,
+      "startMs": 51220,
+      "endMs": 53570,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_27.mp3"
     },
     {
       "sentenceId": "sn_28",
-      "startMs": 46575,
-      "endMs": 48447,
-      "durationMs": 1872,
+      "startMs": 53920,
+      "endMs": 55070,
+      "durationMs": 1150,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_28.mp3"
     },
     {
       "sentenceId": "sn_29",
-      "startMs": 48247,
-      "endMs": 50432,
-      "durationMs": 2185,
+      "startMs": 55420,
+      "endMs": 57380,
+      "durationMs": 1960,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_29.mp3"
     },
     {
       "sentenceId": "sn_30",
-      "startMs": 50232,
-      "endMs": 53172,
-      "durationMs": 2940,
+      "startMs": 57730,
+      "endMs": 60160,
+      "durationMs": 2430,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_30.mp3"
     },
     {
       "sentenceId": "sn_31",
-      "startMs": 52972,
-      "endMs": 56377,
-      "durationMs": 3405,
+      "startMs": 60510,
+      "endMs": 63590,
+      "durationMs": 3080,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_31.mp3"
     },
     {
       "sentenceId": "sn_32",
-      "startMs": 56177,
-      "endMs": 58118,
-      "durationMs": 1941,
+      "startMs": 63940,
+      "endMs": 65900,
+      "durationMs": 1960,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_32.mp3"
     },
     {
       "sentenceId": "sn_33",
-      "startMs": 57918,
-      "endMs": 60556,
-      "durationMs": 2638,
+      "startMs": 66250,
+      "endMs": 67970,
+      "durationMs": 1720,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_33.mp3"
     },
     {
       "sentenceId": "sn_34",
-      "startMs": 60356,
-      "endMs": 61775,
-      "durationMs": 1419,
+      "startMs": 68320,
+      "endMs": 69550,
+      "durationMs": 1230,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_34.mp3"
     },
     {
       "sentenceId": "sn_35",
-      "startMs": 61575,
-      "endMs": 63853,
-      "durationMs": 2278,
+      "startMs": 69900,
+      "endMs": 71550,
+      "durationMs": 1650,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_35.mp3"
     },
     {
       "sentenceId": "sn_36",
-      "startMs": 63653,
-      "endMs": 66326,
-      "durationMs": 2673,
+      "startMs": 71900,
+      "endMs": 74490,
+      "durationMs": 2590,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_36.mp3"
     },
     {
       "sentenceId": "sn_37",
-      "startMs": 66126,
-      "endMs": 67487,
-      "durationMs": 1361,
+      "startMs": 74840,
+      "endMs": 76070,
+      "durationMs": 1230,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_37.mp3"
     },
     {
       "sentenceId": "sn_38",
-      "startMs": 67287,
-      "endMs": 68706,
-      "durationMs": 1419,
+      "startMs": 76420,
+      "endMs": 77990,
+      "durationMs": 1570,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_38.mp3"
     },
     {
       "sentenceId": "sn_39",
-      "startMs": 68506,
-      "endMs": 71504,
-      "durationMs": 2998,
+      "startMs": 78340,
+      "endMs": 80850,
+      "durationMs": 2510,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_39.mp3"
     },
     {
       "sentenceId": "sn_40",
-      "startMs": 71304,
-      "endMs": 73629,
-      "durationMs": 2325,
+      "startMs": 81200,
+      "endMs": 83470,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_40.mp3"
     },
     {
       "sentenceId": "sn_41",
-      "startMs": 73429,
-      "endMs": 77077,
-      "durationMs": 3648,
+      "startMs": 83820,
+      "endMs": 87220,
+      "durationMs": 3400,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_41.mp3"
     },
     {
       "sentenceId": "sn_42",
-      "startMs": 76877,
-      "endMs": 80095,
-      "durationMs": 3218,
+      "startMs": 87570,
+      "endMs": 90340,
+      "durationMs": 2770,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_42.mp3"
     },
     {
       "sentenceId": "sn_43",
-      "startMs": 79895,
-      "endMs": 82800,
-      "durationMs": 2905,
+      "startMs": 90690,
+      "endMs": 92960,
+      "durationMs": 2270,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_43.mp3"
     },
     {
       "sentenceId": "sn_44",
-      "startMs": 82600,
-      "endMs": 85250,
-      "durationMs": 2650,
+      "startMs": 93310,
+      "endMs": 96310,
+      "durationMs": 3000,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_44.mp3"
     },
     {
       "sentenceId": "sn_45",
-      "startMs": 85050,
-      "endMs": 88919,
-      "durationMs": 3869,
+      "startMs": 96660,
+      "endMs": 99250,
+      "durationMs": 2590,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_45.mp3"
     },
     {
       "sentenceId": "sn_46",
-      "startMs": 88719,
-      "endMs": 91485,
-      "durationMs": 2766,
+      "startMs": 99600,
+      "endMs": 102290,
+      "durationMs": 2690,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_46.mp3"
     },
     {
       "sentenceId": "sn_47",
-      "startMs": 91285,
-      "endMs": 94666,
-      "durationMs": 3381,
+      "startMs": 102640,
+      "endMs": 105070,
+      "durationMs": 2430,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_47.mp3"
     },
     {
       "sentenceId": "sn_48",
-      "startMs": 94466,
-      "endMs": 97998,
-      "durationMs": 3532,
+      "startMs": 105420,
+      "endMs": 108190,
+      "durationMs": 2770,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_48.mp3"
     },
     {
       "sentenceId": "sn_49",
-      "startMs": 97798,
-      "endMs": 100099,
-      "durationMs": 2301,
+      "startMs": 108540,
+      "endMs": 110260,
+      "durationMs": 1720,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_49.mp3"
     },
     {
       "sentenceId": "sn_50",
-      "startMs": 99899,
-      "endMs": 101318,
-      "durationMs": 1419,
+      "startMs": 110610,
+      "endMs": 112260,
+      "durationMs": 1650,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_50.mp3"
     },
     {
       "sentenceId": "sn_51",
-      "startMs": 101118,
-      "endMs": 103397,
-      "durationMs": 2279,
+      "startMs": 112610,
+      "endMs": 114730,
+      "durationMs": 2120,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_51.mp3"
     },
     {
       "sentenceId": "sn_52",
-      "startMs": 103197,
-      "endMs": 105846,
-      "durationMs": 2649,
+      "startMs": 115080,
+      "endMs": 117200,
+      "durationMs": 2120,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_52.mp3"
     },
     {
       "sentenceId": "sn_53",
-      "startMs": 105646,
-      "endMs": 107007,
-      "durationMs": 1361,
+      "startMs": 117550,
+      "endMs": 118960,
+      "durationMs": 1410,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_53.mp3"
     },
     {
       "sentenceId": "sn_54",
-      "startMs": 106807,
-      "endMs": 108714,
-      "durationMs": 1907,
+      "startMs": 119310,
+      "endMs": 120800,
+      "durationMs": 1490,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_54.mp3"
     },
     {
       "sentenceId": "sn_55",
-      "startMs": 108514,
-      "endMs": 110990,
-      "durationMs": 2476,
+      "startMs": 121150,
+      "endMs": 123500,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_55.mp3"
     },
     {
       "sentenceId": "sn_56",
-      "startMs": 110790,
-      "endMs": 113115,
-      "durationMs": 2325,
+      "startMs": 123850,
+      "endMs": 126200,
+      "durationMs": 2350,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_56.mp3"
     },
     {
       "sentenceId": "sn_57",
-      "startMs": 112915,
-      "endMs": 115088,
-      "durationMs": 2173,
+      "startMs": 126550,
+      "endMs": 128740,
+      "durationMs": 2190,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_57.mp3"
     },
     {
       "sentenceId": "sn_58",
-      "startMs": 114888,
-      "endMs": 117074,
-      "durationMs": 2186,
+      "startMs": 129090,
+      "endMs": 131600,
+      "durationMs": 2510,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_58.mp3"
     },
     {
       "sentenceId": "sn_59",
-      "startMs": 116874,
-      "endMs": 119010,
-      "durationMs": 2136,
+      "startMs": 131950,
+      "endMs": 133910,
+      "durationMs": 1960,
       "audioUrl": "/audio/readings/chanson_shaonian_sn_59.mp3"
+    },
+    {
+      "sentenceId": "sn_60",
+      "startMs": 134260,
+      "endMs": 137260,
+      "durationMs": 3000,
+      "audioUrl": "/audio/readings/chanson_shaonian_sn_60.mp3"
     }
   ]
 }

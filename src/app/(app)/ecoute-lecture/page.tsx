@@ -5683,9 +5683,10 @@ export const readingCatalog: ReadingItem[] = [
       { id: 'sn_54', hanzi: '还是最初那张脸', pinyin: 'Háishi zuìchū nà zhāng liǎn', french: 'Porte en lui la pureté des origines' },
       { id: 'sn_55', hanzi: '面前再多艰险不退却', pinyin: 'Miànqián zài duō jiānxiǎn bú tuìquè', french: 'Aucun danger ne saurait me faire fléchir' },
       { id: 'sn_56', hanzi: 'Say never never give up, like a fighter', pinyin: 'Say never never give up, like a fighter', french: 'Garde courage et combats jusqu’au bout' },
-      { id: 'sn_57', section: 'Outro', hanzi: '我还是从前那个少年', pinyin: 'Wǒ háishi cóngqián nàge shàonián', french: 'Toujours ce jeune homme passionné' },
-      { id: 'sn_58', hanzi: '我还是眼前这个少年', pinyin: 'Wǒ háishi yǎnqián zhège shàonián', french: 'Toujours debout, le regard tourné vers l’horizon' },
-      { id: 'sn_59', hanzi: '我还是从前那个少年', pinyin: 'Wǒ háishi cóngqián nàge shàonián', french: 'Toujours animé par la même flamme' },
+      { id: 'sn_57', section: 'Outro', hanzi: '我还是从前那个少年 Miya', pinyin: 'Wǒ háishi cóngqián nàge shàonián Miya', french: 'Toujours ce jeune intrépide d’autrefois, Miya' },
+      { id: 'sn_58', hanzi: '我还是从前那个少年 Miya', pinyin: 'Wǒ háishi cóngqián nàge shàonián Miya', french: 'Toujours ce jeune intrépide d’autrefois, Miya' },
+      { id: 'sn_59', hanzi: '我还是眼前这个少年 Miya', pinyin: 'Wǒ háishi yǎnqián zhège shàonián Miya', french: 'Toujours ce jeune homme debout face au monde, Miya' },
+      { id: 'sn_60', hanzi: '我还是从前那个少年 Miya', pinyin: 'Wǒ háishi cóngqián nàge shàonián Miya', french: 'Toujours habité par la même fougue, Miya !' },
     ],
     vocabulary: [
       { hanzi: '少年', pinyin: 'shàonián', french: 'jeune homme, adolescent, jeunesse', role: 'Nom' },
