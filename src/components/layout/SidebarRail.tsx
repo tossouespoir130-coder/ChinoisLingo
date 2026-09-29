@@ -52,7 +52,10 @@ export function SidebarRail() {
         </Link>
 
         {/* Navigation Items */}
-        <nav className="flex flex-col items-center gap-3">
+        <nav 
+          suppressHydrationWarning
+          className="flex flex-col items-center gap-3"
+        >
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname.startsWith(item.href);
@@ -61,6 +64,7 @@ export function SidebarRail() {
               <Link
                 key={item.href}
                 href={item.href}
+                suppressHydrationWarning
                 className={`relative w-11 h-11 flex items-center justify-center rounded-2xl transition-all duration-200 group active:scale-90 ${
                   isActive
                     ? 'bg-[#6200EE] text-white shadow-sm shadow-[#6200EE]/30'

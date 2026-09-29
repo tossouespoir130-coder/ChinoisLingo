@@ -94,13 +94,17 @@ export function TopNav() {
         </div>
 
         {/* Desktop Only Centered Segmented Control (Hidden on iPad Pro & Mobile - xl breakpoint) */}
-        <nav className="hidden xl:flex items-center gap-1.5 p-1.5 rounded-full bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] backdrop-blur-md">
+        <nav 
+          suppressHydrationWarning
+          className="hidden xl:flex items-center gap-1.5 p-1.5 rounded-full bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] backdrop-blur-md"
+        >
           {topTabs.map((tab) => {
             const isActive = pathname.startsWith(tab.href);
             return (
               <Link
                 key={tab.href}
                 href={tab.href}
+                suppressHydrationWarning
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all btn-press ${
                   isActive
                     ? 'bg-[#6200EE] text-white shadow-xs'

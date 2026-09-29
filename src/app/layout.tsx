@@ -78,7 +78,10 @@ export default function RootLayout({
       className={`${outfit.variable} ${plusJakartaSans.variable} ${notoSansSC.variable} ${notoSans.variable} h-full notranslate`}
       suppressHydrationWarning
     >
-      <body className="font-sans antialiased min-h-screen text-slate-900 selection:bg-rose-200 selection:text-slate-900 notranslate">
+      <body 
+        suppressHydrationWarning
+        className="font-sans antialiased min-h-screen text-slate-900 selection:bg-rose-200 selection:text-slate-900 notranslate"
+      >
         <SimplifiedChineseGuard />
         <AuthProvider>{children}</AuthProvider>
       </body>

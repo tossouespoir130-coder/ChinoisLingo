@@ -24,7 +24,10 @@ export function MobileTabBar() {
 
   return (
     <div className="xl:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-[#181818]/95 backdrop-blur-xl border-t border-[#E0E0E0] dark:border-[#2D2D2D] shadow-2xl">
-      <nav className="w-full max-w-lg mx-auto px-1 sm:px-3 py-1 pb-[max(0.25rem,env(safe-area-inset-bottom))] flex items-center justify-between">
+      <nav 
+        suppressHydrationWarning
+        className="w-full max-w-lg mx-auto px-1 sm:px-3 py-1 pb-[max(0.25rem,env(safe-area-inset-bottom))] flex items-center justify-between"
+      >
         {mobileTabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = pathname.startsWith(tab.href);
@@ -33,6 +36,7 @@ export function MobileTabBar() {
             <Link
               key={tab.href}
               href={tab.href}
+              suppressHydrationWarning
               className={`flex-1 flex flex-col items-center justify-center gap-1 py-1 px-0.5 rounded-xl transition-all duration-200 active:scale-95 btn-press ${
                 isActive
                   ? 'text-[#6200EE] dark:text-[#BB86FC]'
