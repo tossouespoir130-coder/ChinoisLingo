@@ -2,32 +2,43 @@ import { NextResponse } from 'next/server';
 import { envoyerEmailBienvenue } from '@/lib/emails/emailBienvenue';
 import { createAdminClient, configurationAdminPrete } from '@/lib/supabase/admin';
 import { verifierRateLimit } from '@/lib/security/rateLimiter';
+import { utilisateurDeLaRequete } from '@/lib/payments/session-serveur';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-/** Au-delà, le compte n'est plus « tout juste créé » : pas d'e-mail de bienvenue. */
-const FENETRE_INSCRIPTION_MS = 30 * 60 * 1000;
+/**
+ * Au-delà, le compte n'est plus « tout juste activé » : pas d'e-mail de bienvenue.
+ * Mesurée depuis la CONFIRMATION de l'adresse, non depuis l'inscription :
+ * l'apprenant peut activer son compte plusieurs jours après s'être inscrit,
+ * alors qu'un compte actif depuis des semaines ne doit pas recevoir de
+ * bienvenue tardive à sa prochaine connexion.
+ */
+const FENETRE_ACTIVATION_MS = 72 * 60 * 60 * 1000;
 
 /**
- * POST /api/emails/bienvenue — corps : { email }
+ * POST /api/emails/bienvenue — en-tête `Authorization: Bearer <jeton>`
  *
- * Appelée juste après l'inscription, avant toute confirmation d'adresse :
- * aucune session n'existe encore. La route ne fait donc confiance qu'à la base :
- * - l'adresse doit correspondre à un profil créé il y a moins de 30 minutes ;
- * - ce profil ne doit jamais avoir reçu d'e-mail de bienvenue ;
- * - nom, profil et niveau sont lus dans ce profil, jamais dans la requête.
+ * Appelée à chaque ouverture de session (voir `demanderEmailBienvenue`).
+ * Une session n'existe que pour une adresse CONFIRMÉE : l'e-mail de bienvenue
+ * ne peut donc plus arriver avant l'e-mail d'activation de Supabase. Envoyé
+ * dès l'inscription, son bouton « Commencer ma première leçon » était pris
+ * pour le lien de confirmation, et le compte restait inactif.
  *
- * Auparavant, n'importe qui pouvait faire envoyer par notre domaine un e-mail
- * au contenu choisi (nom libre) vers n'importe quelle adresse.
+ * Destinataire, nom, profil et niveau sont lus dans le profil de l'appelant,
+ * jamais dans la requête ; un seul envoi réussi par compte.
  */
 export async function POST(requete: Request) {
-  // Réponse identique dans tous les cas de refus : on ne révèle pas si l'adresse a un compte.
+  // Réponse identique dans tous les cas de refus : rien à apprendre de plus.
   const refus = () => NextResponse.json({ ok: false });
 
   try {
-    const ip = requete.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'inconnue';
-    const limite = await verifierRateLimit(`bienvenue:${ip}`, 5, 3600);
+    const utilisateur = await utilisateurDeLaRequete(requete);
+    if (!utilisateur) {
+      return NextResponse.json({ erreur: 'Non authentifié.' }, { status: 401 });
+    }
+
+    const limite = await verifierRateLimit(`bienvenue:${utilisateur.id}`, 5, 3600);
     if (!limite.autorise) {
       return NextResponse.json({ erreur: 'Trop de demandes.' }, { status: 429 });
     }
@@ -37,20 +48,20 @@ export async function POST(requete: Request) {
       return refus();
     }
 
-    const corps = await requete.json().catch(() => null);
-    const email = typeof corps?.email === 'string' ? corps.email.trim().toLowerCase() : '';
-    if (!email || email.length > 254) return refus();
-
     const admin = createAdminClient();
 
     const { data: profil } = await admin
       .from('profiles')
-      .select('id, email, username, first_name, created_at, onboarding_profil, onboarding_objectif, onboarding_niveau')
-      .ilike('email', email)
+      .select('id, email, username, first_name, onboarding_profil, onboarding_objectif, onboarding_niveau')
+      .eq('id', utilisateur.id)
       .maybeSingle();
 
-    if (!profil?.email || !profil.created_at) return refus();
-    if (Date.now() - new Date(profil.created_at).getTime() > FENETRE_INSCRIPTION_MS) return refus();
+    if (!profil) return refus();
+
+    const { data: compte } = await admin.auth.admin.getUserById(utilisateur.id);
+    const confirmeLe = compte.user?.email_confirmed_at;
+    if (!confirmeLe) return refus();
+    if (Date.now() - new Date(confirmeLe).getTime() > FENETRE_ACTIVATION_MS) return refus();
 
     const { count } = await admin
       .from('emails_log')
@@ -61,10 +72,11 @@ export async function POST(requete: Request) {
       .eq('statut', 'envoye');
     if ((count ?? 0) > 0) return refus();
 
+    const email = profil.email || utilisateur.email;
     const succes = await envoyerEmailBienvenue({
       userId: profil.id,
-      email: profil.email,
-      nom: profil.username || profil.first_name || profil.email.split('@')[0],
+      email,
+      nom: profil.username || profil.first_name || email.split('@')[0],
       profil: profil.onboarding_profil,
       objectif: profil.onboarding_objectif,
       niveau: profil.onboarding_niveau,

@@ -21,6 +21,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { createClient } from '@/lib/supabase/client';
 import { Logo } from '@/components/ui/Logo';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
+import { renvoyerEmailActivation } from '@/lib/auth/confirmationEmail';
 
 export default function ConnexionPage() {
   const router = useRouter();
@@ -34,6 +35,11 @@ export default function ConnexionPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  // Compte non activé : proposition de renvoyer le lien d'activation.
+  const [compteNonActive, setCompteNonActive] = useState(false);
+  const [renvoiEnCours, setRenvoiEnCours] = useState(false);
+  const [attenteRenvoi, setAttenteRenvoi] = useState(0);
 
   // État du modal de réinitialisation de mot de passe
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
@@ -61,9 +67,12 @@ export default function ConnexionPage() {
     });
 
     const params = new URLSearchParams(window.location.search);
-    if (params.get('confirme') === '1') {
-      supabase.auth.signOut();
-      setSuccessMessage('Adresse e-mail confirmée avec succès ! Vous pouvez maintenant vous connecter à votre compte.');
+    // `?confirme=1` (lien d'activation) est traité par /auth/confirmation, vers
+    // laquelle le proxy redirige : on n'arrive ici qu'une fois l'activation vérifiée.
+    if (params.get('active') === '1') {
+      setSuccessMessage('Ton compte est activé ! Connecte-toi pour commencer.');
+    } else if (params.get('erreur') === 'auth_callback') {
+      setErrorMessage('Ce lien a expiré ou a déjà été utilisé. Connecte-toi, ou demande un nouveau lien.');
     } else if (params.get('compte') === 'supprime') {
       setSuccessMessage('Votre compte a bien été supprimé. Merci d’avoir appris le chinois avec nous.');
     } else if (params.get('session') === 'indisponible') {
@@ -74,6 +83,7 @@ export default function ConnexionPage() {
       setErrorMessage(
         'Votre adresse e-mail n’est pas encore confirmée. Ouvrez le lien reçu par e-mail pour activer votre compte.'
       );
+      setCompteNonActive(true);
     }
 
     return () => {
@@ -93,9 +103,11 @@ export default function ConnexionPage() {
       return;
     }
 
+    setCompteNonActive(false);
     const { error } = await signInWithEmail(email, password, resterConnecte);
     if (error) {
       setErrorMessage(traduireErreurAuth(error, 'connexion'));
+      setCompteNonActive(error.message.toLowerCase().includes('email not confirmed'));
     } else {
       setSuccessMessage('Connexion réussie ! Heureux de vous revoir.');
       // Navigation complète, pas router.push : le serveur reçoit les cookies de
@@ -108,6 +120,31 @@ export default function ConnexionPage() {
     }
 
     setIsSubmitting(false);
+  };
+
+  useEffect(() => {
+    if (attenteRenvoi <= 0) return;
+    const minuterie = setTimeout(() => setAttenteRenvoi((s) => s - 1), 1000);
+    return () => clearTimeout(minuterie);
+  }, [attenteRenvoi]);
+
+  const renvoyerActivation = async () => {
+    if (!email.trim()) {
+      setErrorMessage('Saisissez votre adresse e-mail pour recevoir un nouveau lien d’activation.');
+      return;
+    }
+    setRenvoiEnCours(true);
+    const { error } = await renvoyerEmailActivation(email);
+    setRenvoiEnCours(false);
+    setAttenteRenvoi(60);
+    if (error) {
+      setErrorMessage(traduireErreurAuth(error, 'inscription'));
+    } else {
+      setErrorMessage(null);
+      setSuccessMessage(
+        `Nouveau lien d’activation envoyé à ${email.trim()}. Cliquez dessus, puis revenez vous connecter (pensez à vérifier vos courriers indésirables).`
+      );
+    }
   };
 
   const handleForgotPassword = async (e: React.FormEvent) => {
@@ -247,6 +284,24 @@ export default function ConnexionPage() {
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 <span>{errorMessage}</span>
               </div>
+            )}
+
+            {compteNonActive && (
+              <button
+                type="button"
+                onClick={renvoyerActivation}
+                disabled={renvoiEnCours || attenteRenvoi > 0}
+                className="w-full py-2.5 rounded-full border border-[#6200EE]/30 text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] hover:bg-[#6200EE]/5 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:cursor-not-allowed"
+              >
+                <Mail className="w-4 h-4" />
+                <span>
+                  {renvoiEnCours
+                    ? 'Envoi en cours…'
+                    : attenteRenvoi > 0
+                      ? `Renvoyer l’e-mail d’activation (${attenteRenvoi} s)`
+                      : 'Renvoyer l’e-mail d’activation'}
+                </span>
+              </button>
             )}
 
             {successMessage && (

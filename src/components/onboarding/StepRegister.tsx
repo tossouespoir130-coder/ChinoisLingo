@@ -17,7 +17,7 @@ import {
   RotateCw
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
-import { createClient } from '@/lib/supabase/client';
+import { renvoyerEmailActivation } from '@/lib/auth/confirmationEmail';
 import confetti from 'canvas-confetti';
 import { OnboardingState } from './types';
 import { traduireErreurAuth } from '@/lib/auth/authErrors';
@@ -57,13 +57,7 @@ export function StepRegister({ state }: StepRegisterProps) {
     if (!emailAConfirmer || attenteRenvoi > 0) return;
     setRenvoiEnCours(true);
     setMessageRenvoi(null);
-    const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || window.location.origin;
-    const { error } = await createClient().auth.resend({
-      type: 'signup',
-      email: emailAConfirmer,
-      options: { emailRedirectTo: `${siteUrl}/connexion?confirme=1` },
-    });
+    const { error } = await renvoyerEmailActivation(emailAConfirmer);
     setRenvoiEnCours(false);
     setAttenteRenvoi(60);
     setMessageRenvoi(
@@ -110,14 +104,6 @@ export function StepRegister({ state }: StepRegisterProps) {
       if (error) {
         setErrorMessage(traduireErreurAuth(error, 'inscription'));
       } else {
-        // Envoi automatique de l'email de bienvenue via Resend : le serveur
-        // relit nom, profil et niveau dans le profil tout juste créé.
-        fetch('/api/emails/bienvenue', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        }).catch((err) => console.error('[onboarding] Erreur envoi email bienvenue', err));
-
         if (besoinConfirmation) {
           confetti({
             particleCount: 80,

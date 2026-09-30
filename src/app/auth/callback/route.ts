@@ -24,6 +24,8 @@ export async function GET(request: NextRequest) {
   const type = searchParams.get('type') as EmailOtpType | null;
   const next = destinationSure(searchParams.get('next'));
   const estRecuperation = type === 'recovery' || next.startsWith('/reinitialisation-mot-de-passe');
+  // Lien d'activation d'un compte tout juste créé.
+  const estActivation = type === 'signup' || type === 'email';
 
   const cookieStore = await cookies();
   const supabase = createServerClient<Database>(
@@ -75,6 +77,12 @@ export async function GET(request: NextRequest) {
     });
     if (!error) {
       if (estRecuperation) return versReinitialisation();
+      if (estActivation) {
+        // Adresse confirmée : l'apprenant se connecte lui-même ensuite,
+        // la session ouverte par la vérification n'a pas lieu d'être.
+        await supabase.auth.signOut({ scope: 'local' });
+        return NextResponse.redirect(`${origin}/auth/confirmation?verifie=1`);
+      }
       return NextResponse.redirect(`${origin}${next}`);
     }
   }
@@ -82,6 +90,9 @@ export async function GET(request: NextRequest) {
   // En cas d'erreur ou d'échec
   if (estRecuperation) {
     return NextResponse.redirect(`${origin}/reinitialisation-mot-de-passe?erreur=invalide`);
+  }
+  if (estActivation) {
+    return NextResponse.redirect(`${origin}/auth/confirmation?error_code=otp_expired`);
   }
 
   return NextResponse.redirect(`${origin}/connexion?erreur=auth_callback`);

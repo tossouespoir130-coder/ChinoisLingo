@@ -108,12 +108,24 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  // Retour d'un lien reçu par e-mail (confirmation, mot de passe oublié, activation) :
+  // Lien d'activation (`emailRedirectTo` = /connexion?confirme=1, voir
+  // lienRetourConfirmation) : la page de confirmation lit le résultat réel
+  // renvoyé par Supabase (`?code=` ou `?error_code=`). Le fragment `#…` du flux
+  // implicite est conservé par le navigateur à travers la redirection.
+  if (chemin === '/connexion' && request.nextUrl.searchParams.has('confirme')) {
+    const cible = new URL('/auth/confirmation', request.url);
+    cible.search = request.nextUrl.search;
+    cible.searchParams.delete('confirme');
+    return NextResponse.redirect(cible);
+  }
+
+  // Retour d'un lien reçu par e-mail (mot de passe oublié, compte activé…) :
   // la page doit afficher le message et le formulaire de connexion sans redirection automatique.
   if (
     chemin === '/connexion' &&
     (request.nextUrl.searchParams.has('code') ||
-      request.nextUrl.searchParams.has('confirme') ||
+      request.nextUrl.searchParams.has('active') ||
+      request.nextUrl.searchParams.has('erreur') ||
       request.nextUrl.searchParams.has('confirmation') ||
       request.nextUrl.searchParams.has('session'))
   ) {

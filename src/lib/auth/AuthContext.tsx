@@ -7,6 +7,7 @@ import { Profile } from '@/lib/supabase/types';
 import { fetchUserProfile, recordDailyActivity } from '@/lib/services/profileService';
 import { effacerRecuperation, marquerRecuperation } from '@/lib/auth/motDePasse';
 import { associerDonneesLocalesAuCompte, purgerDonneesLocalesDuCompte } from '@/lib/auth/donneesLocales';
+import { demanderEmailBienvenue, lienRetourConfirmation } from '@/lib/auth/confirmationEmail';
 
 interface AuthContextType {
   user: User | null;
@@ -153,7 +154,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Avant la connexion : les cookies de session créés par Supabase
       // héritent de ce choix (voir session-ephemere.ts).
       definirSessionEphemere(!resterConnecte);
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (data.session) demanderEmailBienvenue(data.session.access_token);
       return { error: error ? new Error(error.message) : null };
     } else {
       const { error } = await supabase.auth.signInWithOtp({
@@ -192,16 +194,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
       options: {
-        // Lien de confirmation : l'apprenant atterrit sur la page de connexion
-        // avec un indicateur, plutôt que sur une page protégée.
-        //
-        // NEXT_PUBLIC_SITE_URL prime sur l'origine du navigateur : en
-        // developpement cette derniere vaut http://localhost:3000, une adresse
-        // injoignable depuis le telephone qui ouvre l'e-mail.
-        emailRedirectTo: `${
-          process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-          (typeof window !== 'undefined' ? window.location.origin : '')
-        }/connexion?confirme=1`,
+        // Lien d'activation : voir lienRetourConfirmation.
+        emailRedirectTo: lienRetourConfirmation(),
         data: {
           username: cleanUsername,
           pseudo: cleanUsername,
@@ -245,6 +239,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       });
 
       await refreshProfile();
+      demanderEmailBienvenue(data.session.access_token);
     }
 
     return { error: null, besoinConfirmation };

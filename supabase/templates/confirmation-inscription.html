@@ -1,0 +1,66 @@
+<!--
+  Modèle « Confirm signup » de Supabase (Authentication → Emails → Confirm signup).
+  Ce fichier n'est pas déployé automatiquement : son contenu se colle dans le
+  tableau de bord Supabase.
+
+  Sujet à renseigner : Active ton compte ChinoisLingo ✅
+
+  {{ .ConfirmationURL }} renvoie, après vérification par Supabase, vers
+  /connexion?confirme=1 puis /auth/confirmation, qui affiche le résultat.
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active ton compte ChinoisLingo</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F4F5FA; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F5FA; padding: 30px 12px;">
+    <tr>
+      <td align="center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 560px; background-color: #FFFFFF; border-radius: 24px; overflow: hidden; border: 1px solid #E0E0E0;">
+          <tr>
+            <td align="center" style="background-color: #6200EE; padding: 30px 20px;">
+              <p style="margin: 0; color: #FFFFFF; font-size: 24px; font-weight: 800;">ChinoisLingo</p>
+              <p style="margin: 6px 0 0; color: #03DAC5; font-size: 13px; font-weight: 600;">« Le chinois devient facile »</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 34px 30px 10px;">
+              <h1 style="margin: 0 0 16px; color: #212121; font-size: 22px; font-weight: 800;">Plus qu'une étape ! 🎉</h1>
+              <p style="margin: 0 0 14px; color: #424242; font-size: 15px; line-height: 1.6;">
+                Merci de t'être inscrit(e) sur <strong>ChinoisLingo</strong>. Pour activer ton compte, confirme ton adresse e-mail en cliquant sur le bouton ci-dessous.
+              </p>
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 26px 0;">
+                <tr>
+                  <td align="center">
+                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none; padding: 15px 38px; border-radius: 100px;">
+                      Activer mon compte
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin: 0 0 14px; color: #616161; font-size: 13px; line-height: 1.6;">
+                Une fois ton adresse confirmée, tu pourras te connecter avec ton e-mail et ton mot de passe.
+              </p>
+              <p style="margin: 0 0 14px; color: #757575; font-size: 12px; line-height: 1.6;">
+                Le bouton ne fonctionne pas ? Copie ce lien dans ton navigateur :<br>
+                <a href="{{ .ConfirmationURL }}" style="color: #6200EE; word-break: break-all;">{{ .ConfirmationURL }}</a>
+              </p>
+              <p style="margin: 0 0 20px; color: #9E9E9E; font-size: 12px; line-height: 1.6;">
+                Tu n'es pas à l'origine de cette inscription ? Ignore simplement cet e-mail.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 20px 30px 28px; border-top: 1px solid #EEEEEE;">
+              <p style="margin: 0; color: #424242; font-size: 13px; font-weight: 700;">L'équipe ChinoisLingo</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
