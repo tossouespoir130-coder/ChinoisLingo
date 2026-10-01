@@ -257,7 +257,7 @@ export default function ReinitialisationMotDePassePage() {
                 autoComplete="new-password"
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={CONSIGNE_MOT_DE_PASSE}
-                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-[16px] sm:text-sm text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
               />
               <button
                 type="button"
@@ -285,7 +285,7 @@ export default function ReinitialisationMotDePassePage() {
                 autoComplete="new-password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Répétez le mot de passe"
-                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-[16px] sm:text-sm text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
               />
               <button
                 type="button"

@@ -279,7 +279,7 @@ export function StepRegister({ state }: StepRegisterProps) {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Ex: Espoir"
-              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[16px] sm:text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
             />
           </div>
         </div>
@@ -296,7 +296,7 @@ export function StepRegister({ state }: StepRegisterProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="exemple@email.com"
-              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[16px] sm:text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
             />
           </div>
         </div>
@@ -314,7 +314,7 @@ export function StepRegister({ state }: StepRegisterProps) {
               autoComplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
               placeholder={CONSIGNE_MOT_DE_PASSE}
-              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
+              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[16px] sm:text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
             />
             <button
               type="button"
@@ -339,7 +339,7 @@ export function StepRegister({ state }: StepRegisterProps) {
               autoComplete="new-password"
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Répétez le mot de passe"
-              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
+              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[16px] sm:text-sm text-[#212121] dark:text-white placeholder-[#9E9E9E] focus:outline-hidden focus:border-[#6200EE] dark:focus:border-[#03DAC5] transition-colors"
             />
             <button
               type="button"

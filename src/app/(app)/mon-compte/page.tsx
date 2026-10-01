@@ -1534,7 +1534,7 @@ function MonCompteContent() {
                     autoComplete="current-password"
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Votre mot de passe actuel"
-                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-[16px] sm:text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
                   />
                   <button
                     type="button"
@@ -1562,7 +1562,7 @@ function MonCompteContent() {
                     autoComplete="new-password"
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder={CONSIGNE_MOT_DE_PASSE}
-                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-[16px] sm:text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
                   />
                   <button
                     type="button"
@@ -1590,7 +1590,7 @@ function MonCompteContent() {
                     autoComplete="new-password"
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
                     placeholder="Répétez votre nouveau mot de passe"
-                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl bg-[#F5F5F7] dark:bg-[#252533] border border-transparent focus:border-[#6200EE] focus:bg-white dark:focus:bg-[#1E1E28] text-[16px] sm:text-xs sm:text-sm font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none transition-all placeholder:text-[#9E9E9E]"
                   />
                   <button
                     type="button"
@@ -1827,7 +1827,7 @@ function MonCompteContent() {
                     required
                     value={tempProfileData.displayName}
                     onChange={(e) => setTempProfileData({ ...tempProfileData, displayName: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-[16px] sm:text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
                   />
                 </div>
 
@@ -1840,7 +1840,7 @@ function MonCompteContent() {
                     required
                     value={tempProfileData.email}
                     onChange={(e) => setTempProfileData({ ...tempProfileData, email: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-[16px] sm:text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
                   />
                 </div>
               </div>
@@ -1869,7 +1869,7 @@ function MonCompteContent() {
                     type="text"
                     value={tempProfileData.country}
                     onChange={(e) => setTempProfileData({ ...tempProfileData, country: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-[16px] sm:text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
                   />
                 </div>
 
@@ -1881,7 +1881,7 @@ function MonCompteContent() {
                     type="text"
                     value={tempProfileData.city}
                     onChange={(e) => setTempProfileData({ ...tempProfileData, city: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#252525] text-[16px] sm:text-xs font-semibold text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE]"
                   />
                 </div>
 

@@ -70,9 +70,9 @@ export default function ConnexionPage() {
     // `?confirme=1` (lien d'activation) est traité par /auth/confirmation, vers
     // laquelle le proxy redirige : on n'arrive ici qu'une fois l'activation vérifiée.
     if (params.get('active') === '1') {
-      setSuccessMessage('Ton compte est activé ! Connecte-toi pour commencer.');
+      setSuccessMessage('Votre compte est activé ! Connectez-vous pour commencer.');
     } else if (params.get('erreur') === 'auth_callback') {
-      setErrorMessage('Ce lien a expiré ou a déjà été utilisé. Connecte-toi, ou demande un nouveau lien.');
+      setErrorMessage('Ce lien a expiré ou a déjà été utilisé. Connectez-vous, ou demandez un nouveau lien.');
     } else if (params.get('compte') === 'supprime') {
       setSuccessMessage('Votre compte a bien été supprimé. Merci d’avoir appris le chinois avec nous.');
     } else if (params.get('session') === 'indisponible') {
@@ -327,7 +327,7 @@ export default function ConnexionPage() {
                     autoComplete="email"
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                   />
                 </div>
               </div>
@@ -346,7 +346,7 @@ export default function ConnexionPage() {
                     autoComplete="current-password"
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
+                    className="w-full pl-10 pr-10 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] focus:ring-2 focus:ring-[#6200EE]/20 transition-all"
                   />
                   <button
                     type="button"
@@ -473,7 +473,7 @@ export default function ConnexionPage() {
                     autoComplete="email"
                     onChange={(e) => setForgotEmail(e.target.value)}
                     placeholder="votre.email@exemple.com"
-                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
+                    className="w-full pl-10 pr-4 py-3 rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D3D] bg-[#FAFAFA] dark:bg-[#252634] text-[16px] sm:text-sm text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#6200EE] transition-colors"
                   />
                 </div>
               </div>
