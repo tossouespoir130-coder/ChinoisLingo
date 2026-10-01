@@ -3,20 +3,24 @@ import { createClient } from '@/lib/supabase/client';
 /**
  * Adresse de retour du lien d'activation envoyé par Supabase.
  *
- * On garde `/connexion?confirme=1` : c'est l'adresse déjà autorisée dans les
- * « Redirect URLs » de Supabase (une adresse non autorisée y est remplacée en
- * silence par la « Site URL »), et c'est celle des e-mails déjà envoyés.
- * Le proxy la renvoie vers `/auth/confirmation`, qui affiche le vrai résultat.
+ * Elle doit figurer dans les « Redirect URLs » de Supabase : sinon, Supabase
+ * la remplace EN SILENCE par la « Site URL » (la page d'accueil). C'est ce
+ * qui arrivait en production : NEXT_PUBLIC_SITE_URL vaut l'adresse sans
+ * « www », non autorisée, et chaque lien d'activation menait à l'accueil.
+ * On prend donc l'origine réelle du navigateur (le domaine sans « www »
+ * redirige vers « www », autorisée), sauf en développement, où
+ * http://localhost:3000 serait injoignable depuis le téléphone qui ouvre
+ * l'e-mail. Le proxy rattrape de toute façon les liens tombés sur l'accueil.
  *
- * NEXT_PUBLIC_SITE_URL prime sur l'origine du navigateur : en développement
- * cette dernière vaut http://localhost:3000, une adresse injoignable depuis
- * le téléphone qui ouvre l'e-mail.
+ * On garde `/connexion?confirme=1`, celle des e-mails déjà envoyés : le proxy
+ * la renvoie vers `/auth/confirmation`, qui affiche le vrai résultat.
  */
 export function lienRetourConfirmation(): string {
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-    (typeof window !== 'undefined' ? window.location.origin : '');
-  return `${siteUrl}/connexion?confirme=1`;
+  const siteConfigure = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '');
+  if (typeof window === 'undefined') return `${siteConfigure ?? ''}/connexion?confirme=1`;
+  const enLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  const base = enLocal && siteConfigure ? siteConfigure : window.location.origin;
+  return `${base}/connexion?confirme=1`;
 }
 
 /** Renvoie l'e-mail d'activation d'un compte non confirmé. */

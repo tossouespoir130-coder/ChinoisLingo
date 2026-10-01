@@ -20,6 +20,13 @@ export function RootRedirectGuard() {
       return;
     }
 
+    // Lien d'activation (flux implicite) retombé sur l'accueil : voir le
+    // traitement de la racine dans proxy.ts, qui ne voit pas le fragment.
+    if (hash.includes('type=signup') || hash.includes('error_code=')) {
+      window.location.replace('/auth/confirmation' + hash);
+      return;
+    }
+
     if (!isLoading && user && (user.email_confirmed_at || profile)) {
       router.replace('/tableau-de-bord');
     }

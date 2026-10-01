@@ -87,6 +87,20 @@ export async function proxy(request: NextRequest) {
 
   // Traitement spécial de la Racine ("/")
   if (estRacine) {
+    // Lien d'activation dont l'adresse de retour n'est pas autorisée par
+    // Supabase : il retombe sur la « Site URL », c'est-à-dire ici. Le compte
+    // est déjà confirmé (ou le lien refusé) : on affiche le vrai résultat.
+    // Le cas du fragment `#access_token=…` est traité par RootRedirectGuard.
+    const parametres = request.nextUrl.searchParams;
+    if (
+      parametres.get('type') !== 'recovery' &&
+      (parametres.has('code') || parametres.has('error_code'))
+    ) {
+      const cible = new URL('/auth/confirmation', request.url);
+      cible.search = request.nextUrl.search;
+      return NextResponse.redirect(cible);
+    }
+
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
