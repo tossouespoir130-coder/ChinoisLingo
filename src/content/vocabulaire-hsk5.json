@@ -739,7 +739,7 @@
     {
       "id": "hsk5_0057",
       "hanzi": "不必",
-      "pinyin": "bù bì",
+      "pinyin": "bú bì",
       "french": "Pas besoin / ce n'est pas obligatoire / pas nécessairement",
       "level": "HSK 5",
       "cefrLevel": "C1",
@@ -765,7 +765,7 @@
     {
       "id": "hsk5_0059",
       "hanzi": "不断",
-      "pinyin": "bù duàn",
+      "pinyin": "bú duàn",
       "french": "Incessant / ininterrompu / continu",
       "level": "HSK 5",
       "cefrLevel": "C1",
@@ -791,7 +791,7 @@
     {
       "id": "hsk5_0061",
       "hanzi": "不见得",
-      "pinyin": "bù jiàn de",
+      "pinyin": "bú jiàn de",
       "french": "Pas nécessairement / peu probable",
       "level": "HSK 5",
       "cefrLevel": "C1",
@@ -817,7 +817,7 @@
     {
       "id": "hsk5_0063",
       "hanzi": "不耐烦",
-      "pinyin": "bù nài fán",
+      "pinyin": "bú nài fán",
       "french": "Impatient / perdre patience",
       "level": "HSK 5",
       "cefrLevel": "C1",
@@ -856,7 +856,7 @@
     {
       "id": "hsk5_0066",
       "hanzi": "不要紧",
-      "pinyin": "bù yào jǐn",
+      "pinyin": "bú yào jǐn",
       "french": "Sans importance / Pas sérieux / cela n'a pas d'importance",
       "level": "HSK 5",
       "cefrLevel": "C1",
@@ -5055,15 +5055,15 @@
     {
       "id": "hsk5_0389",
       "hanzi": "哈",
-      "pinyin": "Hā",
-      "french": "",
+      "pinyin": "hā",
+      "french": "Rire (haha), soupirer",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "哈是HSK 5重点必考词汇。",
-      "examplePinyin": "Hā shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 哈 » (Hā) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "听到这个好消息，大家哈哈大笑。",
+      "examplePinyin": "Tīng dào zhè ge hǎo xiāoxi, dàjiā hāhā dàxiào.",
+      "exampleFrench": "En entendant cette bonne nouvelle, tout le monde a éclaté de rire."
     },
     {
       "id": "hsk5_0390",
@@ -5875,14 +5875,14 @@
       "id": "hsk5_0452",
       "hanzi": "纪录",
       "pinyin": "jì lù",
-      "french": "",
+      "french": "Record, enregistrement",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "纪录是HSK 5重点必考词汇。",
-      "examplePinyin": "jì lù shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 纪录 » (jì lù) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "这位运动员打破了世界纪录。",
+      "examplePinyin": "Zhè wèi yùndòngyuán dǎpò le shìjiè jìlù.",
+      "exampleFrench": "Cet athlète a battu le record du monde."
     },
     {
       "id": "hsk5_0453",
@@ -6980,14 +6980,14 @@
       "id": "hsk5_0537",
       "hanzi": "举",
       "pinyin": "jǔ",
-      "french": "",
+      "french": "Lever, soulever, citer (un exemple)",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "举是HSK 5重点必考词汇。",
-      "examplePinyin": "jǔ shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 举 » (jǔ) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "老师请大家举手回答问题。",
+      "examplePinyin": "Lǎoshī qǐng dàjiā jǔ shǒu huídá wèntí.",
+      "exampleFrench": "Le professeur a demandé à tout le monde de lever la main pour répondre à la question."
     },
     {
       "id": "hsk5_0538",
@@ -7343,15 +7343,15 @@
     {
       "id": "hsk5_0565",
       "hanzi": "克",
-      "pinyin": "Kè",
-      "french": "",
+      "pinyin": "kè",
+      "french": "Gramme, surmonter, vaincre",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "克是HSK 5重点必考词汇。",
-      "examplePinyin": "Kè shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 克 » (Kè) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "这包绿茶的净重是一百克。",
+      "examplePinyin": "Zhè bāo lǜchá de jìngzhòng shì yì bǎi kè.",
+      "exampleFrench": "Le poids net de ce paquet de thé vert est de cent grammes."
     },
     {
       "id": "hsk5_0566",
@@ -7629,15 +7629,15 @@
     {
       "id": "hsk5_0587",
       "hanzi": "老板",
-      "pinyin": "lǎo bǎn",
-      "french": "",
+      "pinyin": "lǎobǎn",
+      "french": "Patron, chef d’entreprise",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "老板是HSK 5重点必考词汇。",
-      "examplePinyin": "lǎo bǎn shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 老板 » (lǎo bǎn) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "我们的老板非常重视团队合作。",
+      "examplePinyin": "Wǒmen de lǎobǎn fēicháng zhòngshì tuánduì hézuò.",
+      "exampleFrench": "Notre patron accorde une grande importance au travail d’équipe."
     },
     {
       "id": "hsk5_0588",
@@ -9008,14 +9008,14 @@
       "id": "hsk5_0693",
       "hanzi": "念",
       "pinyin": "niàn",
-      "french": "",
+      "french": "Lire à voix haute, penser à, étudier",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "念是HSK 5重点必考词汇。",
-      "examplePinyin": "niàn shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 念 » (niàn) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "请把这段课文念一遍。",
+      "examplePinyin": "Qǐng bǎ zhè duàn kèwén niàn yí biàn.",
+      "exampleFrench": "Veuillez lire ce paragraphe du texte à haute voix."
     },
     {
       "id": "hsk5_0694",
@@ -9359,14 +9359,14 @@
       "id": "hsk5_0720",
       "hanzi": "飘",
       "pinyin": "piāo",
-      "french": "",
+      "french": "Flotter dans l’air, tournoyer",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "飘是HSK 5重点必考词汇。",
-      "examplePinyin": "piāo shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 飘 » (piāo) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "雪花在空中慢慢飘落。",
+      "examplePinyin": "Xuěhuā zài kōngzhōng mànmàn piāoluò.",
+      "exampleFrench": "Les flocons de neige tombent lentement en flottant dans les airs."
     },
     {
       "id": "hsk5_0721",
@@ -9943,15 +9943,15 @@
     {
       "id": "hsk5_0765",
       "hanzi": "青",
-      "pinyin": "Qīng",
-      "french": "",
+      "pinyin": "qīng",
+      "french": "Vert-bleu, sombre, jeune",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "青是HSK 5重点必考词汇。",
-      "examplePinyin": "Qīng shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 青 » (Qīng) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "春天来了，山上的草都变青了。",
+      "examplePinyin": "Chūntiān lái le, shān shàng de cǎo dōu biàn qīng le.",
+      "exampleFrench": "Le printemps est arrivé, l’herbe sur la montagne est devenue toute verte."
     },
     {
       "id": "hsk5_0766",
@@ -10646,14 +10646,14 @@
       "id": "hsk5_0819",
       "hanzi": "晒",
       "pinyin": "shài",
-      "french": "",
+      "french": "Sécher au soleil, bronzer, exposer",
       "level": "HSK 5",
       "cefrLevel": "C1",
       "category": "Référentiel HSK 5",
       "businessTip": "Vocabulaire officiel standardisé du HSK 5 pour les échanges professionnels et examens.",
-      "exampleHanzi": "晒是HSK 5重点必考词汇。",
-      "examplePinyin": "shài shì HSK 5 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 晒 » (shài) exprime l'idée de «  » dans le contexte du HSK 5."
+      "exampleHanzi": "周末我们在海滩上晒太阳。",
+      "examplePinyin": "Zhōumò wǒmen zài hǎitān shàng shài tàiyang.",
+      "exampleFrench": "Ce week-end, nous prenons un bain de soleil sur la plage."
     },
     {
       "id": "hsk5_0820",

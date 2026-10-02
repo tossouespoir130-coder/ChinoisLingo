@@ -63,7 +63,7 @@
     {
       "id": "hsk6_0005",
       "hanzi": "爱不释手",
-      "pinyin": "ài bù shì shǒu",
+      "pinyin": "ài bú shì shǒu",
       "french": "Aimer tellement quelque chose qu'on hésite à le lâcher / Trouver qc complètement irrésistible",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -2156,7 +2156,7 @@
     {
       "id": "hsk6_0166",
       "hanzi": "不顾",
-      "pinyin": "bù gù",
+      "pinyin": "bú gù",
       "french": "Malgré/indépendamment de",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -2208,7 +2208,7 @@
     {
       "id": "hsk6_0170",
       "hanzi": "不愧",
-      "pinyin": "bù kuì",
+      "pinyin": "bú kuì",
       "french": "Être digne de / Mérite d'être appelé / prouver qu'on l'est",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -2221,7 +2221,7 @@
     {
       "id": "hsk6_0171",
       "hanzi": "不料",
-      "pinyin": "bù liào",
+      "pinyin": "bú liào",
       "french": "De façon inattendue / à la surprise de chacun",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -2286,7 +2286,7 @@
     {
       "id": "hsk6_0176",
       "hanzi": "不屑一顾",
-      "pinyin": "bù xiè yī gù",
+      "pinyin": "bú xiè yí gù",
       "french": "Dédaigner comme au-dessous du mépris",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -2325,7 +2325,7 @@
     {
       "id": "hsk6_0179",
       "hanzi": "不择手段",
-      "pinyin": "bù zé shǒu duàn",
+      "pinyin": "bù zé shǒuduàn",
       "french": "Par des moyens justes ou grossiers / par crochet ou par escroc / sans scrupules",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -3651,15 +3651,15 @@
     {
       "id": "hsk6_0281",
       "hanzi": "秤",
-      "pinyin": "chēng",
-      "french": "",
+      "pinyin": "chèng",
+      "french": "Balance, peson",
       "level": "HSK 6",
       "cefrLevel": "C2",
       "category": "Référentiel HSK 6",
       "businessTip": "Vocabulaire officiel standardisé du HSK 6 pour les échanges professionnels et examens.",
-      "exampleHanzi": "秤是HSK 6重点必考词汇。",
-      "examplePinyin": "chēng shì HSK 6 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 秤 » (chēng) exprime l'idée de «  » dans le contexte du HSK 6."
+      "exampleHanzi": "售货员用秤称了水果的重量。",
+      "examplePinyin": "Shòuhuòyuán yòng chèng chēng le shuǐguǒ de zhòngliàng.",
+      "exampleFrench": "Le vendeur a pesé les fruits à l’aide d’une balance."
     },
     {
       "id": "hsk6_0282",
@@ -3834,14 +3834,14 @@
       "id": "hsk6_0295",
       "hanzi": "冲击",
       "pinyin": "chōng jī",
-      "french": "",
+      "french": "Impact, choc, percuter, assaillir",
       "level": "HSK 6",
       "cefrLevel": "C2",
       "category": "Référentiel HSK 6",
       "businessTip": "Vocabulaire officiel standardisé du HSK 6 pour les échanges professionnels et examens.",
-      "exampleHanzi": "冲击是HSK 6重点必考词汇。",
-      "examplePinyin": "chōng jī shì HSK 6 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 冲击 » (chōng jī) exprime l'idée de «  » dans le contexte du HSK 6."
+      "exampleHanzi": "新技术对传统行业带来了巨大的冲击。",
+      "examplePinyin": "Xīn jìshù duì chuántǒng hángyè dài lái le jùdà de chōngjī.",
+      "exampleFrench": "Les nouvelles technologies ont porté un impact majeur aux industries traditionnelles."
     },
     {
       "id": "hsk6_0296",
@@ -4522,7 +4522,7 @@
     {
       "id": "hsk6_0348",
       "hanzi": "从容不迫",
-      "pinyin": "cóng róng bù pò",
+      "pinyin": "cóng róng bú pò",
       "french": "Calme / imperturbable",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -9046,7 +9046,7 @@
     {
       "id": "hsk6_0696",
       "hanzi": "供不应求",
-      "pinyin": "gōng bù yìng qiú",
+      "pinyin": "gōng bú yìng qiú",
       "french": "L'offre ne répond pas à la demande",
       "level": "HSK 6",
       "cefrLevel": "C2",
@@ -24841,7 +24841,7 @@
     {
       "id": "hsk6_1911",
       "hanzi": "无微不至",
-      "pinyin": "wú wēi bù zhì",
+      "pinyin": "wú wēi bú zhì",
       "french": "De toutes les manières possibles / méticuleux",
       "level": "HSK 6",
       "cefrLevel": "C2",

@@ -388,7 +388,7 @@
     {
       "id": "hsk4_0030",
       "hanzi": "不过",
-      "pinyin": "bù guò",
+      "pinyin": "bú guò",
       "french": "Seulement / simplement / pas plus que",
       "level": "HSK 4",
       "cefrLevel": "B2",
@@ -6810,15 +6810,15 @@
     {
       "id": "hsk4_0524",
       "hanzi": "与",
-      "pinyin": "yú",
-      "french": "",
+      "pinyin": "yǔ",
+      "french": "Et, avec, ainsi que",
       "level": "HSK 4",
       "cefrLevel": "B2",
       "category": "Référentiel HSK 4",
       "businessTip": "Vocabulaire officiel standardisé du HSK 4 pour les échanges professionnels et examens.",
-      "exampleHanzi": "与是HSK 4重点必考词汇。",
-      "examplePinyin": "yú shì HSK 4 zhòngdiǎn bì kǎo cíhuì.",
-      "exampleFrench": "Le terme « 与 » (yú) exprime l'idée de «  » dans le contexte du HSK 4."
+      "exampleHanzi": "中国与法国有长期的经贸合作。",
+      "examplePinyin": "Zhōngguó yǔ Fǎguó yǒu chángqī de jīngmào hézuò.",
+      "exampleFrench": "La Chine et la France ont une coopération économique et commerciale de longue date."
     },
     {
       "id": "hsk4_0525",
