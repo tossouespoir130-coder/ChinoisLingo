@@ -52,12 +52,18 @@ export async function GET(requete: Request) {
   // 1. Récupérer tous les profils (sans exposer d'e-mail ni données sensibles)
   const { data: profils, error: erreurProfils } = await admin
     .from('profiles')
-    .select('id, full_name, username, avatar_url, streak_days, total_login_days, total_minutes_learned, last_active_date');
+    .select('id, full_name, username, avatar_url, role, streak_days, total_login_days, total_minutes_learned, last_active_date');
 
   if (erreurProfils || !profils) {
     console.error('[classement] Erreur lecture profils:', erreurProfils);
     return NextResponse.json({ classement: [], participants: 0, maPosition: null });
   }
+
+  // Filtrer les comptes administrateurs (Espoir Chinois / admins) pour ne classer que les véritables élèves
+  const profilsEleves = profils.filter((p) => {
+    const estAdmin = p.role === 'admin' || (p.full_name && p.full_name.toLowerCase().includes('espoir chinois'));
+    return !estAdmin;
+  });
 
   const weekRange = getCurrentWeekRangeWAT();
 
@@ -88,8 +94,8 @@ export async function GET(requete: Request) {
     }
   }
 
-  // 3. Calculer le score pour 100% des utilisateurs de la base
-  const allScoredUsers: LeaderboardItem[] = profils.map((p) => {
+  // 3. Calculer le score pour 100% des élèves de la base
+  const allScoredUsers: LeaderboardItem[] = profilsEleves.map((p) => {
     let joursConnexion = 0;
     let minutesEtudiees = 0;
     let score = 0;

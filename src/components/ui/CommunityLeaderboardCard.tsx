@@ -4,15 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { 
   Trophy, 
   Users, 
-  Flame, 
-  Clock, 
-  Calendar, 
   ChevronDown, 
-  ChevronUp, 
-  Sparkles, 
-  Zap,
-  Medal,
-  Award
+  ChevronUp
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { initialesDe } from '@/lib/avatars';
@@ -109,27 +102,20 @@ export function CommunityLeaderboardCard() {
     <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs flex flex-col justify-between h-full">
       <div>
         {/* Header with Title and View Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
+        <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-2xl bg-[#FFC107]/15 text-[#B78103] dark:text-[#FFD54F] flex items-center justify-center shadow-2xs shrink-0">
               <Trophy className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5] flex items-center gap-1.5">
-                <span>Classement Communautaire</span>
-                <span className="text-[10px] font-extrabold uppercase px-2 py-0.2 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                  En direct
-                </span>
+              <h3 className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5]">
+                Classement Communautaire
               </h3>
-              <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] flex items-center gap-1 mt-0.5">
-                <Zap className="w-3 h-3 text-amber-500 shrink-0" />
-                <span>1 j connecté = <strong>20 pts</strong> · 1 min d’étude = <strong>0,5 pt</strong></span>
-              </p>
             </div>
           </div>
 
           {/* Onglets Hebdomadaire / Tout temps */}
-          <div className="flex items-center gap-1 bg-[#FAFAFA] dark:bg-[#252525] p-1 rounded-xl border border-[#E0E0E0] dark:border-[#333333] self-start sm:self-auto shrink-0">
+          <div className="flex items-center gap-1 bg-[#FAFAFA] dark:bg-[#252525] p-1 rounded-xl border border-[#E0E0E0] dark:border-[#333333] shrink-0">
             <button
               type="button"
               onClick={() => setVue('hebdo')}
@@ -139,7 +125,7 @@ export function CommunityLeaderboardCard() {
                   : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#212121] dark:hover:text-white'
               }`}
             >
-              ⚡ Hebdomadaire
+              Hebdomadaire
             </button>
             <button
               type="button"
@@ -150,7 +136,7 @@ export function CommunityLeaderboardCard() {
                   : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#212121] dark:hover:text-white'
               }`}
             >
-              🏆 Tout temps
+              Tout temps
             </button>
           </div>
         </div>
@@ -169,7 +155,7 @@ export function CommunityLeaderboardCard() {
           <div className="py-7 text-center">
             <Users className="w-7 h-7 text-[#E0E0E0] dark:text-[#333333] mx-auto mb-2.5" />
             <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed max-w-xs mx-auto">
-              Le classement hebdomadaire redémarre chaque lundi à 00:00 (UTC+1). Connectez-vous et pratiquez quelques minutes pour prendre la tête !
+              Le classement hebdomadaire redémarre chaque lundi à 00:00 (UTC+1). Connectez-vous et pratiquez pour prendre la tête !
             </p>
           </div>
         ) : (
@@ -214,10 +200,9 @@ export function CommunityLeaderboardCard() {
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-[10px] text-[#757575] dark:text-[#A0A0A0] mt-0.5">
-                        <span>📅 {p.joursConnexion} {p.joursConnexion > 1 ? 'jours' : 'jour'}</span>
-                        <span>·</span>
-                        <span>⏱️ {p.minutesEtudiees} min</span>
+                      <div className="flex items-center gap-1 text-[11px] text-[#757575] dark:text-[#A0A0A0] mt-0.5">
+                        <span>🔥</span>
+                        <span className="font-semibold">{p.joursConnexion} {p.joursConnexion > 1 ? 'jours' : 'jour'}</span>
                       </div>
                     </div>
                   </div>
@@ -248,8 +233,9 @@ export function CommunityLeaderboardCard() {
                 <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] block truncate">
                   Votre position ({maPosition.nom})
                 </span>
-                <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0]">
-                  📅 {maPosition.joursConnexion} j · ⏱️ {maPosition.minutesEtudiees} min
+                <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0] flex items-center gap-1">
+                  <span>🔥</span>
+                  <span className="font-semibold">{maPosition.joursConnexion} {maPosition.joursConnexion > 1 ? 'jours' : 'jour'}</span>
                 </span>
               </div>
             </div>

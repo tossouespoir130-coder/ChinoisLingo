@@ -67,16 +67,19 @@ export async function fetchMergedNotifications(userId?: string | null): Promise<
     .filter(n => !dbIds.has(n.id))
     .map((n) => ({
       id: n.id,
-      source: (n.source === 'founder' ? 'founder' : 'system') as 'founder' | 'system',
+      source: (n.source === 'founder' ? 'founder' : n.source === 'mascot' ? 'mascot' : 'system') as 'founder' | 'mascot' | 'system',
       founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
       founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
       founderAvatar: '/espoir-chinois.jpg',
+      mascotName: n.source === 'mascot' ? 'Xiao Li (小李)' : undefined,
+      mascotRole: n.source === 'mascot' ? 'Mascotte ChinoisLingo 🐾' : undefined,
+      mascotAvatar: '/icons/xiaoli.png',
       title: n.title,
       message: n.message,
       timestamp: 'Récemment',
       isRead: !!n.is_read || readIds.includes(n.id),
-      actionUrl: n.action_url || '/tableau-de-bord',
-      actionLabel: 'Consulter',
+      actionUrl: n.action_url || '/mon-compte',
+      actionLabel: 'Voir mes trophées',
     }));
 
   const all = [...initialNotifications, ...additionalNotifs].map((n) => ({
@@ -134,5 +137,47 @@ export async function markAllNotificationsAsRead(ids: string[], userId?: string 
       .update({ is_read: true })
       .in('id', ids);
   } catch {}
+}
+
+/**
+ * Crée une notification in-app envoyée par la mascotte officielle Xiao Li (小李)
+ * lors du déblocage d'un nouveau palier / trophée.
+ * Respecte rigoureusement la salutation officielle Nǐhǎo et le tutoiement chaleureux.
+ */
+export async function createBadgeUnlockedNotification(
+  userId: string,
+  badge: { id: string; title: string; trackName: string; xpReward: number; icon: string }
+): Promise<void> {
+  if (!userId) return;
+
+  const notifId = `badge_notif_${badge.id}_${userId}`;
+  const notifKey = `chinoislingo_badge_notified_${notifId}`;
+
+  // Vérifier qu'on n'a pas déjà créé la notification pour ce badge précis
+  if (typeof window !== 'undefined') {
+    try {
+      if (localStorage.getItem(notifKey)) return;
+      localStorage.setItem(notifKey, '1');
+    } catch {}
+  }
+
+  const supabase = createClient();
+  try {
+    await supabase.from('notifications').insert({
+      id: notifId,
+      user_id: userId,
+      source: 'mascot',
+      title: `🏆 Trophée Débloqué : ${badge.title} ${badge.icon}`,
+      message: `Félicitations pour ton nouvel exploit : tu as franchi l’étape "${badge.title}" (${badge.trackName}) ! Continue comme ça, le chinois devient facile !`,
+      action_url: '/mon-compte',
+      is_read: false,
+    });
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('chinoislingo_notifications_updated'));
+    }
+  } catch (err) {
+    console.error('Erreur insertion notification badge:', err);
+  }
 }
 
