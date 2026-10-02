@@ -9,6 +9,7 @@ import { SrsReminderToast } from '@/components/layout/SrsReminderToast';
 import { NewContentToast } from '@/components/layout/NewContentToast';
 import { StudyTimeTracker } from '@/components/layout/StudyTimeTracker';
 import { BanniereBonus } from '@/components/subscription/BanniereBonus';
+import { BadgeCelebrationModal } from '@/components/gamification/BadgeCelebrationModal';
 import { Sun, Moon } from 'lucide-react';
 
 function ContainerThemeSwitch() {
@@ -79,6 +80,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
             {/* Suivi continu et temps réel du temps d'étude effectif */}
             <StudyTimeTracker />
+
+            {/* Célébration Pop-up instantanée des Trophées et Rangs Débloqués */}
+            <BadgeCelebrationModal />
 
             {/* Theme Switcher */}
             <ContainerThemeSwitch />

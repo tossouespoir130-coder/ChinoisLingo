@@ -369,11 +369,11 @@ export function StepRegister({ state }: StepRegisterProps) {
 
       {/* Déjà un compte */}
       <div className="text-center pt-1 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
-        <p className="text-xs text-[#757575] dark:text-[#9E9E9E]">
-          Vous avez déjà un compte ?{' '}
+        <p className="text-xs text-[#757575] dark:text-[#9E9E9E] flex items-center justify-center gap-1.5 flex-wrap">
+          <span className="whitespace-nowrap">Vous avez déjà un compte&nbsp;?</span>
           <Link
             href="/connexion"
-            className="font-bold text-[#6200EE] dark:text-[#03DAC5] hover:underline"
+            className="font-bold text-[#6200EE] dark:text-[#03DAC5] hover:underline whitespace-nowrap"
           >
             Se connecter
           </Link>

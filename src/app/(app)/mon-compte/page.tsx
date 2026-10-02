@@ -56,6 +56,8 @@ import { traduireErreurAuth } from '@/lib/auth/authErrors';
 import { createClient } from '@/lib/supabase/client';
 import { CONSIGNE_MOT_DE_PASSE, validerNouveauMotDePasse } from '@/lib/auth/motDePasse';
 import { purgerDonneesLocalesDuCompte } from '@/lib/auth/donneesLocales';
+import { StreakFreezeWidget } from '@/components/gamification/StreakFreezeWidget';
+import { BadgesSection } from '@/components/gamification/BadgesSection';
 
 function MonCompteContent() {
   const router = useRouter();
@@ -747,6 +749,12 @@ function MonCompteContent() {
               </span>
             </div>
           </div>
+
+          {/* Protection de Série (Gel de Série ❄️) */}
+          <StreakFreezeWidget userId={profile?.id} />
+
+          {/* Trophées & Badges de Maîtrise */}
+          <BadgesSection savedWordsCount={profile?.total_words_mastered || 0} />
         </div>
       )}
 

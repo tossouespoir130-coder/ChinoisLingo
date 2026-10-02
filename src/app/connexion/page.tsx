@@ -398,13 +398,13 @@ export default function ConnexionPage() {
                   setForgotMessage(null);
                   setIsForgotModalOpen(true);
                 }}
-                className="font-semibold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer py-1"
+                className="font-semibold text-[#757575] hover:text-[#E53935] dark:hover:text-[#FF5252] transition-colors cursor-pointer py-1 whitespace-nowrap"
               >
-                Mot de passe oublié ?
+                Mot de passe oublié&nbsp;?
               </button>
 
               <div className="text-center sm:text-right flex items-center justify-center sm:justify-end gap-1.5 flex-wrap">
-                <span className="text-[#757575] dark:text-[#9E9E9E]">Pas encore de compte ?</span>
+                <span className="text-[#757575] dark:text-[#9E9E9E] whitespace-nowrap">Pas encore de compte&nbsp;?</span>
                 <Link
                   href="/onboarding"
                   className="font-bold text-[#6200EE] dark:text-[#03DAC5] hover:underline whitespace-nowrap"

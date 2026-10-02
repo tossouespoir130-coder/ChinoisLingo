@@ -57,12 +57,9 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
 
   if (!profile) return null;
 
-  // Date locale calendaire de l'utilisateur pour éviter les coupures de minuit UTC
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const today = `${year}-${month}-${day}`;
+  // Date calendaire de référence Afrique de l'Ouest (UTC+1)
+  const { getDateStringWAT } = await import('@/lib/dateUtils');
+  const today = getDateStringWAT();
   const lastActive = profile.last_active_date ? String(profile.last_active_date).split('T')[0] : null;
   let newStreak = profile.streak_days || 1;
 
@@ -81,8 +78,18 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
       if (diffDays === 1) {
         // Connexion le lendemain consécutif : série + 1
         newStreak = (profile.streak_days || 0) + 1;
-      } else if (diffDays > 1) {
-        // Absence de 2 jours ou plus : la série recommence à 1
+      } else if (diffDays === 2) {
+        // 1 jour manqué : activation du Gel de Série ❄️ si disponible ce mois-ci
+        const { getStreakFreezeStatus, consumeStreakFreeze } = await import('@/lib/gamification/streakFreezeService');
+        const freezeStatus = getStreakFreezeStatus(user.id);
+        if (freezeStatus.isAvailable) {
+          consumeStreakFreeze(user.id);
+          newStreak = (profile.streak_days || 1) + 1;
+        } else {
+          newStreak = 1;
+        }
+      } else if (diffDays > 2) {
+        // Absence prolongée : la série recommence à 1
         newStreak = 1;
       }
     }

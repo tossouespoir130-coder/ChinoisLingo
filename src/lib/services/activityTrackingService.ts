@@ -285,13 +285,15 @@ export function getLocalRecentActivities(userId?: string | null): TrackedActivit
   }
 }
 
+import { getDateStringWAT } from '@/lib/dateUtils';
+
 /**
  * Enregistre le temps d'étude réel passé en minutes et notifie l'application.
  */
 export async function trackStudyMinutes(minutesToAdd: number = 1): Promise<void> {
   if (typeof window === 'undefined' || minutesToAdd <= 0) return;
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = getDateStringWAT();
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const userId = user?.id || getCurrentUserId();
