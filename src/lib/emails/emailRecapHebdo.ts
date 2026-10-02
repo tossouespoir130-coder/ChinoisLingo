@@ -3,6 +3,8 @@ import 'server-only';
 import { envoyerEmail, configurationEmailPrete } from './resend';
 import { journaliserEmail } from './journal';
 import { lienDesabonnement } from './desabonnement';
+import { echapper } from './modeles';
+import { ENTETE_MODE_SOMBRE, boutonPrincipal, enTeteMarque } from './modeSombre';
 
 export interface NouvelItemContenu {
   id: string;
@@ -86,8 +88,8 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
 
     sectionsHtml += `
       <div style="margin-bottom: 26px;">
-        <div style="margin-bottom: 12px; border-bottom: 2px solid #F0EDF9; padding-bottom: 6px;">
-          <h3 style="font-size: 15px; font-weight: 800; color: #6200EE; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">
+        <div class="filet" style="margin-bottom: 12px; border-bottom: 2px solid #F0EDF9; padding-bottom: 6px;">
+          <h3 class="texte-violet" style="font-size: 15px; font-weight: 800; color: #6200EE; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">
             ${iconeRubrique} ${nomRubrique}
           </h3>
         </div>
@@ -98,22 +100,22 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
     items.forEach((item) => {
       const sousCatNom = item.sous_categorie ? (NOMS_SOUS_CATEGORIES[item.sous_categorie] || item.sous_categorie) : '';
       const badgeHsk = item.niveau_hsk || '';
-      const lienComplet = item.lien.startsWith('http') ? item.lien : `${siteUrl}${item.lien}`;
+      const lienComplet = echapper(item.lien.startsWith('http') ? item.lien : `${siteUrl}${item.lien}`);
 
       sectionsHtml += `
         <tr>
           <td style="padding-bottom: 12px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAFAFA; border: 1px solid #E8E8E8; border-radius: 14px; padding: 14px 16px;">
+            <table class="bloc" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FAFAFA; border: 1px solid #E8E8E8; border-radius: 14px; padding: 14px 16px;">
               <tr>
                 <td>
                   <div style="margin-bottom: 6px;">
                     ${sousCatNom ? `<span style="display: inline-block; background-color: #EDE7F6; color: #6200EE; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-right: 6px; text-transform: uppercase;">${sousCatNom}</span>` : ''}
                     ${badgeHsk ? `<span style="display: inline-block; background-color: #E0F2F1; color: #00897B; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px;">${badgeHsk}</span>` : ''}
                   </div>
-                  <a href="${lienComplet}" target="_blank" style="font-size: 15px; font-weight: 700; color: #212121; text-decoration: none; line-height: 1.4; display: block;">
-                    ${item.titre}
+                  <a class="texte-titre" href="${lienComplet}" target="_blank" style="font-size: 15px; font-weight: 700; color: #212121; text-decoration: none; line-height: 1.4; display: block;">
+                    ${echapper(item.titre)}
                   </a>
-                  ${item.description ? `<p style="font-size: 13px; color: #616161; margin: 6px 0 0 0; line-height: 1.45;">${item.description}</p>` : ''}
+                  ${item.description ? `<p class="texte-doux" style="font-size: 13px; color: #616161; margin: 6px 0 0 0; line-height: 1.45;">${echapper(item.description)}</p>` : ''}
                 </td>
               </tr>
             </table>
@@ -135,32 +137,23 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>${sujet}</title>
+  <title>${sujet}</title>${ENTETE_MODE_SOMBRE}
 </head>
-<body style="margin: 0; padding: 0; background-color: #F4F6FB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #212121;">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F6FB; padding: 30px 15px;">
+<body class="corps" style="margin: 0; padding: 0; background-color: #F4F6FB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #212121;">
+  <table class="fond-page" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F6FB; padding: 30px 15px;">
     <tr>
       <td align="center">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(98, 0, 238, 0.06); border: 1px solid #EAEAEA;">
+        <table class="carte" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(98, 0, 238, 0.06); border: 1px solid #EAEAEA;">
           <!-- En-tête Violet Signature -->
-          <tr>
-            <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 35px 30px; text-align: center;">
-              <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
-                <img src="${siteUrl}/logo-white.png" alt="ChinoisLingo" width="180" style="display: block; margin: 0 auto 10px auto; max-width: 180px; height: auto; border: 0;" />
-              </a>
-              <p style="color: #03DAC5; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0;">
-                « Le chinois devient facile »
-              </p>
-            </td>
-          </tr>
+          ${enTeteMarque(siteUrl)}
 
           <!-- Corps du message -->
           <tr>
             <td style="padding: 35px 30px;">
-              <h2 style="font-size: 20px; font-weight: 700; color: #212121; margin: 0 0 14px 0;">
-                Nǐhǎo ${params.nom} ! 👋
+              <h2 class="texte-titre" style="font-size: 20px; font-weight: 700; color: #212121; margin: 0 0 14px 0;">
+                Nǐhǎo ${echapper(params.nom)} ! 👋
               </h2>
-              <p style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">
+              <p class="texte-corps" style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">
                 Voici les nouveaux contenus et leçons ajoutés sur <strong>ChinoisLingo</strong> cette semaine pour accélérer ton immersion en mandarin.
               </p>
 
@@ -168,29 +161,21 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
               ${sectionsHtml}
 
               <!-- Bouton d'accès direct -->
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 30px 0 10px 0;">
-                <tr>
-                  <td align="center">
-                    <a href="${siteUrl}/tableau-de-bord" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none; padding: 15px 35px; border-radius: 100px; box-shadow: 0 4px 15px rgba(98, 0, 238, 0.3);">
-                      Découvrir mes nouveaux contenus →
-                    </a>
-                  </td>
-                </tr>
-              </table>
+              ${boutonPrincipal(`${siteUrl}/tableau-de-bord`, 'Découvrir mes nouveaux contenus →')}
             </td>
           </tr>
 
           <!-- Footer & Désabonnement -->
           <tr>
-            <td style="background-color: #FAFAFA; border-top: 1px solid #EAEAEA; padding: 25px 30px; text-align: center;">
-              <p style="font-size: 13px; font-weight: 700; color: #212121; margin: 0 0 12px 0;">
+            <td class="pied" style="background-color: #FAFAFA; border-top: 1px solid #EAEAEA; padding: 25px 30px; text-align: center;">
+              <p class="texte-titre" style="font-size: 13px; font-weight: 700; color: #212121; margin: 0 0 12px 0;">
                 L'équipe ChinoisLingo
               </p>
-              <p style="font-size: 11px; color: #9E9E9E; margin: 0 0 6px 0;">
+              <p class="texte-doux" style="font-size: 11px; color: #9E9E9E; margin: 0 0 6px 0;">
                 Tu reçois cet e-mail car tu es inscrit sur ChinoisLingo.
               </p>
               <p style="font-size: 11px; margin: 0;">
-                <a href="${liensDesabo.page}" style="color: #6200EE; text-decoration: underline;">
+                <a class="texte-violet" href="${liensDesabo.page}" style="color: #6200EE; text-decoration: underline;">
                   Gérer mes préférences de notification ou me désabonner
                 </a>
               </p>

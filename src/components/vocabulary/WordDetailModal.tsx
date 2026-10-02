@@ -23,7 +23,7 @@ interface WordDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   isSaved: boolean;
-  onToggleSave: (wordId: string) => void;
+  onToggleSave: (wordId: string, wordHanzi?: string) => void;
 }
 
 export interface DetailedExample {
@@ -224,7 +224,7 @@ export function WordDetailModal({
 
             <div className="flex items-center gap-2">
               <button
-                onClick={() => onToggleSave(word.id)}
+                onClick={() => onToggleSave(word.id, word.hanzi)}
                 type="button"
                 className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 btn-press ${
                   isSaved

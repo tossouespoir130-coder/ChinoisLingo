@@ -6,7 +6,7 @@ import {
   Briefcase, Target, Signal, Bell, Building2, 
   GraduationCap, Laptop, Telescope, TrendingUp, 
   Palmtree, Plane, Heart, Sparkles, CheckCircle2,
-  CalendarPlus, Ban, Copy, Check, HardHat
+  CalendarPlus, Ban, Copy, Check, HardHat, Clock, CheckCheck
 } from 'lucide-react';
 import { Portal } from '@/components/ui/Portal';
 import { formaterDate, formaterDateHeure } from '@/lib/admin/useApiAdmin';
@@ -19,6 +19,8 @@ export interface DetailUtilisateur {
   derniereConnexion: string | null;
   joursConnexion: number;
   role: string;
+  emailConfirme?: boolean;
+  emailConfirmeLe?: string | null;
   profil: string | null;
   objectif: string | null;
   niveau: string | null;
@@ -33,6 +35,8 @@ interface ModaleDetailUtilisateurProps {
   onFermer: () => void;
   onProlonger?: () => void;
   onAnnuler?: () => void;
+  onValiderCompte?: () => void;
+  enValidation?: boolean;
 }
 
 const ICONES_PROFILS: Record<string, any> = {
@@ -68,6 +72,8 @@ export function ModaleDetailUtilisateur({
   onFermer,
   onProlonger,
   onAnnuler,
+  onValiderCompte,
+  enValidation = false,
 }: ModaleDetailUtilisateurProps) {
   const [copie, setCopie] = React.useState(false);
 
@@ -126,6 +132,56 @@ export function ModaleDetailUtilisateur({
           </div>
 
           <div className="p-5 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+            {/* Section 0 : Statut de Validation du Compte (Email) */}
+            <div className="p-3.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                {utilisateur.emailConfirme ? (
+                  <div className="w-8 h-8 rounded-xl bg-[#1B5E20]/10 text-[#1B5E20] dark:text-[#66BB6A] flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-4 h-4" />
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 rounded-xl bg-[#FFA000]/10 text-[#E65100] dark:text-[#FFB74D] flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                )}
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5]">
+                      {utilisateur.emailConfirme ? 'Compte validé & vérifié' : 'Compte en attente de validation'}
+                    </span>
+                    <span
+                      className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-black ${
+                        utilisateur.emailConfirme
+                          ? 'bg-[#1B5E20]/12 text-[#1B5E20] dark:text-[#66BB6A]'
+                          : 'bg-[#FFA000]/12 text-[#E65100] dark:text-[#FFB74D]'
+                      }`}
+                    >
+                      {utilisateur.emailConfirme ? '✓ Validé' : '⏳ Non validé'}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#757575] dark:text-[#A0A0A0] mt-0.5">
+                    {utilisateur.emailConfirme
+                      ? utilisateur.emailConfirmeLe
+                        ? `Validé le ${formaterDateHeure(utilisateur.emailConfirmeLe)}`
+                        : 'E-mail confirmé'
+                      : 'L’utilisateur n’a pas encore cliqué sur le lien de confirmation.'}
+                  </p>
+                </div>
+              </div>
+
+              {!utilisateur.emailConfirme && onValiderCompte && (
+                <button
+                  type="button"
+                  onClick={onValiderCompte}
+                  disabled={enValidation}
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#00897B] text-white text-xs font-bold hover:bg-[#00796B] transition-all btn-press shadow-xs disabled:opacity-50 cursor-pointer shrink-0"
+                >
+                  <CheckCheck className="w-3.5 h-3.5" />
+                  <span>{enValidation ? 'Validation…' : 'Valider manuellement'}</span>
+                </button>
+              )}
+            </div>
+
             {/* Section 1 : Informations d'Inscription & Onboarding */}
             <div className="space-y-3">
               <h3 className="text-xs font-black uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC]">
@@ -194,7 +250,10 @@ export function ModaleDetailUtilisateur({
                 </div>
 
                 <div className="p-3 rounded-xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/60 dark:border-[#333]">
-                  <span className="text-[#757575] dark:text-[#A0A0A0] block">Dernière connexion</span>
+                  <span className="text-[#757575] dark:text-[#A0A0A0] flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
+                    Dernière connexion
+                  </span>
                   <span className="font-bold text-[#212121] dark:text-[#F5F5F5] mt-1 block">
                     {formaterDateHeure(utilisateur.derniereConnexion)}
                   </span>
@@ -245,7 +304,7 @@ export function ModaleDetailUtilisateur({
                     <button
                       type="button"
                       onClick={onProlonger}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] text-xs font-bold hover:bg-[#6200EE]/18 transition-all btn-press"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] text-xs font-bold hover:bg-[#6200EE]/18 transition-all btn-press cursor-pointer"
                     >
                       <CalendarPlus className="w-3.5 h-3.5" />
                       Prolonger
@@ -255,7 +314,7 @@ export function ModaleDetailUtilisateur({
                     <button
                       type="button"
                       onClick={onAnnuler}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#DD2C00]/10 text-[#DD2C00] text-xs font-bold hover:bg-[#DD2C00]/18 transition-all btn-press"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#DD2C00]/10 text-[#DD2C00] text-xs font-bold hover:bg-[#DD2C00]/18 transition-all btn-press cursor-pointer"
                     >
                       <Ban className="w-3.5 h-3.5" />
                       Annuler
@@ -271,7 +330,7 @@ export function ModaleDetailUtilisateur({
               <button
                 type="button"
                 onClick={copierId}
-                className="inline-flex items-center gap-1 text-[11px] text-[#6200EE] dark:text-[#BB86FC] hover:underline"
+                className="inline-flex items-center gap-1 text-[11px] text-[#6200EE] dark:text-[#BB86FC] hover:underline cursor-pointer"
               >
                 {copie ? <Check className="w-3 h-3 text-[#1B5E20]" /> : <Copy className="w-3 h-3" />}
                 {copie ? 'Copié' : 'Copier ID'}

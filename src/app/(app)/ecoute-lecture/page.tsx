@@ -99,10 +99,33 @@ export interface ReadingItem {
   youtubeId?: string;
   artist?: string;
   author?: string; // Pour les articles exclusifs rédigés par Espoir Chinois
+  date_publication?: string; // Date de publication programmée format "AAAA-MM-JJ" (déblocage automatique à 12h00 GMT)
   seriesEpisodes?: ArticleEpisode[]; // Série d'articles regroupés (3 articles complets)
   characters?: DialogueCharacter[]; // Liste des personnages du dialogue ou de l'histoire
   vocabulary?: VocabularyWord[]; // Nouveaux mots (生词) de la leçon ou vidéo
   sentences: ReadingSentence[];
+}
+
+/**
+ * Vérifie si un contenu est publié et accessible aux apprenants.
+ * Règle d'or :
+ * 1. Sans `date_publication` : immédiatement visible (rétrocompatibilité totale).
+ * 2. Avec `date_publication` : déblocage automatique à 12h00 GMT (12:00 UTC) le jour J sans intervention manuelle.
+ */
+export function estContenuPublie(item: ReadingItem): boolean {
+  if (!item.date_publication) return true;
+
+  let datePublicationMs: number;
+  const dateStr = item.date_publication.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    // Calage précis sur 12h00 GMT (UTC)
+    datePublicationMs = new Date(`${dateStr}T12:00:00Z`).getTime();
+  } else {
+    datePublicationMs = new Date(dateStr).getTime();
+  }
+
+  if (isNaN(datePublicationMs)) return true;
+  return Date.now() >= datePublicationMs;
 }
 
 // Progressive color helper according to HSK level difficulty
@@ -1578,7 +1601,7 @@ export const readingCatalog: ReadingItem[] = [
         ],
         sentences: [
           { id: 'jsx_e2_1', hanzi: '我有一个朋友。', pinyin: 'Wǒ yǒu yí gè péngyou.', french: 'J’ai un ami.' },
-          { id: 'jsx_e2_2', hanzi: '他也是一只猫。', pinyin: 'Tā yě释 yì zhī māo.', french: 'C’est aussi un chat.' },
+          { id: 'jsx_e2_2', hanzi: '他也是一只猫。', pinyin: 'Tā yě shì yì zhī māo.', french: 'C’est aussi un chat.' },
           { id: 'jsx_e2_3', hanzi: '他叫小花。', pinyin: 'Tā jiào Xiǎohuā.', french: 'Il s’appelle Xiaohua.' },
           { id: 'jsx_e2_4', hanzi: '他两岁。', pinyin: 'Tā liǎng suì.', french: 'Il a deux ans.' },
           { id: 'jsx_e2_5', hanzi: '他也喜欢吃鱼。', pinyin: 'Tā yě xǐhuan chī yú.', french: 'Il aime aussi manger du poisson.' },
@@ -4115,6 +4138,94 @@ export const readingCatalog: ReadingItem[] = [
     ]
   },
   {
+    id: 'dialogue_comment_se_lit_ce_caractere',
+    titleFr: 'Comment se lit ce caractère ?',
+    titleZh: '这个汉字怎么读？',
+    titlePinyin: 'Zhège hànzì zěnme dú?',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Xiaohong demande à Xiaoming comment prononcer et écrire un caractère chinois lors d’une séance d’étude.',
+    imageUrl: 'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '小红',
+        nameZh: '小红',
+        pinyin: 'Xiǎohóng',
+        role: 'Étudiante',
+        description: 'Interroge Xiaoming sur la lecture et l’écriture des caractères chinois.',
+        color: 'turquoise'
+      },
+      {
+        name: '小明',
+        nameZh: '小明',
+        pinyin: 'Xiǎomíng',
+        role: 'Étudiant',
+        description: 'Explique la prononciation du caractère et reconnaît avec humilité ses limites en écriture.',
+        color: 'violet'
+      }
+    ],
+    sentences: [
+      {
+        id: 'dch_1',
+        speaker: '小红',
+        speakerRole: 'Étudiante',
+        speakerColor: 'turquoise',
+        hanzi: '小明，这个汉字怎么读？',
+        pinyin: 'Xiǎomíng, zhège hànzì zěnme dú?',
+        french: 'Xiaoming, comment se lit ce caractère chinois ?',
+      },
+      {
+        id: 'dch_2',
+        speaker: '小明',
+        speakerRole: 'Étudiant',
+        speakerColor: 'violet',
+        hanzi: '这个字读“谢”。',
+        pinyin: 'Zhège zì dú "xiè".',
+        french: 'Ce caractère se lit « xiè ».',
+      },
+      {
+        id: 'dch_3',
+        speaker: '小红',
+        speakerRole: 'Étudiante',
+        speakerColor: 'turquoise',
+        hanzi: '你会写吗？',
+        pinyin: 'Nǐ huì xiě ma?',
+        french: 'Sais-tu l’écrire ?',
+      },
+      {
+        id: 'dch_4',
+        speaker: '小明',
+        speakerRole: 'Étudiant',
+        speakerColor: 'violet',
+        hanzi: '对不起，这个汉字我会读，不会写。',
+        pinyin: 'Duìbuqǐ, zhège hànzì wǒ huì dú, bú huì xiě.',
+        french: 'Désolé, je sais lire ce caractère chinois, mais je ne sais pas l’écrire.',
+      },
+      {
+        id: 'dch_5',
+        speaker: '小红',
+        speakerRole: 'Étudiante',
+        speakerColor: 'turquoise',
+        hanzi: '没关系。',
+        pinyin: 'Méi guānxi.',
+        french: 'Ce n’est pas grave.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '汉字', pinyin: 'hànzì', french: 'caractère chinois', role: 'Nom commun' },
+      { hanzi: '怎么', pinyin: 'zěnme', french: 'comment', role: 'Pronom interrogatif' },
+      { hanzi: '读', pinyin: 'dú', french: 'lire, prononcer', role: 'Verbe' },
+      { hanzi: '字', pinyin: 'zì', french: 'caractère, mot', role: 'Nom commun' },
+      { hanzi: '会', pinyin: 'huì', french: 'savoir, pouvoir (faire qc)', role: 'Verbe modal' },
+      { hanzi: '写', pinyin: 'xiě', french: 'écrire', role: 'Verbe' },
+      { hanzi: '对不起', pinyin: 'duìbuqǐ', french: 'pardon, désolé', role: 'Formule de politesse' },
+      { hanzi: '不会', pinyin: 'bú huì', french: 'ne pas savoir faire', role: 'Locution verbale' },
+      { hanzi: '没关系', pinyin: 'méi guānxi', french: 'ce n’est pas grave, de rien', role: 'Formule de politesse' },
+    ]
+  },
+  {
     id: 'dialogue_4',
     titleFr: 'Prendre le Taxi pour Aller à l’Hôtel',
     titleZh: '坐出租车去酒店',
@@ -6563,7 +6674,7 @@ function EcouteLectureContent() {
   // Catalogue filtré et ordonné : contenus accessibles/déverrouillés en premier en haut, verrouillés en bas, triés par niveau HSK croissant
   const filteredCatalog = useMemo(() => {
     return readingCatalog
-      .filter((item) => item.type === activeCategory)
+      .filter((item) => item.type === activeCategory && estContenuPublie(item))
       .sort((a, b) => {
         // 1. Contenus déverrouillés en haut (0), verrouillés en bas (1)
         const accessibleA = estAccessible(a) ? 0 : 1;
@@ -7594,10 +7705,15 @@ function EcouteLectureContent() {
               </button>
 
               <div className="min-w-0 flex-1 space-y-0.5">
-                {/* Titre complet en français */}
-                <h1 className="font-display font-black text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate leading-snug">
-                  {activeSeries.titleFr}
-                </h1>
+                <div className="flex items-center gap-2">
+                  {/* Titre complet en français */}
+                  <h1 className="font-display font-black text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate leading-snug">
+                    {activeSeries.titleFr}
+                  </h1>
+                  <span className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow-2xs ${getLevelBadgeStyle(activeSeries.level)}`}>
+                    {activeSeries.level}
+                  </span>
+                </div>
 
                 {/* Sous-titre indicatif */}
                 <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] truncate">
@@ -7729,12 +7845,12 @@ function EcouteLectureContent() {
           {/* 6 SUB-MENUS (Chansons, Articles, Histoires, Dialogues, Podcasts, Vidéos) - FLUIDE & RESPONSIVE MOBILE */}
           <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] overflow-x-auto no-scrollbar scroll-smooth w-full">
             {[
-              { id: 'chansons', label: 'Chansons', icon: Music, count: readingCatalog.filter(r => r.type === 'chansons').length },
-              { id: 'articles', label: 'Articles', icon: Newspaper, count: readingCatalog.filter(r => r.type === 'articles').length },
-              { id: 'histoires', label: 'Histoires', icon: BookMarked, count: readingCatalog.filter(r => r.type === 'histoires').length },
-              { id: 'dialogues', label: 'Dialogues', icon: MessagesSquare, count: readingCatalog.filter(r => r.type === 'dialogues').length },
-              { id: 'podcasts', label: 'Podcasts', icon: Radio, count: readingCatalog.filter(r => r.type === 'podcasts').length },
-              { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos').length },
+              { id: 'chansons', label: 'Chansons', icon: Music, count: readingCatalog.filter(r => r.type === 'chansons' && estContenuPublie(r)).length },
+              { id: 'articles', label: 'Articles', icon: Newspaper, count: readingCatalog.filter(r => r.type === 'articles' && estContenuPublie(r)).length },
+              { id: 'histoires', label: 'Histoires', icon: BookMarked, count: readingCatalog.filter(r => r.type === 'histoires' && estContenuPublie(r)).length },
+              { id: 'dialogues', label: 'Dialogues', icon: MessagesSquare, count: readingCatalog.filter(r => r.type === 'dialogues' && estContenuPublie(r)).length },
+              { id: 'podcasts', label: 'Podcasts', icon: Radio, count: readingCatalog.filter(r => r.type === 'podcasts' && estContenuPublie(r)).length },
+              { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos' && estContenuPublie(r)).length },
             ].map((sub) => {
               const Icon = sub.icon;
               const isActive = activeCategory === sub.id;
@@ -7834,12 +7950,10 @@ function EcouteLectureContent() {
                       {/* Subtle gradient overlay on bottom of image for sleek depth */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-                      {/* Floating HSK Level Badge on Top-Right (Masqué pour les séries car elles regroupent plusieurs niveaux d'apprentissage) */}
-                      {!hasSeriesEpisodes && (
-                        <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md ${getLevelBadgeStyle(item.level)}`}>
-                          {item.level}
-                        </span>
-                      )}
+                      {/* Floating HSK Level Badge on Top-Right */}
+                      <span className={`absolute top-2.5 right-2.5 text-[9.5px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full backdrop-blur-md shadow-sm ${getLevelBadgeStyle(item.level)}`}>
+                        {item.level}
+                      </span>
 
                       {/* Unified Badge on Bottom-Left */}
                       {hasSeriesEpisodes ? (

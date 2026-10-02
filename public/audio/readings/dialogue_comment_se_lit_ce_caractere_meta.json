@@ -1,0 +1,61 @@
+{
+  "contentId": "dialogue_comment_se_lit_ce_caractere",
+  "title": "Comment se lit ce caractère ?",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere.mp3",
+  "totalDurationMs": 13080,
+  "sentences": [
+    {
+      "sentenceId": "dch_1",
+      "speaker": "小红",
+      "hanzi": "小明，这个汉字怎么读？",
+      "startMs": 0,
+      "endMs": 3440,
+      "durationMs": 3440,
+      "audioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere_dch_1.mp3"
+    },
+    {
+      "sentenceId": "dch_2",
+      "speaker": "小明",
+      "hanzi": "这个字读“谢”。",
+      "startMs": 3790,
+      "endMs": 5790,
+      "durationMs": 2000,
+      "audioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere_dch_2.mp3"
+    },
+    {
+      "sentenceId": "dch_3",
+      "speaker": "小红",
+      "hanzi": "你会写吗？",
+      "startMs": 6140,
+      "endMs": 7180,
+      "durationMs": 1040,
+      "audioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere_dch_3.mp3"
+    },
+    {
+      "sentenceId": "dch_4",
+      "speaker": "小明",
+      "hanzi": "对不起，这个汉字我会读，不会写。",
+      "startMs": 7530,
+      "endMs": 11210,
+      "durationMs": 3680,
+      "audioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere_dch_4.mp3"
+    },
+    {
+      "sentenceId": "dch_5",
+      "speaker": "小红",
+      "hanzi": "没关系。",
+      "startMs": 11560,
+      "endMs": 13080,
+      "durationMs": 1520,
+      "audioUrl": "/audio/readings/dialogue_comment_se_lit_ce_caractere_dch_5.mp3"
+    }
+  ]
+}

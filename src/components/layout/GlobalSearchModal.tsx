@@ -27,7 +27,7 @@ import {
   LayoutDashboard
 } from 'lucide-react';
 import { hskCompleteVocabulary } from '@/lib/data/hskCompleteDictionary';
-import { readingCatalog, ReadingItem } from '@/app/(app)/ecoute-lecture/page';
+import { readingCatalog, ReadingItem, estContenuPublie } from '@/app/(app)/ecoute-lecture/page';
 import { initialCourses, CourseModule } from '@/lib/mock/coursesData';
 
 interface GlobalSearchModalProps {
@@ -234,6 +234,7 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
 
     // 2. Écoute & Lecture (Chansons, Podcasts, Articles, Dialogues, Histoires)
     const audioMatches = readingCatalog.filter((item: ReadingItem) => {
+      if (!estContenuPublie(item)) return false;
       const titleFr = item.titleFr.toLowerCase();
       const titleZh = item.titleZh.toLowerCase();
       const titlePinyin = (item.titlePinyin || '').toLowerCase().replace(/[\s\-_]/g, '');

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Volume2, Sparkles, Bookmark, Check, Info, ChevronDown, ChevronUp } from 'lucide-react';
 import { getDailyWord } from '@/lib/mock/dashboard';
 import { usePreferences } from '@/context/PreferencesContext';
-import { addSavedWord, removeSavedWord, fetchUserSavedWords } from '@/lib/services/vocabularyService';
+import { addSavedWord, removeSavedWordByHanzi, fetchUserSavedWords } from '@/lib/services/vocabularyService';
 import confetti from 'canvas-confetti';
 
 export function WordOfTheDayCard() {
@@ -29,7 +29,7 @@ export function WordOfTheDayCard() {
   const handleToggleSave = async () => {
     if (isSaved) {
       setIsSaved(false);
-      await removeSavedWord(dailyWord.id);
+      await removeSavedWordByHanzi(dailyWord.hanzi);
     } else {
       setIsSaved(true);
       try {

@@ -38,6 +38,11 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
   1. Vérifier la présence effective et la conformité de toutes les pistes audio générées avec la voix attribuée (**Narrateur n°1** `narrator_1` pour les histoires et articles, voix dédiées pour les personnages).
   2. Vérifier la conformité stricte du fichier de métadonnées `_meta.json` (`contentId`, `fullAudioUrl`, tableau `sentences` avec `sentenceId`, `startMs`, `endMs`, `durationMs`, `audioUrl`).
   3. Vérifier que le lecteur immersif charge et joue bien les fichiers audio réels d'ElevenLabs (Master continu et audio phrase par phrase) sans aucun basculement intempestif sur la synthèse vocale du navigateur.
+- **Protocole Permanent d'Audit Global & Contrôle Qualité Systématique** : À chaque fois qu'Espoir Chinois demande ou mentionne un **« audit »** sur la plateforme ou sur un module, exécuter obligatoirement un checking exhaustif et méthodique en 4 volets :
+  1. **Checking de tous les contenus ajoutés & modifiés** : Vérifier la structure, les identifiants, les métadonnées et la cohérence pédagogique de l'ensemble des ressources (vocabulaire, articles, histoires, dialogues, chansons, podcasts, vidéos, formations).
+  2. **Contrôle rigoureux des transcriptions phonétiques (Pinyin)** : Vérifier chaque mot, caractère et phrase (exactitude des tons, accents diacritiques `ā á ǎ à`, absence de fautes de transcription, sandhi tonal des changements de tons de `不` et `一`, découpage fluide).
+  3. **Perfection des traductions françaises** : Zéro faute de français (orthographe, grammaire, accords, ponctuation soignée, sens contextuel fidèle et naturel).
+  4. **Vérification systématique des images d'illustration** : S'assurer que chaque contenu possède son image HD dédiée, nette, lumineuse et pertinente, respecter l'unicité stricte (zéro duplication d'image dans tout le site) et les miniatures YouTube officielles pour les chansons et vidéos.
 - **Règle Permanente de Distinction : « Épisode » (Vidéos) vs « Partie » (Histoires & Lectures)** : Le terme **« Épisode »** est réservé exclusivement aux contenus vidéos (`type: 'videos'`). Pour les histoires et lectures scénarisées (`type: 'histoires'`), utiliser systématiquement le terme **« Partie »** (`Partie 1`, `Partie 2`...) et **`X parties`** pour la durée globale.
 
 ### Les 11 Règles Permanentes de Génération Audio

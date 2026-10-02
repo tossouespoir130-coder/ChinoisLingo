@@ -44,7 +44,7 @@ import {
 } from 'lucide-react';
 
 import { useAuth } from '@/lib/auth/AuthContext';
-import { fetchUserSavedWords, addSavedWord, removeSavedWord } from '@/lib/services/vocabularyService';
+import { fetchUserSavedWords, addSavedWord, removeSavedWord, removeSavedWordByHanzi } from '@/lib/services/vocabularyService';
 
 function VocabulaireContent() {
   const { showPinyin, showFrenchTranslation, audioSpeed } = usePreferences();
@@ -81,6 +81,30 @@ function VocabulaireContent() {
   const [animatedBars, setAnimatedBars] = useState(false);
   const [customWords, setCustomWords] = useState<VocabularyWord[]>([]);
 
+  // Combine datasets directly from official JSON files
+  const fullDictionaryEntries = useMemo(() => {
+    const rawList: HSKDictionaryEntry[] = [
+      ...(hsk1Json.vocabulaire as HSKDictionaryEntry[]),
+      ...(hsk2Json.vocabulaire as HSKDictionaryEntry[]),
+      ...(hsk3Json.vocabulaire as HSKDictionaryEntry[]),
+      ...(hsk4Json.vocabulaire as HSKDictionaryEntry[]),
+      ...(hsk5Json.vocabulaire as HSKDictionaryEntry[]),
+      ...(hsk6Json.vocabulaire as HSKDictionaryEntry[]),
+    ];
+    const seenIds = new Set<string>();
+    const seenHanzi = new Set<string>();
+    const result: HSKDictionaryEntry[] = [];
+
+    for (const item of rawList) {
+      if (!seenIds.has(item.id) && !seenHanzi.has(item.hanzi)) {
+        seenIds.add(item.id);
+        seenHanzi.add(item.hanzi);
+        result.push(item);
+      }
+    }
+    return result;
+  }, []);
+
   // Load user saved words from Supabase on mount or auth change
   useEffect(() => {
     async function loadSavedWords() {
@@ -92,21 +116,28 @@ function VocabulaireContent() {
 
           dbWords.forEach((dbW) => {
             ids.add(dbW.id);
+            // Trouver le niveau HSK réel et les métadonnées officielles si disponibles
+            const entry = fullDictionaryEntries.find((e) => e.hanzi === dbW.hanzi);
+            const level = (entry?.level as HSKLevel) || (dbW.source_type === 'combination' ? 'HSK 1' : 'HSK 1');
+            const cefrLevel = entry?.cefrLevel || 'A1';
+
             customList.push({
               id: dbW.id,
-              themeId: 'theme_custom',
-              themeSlug: 'custom',
-              themeName: 'Mes Mots Enregistrés',
+              themeId: entry ? `theme_${entry.level.toLowerCase().replace(' ', '')}` : 'theme_custom',
+              themeSlug: entry ? entry.level.toLowerCase().replace(' ', '-') : 'custom',
+              themeName: entry ? `${entry.level} — Vocabulaire Officiel` : 'Mes Mots Enregistrés',
               hanzi: dbW.hanzi,
-              pinyin: dbW.pinyin || '',
+              pinyin: dbW.pinyin || entry?.pinyin || '',
               french: dbW.french,
-              category: dbW.source_type === 'combination' ? 'Phrase combinée' : 'Personnel',
-              level: 'HSK 1',
-              cefrLevel: 'A1',
-              businessTip: dbW.note || (dbW.example ? `Exemple : ${dbW.example}` : 'Mot enregistré dans votre collection.'),
-              exampleHanzi: dbW.example || '',
-              examplePinyin: '',
-              exampleFrench: '',
+              category: entry?.category || (dbW.source_type === 'combination' ? 'Phrase combinée' : 'Personnel'),
+              level: level,
+              cefrLevel: cefrLevel,
+              businessTip:
+                dbW.note ||
+                (dbW.example ? `Exemple : ${dbW.example}` : entry?.businessTip || 'Mot enregistré dans votre collection.'),
+              exampleHanzi: dbW.example || entry?.exampleHanzi || '',
+              examplePinyin: entry?.examplePinyin || '',
+              exampleFrench: entry?.exampleFrench || '',
               spacedRepetitionIntervalDays: 7,
               isSaved: true,
             });
@@ -119,7 +150,7 @@ function VocabulaireContent() {
     }
 
     loadSavedWords();
-  }, [user]);
+  }, [user, fullDictionaryEntries]);
 
   const handleOpenWordDetail = (word: VocabularyWord | HSKDictionaryEntry) => {
     setSelectedWordForDetail(word);
@@ -161,30 +192,6 @@ function VocabulaireContent() {
   });
   const [playingWordId, setPlayingWordId] = useState<string | null>(null);
 
-  // Combine datasets directly from official JSON files
-  const fullDictionaryEntries = useMemo(() => {
-    const rawList: HSKDictionaryEntry[] = [
-      ...(hsk1Json.vocabulaire as HSKDictionaryEntry[]),
-      ...(hsk2Json.vocabulaire as HSKDictionaryEntry[]),
-      ...(hsk3Json.vocabulaire as HSKDictionaryEntry[]),
-      ...(hsk4Json.vocabulaire as HSKDictionaryEntry[]),
-      ...(hsk5Json.vocabulaire as HSKDictionaryEntry[]),
-      ...(hsk6Json.vocabulaire as HSKDictionaryEntry[]),
-    ];
-    const seenIds = new Set<string>();
-    const seenHanzi = new Set<string>();
-    const result: HSKDictionaryEntry[] = [];
-
-    for (const item of rawList) {
-      if (!seenIds.has(item.id) && !seenHanzi.has(item.hanzi)) {
-        seenIds.add(item.id);
-        seenHanzi.add(item.hanzi);
-        result.push(item);
-      }
-    }
-    return result;
-  }, []);
-
   // Convert HSK entries to standard VocabularyWord
   const dictionaryWordsAsVocab: VocabularyWord[] = useMemo(() => {
     return fullDictionaryEntries.map((entry) => ({
@@ -212,9 +219,19 @@ function VocabulaireContent() {
     return [...dictionaryWordsAsVocab, ...customWords];
   }, [dictionaryWordsAsVocab, customWords]);
 
-  // Words saved by user ("Mes Mots")
+  // Words saved by user ("Mes Mots") — Déduplication stricte par Hanzi
   const mySavedWords = useMemo(() => {
-    return allWords.filter((w) => w.isSaved);
+    const saved = allWords.filter((w) => w.isSaved);
+    const seen = new Set<string>();
+    const unique: VocabularyWord[] = [];
+    for (const w of saved) {
+      const hz = w.hanzi.trim();
+      if (!seen.has(hz)) {
+        seen.add(hz);
+        unique.push(w);
+      }
+    }
+    return unique;
   }, [allWords]);
 
   // Search matching function
@@ -245,21 +262,34 @@ function VocabulaireContent() {
     return () => clearTimeout(timer);
   }, [activeTab]);
 
-  const toggleSaveWord = async (wordId: string) => {
-    const isCurrentlySaved = savedWordIds.has(wordId);
-    
+  const toggleSaveWord = async (wordId: string, wordHanzi?: string) => {
+    const foundWord = allWords.find((w) => w.id === wordId);
+    const targetHanzi = (wordHanzi || foundWord?.hanzi || '').trim();
+    const isCurrentlySaved =
+      savedWordIds.has(wordId) ||
+      (targetHanzi ? mySavedWords.some((w) => w.hanzi.trim() === targetHanzi) : false);
+
     setSavedWordIds((prev) => {
       const next = new Set(prev);
-      if (next.has(wordId)) next.delete(wordId);
-      else next.add(wordId);
+      if (isCurrentlySaved) {
+        next.delete(wordId);
+        if (targetHanzi) {
+          allWords.filter((w) => w.hanzi.trim() === targetHanzi).forEach((w) => next.delete(w.id));
+        }
+      } else {
+        next.add(wordId);
+      }
       return next;
     });
 
     if (user) {
       if (isCurrentlySaved) {
-        await removeSavedWord(wordId);
+        if (targetHanzi) {
+          await removeSavedWordByHanzi(targetHanzi);
+        } else {
+          await removeSavedWord(wordId);
+        }
       } else {
-        const foundWord = allWords.find(w => w.id === wordId);
         if (foundWord) {
           await addSavedWord({
             hanzi: foundWord.hanzi,
@@ -388,7 +418,23 @@ function VocabulaireContent() {
   };
 
   const handleAddWord = async (newWord: VocabularyWord) => {
-    setCustomWords((prev) => [newWord, ...prev]);
+    const cleanHanzi = newWord.hanzi.trim();
+
+    setCustomWords((prev) => {
+      const existingIndex = prev.findIndex((w) => w.hanzi.trim() === cleanHanzi);
+      if (existingIndex >= 0) {
+        const next = [...prev];
+        next[existingIndex] = {
+          ...next[existingIndex],
+          ...newWord,
+          id: next[existingIndex].id,
+          isSaved: true,
+        };
+        return next;
+      }
+      return [newWord, ...prev];
+    });
+
     setSavedWordIds((prev) => new Set(prev).add(newWord.id));
 
     if (user) {
@@ -401,7 +447,15 @@ function VocabulaireContent() {
         source_type: 'custom',
       });
       if (saved) {
-        setCustomWords((prev) => prev.map(w => w.id === newWord.id ? { ...w, id: saved.id } : w));
+        setCustomWords((prev) => {
+          const filtered = prev.filter((w) => w.hanzi.trim() !== cleanHanzi || w.id === saved.id);
+          const idx = filtered.findIndex((w) => w.id === saved.id);
+          if (idx >= 0) {
+            filtered[idx] = { ...filtered[idx], ...newWord, id: saved.id, isSaved: true };
+            return filtered;
+          }
+          return [{ ...newWord, id: saved.id, isSaved: true }, ...filtered.filter((w) => w.id !== newWord.id)];
+        });
         setSavedWordIds((prev) => {
           const next = new Set(prev);
           next.delete(newWord.id);
@@ -622,7 +676,7 @@ function VocabulaireContent() {
 
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
-                        onClick={() => toggleSaveWord(word.id)}
+                        onClick={() => toggleSaveWord(word.id, word.hanzi)}
                         type="button"
                         className={`w-9 h-9 rounded-2xl flex items-center justify-center transition-all btn-press ${
                           isSaved
@@ -856,7 +910,7 @@ function VocabulaireContent() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Rechercher dans mes mots enregistrés (Hanzi, Pinyin ou Français)..."
+              placeholder="Rechercher (Hanzi, Pinyin, Français)..."
               className="w-full pl-10 pr-10 py-2.5 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] bg-white dark:bg-[#1E1E1E] text-xs text-[#212121] dark:text-[#F5F5F5] outline-none focus:border-[#E91E63]"
             />
             {searchQuery && (
@@ -927,7 +981,7 @@ function VocabulaireContent() {
 
                       <div className="flex items-center gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
                         <button
-                          onClick={() => toggleSaveWord(word.id)}
+                          onClick={() => toggleSaveWord(word.id, word.hanzi)}
                           type="button"
                           className="w-9 h-9 rounded-2xl flex items-center justify-center bg-[#E91E63] text-white shadow-xs btn-press"
                           title="Retirer de mes mots enregistrés"
@@ -1121,7 +1175,7 @@ function VocabulaireContent() {
 
                       <div className="flex items-center gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
                         <button
-                          onClick={() => toggleSaveWord(word.id)}
+                          onClick={() => toggleSaveWord(word.id, word.hanzi)}
                           type="button"
                           className={`w-9 h-9 rounded-2xl flex items-center justify-center transition-all btn-press ${
                             isSaved
@@ -1172,7 +1226,12 @@ function VocabulaireContent() {
         word={selectedWordForDetail}
         isOpen={isDetailModalOpen}
         onClose={() => setIsDetailModalOpen(false)}
-        isSaved={selectedWordForDetail ? savedWordIds.has(selectedWordForDetail.id) : false}
+        isSaved={
+          selectedWordForDetail
+            ? savedWordIds.has(selectedWordForDetail.id) ||
+              mySavedWords.some((w) => w.hanzi.trim() === selectedWordForDetail.hanzi.trim())
+            : false
+        }
         onToggleSave={toggleSaveWord}
       />
 

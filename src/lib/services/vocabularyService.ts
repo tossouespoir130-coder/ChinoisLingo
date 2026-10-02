@@ -50,7 +50,39 @@ export async function fetchUserSavedWords(): Promise<SavedWord[]> {
     return [];
   }
 
-  return data || [];
+  // Nettoyage et déduplication stricte par caractère Hanzi
+  const seenHanzi = new Set<string>();
+  const duplicateIdsToDelete: string[] = [];
+  const uniqueWords: SavedWord[] = [];
+
+  for (const item of data || []) {
+    const cleanHanzi = item.hanzi?.trim();
+    if (cleanHanzi) {
+      if (seenHanzi.has(cleanHanzi)) {
+        duplicateIdsToDelete.push(item.id);
+      } else {
+        seenHanzi.add(cleanHanzi);
+        uniqueWords.push(item);
+      }
+    }
+  }
+
+  // Suppression automatique en arrière-plan des doublons historiques s'il y en a
+  if (duplicateIdsToDelete.length > 0) {
+    void (async () => {
+      try {
+        await supabase
+          .from('saved_words')
+          .delete()
+          .in('id', duplicateIdsToDelete);
+        await synchroniserCompteurMots(user.id);
+      } catch (err) {
+        console.error('Erreur nettoyage doublons:', err);
+      }
+    })();
+  }
+
+  return uniqueWords;
 }
 
 /**
@@ -102,13 +134,43 @@ export async function addSavedWord(word: {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user) return null;
+  if (!user || !word.hanzi) return null;
 
+  const cleanHanzi = word.hanzi.trim();
+
+  // 1. Vérification anti-doublon : vérifier si ce mot existe déjà pour cet utilisateur
+  const { data: existing } = await supabase
+    .from('saved_words')
+    .select('*')
+    .eq('user_id', user.id)
+    .eq('hanzi', cleanHanzi)
+    .maybeSingle();
+
+  if (existing) {
+    // Mettre à jour l'entrée existante si de nouvelles informations sont fournies
+    const { data: updated, error: updateErr } = await supabase
+      .from('saved_words')
+      .update({
+        pinyin: word.pinyin || existing.pinyin,
+        french: word.french || existing.french,
+        example: word.example || existing.example,
+        note: word.note || existing.note,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', existing.id)
+      .select()
+      .single();
+
+    if (!updateErr && updated) return updated;
+    return existing;
+  }
+
+  // 2. Création du nouveau mot s'il n'existe pas encore
   const { data, error } = await supabase
     .from('saved_words')
     .insert({
       user_id: user.id,
-      hanzi: word.hanzi,
+      hanzi: cleanHanzi,
       pinyin: word.pinyin || null,
       french: word.french,
       example: word.example || null,
@@ -145,6 +207,28 @@ export async function removeSavedWord(id: string): Promise<boolean> {
   }
 
   if (user) await synchroniserCompteurMots(user.id);
+
+  return true;
+}
+
+export async function removeSavedWordByHanzi(hanzi: string): Promise<boolean> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user || !hanzi) return false;
+
+  const { error } = await supabase
+    .from('saved_words')
+    .delete()
+    .eq('user_id', user.id)
+    .eq('hanzi', hanzi.trim());
+
+  if (error) {
+    console.error('Error deleting saved word by hanzi:', error);
+    return false;
+  }
+
+  await synchroniserCompteurMots(user.id);
 
   return true;
 }

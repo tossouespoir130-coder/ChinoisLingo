@@ -52,8 +52,34 @@ export function formaterDateHeure(iso: string | null): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return '—';
   
-  const dateStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+  const maintenant = new Date();
+  const estMemeJour = 
+    d.getDate() === maintenant.getDate() &&
+    d.getMonth() === maintenant.getMonth() &&
+    d.getFullYear() === maintenant.getFullYear();
+
+  const hier = new Date(maintenant);
+  hier.setDate(hier.getDate() - 1);
+  const estHier = 
+    d.getDate() === hier.getDate() &&
+    d.getMonth() === hier.getMonth() &&
+    d.getFullYear() === hier.getFullYear();
+
   const heureStr = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+  if (estMemeJour) {
+    return `Aujourd'hui à ${heureStr}`;
+  }
+  if (estHier) {
+    return `Hier à ${heureStr}`;
+  }
+
+  const anneeMeme = d.getFullYear() === maintenant.getFullYear();
+  const dateStr = d.toLocaleDateString('fr-FR', { 
+    day: '2-digit', 
+    month: 'short', 
+    year: anneeMeme ? undefined : 'numeric' 
+  });
   return `${dateStr} à ${heureStr}`;
 }
 
