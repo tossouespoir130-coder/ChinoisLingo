@@ -86,6 +86,9 @@
     - Appliquer systématiquement un léger micro fade-in (20 à 30ms) au début et un fade-out (30 à 40ms) à la fin de chaque segment pour éliminer tout clic ou coupure nette audible.
     - Lors de l'assemblage de dialogues multi-locuteurs, ne jamais coller les segments bord à bord : appliquer le fade-out/fade-in et une pause naturelle fluide de 350ms avec normalisation du volume (`loudnorm`).
     - Conserver un padding de fin naturel (+80ms) pour garantir qu'aucune consonne finale ou respiration ne soit tronquée. S'applique à tous les types de contenu : histoires, articles, dialogues, vocabulaire.
+12. **Règle Permanente de Non-Collision et Différenciation des Voix dans les Dialogues** :
+    - **Interdiction absolue d'associer la voix de Mr Chen (`cwzmKSYMCC9Aym1ymCnt`) et la voix de Jin (`vZZLclMx4wouUtKBRfZn`) dans un même dialogue** (à 2 ou 3 personnages), en raison de leur trop grande ressemblance de timbre et de tessiture.
+    - Dans tout dialogue impliquant le professeur Li (`Mr Chen`), utiliser obligatoirement pour l'étudiant une voix jeune et nettement contrastée (ex. **Adrian** `agczkAUlHLowaNnL72Cc` pour les voix masculines ou voix féminines). Même règle stricte pour tout dialogue à 3 personnages.
 
 
 ## Design System & Normes UI

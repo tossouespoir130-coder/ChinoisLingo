@@ -42,7 +42,6 @@ import { fetchRealDashboardStats } from '@/lib/services/dashboardService';
 import { getLocalRecentActivities, getDashboardStatsStorageKey } from '@/lib/services/activityTrackingService';
 import { DashboardSkeleton } from '@/components/ui/DashboardSkeleton';
 import { StreakFreezeWidget } from '@/components/gamification/StreakFreezeWidget';
-import { BadgesSection } from '@/components/gamification/BadgesSection';
 
 export default function DashboardPage() {
   const { profile, user, isLoading: authLoading } = useAuth();
@@ -314,9 +313,6 @@ export default function DashboardPage() {
               <ArrowUpRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
-
-          {/* Badges & Trophées Widget (Desktop) */}
-          <BadgesSection compact savedWordsCount={profile?.total_words_mastered || 0} />
         </div>
       </div>
 
@@ -383,9 +379,6 @@ export default function DashboardPage() {
 
         {/* 7. Score des Pairs */}
         <CommunityLeaderboardCard />
-
-        {/* Badges & Trophées Widget (Mobile) */}
-        <BadgesSection compact savedWordsCount={profile?.total_words_mastered || 0} />
 
         {/* 8. Guide d'Utilisation & Guide d'Apprentissage */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">

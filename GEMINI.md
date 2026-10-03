@@ -75,6 +75,9 @@ Ce fichier sert de référence architecturale, technique et pédagogique absolue
     - Micro fade-in (20-30ms) et fade-out (30-40ms) systématiques sur chaque segment découpé.
     - Padding de fin (+80ms) pour préserver la résonance naturelle et les consonnes finales sans aucune coupure abrupte.
     - Assemblage fluide avec pause naturelle (350ms) et normalisation sonore (`loudnorm`). S'applique à tous les contenus (histoires, dialogues, articles, vocabulaire).
+12. **Règle Permanente de Non-Collision et Différenciation des Voix dans les Dialogues** :
+    - **Interdiction absolue d'associer la voix de Mr Chen (`cwzmKSYMCC9Aym1ymCnt`) et la voix de Jin (`vZZLclMx4wouUtKBRfZn`) dans un même dialogue** (à 2 ou 3 personnages), en raison de leur trop grande proximité de timbre.
+    - Toujours contraster les locuteurs avec une voix nettement distincte (ex. **Adrian** `agczkAUlHLowaNnL72Cc` pour les étudiants masculins, ou voix féminines). Même règle stricte pour tout dialogue à 3 personnages.
 
 
 ---

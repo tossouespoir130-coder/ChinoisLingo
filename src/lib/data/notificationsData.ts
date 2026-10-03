@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_dialogue_qui_es_tu',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouveau dialogue HSK 1 : Qui es-tu ?\n你是谁？ 💬',
+    message: 'Découvre ce dialogue dynamique entre le professeur Li et Xiaoming pour apprendre à te présenter et parler de tes études de chinois !',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_qui_es_tu',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'notif_chanson_haoxiangni',
     source: 'founder',
     founderName: 'Espoir Chinois',

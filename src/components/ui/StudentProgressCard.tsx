@@ -8,11 +8,10 @@ import {
   Sparkles, 
   Clock, 
   TrendingUp,
-  Crown
+  Target
 } from 'lucide-react';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { fetchRealDashboardStats, RealDashboardStats } from '@/lib/services/dashboardService';
-import { evaluateUserBadges, getLearnerRank } from '@/lib/gamification/badgesEngine';
 
 interface StudentProgressCardProps {
   stats?: RealDashboardStats | null;
@@ -61,6 +60,17 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
   const minutes = totalMin % 60;
   const studyTimeString = hours > 0 ? `${hours}h ${minutes}m` : `${minutes} min`;
 
+  const currentHskLevel = useMemo(() => {
+    if (!realData?.hskProgress) return { level: 'HSK 1', label: 'Objectif Débutant' };
+    const p = realData.hskProgress;
+    if (p.hsk5?.percentage > 40) return { level: 'HSK 6', label: 'Objectif Avancé Supérieur' };
+    if (p.hsk4?.percentage > 40) return { level: 'HSK 5', label: 'Objectif Maîtrise Avancée' };
+    if (p.hsk3?.percentage > 40) return { level: 'HSK 4', label: 'Objectif Intermédiaire +' };
+    if (p.hsk2?.percentage > 40) return { level: 'HSK 3', label: 'Objectif Intermédiaire' };
+    if (p.hsk1?.percentage > 60) return { level: 'HSK 2', label: 'Objectif Élémentaire' };
+    return { level: 'HSK 1', label: 'Objectif Débutant' };
+  }, [realData]);
+
   const progressItems = [
     {
       label: 'Leçons Complétées (Formation)',
@@ -106,26 +116,6 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
     },
   ];
 
-  const badges = useMemo(() => {
-    return evaluateUserBadges({
-      profile: realData ? ({
-        id: 'current_user',
-        streak_days: realData.streakDays,
-        total_minutes_learned: realData.totalMinutesLearned,
-        total_words_mastered: realData.totalWordsMastered,
-      } as any) : null,
-      savedWordsCount: realData?.totalSavedWords || 0,
-    });
-  }, [realData]);
-
-  const totalXp = useMemo(() => {
-    return badges.filter((b) => b.isUnlocked).reduce((acc, b) => acc + b.xpReward, 0);
-  }, [badges]);
-
-  const learnerRank = useMemo(() => {
-    return getLearnerRank(totalXp);
-  }, [totalXp]);
-
   return (
     <div
       ref={cardRef}
@@ -149,21 +139,21 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
           </div>
         </div>
 
-        {/* 2 Mini KPI Cards : Rang Global (Proposition 1) & Temps d'Étude */}
+        {/* 2 Mini KPI Cards : Niveau Actuel (Option D) & Temps d'Étude */}
         <div className="grid grid-cols-2 gap-2.5 my-3.5">
           <div className="p-3 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center shrink-0 text-base">
-              {learnerRank.icon}
+            <div className="w-8 h-8 rounded-xl bg-[#00BFA5]/10 text-[#00BFA5] dark:text-[#03DAC5] flex items-center justify-center shrink-0">
+              <Target className="w-4 h-4" />
             </div>
             <div className="min-w-0">
               <span className="text-[10px] uppercase font-extrabold text-[#757575] dark:text-[#A0A0A0] block">
-                Rang Global
+                Niveau Actuel
               </span>
-              <span className="text-xs sm:text-sm font-black text-[#212121] dark:text-[#F5F5F5] truncate block" title={learnerRank.title}>
-                {learnerRank.title}
+              <span className="text-xs sm:text-sm font-black text-[#212121] dark:text-[#F5F5F5] truncate block">
+                {currentHskLevel.level}
               </span>
-              <span className="text-[10px] font-bold text-[#6200EE] dark:text-[#BB86FC] block truncate">
-                {learnerRank.rankTier} · {totalXp} XP
+              <span className="text-[10px] font-bold text-[#00897B] dark:text-[#03DAC5] block truncate">
+                {currentHskLevel.label}
               </span>
             </div>
           </div>
@@ -178,6 +168,9 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
               </span>
               <span className="text-xs sm:text-sm font-black text-[#212121] dark:text-[#F5F5F5] truncate block">
                 {studyTimeString}
+              </span>
+              <span className="text-[10px] font-bold text-[#6200EE] dark:text-[#BB86FC] block truncate">
+                Temps cumulé
               </span>
             </div>
           </div>
