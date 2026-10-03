@@ -3342,6 +3342,84 @@ export const readingCatalog: ReadingItem[] = [
 
   // ================= 3. DIALOGUES AVEC PERSONNAGES DÉTAILLÉS & COULEURS DISTINCTES =================
   {
+    id: 'dialogue_qui_es_tu',
+    titleFr: 'Qui es-tu ?',
+    titleZh: '你是谁',
+    titlePinyin: 'Nǐ shì shéi',
+    type: 'dialogues',
+    level: 'HSK 1',
+    duration: '1 min 00',
+    description: 'Monsieur Li et Xiaoming font connaissance dans la salle de classe et échangent sur leurs rôles et l’apprentissage du chinois.',
+    imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '李老师',
+        nameZh: '李老师',
+        pinyin: 'Lǐ Lǎoshī',
+        role: 'Professeur',
+        description: 'Enseigne le chinois et s’intéresse à ses nouveaux étudiants.',
+        color: 'violet'
+      },
+      {
+        name: '小明',
+        nameZh: '小明',
+        pinyin: 'Xiǎomíng',
+        role: 'Étudiant',
+        description: 'Apprend avec enthousiasme le chinois et se présente poliment.',
+        color: 'turquoise'
+      }
+    ],
+    sentences: [
+      {
+        id: 'd_qet_1',
+        speaker: '李老师',
+        speakerRole: 'Professeur',
+        speakerColor: 'violet',
+        hanzi: '你是谁？',
+        pinyin: 'Nǐ shì shéi?',
+        french: 'Qui es-tu ?',
+      },
+      {
+        id: 'd_qet_2',
+        speaker: '小明',
+        speakerRole: 'Étudiant',
+        speakerColor: 'turquoise',
+        hanzi: '我是学生。你呢？',
+        pinyin: 'Wǒ shì xuésheng. Nǐ ne?',
+        french: 'Je suis étudiant. Et toi ?',
+      },
+      {
+        id: 'd_qet_3',
+        speaker: '李老师',
+        speakerRole: 'Professeur',
+        speakerColor: 'violet',
+        hanzi: '我是汉语老师。你学习什么？',
+        pinyin: 'Wǒ shì Hànyǔ lǎoshī. Nǐ xuéxí shénme?',
+        french: 'Je suis professeur de chinois. Qu’étudies-tu ?',
+      },
+      {
+        id: 'd_qet_4',
+        speaker: '小明',
+        speakerRole: 'Étudiant',
+        speakerColor: 'turquoise',
+        hanzi: '我学习汉语。',
+        pinyin: 'Wǒ xuéxí Hànyǔ.',
+        french: 'J’étudie le chinois.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '是', pinyin: 'shì', french: 'être', role: 'Verbe' },
+      { hanzi: '谁', pinyin: 'shéi', french: 'qui', role: 'Pronom interrogatif' },
+      { hanzi: '学生', pinyin: 'xuésheng', french: 'étudiant, élève', role: 'Nom commun' },
+      { hanzi: '呢', pinyin: 'ne', french: 'et... ? (relance la question)', role: 'Particule modale' },
+      { hanzi: '汉语', pinyin: 'Hànyǔ', french: 'chinois, langue chinoise', role: 'Nom commun' },
+      { hanzi: '老师', pinyin: 'lǎoshī', french: 'professeur, enseignant', role: 'Nom commun' },
+      { hanzi: '学习', pinyin: 'xuéxí', french: 'étudier, apprendre', role: 'Verbe' },
+      { hanzi: '什么', pinyin: 'shénme', french: 'quoi, quel', role: 'Pronom interrogatif' },
+    ]
+  },
+  {
     id: 'dialogue_premiere_rencontre',
     titleFr: 'Heureux de faire votre connaissance',
     titleZh: '第一次见面',

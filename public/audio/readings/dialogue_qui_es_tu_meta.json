@@ -1,0 +1,52 @@
+{
+  "contentId": "dialogue_qui_es_tu",
+  "title": "Qui es-tu ? (HSK 1 - Dialogue)",
+  "type": "dialogue",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/dialogue_qui_es_tu.mp3",
+  "totalDurationMs": 8960,
+  "sentences": [
+    {
+      "sentenceId": "d_qet_1",
+      "speaker": "李老师",
+      "hanzi": "你是谁？",
+      "startMs": 0,
+      "endMs": 1800,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/dialogue_qui_es_tu_d_qet_1.mp3"
+    },
+    {
+      "sentenceId": "d_qet_2",
+      "speaker": "小明",
+      "hanzi": "我是学生。你呢？",
+      "startMs": 2200,
+      "endMs": 4320,
+      "durationMs": 2120,
+      "audioUrl": "/audio/readings/dialogue_qui_es_tu_d_qet_2.mp3"
+    },
+    {
+      "sentenceId": "d_qet_3",
+      "speaker": "李老师",
+      "hanzi": "我是汉语老师。你学习什么？",
+      "startMs": 4720,
+      "endMs": 7800,
+      "durationMs": 3080,
+      "audioUrl": "/audio/readings/dialogue_qui_es_tu_d_qet_3.mp3"
+    },
+    {
+      "sentenceId": "d_qet_4",
+      "speaker": "小明",
+      "hanzi": "我学习汉语。",
+      "startMs": 8200,
+      "endMs": 10160,
+      "durationMs": 1960,
+      "audioUrl": "/audio/readings/dialogue_qui_es_tu_d_qet_4.mp3"
+    }
+  ]
+}

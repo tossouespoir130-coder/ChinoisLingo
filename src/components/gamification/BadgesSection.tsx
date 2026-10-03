@@ -17,11 +17,12 @@ import {
   ArrowRight,
   TrendingUp,
   Layers,
-  Crown
+  Crown,
+  Target
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { BadgeCategory, BadgeTier, UserBadgeProgress } from '@/lib/gamification/badgesData';
-import { evaluateUserBadges } from '@/lib/gamification/badgesEngine';
+import { evaluateUserBadges, findNextChallengeBadge, getNextChallengeRemainingText } from '@/lib/gamification/badgesEngine';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { Portal } from '@/components/ui/Portal';
 
@@ -95,6 +96,10 @@ export function BadgesSection({ savedWordsCount, completedContentsMap, compact =
     return { unlockedCount, totalCount: badges.length, totalXp, totalPossibleXp, percent, rank };
   }, [badges]);
 
+  const nextChallenge = useMemo(() => {
+    return findNextChallengeBadge(badges);
+  }, [badges]);
+
   // Group badges by track for logical progression display
   const tracks = useMemo(() => {
     const map = new Map<string, { trackId: string; trackName: string; badges: UserBadgeProgress[] }>();
@@ -131,9 +136,9 @@ export function BadgesSection({ savedWordsCount, completedContentsMap, compact =
 
   if (compact) {
     return (
-      <div className="nixtio-card p-4 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-2xl">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
+      <div className="nixtio-card p-4 sm:p-5 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-2xl space-y-3.5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center">
               <Trophy className="w-4 h-4" />
             </div>
@@ -151,9 +156,51 @@ export function BadgesSection({ savedWordsCount, completedContentsMap, compact =
           </span>
         </div>
 
+        {/* 🎯 Prochain Défi à Débloquer (Mise en avant) */}
+        {nextChallenge && (
+          <div
+            onClick={() => handleBadgeClick(nextChallenge)}
+            className="p-3 rounded-2xl bg-gradient-to-r from-amber-500/10 via-[#6200EE]/8 to-[#03DAC5]/10 border border-amber-500/30 flex items-center justify-between gap-3 cursor-pointer hover:border-amber-500/60 transition-all btn-press group"
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center text-lg shadow-sm shrink-0 group-hover:scale-105 transition-transform animate-bounce-slow">
+                {nextChallenge.icon}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30">
+                    Prochain Défi
+                  </span>
+                  <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0] font-semibold truncate">
+                    {nextChallenge.trackName}
+                  </span>
+                </div>
+                <h5 className="font-bold text-xs text-[#212121] dark:text-[#F5F5F5] truncate mt-0.5 group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors">
+                  {nextChallenge.title}
+                </h5>
+                <p className="text-[10.5px] font-bold text-[#6200EE] dark:text-[#03DAC5] truncate">
+                  {getNextChallengeRemainingText(nextChallenge)}
+                </p>
+              </div>
+            </div>
+
+            <div className="text-right shrink-0">
+              <span className="text-xs font-mono font-bold text-[#212121] dark:text-[#F5F5F5] block">
+                {nextChallenge.currentProgress}/{nextChallenge.maxProgress}
+              </span>
+              <div className="w-16 h-1.5 rounded-full bg-black/10 dark:bg-white/10 mt-1 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-amber-500 to-[#6200EE]"
+                  style={{ width: `${nextChallenge.progressPercent}%` }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Mini icons row */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-          {badges.slice(0, 8).map((b) => (
+          {badges.slice(0, 10).map((b) => (
             <button
               key={b.id}
               onClick={() => handleBadgeClick(b)}
@@ -222,6 +269,50 @@ export function BadgesSection({ savedWordsCount, completedContentsMap, compact =
           </div>
         </div>
       </div>
+
+      {/* 🎯 Next Challenge Banner (Focus Objectif Immédiat) */}
+      {nextChallenge && (
+        <div 
+          onClick={() => setSelectedBadge(nextChallenge)}
+          className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-[#6200EE]/8 to-[#03DAC5]/10 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs hover:border-amber-500/60 transition-all cursor-pointer group btn-press"
+        >
+          <div className="flex items-center gap-3.5 min-w-0">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center text-2xl shadow-md shrink-0 animate-bounce-slow group-hover:scale-105 transition-transform">
+              {nextChallenge.icon}
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.2 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30 flex items-center gap-1">
+                  <Target className="w-3 h-3" />
+                  <span>Prochain Défi</span>
+                </span>
+                <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0] font-bold truncate">
+                  {nextChallenge.trackName} · Étape {nextChallenge.stepInTrack}/{nextChallenge.totalStepsInTrack}
+                </span>
+              </div>
+              <h4 className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5] mt-0.5 truncate group-hover:text-[#6200EE] dark:group-hover:text-[#BB86FC] transition-colors">
+                {nextChallenge.title}
+              </h4>
+              <p className="text-xs text-[#6200EE] dark:text-[#03DAC5] font-bold mt-0.5">
+                {getNextChallengeRemainingText(nextChallenge)}
+              </p>
+            </div>
+          </div>
+
+          <div className="sm:text-right shrink-0">
+            <div className="flex items-center sm:justify-end gap-2 text-xs font-mono font-bold text-[#212121] dark:text-[#F5F5F5] mb-1.5">
+              <span>{nextChallenge.currentProgress} / {nextChallenge.maxProgress} {nextChallenge.targetUnit}</span>
+              <span className="text-amber-600 dark:text-amber-400">({nextChallenge.progressPercent}%)</span>
+            </div>
+            <div className="w-full sm:w-44 h-2 rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-amber-500 via-[#6200EE] to-[#03DAC5] transition-all duration-700"
+                style={{ width: `${nextChallenge.progressPercent}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Categories Filter Tabs */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-xs">

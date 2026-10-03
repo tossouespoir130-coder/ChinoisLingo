@@ -27,7 +27,6 @@ export const LEADERBOARD_EXPANDED_LIMIT = 15; // Modifiable à 30 ou 50 facileme
 
 export function CommunityLeaderboardCard() {
   const { session, profile } = useAuth();
-  const [vue, setVue] = useState<'hebdo' | 'tout-temps'>('hebdo');
   const [isExpanded, setIsExpanded] = useState(false);
   const [participants, setParticipants] = useState<LeaderboardUser[] | null>(null);
   const [totalCount, setTotalCount] = useState(0);
@@ -43,7 +42,7 @@ export function CommunityLeaderboardCard() {
 
     const limitToFetch = isExpanded ? LEADERBOARD_EXPANDED_LIMIT : LEADERBOARD_DEFAULT_LIMIT;
 
-    fetch(`/api/classement?vue=${vue}&limite=${limitToFetch}`, {
+    fetch(`/api/classement?vue=hebdo&limite=${limitToFetch}`, {
       headers: { Authorization: `Bearer ${jeton}` },
     })
       .then((r) => (r.ok ? r.json() : null))
@@ -64,7 +63,7 @@ export function CommunityLeaderboardCard() {
     return () => {
       isMounted = false;
     };
-  }, [session, vue, isExpanded]);
+  }, [session, isExpanded]);
 
   const visibleList = participants || [];
   const isMyRankVisible = visibleList.some((p) => p.estMoi);
@@ -101,7 +100,7 @@ export function CommunityLeaderboardCard() {
   return (
     <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs flex flex-col justify-between h-full">
       <div>
-        {/* Header with Title and View Switcher */}
+        {/* Header with Title */}
         <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-2xl bg-[#FFC107]/15 text-[#B78103] dark:text-[#FFD54F] flex items-center justify-center shadow-2xs shrink-0">
@@ -112,32 +111,6 @@ export function CommunityLeaderboardCard() {
                 Classement Communautaire
               </h3>
             </div>
-          </div>
-
-          {/* Onglets Hebdomadaire / Tout temps */}
-          <div className="flex items-center gap-1 bg-[#FAFAFA] dark:bg-[#252525] p-1 rounded-xl border border-[#E0E0E0] dark:border-[#333333] shrink-0">
-            <button
-              type="button"
-              onClick={() => setVue('hebdo')}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all btn-press ${
-                vue === 'hebdo'
-                  ? 'bg-[#6200EE] text-white shadow-xs'
-                  : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#212121] dark:hover:text-white'
-              }`}
-            >
-              Hebdomadaire
-            </button>
-            <button
-              type="button"
-              onClick={() => setVue('tout-temps')}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all btn-press ${
-                vue === 'tout-temps'
-                  ? 'bg-[#6200EE] text-white shadow-xs'
-                  : 'text-[#757575] dark:text-[#A0A0A0] hover:text-[#212121] dark:hover:text-white'
-              }`}
-            >
-              Tout temps
-            </button>
           </div>
         </div>
 

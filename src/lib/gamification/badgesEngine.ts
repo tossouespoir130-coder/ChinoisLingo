@@ -132,3 +132,60 @@ export function evaluateUserBadges(ctx: BadgeEvaluationContext): UserBadgeProgre
     };
   });
 }
+
+/**
+ * Identifie le prochain défi le plus proche d'être débloqué par l'apprenant.
+ */
+export function findNextChallengeBadge(evaluatedBadges: UserBadgeProgress[]): UserBadgeProgress | null {
+  const locked = evaluatedBadges.filter((b) => !b.isUnlocked);
+  if (locked.length === 0) return null;
+
+  // Trier par progression décroissante, puis par étape la plus proche
+  locked.sort((a, b) => {
+    if (b.progressPercent !== a.progressPercent) {
+      return b.progressPercent - a.progressPercent;
+    }
+    return a.stepInTrack - b.stepInTrack;
+  });
+
+  return locked[0];
+}
+
+/**
+ * Formate un texte d'encouragement dynamique pour le prochain défi.
+ */
+export function getNextChallengeRemainingText(badge: UserBadgeProgress): string {
+  const remaining = Math.max(0, badge.maxProgress - badge.currentProgress);
+
+  if (badge.targetUnit === 'minutes') {
+    if (remaining >= 60) {
+      const h = Math.floor(remaining / 60);
+      const m = remaining % 60;
+      return m > 0 ? `Plus que ${h}h ${m}m d’étude` : `Plus que ${h}h d’étude`;
+    }
+    return `Plus que ${remaining} min d’étude`;
+  }
+
+  if (badge.targetUnit === 'jours') {
+    return `Plus que ${remaining} ${remaining > 1 ? 'jours consécutifs' : 'jour'}`;
+  }
+
+  if (badge.targetUnit === 'mots') {
+    return `Plus que ${remaining} ${remaining > 1 ? 'mots à maîtriser' : 'mot à maîtriser'}`;
+  }
+
+  return `Plus que ${remaining} ${remaining > 1 ? 'contenus à valider' : 'contenu à valider'}`;
+}
+
+/**
+ * Calcule le rang et titre honorifique de l'apprenant selon ses points XP totaux.
+ */
+export function getLearnerRank(totalXp: number): { title: string; rankTier: string; icon: string; nextTarget: number } {
+  if (totalXp < 500) return { title: 'Novice du Mandarin', rankTier: 'Rang I', icon: '🌱', nextTarget: 500 };
+  if (totalXp < 2000) return { title: 'Voyageur Intrépide', rankTier: 'Rang II', icon: '🚀', nextTarget: 2000 };
+  if (totalXp < 5000) return { title: 'Praticien Assidu', rankTier: 'Rang III', icon: '⚡', nextTarget: 5000 };
+  if (totalXp < 10000) return { title: 'Polyglotte des Affaires', rankTier: 'Rang IV', icon: '💎', nextTarget: 10000 };
+  return { title: 'Grand Maître ChinoisLingo', rankTier: 'Rang V', icon: '👑', nextTarget: 25000 };
+}
+
+

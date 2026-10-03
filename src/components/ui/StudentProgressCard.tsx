@@ -1,19 +1,18 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   GraduationCap, 
   BookOpen, 
   Headphones, 
   Sparkles, 
   Clock, 
-  Flame, 
-  Target,
   TrendingUp,
-  Award
+  Crown
 } from 'lucide-react';
 import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
 import { fetchRealDashboardStats, RealDashboardStats } from '@/lib/services/dashboardService';
+import { evaluateUserBadges, getLearnerRank } from '@/lib/gamification/badgesEngine';
 
 interface StudentProgressCardProps {
   stats?: RealDashboardStats | null;
@@ -107,6 +106,26 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
     },
   ];
 
+  const badges = useMemo(() => {
+    return evaluateUserBadges({
+      profile: realData ? ({
+        id: 'current_user',
+        streak_days: realData.streakDays,
+        total_minutes_learned: realData.totalMinutesLearned,
+        total_words_mastered: realData.totalWordsMastered,
+      } as any) : null,
+      savedWordsCount: realData?.totalSavedWords || 0,
+    });
+  }, [realData]);
+
+  const totalXp = useMemo(() => {
+    return badges.filter((b) => b.isUnlocked).reduce((acc, b) => acc + b.xpReward, 0);
+  }, [badges]);
+
+  const learnerRank = useMemo(() => {
+    return getLearnerRank(totalXp);
+  }, [totalXp]);
+
   return (
     <div
       ref={cardRef}
@@ -130,18 +149,21 @@ export function StudentProgressCard({ stats }: StudentProgressCardProps = {}) {
           </div>
         </div>
 
-        {/* 2 Mini KPI Cards pour équilibrer l'espace vertical */}
+        {/* 2 Mini KPI Cards : Rang Global (Proposition 1) & Temps d'Étude */}
         <div className="grid grid-cols-2 gap-2.5 my-3.5">
           <div className="p-3 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0]/70 dark:border-[#333333] flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-              <Flame className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-xl bg-[#6200EE]/10 text-[#6200EE] dark:text-[#BB86FC] flex items-center justify-center shrink-0 text-base">
+              {learnerRank.icon}
             </div>
             <div className="min-w-0">
               <span className="text-[10px] uppercase font-extrabold text-[#757575] dark:text-[#A0A0A0] block">
-                Série Active
+                Rang Global
               </span>
-              <span className="text-xs sm:text-sm font-black text-[#212121] dark:text-[#F5F5F5] truncate block">
-                {realData?.streakDays || 0} {realData?.streakDays && realData.streakDays > 1 ? 'jours' : 'jour'}
+              <span className="text-xs sm:text-sm font-black text-[#212121] dark:text-[#F5F5F5] truncate block" title={learnerRank.title}>
+                {learnerRank.title}
+              </span>
+              <span className="text-[10px] font-bold text-[#6200EE] dark:text-[#BB86FC] block truncate">
+                {learnerRank.rankTier} · {totalXp} XP
               </span>
             </div>
           </div>
