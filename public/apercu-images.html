@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouvelles Propositions d'Images — ChinoisLingo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0B0B0E;
+      color: #F5F5F5;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: rgba(3, 218, 197, 0.12);
+      border: 1px solid rgba(3, 218, 197, 0.35);
+      color: #03DAC5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 15px;
+      color: #A0A0A0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .summary-card {
+      background: rgba(98, 0, 238, 0.08);
+      border: 1px solid rgba(98, 0, 238, 0.25);
+      border-radius: 16px;
+      padding: 16px 24px;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .summary-text {
+      font-size: 14px;
+      color: #E0E0E0;
+    }
+    .summary-text strong {
+      color: #BB86FC;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 40px 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #22222A;
+      padding-bottom: 12px;
+    }
+    .section-title span.icon {
+      font-size: 24px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: #14141A;
+      border: 1px solid #252530;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #03DAC5;
+      box-shadow: 0 14px 35px rgba(3, 218, 197, 0.15);
+    }
+    .img-wrapper {
+      width: 100%;
+      height: 250px;
+      background: #1E1E26;
+      position: relative;
+      overflow: hidden;
+    }
+    .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .img-wrapper img {
+      transform: scale(1.03);
+    }
+    .card-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #03DAC5;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      letter-spacing: 0.5px;
+    }
+    .card-body {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: #9E9E9E;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: #1E1E28;
+      border: 1px solid #333342;
+      color: #F5F5F5;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .card:hover .action-btn {
+      background: #03DAC5;
+      color: #000000;
+      border-color: #03DAC5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="badge">Nouvelles Propositions Visuelles</div>
+      <h1>Sélection des Images pour les Parties 2 & 3</h1>
+      <p class="subtitle">Pour la <strong>Partie 1</strong>, l'Option 3 (Bébé chaton expressif) est validée et appliquée ! Choisissez ci-dessous votre visuel préféré pour la <strong>Partie 2</strong> et la <strong>Partie 3</strong>.</p>
+    </div>
+
+    <!-- RECAPITULATIF PARTIE 1 VALIDE -->
+    <div class="summary-card">
+      <div class="summary-text">
+        ✓ <strong>Partie 1 & Couverture</strong> : Bébé chaton expressif aux grands yeux validé avec succès.
+      </div>
+      <div style="font-size: 12px; color: #03DAC5; font-weight: 700;">Validé par Espoir Chinois</div>
+    </div>
+
+    <!-- SECTION : PARTIE 2 (XIAOHUA LE CHAT AMI) -->
+    <div class="section-title">
+      <span class="icon">🐱</span>
+      <span>Partie 2 : « Mon ami » (Portrait de Xiaohua, le chat ami)</span>
+    </div>
+
+    <div class="grid-3">
+      <!-- P2 Option A -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 2 • Option A</div>
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&auto=format&fit=crop&q=80" alt="P2 Option A">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Regard Félin & Yeux Émeraude</div>
+            <div class="card-desc">Portrait classique ultra-net et contrasté avec de superbes yeux verts. Très photogénique et expressif.</div>
+          </div>
+          <div class="action-btn">Option A pour Partie 2</div>
+        </div>
+      </div>
+
+      <!-- P2 Option B -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 2 • Option B</div>
+          <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=800&auto=format&fit=crop&q=80" alt="P2 Option B">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Chat Roux Tigré Joyeux & Joueur</div>
+            <div class="card-desc">Chaton roux au regard vif et curieux, très attachant et dynamique pour représenter un ami fidèle.</div>
+          </div>
+          <div class="action-btn">Option B pour Partie 2</div>
+        </div>
+      </div>
+
+      <!-- P2 Option C -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 2 • Option C</div>
+          <img src="https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=800&auto=format&fit=crop&q=80" alt="P2 Option C">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Chat Paisible & Douceur Fleurie</div>
+            <div class="card-desc">Atmosphère lumineuse et soignée avec un chat curieux et bienveillant dans un cadre naturel.</div>
+          </div>
+          <div class="action-btn">Option C pour Partie 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION : PARTIE 3 (LES DEUX CHATS AMIS ENSEMBLE) -->
+    <div class="section-title">
+      <span class="icon">🐾</span>
+      <span>Partie 3 : « Moi et mon ami » (Xiaobai et Xiaohua ensemble)</span>
+    </div>
+
+    <div class="grid-3">
+      <!-- P3 Option A -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 3 • Option A</div>
+          <img src="https://images.unsplash.com/photo-1517451330947-7809dead78d5?w=800&auto=format&fit=crop&q=80" alt="P3 Option A">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Deux Chatons Joueurs (Pattes complices)</div>
+            <div class="card-desc">Deux petits chatons complices qui jouent et s'amusent ensemble, collant parfaitement à la phrase <em>« Nous jouons ensemble »</em>.</div>
+          </div>
+          <div class="action-btn">Option A pour Partie 3</div>
+        </div>
+      </div>
+
+      <!-- P3 Option B -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 3 • Option B</div>
+          <img src="https://images.unsplash.com/photo-1568607689150-17e625c1586e?w=800&auto=format&fit=crop&q=80" alt="P3 Option B">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Deux Chats Complices à la Fenêtre</div>
+            <div class="card-desc">Deux chats assis côte à côte observant calmement l'extérieur, ambiance douce et harmonieuse.</div>
+          </div>
+          <div class="action-btn">Option B pour Partie 3</div>
+        </div>
+      </div>
+
+      <!-- P3 Option C -->
+      <div class="card">
+        <div class="img-wrapper">
+          <div class="card-tag">Partie 3 • Option C</div>
+          <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80" alt="P3 Option C">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="card-title">Deux Chats Câlins & Intérieur Cosy</div>
+            <div class="card-desc">Deux compagnons félins confortablement installés ensemble, évoquant l'amitié et les siestes partagées.</div>
+          </div>
+          <div class="action-btn">Option C pour Partie 3</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

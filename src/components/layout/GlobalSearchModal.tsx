@@ -29,6 +29,7 @@ import {
 import { hskCompleteVocabulary } from '@/lib/data/hskCompleteDictionary';
 import { readingCatalog, ReadingItem, estContenuPublie } from '@/app/(app)/ecoute-lecture/page';
 import { initialCourses, CourseModule } from '@/lib/mock/coursesData';
+import { normalizeSearchString } from '@/lib/mock/vocabulary';
 
 interface GlobalSearchModalProps {
   isOpen: boolean;
@@ -208,11 +209,12 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
 
   // Filtered Results across entire platform
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    const qClean = q.replace(/[\s\-_]/g, '');
+    const rawQ = query.trim().toLowerCase();
+    const normQ = normalizeSearchString(query);
+    const normQNoSpace = normQ.replace(/\s+/g, '');
 
     // Si aucune requête n'est saisie, l'état reste léger
-    if (!q) {
+    if (!rawQ) {
       return {
         vocab: [],
         audio: [],
@@ -223,35 +225,96 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
       };
     }
 
-    // 1. Vocabulaire HSK (4 991 mots)
+    // 1. Vocabulaire HSK (4 991 mots officiels)
     const vocabMatches = hskCompleteVocabulary.filter((item) => {
-      const h = item.hanzi.toLowerCase();
-      const p = item.pinyin.toLowerCase().replace(/[\s\-_]/g, '');
-      const f = item.french.toLowerCase();
-      const lvl = item.level.toLowerCase();
-      return h.includes(q) || p.includes(qClean) || f.includes(q) || lvl.includes(q);
-    }).slice(0, 10);
-
-    // 2. Écoute & Lecture (Chansons, Podcasts, Articles, Dialogues, Histoires)
-    const audioMatches = readingCatalog.filter((item: ReadingItem) => {
-      if (!estContenuPublie(item)) return false;
-      const titleFr = item.titleFr.toLowerCase();
-      const titleZh = item.titleZh.toLowerCase();
-      const titlePinyin = (item.titlePinyin || '').toLowerCase().replace(/[\s\-_]/g, '');
-      const artist = (item.artist || '').toLowerCase();
-      const desc = item.description.toLowerCase();
-      const type = item.type.toLowerCase();
-      const lvl = item.level.toLowerCase();
+      const normHanzi = item.hanzi.toLowerCase();
+      const normPinyin = normalizeSearchString(item.pinyin);
+      const normPinyinNoSpace = normPinyin.replace(/\s+/g, '');
+      const normFrench = normalizeSearchString(item.french);
+      const normCategory = normalizeSearchString(item.category || '');
+      const normLevel = item.level.toLowerCase();
 
       return (
-        titleFr.includes(q) ||
-        titleZh.includes(q) ||
-        titlePinyin.includes(qClean) ||
-        artist.includes(q) ||
-        desc.includes(q) ||
-        type.includes(q) ||
-        lvl.includes(q)
+        normHanzi.includes(rawQ) ||
+        normPinyin.includes(normQ) ||
+        normPinyinNoSpace.includes(normQNoSpace) ||
+        normFrench.includes(normQ) ||
+        normCategory.includes(normQ) ||
+        normLevel.includes(rawQ)
       );
+    }).slice(0, 10);
+
+    // 2. Écoute & Lecture (Chansons, Podcasts, Articles, Dialogues, Histoires, Vidéos)
+    const audioMatches = readingCatalog.filter((item: ReadingItem) => {
+      if (!estContenuPublie(item)) return false;
+
+      const normTitleFr = normalizeSearchString(item.titleFr);
+      const normTitleZh = item.titleZh.toLowerCase();
+      const normTitlePinyin = normalizeSearchString(item.titlePinyin || '');
+      const normTitlePinyinNoSpace = normTitlePinyin.replace(/\s+/g, '');
+      const normArtist = normalizeSearchString(item.artist || '');
+      const normDesc = normalizeSearchString(item.description);
+      const normType = normalizeSearchString(item.type);
+      const normLevel = item.level.toLowerCase();
+
+      // Vérification des métadonnées principales
+      if (
+        normTitleFr.includes(normQ) ||
+        normTitleZh.includes(rawQ) ||
+        normTitlePinyin.includes(normQ) ||
+        normTitlePinyinNoSpace.includes(normQNoSpace) ||
+        normArtist.includes(normQ) ||
+        normDesc.includes(normQ) ||
+        normType.includes(normQ) ||
+        normLevel.includes(rawQ)
+      ) {
+        return true;
+      }
+
+      // Vérification des personnages du contenu
+      if (item.characters && item.characters.length > 0) {
+        const charMatch = item.characters.some((c) => {
+          const cName = normalizeSearchString(c.name || '');
+          const cPinyin = normalizeSearchString(c.pinyin || '');
+          const cRole = normalizeSearchString(c.role || '');
+          return cName.includes(normQ) || cPinyin.includes(normQ) || cRole.includes(normQ);
+        });
+        if (charMatch) return true;
+      }
+
+      // Recherche en profondeur dans les phrases (Hanzi, Pinyin, Français)
+      if (item.sentences && item.sentences.length > 0) {
+        const sentenceMatch = item.sentences.some((s) => {
+          const sHanzi = (s.hanzi || '').toLowerCase();
+          const sPinyin = normalizeSearchString(s.pinyin || '');
+          const sPinyinNoSpace = sPinyin.replace(/\s+/g, '');
+          const sFrench = normalizeSearchString(s.french || '');
+          return (
+            sHanzi.includes(rawQ) ||
+            sPinyin.includes(normQ) ||
+            sPinyinNoSpace.includes(normQNoSpace) ||
+            sFrench.includes(normQ)
+          );
+        });
+        if (sentenceMatch) return true;
+      }
+
+      // Recherche dans le vocabulaire intégré à la leçon
+      if (item.vocabulary && item.vocabulary.length > 0) {
+        const vocabItemMatch = item.vocabulary.some((v) => {
+          const vHanzi = (v.hanzi || '').toLowerCase();
+          const vPinyin = normalizeSearchString(v.pinyin || '');
+          const vFrench = normalizeSearchString(v.french || '');
+          return (
+            vHanzi.includes(rawQ) ||
+            vPinyin.includes(normQ) ||
+            vFrench.includes(normQ)
+          );
+        });
+        if (vocabItemMatch) return true;
+      }
+
+      return false;
     }).slice(0, 8);
 
     // 3. Formations & Leçons Précises
@@ -267,16 +330,23 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
     }[] = [];
 
     initialCourses.forEach((course) => {
+      const normCourseTitle = normalizeSearchString(course.title);
+      const normCourseDesc = normalizeSearchString(course.description);
+      const normCourseCat = normalizeSearchString(course.category);
+
       const courseMatch =
-        course.title.toLowerCase().includes(q) ||
-        course.description.toLowerCase().includes(q) ||
-        course.category.toLowerCase().includes(q);
+        normCourseTitle.includes(normQ) ||
+        normCourseDesc.includes(normQ) ||
+        normCourseCat.includes(normQ);
 
       // Leçons correspondantes
       course.lessons.forEach((lesson) => {
+        const normLessonTitle = normalizeSearchString(lesson.title);
+        const normLessonDesc = normalizeSearchString(lesson.description || '');
+
         if (
-          lesson.title.toLowerCase().includes(q) ||
-          (lesson.description || '').toLowerCase().includes(q)
+          normLessonTitle.includes(normQ) ||
+          normLessonDesc.includes(normQ)
         ) {
           formationResults.push({
             id: `lesson_${course.id}_${lesson.id}`,
@@ -310,17 +380,17 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
 
     // 4. Livres & Programmes
     const booksMatches = booksAndProgramsCatalog.filter((b) => {
-      const title = b.title.toLowerCase();
-      const desc = b.description.toLowerCase();
-      const type = b.type.toLowerCase();
-      return title.includes(q) || desc.includes(q) || type.includes(q);
+      const title = normalizeSearchString(b.title);
+      const desc = normalizeSearchString(b.description);
+      const type = normalizeSearchString(b.type);
+      return title.includes(normQ) || desc.includes(normQ) || type.includes(normQ);
     }).slice(0, 4);
 
     // 5. Pages & Navigation Système
     const navigationMatches = systemNavigationLinks.filter((nav) => {
-      const title = nav.title.toLowerCase();
-      const desc = nav.description.toLowerCase();
-      return title.includes(q) || desc.includes(q);
+      const title = normalizeSearchString(nav.title);
+      const desc = normalizeSearchString(nav.description);
+      return title.includes(normQ) || desc.includes(normQ);
     }).slice(0, 4);
 
     return {

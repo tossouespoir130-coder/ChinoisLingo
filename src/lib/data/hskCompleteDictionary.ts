@@ -4,6 +4,7 @@ import hsk3Json from '@/content/vocabulaire-hsk3.json';
 import hsk4Json from '@/content/vocabulaire-hsk4.json';
 import hsk5Json from '@/content/vocabulaire-hsk5.json';
 import hsk6Json from '@/content/vocabulaire-hsk6.json';
+import { normalizeSearchString } from '@/lib/mock/vocabulary';
 
 export interface HSKDictionaryEntry {
   id: string;
@@ -35,7 +36,6 @@ export const hskLevelStats = [
   { level: 'HSK 2', cefr: 'A2', count: hsk2Json.vocabulaire.length, color: '#8BC34A' },
   { level: 'HSK 3', cefr: 'B1', count: hsk3Json.vocabulaire.length, color: '#FF9800' },
   { level: 'HSK 4', cefr: 'B2', count: hsk4Json.vocabulaire.length, color: '#FF5722' },
-  { level: 'HSK 5', cefr: 'C1', count: hsk5Json.vocabulaire.length, color: '#9C27B0' },
   { level: 'HSK 6', cefr: 'C2', count: hsk6Json.vocabulaire.length, color: '#6200EE' },
 ];
 
@@ -44,20 +44,30 @@ export function searchCompleteDictionary(query: string, levelFilter: string = 'a
     return hskCompleteVocabulary.slice(0, 100);
   }
 
-  const q = query.toLowerCase().trim();
-  const qPinyin = q.replace(/[\s\-_]/g, '');
+  const rawQ = query.trim().toLowerCase();
+  const normQ = normalizeSearchString(query);
+  const normQNoSpace = normQ.replace(/\s+/g, '');
 
   return hskCompleteVocabulary.filter((item) => {
     if (levelFilter !== 'all' && item.level !== levelFilter) {
       return false;
     }
-    if (!q) return true;
+    if (!rawQ) return true;
 
-    const h = item.hanzi.toLowerCase();
-    const p = item.pinyin.toLowerCase().replace(/[\s\-_]/g, '');
-    const f = item.french.toLowerCase();
-    const c = item.category.toLowerCase();
+    const normHanzi = item.hanzi.toLowerCase();
+    const normPinyin = normalizeSearchString(item.pinyin);
+    const normPinyinNoSpace = normPinyin.replace(/\s+/g, '');
+    const normFrench = normalizeSearchString(item.french);
+    const normCategory = normalizeSearchString(item.category || '');
+    const normTip = normalizeSearchString(item.businessTip || '');
 
-    return h.includes(q) || p.includes(qPinyin) || f.includes(q) || c.includes(q);
+    return (
+      normHanzi.includes(rawQ) ||
+      normPinyin.includes(normQ) ||
+      normPinyinNoSpace.includes(normQNoSpace) ||
+      normFrench.includes(normQ) ||
+      normCategory.includes(normQ) ||
+      normTip.includes(normQ)
+    );
   });
 }

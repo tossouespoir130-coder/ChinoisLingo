@@ -1499,7 +1499,7 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 1',
     duration: '5 parties',
     description: 'Suivez les aventures du petit chat Xiaobai : sa vie en Chine, son meilleur ami Xiaohua, sa maman Li Yue et son amour pour le poisson.',
-    imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
       {
@@ -1537,7 +1537,7 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Xiaobai se présente : son âge, ses goûts, son lieu de vie en Chine et ses nombreux amis.',
-        imageUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
         characters: [
           {
             name: 'Xiaobai',
@@ -1580,7 +1580,7 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Xiaobai présente son grand ami Xiaohua, un chat de deux ans qui vit lui aussi en Chine.',
-        imageUrl: 'https://images.unsplash.com/photo-1513360309081-38f076278f94?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=600&auto=format&fit=crop&q=80',
         characters: [
           {
             name: 'Xiaobai',
@@ -1628,7 +1628,7 @@ export const readingCatalog: ReadingItem[] = [
         duration: '1 min',
         level: 'HSK 1',
         description: 'Découvrez toutes les activités que Xiaobai et Xiaohua partagent ensemble chaque jour.',
-        imageUrl: 'https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=600&auto=format&fit=crop&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1568607689150-17e625c1586e?w=600&auto=format&fit=crop&q=80',
         characters: [
           {
             name: 'Xiaobai',
