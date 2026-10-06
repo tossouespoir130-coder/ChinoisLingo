@@ -27,14 +27,19 @@ function formatGrammarCategory(cat?: string): string {
   const c = cat.toLowerCase().trim();
   if (c.includes('adverbe') || c === 'adv') return 'adv.';
   if (c.includes('adjectif') || c === 'adj') return 'adj.';
+  if (c.includes('verbe auxiliaire')) return 'v. aux.';
   if (c.includes('verbe') || c === 'v') return 'v.';
-  if (c.includes('nom') || c === 'n') return 'n.';
   if (c.includes('pronom') || c === 'pron') return 'pron.';
+  if (c.includes('nom propre')) return 'n. pr.';
+  if (c.includes('nom') || c === 'n') return 'n.';
   if (c.includes('préposition') || c.includes('preposition') || c === 'prep') return 'prép.';
   if (c.includes('conjonction') || c === 'conj') return 'conj.';
   if (c.includes('particule') || c === 'part') return 'part.';
   if (c.includes('classificateur') || c === 'cl') return 'cl.';
   if (c.includes('numéral') || c.includes('nombre') || c === 'num') return 'num.';
+  if (c.includes('localisateur')) return 'loc.';
+  if (c.includes('interjection')) return 'interj.';
+  if (c.includes('expression')) return 'expr.';
   return cat;
 }
 
@@ -89,6 +94,14 @@ function getFlashcardVerifiedExample(word?: VocabularyWord) {
   return null;
 }
 
+type FaceAvant = 'hanzi' | 'pinyin' | 'french';
+
+const INDICE_RETOURNEMENT: Record<FaceAvant, string> = {
+  hanzi: 'Touchez pour voir le pinyin et la traduction',
+  pinyin: 'Touchez pour voir le caractère et la traduction',
+  french: 'Touchez pour voir le caractère et le pinyin',
+};
+
 interface FlashcardSessionProps {
   words: VocabularyWord[];
   themeTitle: string;
@@ -104,11 +117,14 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     cardsPerSession, 
     reviewOrder, 
     cardFrontFace, 
-    showExampleSentence 
+    showExampleSentence,
+    userName
   } = usePreferences();
 
-  // Prepare ordered/shuffled and limited words based on user preferences
-  const sessionWords = useMemo(() => {
+  // Prepare ordered/shuffled and limited words based on user preferences.
+  // Face avant de chaque carte : caractère, pinyin ou français. En mode
+  // aléatoire, le sens est tiré au sort une fois par carte pour la session.
+  const { sessionWords, facesAvant } = useMemo(() => {
     let list = [...words];
     if (reviewOrder === 'random') {
       for (let i = list.length - 1; i > 0; i--) {
@@ -120,8 +136,14 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
       const limit = parseInt(cardsPerSession, 10) || 10;
       list = list.slice(0, limit);
     }
-    return list.length > 0 ? list : words.slice(0, 5);
-  }, [words, reviewOrder, cardsPerSession]);
+    if (list.length === 0) list = words.slice(0, 5);
+
+    const sens: FaceAvant[] = ['hanzi', 'pinyin', 'french'];
+    const faces: FaceAvant[] = list.map(() =>
+      cardFrontFace === 'random' ? sens[Math.floor(Math.random() * sens.length)] : cardFrontFace
+    );
+    return { sessionWords: list, facesAvant: faces };
+  }, [words, reviewOrder, cardsPerSession, cardFrontFace]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -138,12 +160,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     return getFlashcardVerifiedExample(currentWord);
   }, [currentWord]);
 
-  // Determine front face based on preferences
-  const isFrontHanzi = useMemo(() => {
-    if (cardFrontFace === 'french') return false;
-    if (cardFrontFace === 'random') return (currentIndex % 2 === 0);
-    return true; // default 'hanzi'
-  }, [cardFrontFace, currentIndex]);
+  const faceAvant: FaceAvant = facesAvant[currentIndex] ?? 'hanzi';
 
   const grammarAbbr = useMemo(() => {
     return formatGrammarCategory(currentWord?.category);
@@ -186,13 +203,13 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
   // Auto-play audio on new card if preference is enabled
   useEffect(() => {
     setIsFlipped(false);
-    if (autoPlayAudio && currentWord?.hanzi) {
+    if (autoPlayAudio && faceAvant !== 'french' && currentWord?.hanzi) {
       const timer = setTimeout(() => {
         playAudio(currentWord.hanzi);
       }, 250);
       return () => clearTimeout(timer);
     }
-  }, [currentIndex, autoPlayAudio, currentWord?.hanzi]);
+  }, [currentIndex, autoPlayAudio, faceAvant, currentWord?.hanzi]);
 
   // Keyboard shortcut navigation (Space = Flip, ArrowLeft = Prev, ArrowRight = Next)
   useEffect(() => {
@@ -282,7 +299,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
             Session Terminée !
           </span>
           <h3 className="font-display font-black text-2xl sm:text-3xl text-[#212121] dark:text-[#F5F5F5] mt-1">
-            Félicitations, Espoir Chinois 🎉
+            Félicitations{userName ? `, ${userName}` : ''} 🎉
           </h3>
           <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-1">
             Vous avez révisé les {total} cartes de « {themeTitle} ».
@@ -391,6 +408,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
                 <span />
               )}
 
+              {faceAvant !== 'french' && (
               <button
                 type="button"
                 onClick={(e) => {
@@ -406,31 +424,30 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
               >
                 <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
+              )}
             </div>
 
             {/* Center Display (100% Perfectly Centered) */}
             <div className="text-center my-auto flex flex-col items-center justify-center">
-              {isFrontHanzi ? (
-                <>
-                  <h2 className="font-hanzi font-black text-5xl sm:text-7xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-none drop-shadow-xs">
-                    {currentWord.hanzi}
-                  </h2>
-                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-4 sm:mt-5 font-medium flex items-center justify-center gap-1.5">
-                    <RotateCw className="w-3.5 h-3.5 animate-spin-slow text-[#6200EE] dark:text-[#03DAC5]" />
-                    <span>Touchez pour révéler le verso</span>
-                  </p>
-                </>
-              ) : (
-                <>
-                  <h2 className="font-display font-black text-2xl sm:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-tight text-center">
-                    {currentWord.french}
-                  </h2>
-                  <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-4 sm:mt-5 font-medium flex items-center justify-center gap-1.5">
-                    <RotateCw className="w-3.5 h-3.5 animate-spin-slow text-[#6200EE] dark:text-[#03DAC5]" />
-                    <span>Touchez pour révéler le caractère chinois</span>
-                  </p>
-                </>
+              {faceAvant === 'hanzi' && (
+                <h2 className="font-hanzi font-black text-5xl sm:text-7xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-none drop-shadow-xs">
+                  {currentWord.hanzi}
+                </h2>
               )}
+              {faceAvant === 'pinyin' && (
+                <h2 className="font-pinyin font-black text-4xl sm:text-6xl text-[#6200EE] dark:text-[#03DAC5] tracking-wide leading-tight">
+                  {currentWord.pinyin}
+                </h2>
+              )}
+              {faceAvant === 'french' && (
+                <h2 className="font-display font-black text-2xl sm:text-4xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-tight text-center">
+                  {currentWord.french}
+                </h2>
+              )}
+              <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-4 sm:mt-5 font-medium flex items-center justify-center gap-1.5">
+                <RotateCw className="w-3.5 h-3.5 animate-spin-slow text-[#6200EE] dark:text-[#03DAC5]" />
+                <span>{INDICE_RETOURNEMENT[faceAvant]}</span>
+              </p>
             </div>
 
             {/* Bottom Subtle Flip Hint */}
@@ -480,19 +497,14 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
                 {currentWord.hanzi}
               </h3>
 
-              {/* Pinyin */}
-              {showPinyin && (
-                <span className="font-pinyin font-bold text-lg sm:text-2xl text-[#6200EE] dark:text-[#03DAC5] tracking-wide">
-                  {currentWord.pinyin}
-                </span>
-              )}
+              {/* Pinyin et traduction : toujours affichés, c'est la réponse de la carte */}
+              <span className="font-pinyin font-bold text-lg sm:text-2xl text-[#6200EE] dark:text-[#03DAC5] tracking-wide">
+                {currentWord.pinyin}
+              </span>
 
-              {/* French Translation */}
-              {showFrenchTranslation && (
-                <p className="font-bold text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] leading-snug">
-                  {currentWord.french}
-                </p>
-              )}
+              <p className="font-bold text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] leading-snug">
+                {currentWord.french}
+              </p>
 
               {/* Verified Example Sentence */}
               {showExampleSentence && verifiedExample && (

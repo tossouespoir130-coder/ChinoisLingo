@@ -17,8 +17,8 @@ export interface PreferencesState {
   setCardsPerSession: (val: '5' | '10' | '15' | '20' | '30' | '40' | '50' | '70' | '100' | 'all') => void;
   reviewOrder: 'random' | 'sequential';
   setReviewOrder: (val: 'random' | 'sequential') => void;
-  cardFrontFace: 'hanzi' | 'french' | 'random';
-  setCardFrontFace: (val: 'hanzi' | 'french' | 'random') => void;
+  cardFrontFace: 'hanzi' | 'pinyin' | 'french' | 'random';
+  setCardFrontFace: (val: 'hanzi' | 'pinyin' | 'french' | 'random') => void;
   showExampleSentence: boolean;
   setShowExampleSentence: (val: boolean) => void;
   dailyGoalMinutes: string;
@@ -45,7 +45,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   const [autoPlayAudio, setAutoPlayAudioState] = useState(true);
   const [cardsPerSession, setCardsPerSessionState] = useState<'5' | '10' | '15' | '20' | '30' | '40' | '50' | '70' | '100' | 'all'>('20');
   const [reviewOrder, setReviewOrderState] = useState<'random' | 'sequential'>('random');
-  const [cardFrontFace, setCardFrontFaceState] = useState<'hanzi' | 'french' | 'random'>('random');
+  const [cardFrontFace, setCardFrontFaceState] = useState<'hanzi' | 'pinyin' | 'french' | 'random'>('random');
   const [showExampleSentence, setShowExampleSentenceState] = useState(true);
   const [dailyGoalMinutes, setDailyGoalMinutesState] = useState('20');
   const [dailyReminder, setDailyReminderState] = useState(true);
@@ -130,7 +130,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     savePreference('reviewOrder', val);
   };
 
-  const setCardFrontFace = (val: 'hanzi' | 'french' | 'random') => {
+  const setCardFrontFace = (val: 'hanzi' | 'pinyin' | 'french' | 'random') => {
     setCardFrontFaceState(val);
     savePreference('cardFrontFace', val);
   };

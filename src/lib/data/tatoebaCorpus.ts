@@ -1,3 +1,5 @@
+import { exemplesHsk1Tatoeba } from './exemplesHsk1Tatoeba';
+
 export interface TatoebaSentencePair {
   hanzi: string;
   pinyin: string;
@@ -12,7 +14,7 @@ export interface TatoebaSentencePair {
  * Corpus ouvert Tatoeba (tatoeba.org) & Phrases réelles chinois-français vérifiées
  * Sélectionnées et relues par la communauté linguistique.
  */
-export const tatoebaCorpusByHanzi: Record<string, TatoebaSentencePair[]> = {
+const corpusInitial: Record<string, TatoebaSentencePair[]> = {
   '来': [
     {
       hanzi: '他明天来。',
@@ -303,4 +305,9 @@ export const tatoebaCorpusByHanzi: Record<string, TatoebaSentencePair[]> = {
       source: 'tatoeba',
     },
   ],
+};
+
+export const tatoebaCorpusByHanzi: Record<string, TatoebaSentencePair[]> = {
+  ...exemplesHsk1Tatoeba,
+  ...corpusInitial,
 };

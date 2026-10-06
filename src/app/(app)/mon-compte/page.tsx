@@ -1194,14 +1194,14 @@ function MonCompteContent() {
                 </div>
               </div>
 
-              {/* Sens d'apprentissage (Chinois -> Français, Français -> Chinois, ou Aléatoire) */}
+              {/* Sens d'apprentissage (Caractère, Pinyin ou Français en face avant, ou Aléatoire) */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
                 <div>
                   <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] block">
                     Sens d&apos;apprentissage (Face avant)
                   </span>
                   <span className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
-                    Alternez pour stimuler à la fois la reconnaissance visuelle et la restitution.
+                    Aléatoire mélange les trois sens à chaque carte : reconnaissance du caractère, de la prononciation et restitution.
                   </span>
                 </div>
 
@@ -1227,7 +1227,18 @@ function MonCompteContent() {
                         : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
                     }`}
                   >
-                    Chinois ➔ Français
+                    Caractère ➔ Pinyin + Français
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCardFrontFace('pinyin')}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all btn-press ${
+                      cardFrontFace === 'pinyin'
+                        ? 'bg-[#6200EE] text-white shadow-xs'
+                        : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                    }`}
+                  >
+                    Pinyin ➔ Caractère + Français
                   </button>
                   <button
                     type="button"
@@ -1238,7 +1249,7 @@ function MonCompteContent() {
                         : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
                     }`}
                   >
-                    Français ➔ Chinois
+                    Français ➔ Caractère + Pinyin
                   </button>
                 </div>
               </div>

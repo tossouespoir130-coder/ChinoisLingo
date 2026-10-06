@@ -34,7 +34,7 @@ export interface DetailedExample {
   pinyin: string;
   french: string;
   contextNote: string;
-  source: 'tatoeba' | 'official_hsk' | 'corpus_verified';
+  source: 'tatoeba' | 'official_hsk' | 'corpus_verified' | 'generated';
 }
 
 /**
@@ -75,7 +75,7 @@ export function generateWordExamples(word: VocabularyWord | HSKDictionaryEntry):
       pinyin: item.pinyin,
       french: item.french,
       contextNote: item.contextNote,
-      source: 'tatoeba',
+      source: item.source === 'generated' ? 'generated' : 'tatoeba',
     }));
   }
 
