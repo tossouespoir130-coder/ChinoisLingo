@@ -120,6 +120,11 @@ function VocabulaireContent() {
             const entry = fullDictionaryEntries.find((e) => e.hanzi === dbW.hanzi);
             const level = (entry?.level as HSKLevel) || (dbW.source_type === 'combination' ? 'HSK 1' : 'HSK 1');
             const cefrLevel = entry?.cefrLevel || 'A1';
+            // Un mot officiel enregistré garde sa ligne (et donc sa progression),
+            // mais affiche le pinyin et la traduction à jour du dictionnaire :
+            // la copie stockée à l'enregistrement peut dater d'avant une correction.
+            // Les mots personnels (source 'custom') gardent le texte de l'utilisateur.
+            const motOfficiel = dbW.source_type === 'hsk' && entry;
 
             customList.push({
               id: dbW.id,
@@ -127,8 +132,8 @@ function VocabulaireContent() {
               themeSlug: entry ? entry.level.toLowerCase().replace(' ', '-') : 'custom',
               themeName: entry ? `${entry.level} — Vocabulaire Officiel` : 'Mes Mots Enregistrés',
               hanzi: dbW.hanzi,
-              pinyin: dbW.pinyin || entry?.pinyin || '',
-              french: dbW.french,
+              pinyin: motOfficiel ? entry.pinyin : dbW.pinyin || entry?.pinyin || '',
+              french: motOfficiel ? entry.french : dbW.french,
               category: entry?.category || (dbW.source_type === 'combination' ? 'Phrase combinée' : 'Personnel'),
               level: level,
               cefrLevel: cefrLevel,

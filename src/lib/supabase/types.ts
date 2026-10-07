@@ -608,6 +608,56 @@ export type Database = {
         }
         Relationships: []
       }
+      revisions_cartes: {
+        Row: {
+          derniere_revision: string
+          echeance: string
+          etape: number
+          etat: string
+          facilite: number
+          hanzi: string
+          intervalle_jours: number
+          nb_oublis: number
+          nb_revisions: number
+          premiere_revision: string
+          user_id: string
+        }
+        Insert: {
+          derniere_revision?: string
+          echeance: string
+          etape?: number
+          etat: string
+          facilite?: number
+          hanzi: string
+          intervalle_jours?: number
+          nb_oublis?: number
+          nb_revisions?: number
+          premiere_revision?: string
+          user_id: string
+        }
+        Update: {
+          derniere_revision?: string
+          echeance?: string
+          etape?: number
+          etat?: string
+          facilite?: number
+          hanzi?: string
+          intervalle_jours?: number
+          nb_oublis?: number
+          nb_revisions?: number
+          premiere_revision?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "revisions_cartes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       saved_words: {
         Row: {
           created_at: string | null
@@ -821,6 +871,7 @@ export const Constants = {
 
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type SavedWord = Database['public']['Tables']['saved_words']['Row']
+export type RevisionCarte = Database['public']['Tables']['revisions_cartes']['Row']
 export type ContentProgress = Database['public']['Tables']['content_progress']['Row']
 export type CourseProgress = Database['public']['Tables']['course_progress']['Row']
 export type NotificationItem = Database['public']['Tables']['notifications']['Row']

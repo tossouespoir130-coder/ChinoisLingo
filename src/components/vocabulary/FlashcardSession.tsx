@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { VocabularyWord } from '@/lib/mock/vocabulary';
 import { usePreferences } from '@/context/PreferencesContext';
 import { tatoebaCorpusByHanzi } from '@/lib/data/tatoebaCorpus';
@@ -8,8 +8,6 @@ import { getVerifiedTripleForWord } from '@/lib/data/hskSentencesDatabase';
 import { 
   Volume2, 
   RotateCw, 
-  ChevronLeft, 
-  ChevronRight, 
   Sparkles, 
   CheckCircle2, 
   Trophy, 
@@ -18,6 +16,9 @@ import {
   Shuffle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { noter, libelleDelai, type EtatCarte, type Note } from '@/lib/srs/planificateur';
+import { construireFile, prochaineCarte, mettreAJourFile, compteurs, type FileSession } from '@/lib/srs/fileSession';
+import { fetchEtatsCartes, enregistrerEtatCarte } from '@/lib/services/revisionService';
 
 /**
  * Abréviations grammaticales normalisées et épurées
@@ -102,6 +103,13 @@ const INDICE_RETOURNEMENT: Record<FaceAvant, string> = {
   french: 'Touchez pour voir le caractère et le pinyin',
 };
 
+const BOUTONS_NOTES: { note: Note; libelle: string; classes: string }[] = [
+  { note: 'again', libelle: '🔴 À revoir', classes: 'bg-[#DD2C00]/10 hover:bg-[#DD2C00] text-[#DD2C00] hover:text-white border border-[#DD2C00]/25' },
+  { note: 'hard', libelle: '🟠 Difficile', classes: 'bg-[#FFA000]/10 hover:bg-[#FFA000] text-[#B78103] hover:text-white dark:text-[#FFD54F] border border-[#FFA000]/25' },
+  { note: 'good', libelle: '🟢 Je sais', classes: 'bg-[#03DAC5]/15 hover:bg-[#03DAC5] text-[#00897B] hover:text-[#0B0B0F] dark:text-[#03DAC5] border border-[#03DAC5]/25' },
+  { note: 'easy', libelle: '⚡ Facile', classes: 'bg-[#6200EE]/15 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:text-[#BB86FC] border border-[#6200EE]/25' },
+];
+
 interface FlashcardSessionProps {
   words: VocabularyWord[];
   themeTitle: string;
@@ -121,46 +129,107 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     userName
   } = usePreferences();
 
-  // Prepare ordered/shuffled and limited words based on user preferences.
-  // Face avant de chaque carte : caractère, pinyin ou français. En mode
-  // aléatoire, le sens est tiré au sort une fois par carte pour la session.
-  const { sessionWords, facesAvant } = useMemo(() => {
-    let list = [...words];
-    if (reviewOrder === 'random') {
-      for (let i = list.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [list[i], list[j]] = [list[j], list[i]];
-      }
-    }
-    if (cardsPerSession !== 'all') {
-      const limit = parseInt(cardsPerSession, 10) || 10;
-      list = list.slice(0, limit);
-    }
-    if (list.length === 0) list = words.slice(0, 5);
-
-    const sens: FaceAvant[] = ['hanzi', 'pinyin', 'french'];
-    const faces: FaceAvant[] = list.map(() =>
-      cardFrontFace === 'random' ? sens[Math.floor(Math.random() * sens.length)] : cardFrontFace
-    );
-    return { sessionWords: list, facesAvant: faces };
-  }, [words, reviewOrder, cardsPerSession, cardFrontFace]);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // ── Répétition espacée (comme Anki) ──
+  // L'état de chaque carte est chargé depuis Supabase, la file de la session
+  // est construite une seule fois (cartes en apprentissage, révisions dues,
+  // nouvelles cartes dans la limite du jour), puis chaque note est enregistrée
+  // immédiatement : quitter puis revenir reprend exactement au même point.
+  const [etats, setEtats] = useState<Record<string, EtatCarte> | null>(null);
+  const [file, setFile] = useState<FileSession | null>(null);
+  const [carteCourante, setCarteCourante] = useState<string | null>(null);
+  const [faceAvant, setFaceAvant] = useState<FaceAvant>('hanzi');
+  const [maintenantCarte, setMaintenantCarte] = useState<Date | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const [reviewedWords, setReviewedWords] = useState<Record<string, 'again' | 'hard' | 'good' | 'easy'>>({});
+  const [notesSession, setNotesSession] = useState<Note[]>([]);
   const [sessionCompleted, setSessionCompleted] = useState(false);
 
-  const currentWord = sessionWords[currentIndex] || sessionWords[0];
-  const total = sessionWords.length;
-  const progressPct = Math.round(((currentIndex + 1) / total) * 100);
+  const motsParHanzi = useMemo(() => {
+    const index: Record<string, VocabularyWord> = {};
+    for (const w of words) if (!index[w.hanzi]) index[w.hanzi] = w;
+    return index;
+  }, [words]);
+
+  const tirerFace = (): FaceAvant => {
+    if (cardFrontFace !== 'random') return cardFrontFace;
+    const sens: FaceAvant[] = ['hanzi', 'pinyin', 'french'];
+    return sens[Math.floor(Math.random() * sens.length)];
+  };
+
+  /** Présente la carte suivante, ou termine la session. */
+  const avancer = (fileActuelle: FileSession, etatsActuels: Record<string, EtatCarte>) => {
+    const maintenant = new Date();
+    const suivante = prochaineCarte(fileActuelle, etatsActuels, maintenant);
+    setFile(fileActuelle);
+    setIsFlipped(false);
+    if (!suivante) {
+      setCarteCourante(null);
+      setSessionCompleted(true);
+      return false;
+    }
+    setCarteCourante(suivante);
+    setFaceAvant(tirerFace());
+    setMaintenantCarte(maintenant);
+    return true;
+  };
+
+  // Chargement des états puis construction de la file (une seule fois par session).
+  useEffect(() => {
+    let annule = false;
+    fetchEtatsCartes().then((charges) => {
+      if (annule) return;
+      const limite = cardsPerSession === 'all' ? Infinity : parseInt(cardsPerSession, 10) || 20;
+      const melanger = (liste: string[]) => {
+        if (reviewOrder !== 'random') return liste;
+        const copie = [...liste];
+        for (let i = copie.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copie[i], copie[j]] = [copie[j], copie[i]];
+        }
+        return copie;
+      };
+      const premiere = construireFile(words.map((w) => w.hanzi), charges, new Date(), limite, melanger);
+      setEtats(charges);
+      avancer(premiere, charges);
+    });
+    return () => {
+      annule = true;
+    };
+    // La file est figée au lancement : changer une préférence en cours de route ne la reconstruit pas.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const currentWord: VocabularyWord | undefined = carteCourante ? motsParHanzi[carteCourante] : undefined;
+  const nombres = file ? compteurs(file) : { nouvelles: 0, apprentissage: 0, revisions: 0 };
+  const restantes = nombres.nouvelles + nombres.apprentissage + nombres.revisions;
+  const progressPct = notesSession.length + restantes > 0
+    ? Math.round((notesSession.length / (notesSession.length + restantes)) * 100)
+    : 100;
+
+  /** Délai qu'afficherait chaque note pour la carte courante (sous les boutons). */
+  const apercus = useMemo(() => {
+    if (!carteCourante || !etats || !maintenantCarte) return null;
+    const etat = etats[carteCourante] ?? null;
+    const notes: Note[] = ['again', 'hard', 'good', 'easy'];
+    return Object.fromEntries(
+      notes.map((n) => [n, libelleDelai(maintenantCarte, noter(etat, carteCourante, n, maintenantCarte).echeance)])
+    ) as Record<Note, string>;
+  }, [carteCourante, etats, maintenantCarte]);
+
+  /** Prochaine échéance du paquet, pour l'écran de fin. */
+  const prochaineEcheance = useMemo(() => {
+    if (!etats || !sessionCompleted) return null;
+    const dates = words
+      .map((w) => etats[w.hanzi]?.echeance)
+      .filter((d): d is string => Boolean(d))
+      .map((d) => new Date(d).getTime());
+    return dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : null;
+  }, [etats, sessionCompleted, words]);
 
   // Exemple certifié pour la carte en cours
   const verifiedExample = useMemo(() => {
     return getFlashcardVerifiedExample(currentWord);
   }, [currentWord]);
-
-  const faceAvant: FaceAvant = facesAvant[currentIndex] ?? 'hanzi';
 
   const grammarAbbr = useMemo(() => {
     return formatGrammarCategory(currentWord?.category);
@@ -174,7 +243,10 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     const clean = text.trim();
     const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
 
+    let isHandled = false;
     const playWebSpeech = () => {
+      if (isHandled) return;
+      isHandled = true;
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-CN';
@@ -184,52 +256,35 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
         utterance.onend = () => setIsPlayingAudio(false);
         utterance.onerror = () => setIsPlayingAudio(false);
         window.speechSynthesis.speak(utterance);
+      } else {
+        setIsPlayingAudio(false);
       }
     };
 
-    if (clean.length <= 6) {
-      const audio = new Audio(vocabAudioUrl);
-      setIsPlayingAudio(true);
-      const baseRate = parseFloat(audioSpeed) || 1.0;
-      audio.playbackRate = Math.max(0.5, Math.min(1.5, baseRate * rateMultiplier));
-      audio.onended = () => setIsPlayingAudio(false);
-      audio.onerror = () => playWebSpeech();
-      audio.play().catch(() => playWebSpeech());
-    } else {
-      playWebSpeech();
-    }
+    const audio = new Audio(vocabAudioUrl);
+    setIsPlayingAudio(true);
+    const baseRate = parseFloat(audioSpeed) || 1.0;
+    audio.playbackRate = Math.max(0.5, Math.min(1.5, baseRate * rateMultiplier));
+    audio.onended = () => {
+      if (isHandled) return;
+      isHandled = true;
+      setIsPlayingAudio(false);
+    };
+    audio.onerror = () => playWebSpeech();
+    audio.play().catch(() => playWebSpeech());
   };
 
-  // Auto-play audio on new card if preference is enabled
+  // Lecture automatique à chaque nouvelle présentation d'une carte
+  // (jamais quand la face avant est le français : l'audio donnerait la réponse).
   useEffect(() => {
-    setIsFlipped(false);
     if (autoPlayAudio && faceAvant !== 'french' && currentWord?.hanzi) {
       const timer = setTimeout(() => {
         playAudio(currentWord.hanzi);
       }, 250);
       return () => clearTimeout(timer);
     }
-  }, [currentIndex, autoPlayAudio, faceAvant, currentWord?.hanzi]);
-
-  // Keyboard shortcut navigation (Space = Flip, ArrowLeft = Prev, ArrowRight = Next)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-      if (e.code === 'Space') {
-        e.preventDefault();
-        setIsFlipped((prev) => !prev);
-      } else if (e.code === 'ArrowLeft') {
-        e.preventDefault();
-        handlePrev();
-      } else if (e.code === 'ArrowRight') {
-        e.preventDefault();
-        handleNext();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, total]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maintenantCarte, autoPlayAudio, faceAvant, currentWord?.hanzi]);
 
   const triggerHaptic = () => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
@@ -241,21 +296,19 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     }
   };
 
-  const handleSrsGrade = (grade: 'again' | 'hard' | 'good' | 'easy') => {
+  const handleSrsGrade = (note: Note) => {
+    if (!carteCourante || !etats || !file || !isFlipped) return;
     triggerHaptic();
-    if (currentWord) {
-      setReviewedWords((prev) => ({
-        ...prev,
-        [currentWord.id]: grade,
-      }));
-    }
 
-    if (currentIndex < total - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setIsFlipped(false);
-    } else {
-      // Session finished!
-      setSessionCompleted(true);
+    const nouvelEtat = noter(etats[carteCourante] ?? null, carteCourante, note, new Date());
+    const etatsSuivants = { ...etats, [carteCourante]: nouvelEtat };
+    setEtats(etatsSuivants);
+    setNotesSession((prev) => [...prev, note]);
+    // Enregistrement immédiat : la progression survit à une fermeture de l'onglet.
+    void enregistrerEtatCarte(nouvelEtat);
+
+    const continuer = avancer(mettreAJourFile(file, nouvelEtat), etatsSuivants);
+    if (!continuer) {
       try {
         confetti({
           particleCount: 100,
@@ -269,24 +322,45 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
     }
   };
 
-  const handlePrev = () => {
-    if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
-  };
+  // Raccourcis clavier comme dans Anki : Espace / Entrée retourne la carte,
+  // puis 1 à 4 donnent la note.
+  const noteParTouche = useRef(handleSrsGrade);
+  useEffect(() => {
+    noteParTouche.current = handleSrsGrade;
+  });
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (e.code === 'Space' || e.code === 'Enter') {
+        e.preventDefault();
+        setIsFlipped(true);
+        return;
+      }
+      const notes: Record<string, Note> = { Digit1: 'again', Digit2: 'hard', Digit3: 'good', Digit4: 'easy' };
+      if (notes[e.code]) {
+        e.preventDefault();
+        noteParTouche.current(notes[e.code]);
+      }
+    };
 
-  const handleNext = () => {
-    if (currentIndex < total - 1) setCurrentIndex((prev) => prev + 1);
-  };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
-  const restartSession = () => {
-    setReviewedWords({});
-    setCurrentIndex(0);
-    setIsFlipped(false);
-    setSessionCompleted(false);
-  };
+  // Chargement des révisions
+  if (!etats) {
+    return (
+      <div className="nixtio-card p-8 text-center max-w-xl mx-auto bg-white dark:bg-[#1E1E28] border border-[#6200EE]/20 animate-fadeIn">
+        <RotateCw className="w-6 h-6 mx-auto animate-spin text-[#6200EE] dark:text-[#BB86FC]" />
+        <p className="text-xs font-bold text-[#757575] dark:text-[#A0A0A0] mt-3">Chargement de vos révisions…</p>
+      </div>
+    );
+  }
 
-  if (sessionCompleted) {
-    const counts = Object.values(reviewedWords);
-    const masteredCount = counts.filter((c) => c === 'good' || c === 'easy').length;
+  if (sessionCompleted || !currentWord) {
+    const nbEtudiees = notesSession.length;
+    const nbOubliees = notesSession.filter((n) => n === 'again').length;
+    const apprentissageEnAttente = file ? file.apprentissage.length : 0;
 
     return (
       <div className="nixtio-card p-6 sm:p-10 text-center max-w-xl mx-auto space-y-6 bg-white dark:bg-[#1E1E28] border border-[#6200EE]/30 dark:border-[#6200EE]/40 shadow-xl animate-fadeIn">
@@ -296,37 +370,45 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
 
         <div>
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC]">
-            Session Terminée !
+            {nbEtudiees > 0 ? 'Session terminée !' : 'Rien à réviser pour le moment'}
           </span>
           <h3 className="font-display font-black text-2xl sm:text-3xl text-[#212121] dark:text-[#F5F5F5] mt-1">
-            Félicitations{userName ? `, ${userName}` : ''} 🎉
+            {nbEtudiees > 0 ? `Félicitations${userName ? `, ${userName}` : ''} 🎉` : 'Vous êtes à jour 👏'}
           </h3>
           <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-1">
-            Vous avez révisé les {total} cartes de « {themeTitle} ».
+            {nbEtudiees > 0
+              ? `Vous avez terminé les cartes prévues aujourd'hui dans « ${themeTitle} ».`
+              : words.length === 0
+                ? `Le paquet « ${themeTitle} » ne contient encore aucune carte.`
+                : `Aucune carte n'est due dans « ${themeTitle} » et la limite de nouvelles cartes du jour est atteinte (modifiable dans Mon Compte).`}
           </p>
+          {apprentissageEnAttente > 0 && (
+            <p className="text-xs font-bold text-[#E53935] dark:text-[#FF8A65] mt-2">
+              {apprentissageEnAttente} carte{apprentissageEnAttente > 1 ? 's' : ''} en apprentissage à revoir dans quelques minutes.
+            </p>
+          )}
+          {prochaineEcheance && apprentissageEnAttente === 0 && (
+            <p className="text-xs font-bold text-[#00796B] dark:text-[#03DAC5] mt-2">
+              Prochaine révision dans {libelleDelai(new Date(), prochaineEcheance)}.
+            </p>
+          )}
         </div>
 
-        {/* Retention Summary Pills */}
-        <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
-          <div className="p-3 rounded-2xl bg-[#00897B]/10 border border-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5]">
-            <div className="text-2xl font-black font-display">{masteredCount}</div>
-            <div className="text-[10px] font-bold uppercase tracking-wider">Mots Maîtrisés</div>
+        {nbEtudiees > 0 && (
+          <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto">
+            <div className="p-3 rounded-2xl bg-[#00897B]/10 border border-[#00897B]/20 text-[#00796B] dark:text-[#03DAC5]">
+              <div className="text-2xl font-black font-display">{nbEtudiees}</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider">Cartes étudiées</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-[#E53935]/10 border border-[#E53935]/20 text-[#E53935] dark:text-[#FF8A65]">
+              <div className="text-2xl font-black font-display">{nbOubliees}</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider">« À revoir »</div>
+            </div>
           </div>
-          <div className="p-3 rounded-2xl bg-[#E53935]/10 border border-[#E53935]/20 text-[#E53935] dark:text-[#FF8A65]">
-            <div className="text-2xl font-black font-display">{total - masteredCount}</div>
-            <div className="text-[10px] font-bold uppercase tracking-wider">À Revoir Bientôt</div>
-          </div>
-        </div>
+        )}
 
-        <div className="flex items-center justify-center gap-3 pt-2">
-          <button
-            onClick={restartSession}
-            type="button"
-            className="px-5 py-2.5 rounded-full bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] hover:bg-slate-100 dark:hover:bg-[#303030] active:scale-95 transition-all btn-press cursor-pointer"
-          >
-            Recommencer la session
-          </button>
-          {onFinish && (
+        {onFinish && (
+          <div className="flex items-center justify-center gap-3 pt-2">
             <button
               onClick={onFinish}
               type="button"
@@ -334,43 +416,24 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
             >
               Retour au vocabulaire
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }
 
   return (
     <div className="w-full max-w-lg sm:max-w-xl mx-auto space-y-3.5 animate-fadeIn">
-      {/* Session Progress Header */}
+      {/* En-tête : paquet et compteurs Anki (nouvelles / apprentissage / à revoir) */}
       <div className="flex items-center justify-between gap-3 px-1">
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="text-xs font-extrabold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider truncate">
-            {themeTitle}
-          </span>
-          <span className="text-[#E0E0E0] dark:text-[#333333]">•</span>
-          <span className="text-xs font-bold text-[#757575] dark:text-[#A0A0A0] shrink-0">
-            {currentIndex + 1} / {total}
-          </span>
-        </div>
+        <span className="text-xs font-extrabold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider truncate min-w-0">
+          {themeTitle}
+        </span>
 
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[#757575] disabled:opacity-40 disabled:cursor-not-allowed hover:text-[#212121] dark:hover:text-white active:scale-90 transition-all shadow-2xs btn-press cursor-pointer"
-            title="Carte précédente"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={currentIndex === total - 1}
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] text-[#757575] disabled:opacity-40 disabled:cursor-not-allowed hover:text-[#212121] dark:hover:text-white active:scale-90 transition-all shadow-2xs btn-press cursor-pointer"
-            title="Carte suivante"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
+        <div className="flex items-center gap-2.5 shrink-0 text-xs font-black tabular-nums">
+          <span className="text-[#0288D1]" title="Nouvelles cartes">{nombres.nouvelles}</span>
+          <span className="text-[#E53935]" title="En apprentissage">{nombres.apprentissage}</span>
+          <span className="text-[#00897B]" title="Révisions dues">{nombres.revisions}</span>
         </div>
       </div>
 
@@ -385,7 +448,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
       {/* 3D Flip Card Container (Mobile & Desktop Cross-Browser Guaranteed) */}
       <div
         className="perspective-container relative w-full h-[350px] sm:h-[390px] cursor-pointer select-none touch-manipulation"
-        onClick={() => setIsFlipped(!isFlipped)}
+        onClick={() => setIsFlipped(true)}
       >
         <div
           className={`transform-3d-card w-full h-full relative ${
@@ -534,44 +597,30 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
         </div>
       </div>
 
-      {/* Répétition Espacée Rating Control Bar (Remontée & Intervalles SRS Conformes) */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+      {/* Notation : d'abord « Afficher la réponse », puis les 4 notes avec le délai qu'elles donneraient (comme Anki) */}
+      {!isFlipped ? (
         <button
-          onClick={() => handleSrsGrade('again')}
+          onClick={() => setIsFlipped(true)}
           type="button"
-          className="p-3 rounded-2xl bg-[#DD2C00]/10 hover:bg-[#DD2C00] text-[#DD2C00] hover:text-white border border-[#DD2C00]/25 font-bold text-xs flex flex-col items-center gap-0.5 active:scale-95 transition-all shadow-2xs group btn-press cursor-pointer"
+          className="w-full p-3.5 rounded-2xl bg-[#6200EE] hover:bg-[#3700B3] text-white font-bold text-sm shadow-md shadow-[#6200EE]/25 active:scale-[0.98] transition-all btn-press cursor-pointer"
         >
-          <span className="group-hover:scale-110 transition-transform">🔴 À Revoir</span>
-          <span className="text-[10px] opacity-85 font-semibold">10 min</span>
+          Afficher la réponse
         </button>
-
-        <button
-          onClick={() => handleSrsGrade('hard')}
-          type="button"
-          className="p-3 rounded-2xl bg-[#FFA000]/10 hover:bg-[#FFA000] text-[#B78103] hover:text-white dark:text-[#FFD54F] border border-[#FFA000]/25 font-bold text-xs flex flex-col items-center gap-0.5 active:scale-95 transition-all shadow-2xs group btn-press cursor-pointer"
-        >
-          <span className="group-hover:scale-110 transition-transform">🟠 Difficile</span>
-          <span className="text-[10px] opacity-85 font-semibold">2 h</span>
-        </button>
-
-        <button
-          onClick={() => handleSrsGrade('good')}
-          type="button"
-          className="p-3 rounded-2xl bg-[#03DAC5]/15 hover:bg-[#03DAC5] text-[#00897B] hover:text-[#0B0B0F] dark:text-[#03DAC5] border border-[#03DAC5]/25 font-bold text-xs flex flex-col items-center gap-0.5 active:scale-95 transition-all shadow-2xs group btn-press cursor-pointer"
-        >
-          <span className="group-hover:scale-110 transition-transform">🟢 Je Sais</span>
-          <span className="text-[10px] opacity-85 font-semibold">4 j</span>
-        </button>
-
-        <button
-          onClick={() => handleSrsGrade('easy')}
-          type="button"
-          className="p-3 rounded-2xl bg-[#6200EE]/15 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:text-[#BB86FC] border border-[#6200EE]/25 font-bold text-xs flex flex-col items-center gap-0.5 active:scale-95 transition-all shadow-2xs group btn-press cursor-pointer"
-        >
-          <span className="group-hover:scale-110 transition-transform">⚡ Facile</span>
-          <span className="text-[10px] opacity-85 font-semibold">7 j</span>
-        </button>
-      </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+          {BOUTONS_NOTES.map((b) => (
+            <button
+              key={b.note}
+              onClick={() => handleSrsGrade(b.note)}
+              type="button"
+              className={`p-3 rounded-2xl font-bold text-xs flex flex-col items-center gap-0.5 active:scale-95 transition-all shadow-2xs group btn-press cursor-pointer ${b.classes}`}
+            >
+              <span className="group-hover:scale-110 transition-transform">{b.libelle}</span>
+              <span className="text-[10px] opacity-85 font-semibold">{apercus?.[b.note] ?? ''}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

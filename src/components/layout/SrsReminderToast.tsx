@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { usePreferences } from '@/context/PreferencesContext';
 import { X, Sparkles } from 'lucide-react';
-import { countWordsDueForReview } from '@/lib/services/vocabularyService';
+import { compterCartesDues } from '@/lib/services/revisionService';
 import { reserverEmplacement, libererEmplacement } from '@/lib/ui/coordinateurToasts';
 
 export function SrsReminderToast() {
@@ -50,7 +50,7 @@ export function SrsReminderToast() {
     let annule = false;
     let minuteur: ReturnType<typeof setTimeout> | undefined;
 
-    countWordsDueForReview().then((n) => {
+    compterCartesDues().then((n) => {
       if (annule || n === 0) return;
       setNbCartes(n);
       minuteur = setTimeout(() => {

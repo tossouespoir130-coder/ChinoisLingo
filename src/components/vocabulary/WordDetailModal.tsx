@@ -159,7 +159,10 @@ export function WordDetailModal({
     const clean = text.trim();
     const vocabAudioUrl = `/audio/vocab/${encodeURIComponent(clean)}.mp3`;
 
+    let isHandled = false;
     const playWebSpeech = () => {
+      if (isHandled) return;
+      isHandled = true;
       if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-CN';
@@ -170,18 +173,21 @@ export function WordDetailModal({
         utterance.onerror = () => setPlayingIdx(null);
 
         window.speechSynthesis.speak(utterance);
+      } else {
+        setPlayingIdx(null);
       }
     };
 
-    if (identifier === 'word' || clean.length <= 6) {
-      const audio = new Audio(vocabAudioUrl);
-      setPlayingIdx(identifier);
-      audio.onended = () => setPlayingIdx(null);
-      audio.onerror = () => playWebSpeech();
-      audio.play().catch(() => playWebSpeech());
-    } else {
-      playWebSpeech();
-    }
+    const audio = new Audio(vocabAudioUrl);
+    setPlayingIdx(identifier);
+    audio.playbackRate = parseFloat(audioSpeed) || 1.0;
+    audio.onended = () => {
+      if (isHandled) return;
+      isHandled = true;
+      setPlayingIdx(null);
+    };
+    audio.onerror = () => playWebSpeech();
+    audio.play().catch(() => playWebSpeech());
   };
 
   const getLevelColor = (level?: string) => {

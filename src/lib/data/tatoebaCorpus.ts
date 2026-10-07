@@ -1,4 +1,5 @@
 import { exemplesHsk1Tatoeba } from './exemplesHsk1Tatoeba';
+import { exemplesHsk2Tatoeba } from './exemplesHsk2Tatoeba';
 
 export interface TatoebaSentencePair {
   hanzi: string;
@@ -310,4 +311,6 @@ const corpusInitial: Record<string, TatoebaSentencePair[]> = {
 export const tatoebaCorpusByHanzi: Record<string, TatoebaSentencePair[]> = {
   ...exemplesHsk1Tatoeba,
   ...corpusInitial,
+  // Le HSK 2 passe après l'ancien corpus : son entrée 贵 est remplacée par les exemples vérifiés.
+  ...exemplesHsk2Tatoeba,
 };

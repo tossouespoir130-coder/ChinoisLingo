@@ -1127,14 +1127,14 @@ function MonCompteContent() {
             </div>
 
             <div className="space-y-3 pt-2">
-              {/* Quantité de cartes par session */}
+              {/* Nouvelles cartes par jour (répétition espacée, comme Anki) */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
                 <div>
                   <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] block">
-                    Nombre de cartes à réviser par session
+                    Nouvelles cartes par jour
                   </span>
                   <span className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
-                    Quantité de vocabulaire présentée lors de chaque entraînement (par défaut 20).
+                    Mots nouveaux introduits chaque jour dans un paquet (par défaut 20). Les révisions dues sont toujours présentées en entier.
                   </span>
                 </div>
 
@@ -1143,16 +1143,16 @@ function MonCompteContent() {
                   onChange={(e) => setCardsPerSession(e.target.value as any)}
                   className="px-3.5 py-1.5 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#181818] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] outline-none cursor-pointer btn-press"
                 >
-                  <option value="5">5 cartes / session</option>
-                  <option value="10">10 cartes</option>
-                  <option value="15">15 cartes</option>
-                  <option value="20">20 cartes (Recommandé)</option>
-                  <option value="30">30 cartes</option>
-                  <option value="40">40 cartes / session</option>
-                  <option value="50">50 cartes / session</option>
-                  <option value="70">70 cartes / session</option>
-                  <option value="100">100 cartes / session (Intensif)</option>
-                  <option value="all">Tout le paquet (Toutes les cartes)</option>
+                  <option value="5">5 nouvelles / jour</option>
+                  <option value="10">10 nouvelles / jour</option>
+                  <option value="15">15 nouvelles / jour</option>
+                  <option value="20">20 nouvelles / jour (Recommandé)</option>
+                  <option value="30">30 nouvelles / jour</option>
+                  <option value="40">40 nouvelles / jour</option>
+                  <option value="50">50 nouvelles / jour</option>
+                  <option value="70">70 nouvelles / jour</option>
+                  <option value="100">100 nouvelles / jour (Intensif)</option>
+                  <option value="all">Pas de limite</option>
                 </select>
               </div>
 
@@ -1160,10 +1160,10 @@ function MonCompteContent() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
                 <div>
                   <span className="text-xs font-bold text-[#212121] dark:text-[#F5F5F5] block">
-                    Ordre d&apos;apparition des cartes
+                    Ordre des nouvelles cartes
                   </span>
                   <span className="text-[11px] text-[#757575] dark:text-[#A0A0A0]">
-                    Le mélange aléatoire renforce l&apos;ancrage mémoriel à long terme.
+                    Aléatoire ou dans l&apos;ordre de la liste HSK. Les révisions suivent toujours leur échéance.
                   </span>
                 </div>
 
