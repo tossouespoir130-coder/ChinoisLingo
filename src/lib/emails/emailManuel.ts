@@ -48,7 +48,7 @@ export async function envoyerEmailManuel(params: ParamsEmailManuel): Promise<{ o
           <tr>
             <td style="padding: 35px 30px;">
               <h2 style="font-size: 19px; font-weight: 700; color: #212121; margin: 0 0 18px 0;">
-                Bonjour ${nom} ! 👋
+                Nǐhǎo ${nom} ! 👋
               </h2>
 
               ${messageHtml}
@@ -57,8 +57,8 @@ export async function envoyerEmailManuel(params: ParamsEmailManuel): Promise<{ o
               <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 30px 0 15px 0;">
                 <tr>
                   <td align="center">
-                    <a href="${siteUrl}/tableau-de-bord" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 14.5px; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 100px; box-shadow: 0 4px 12px rgba(98, 0, 238, 0.25);">
-                      Accéder à ChinoisLingo →
+                    <a href="${siteUrl}/ecoute-lecture?type=exercices" target="_blank" style="display: inline-block; background-color: #6200EE; color: #FFFFFF; font-size: 14.5px; font-weight: 700; text-decoration: none; padding: 14px 32px; border-radius: 100px; box-shadow: 0 4px 12px rgba(98, 0, 238, 0.25);">
+                      Découvrir les Exercices HSK →
                     </a>
                   </td>
                 </tr>
@@ -88,11 +88,11 @@ export async function envoyerEmailManuel(params: ParamsEmailManuel): Promise<{ o
   const texte = `
 ChinoisLingo — « Le chinois devient facile »
 
-Bonjour ${nom} !
+Nǐhǎo ${nom} !
 
 ${params.message}
 
-Accéder à votre compte : ${siteUrl}/tableau-de-bord
+Accéder à ton compte : ${siteUrl}/ecoute-lecture?type=exercices
 
 L'équipe ChinoisLingo
   `.trim();
