@@ -33,6 +33,10 @@ interface ParamsRecapHebdo {
   profil?: string | null;
   niveau?: string | null;
   contenus: NouvelItemContenu[];
+  /** Sujet modifié depuis l'éditeur de l'administration (sinon sujet par défaut). */
+  sujetPersonnalise?: string | null;
+  /** Message personnel facultatif, affiché sous l'introduction. */
+  messagePersonnel?: string | null;
 }
 
 export const NOMS_RUBRIQUES: Record<string, string> = {
@@ -140,9 +144,14 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
   });
 
   const rappel = params.mode === 'rappel';
-  const sujet = rappel
-    ? `Cette semaine sur ChinoisLingo : à (re)découvrir (« Le chinois devient facile »)`
-    : `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`;
+  const sujet = params.sujetPersonnalise?.trim()
+    || (rappel
+      ? `Cette semaine sur ChinoisLingo : à (re)découvrir (« Le chinois devient facile »)`
+      : `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`);
+  const message = params.messagePersonnel?.trim() || '';
+  const messageHtml = message
+    ? `<p class="texte-corps" style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">${echapper(message).replace(/\n/g, '<br />')}</p>`
+    : '';
   const introHtml = rappel
     ? `Cette semaine, voici une sélection de contenus de <strong>ChinoisLingo</strong> à découvrir ou à revoir pour garder le rythme de ton apprentissage du mandarin.`
     : `Voici les nouveaux contenus et leçons ajoutés sur <strong>ChinoisLingo</strong> cette semaine pour accélérer ton immersion en mandarin.`;
@@ -156,7 +165,7 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>${sujet}</title>${ENTETE_MODE_SOMBRE}
+  <title>${echapper(sujet)}</title>${ENTETE_MODE_SOMBRE}
 </head>
 <body class="corps" style="margin: 0; padding: 0; background-color: #F4F6FB; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #212121;">
   <table class="fond-page" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F6FB; padding: 30px 15px;">
@@ -175,6 +184,7 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
               <p class="texte-corps" style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">
                 ${introHtml}
               </p>
+              ${messageHtml}
 
               <!-- Liste des nouveautés par rubriques -->
               ${sectionsHtml}
@@ -215,7 +225,7 @@ ${rappel ? 'Cette semaine sur ChinoisLingo : à (re)découvrir' : 'Nouveautés d
 Nǐhǎo ${params.nom} !
 
 ${introTexte}
-
+${message ? `\n${message}\n` : ''}
 ${sectionsTexte}
 
 Accède à ton espace : ${siteUrl}/tableau-de-bord

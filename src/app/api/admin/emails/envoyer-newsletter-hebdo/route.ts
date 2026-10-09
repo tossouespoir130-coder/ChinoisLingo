@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { exigerAdmin } from '@/lib/admin/garde';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { envoyerEmailRecapHebdo } from '@/lib/emails/emailRecapHebdo';
-import { preparerNewsletterDeLaSemaine } from '@/lib/emails/nouveautesHebdo';
+import { preparerNewsletterDeLaSemaine, validerBrouillonNewsletter, type BrouillonNewsletter } from '@/lib/emails/nouveautesHebdo';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -17,6 +17,10 @@ function pause(ms: number) {
  *
  * Déclenche manuellement l'envoi de la newsletter hebdomadaire
  * à ABSOLUMENT TOUT LE MONDE (tous les utilisateurs enregistrés y compris l'administrateur).
+ *
+ * Body facultatif : { brouillon } — la version validée dans l'éditeur de
+ * l'administration (contenus, sujet, message). Sans brouillon : contenu
+ * automatique de la semaine.
  */
 export async function POST(requete: Request) {
   const garde = await exigerAdmin(requete);
@@ -25,9 +29,28 @@ export async function POST(requete: Request) {
   }
 
   const admin = createAdminClient();
-  // 1. Nouveautés depuis le dernier envoi ; à défaut, rappel de contenus existants
-  //    (un e-mail part chaque semaine — voir preparerNewsletterDeLaSemaine).
-  const { mode, contenus } = await preparerNewsletterDeLaSemaine(admin);
+
+  // 1. Brouillon validé dans l'éditeur, sinon contenu automatique de la semaine
+  //    (nouveautés depuis le dernier envoi, à défaut rappel de contenus existants).
+  let corps: { brouillon?: unknown } = {};
+  try {
+    corps = await requete.json();
+  } catch {
+    // Pas de corps : envoi du contenu automatique.
+  }
+
+  let brouillon: BrouillonNewsletter;
+  if (corps.brouillon !== undefined) {
+    const verification = validerBrouillonNewsletter(corps.brouillon);
+    if (!verification.ok) {
+      return NextResponse.json({ erreur: verification.erreur }, { status: 400 });
+    }
+    brouillon = verification.brouillon;
+  } else {
+    const auto = await preparerNewsletterDeLaSemaine(admin);
+    brouillon = { ...auto, sujet: null, messagePersonnel: null };
+  }
+  const { mode, contenus } = brouillon;
 
   if (contenus.length === 0) {
     return NextResponse.json(
@@ -68,6 +91,8 @@ export async function POST(requete: Request) {
         niveau: dest.onboarding_niveau,
         mode,
         contenus,
+        sujetPersonnalise: brouillon.sujet,
+        messagePersonnel: brouillon.messagePersonnel,
       });
 
       if (ok) totalEnvoyes++;

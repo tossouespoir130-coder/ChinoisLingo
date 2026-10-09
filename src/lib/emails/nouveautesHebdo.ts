@@ -2,7 +2,7 @@ import 'server-only';
 
 import type { createAdminClient } from '@/lib/supabase/admin';
 import { initialCourses } from '@/lib/mock/coursesData';
-import type { ModeNewsletter, NouvelItemContenu } from './emailRecapHebdo';
+import { NOMS_SOUS_CATEGORIES, type ModeNewsletter, type NouvelItemContenu } from './emailRecapHebdo';
 
 const TYPES_ECOUTE_LECTURE = ['chansons', 'videos', 'articles', 'histoires', 'dialogues', 'podcasts'];
 const ONGLETS_VOCABULAIRE = ['themes', 'combinations', 'my-words', 'dictionary'];
@@ -147,4 +147,100 @@ export async function preparerNewsletterDeLaSemaine(
   const nouveautes = await chargerNouveautesDeLaSemaine(admin, maintenant);
   if (nouveautes.length > 0) return { mode: 'nouveautes', contenus: nouveautes };
   return { mode: 'rappel', contenus: await choisirContenusARappeler(admin, maintenant) };
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// Éditeur de l'administration
+// ─────────────────────────────────────────────────────────────────────────
+
+/** Contenus existants proposés dans l'éditeur (formations + nouveautés réelles déjà publiées). */
+export async function suggestionsContenus(admin: ClientAdmin): Promise<NouvelItemContenu[]> {
+  const { data } = await admin
+    .from('nouveaux_contenus')
+    .select('id, rubrique, sous_categorie, titre, description, lien, niveau_hsk, profil_cible')
+    .order('created_at', { ascending: false });
+  const nouveautes = (data ?? []).map(versItem).filter((n) => lienVersContenuReel(n));
+  const formations: NouvelItemContenu[] = initialCourses.map((c) => ({
+    id: `formation-${c.id}`,
+    rubrique: 'formation',
+    sous_categorie: null,
+    titre: c.title,
+    description: resumer(c.description),
+    lien: `/formation?course=${c.id}`,
+    niveau_hsk: c.level,
+  }));
+  const vus = new Set<string>();
+  return [...nouveautes, ...formations].filter((c) => (vus.has(c.lien) ? false : (vus.add(c.lien), true)));
+}
+
+export interface BrouillonNewsletter {
+  mode: ModeNewsletter;
+  contenus: NouvelItemContenu[];
+  sujet: string | null;
+  messagePersonnel: string | null;
+}
+
+const RUBRIQUES = ['vocabulaire', 'ecoute_lecture', 'formation', 'livres'] as const;
+const MAX_CONTENUS = 12;
+
+function texte(v: unknown, max: number): string | null {
+  if (typeof v !== 'string') return null;
+  const t = v.trim();
+  return t.length > 0 && t.length <= max ? t : null;
+}
+
+/**
+ * Vérifie un brouillon envoyé par l'éditeur de l'administration : chaque
+ * contenu doit pointer vers une vraie page de l'application, et les textes
+ * restent dans des longueurs raisonnables. Les textes sont échappés au rendu.
+ */
+export function validerBrouillonNewsletter(
+  corps: unknown
+): { ok: true; brouillon: BrouillonNewsletter } | { ok: false; erreur: string } {
+  if (!corps || typeof corps !== 'object') return { ok: false, erreur: 'Brouillon invalide.' };
+  const b = corps as Record<string, unknown>;
+
+  const mode: ModeNewsletter = b.mode === 'rappel' ? 'rappel' : 'nouveautes';
+  if (!Array.isArray(b.contenus) || b.contenus.length === 0) {
+    return { ok: false, erreur: 'Ajoutez au moins un contenu.' };
+  }
+  if (b.contenus.length > MAX_CONTENUS) {
+    return { ok: false, erreur: `${MAX_CONTENUS} contenus au maximum.` };
+  }
+
+  const contenus: NouvelItemContenu[] = [];
+  for (const [i, brut] of b.contenus.entries()) {
+    const c = (brut ?? {}) as Record<string, unknown>;
+    const rubrique = RUBRIQUES.find((r) => r === c.rubrique);
+    const titre = texte(c.titre, 160);
+    const lien = texte(c.lien, 300);
+    if (!rubrique || !titre || !lien) {
+      return { ok: false, erreur: `Contenu n° ${i + 1} : rubrique, titre et lien sont obligatoires.` };
+    }
+    const sousCategorie =
+      typeof c.sous_categorie === 'string' && c.sous_categorie in NOMS_SOUS_CATEGORIES ? c.sous_categorie : null;
+    const item: NouvelItemContenu = {
+      id: typeof c.id === 'string' ? c.id.slice(0, 80) : `brouillon-${i}`,
+      rubrique,
+      sous_categorie: sousCategorie,
+      titre,
+      description: texte(c.description, 400),
+      lien,
+      niveau_hsk: texte(c.niveau_hsk, 20),
+    };
+    if (!lienVersContenuReel(item)) {
+      return { ok: false, erreur: `Contenu n° ${i + 1} (« ${titre} ») : le lien ne pointe vers aucune page réelle de l'application.` };
+    }
+    contenus.push(item);
+  }
+
+  return {
+    ok: true,
+    brouillon: {
+      mode,
+      contenus,
+      sujet: texte(b.sujet, 150),
+      messagePersonnel: texte(b.messagePersonnel, 1500),
+    },
+  };
 }

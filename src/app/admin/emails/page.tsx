@@ -8,6 +8,7 @@ import {
   Info
 } from 'lucide-react';
 import { useApiAdmin } from '@/lib/admin/useApiAdmin';
+import { EditeurNewsletter } from '@/components/admin/EditeurNewsletter';
 
 interface EmailLogItem {
   id: string;
@@ -20,14 +21,6 @@ interface EmailLogItem {
   erreur?: string | null;
   envoye_par: string;
   created_at: string;
-}
-
-interface ApercuNewsletter {
-  mode: 'nouveautes' | 'rappel';
-  contenus: { id: string; rubrique: string; titre: string; niveau_hsk?: string | null }[];
-  dernierEnvoi: string | null;
-  sujet: string | null;
-  html: string | null;
 }
 
 interface QuotaStats {
@@ -56,14 +49,6 @@ export default function AdminEmailsPage() {
 
   const [envoiEnCours, setEnvoiEnCours] = useState(false);
   const [resultatEnvoi, setResultatEnvoi] = useState<{ succes: boolean; message: string } | null>(null);
-
-  // Déclencheur Newsletter Hebdomadaire
-  const [envoiNewsletterEnCours, setEnvoiNewsletterEnCours] = useState(false);
-  const [resultatNewsletter, setResultatNewsletter] = useState<{ succes: boolean; message: string } | null>(null);
-  // Aperçu de la newsletter de la semaine (à valider avant l'envoi)
-  const [apercu, setApercu] = useState<ApercuNewsletter | null>(null);
-  const [chargementApercu, setChargementApercu] = useState(false);
-  const [erreurApercu, setErreurApercu] = useState<string | null>(null);
 
   // Historique et Quota
   const [historique, setHistorique] = useState<EmailLogItem[]>([]);
@@ -100,26 +85,12 @@ export default function AdminEmailsPage() {
     }
   }, [appeler, pret]);
 
-  const chargerApercu = useCallback(async () => {
-    if (!pret) return;
-    setChargementApercu(true);
-    setErreurApercu(null);
-    try {
-      setApercu(await appeler<ApercuNewsletter>('/api/admin/emails/apercu-newsletter'));
-    } catch (err) {
-      setErreurApercu((err as Error).message || 'Aperçu indisponible.');
-    } finally {
-      setChargementApercu(false);
-    }
-  }, [appeler, pret]);
-
   useEffect(() => {
     if (pret) {
       chargerHistorique();
       chargerQuota();
-      chargerApercu();
     }
-  }, [pret, chargerHistorique, chargerQuota, chargerApercu]);
+  }, [pret, chargerHistorique, chargerQuota]);
 
   const handleEnvoyer = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -179,48 +150,6 @@ export default function AdminEmailsPage() {
     }
   };
 
-  const handleEnvoyerNewsletter = async () => {
-    if (!confirm('Vous avez vérifié l’aperçu ? Confirmez-vous l’envoi immédiat de cette newsletter à ABSOLUMENT TOUT LE MONDE (inscrits et administrateur) ?')) {
-      return;
-    }
-
-    setEnvoiNewsletterEnCours(true);
-    setResultatNewsletter(null);
-
-    try {
-      const res = await appeler<{
-        ok: boolean;
-        nouveautesCount: number;
-        destinatairesTotal: number;
-        totalEnvoyes: number;
-        totalEchecs: number;
-        erreur?: string;
-      }>('/api/admin/emails/envoyer-newsletter-hebdo', {
-        method: 'POST',
-      });
-
-      if (!res.ok) {
-        throw new Error(res.erreur || 'Erreur lors de l’envoi de la newsletter.');
-      }
-
-      setResultatNewsletter({
-        succes: true,
-        message: `Newsletter hebdomadaire envoyée avec succès à ${res.totalEnvoyes}/${res.destinatairesTotal} destinataire(s) (${res.nouveautesCount} contenu(s) inclus).`,
-      });
-
-      chargerHistorique();
-      chargerQuota();
-      chargerApercu();
-    } catch (err) {
-      setResultatNewsletter({
-        succes: false,
-        message: (err as Error).message || 'Erreur lors du déclenchement de la newsletter.',
-      });
-    } finally {
-      setEnvoiNewsletterEnCours(false);
-    }
-  };
-
   const totalPages = Math.ceil(totalItems / 15) || 1;
 
   return (
@@ -273,94 +202,17 @@ export default function AdminEmailsPage() {
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={handleEnvoyerNewsletter}
-            disabled={envoiNewsletterEnCours || !apercu?.html}
-            title={apercu?.html ? undefined : 'Aperçu en cours de chargement ou aucun contenu disponible'}
-            className="px-5 py-3 rounded-full bg-gradient-to-r from-[#6200EE] to-[#00897B] hover:opacity-95 text-white font-extrabold text-xs shadow-md shadow-[#6200EE]/25 transition-all btn-press flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 whitespace-nowrap self-start sm:self-auto"
-          >
-            <Sparkles className="w-4 h-4" />
-            <span>{envoiNewsletterEnCours ? 'Diffusion en cours…' : 'Valider et envoyer à tout le monde'}</span>
-          </button>
         </div>
 
 
-        {/* Aperçu exact du mail de la semaine (rien n'est envoyé tant que vous ne validez pas) */}
-        <div className="rounded-2xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-white dark:bg-[#181818] p-4 space-y-3">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div className="text-xs space-y-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-extrabold uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC]">Aperçu de cette semaine</span>
-                {apercu && (
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${apercu.mode === 'nouveautes' ? 'bg-[#00897B]/10 text-[#00897B] dark:text-[#03DAC5]' : 'bg-amber-500/15 text-amber-700 dark:text-amber-400'}`}>
-                    {apercu.mode === 'nouveautes' ? 'Nouveautés' : 'Rappel de contenus (aucune nouveauté)'}
-                  </span>
-                )}
-              </div>
-              <p className="text-[#757575] dark:text-[#A0A0A0]">
-                Dernier envoi :{' '}
-                <strong>{apercu?.dernierEnvoi ? new Date(apercu.dernierEnvoi).toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' }) : '—'}</strong>
-                {' '}· Envoi automatique chaque jeudi à 16 h 30 (UTC).
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={chargerApercu}
-              disabled={chargementApercu}
-              className="px-3.5 py-2 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] text-xs font-bold text-[#212121] dark:text-[#F5F5F5] flex items-center gap-1.5 self-start cursor-pointer disabled:opacity-50"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${chargementApercu ? 'animate-spin' : ''}`} />
-              Actualiser l’aperçu
-            </button>
-          </div>
-
-          {erreurApercu && <p className="text-xs font-bold text-[#E53935]">{erreurApercu}</p>}
-
-          {apercu && apercu.contenus.length === 0 && (
-            <p className="text-xs font-bold text-[#E53935]">Aucun contenu disponible : rien ne serait envoyé.</p>
-          )}
-
-          {apercu?.html && (
-            <>
-              <div className="text-xs">
-                <span className="text-[#757575] dark:text-[#A0A0A0]">Sujet : </span>
-                <strong className="text-[#212121] dark:text-[#F5F5F5]">{apercu.sujet}</strong>
-              </div>
-              <ul className="text-xs text-[#424242] dark:text-[#D6D6D6] list-disc pl-5 space-y-0.5">
-                {apercu.contenus.map((c) => (
-                  <li key={c.id}>
-                    {c.titre}
-                    {c.niveau_hsk ? <span className="text-[#757575]"> · {c.niveau_hsk}</span> : null}
-                  </li>
-                ))}
-              </ul>
-              <iframe
-                title="Aperçu de la newsletter"
-                srcDoc={apercu.html}
-                sandbox=""
-                className="w-full h-[720px] rounded-xl border border-[#E0E0E0] dark:border-[#2D2D2D] bg-white"
-              />
-            </>
-          )}
-        </div>
-
-        {resultatNewsletter && (
-          <div
-            className={`p-4 rounded-2xl flex items-start gap-3 text-xs font-semibold animate-fadeIn ${
-              resultatNewsletter.succes
-                ? 'bg-[#03DAC5]/15 text-[#00796B] dark:text-[#03DAC5] border border-[#03DAC5]/30'
-                : 'bg-[#E53935]/15 text-[#E53935] border border-[#E53935]/30'
-            }`}
-          >
-            {resultatNewsletter.succes ? (
-              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
-            ) : (
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-            )}
-            <p>{resultatNewsletter.message}</p>
-          </div>
-        )}
+        <EditeurNewsletter
+          appeler={appeler}
+          pret={pret}
+          onApresEnvoi={() => {
+            chargerHistorique();
+            chargerQuota();
+          }}
+        />
       </div>
 
       {/* Formulaire de Composition d'Email */}
