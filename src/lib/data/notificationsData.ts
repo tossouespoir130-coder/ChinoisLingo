@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_exercices_hsk_lancement',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouveaux Exercices HSK : Entraîne ton oreille par immersion active ! 🎧\n听力练习 🚀',
+    message: 'Découvre nos 3 nouvelles rubriques d’exercices (« Vrai ou Faux ? », « Images & Dialogues », « Dialogues & Questions ») avec double écoute officielle, pauses calibrées et lecture automatique ! Les 3 premières séries de chaque rubrique sont 100% gratuites.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=exercices',
+    actionLabel: 'Découvrir les Exercices HSK'
+  },
+  {
     id: 'notif_dialogue_qui_es_tu',
     source: 'founder',
     founderName: 'Espoir Chinois',

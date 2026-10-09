@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prévisualisation E-mail — Lancement des Exercices HSK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card-bg: #131B2E;
+      --card-border: #1E293B;
+      --accent-purple: #7C3AED;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      padding: 30px 15px;
+      line-height: 1.5;
+    }
+    .top-bar {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #A78BFA;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .email-meta-card {
+      max-width: 650px;
+      margin: 0 auto 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .meta-row {
+      display: flex;
+      gap: 10px;
+    }
+    .meta-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 80px;
+    }
+    .meta-value {
+      color: #E2E8F0;
+      font-weight: 600;
+    }
+
+    /* Conteneur Email HTML Réel */
+    .email-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #FFFFFF;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      border: 1px solid #EAEAEA;
+      color: #212121;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%);
+      padding: 36px 30px;
+      text-align: center;
+    }
+    .email-header h2 {
+      color: #FFFFFF;
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .email-header .slogan {
+      color: #03DAC5;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .email-body {
+      padding: 36px 30px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #2D3748;
+    }
+    .email-greeting {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1A202C;
+      margin-bottom: 18px;
+    }
+    .rubrique-card {
+      background: #F8FAFC;
+      border-left: 4px solid #6200EE;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 14px 0;
+    }
+    .rubrique-title {
+      font-weight: 800;
+      color: #6200EE;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .rubrique-desc {
+      font-size: 13.5px;
+      color: #4A5568;
+      line-height: 1.5;
+    }
+    .features-list {
+      background: #F1F5F9;
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin: 20px 0;
+      list-style: none;
+    }
+    .features-list li {
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .features-list li:last-child {
+      margin-bottom: 0;
+    }
+    .cta-container {
+      text-align: center;
+      margin: 32px 0 20px;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #6200EE;
+      color: #FFFFFF !important;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 100px;
+      box-shadow: 0 8px 20px rgba(98, 0, 238, 0.3);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .cta-button:hover {
+      background-color: #5000CA;
+      transform: translateY(-2px);
+    }
+    .email-footer {
+      background-color: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 24px 30px;
+      text-align: center;
+    }
+    .footer-sign {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #1E293B;
+      margin-bottom: 6px;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="badge-top">Aperçu Avant Envoi aux Apprenants</div>
+    <h1>E-mail d'Annonce : Lancement des Exercices HSK</h1>
+  </div>
+
+  <div class="email-meta-card">
+    <div class="meta-row">
+      <span class="meta-label">Objet :</span>
+      <span class="meta-value">Nouveauté : Entraîne ton oreille avec nos nouveaux Exercices d’Écoute Active HSK ! 🎧</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Expéditeur :</span>
+      <span class="meta-value">ChinoisLingo &lt;contact@chinoislingo.com&gt;</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Signature :</span>
+      <span class="meta-value">L'équipe ChinoisLingo</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Bouton :</span>
+      <span class="meta-value">Découvrir les Exercices HSK → (Redirige vers <code>/ecoute-lecture?type=exercices</code>)</span>
+    </div>
+  </div>
+
+  <!-- Rendu Visuel Réel du Mail -->
+  <div class="email-wrapper">
+    <div class="email-header">
+      <h2>ChinoisLingo</h2>
+      <div class="slogan">« Avec ChinoisLingo, le chinois devient facile »</div>
+    </div>
+
+    <div class="email-body">
+      <div class="email-greeting">Nǐhǎo {{nom}} ! 👋</div>
+
+      <p style="margin-bottom: 16px;">
+        Nous avons une excellente nouvelle pour booster ta compréhension orale du mandarin !
+      </p>
+
+      <p style="margin-bottom: 18px;">
+        Une toute nouvelle section vient d’enrichir ton espace <strong>Écoute & Lecture</strong> : les <strong>Exercices d'Écoute Active HSK</strong>.
+      </p>
+
+      <p style="margin-bottom: 14px; font-weight: 600; color: #1E293B;">
+        Conçus pour t'entraîner dans les conditions réelles des examens officiels HSK, ces exercices se déclinent en <strong>3 rubriques progressives</strong> :
+      </p>
+
+      <div class="rubrique-card">
+        <div class="rubrique-title">1. « Vrai ou Faux ? » (听力判断)</div>
+        <div class="rubrique-desc">Observe l'illustration haute définition, écoute le mot ou la phrase prononcée en mandarin et valide immédiatement la correspondance.</div>
+      </div>
+
+      <div class="rubrique-card">
+        <div class="rubrique-title">2. « Images & Dialogues » (听力匹配)</div>
+        <div class="rubrique-desc">Plonge dans une séquence fluide de 3 dialogues et associe chaque enregistrement à la bonne situation visuelle.</div>
+      </div>
+
+      <div class="rubrique-card">
+        <div class="rubrique-title">3. « Dialogues & Questions » (听短文问答)</div>
+        <div class="rubrique-desc">Écoute à l'aveugle un dialogue naturel, comprends la question orale posée et choisis la bonne réponse parmi 3 propositions.</div>
+      </div>
+
+      <div class="features-list">
+        <li><strong>✨ Immersion sonore native :</strong> Voix ultra-réalistes et alternance des timbres (Femme ↔ Homme).</li>
+        <li><strong>⏱️ Double écoute officielle :</strong> Répétition calibrée avec pauses de respiration naturelle conformes aux examens HSK.</li>
+        <li><strong>🔄 Mode Révision ciblé :</strong> Analyse chaque erreur en détail et révise-la en 1 clic pour ancrer tes acquis.</li>
+        <li><strong>🎁 100% Gratuit :</strong> Les <strong>3 premières séries de chaque niveau et de chaque rubrique sont en libre accès</strong> dès aujourd'hui !</li>
+      </div>
+
+      <div class="cta-container">
+        <a href="http://localhost:3000/ecoute-lecture?type=exercices" target="_blank" class="cta-button">
+          Découvrir les Exercices HSK →
+        </a>
+      </div>
+
+      <p style="text-align: center; font-size: 13px; color: #718096; margin-top: 24px;">
+        Au clic, ce bouton t'amène directement sur la page des exercices prêts à l'écoute.
+      </p>
+    </div>
+
+    <div class="email-footer">
+      <div class="footer-sign">L'équipe ChinoisLingo</div>
+      <div class="footer-copy">© 2026 ChinoisLingo. Tous droits réservés.</div>
+    </div>
+  </div>
+
+</body>
+</html>
