@@ -118,6 +118,6 @@ export function initialesDe(nom: string | null | undefined): string {
       .filter(Boolean)
       .slice(0, 2)
       .map((m) => m[0]?.toUpperCase() ?? '')
-      .join('') || '?'
+      .join('') || ''
   );
 }

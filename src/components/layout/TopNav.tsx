@@ -23,7 +23,7 @@ export function TopNav() {
   const pathname = usePathname();
   const router = useRouter();
   const { userAvatar, userName } = usePreferences();
-  const { user, profile, signOut } = useAuth();
+  const { user, profile, signOut, isLoading } = useAuth();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
@@ -180,13 +180,20 @@ export function TopNav() {
 
           {/* User Profile Avatar / Dropdown Menu (Toujours visible et accessible) */}
           <div className="relative" ref={profileMenuRef}>
-            {(() => {
+            {isLoading ? (
+              <div 
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#6200EE]/20 dark:bg-[#6200EE]/30 animate-pulse ring-2 ring-[#6200EE]/30 flex items-center justify-center shrink-0"
+                title="Chargement du profil..."
+              >
+                <div className="w-3.5 h-3.5 rounded-full bg-[#6200EE] opacity-60 animate-ping" />
+              </div>
+            ) : (() => {
               const rawAvatar = profile?.avatar_url || userAvatar || (user?.user_metadata?.avatar_url as string | undefined) || '';
               const displayAvatar = (rawAvatar && !rawAvatar.includes('photo-1534528741775')) 
                 ? rawAvatar 
                 : '';
 
-              // Sans photo personnalisée, on affiche les initiales de l'utilisateur
+              // Sans photo personnalisée, on affiche les initiales de l'utilisateur ou une icône User
               const nomAffiche =
                 profile?.full_name || profile?.username || userName || (user?.user_metadata?.full_name as string | undefined) || '';
               const initiales =
@@ -195,7 +202,7 @@ export function TopNav() {
                   .filter(Boolean)
                   .slice(0, 2)
                   .map((m) => m[0]?.toUpperCase() ?? '')
-                  .join('') || (user?.email ? user.email[0]?.toUpperCase() : '?');
+                  .join('') || (user?.email ? user.email[0]?.toUpperCase() : '');
 
               return (
                 <>
@@ -212,9 +219,13 @@ export function TopNav() {
                         alt={nomAffiche || 'Profil'}
                         className="w-full h-full object-cover"
                       />
-                    ) : (
+                    ) : initiales ? (
                       <span className="w-full h-full flex items-center justify-center bg-[#6200EE] text-white text-xs font-black">
                         {initiales}
+                      </span>
+                    ) : (
+                      <span className="w-full h-full flex items-center justify-center bg-[#6200EE] text-white">
+                        <User className="w-4 h-4" />
                       </span>
                     )}
                   </button>
@@ -231,9 +242,13 @@ export function TopNav() {
                             alt={nomAffiche || 'Profil'}
                             className="w-10 h-10 rounded-2xl object-cover ring-2 ring-[#6200EE]/20 shadow-xs"
                           />
-                        ) : (
+                        ) : initiales ? (
                           <span className="w-10 h-10 rounded-2xl bg-[#6200EE] text-white text-sm font-black flex items-center justify-center ring-2 ring-[#6200EE]/20 shadow-xs shrink-0">
                             {initiales}
+                          </span>
+                        ) : (
+                          <span className="w-10 h-10 rounded-2xl bg-[#6200EE] text-white flex items-center justify-center ring-2 ring-[#6200EE]/20 shadow-xs shrink-0">
+                            <User className="w-5 h-5" />
                           </span>
                         )}
                         <div className="min-w-0 flex-1">
