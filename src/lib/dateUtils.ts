@@ -67,3 +67,45 @@ export function getCurrentWeekRangeWAT(date: Date = new Date()): WeekRangeWAT {
     joursSemaine,
   };
 }
+
+export interface MonthRangeWAT {
+  premierJourStr: string; // Ex: '2026-10-01'
+  dernierJourStr: string; // Ex: '2026-10-31'
+  nomMois: string;        // Ex: 'Octobre 2026'
+  nomMoisCourt: string;   // Ex: 'Octobre'
+  moisNum: number;        // 10
+  anneeNum: number;       // 2026
+}
+
+/**
+ * Calcule la plage du mois calendaire en cours (1er jour 00:00 au dernier jour 23:59)
+ * en heure d'Afrique de l'Ouest (UTC+1).
+ */
+export function getCurrentMonthRangeWAT(date: Date = new Date()): MonthRangeWAT {
+  const todayStr = getDateStringWAT(date);
+  const [year, month] = todayStr.split('-').map(Number);
+
+  const premierJourStr = `${year}-${String(month).padStart(2, '0')}-01`;
+
+  // Dernier jour du mois via UTC (jour 0 du mois suivant)
+  const dernierJourDate = new Date(Date.UTC(year, month, 0, 12, 0, 0));
+  const dernierJour = String(dernierJourDate.getUTCDate()).padStart(2, '0');
+  const dernierJourStr = `${year}-${String(month).padStart(2, '0')}-${dernierJour}`;
+
+  const MOIS_FR = [
+    'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+  ];
+  const nomMoisCourt = MOIS_FR[month - 1] || 'Mois en cours';
+  const nomMois = `${nomMoisCourt} ${year}`;
+
+  return {
+    premierJourStr,
+    dernierJourStr,
+    nomMois,
+    nomMoisCourt,
+    moisNum: month,
+    anneeNum: year,
+  };
+}
+

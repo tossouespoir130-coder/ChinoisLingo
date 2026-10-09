@@ -31,6 +31,7 @@ export function CommunityLeaderboardCard() {
   const [participants, setParticipants] = useState<LeaderboardUser[] | null>(null);
   const [totalCount, setTotalCount] = useState(0);
   const [maPosition, setMaPosition] = useState<LeaderboardUser | null>(null);
+  const [nomMois, setNomMois] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function CommunityLeaderboardCard() {
 
     const limitToFetch = isExpanded ? LEADERBOARD_EXPANDED_LIMIT : LEADERBOARD_DEFAULT_LIMIT;
 
-    fetch(`/api/classement?vue=hebdo&limite=${limitToFetch}`, {
+    fetch(`/api/classement?vue=mensuel&limite=${limitToFetch}`, {
       headers: { Authorization: `Bearer ${jeton}` },
     })
       .then((r) => (r.ok ? r.json() : null))
@@ -51,9 +52,14 @@ export function CommunityLeaderboardCard() {
         setParticipants(d.classement ?? []);
         setTotalCount(d.participantsActifs || d.participants || 0);
         setMaPosition(d.maPosition ?? null);
+        if (d.plageMois?.nomMoisCourt) {
+          setNomMois(d.plageMois.nomMoisCourt);
+        } else if (d.plageMois?.nomMois) {
+          setNomMois(d.plageMois.nomMois);
+        }
       })
       .catch((err) => {
-        console.error('Erreur chargement classement:', err);
+        console.error('Erreur chargement classement mensuel:', err);
         if (isMounted) setParticipants([]);
       })
       .finally(() => {
@@ -108,8 +114,11 @@ export function CommunityLeaderboardCard() {
             </div>
             <div>
               <h3 className="font-display font-black text-sm sm:text-base text-[#212121] dark:text-[#F5F5F5]">
-                Classement Communautaire
+                Classement Mensuel
               </h3>
+              <p className="text-[11px] font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                {nomMois ? `Top du mois · ${nomMois}` : 'Top du mois en cours'}
+              </p>
             </div>
           </div>
         </div>
@@ -128,7 +137,7 @@ export function CommunityLeaderboardCard() {
           <div className="py-7 text-center">
             <Users className="w-7 h-7 text-[#E0E0E0] dark:text-[#333333] mx-auto mb-2.5" />
             <p className="text-xs text-[#757575] dark:text-[#A0A0A0] leading-relaxed max-w-xs mx-auto">
-              Le classement hebdomadaire redémarre chaque lundi à 00:00 (UTC+1). Connectez-vous et pratiquez pour prendre la tête !
+              Le classement mensuel redémarre le 1er de chaque mois à 00:00 (UTC+1). Connectez-vous et pratiquez pour prendre la tête du Top Mensuel !
             </p>
           </div>
         ) : (
@@ -175,7 +184,7 @@ export function CommunityLeaderboardCard() {
                       </div>
                       <div className="flex items-center gap-1 text-[11px] text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                         <span>🔥</span>
-                        <span className="font-semibold">{p.joursConnexion} {p.joursConnexion > 1 ? 'jours' : 'jour'}</span>
+                        <span className="font-semibold">{p.joursConnexion} {p.joursConnexion > 1 ? 'jours' : 'jour'} ce mois-ci</span>
                       </div>
                     </div>
                   </div>
@@ -208,7 +217,7 @@ export function CommunityLeaderboardCard() {
                 </span>
                 <span className="text-[10px] text-[#757575] dark:text-[#A0A0A0] flex items-center gap-1">
                   <span>🔥</span>
-                  <span className="font-semibold">{maPosition.joursConnexion} {maPosition.joursConnexion > 1 ? 'jours' : 'jour'}</span>
+                  <span className="font-semibold">{maPosition.joursConnexion} {maPosition.joursConnexion > 1 ? 'jours' : 'jour'} ce mois-ci</span>
                 </span>
               </div>
             </div>

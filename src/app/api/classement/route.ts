@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createAdminClient, configurationAdminPrete } from '@/lib/supabase/admin';
 import { utilisateurDeLaRequete } from '@/lib/payments/session-serveur';
-import { getCurrentWeekRangeWAT } from '@/lib/dateUtils';
+import { getCurrentMonthRangeWAT } from '@/lib/dateUtils';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-
-/** En dessous de ce nombre de participants, un classement n'a pas de sens. */
-const MINIMUM_PARTICIPANTS = 1;
 
 export interface LeaderboardItem {
   rang: number;
@@ -22,13 +19,13 @@ export interface LeaderboardItem {
 }
 
 /**
- * GET /api/classement?vue=hebdo|tout-temps&limite=15
+ * GET /api/classement?vue=mensuel|tout-temps&limite=15
  *
- * Calcule le classement communautaire basé sur l'engagement réel :
- * - 1 jour de connexion = 20 points
- * - 1 minute passée dans l'app = 0,5 point (soit 30 pts par heure)
+ * Calcule le classement communautaire mensuel basé sur l'engagement réel :
+ * - 1 jour de connexion dans le mois = 20 points
+ * - 1 minute passée dans l'app dans le mois = 0,5 point (soit 30 pts par heure)
  *
- * - Vue hebdomadaire (par défaut) : remise à zéro chaque lundi 00:00 (UTC+1 Afrique de l'Ouest).
+ * - Vue mensuelle (par défaut) : remise à zéro le 1er de chaque mois à 00:00 (UTC+1 Afrique de l'Ouest).
  * - Vue tout temps : engagement historique cumulé.
  * - Le score est calculé pour 100% des utilisateurs de la base de données.
  */
@@ -44,7 +41,8 @@ export async function GET(requete: Request) {
   }
 
   const { searchParams } = new URL(requete.url);
-  const vue = searchParams.get('vue') === 'tout-temps' ? 'tout-temps' : 'hebdo';
+  const vueParam = searchParams.get('vue');
+  const vue = vueParam === 'tout-temps' ? 'tout-temps' : 'mensuel';
   const limite = Math.max(5, Math.min(100, Number(searchParams.get('limite')) || 15));
 
   const admin = createAdminClient();
@@ -65,30 +63,30 @@ export async function GET(requete: Request) {
     return !estAdmin;
   });
 
-  const weekRange = getCurrentWeekRangeWAT();
+  const monthRange = getCurrentMonthRangeWAT();
 
-  // 2. Si vue hebdomadaire : récupérer l'activité journalière de la semaine pour tous
-  let activitesHebdo: { user_id: string; jour: string; minutes: number | null }[] = [];
-  if (vue === 'hebdo') {
+  // 2. Si vue mensuelle : récupérer l'activité journalière du mois en cours pour tous les élèves
+  let activitesMois: { user_id: string; jour: string; minutes: number | null }[] = [];
+  if (vue === 'mensuel') {
     const { data: actData, error: errAct } = await admin
       .from('daily_activity')
       .select('user_id, jour, minutes')
-      .gte('jour', weekRange.lundiStr)
-      .lte('jour', weekRange.dimancheStr);
+      .gte('jour', monthRange.premierJourStr)
+      .lte('jour', monthRange.dernierJourStr);
 
     if (!errAct && actData) {
-      activitesHebdo = actData;
+      activitesMois = actData;
     }
   }
 
-  // Regrouper l'activité hebdo par utilisateur
-  const userHebdoMap = new Map<string, { jours: Set<string>; minutes: number }>();
-  if (vue === 'hebdo') {
-    for (const a of activitesHebdo) {
-      if (!userHebdoMap.has(a.user_id)) {
-        userHebdoMap.set(a.user_id, { jours: new Set(), minutes: 0 });
+  // Regrouper l'activité mensuelle par utilisateur
+  const userMonthMap = new Map<string, { jours: Set<string>; minutes: number }>();
+  if (vue === 'mensuel') {
+    for (const a of activitesMois) {
+      if (!userMonthMap.has(a.user_id)) {
+        userMonthMap.set(a.user_id, { jours: new Set(), minutes: 0 });
       }
-      const entry = userHebdoMap.get(a.user_id)!;
+      const entry = userMonthMap.get(a.user_id)!;
       if (a.jour) entry.jours.add(a.jour);
       entry.minutes += Math.max(0, Number(a.minutes) || 0);
     }
@@ -100,11 +98,11 @@ export async function GET(requete: Request) {
     let minutesEtudiees = 0;
     let score = 0;
 
-    if (vue === 'hebdo') {
-      const hebdoData = userHebdoMap.get(p.id);
-      joursConnexion = hebdoData ? hebdoData.jours.size : 0;
-      minutesEtudiees = hebdoData ? Math.round(hebdoData.minutes) : 0;
-      // Formule officielle : 1 jour = 20 pts, 1 min = 0.5 pt
+    if (vue === 'mensuel') {
+      const monthData = userMonthMap.get(p.id);
+      joursConnexion = monthData ? monthData.jours.size : 0;
+      minutesEtudiees = monthData ? Math.round(monthData.minutes) : 0;
+      // Formule officielle : 1 jour dans le mois = 20 pts, 1 min = 0.5 pt
       score = Math.round(joursConnexion * 20 + minutesEtudiees * 0.5);
     } else {
       joursConnexion = Number(p.total_login_days) || (p.streak_days ? 1 : 0);
@@ -143,15 +141,17 @@ export async function GET(requete: Request) {
   const maPosition = allScoredUsers.find((u) => u.estMoi) || null;
 
   // Filtrer les participants actifs pour le classement public
-  // En hebdo : utilisateurs ayant au moins un score > 0 ou au moins 1 jour d'activité
+  // En mensuel : utilisateurs ayant au moins un score > 0 ou au moins 1 jour d'activité dans le mois
   // En tout temps : tous ceux qui ont un score > 0
   const activeLeaderboard = allScoredUsers.filter((u) => u.score > 0 || u.estMoi);
 
   return NextResponse.json({
     vue,
-    plageSemaine: {
-      debut: weekRange.lundiStr,
-      fin: weekRange.dimancheStr,
+    plageMois: {
+      debut: monthRange.premierJourStr,
+      fin: monthRange.dernierJourStr,
+      nomMois: monthRange.nomMois,
+      nomMoisCourt: monthRange.nomMoisCourt,
     },
     participants: allScoredUsers.length,
     participantsActifs: activeLeaderboard.length,
@@ -159,3 +159,4 @@ export async function GET(requete: Request) {
     classement: activeLeaderboard.slice(0, limite),
   });
 }
+
