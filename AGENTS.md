@@ -18,7 +18,7 @@
 - **Règle du Bouton « Se déconnecter » sur la Page Mon Compte (`/mon-compte`)** : En pied de page de la page *Mon Compte* (accessible depuis tous les onglets), afficher le bouton rouge/rose **`Se déconnecter`** (avec icône `LogOut`) à côté du lien `Retour au Tableau de bord`, permettant à l'apprenant de se déconnecter proprement tout en préservant la carte de profil en haut épurée avec `Modifier le profil` seul.
 - **Règle d'Harmonisation Stricte de l'Icône « Aléatoire » (`Shuffle`)** : Sur **TOUTE l'application et dans tous les réglages/préférences** (sens d'apprentissage, ordre des cartes, etc.), le choix aléatoire utilise **exclusivement l'icône de croisement de flèches (`Shuffle`)**. Bannissement absolu de l'émoji ou du symbole du dé (`🎲`).
 - **Règle Globale de Chargement par Squelette Animé (`Skeleton Loader`)** : Lors du chargement initial ou de la reconnexion d'un utilisateur, afficher systématiquement un **Skeleton Loader fluide et animé** (`animate-pulse`) le temps de récupérer les données réelles depuis la base de données (profil, série de jours, mots appris, leçons complétées, activités récentes), garantissant une transition sans clignotement ni affichage temporaire de données fictives.
-- **Règle d'Animation Garantie du Graphique de Performance** : Le graphique de performance anime systématiquement ses barres verticales de 0 à leur hauteur réelle dès l'arrivée des données (`requestAnimationFrame` + `transition` fluide sur 950ms) sans dépendre d'un rafraîchissement manuel de la page. Les données sont transmises directement depuis l'état racine du Tableau de Bord avec calcul adaptatif de l'échelle (`MAX_WORDS` / `MAX_STUDY_HOURS`) pour une visibilité majestueuse et immédiate à chaque connexion.
+- **Règle Permanente du Classement Mensuel Communautaire** : Le classement communautaire de la plateforme s’effectue **exclusivement de façon mensuelle** (du 1er du mois à 00:00 au dernier jour du mois à 23:59 en heure UTC+1 Afrique de l’Ouest). Le score et le top sont calculés sur l’engagement réel du mois en cours (1 jour de connexion dans le mois = 20 pts, 1 min passée = 0,5 pt) avec remise à zéro automatique le 1er de chaque mois et affichage du badge du mois en cours (*« Top du mois · Octobre 2026 »*).
 - **Règle Permanente du Mot du Jour & Nature Grammaticale** : Pour chaque mot du jour affiché sur la plateforme (Tableau de bord, cartes, notifications), indiquer **systématiquement et explicitement sa nature grammaticale sous forme abrégée normalisée** (`v.`, `n.`, `adj.`, `v. / n.`, `adj. / n.`, `adv.`) avec une traduction française précise et contextuelle (ex: `合作` = *Collaborer / Coopérer (v.) • Coopération / Partenariat (n.)*).
 - **Règle Permanente de Nommage des Personnages Récurrents & Mascotte** :
   - **Mascotte Officielle ChinoisLingo** : **`小李`** (Pinyin : **`Xiǎo Lǐ`** / Français : **`Xiao Li`** ou **`Xiao Li (小李)`**) — Bannissement strict et absolu de toute variante comme *小狸*.
@@ -90,7 +90,47 @@
 12. **Règle Permanente de Non-Collision et Différenciation des Voix dans les Dialogues** :
     - **Interdiction absolue d'associer la voix de Mr Chen (`cwzmKSYMCC9Aym1ymCnt`) et la voix de Jin (`vZZLclMx4wouUtKBRfZn`) dans un même dialogue** (à 2 ou 3 personnages), en raison de leur trop grande ressemblance de timbre et de tessiture.
     - Dans tout dialogue impliquant le professeur Li (`Mr Chen`), utiliser obligatoirement pour l'étudiant une voix jeune et nettement contrastée (ex. **Adrian** `agczkAUlHLowaNnL72Cc` pour les voix masculines ou voix féminines). Même règle stricte pour tout dialogue à 3 personnages.
+13. **Règle Permanente d'Attribution & Alternance des Voix pour les Exercices HSK (Question vs Contenu)** :
+    - **Exercice sous forme de Dialogue (2 interlocuteurs)** :
+      - Utiliser obligatoirement 2 voix distinctes et contrastées pour les répliques du dialogue (ex. Homme / Femme ou deux timbres nettement différenciés).
+      - La voix qui énonce la question (`问：...`) DOIT être **strictement différente** des voix des interlocuteurs du dialogue.
+    - **Exercice sous forme de Monologue / Court paragraphe (1 locuteur)** :
+      - Si le monologue/texte est lu par une voix **masculine**, la voix qui pose la question (`问：...`) DOIT obligatoirement être une voix **féminine**.
+      - Si le monologue/texte est lu par une voix **féminine**, la voix qui pose la question (`问：...`) DOIT obligatoirement être une voix **masculine**.
+    - **Checking & Génération Audio Systématique** :
+      - Toujours générer l'audio intégral pour chaque question d'exercice, et effectuer le checking audio systématique avant toute validation.
+14. **Règle Permanente de Double Écoute pour les Exercices HSK 1 à HSK 3 vs Écoute Unique HSK 4 à HSK 6** :
+    - **Niveaux HSK 1, HSK 2 et HSK 3** : Conformément aux épreuves officielles de compréhension orale HSK, le cycle complet **[Contenu (dialogue ou monologue) + Question]** est **répété obligatoirement 2 fois** :
+      1. *Première écoute* du dialogue / monologue.
+      2. *Pause de transition* de **1,3s (1300ms)**.
+      3. *Première énonciation* de la question.
+      4. *Pause de respiration* de **1,8s (1800ms)** entre les deux cycles.
+      5. *Seconde écoute* (répétition intégrale du dialogue / monologue).
+      6. *Pause de transition* de **1,3s (1300ms)**.
+      7. *Seconde énonciation* de la question.
+    - **Niveaux HSK 4, HSK 5 et HSK 6** : Le cycle est joué **une seule fois** (*Dialogue/Monologue ➔ Pause de 1,3s ➔ Question*).
+15. **Règle Permanente de Double Écoute pour les Mots et Phrases Isolés (Alternance Homme ↔ Femme Obligatoire)** :
+    - Pour tout mot, expression ou phrase isolé(e) répété(e) 2 fois (ex: Rubrique *Vrai ou Faux ?* / *听力判断*) :
+      - La **1ère écoute** et la **2nde écoute (répétition)** DOIVENT obligatoirement **alterner les genres (Homme ➔ Femme ou Femme ➔ Homme)** avec une pause de respiration de **1,8s (1800ms)**.
+      - Si la 1ère écoute est énoncée par une voix **masculine**, la 2nde écoute est obligatoirement énoncée par une voix **féminine**.
+      - Si la 1ère écoute est énoncée par une voix **féminine**, la 2nde écoute est obligatoirement énoncée par une voix **masculine**.
+16. **Règle Permanente de Clarté, Cadrage Zoomé & Zéro Ambiguïté des Images d’Exercices (Sujet Unique & Isolé)** :
+    - **Sujet unique et focalisé** : L’illustration d’un exercice ou d’une question doit isoler strictement le sujet ou le rôle évalué sans aucun élément distrayant ou contradictoire dans le champ.
+    - **Interdiction formelle de mélange de rôles ou de concepts dans le même plan** :
+      - Si la question évalue un professeur (`老师`), l’image montre un professeur seul ou clairement au centre (jamais une classe mixte où figurent à la fois professeur et élèves si cela prête à confusion).
+      - Si la question évalue un élève (`学生`), l’image montre un élève seul avec ses attributs d’étude (cahier, bureau, sac à dos).
+      - Si la question évalue une nationalité (ex: `中国人` ou `美国人`), l’image montre exclusivement la nationalité ciblée avec des attributs évidents (drapeau, repères nets), sans jamais mélanger plusieurs nationalités différentes dans le même plan.
+    - **Cadrage zoomé et haute définition** : L’élément clé doit être visible au premier plan, net, lumineux et immédiatement identifiable sans ambiguïté.
 
+17. **Protocole Obligatoire de Checking Exhaustif & Génération Audio ElevenLabs Systématique Avant Tout Walkthrough** :
+    - **Génération ElevenLabs v3 dès la création** : Pour TOUT contenu ou exercice ajouté ou modifié sur la plateforme, générer obligatoirement les pistes audio réelles ElevenLabs v3 (modèle `eleven_v3`, double écoute, alternance Homme ↔ Femme, micro-fades 30/40ms et padding 80ms). Interdiction de livrer du contenu non finalisé ou en attente.
+    - **Checking exhaustif avant restitution à Espoir Chinois** : Exécuter systématiquement une vérification méthodique avant tout compte-rendu :
+      1. *Exactitude pédagogique & correction* : Cohérence des réponses serveur, transcriptions et explications détaillées.
+      2. *Checking visuel* : Conformité des images, cadrage zoomé sans ambiguïté et prévisualisation navigateur (`open public/apercu-...`).
+      3. *Checking audio* : Vérification de la présence, de la durée, de la pureté sonore et de la synchronisation de chaque fichier audio.
+
+18. **Règle Permanente de Couverture des Séries d’Exercices HSK (Image de la Première Question)** :
+    - L’image de couverture d’une série d’exercices (`imageUrl` de la série affichée sur la carte du catalogue et du hub) utilise **systématiquement et obligatoirement l’illustration de sa première question (Question 1)**, garantissant une cohérence visuelle parfaite entre le catalogue et le déroulement de la leçon.
 
 ## Design System & Normes UI
 Toute page ou composant créé dans ce projet DOIT respecter le **Design System ChinoisLingo** documenté dans [.agents/rules/chinoislingo-design-system.md](file:///.agents/rules/chinoislingo-design-system.md) :

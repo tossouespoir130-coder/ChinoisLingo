@@ -8,6 +8,7 @@ import { evaluateUserBadges } from '@/lib/gamification/badgesEngine';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { Portal } from '@/components/ui/Portal';
 import { createBadgeUnlockedNotification } from '@/lib/services/notificationService';
+import { fetchUserExerciseResultsApi } from '@/lib/services/exerciseClientService';
 
 const ACKNOWLEDGED_STORAGE_KEY = 'chinoislingo_acknowledged_badges';
 
@@ -17,76 +18,85 @@ export function BadgeCelebrationModal() {
 
   useEffect(() => {
     if (!profile?.id) return;
+    let annule = false;
 
-    try {
-      const allEvaluated = evaluateUserBadges({ profile });
-      const raw = localStorage.getItem(ACKNOWLEDGED_STORAGE_KEY);
-      const acknowledged: string[] = raw ? JSON.parse(raw) : [];
+    // Les résultats des exercices HSK alimentent la filière de badges « Exercices ».
+    fetchUserExerciseResultsApi().then((exerciseResultsMap) => {
+      if (annule) return;
+      try {
+        const allEvaluated = evaluateUserBadges({ profile, exerciseResultsMap });
+        const raw = localStorage.getItem(ACKNOWLEDGED_STORAGE_KEY);
+        const acknowledged: string[] = raw ? JSON.parse(raw) : [];
 
-      // Tous les badges actuellement débloqués non encore acquittés
-      const uncelebrated = allEvaluated.filter((b) => b.isUnlocked && !acknowledged.includes(b.id));
-      if (uncelebrated.length === 0) return;
+        // Tous les badges actuellement débloqués non encore acquittés
+        const uncelebrated = allEvaluated.filter((b) => b.isUnlocked && !acknowledged.includes(b.id));
+        if (uncelebrated.length === 0) return;
 
-      // S'il y a plusieurs badges non acquittés d'un coup (ex: ancien utilisateur avec plusieurs paliers déjà franchis) :
-      // On regroupe par filière (trackId) et on n'isole que le palier le plus haut atteint
-      const trackMap = new Map<string, UserBadgeProgress[]>();
-      for (const b of uncelebrated) {
-        if (!trackMap.has(b.trackId)) trackMap.set(b.trackId, []);
-        trackMap.get(b.trackId)!.push(b);
-      }
-
-      const updatedAcknowledged = new Set(acknowledged);
-      const highestPerTrack: UserBadgeProgress[] = [];
-
-      trackMap.forEach((badges) => {
-        // Trier par étape croissante dans la filière
-        badges.sort((a, b) => a.stepInTrack - b.stepInTrack);
-        const highest = badges[badges.length - 1];
-        highestPerTrack.push(highest);
-
-        // Acquitter immédiatement tous les paliers intermédiaires inférieurs sans jamais ouvrir de pop-up
-        for (let i = 0; i < badges.length - 1; i++) {
-          updatedAcknowledged.add(badges[i].id);
+        // S'il y a plusieurs badges non acquittés d'un coup (ex: ancien utilisateur avec plusieurs paliers déjà franchis) :
+        // On regroupe par filière (trackId) et on n'isole que le palier le plus haut atteint
+        const trackMap = new Map<string, UserBadgeProgress[]>();
+        for (const b of uncelebrated) {
+          if (!trackMap.has(b.trackId)) trackMap.set(b.trackId, []);
+          trackMap.get(b.trackId)!.push(b);
         }
-      });
 
-      // Si plusieurs filières sont débloquées d'un coup, on célèbre le trophée le plus remarquable / prestigieux
-      highestPerTrack.sort((a, b) => b.xpReward - a.xpReward || b.stepInTrack - a.stepInTrack);
-      const badgeToCelebrate = highestPerTrack[0];
+        const updatedAcknowledged = new Set(acknowledged);
+        const highestPerTrack: UserBadgeProgress[] = [];
 
-      // Acquitter automatiquement tous les autres badges débloqués pour ne présenter qu'UNE SEULE célébration marquante
-      for (const b of uncelebrated) {
-        if (b.id !== badgeToCelebrate.id) {
-          updatedAcknowledged.add(b.id);
+        trackMap.forEach((badges) => {
+          // Trier par étape croissante dans la filière
+          badges.sort((a, b) => a.stepInTrack - b.stepInTrack);
+          const highest = badges[badges.length - 1];
+          highestPerTrack.push(highest);
+
+          // Acquitter immédiatement tous les paliers intermédiaires inférieurs sans jamais ouvrir de pop-up
+          for (let i = 0; i < badges.length - 1; i++) {
+            updatedAcknowledged.add(badges[i].id);
+          }
+        });
+
+        // Si plusieurs filières sont débloquées d'un coup, on célèbre le trophée le plus remarquable / prestigieux
+        highestPerTrack.sort((a, b) => b.xpReward - a.xpReward || b.stepInTrack - a.stepInTrack);
+        const badgeToCelebrate = highestPerTrack[0];
+
+        // Acquitter automatiquement tous les autres badges débloqués pour ne présenter qu'UNE SEULE célébration marquante
+        for (const b of uncelebrated) {
+          if (b.id !== badgeToCelebrate.id) {
+            updatedAcknowledged.add(b.id);
+          }
         }
+
+        localStorage.setItem(ACKNOWLEDGED_STORAGE_KEY, JSON.stringify(Array.from(updatedAcknowledged)));
+        setNewlyUnlockedBadge(badgeToCelebrate);
+
+        // Envoyer une notification in-app signée par la mascotte Xiao Li (小李)
+        if (profile.id) {
+          createBadgeUnlockedNotification(profile.id, {
+            id: badgeToCelebrate.id,
+            title: badgeToCelebrate.title,
+            trackName: badgeToCelebrate.trackName,
+            xpReward: badgeToCelebrate.xpReward,
+            icon: badgeToCelebrate.icon,
+          });
+        }
+
+        // Déclencher les confettis
+        setTimeout(() => {
+          confetti({
+            particleCount: 75,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#6200EE', '#03DAC5', '#FFD700', '#E91E63', '#9C27B0'],
+          });
+        }, 300);
+      } catch {
+        // ignore
       }
-
-      localStorage.setItem(ACKNOWLEDGED_STORAGE_KEY, JSON.stringify(Array.from(updatedAcknowledged)));
-      setNewlyUnlockedBadge(badgeToCelebrate);
-
-      // Envoyer une notification in-app signée par la mascotte Xiao Li (小李)
-      if (profile.id) {
-        createBadgeUnlockedNotification(profile.id, {
-          id: badgeToCelebrate.id,
-          title: badgeToCelebrate.title,
-          trackName: badgeToCelebrate.trackName,
-          xpReward: badgeToCelebrate.xpReward,
-          icon: badgeToCelebrate.icon,
-        });
-      }
-
-      // Déclencher les confettis
-      setTimeout(() => {
-        confetti({
-          particleCount: 75,
-          spread: 80,
-          origin: { y: 0.6 },
-          colors: ['#6200EE', '#03DAC5', '#FFD700', '#E91E63', '#9C27B0'],
-        });
-      }, 300);
-    } catch {
-      // ignore
-    }
+    });
+    return () => {
+      annule = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile?.streak_days, profile?.total_words_mastered, profile?.total_minutes_learned, profile?.id]);
 
   const handleClose = () => {

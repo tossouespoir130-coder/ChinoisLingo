@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prévisualisation Images Série 2 — Vrai ou Faux (HSK 1)</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #121212;
+      color: #fff;
+      padding: 30px;
+      margin: 0;
+    }
+    h1 {
+      color: #03DAC5;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: #A0A0A0;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #1E1E1E;
+      border: 1px solid #2D2D2D;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-content {
+      padding: 16px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .badge-false {
+      background: rgba(229, 57, 53, 0.2);
+      color: #FF5252;
+    }
+    .badge-true {
+      background: rgba(3, 218, 197, 0.2);
+      color: #03DAC5;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 0 6px 0;
+    }
+    .desc {
+      font-size: 13px;
+      color: #B0B0B0;
+      line-height: 1.4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>📸 Validation Visuelle Série 2 — Vrai ou Faux ? (HSK 1)</h1>
+  <p class="subtitle">Vérification de la clarté, du cadrage zoomé et de la netteté sans ambiguïté.</p>
+
+  <div class="grid">
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_serie2_cover.jpg" alt="Couverture Série 2">
+      <div class="card-content">
+        <span class="badge" style="background: rgba(98, 0, 238, 0.3); color: #BB86FC;">Couverture Série 2</span>
+        <div class="title">Vrai ou Faux ? — Série 2</div>
+        <p class="desc">Illustration générale d'étude pour la bannière et la carte du catalogue.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_s02_q01_eleve.jpg" alt="Q1: Élève seul au bureau">
+      <div class="card-content">
+        <span class="badge badge-false">Q1 · Réponse : FAUX</span>
+        <div class="title">Audio : 老师 (lǎoshī, professeur)</div>
+        <p class="desc">L'image montre un <strong>élève seul (学生)</strong> assis à son bureau avec son cahier, sans professeur. Zéro ambiguïté.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_s02_q02_americain.jpg" alt="Q2: Américain">
+      <div class="card-content">
+        <span class="badge badge-false">Q2 · Réponse : FAUX</span>
+        <div class="title">Audio : 中国人 (Zhōngguórén, Chinois)</div>
+        <p class="desc">L'image montre un <strong>Américain (美国人)</strong> avec le drapeau américain bien visible.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_s02_q03_tarte.jpg" alt="Q3: Tarte">
+      <div class="card-content">
+        <span class="badge badge-true">Q3 · Réponse : VRAI</span>
+        <div class="title">Audio : 派 (pài, tarte / tourte)</div>
+        <p class="desc">L'image montre une <strong>tarte dorée (派)</strong> en gros plan.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_s02_q04_chinois.jpg" alt="Q4: Chinois">
+      <div class="card-content">
+        <span class="badge badge-false">Q4 · Réponse : FAUX</span>
+        <div class="title">Audio : 美国人 (Měiguórén, Américain)</div>
+        <p class="desc">L'image montre une <strong>personne chinoise (中国人)</strong> avec éléments culturels/drapeau bien nets.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/exercices/hsk1_tf_s02_q05_etudiant.jpg" alt="Q5: Étudiant avec sac à dos">
+      <div class="card-content">
+        <span class="badge badge-true">Q5 · Réponse : VRAI</span>
+        <div class="title">Audio : 学生 (xuésheng, élève)</div>
+        <p class="desc">L'image montre un <strong>élève / étudiant (学生)</strong> zoomé avec son sac à dos devant son école.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

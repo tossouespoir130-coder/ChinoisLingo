@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Trophy, 
   Award, 
@@ -24,6 +24,7 @@ import confetti from 'canvas-confetti';
 import { BadgeCategory, BadgeTier, UserBadgeProgress } from '@/lib/gamification/badgesData';
 import { evaluateUserBadges, findNextChallengeBadge, getNextChallengeRemainingText } from '@/lib/gamification/badgesEngine';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { fetchUserExerciseResultsApi, type UserExerciseResultItem } from '@/lib/services/exerciseClientService';
 import { Portal } from '@/components/ui/Portal';
 
 interface BadgesSectionProps {
@@ -79,13 +80,27 @@ export function BadgesSection({ savedWordsCount, completedContentsMap, compact =
   const [selectedCategory, setSelectedCategory] = useState<BadgeCategory | 'unlocked' | 'locked'>('tous');
   const [selectedBadge, setSelectedBadge] = useState<UserBadgeProgress | null>(null);
 
+  // Résultats des exercices HSK (filière de badges « Exercices »).
+  const [exerciseResultsMap, setExerciseResultsMap] = useState<Record<string, UserExerciseResultItem> | undefined>();
+  useEffect(() => {
+    if (!profile?.id) return;
+    let annule = false;
+    fetchUserExerciseResultsApi().then((resultats) => {
+      if (!annule) setExerciseResultsMap(resultats);
+    });
+    return () => {
+      annule = true;
+    };
+  }, [profile?.id]);
+
   const badges = useMemo(() => {
     return evaluateUserBadges({
       profile,
       savedWordsCount,
       completedContentsMap,
+      exerciseResultsMap,
     });
-  }, [profile, savedWordsCount, completedContentsMap]);
+  }, [profile, savedWordsCount, completedContentsMap, exerciseResultsMap]);
 
   const stats = useMemo(() => {
     const unlockedCount = badges.filter((b) => b.isUnlocked).length;

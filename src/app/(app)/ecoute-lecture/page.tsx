@@ -20,6 +20,7 @@ import {
   MessagesSquare,
   Music,
   Video,
+  ListChecks,
   CheckCircle2,
   Sparkles,
   Users,
@@ -38,8 +39,10 @@ import { contenuAccessible, episodeAccessible } from '@/lib/payments/acces';
 import { EcranPremium, BadgeVerrou } from '@/components/subscription/EcranPremium';
 import { Portal } from '@/components/ui/Portal';
 import { recordOpenedActivity } from '@/lib/services/activityTrackingService';
+import { HskExercisesHub } from '@/components/exercises/HskExercisesHub';
+import { fetchExercisesCatalogApi } from '@/lib/services/exerciseClientService';
 
-export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts';
+export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts' | 'exercices';
 
 export interface DialogueCharacter {
   name: string;
@@ -6268,6 +6271,18 @@ function EcouteLectureContent() {
 
   // Active Sub-Menu Filter: Strictly separated by type (Chansons, Articles, Histoires, Dialogues, Podcasts)
   const [activeCategory, setActiveCategory] = useState<ContentType>('chansons');
+
+  // Nombre de séries d'exercices publiées (compteur de l'onglet « Exercices HSK »)
+  const [nbSeriesExercices, setNbSeriesExercices] = useState(0);
+  useEffect(() => {
+    let annule = false;
+    fetchExercisesCatalogApi().then((catalogue) => {
+      if (!annule) setNbSeriesExercices(catalogue.length);
+    });
+    return () => {
+      annule = true;
+    };
+  }, []);
   
   // Selected reading item for full-screen immersive focus
   const [activeReading, setActiveReading] = useState<ReadingItem | null>(null);
@@ -6537,7 +6552,7 @@ function EcouteLectureContent() {
     const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
     const directEpParam = urlParams.get('ep') || searchParams.get('ep') || urlParams.get('episode') || searchParams.get('episode');
 
-    if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos'].includes(directType)) {
+    if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos', 'exercices'].includes(directType)) {
       setActiveCategory(directType);
     } else if (!directId) {
       setActiveCategory('chansons');
@@ -6593,7 +6608,7 @@ function EcouteLectureContent() {
       const type = params.get('type') as ContentType | null;
       const epParam = params.get('ep') || params.get('episode');
 
-      if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts'].includes(type)) {
+      if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts', 'exercices'].includes(type)) {
         setActiveCategory(type);
       }
 
@@ -7920,7 +7935,7 @@ function EcouteLectureContent() {
             </div>
           </div>
 
-          {/* 6 SUB-MENUS (Chansons, Articles, Histoires, Dialogues, Podcasts, Vidéos) - FLUIDE & RESPONSIVE MOBILE */}
+          {/* 7 SUB-MENUS (Chansons, Articles, Histoires, Dialogues, Podcasts, Vidéos, Exercices HSK) - FLUIDE & RESPONSIVE MOBILE */}
           <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-[#FAFAFA] dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] overflow-x-auto no-scrollbar scroll-smooth w-full">
             {[
               { id: 'chansons', label: 'Chansons', icon: Music, count: readingCatalog.filter(r => r.type === 'chansons' && estContenuPublie(r)).length },
@@ -7929,6 +7944,7 @@ function EcouteLectureContent() {
               { id: 'dialogues', label: 'Dialogues', icon: MessagesSquare, count: readingCatalog.filter(r => r.type === 'dialogues' && estContenuPublie(r)).length },
               { id: 'podcasts', label: 'Podcasts', icon: Radio, count: readingCatalog.filter(r => r.type === 'podcasts' && estContenuPublie(r)).length },
               { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos' && estContenuPublie(r)).length },
+              { id: 'exercices', label: 'Exercices HSK', icon: ListChecks, count: nbSeriesExercices },
             ].map((sub) => {
               const Icon = sub.icon;
               const isActive = activeCategory === sub.id;
@@ -7960,8 +7976,10 @@ function EcouteLectureContent() {
             })}
           </div>
 
-          {/* If Podcasts tab is active and waiting for new studio audio */}
-          {activeCategory === 'podcasts' && filteredCatalog.length === 0 ? (
+          {/* If Exercices tab is active */}
+          {activeCategory === 'exercices' ? (
+            <HskExercisesHub />
+          ) : activeCategory === 'podcasts' && filteredCatalog.length === 0 ? (
             <div className="nixtio-card p-12 text-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-4">
               <div className="w-16 h-16 rounded-3xl bg-[#00897B]/10 text-[#00796B] dark:text-[#03DAC5] flex items-center justify-center mx-auto shadow-inner">
                 <Radio className="w-8 h-8 animate-pulse" />

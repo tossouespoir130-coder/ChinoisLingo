@@ -3,299 +3,574 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nouvelles Propositions d'Images — ChinoisLingo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Aperçu — Photos & Couvertures Exercices HSK</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #6200EE;
+      --accent: #03DAC5;
+      --bg: #121212;
+      --card-bg: #1E1E1E;
+      --border: #2D2D2D;
+      --text: #FAFAFA;
+      --muted: #A0A0A0;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0B0B0E;
-      color: #F5F5F5;
-      padding: 40px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 36px 20px;
+      margin: 0;
       line-height: 1.5;
     }
     .container {
-      max-width: 1180px;
+      max-width: 1040px;
       margin: 0 auto;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .badge {
-      display: inline-block;
-      padding: 6px 18px;
-      border-radius: 9999px;
-      background: rgba(3, 218, 197, 0.12);
-      border: 1px solid rgba(3, 218, 197, 0.35);
-      color: #03DAC5;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
     }
     h1 {
-      font-size: 32px;
-      font-weight: 800;
-      color: #FFFFFF;
+      font-size: 26px;
+      color: var(--accent);
       margin-bottom: 8px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
-    p.subtitle {
+    .subtitle {
+      color: var(--muted);
       font-size: 15px;
-      color: #A0A0A0;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .summary-card {
-      background: rgba(98, 0, 238, 0.08);
-      border: 1px solid rgba(98, 0, 238, 0.25);
-      border-radius: 16px;
-      padding: 16px 24px;
-      margin-bottom: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .summary-text {
-      font-size: 14px;
-      color: #E0E0E0;
-    }
-    .summary-text strong {
-      color: #BB86FC;
+      margin-bottom: 28px;
+      max-width: 780px;
     }
     .section-title {
       font-size: 20px;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin: 40px 0 20px 0;
+      font-weight: 800;
+      color: #FFF;
+      margin: 40px 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid #22222A;
-      padding-bottom: 12px;
+      gap: 10px;
     }
-    .section-title span.icon {
-      font-size: 24px;
-    }
-    .grid-3 {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
       margin-bottom: 30px;
     }
-    .card {
-      background: #14141A;
-      border: 1px solid #252530;
+    
+    /* Mockup de la carte réelle ChinoisLingo */
+    .mockup-card {
+      background: #FFFFFF;
+      color: #1F2937;
       border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #03DAC5;
-      box-shadow: 0 14px 35px rgba(3, 218, 197, 0.15);
+    .mockup-card.selected {
+      border: 3px solid #00BFA5;
+      box-shadow: 0 16px 36px rgba(0, 191, 165, 0.4);
     }
     .img-wrapper {
-      width: 100%;
-      height: 250px;
-      background: #1E1E26;
       position: relative;
+      width: 100%;
+      height: 150px;
       overflow: hidden;
+      background: #000;
     }
     .img-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.3s ease;
     }
-    .card:hover .img-wrapper img {
-      transform: scale(1.03);
-    }
-    .card-tag {
+    .badge-hsk {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 5px 14px;
-      border-radius: 9999px;
+      top: 10px;
+      right: 10px;
+      background: #00897B;
+      color: #FFF;
+      padding: 3px 9px;
+      border-radius: 20px;
       font-size: 11px;
       font-weight: 800;
-      color: #03DAC5;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    .badge-meta {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      color: #FFF;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .card-body {
-      padding: 22px;
-      flex: 1;
+      padding: 14px 16px 16px 16px;
       display: flex;
       flex-direction: column;
+      flex-grow: 1;
+    }
+    .serie-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .serie-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .serie-desc {
+      font-size: 12px;
+      color: #4B5563;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid #F3F4F6;
     }
-    .card-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 8px;
-    }
-    .card-desc {
+    .card-action {
       font-size: 13px;
-      color: #9E9E9E;
-      line-height: 1.45;
-      margin-bottom: 16px;
+      font-weight: 700;
+      color: #374151;
     }
-    .action-btn {
-      display: inline-flex;
+    .btn-done {
+      background: #E53935;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .choice-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #6200EE;
+      color: #FFF;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .choice-tag.selected-tag {
+      background: #00BFA5;
+      color: #000;
+      font-weight: 900;
+    }
+    
+    /* Grille d'examen Format B */
+    .exam-card {
+      background: #1E1E1E;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .exam-img-container {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #2A2A2A;
+      margin-bottom: 12px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 16px;
-      border-radius: 12px;
-      background: #1E1E28;
-      border: 1px solid #333342;
-      color: #F5F5F5;
-      cursor: pointer;
-      transition: all 0.2s;
     }
-    .card:hover .action-btn {
-      background: #03DAC5;
-      color: #000000;
-      border-color: #03DAC5;
+    .exam-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .exam-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(0, 191, 165, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(0, 191, 165, 0.3);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+    .exam-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 4px;
+    }
+    .exam-desc {
+      font-size: 13px;
+      color: #A0A0A0;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="header">
-      <div class="badge">Nouvelles Propositions Visuelles</div>
-      <h1>Sélection des Images pour les Parties 2 & 3</h1>
-      <p class="subtitle">Pour la <strong>Partie 1</strong>, l'Option 3 (Bébé chaton expressif) est validée et appliquée ! Choisissez ci-dessous votre visuel préféré pour la <strong>Partie 2</strong> et la <strong>Partie 3</strong>.</p>
-    </div>
+    <h1>✨ Galerie Visuelle & Photos Officielles — ChinoisLingo</h1>
+    <p class="subtitle">Aperçu en temps réel des photos d'épreuve du Format B et de la couverture sélectionnée pour la Série 1.</p>
 
-    <!-- RECAPITULATIF PARTIE 1 VALIDE -->
-    <div class="summary-card">
-      <div class="summary-text">
-        ✓ <strong>Partie 1 & Couverture</strong> : Bébé chaton expressif aux grands yeux validé avec succès.
-      </div>
-      <div style="font-size: 12px; color: #03DAC5; font-weight: 700;">Validé par Espoir Chinois</div>
-    </div>
-
-    <!-- SECTION : PARTIE 2 (XIAOHUA LE CHAT AMI) -->
+    <!-- SECTION 0 : CARTES OFFICIELLES NIVEAUX HSK 1 & HSK 2 -->
     <div class="section-title">
-      <span class="icon">🐱</span>
-      <span>Partie 2 : « Mon ami » (Portrait de Xiaohua, le chat ami)</span>
+      🏔️ Illustrations Officielles — Blocs Niveaux HSK (Hub Écran 1)
+    </div>
+    <div class="grid" style="margin-bottom: 36px;">
+      
+      <!-- HSK 1 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk1_level.jpg" alt="HSK 1 - Le voyage commence" />
+          <span class="badge-hsk" style="background: #00897B;">HSK 1</span>
+          <span class="badge-meta">🎧 3 séries d’entraînement</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 1</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">1/3 terminée</span>
+          </div>
+          <div class="serie-desc">150 mots fondamentaux · Dialogues courts de la vie quotidienne et questions ciblées.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>33%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #F3F4F6; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 33%; background: #00BFA5; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Commencer</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSK 2 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk2_level.jpg" alt="HSK 2 - La traversée du pont" />
+          <span class="badge-hsk" style="background: #0288D1;">HSK 2</span>
+          <span class="badge-meta">🎧 1 série d’entraînement</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 2</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">0/1 terminée</span>
+          </div>
+          <div class="serie-desc">300 mots usuels · Situations courantes, achats, transports et repérage contextuel.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>0%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #F3F4F6; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 0%; background: #0288D1; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Commencer</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSK 3 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk3_level.jpg" alt="HSK 3 - L'ascension parmi les fleurs de cerisier" />
+          <span class="badge-hsk" style="background: #6200EE;">HSK 3</span>
+          <span class="badge-meta">🎧 Bientôt disponible</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 3</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">En préparation</span>
+          </div>
+          <div class="serie-desc">600 mots · Échanges complets, expressions d’opinion et détails narratifs.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>0%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #F3F4F6; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 0%; background: #6200EE; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Bientôt</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSK 4 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk4_level.jpg" alt="HSK 4 - La crête des pins et cascades" />
+          <span class="badge-hsk" style="background: #3F51B5;">HSK 4</span>
+          <span class="badge-meta">🎧 Bientôt disponible</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 4</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">En préparation</span>
+          </div>
+          <div class="serie-desc">1200 mots · Sujets thématiques, nuances de discours et fluidité d’écoute.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>0%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #3F51B5; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 0%; background: #3F51B5; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Bientôt</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSK 5 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk5_level.jpg" alt="HSK 5 - Les lanternes célestes au coucher du soleil" />
+          <span class="badge-hsk" style="background: #8E24AA;">HSK 5</span>
+          <span class="badge-meta">🎧 Bientôt disponible</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 5</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">En préparation</span>
+          </div>
+          <div class="serie-desc">2500 mots · Discours complexes, interviews et tournures idiomatiques.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>0%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #F3F4F6; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 0%; background: #8E24AA; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Bientôt</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HSK 6 -->
+      <div class="mockup-card selected">
+        <div class="img-wrapper" style="height: 180px;">
+          <img src="/images/exercices/levels/hsk6_level.jpg" alt="HSK 6 - L'arrivée triomphale au sommet du temple" />
+          <span class="badge-hsk" style="background: #D81B60;">HSK 6</span>
+          <span class="badge-meta">🎧 Bientôt disponible</span>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+            <div style="font-size: 18px; font-weight: 900; color: #111;">Niveau HSK 6</div>
+            <span style="font-size: 12px; font-weight: 700; color: #6B7280;">En préparation</span>
+          </div>
+          <div class="serie-desc">5000+ mots · Maîtrise avancée, registres soutenus et vitesse naturelle native.</div>
+          
+          <div style="margin: 12px 0 16px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #6B7280; margin-bottom: 4px;">
+              <span>Progression</span>
+              <span>0%</span>
+            </div>
+            <div style="height: 8px; width: 100%; border-radius: 999px; background: #F3F4F6; overflow: hidden; border: 1px solid #E5E7EB;">
+              <div style="height: 100%; width: 0%; background: #D81B60; border-radius: 999px;"></div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-action" style="color: #6200EE; font-weight: 800;">Bientôt</span>
+            <span style="color: #6200EE; font-size: 14px;">→</span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="grid-3">
-      <!-- P2 Option A -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 2 • Option A</div>
-          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&auto=format&fit=crop&q=80" alt="P2 Option A">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Regard Félin & Yeux Émeraude</div>
-            <div class="card-desc">Portrait classique ultra-net et contrasté avec de superbes yeux verts. Très photogénique et expressif.</div>
-          </div>
-          <div class="action-btn">Option A pour Partie 2</div>
-        </div>
-      </div>
-
-      <!-- P2 Option B -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 2 • Option B</div>
-          <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=800&auto=format&fit=crop&q=80" alt="P2 Option B">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Chat Roux Tigré Joyeux & Joueur</div>
-            <div class="card-desc">Chaton roux au regard vif et curieux, très attachant et dynamique pour représenter un ami fidèle.</div>
-          </div>
-          <div class="action-btn">Option B pour Partie 2</div>
-        </div>
-      </div>
-
-      <!-- P2 Option C -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 2 • Option C</div>
-          <img src="https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=800&auto=format&fit=crop&q=80" alt="P2 Option C">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Chat Paisible & Douceur Fleurie</div>
-            <div class="card-desc">Atmosphère lumineuse et soignée avec un chat curieux et bienveillant dans un cadre naturel.</div>
-          </div>
-          <div class="action-btn">Option C pour Partie 2</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION : PARTIE 3 (LES DEUX CHATS AMIS ENSEMBLE) -->
+    <!-- SECTION 1 : PHOTOS OFFICIELLES EXAMEN FORMAT B -->
     <div class="section-title">
-      <span class="icon">🐾</span>
-      <span>Partie 3 : « Moi et mon ami » (Xiaobai et Xiaohua ensemble)</span>
+      📸 Photos Réelles d'Épreuve — Format B (HSK 1 Série 2)
+    </div>
+    <div class="grid">
+      
+      <!-- P1 -->
+      <div class="exam-card">
+        <div class="exam-img-container">
+          <img src="/images/exercices/hsk1/hsk1_b_test_p1.jpg" alt="Chat sur une chaise" />
+        </div>
+        <span class="exam-badge">Partie 1 — Vrai / Faux</span>
+        <div class="exam-title">Photo 1 : Chat sur une chaise (猫)</div>
+        <div class="exam-desc">Photographie haute définition d'un chat assis sur une chaise en bois (« 那只小猫在椅子上面。 »).</div>
+      </div>
+
+      <!-- P2 A -->
+      <div class="exam-card">
+        <div class="exam-img-container">
+          <img src="/images/exercices/hsk1/hsk1_b_test_p2_1.jpg" alt="Boire du thé" />
+        </div>
+        <span class="exam-badge">Partie 2 — Photo A</span>
+        <div class="exam-title">Photo A : Boire du thé (喝茶)</div>
+        <div class="exam-desc">Photographie d'une tasse de thé chinois fumant (« 我在喝茶。 »).</div>
+      </div>
+
+      <!-- P2 B -->
+      <div class="exam-card">
+        <div class="exam-img-container">
+          <img src="/images/exercices/hsk1/hsk1_b_test_p2_2.jpg" alt="Lire un livre" />
+        </div>
+        <span class="exam-badge">Partie 2 — Photo B</span>
+        <div class="exam-title">Photo B : Lire un livre (看书)</div>
+        <div class="exam-desc">Photographie d'une personne lisant un livre avec des sinogrammes (« 我在看书。 »).</div>
+      </div>
+
+      <!-- P2 C -->
+      <div class="exam-card">
+        <div class="exam-img-container">
+          <img src="/images/exercices/hsk1/hsk1_b_test_p2_3.jpg" alt="Écrire des caractères" />
+        </div>
+        <span class="exam-badge">Partie 2 — Photo C</span>
+        <div class="exam-title">Photo C : Écrire des caractères (写汉字)</div>
+        <div class="exam-desc">Photographie d'une main traçant des caractères chinois au stylo sur un carnet (« 我在写字。 »).</div>
+      </div>
+
     </div>
 
-    <div class="grid-3">
-      <!-- P3 Option A -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 3 • Option A</div>
-          <img src="https://images.unsplash.com/photo-1517451330947-7809dead78d5?w=800&auto=format&fit=crop&q=80" alt="P3 Option A">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Deux Chatons Joueurs (Pattes complices)</div>
-            <div class="card-desc">Deux petits chatons complices qui jouent et s'amusent ensemble, collant parfaitement à la phrase <em>« Nous jouons ensemble »</em>.</div>
-          </div>
-          <div class="action-btn">Option A pour Partie 3</div>
-        </div>
-      </div>
-
-      <!-- P3 Option B -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 3 • Option B</div>
-          <img src="https://images.unsplash.com/photo-1568607689150-17e625c1586e?w=800&auto=format&fit=crop&q=80" alt="P3 Option B">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Deux Chats Complices à la Fenêtre</div>
-            <div class="card-desc">Deux chats assis côte à côte observant calmement l'extérieur, ambiance douce et harmonieuse.</div>
-          </div>
-          <div class="action-btn">Option B pour Partie 3</div>
-        </div>
-      </div>
-
-      <!-- P3 Option C -->
-      <div class="card">
-        <div class="img-wrapper">
-          <div class="card-tag">Partie 3 • Option C</div>
-          <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&auto=format&fit=crop&q=80" alt="P3 Option C">
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="card-title">Deux Chats Câlins & Intérieur Cosy</div>
-            <div class="card-desc">Deux compagnons félins confortablement installés ensemble, évoquant l'amitié et les siestes partagées.</div>
-          </div>
-          <div class="action-btn">Option C pour Partie 3</div>
-        </div>
-      </div>
+    <!-- SECTION 2 : COUVERTURE SÉLECTIONNÉE POUR LA SÉRIE 1 -->
+    <div class="section-title">
+      🎯 Couverture Série 1 (Option 2 Sélectionnée)
     </div>
+    <div class="grid">
+      
+      <!-- Option 2 Retenue -->
+      <div>
+        <span class="choice-tag selected-tag">✓ OPTION 2 APPLIQUÉE (Sélection d'Espoir Chinois)</span>
+        <div class="mockup-card selected">
+          <div class="img-wrapper">
+            <img src="/images/exercices/covers/hsk1_s1_opt2_etudiante.jpg" alt="Option 2 : Étudiante avec casque audio" />
+            <span class="badge-hsk">HSK 1</span>
+            <span class="badge-meta">⏱ ~3 min • 3 questions</span>
+          </div>
+          <div class="card-body">
+            <span class="serie-tag">SÉRIE 1</span>
+            <div class="serie-title">Compréhension Orale HSK 1 — Série 1</div>
+            <div class="serie-desc">Repérage d’éléments essentiels du quotidien : animaux sous les meubles, météo et repas.</div>
+            <div class="card-footer">
+              <span class="card-action">Réviser</span>
+              <span class="btn-done">✓ Terminé</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- Option 1 -->
+      <div>
+        <span class="choice-tag">Option 1 — Chat Élégant</span>
+        <div class="mockup-card">
+          <div class="img-wrapper">
+            <img src="/images/exercices/covers/hsk1_s1_opt1_chat.jpg" alt="Option 1 : Chat dans un salon" />
+            <span class="badge-hsk">HSK 1</span>
+            <span class="badge-meta">⏱ ~3 min • 3 questions</span>
+          </div>
+          <div class="card-body">
+            <span class="serie-tag">SÉRIE 1</span>
+            <div class="serie-title">Compréhension Orale HSK 1 — Série 1</div>
+            <div class="serie-desc">Repérage d’éléments essentiels du quotidien : animaux sous les meubles, météo et repas.</div>
+            <div class="card-footer">
+              <span class="card-action">Réviser</span>
+              <span class="btn-done">✓ Terminé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option 3 -->
+      <div>
+        <span class="choice-tag">Option 3 — Bureau Zen</span>
+        <div class="mockup-card">
+          <div class="img-wrapper">
+            <img src="/images/exercices/covers/hsk1_s1_opt3_bureau.jpg" alt="Option 3 : Bureau zen" />
+            <span class="badge-hsk">HSK 1</span>
+            <span class="badge-meta">⏱ ~3 min • 3 questions</span>
+          </div>
+          <div class="card-body">
+            <span class="serie-tag">SÉRIE 1</span>
+            <div class="serie-title">Compréhension Orale HSK 1 — Série 1</div>
+            <div class="serie-desc">Repérage d’éléments essentiels du quotidien : animaux sous les meubles, météo et repas.</div>
+            <div class="card-footer">
+              <span class="card-action">Réviser</span>
+              <span class="btn-done">✓ Terminé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Option 4 -->
+      <div>
+        <span class="choice-tag">Option 4 — Duo au Café</span>
+        <div class="mockup-card">
+          <div class="img-wrapper">
+            <img src="/images/exercices/covers/hsk1_s1_opt4_etudiants.jpg" alt="Option 4 : Deux étudiants" />
+            <span class="badge-hsk">HSK 1</span>
+            <span class="badge-meta">⏱ ~3 min • 3 questions</span>
+          </div>
+          <div class="card-body">
+            <span class="serie-tag">SÉRIE 1</span>
+            <div class="serie-title">Compréhension Orale HSK 1 — Série 1</div>
+            <div class="serie-desc">Repérage d’éléments essentiels du quotidien : animaux sous les meubles, météo et repas.</div>
+            <div class="card-footer">
+              <span class="card-action">Réviser</span>
+              <span class="btn-done">✓ Terminé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
 </body>
 </html>

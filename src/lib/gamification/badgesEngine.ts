@@ -1,3 +1,4 @@
+import { estSerieReussieParRubrique } from '@/lib/exercices/configRubriques';
 import { ALL_BADGES, UserBadgeProgress } from './badgesData';
 import { Profile } from '@/lib/supabase/types';
 
@@ -5,11 +6,12 @@ export interface BadgeEvaluationContext {
   profile: Profile | null;
   savedWordsCount?: number;
   completedContentsMap?: Record<string, { isCompleted: boolean; isFavorite: boolean }>;
+  exerciseResultsMap?: Record<string, { score: number; totalQuestions: number; percentage: number; bestScore: number }>;
   isStreakFreezeActive?: boolean;
 }
 
 export function evaluateUserBadges(ctx: BadgeEvaluationContext): UserBadgeProgress[] {
-  const { profile, savedWordsCount, completedContentsMap, isStreakFreezeActive } = ctx;
+  const { profile, savedWordsCount, completedContentsMap, exerciseResultsMap, isStreakFreezeActive } = ctx;
 
   const totalWords = savedWordsCount ?? (profile?.total_words_mastered || 0);
   const streakDays = Math.max(profile?.streak_days || 0, profile?.max_streak || 0);
@@ -49,6 +51,20 @@ export function evaluateUserBadges(ctx: BadgeEvaluationContext): UserBadgeProgre
           completedStories++;
         }
       }
+    });
+  }
+
+  // Calcul des exercices réussis (selon seuil de la rubrique) et parfaits (100% / score égal au total de questions)
+  let completedExercises = 0;
+  let perfectExercises = 0;
+  let passedExercises = 0;
+
+  if (exerciseResultsMap) {
+    Object.values(exerciseResultsMap).forEach((r) => {
+      completedExercises++;
+      const best = r.bestScore ?? r.score;
+      if (estSerieReussieParRubrique(best, r.totalQuestions)) passedExercises++;
+      if (best === r.totalQuestions || r.percentage === 100) perfectExercises++;
     });
   }
 
@@ -115,6 +131,23 @@ export function evaluateUserBadges(ctx: BadgeEvaluationContext): UserBadgeProgre
       // ❄️ Protection
       case 'streak_freeze_guardian':
         current = isStreakFreezeActive !== false ? 1 : 0;
+        break;
+
+      // 🎧 Exercices & Écoute HSK
+      case 'hsk_exercise_first':
+        current = completedExercises >= 1 ? 1 : 0;
+        break;
+      case 'hsk_exercise_perfect':
+        current = perfectExercises >= 1 ? 1 : 0;
+        break;
+      case 'hsk_exercise_5_series':
+        current = Math.min(passedExercises, 5);
+        break;
+      case 'hsk_exercise_15_series':
+        current = Math.min(passedExercises, 15);
+        break;
+      case 'hsk_exercise_30_series':
+        current = Math.min(passedExercises, 30);
         break;
 
       default:

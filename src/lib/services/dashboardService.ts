@@ -157,7 +157,7 @@ export async function fetchRealDashboardStats(): Promise<RealDashboardStats> {
           hskLevel: resolved.hskLevel || 'Tous Niveaux',
           progressPercentage: 100,
           duration: resolved.duration || '15 min',
-          thumbnailUrl: resolved.thumbnailUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
+          thumbnailUrl: resolved.thumbnailUrl || '',
           href: resolved.href || `/formation?lesson=${lessonId}`,
           isCompleted: true,
         });

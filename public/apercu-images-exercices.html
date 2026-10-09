@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prévisualisation des Illustrations — HSK 1 « Vrai ou Faux ? »</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6200EE;
+      --primary-light: #BB86FC;
+      --teal: #00BFA5;
+      --bg: #0F0F13;
+      --card-bg: #1A1A24;
+      --card-border: #2D2D3D;
+      --text: #F5F5F7;
+      --text-muted: #9E9EB2;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 24px 80px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .badge-hsk {
+      display: inline-block;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, #00897B, #00BFA5);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 28px;
+      margin-top: 32px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+    .img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #000;
+      overflow: hidden;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .img-wrap img {
+      transform: scale(1.04);
+    }
+    .status-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      color: white;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .badge-vrai {
+      background: rgba(0, 191, 165, 0.95);
+    }
+    .badge-faux {
+      background: rgba(229, 57, 53, 0.95);
+    }
+    .badge-cover {
+      background: rgba(98, 0, 238, 0.95);
+    }
+    .card-body {
+      padding: 22px;
+    }
+    .q-number {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: white;
+    }
+    .compare-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .compare-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .compare-line:last-child {
+      margin-bottom: 0;
+    }
+    .label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .val {
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-hsk">HSK 1 · Rubrique 听力判断</div>
+      <h1>Illustrations HD — « Vrai ou Faux ? » (Série 1)</h1>
+      <p class="subtitle">Aperçu interactif haute définition des 5 illustrations questions + la couverture de série pour validation visuelle.</p>
+    </header>
+
+    <div class="grid">
+      <!-- COUVERTURE -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/covers/hsk1_vrai_faux_serie1.jpg" alt="Couverture Série 1">
+          <span class="status-badge badge-cover">Couverture</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number" style="color: var(--primary-light);">Miniature de Série</div>
+          <h2 class="title">Vrai ou Faux ? — Série 1</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Thème :</span>
+              <span class="val">Bureau d'étude & écoute</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Usage :</span>
+              <span class="val">Catalogue & Hub des Séries</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION 1 -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/hsk1_tf_q01_eau.jpg" alt="Verre d'eau">
+          <span class="status-badge badge-faux">Réponse : Faux</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number">Question 1 / 5</div>
+          <h2 class="title">Illustration : De l'eau (水)</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Audio entendu :</span>
+              <span class="val" style="color: #FF8A80;">可乐 (kělè - Coca)</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Image montre :</span>
+              <span class="val" style="color: #03DAC5;">水 (shuǐ - Eau)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION 2 -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/hsk1_tf_q02_the.jpg" alt="Théière chinoise">
+          <span class="status-badge badge-faux">Réponse : Faux</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number">Question 2 / 5</div>
+          <h2 class="title">Illustration : Du thé (茶)</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Audio entendu :</span>
+              <span class="val" style="color: #FF8A80;">咖啡 (kāfēi - Café)</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Image montre :</span>
+              <span class="val" style="color: #03DAC5;">茶 (chá - Thé)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION 3 -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/hsk1_tf_q03_guitare.jpg" alt="Guitare acoustique">
+          <span class="status-badge badge-vrai">Réponse : Vrai</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number">Question 3 / 5</div>
+          <h2 class="title">Illustration : Une guitare (吉他)</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Audio entendu :</span>
+              <span class="val" style="color: #03DAC5;">吉他 (jítā - Guitare)</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Image montre :</span>
+              <span class="val" style="color: #03DAC5;">吉他 (jítā - Guitare)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION 4 -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/hsk1_tf_q04_danse.jpg" alt="Danse classique">
+          <span class="status-badge badge-vrai">Réponse : Vrai</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number">Question 4 / 5</div>
+          <h2 class="title">Illustration : Ballet (芭蕾)</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Audio entendu :</span>
+              <span class="val" style="color: #03DAC5;">芭蕾 (bālěi - Ballet)</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Image montre :</span>
+              <span class="val" style="color: #03DAC5;">Danseuse de ballet (芭蕾)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION 5 -->
+      <div class="card">
+        <div class="img-wrap">
+          <img src="images/exercices/hsk1_tf_q05_merci.jpg" alt="Cadeau et remerciement">
+          <span class="status-badge badge-faux">Réponse : Faux</span>
+        </div>
+        <div class="card-body">
+          <div class="q-number">Question 5 / 5</div>
+          <h2 class="title">Illustration : Remerciement (谢谢)</h2>
+          <div class="compare-box">
+            <div class="compare-line">
+              <span class="label">Audio entendu :</span>
+              <span class="val" style="color: #FF8A80;">再见 (zàijiàn - Au revoir)</span>
+            </div>
+            <div class="compare-line">
+              <span class="label">Image montre :</span>
+              <span class="val" style="color: #03DAC5;">谢谢 (xièxie - Merci)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

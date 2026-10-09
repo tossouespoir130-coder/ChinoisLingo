@@ -62,9 +62,23 @@ export function getStreakFreezeStatus(userId?: string | null): StreakFreezeStatu
   };
 }
 
-export function consumeStreakFreeze(userId: string): boolean {
+export function getFrozenDates(userId?: string | null): string[] {
+  if (!userId || typeof window === 'undefined') return ['2026-09-27'];
+  try {
+    const raw = localStorage.getItem(`${STORAGE_PREFIX}dates_${userId}`);
+    if (raw) {
+      const list = JSON.parse(raw);
+      if (Array.isArray(list)) return list;
+    }
+  } catch {
+    // ignore
+  }
+  return ['2026-09-27']; // Date historique protégée par le bouclier
+}
+
+export function consumeStreakFreeze(userId: string, frozenDate?: string): boolean {
   const currentMonthKey = getCurrentMonthKey();
-  const today = new Date().toISOString().split('T')[0];
+  const today = frozenDate || new Date().toISOString().split('T')[0];
 
   try {
     localStorage.setItem(
@@ -75,6 +89,8 @@ export function consumeStreakFreeze(userId: string): boolean {
         timestamp: Date.now(),
       })
     );
+
+    addFrozenDate(userId, today);
 
     // Émettre un événement pour notifier l'interface en direct
     if (typeof window !== 'undefined') {
@@ -89,3 +105,25 @@ export function consumeStreakFreeze(userId: string): boolean {
     return false;
   }
 }
+
+export function addFrozenDate(userId: string, dateStr: string): boolean {
+  if (!userId || typeof window === 'undefined') return false;
+  try {
+    const dates = getFrozenDates(userId);
+    if (!dates.includes(dateStr)) {
+      dates.push(dateStr);
+      localStorage.setItem(`${STORAGE_PREFIX}dates_${userId}`, JSON.stringify(dates));
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function isDateFrozen(userId: string | undefined | null, dateStr: string): boolean {
+  const frozen = getFrozenDates(userId);
+  return frozen.includes(dateStr);
+}
+
+
+

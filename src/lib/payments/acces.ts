@@ -15,6 +15,8 @@ import { ContentTypeAcces } from './types-acces';
 /**
  * Nombre de contenus offerts par rubrique d'Écoute & Lecture.
  * 0 = rubrique entièrement réservée aux abonnés.
+ * Exception : pour les exercices, le quota s'applique PAR NIVEAU HSK
+ * (les 3 premières séries de chaque niveau sont gratuites).
  */
 export const QUOTA_GRATUIT: Record<ContentTypeAcces, number> = {
   chansons: 3,
@@ -23,6 +25,7 @@ export const QUOTA_GRATUIT: Record<ContentTypeAcces, number> = {
   dialogues: 3,
   podcasts: 0,
   videos: 0,
+  exercices: 3,
 };
 
 /** Identifiants des histoires ouvertes au palier gratuit : séries (« Mon chat », « Vie en Chine : Business ») + 2 histoires individuelles */
@@ -74,6 +77,23 @@ export function contenuAccessible(
   return quota !== undefined && rang < quota;
 }
 
+import { estSerieGratuite, ExerciseRubriqueId, SERIES_GRATUITES_PAR_RUBRIQUE } from '@/lib/exercices/configRubriques';
+
+/**
+ * Une série d'exercices HSK est-elle accessible ?
+ * Les `seriesGratuites` premières séries de chaque rubrique et de chaque niveau sont
+ * gratuites (`orderInRubrique` commence à 1) ; les suivantes sont réservées
+ * aux abonnés. Utilisée à la fois par l'interface et par les routes serveur.
+ */
+export function serieExerciceAccessible(
+  orderInRubrique: number,
+  accesComplet: boolean,
+  rubriqueId?: ExerciseRubriqueId
+): boolean {
+  if (accesComplet) return true;
+  return estSerieGratuite(orderInRubrique, rubriqueId);
+}
+
 /** Un épisode / partie d'une série est-il accessible ? */
 export function episodeAccessible(
   episodeIndex: number,
@@ -107,6 +127,7 @@ export function resumeOffreGratuite(): string[] {
   return [
     `${QUOTA_GRATUIT.chansons} chansons, ${QUOTA_GRATUIT.dialogues} dialogues, ${QUOTA_GRATUIT.articles} articles et la série Mon chat (3 parties) + 2 histoires`,
     'Le vocabulaire HSK 1 en entier',
+    `${QUOTA_GRATUIT.exercices} séries d'exercices d'écoute par niveau HSK`,
     `${FORMATIONS_GRATUITES.length} formations pour débuter`,
   ];
 }

@@ -181,14 +181,14 @@ export function TopNav() {
           {/* User Profile Avatar / Dropdown Menu (Toujours visible et accessible) */}
           <div className="relative" ref={profileMenuRef}>
             {(() => {
-              const displayAvatar = (profile?.avatar_url && !profile.avatar_url.includes('photo-1534528741775')) 
-                ? profile.avatar_url 
+              const rawAvatar = profile?.avatar_url || userAvatar || (user?.user_metadata?.avatar_url as string | undefined) || '';
+              const displayAvatar = (rawAvatar && !rawAvatar.includes('photo-1534528741775')) 
+                ? rawAvatar 
                 : '';
 
               // Sans photo personnalisée, on affiche les initiales de l'utilisateur
-              // avec un badge élégant — et jamais le portrait d'un autre compte.
               const nomAffiche =
-                profile?.full_name || profile?.username || '';
+                profile?.full_name || profile?.username || userName || (user?.user_metadata?.full_name as string | undefined) || '';
               const initiales =
                 nomAffiche
                   .split(/\s+/)

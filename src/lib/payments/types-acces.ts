@@ -12,4 +12,5 @@ export type ContentTypeAcces =
   | 'histoires'
   | 'dialogues'
   | 'podcasts'
-  | 'videos';
+  | 'videos'
+  | 'exercices';

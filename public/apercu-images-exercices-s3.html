@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prévisualisation HD — HSK 1 « Vrai ou Faux ? » Série 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0F19;
+      --card-bg: #131B2E;
+      --card-border: #1E293B;
+      --accent-purple: #7C3AED;
+      --accent-red: #EF4444;
+      --accent-green: #10B981;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+    .header {
+      max-width: 1200px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(124, 58, 237, 0.15);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #A78BFA;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 58, 237, 0.5);
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #000;
+      overflow: hidden;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .tag-q {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .tag-ans {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #FFF;
+    }
+    .ans-true {
+      background: rgba(16, 185, 129, 0.9);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .ans-false {
+      background: rgba(239, 68, 68, 0.9);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+    .audio-block {
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .audio-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .hanzi-audio {
+      font-size: 18px;
+      font-weight: 700;
+      color: #DDD6FE;
+    }
+    .pinyin-audio {
+      font-size: 13px;
+      color: #A78BFA;
+    }
+    audio {
+      height: 32px;
+      max-width: 160px;
+    }
+    .image-info {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .info-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .info-desc {
+      font-size: 13px;
+      color: #E2E8F0;
+    }
+    .expl-box {
+      font-size: 12px;
+      color: #94A3B8;
+      border-left: 3px solid var(--accent-purple);
+      padding-left: 10px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="badge">HSK 1 · Rubrique « Vrai ou Faux ? »</div>
+    <h1>Série 3 — Prévisualisation des 5 Images HD & Pistes Audio</h1>
+    <p class="subtitle">Conformité stricte Règle 16 (sujet unique zoomé), Règle 18 (Couverture = Q1), et Règle 15 (Double écoute avec alternance Homme ↔ Femme).</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Question 1 -->
+    <div class="card">
+      <div class="image-container">
+        <img src="images/exercices/hsk1_tf_s03_q01_france.jpg" alt="Drapeau de la France">
+        <div class="tag-q">Question 1</div>
+        <div class="tag-ans ans-false">Réponse : Faux ✗</div>
+      </div>
+      <div class="card-body">
+        <div class="audio-block">
+          <div class="audio-info">
+            <div class="hanzi-audio">中国</div>
+            <div class="pinyin-audio">Zhōngguó (la Chine)</div>
+          </div>
+          <audio controls src="audio/exercices/hsk1_tf_s03_q01.mp3"></audio>
+        </div>
+        <div class="image-info">
+          <div class="info-label">Contenu de l'image (HD) :</div>
+          <div class="info-desc">Drapeau officiel de la France (trois bandes verticales bleu, blanc, rouge).</div>
+        </div>
+        <div class="expl-box">
+          <strong>Correction :</strong> Tu as entendu « 中国 » (Zhōngguó, la Chine), mais l’illustration montre le drapeau de la France (« 法国 », Fǎguó).
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="card">
+      <div class="image-container">
+        <img src="images/exercices/hsk1_tf_s03_q02_hopital.jpg" alt="Hôpital moderne">
+        <div class="tag-q">Question 2</div>
+        <div class="tag-ans ans-true">Réponse : Vrai ✓</div>
+      </div>
+      <div class="card-body">
+        <div class="audio-block">
+          <div class="audio-info">
+            <div class="hanzi-audio">医院</div>
+            <div class="pinyin-audio">yīyuàn (hôpital)</div>
+          </div>
+          <audio controls src="audio/exercices/hsk1_tf_s03_q02.mp3"></audio>
+        </div>
+        <div class="image-info">
+          <div class="info-label">Contenu de l'image (HD) :</div>
+          <div class="info-desc">Bâtiment moderne d’un hôpital avec croix médicale visible et entrée d’urgences.</div>
+        </div>
+        <div class="expl-box">
+          <strong>Correction :</strong> Le mot prononcé est « 医院 » (yīyuàn, hôpital) et l’illustration montre bien un hôpital moderne avec sa croix médicale.
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="card">
+      <div class="image-container">
+        <img src="images/exercices/hsk1_tf_s03_q03_amis.jpg" alt="Deux amis qui trinquent au thé">
+        <div class="tag-q">Question 3</div>
+        <div class="tag-ans ans-true">Réponse : Vrai ✓</div>
+      </div>
+      <div class="card-body">
+        <div class="audio-block">
+          <div class="audio-info">
+            <div class="hanzi-audio">朋友</div>
+            <div class="pinyin-audio">péngyou (amis)</div>
+          </div>
+          <audio controls src="audio/exercices/hsk1_tf_s03_q03.mp3"></audio>
+        </div>
+        <div class="image-info">
+          <div class="info-label">Contenu de l'image (HD) :</div>
+          <div class="info-desc">Deux amis du même âge qui sourient et trinquent avec des tasses de thé.</div>
+        </div>
+        <div class="expl-box">
+          <strong>Correction :</strong> Le mot prononcé est « 朋友 » (péngyou, amis) et l’image montre bien deux amis partageant un moment convivial.
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="card">
+      <div class="image-container">
+        <img src="images/exercices/hsk1_tf_s03_q04_maman.jpg" alt="Maman tenant son enfant par la main">
+        <div class="tag-q">Question 4</div>
+        <div class="tag-ans ans-false">Réponse : Faux ✗</div>
+      </div>
+      <div class="card-body">
+        <div class="audio-block">
+          <div class="audio-info">
+            <div class="hanzi-audio">爸爸</div>
+            <div class="pinyin-audio">bàba (papa)</div>
+          </div>
+          <audio controls src="audio/exercices/hsk1_tf_s03_q04.mp3"></audio>
+        </div>
+        <div class="image-info">
+          <div class="info-label">Contenu de l'image (HD) :</div>
+          <div class="info-desc">Une jeune maman tenant son jeune enfant par la main dans un parc ensoleillé.</div>
+        </div>
+        <div class="expl-box">
+          <strong>Correction :</strong> Tu as entendu « 爸爸 » (bàba, papa), mais l’image montre une maman (« 妈妈 », māma) tenant son enfant par la main.
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 5 -->
+    <div class="card">
+      <div class="image-container">
+        <img src="images/exercices/hsk1_tf_s03_q05_professeur.jpg" alt="Professeur avec une craie devant son tableau">
+        <div class="tag-q">Question 5</div>
+        <div class="tag-ans ans-true">Réponse : Vrai ✓</div>
+      </div>
+      <div class="card-body">
+        <div class="audio-block">
+          <div class="audio-info">
+            <div class="hanzi-audio">老师</div>
+            <div class="pinyin-audio">lǎoshī (professeur)</div>
+          </div>
+          <audio controls src="audio/exercices/hsk1_tf_s03_q05.mp3"></audio>
+        </div>
+        <div class="image-info">
+          <div class="info-label">Contenu de l'image (HD) :</div>
+          <div class="info-desc">Un enseignant souriant debout devant un tableau d'école, tenant une craie blanche à la main.</div>
+        </div>
+        <div class="expl-box">
+          <strong>Correction :</strong> Le mot prononcé est « 老师 » (lǎoshī, professeur) et l’illustration montre bien un enseignant avec une craie.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

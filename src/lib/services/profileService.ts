@@ -98,6 +98,56 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
     newStreak = 1;
   }
 
+  // 🛡️ Double vérification infaillible avec l'historique réel de daily_activity :
+  // Si l'utilisateur a étudié plusieurs jours consécutifs, on garantit que la série
+  // reflète fidèlement ses efforts réels et ne peut jamais être écrasée par erreur.
+  try {
+    const { data: recentDays } = await supabase
+      .from('daily_activity')
+      .select('jour')
+      .eq('user_id', user.id)
+      .order('jour', { ascending: false })
+      .limit(60);
+
+    if (recentDays && recentDays.length > 0) {
+      const daySet = new Set(recentDays.map((r: { jour: string }) => r.jour));
+      daySet.add(today);
+
+      let current = today;
+      let realCount = 0;
+      let freezeAllowed = true;
+
+      while (true) {
+        if (daySet.has(current)) {
+          realCount++;
+          const [y, m, d] = current.split('-').map(Number);
+          const prevDate = new Date(Date.UTC(y, m - 1, d - 1));
+          const py = prevDate.getUTCFullYear();
+          const pm = String(prevDate.getUTCMonth() + 1).padStart(2, '0');
+          const pd = String(prevDate.getUTCDate()).padStart(2, '0');
+          current = `${py}-${pm}-${pd}`;
+        } else if (freezeAllowed) {
+          freezeAllowed = false;
+          const [y, m, d] = current.split('-').map(Number);
+          const prevDate = new Date(Date.UTC(y, m - 1, d - 1));
+          const py = prevDate.getUTCFullYear();
+          const pm = String(prevDate.getUTCMonth() + 1).padStart(2, '0');
+          const pd = String(prevDate.getUTCDate()).padStart(2, '0');
+          current = `${py}-${pm}-${pd}`;
+          if (!daySet.has(current)) break;
+        } else {
+          break;
+        }
+      }
+
+      if (realCount > newStreak) {
+        newStreak = realCount;
+      }
+    }
+  } catch (err) {
+    console.warn('[ChinoisLingo] Erreur vérification continuité daily_activity:', err);
+  }
+
   const isNewDay = lastActive !== today;
   const newTotalLoginDays = isNewDay
     ? (profile.total_login_days || 0) + 1
@@ -107,6 +157,7 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
   const currentRecord = Math.max(
     profile.max_streak || 1,
     profile.streak_days || 1,
+    newStreak,
     (profile as any)?.longest_streak || 1
   );
   const newMaxStreak = Math.max(currentRecord, newStreak);

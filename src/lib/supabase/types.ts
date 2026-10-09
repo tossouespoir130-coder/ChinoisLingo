@@ -280,6 +280,148 @@ export type Database = {
           }
         ]
       }
+      exercise_answers: {
+        Row: {
+          answered_at: string | null
+          attempt_id: string
+          exercise_id: string
+          id: string
+          is_correct: boolean
+          question_id: string
+          selected_boolean: boolean | null
+          selected_choice_id: string | null
+          selected_matches: Json | null
+          user_id: string
+        }
+        Insert: {
+          answered_at?: string | null
+          attempt_id: string
+          exercise_id: string
+          id?: string
+          is_correct: boolean
+          question_id: string
+          selected_boolean?: boolean | null
+          selected_choice_id?: string | null
+          selected_matches?: Json | null
+          user_id: string
+        }
+        Update: {
+          answered_at?: string | null
+          attempt_id?: string
+          exercise_id?: string
+          id?: string
+          is_correct?: boolean
+          question_id?: string
+          selected_boolean?: boolean | null
+          selected_choice_id?: string | null
+          selected_matches?: Json | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_answers_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "exercise_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercise_answers_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exercise_attempts: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          exercise_id: string
+          id: string
+          started_at: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          exercise_id: string
+          id?: string
+          started_at?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          exercise_id?: string
+          id?: string
+          started_at?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_attempts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exercise_results: {
+        Row: {
+          best_score: number
+          completed_at: string | null
+          created_at: string | null
+          exercise_id: string
+          id: string
+          percentage: number
+          score: number
+          time_spent_seconds: number | null
+          total_questions: number
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          best_score: number
+          completed_at?: string | null
+          created_at?: string | null
+          exercise_id: string
+          id?: string
+          percentage: number
+          score: number
+          time_spent_seconds?: number | null
+          total_questions: number
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          best_score?: number
+          completed_at?: string | null
+          created_at?: string | null
+          exercise_id?: string
+          id?: string
+          percentage?: number
+          score?: number
+          time_spent_seconds?: number | null
+          total_questions?: number
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_results_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       nouveaux_contenus: {
         Row: {
           id: string
@@ -872,6 +1014,9 @@ export const Constants = {
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type SavedWord = Database['public']['Tables']['saved_words']['Row']
 export type RevisionCarte = Database['public']['Tables']['revisions_cartes']['Row']
+export type ExerciseAttempt = Database['public']['Tables']['exercise_attempts']['Row']
+export type ExerciseAnswer = Database['public']['Tables']['exercise_answers']['Row']
+export type ExerciseResult = Database['public']['Tables']['exercise_results']['Row']
 export type ContentProgress = Database['public']['Tables']['content_progress']['Row']
 export type CourseProgress = Database['public']['Tables']['course_progress']['Row']
 export type NotificationItem = Database['public']['Tables']['notifications']['Row']

@@ -29,6 +29,12 @@ function formatRelativeTime(timestamp?: number): string {
   return 'Récemment';
 }
 
+/** Miniature YouTube de la première vidéo d'une formation (chaîne vide si aucune). */
+function miniaturePremiereVideo(course: { lessons?: { youtubeId?: string }[] }): string {
+  const youtubeId = course.lessons?.find((l) => l.youtubeId)?.youtubeId;
+  return youtubeId ? `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg` : '';
+}
+
 /**
  * Résout les détails complets (vrai titre, niveau HSK, miniature YouTube/HD, durée)
  * pour n'importe quel ID de contenu ou de leçon, évitant tout titre générique.
@@ -45,7 +51,8 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
         categoryBadge: 'FORMATION VIDÉO',
         hskLevel: course.level || 'Tous Niveaux',
         duration: `${course.totalLessons} leçons`,
-        thumbnailUrl: course.thumbnailUrl || (course.lessons?.[0]?.youtubeId ? `https://img.youtube.com/vi/${course.lessons[0].youtubeId}/hqdefault.jpg` : 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80'),
+        // Règle du projet : la couverture d'une formation est la miniature YouTube de sa première vidéo.
+        thumbnailUrl: course.thumbnailUrl || miniaturePremiereVideo(course),
         href: `/formation?course=${course.id}`,
       };
     }
@@ -58,7 +65,7 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
           categoryBadge: 'FORMATION VIDÉO',
           hskLevel: course.level || 'Tous Niveaux',
           duration: lesson.duration || '10 min',
-          thumbnailUrl: lesson.youtubeId ? `https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg` : course.thumbnailUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop&q=80',
+          thumbnailUrl: lesson.youtubeId ? `https://img.youtube.com/vi/${lesson.youtubeId}/hqdefault.jpg` : course.thumbnailUrl || miniaturePremiereVideo(course),
           href: `/formation?course=${course.id}&lesson=${lesson.id}`,
         };
       }
@@ -128,7 +135,7 @@ export function resolveContentDetails(contentId: string, contentType?: string): 
     dialogue_marche: { title: 'Faire ses Achats au Marché (在市场买水果)', level: 'HSK 2', duration: '3 min 30', image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400&auto=format&fit=crop&q=80' },
     dialogue_hotel: { title: 'Réserver une Chambre d’Hôtel (在宾馆入住)', level: 'HSK 2', duration: '4 min', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&auto=format&fit=crop&q=80' },
     dialogue_taxi: { title: 'Prendre le Taxi à Pékin (打出租车)', level: 'HSK 1', duration: '3 min', image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&auto=format&fit=crop&q=80' },
-    dialogue_mon_passeport: { title: 'Où est mon passeport ? (我的护照在哪儿？)', level: 'HSK 2', duration: '3 min 30', image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80' },
+    dialogue_mon_passeport: { title: 'Où est mon passeport ? (我的护照在哪儿？)', level: 'HSK 2', duration: '3 min 30', image: 'https://images.unsplash.com/photo-1578852612716-854e527abf2e?w=400&auto=format&fit=crop&q=80' },
 
     // Histoires & Séries
     series_mon_chat: { title: 'Mon Petit Chat Blanc (我的小白猫)', level: 'HSK 1', duration: '5 parties', image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&auto=format&fit=crop&q=80' },
