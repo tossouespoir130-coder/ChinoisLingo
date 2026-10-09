@@ -1,7 +1,13 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import type { Database } from '@/lib/supabase/types';
-import { COOKIE_SESSION_EPHEMERE, adapterDuree } from '@/lib/supabase/session-ephemere';
+import {
+  COOKIE_SESSION_EPHEMERE,
+  INACTIVITE_MAX_EPHEMERE_MS,
+  RAFRAICHISSEMENT_TEMOIN_MS,
+  adapterDuree,
+  lireDerniereActivite,
+} from '@/lib/supabase/session-ephemere';
 
 /**
  * Garde d'accès de l'application.
@@ -58,6 +64,46 @@ export async function proxy(request: NextRequest) {
     return estEntree ? response : NextResponse.redirect(new URL('/tableau-de-bord', request.url));
   }
 
+  /**
+   * Session non mémorisée (« Rester connecté » décoché) : fermée après
+   * INACTIVITE_MAX_EPHEMERE_MS sans activité, même si le navigateur n'a jamais
+   * été fermé. Voir session-ephemere.ts.
+   */
+  const temoin = request.cookies.get(COOKIE_SESSION_EPHEMERE)?.value;
+  const maintenant = Date.now();
+  let sessionExpiree = false;
+  let nouveauTemoin: string | null = null;
+
+  if (temoin !== undefined) {
+    const derniereActivite = lireDerniereActivite(temoin);
+    if (derniereActivite !== null && maintenant - derniereActivite > INACTIVITE_MAX_EPHEMERE_MS) {
+      // Les cookies de session Supabase sont retirés de la requête (le reste du
+      // traitement voit un visiteur déconnecté) et effacés dans le navigateur.
+      // Le témoin, lui, est conservé avec son heure dépassée : si un onglet resté
+      // ouvert réécrit une session, elle reste éphémère et sera refermée ici.
+      const cookiesSession = request.cookies.getAll().filter((c) => c.name.startsWith('sb-'));
+      if (cookiesSession.length > 0) {
+        sessionExpiree = true;
+        cookiesSession.forEach((c) => request.cookies.delete(c.name));
+        response = NextResponse.next({ request });
+        cookiesSession.forEach((c) => response.cookies.delete(c.name));
+      }
+    } else if (derniereActivite === null || maintenant - derniereActivite > RAFRAICHISSEMENT_TEMOIN_MS) {
+      nouveauTemoin = String(maintenant);
+    }
+  }
+
+  /** Remet à jour l'heure d'activité du témoin (cookie de session, sans expiration). */
+  const appliquerTemoin = () => {
+    if (nouveauTemoin === null) return;
+    response.cookies.set(COOKIE_SESSION_EPHEMERE, nouveauTemoin, {
+      path: '/',
+      sameSite: 'lax',
+      secure: request.nextUrl.protocol === 'https:',
+    });
+  };
+  appliquerTemoin();
+
   const supabase = createServerClient<Database>(supabaseUrl, supabaseAnonKey, {
     cookies: {
       getAll() {
@@ -67,6 +113,7 @@ export async function proxy(request: NextRequest) {
         const ephemere = request.cookies.has(COOKIE_SESSION_EPHEMERE);
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
         response = NextResponse.next({ request });
+        appliquerTemoin();
         cookiesToSet.forEach(({ name, value, options }) =>
           response.cookies.set(name, value, adapterDuree(options, ephemere))
         );
@@ -157,7 +204,7 @@ export async function proxy(request: NextRequest) {
     }
 
     if (!user) {
-      return rediriger('/connexion');
+      return rediriger('/connexion', sessionExpiree ? { session: 'expiree' } : {});
     }
 
     // Adresse non confirmée : le compte existe mais n'est pas encore actif.

@@ -75,6 +75,10 @@ export default function ConnexionPage() {
       setErrorMessage('Ce lien a expiré ou a déjà été utilisé. Connectez-vous, ou demandez un nouveau lien.');
     } else if (params.get('compte') === 'supprime') {
       setSuccessMessage('Votre compte a bien été supprimé. Merci d’avoir appris le chinois avec nous.');
+    } else if (params.get('session') === 'expiree') {
+      setErrorMessage(
+        'Votre session a été fermée après 12 heures d’inactivité. Reconnectez-vous — cochez « Rester connecté » pour ne plus avoir à le faire sur cet appareil.'
+      );
     } else if (params.get('session') === 'indisponible') {
       setErrorMessage(
         'Vérification de session impossible pour le moment. Réessayez dans un instant.'

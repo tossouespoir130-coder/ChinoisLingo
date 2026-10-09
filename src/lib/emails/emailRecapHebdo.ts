@@ -46,12 +46,11 @@ export const NOMS_SOUS_CATEGORIES: Record<string, string> = {
   ouvrages: 'Guides & Lexiques Professionnels',
 };
 
-export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<boolean> {
-  // Si aucun contenu n'a été ajouté cette semaine, on n'envoie rien (règle stricte)
-  if (!params.contenus || params.contenus.length === 0) {
-    return false;
-  }
-
+/**
+ * Construit le récapitulatif hebdomadaire (sujet, HTML, texte) sans l'envoyer.
+ * Sert à l'envoi réel et à l'aperçu présenté avant toute diffusion.
+ */
+export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: string; html: string; texte: string; liensDesabo: ReturnType<typeof lienDesabonnement> } {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://chinoislingo.com';
   const liensDesabo = lienDesabonnement(siteUrl, params.userId);
 
@@ -100,7 +99,8 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
     items.forEach((item) => {
       const sousCatNom = item.sous_categorie ? (NOMS_SOUS_CATEGORIES[item.sous_categorie] || item.sous_categorie) : '';
       const badgeHsk = item.niveau_hsk || '';
-      const lienComplet = echapper(item.lien.startsWith('http') ? item.lien : `${siteUrl}${item.lien}`);
+      // Lien brut pour la version texte, échappé uniquement dans le HTML.
+      const lienComplet = item.lien.startsWith('http') ? item.lien : `${siteUrl}${item.lien}`;
 
       sectionsHtml += `
         <tr>
@@ -112,7 +112,7 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
                     ${sousCatNom ? `<span style="display: inline-block; background-color: #EDE7F6; color: #6200EE; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-right: 6px; text-transform: uppercase;">${sousCatNom}</span>` : ''}
                     ${badgeHsk ? `<span style="display: inline-block; background-color: #E0F2F1; color: #00897B; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px;">${badgeHsk}</span>` : ''}
                   </div>
-                  <a class="texte-titre" href="${lienComplet}" target="_blank" style="font-size: 15px; font-weight: 700; color: #212121; text-decoration: none; line-height: 1.4; display: block;">
+                  <a class="texte-titre" href="${echapper(lienComplet)}" target="_blank" style="font-size: 15px; font-weight: 700; color: #212121; text-decoration: none; line-height: 1.4; display: block;">
                     ${echapper(item.titre)}
                   </a>
                   ${item.description ? `<p class="texte-doux" style="font-size: 13px; color: #616161; margin: 6px 0 0 0; line-height: 1.45;">${echapper(item.description)}</p>` : ''}
@@ -130,7 +130,7 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
     sectionsHtml += `</table></div>`;
   });
 
-  const sujet = `Nouveautés de la semaine sur ChinoisLingo 🇨🇳 (« Le chinois devient facile »)`;
+  const sujet = `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`;
 
   const html = `
 <!DOCTYPE html>
@@ -190,7 +190,7 @@ export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<
   `;
 
   const texte = `
-Nouveautés de la semaine sur ChinoisLingo 🇨🇳
+Nouveautés de la semaine sur ChinoisLingo
 « Le chinois devient facile »
 
 Nǐhǎo ${params.nom} !
@@ -205,6 +205,17 @@ L'équipe ChinoisLingo
 
 Pour ne plus recevoir ces récapitulatifs : ${liensDesabo.page}
   `.trim();
+
+  return { sujet, html, texte, liensDesabo };
+}
+
+export async function envoyerEmailRecapHebdo(params: ParamsRecapHebdo): Promise<boolean> {
+  // Si aucun contenu n'a été ajouté cette semaine, on n'envoie rien (règle stricte)
+  if (!params.contenus || params.contenus.length === 0) {
+    return false;
+  }
+
+  const { sujet, html, texte, liensDesabo } = construireEmailRecapHebdo(params);
 
   if (!configurationEmailPrete()) {
     console.warn('[emails] Resend non configuré : récap hebdo simulé pour', params.email);

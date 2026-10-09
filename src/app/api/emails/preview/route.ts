@@ -58,7 +58,7 @@ export async function GET(requete: Request) {
     }
   }
 
-  const sujet = `Bienvenue sur ChinoisLingo, ${nom} ! 🇨🇳 « Le chinois devient facile »`;
+  const sujet = `Bienvenue sur ChinoisLingo, ${nom} ! « Le chinois devient facile »`;
 
   const html = `<!DOCTYPE html>
 <html lang="fr">

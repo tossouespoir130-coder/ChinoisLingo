@@ -19,7 +19,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
     await journaliserEmail({
       userId: params.userId,
       destinataire: params.email,
-      sujet: `Bienvenue sur ChinoisLingo, ${params.nom} ! 🇨🇳 « Le chinois devient facile »`,
+      sujet: `Bienvenue sur ChinoisLingo, ${params.nom} ! « Le chinois devient facile »`,
       type: 'bienvenue',
       statut: 'simule',
       erreur: 'RESEND_API_KEY ou EMAIL_EXPEDITEUR manquant',
@@ -79,7 +79,7 @@ export async function envoyerEmailBienvenue(params: ParamsBienvenue): Promise<bo
   const profilHtml = echapper(profil);
   const niveauHtml = echapper(niveau);
 
-  const sujet = `Bienvenue sur ChinoisLingo, ${params.nom} ! 🇨🇳 « Le chinois devient facile »`;
+  const sujet = `Bienvenue sur ChinoisLingo, ${params.nom} ! « Le chinois devient facile »`;
 
   const html = `
 <!DOCTYPE html>

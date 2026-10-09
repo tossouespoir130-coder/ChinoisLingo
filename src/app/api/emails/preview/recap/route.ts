@@ -126,7 +126,7 @@ export async function GET(requete: Request) {
     sectionsHtml += `</table></div>`;
   });
 
-  const sujet = `Nouveautés de la semaine sur ChinoisLingo 🇨🇳 (« Le chinois devient facile »)`;
+  const sujet = `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`;
 
   const html = `<!DOCTYPE html>
 <html lang="fr">

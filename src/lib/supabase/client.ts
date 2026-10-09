@@ -16,7 +16,7 @@ export function definirSessionEphemere(ephemere: boolean): void {
   if (typeof document === 'undefined') return;
   const securise = window.location.protocol === 'https:' ? '; Secure' : '';
   document.cookie = ephemere
-    ? `${COOKIE_SESSION_EPHEMERE}=1; Path=/; SameSite=Lax${securise}`
+    ? `${COOKIE_SESSION_EPHEMERE}=${Date.now()}; Path=/; SameSite=Lax${securise}`
     : `${COOKIE_SESSION_EPHEMERE}=; Path=/; Max-Age=0; SameSite=Lax${securise}`;
 }
 
