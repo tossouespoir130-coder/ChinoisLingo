@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { appelCronAutorise } from '@/lib/security/cron';
 import { envoyerEmailRecapHebdo } from '@/lib/emails/emailRecapHebdo';
-import { chargerNouveautesDeLaSemaine } from '@/lib/emails/nouveautesHebdo';
+import { dateDernierEnvoi, preparerNewsletterDeLaSemaine } from '@/lib/emails/nouveautesHebdo';
+
+/** Écart minimal entre deux newsletters (un envoi manuel en semaine remplace celui du jeudi). */
+const JOURS_MIN_ENTRE_ENVOIS = 5;
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -26,13 +29,25 @@ export async function GET(requete: Request) {
   }
 
   const admin = createAdminClient();
-  // 1. Nouveautés réelles des 7 derniers jours uniquement (aucun repli sur d'anciens contenus)
-  const contenus = await chargerNouveautesDeLaSemaine(admin);
+
+  // Un envoi manuel récent (depuis l'administration) tient lieu de newsletter
+  // de la semaine : pas de second e-mail quelques jours plus tard.
+  const dernierEnvoi = await dateDernierEnvoi(admin);
+  if (dernierEnvoi && Date.now() - dernierEnvoi.getTime() < JOURS_MIN_ENTRE_ENVOIS * 86_400_000) {
+    return NextResponse.json({
+      statut: 'ignore',
+      message: `Newsletter déjà envoyée le ${dernierEnvoi.toISOString()} : pas de second envoi cette semaine.`,
+    });
+  }
+
+  // 1. Nouveautés depuis le dernier envoi ; à défaut, rappel de contenus existants
+  //    (un e-mail part chaque semaine — voir preparerNewsletterDeLaSemaine).
+  const { mode, contenus } = await preparerNewsletterDeLaSemaine(admin);
 
   if (contenus.length === 0) {
     return NextResponse.json({
       statut: 'ignore',
-      message: 'Aucun nouveau contenu cette semaine : newsletter non envoyée.',
+      message: 'Aucun contenu disponible (ni nouveauté, ni contenu à rappeler) : newsletter non envoyée.',
       nouveautesCount: 0,
     });
   }
@@ -67,6 +82,7 @@ export async function GET(requete: Request) {
         nom,
         profil: dest.onboarding_profil,
         niveau: dest.onboarding_niveau,
+        mode,
         contenus,
       });
 
@@ -83,6 +99,7 @@ export async function GET(requete: Request) {
 
   return NextResponse.json({
     statut: 'termine',
+    mode,
     nouveautesCount: contenus.length,
     destinatairesTotal: destinataires.length,
     totalEnvoyes,

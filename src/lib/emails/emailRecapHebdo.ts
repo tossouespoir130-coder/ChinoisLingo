@@ -17,7 +17,16 @@ export interface NouvelItemContenu {
   profil_cible?: string | null;
 }
 
+/**
+ * « nouveautes » : contenus ajoutés depuis le dernier envoi.
+ * « rappel » : semaine sans nouveauté — sélection de contenus existants à
+ * (re)découvrir, pour qu'un e-mail parte chaque semaine.
+ */
+export type ModeNewsletter = 'nouveautes' | 'rappel';
+
 interface ParamsRecapHebdo {
+  /** Par défaut « nouveautes ». */
+  mode?: ModeNewsletter;
   userId: string;
   email: string;
   nom: string;
@@ -130,7 +139,17 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
     sectionsHtml += `</table></div>`;
   });
 
-  const sujet = `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`;
+  const rappel = params.mode === 'rappel';
+  const sujet = rappel
+    ? `Cette semaine sur ChinoisLingo : à (re)découvrir (« Le chinois devient facile »)`
+    : `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`;
+  const introHtml = rappel
+    ? `Cette semaine, voici une sélection de contenus de <strong>ChinoisLingo</strong> à découvrir ou à revoir pour garder le rythme de ton apprentissage du mandarin.`
+    : `Voici les nouveaux contenus et leçons ajoutés sur <strong>ChinoisLingo</strong> cette semaine pour accélérer ton immersion en mandarin.`;
+  const introTexte = rappel
+    ? `Cette semaine, voici une sélection de contenus de ChinoisLingo à découvrir ou à revoir :`
+    : `Voici les nouveaux contenus ajoutés sur ChinoisLingo cette semaine pour ton apprentissage :`;
+  const boutonLibelle = rappel ? 'Reprendre mon apprentissage →' : 'Découvrir mes nouveaux contenus →';
 
   const html = `
 <!DOCTYPE html>
@@ -154,14 +173,14 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
                 Nǐhǎo ${echapper(params.nom)} ! 👋
               </h2>
               <p class="texte-corps" style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">
-                Voici les nouveaux contenus et leçons ajoutés sur <strong>ChinoisLingo</strong> cette semaine pour accélérer ton immersion en mandarin.
+                ${introHtml}
               </p>
 
               <!-- Liste des nouveautés par rubriques -->
               ${sectionsHtml}
 
               <!-- Bouton d'accès direct -->
-              ${boutonPrincipal(`${siteUrl}/tableau-de-bord`, 'Découvrir mes nouveaux contenus →')}
+              ${boutonPrincipal(`${siteUrl}/tableau-de-bord`, boutonLibelle)}
             </td>
           </tr>
 
@@ -190,12 +209,12 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
   `;
 
   const texte = `
-Nouveautés de la semaine sur ChinoisLingo
+${rappel ? 'Cette semaine sur ChinoisLingo : à (re)découvrir' : 'Nouveautés de la semaine sur ChinoisLingo'}
 « Le chinois devient facile »
 
 Nǐhǎo ${params.nom} !
 
-Voici les nouveaux contenus ajoutés sur ChinoisLingo cette semaine pour ton apprentissage :
+${introTexte}
 
 ${sectionsTexte}
 

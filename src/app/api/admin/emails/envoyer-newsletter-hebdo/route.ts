@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { exigerAdmin } from '@/lib/admin/garde';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { envoyerEmailRecapHebdo } from '@/lib/emails/emailRecapHebdo';
-import { chargerNouveautesDeLaSemaine } from '@/lib/emails/nouveautesHebdo';
+import { preparerNewsletterDeLaSemaine } from '@/lib/emails/nouveautesHebdo';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,12 +25,13 @@ export async function POST(requete: Request) {
   }
 
   const admin = createAdminClient();
-  // 1. Nouveautés réelles des 7 derniers jours uniquement (aucun repli sur d'anciens contenus)
-  const contenus = await chargerNouveautesDeLaSemaine(admin);
+  // 1. Nouveautés depuis le dernier envoi ; à défaut, rappel de contenus existants
+  //    (un e-mail part chaque semaine — voir preparerNewsletterDeLaSemaine).
+  const { mode, contenus } = await preparerNewsletterDeLaSemaine(admin);
 
   if (contenus.length === 0) {
     return NextResponse.json(
-      { erreur: 'Aucun nouveau contenu ajouté ces 7 derniers jours : newsletter non envoyée.' },
+      { erreur: 'Aucun contenu disponible (ni nouveauté, ni contenu à rappeler) : newsletter non envoyée.' },
       { status: 400 }
     );
   }
@@ -65,6 +66,7 @@ export async function POST(requete: Request) {
         nom,
         profil: dest.onboarding_profil,
         niveau: dest.onboarding_niveau,
+        mode,
         contenus,
       });
 
@@ -80,6 +82,7 @@ export async function POST(requete: Request) {
 
   return NextResponse.json({
     ok: true,
+    mode,
     nouveautesCount: contenus.length,
     destinatairesTotal: destinataires.length,
     totalEnvoyes,
