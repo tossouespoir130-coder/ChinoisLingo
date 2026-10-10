@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)" />
+  
+  <!-- Illustration: 3 women chatting -->
+  <g transform="translate(180, 120)">
+    <!-- Woman 1 -->
+    <circle cx="80" cy="90" r="45" fill="#f472b6" />
+    <path d="M 30 250 C 30 170, 130 170, 130 250 Z" fill="#ec4899" />
+    
+    <!-- Woman 2 (center) -->
+    <circle cx="220" cy="70" r="48" fill="#fb7185" />
+    <path d="M 165 250 C 165 150, 275 150, 275 250 Z" fill="#e11d48" />
+    
+    <!-- Woman 3 -->
+    <circle cx="360" cy="90" r="45" fill="#f43f5e" />
+    <path d="M 310 250 C 310 170, 410 170, 410 250 Z" fill="#be123c" />
+    
+    <!-- Speech bubbles -->
+    <circle cx="160" cy="70" r="14" fill="#ffffff" opacity="0.8" />
+    <circle cx="280" cy="70" r="14" fill="#ffffff" opacity="0.8" />
+  </g>
+  
+  <text x="400" y="470" text-anchor="middle" fill="#fdf2f8" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700">Groupe de trois femmes qui discutent</text>
+  <text x="400" y="515" text-anchor="middle" fill="#fbcfe8" font-family="system-ui, -apple-system, sans-serif" font-size="20">Image provisoire de test · HSK 1</text>
+</svg>

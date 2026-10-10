@@ -723,7 +723,7 @@ export function HskExercisesHub() {
         <div className="absolute right-0 top-0 bottom-0 w-2/5 sm:w-1/3 opacity-20 dark:opacity-15 pointer-events-none overflow-hidden hidden sm:block">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/exercices/levels/hsk1_level_cover.jpg"
+            src="/images/exercices/levels/hsk1_level.jpg"
             alt=""
             className="w-full h-full object-cover object-center"
           />

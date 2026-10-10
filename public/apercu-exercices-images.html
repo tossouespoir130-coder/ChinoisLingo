@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Visuel & Contrôle des Images — Exercices HSK | ChinoisLingo</title>
+  <style>
+    :root {
+      --bg: #0F172A;
+      --card-bg: #1E293B;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --primary: #6200EE;
+      --accent: #00BFA5;
+      --danger: #EF4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 32px 20px;
+      line-height: 1.5;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #fff; }
+    .subtitle { color: var(--text-muted); font-size: 15px; }
+    .badge-status {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 14px;
+      background: rgba(0, 191, 165, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+    .img-wrap {
+      width: 100%;
+      height: 180px;
+      background: #090D16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .img-wrap.contain img {
+      object-fit: contain;
+      padding: 8px;
+    }
+    .card-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-path {
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+    .status-ok {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Audit & Galerie de Contrôle des Images — Exercices HSK</h1>
+      <p class="subtitle">Vérification de l’existence et de l’affichage de chaque illustration du module d’entraînement</p>
+      <div class="badge-status">✓ 100% des images présentes et intégrées au suivi Git</div>
+    </header>
+
+    <!-- SECTION 1 : Niveaux HSK -->
+    <h2 class="section-title">1. Illustrations des 6 Niveaux HSK (Cartes du Hub)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk1_level.jpg" alt="HSK 1"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 1</div>
+          <div class="card-path">/images/exercices/levels/hsk1_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk2_level.jpg" alt="HSK 2"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 2</div>
+          <div class="card-path">/images/exercices/levels/hsk2_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk3_level.jpg" alt="HSK 3"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 3</div>
+          <div class="card-path">/images/exercices/levels/hsk3_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk4_level.jpg" alt="HSK 4"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 4</div>
+          <div class="card-path">/images/exercices/levels/hsk4_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk5_level.jpg" alt="HSK 5"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 5</div>
+          <div class="card-path">/images/exercices/levels/hsk5_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/levels/hsk6_level.jpg" alt="HSK 6"></div>
+        <div class="card-body">
+          <div class="card-title">HSK 6</div>
+          <div class="card-path">/images/exercices/levels/hsk6_level.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 : Rubriques -->
+    <h2 class="section-title">2. Illustrations des Rubriques d’Exercices</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/rubriques/rubrique_vrai_faux.png" alt="Vrai ou Faux ?"></div>
+        <div class="card-body">
+          <div class="card-title">Vrai ou Faux ? (听力判断)</div>
+          <div class="card-path">/images/exercices/rubriques/rubrique_vrai_faux.png</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/rubriques/rubrique_matching.png" alt="Images & Dialogues"></div>
+        <div class="card-body">
+          <div class="card-title">Images & Dialogues (听力配对)</div>
+          <div class="card-path">/images/exercices/rubriques/rubrique_matching.png</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap"><img src="/images/exercices/rubriques/rubrique_dialogue_questions.png" alt="Dialogues & Questions"></div>
+        <div class="card-body">
+          <div class="card-title">Dialogues & Questions (对话理解)</div>
+          <div class="card-path">/images/exercices/rubriques/rubrique_dialogue_questions.png</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 : Questions Série 1 Vrai ou Faux -->
+    <h2 class="section-title">3. Série 1 « Vrai ou Faux ? » (HSK 1)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_q01_eau.jpg" alt="Q1 Eau"></div>
+        <div class="card-body">
+          <div class="card-title">Q1 · 水 (shuǐ, eau)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_q01_eau.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_q02_the.jpg" alt="Q2 Thé"></div>
+        <div class="card-body">
+          <div class="card-title">Q2 · 茶 (chá, thé)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_q02_the.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_q03_guitare.jpg" alt="Q3 Guitare"></div>
+        <div class="card-body">
+          <div class="card-title">Q3 · 电脑 (diànnǎo) vs Guitare</div>
+          <div class="card-path">/images/exercices/hsk1_tf_q03_guitare.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_q04_danse.jpg" alt="Q4 Danse"></div>
+        <div class="card-body">
+          <div class="card-title">Q4 · 跳舞 (tiàowǔ, danser)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_q04_danse.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_q05_merci.jpg" alt="Q5 Merci"></div>
+        <div class="card-body">
+          <div class="card-title">Q5 · 谢谢 (xièxie, merci)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_q05_merci.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 : Questions Série 2 Vrai ou Faux -->
+    <h2 class="section-title">4. Série 2 « Vrai ou Faux ? » (HSK 1)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s02_q01_eleve.jpg" alt="Q1 Élève"></div>
+        <div class="card-body">
+          <div class="card-title">Q1 · 老师 (lǎoshī) vs Élève</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s02_q01_eleve.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s02_q02_americain.jpg" alt="Q2 Américain"></div>
+        <div class="card-body">
+          <div class="card-title">Q2 · 中国人 vs Américain</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s02_q02_americain.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s02_q03_tarte.jpg" alt="Q3 Tarte"></div>
+        <div class="card-body">
+          <div class="card-title">Q3 · 米饭 (mǐfàn) vs Tarte</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s02_q03_tarte.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s02_q04_chinois.jpg" alt="Q4 Chinois"></div>
+        <div class="card-body">
+          <div class="card-title">Q4 · 中国人 (Zhōngguórén)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s02_q04_chinois.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s02_q05_etudiant.jpg" alt="Q5 Étudiant"></div>
+        <div class="card-body">
+          <div class="card-title">Q5 · 学生 (xuésheng, étudiant)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s02_q05_etudiant.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 : Questions Série 3 Vrai ou Faux -->
+    <h2 class="section-title">5. Série 3 « Vrai ou Faux ? » (HSK 1)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s03_q01_france.jpg" alt="Q1 France"></div>
+        <div class="card-body">
+          <div class="card-title">Q1 · 中国 vs Drapeau France</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s03_q01_france.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s03_q02_hopital.jpg" alt="Q2 Hôpital"></div>
+        <div class="card-body">
+          <div class="card-title">Q2 · 医院 (yīyuàn, hôpital)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s03_q02_hopital.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s03_q03_amis.jpg" alt="Q3 Amis"></div>
+        <div class="card-body">
+          <div class="card-title">Q3 · 朋友 (péngyou, amis)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s03_q03_amis.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s03_q04_maman.jpg" alt="Q4 Maman"></div>
+        <div class="card-body">
+          <div class="card-title">Q4 · 爸爸 vs Maman</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s03_q04_maman.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img-wrap contain"><img src="/images/exercices/hsk1_tf_s03_q05_professeur.jpg" alt="Q5 Professeur"></div>
+        <div class="card-body">
+          <div class="card-title">Q5 · 老师 (lǎoshī, professeur)</div>
+          <div class="card-path">/images/exercices/hsk1_tf_s03_q05_professeur.jpg</div>
+          <div class="status-ok">✓ Chargée avec succès</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

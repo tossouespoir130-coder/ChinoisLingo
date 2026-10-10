@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)" />
+  
+  <!-- Flag Card -->
+  <g transform="translate(150, 100)" filter="url(#shadow)">
+    <!-- Flag base border -->
+    <rect x="0" y="0" width="500" height="330" rx="16" fill="#ffffff" stroke="#334155" stroke-width="3" />
+    
+    <!-- Flag 3 vertical stripes: Blue, White, Red -->
+    <clipPath id="flagClip">
+      <rect x="0" y="0" width="500" height="330" rx="16" />
+    </clipPath>
+    <g clip-path="url(#flagClip)">
+      <rect x="0" y="0" width="166.6" height="330" fill="#002395" />
+      <rect x="166.6" y="0" width="166.6" height="330" fill="#ffffff" />
+      <rect x="333.3" y="0" width="166.7" height="330" fill="#ED2939" />
+    </g>
+  </g>
+  
+  <!-- Title / Label -->
+  <text x="400" y="490" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700">Drapeau de la France (Bleu · Blanc · Rouge)</text>
+  <text x="400" y="530" text-anchor="middle" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="20">Image provisoire de test · HSK 1</text>
+</svg>

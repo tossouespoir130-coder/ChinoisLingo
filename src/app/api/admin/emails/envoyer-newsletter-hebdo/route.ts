@@ -101,8 +101,24 @@ export async function POST(requete: Request) {
       console.error('[admin newsletter manual] Erreur envoi à', dest.email, e);
       totalEchecs++;
     }
+  }
 
-    await pause(200);
+  if (totalEnvoyes === 0 && totalEchecs > 0) {
+    const { data: lastLog } = await admin
+      .from('emails_log')
+      .select('erreur')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    const detailErreur = lastLog?.erreur || 'Échec d’envoi : aucun email n’a pu être envoyé.';
+    return NextResponse.json({
+      ok: false,
+      erreur: detailErreur,
+      totalDestinataires: destinataires.length,
+      totalEnvoyes: 0,
+      totalEchecs,
+    }, { status: 500 });
   }
 
   return NextResponse.json({

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)" />
+  
+  <!-- Friends toasting with tea cups -->
+  <g transform="translate(200, 110)">
+    <!-- Person 1 -->
+    <circle cx="100" cy="80" r="45" fill="#a7f3d0" />
+    <path d="M 40 250 C 40 160, 160 160, 160 250 Z" fill="#34d399" />
+    
+    <!-- Person 2 -->
+    <circle cx="300" cy="80" r="45" fill="#a7f3d0" />
+    <path d="M 240 250 C 240 160, 360 160, 360 250 Z" fill="#34d399" />
+    
+    <!-- Tea Cups Clinking -->
+    <rect x="175" y="160" width="22" height="28" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="2" />
+    <rect x="203" y="160" width="22" height="28" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="2" />
+    <circle cx="200" cy="150" r="6" fill="#fbbf24" />
+  </g>
+  
+  <text x="400" y="470" text-anchor="middle" fill="#ecfdf5" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700">Deux amis souriants qui trinquent au thé</text>
+  <text x="400" y="515" text-anchor="middle" fill="#a7f3d0" font-family="system-ui, -apple-system, sans-serif" font-size="20">Image provisoire de test · HSK 1</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <rect width="400" height="300" rx="20" fill="#FFFBEB"/>
+  <!-- Feuille / Cahier -->
+  <rect x="110" y="80" width="140" height="170" rx="8" fill="#FDE68A" stroke="#D97706" stroke-width="4"/>
+  <line x1="130" y1="120" x2="220" y2="120" stroke="#B45309" stroke-width="3" stroke-linecap="round"/>
+  <line x1="130" y1="150" x2="220" y2="150" stroke="#B45309" stroke-width="3" stroke-linecap="round"/>
+  <line x1="130" y1="180" x2="190" y2="180" stroke="#B45309" stroke-width="3" stroke-linecap="round"/>
+  <!-- Stylo / Plume -->
+  <g transform="rotate(-35 240 180)">
+    <rect x="225" y="70" width="20" height="120" rx="4" fill="#6366F1"/>
+    <polygon points="225,190 245,190 235,215" fill="#4338CA"/>
+    <polygon points="232,210 238,210 235,218" fill="#1E1B4B"/>
+  </g>
+  <text x="200" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#92400E">Illustration C (Écrire)</text>
+</svg>

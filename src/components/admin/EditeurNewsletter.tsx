@@ -162,10 +162,12 @@ export function EditeurNewsletter({ appeler, pret, onApresEnvoi }: { appeler: Ap
         '/api/admin/emails/envoyer-newsletter-hebdo',
         { method: 'POST', body: JSON.stringify({ brouillon }) }
       );
-      if (!res.ok) throw new Error(res.erreur || 'Erreur lors de l’envoi de la newsletter.');
+      if (!res.ok || res.totalEnvoyes === 0) {
+        throw new Error(res.erreur || `Aucun e-mail n’a pu être délivré (0/${res.destinatairesTotal || 0} reçus). Vérifiez la configuration Resend.`);
+      }
       setResultat({
         succes: true,
-        message: `Newsletter envoyée à ${res.totalEnvoyes}/${res.destinatairesTotal} destinataire(s) (${res.nouveautesCount} contenu(s)).`,
+        message: `Newsletter envoyée avec succès à ${res.totalEnvoyes}/${res.destinatairesTotal} destinataire(s) (${res.nouveautesCount} contenu(s)).`,
       });
       onApresEnvoi?.();
       chargerProposition();

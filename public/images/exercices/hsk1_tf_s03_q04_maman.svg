@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a044e" />
+      <stop offset="100%" stop-color="#701a75" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)" />
+  
+  <!-- Mom holding child's hand -->
+  <g transform="translate(240, 110)">
+    <!-- Mom -->
+    <circle cx="120" cy="70" r="42" fill="#f5d0fe" />
+    <path d="M 60 250 C 60 150, 180 150, 180 250 Z" fill="#d946ef" />
+    
+    <!-- Child -->
+    <circle cx="240" cy="140" r="30" fill="#f5d0fe" />
+    <path d="M 200 250 C 200 190, 280 190, 280 250 Z" fill="#e879f9" />
+    
+    <!-- Holding hands line -->
+    <path d="M 160 200 Q 190 220 210 200" stroke="#f5d0fe" stroke-width="8" stroke-linecap="round" fill="none" />
+  </g>
+  
+  <text x="400" y="470" text-anchor="middle" fill="#fdf4ff" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700">Une maman tenant son enfant par la main</text>
+  <text x="400" y="515" text-anchor="middle" fill="#f5d0fe" font-family="system-ui, -apple-system, sans-serif" font-size="20">Image provisoire de test · HSK 1</text>
+</svg>

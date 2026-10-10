@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)" />
+  
+  <!-- Blackboard (clean without writing) -->
+  <rect x="120" y="80" width="560" height="300" rx="10" fill="#0f172a" stroke="#d97706" stroke-width="8" />
+  
+  <!-- Teacher with chalk in hand -->
+  <g transform="translate(340, 140)">
+    <circle cx="60" cy="50" r="38" fill="#fed7aa" />
+    <path d="M 10 240 C 10 130, 110 130, 110 240 Z" fill="#3b82f6" />
+    <!-- Arm with chalk -->
+    <path d="M 90 150 L 140 120" stroke="#fed7aa" stroke-width="12" stroke-linecap="round" />
+    <!-- White chalk piece -->
+    <rect x="140" y="112" width="12" height="6" rx="2" fill="#ffffff" />
+  </g>
+  
+  <text x="400" y="470" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700">Enseignant debout devant un tableau noir, craie à la main</text>
+  <text x="400" y="515" text-anchor="middle" fill="#cbd5e1" font-family="system-ui, -apple-system, sans-serif" font-size="20">Image provisoire de test · HSK 1</text>
+</svg>
