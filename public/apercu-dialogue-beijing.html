@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aperçu du Dialogue — Voyager à Pékin (去北京旅游) | ChinoisLingo</title>
+  <style>
+    :root {
+      --bg: #0F172A;
+      --card: #1E293B;
+      --border: #334155;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --violet: #8B5CF6;
+      --turquoise: #06B6D4;
+      --accent: #00BFA5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 28px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--violet);
+      color: var(--violet);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .subtitle { color: var(--muted); font-size: 14px; }
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .hero-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-body { padding: 20px; }
+    .hero-desc { color: var(--muted); font-size: 14px; }
+    .characters-strip {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .char-card {
+      flex: 1;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      border-left: 3px solid;
+    }
+    .char-card.espoir { border-color: var(--violet); }
+    .char-card.lily { border-color: var(--turquoise); }
+    .char-name { font-weight: 700; font-size: 14px; }
+    .char-role { font-size: 12px; color: var(--muted); }
+    .dialogue-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .turn {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .avatar.espoir { background: linear-gradient(135deg, #7C3AED, #A855F7); }
+    .avatar.lily { background: linear-gradient(135deg, #0284C7, #06B6D4); }
+    .bubble {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 18px;
+      flex: 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .bubble-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .bubble-header.espoir { color: #C084FC; }
+    .bubble-header.lily { color: #38BDF8; }
+    .hanzi { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .pinyin { font-size: 13px; color: #FCD34D; font-style: italic; margin-bottom: 4px; }
+    .french { font-size: 13px; color: #CBD5E1; }
+    .vocab-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+    .vocab-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; color: #fff; }
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .vocab-item {
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    .vocab-hz { font-size: 15px; font-weight: 700; color: #fff; }
+    .vocab-py { font-size: 12px; color: #FCD34D; }
+    .vocab-fr { font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Niveau HSK 2 · Dialogue Immersif</div>
+      <h1>Voyager à Pékin · 去北京旅游</h1>
+      <p class="subtitle">Qù Běijīng Lǚyóu — Échange entre Espoir et Lily sur le meilleur choix de destination en Chine</p>
+    </header>
+
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=800&auto=format&fit=crop&q=80" alt="Temple du Ciel, Pékin" class="hero-img">
+      <div class="hero-body">
+        <p class="hero-desc">Espoir a très envie de voyager en Chine et demande conseil à Lily. Séduits par la beauté des monuments et des parcs de Pékin, ils décident d’organiser cette aventure ensemble.</p>
+        <div class="characters-strip">
+          <div class="char-card espoir">
+            <div class="char-name">Espoir (苏波 · Sūbō)</div>
+            <div class="char-role">Ami voyageur · Passionné de découverte</div>
+          </div>
+          <div class="char-card lily">
+            <div class="char-name">Lily (丽丽 · Lìli)</div>
+            <div class="char-role">Amie · Recommande chaleureusement la capitale</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialogue-flow">
+      <!-- Réplique 1 -->
+      <div class="turn">
+        <div class="avatar espoir">苏波</div>
+        <div class="bubble">
+          <div class="bubble-header espoir">Espoir (苏波)</div>
+          <div class="hanzi">我想去中国旅游，你觉得去哪儿最好？</div>
+          <div class="pinyin">Wǒ xiǎng qù Zhōngguó lǚyóu, nǐ juéde qù nǎr zuì hǎo?</div>
+          <div class="french">J’ai envie d’aller voyager en Chine, où penses-tu que c’est le mieux d’aller ?</div>
+        </div>
+      </div>
+
+      <!-- Réplique 2 -->
+      <div class="turn">
+        <div class="avatar lily">丽丽</div>
+        <div class="bubble">
+          <div class="bubble-header lily">Lily (丽丽)</div>
+          <div class="hanzi">我觉得北京最好。</div>
+          <div class="pinyin">Wǒ juéde Běijīng zuì hǎo.</div>
+          <div class="french">Je pense que Pékin est le meilleur choix.</div>
+        </div>
+      </div>
+
+      <!-- Réplique 3 -->
+      <div class="turn">
+        <div class="avatar espoir">苏波</div>
+        <div class="bubble">
+          <div class="bubble-header espoir">Espoir (苏波)</div>
+          <div class="hanzi">为什么？</div>
+          <div class="pinyin">Wèishénme?</div>
+          <div class="french">Pourquoi ?</div>
+        </div>
+      </div>
+
+      <!-- Réplique 4 -->
+      <div class="turn">
+        <div class="avatar lily">丽丽</div>
+        <div class="bubble">
+          <div class="bubble-header lily">Lily (丽丽)</div>
+          <div class="hanzi">北京有很多漂亮的地方。</div>
+          <div class="pinyin">Běijīng yǒu hěn duō piàoliang de dìfang.</div>
+          <div class="french">Pékin a beaucoup d’endroits magnifiques.</div>
+        </div>
+      </div>
+
+      <!-- Réplique 5 -->
+      <div class="turn">
+        <div class="avatar espoir">苏波</div>
+        <div class="bubble">
+          <div class="bubble-header espoir">Espoir (苏波)</div>
+          <div class="hanzi">我也觉得北京最好。</div>
+          <div class="pinyin">Wǒ yě juéde Běijīng zuì hǎo.</div>
+          <div class="french">Je pense aussi que Pékin est le mieux.</div>
+        </div>
+      </div>
+
+      <!-- Réplique 6 -->
+      <div class="turn">
+        <div class="avatar lily">丽丽</div>
+        <div class="bubble">
+          <div class="bubble-header lily">Lily (丽丽)</div>
+          <div class="hanzi">那我们一起去北京旅游，怎么样？</div>
+          <div class="pinyin">Nà wǒmen yìqǐ qù Běijīng lǚyóu, zěnmeyàng?</div>
+          <div class="french">Dans ce cas, et si nous allions voyager à Pékin ensemble ?</div>
+        </div>
+      </div>
+
+      <!-- Réplique 7 -->
+      <div class="turn">
+        <div class="avatar espoir">苏波</div>
+        <div class="bubble">
+          <div class="bubble-header espoir">Espoir (苏波)</div>
+          <div class="hanzi">好啊。</div>
+          <div class="pinyin">Hǎo a.</div>
+          <div class="french">D’accord !</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vocabulaire -->
+    <div class="vocab-card">
+      <div class="vocab-title">Vocabulaire Clé de la Leçon (HSK 2)</div>
+      <div class="vocab-grid">
+        <div class="vocab-item">
+          <div class="vocab-hz">旅游</div>
+          <div class="vocab-py">lǚyóu</div>
+          <div class="vocab-fr">Voyager / Tourisme (v. / n.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">觉得</div>
+          <div class="vocab-py">juéde</div>
+          <div class="vocab-fr">Penser / Trouver (v.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">最</div>
+          <div class="vocab-py">zuì</div>
+          <div class="vocab-fr">Le plus (adv.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">为什么</div>
+          <div class="vocab-py">wèishénme</div>
+          <div class="vocab-fr">Pourquoi (pron.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">漂亮</div>
+          <div class="vocab-py">piàoliang</div>
+          <div class="vocab-fr">Beau / Magnifique (adj.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">地方</div>
+          <div class="vocab-py">dìfang</div>
+          <div class="vocab-fr">Endroit / Lieu (n.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">一起</div>
+          <div class="vocab-py">yìqǐ</div>
+          <div class="vocab-fr">Ensemble (adv.)</div>
+        </div>
+        <div class="vocab-item">
+          <div class="vocab-hz">怎么样</div>
+          <div class="vocab-py">zěnmeyàng</div>
+          <div class="vocab-fr">Comment / Qu’en dis-tu ? (pron.)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{
+  "contentId": "dialogue_voyage_pekin",
+  "title": "Voyager à Pékin (去北京旅游)",
+  "type": "dialogues",
+  "model": "eleven_v3",
+  "fullAudioUrl": "/audio/readings/dialogue_voyage_pekin.mp3",
+  "totalDurationMs": 16180,
+  "sentences": [
+    {
+      "sentenceId": "dvp_1",
+      "speaker": "Espoir",
+      "text": "我想去中国旅游，你觉得去哪儿最好？",
+      "startMs": 0,
+      "endMs": 2660,
+      "durationMs": 2660,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_1.mp3"
+    },
+    {
+      "sentenceId": "dvp_2",
+      "speaker": "Lily",
+      "text": "我觉得北京最好。",
+      "startMs": 3110,
+      "endMs": 5150,
+      "durationMs": 2040,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_2.mp3"
+    },
+    {
+      "sentenceId": "dvp_3",
+      "speaker": "Espoir",
+      "text": "为什么？",
+      "startMs": 5600,
+      "endMs": 7230,
+      "durationMs": 1630,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_3.mp3"
+    },
+    {
+      "sentenceId": "dvp_4",
+      "speaker": "Lily",
+      "text": "北京有很多漂亮的地方。",
+      "startMs": 7680,
+      "endMs": 10440,
+      "durationMs": 2760,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_4.mp3"
+    },
+    {
+      "sentenceId": "dvp_5",
+      "speaker": "Espoir",
+      "text": "我也觉得北京最好。",
+      "startMs": 10890,
+      "endMs": 12040,
+      "durationMs": 1150,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_5.mp3"
+    },
+    {
+      "sentenceId": "dvp_6",
+      "speaker": "Lily",
+      "text": "那我们一起去北京旅游，怎么样？",
+      "startMs": 12490,
+      "endMs": 15250,
+      "durationMs": 2760,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_6.mp3"
+    },
+    {
+      "sentenceId": "dvp_7",
+      "speaker": "Espoir",
+      "text": "好啊。",
+      "startMs": 15700,
+      "endMs": 16370,
+      "durationMs": 670,
+      "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_7.mp3"
+    }
+  ]
+}

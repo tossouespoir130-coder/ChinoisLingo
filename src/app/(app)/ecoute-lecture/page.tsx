@@ -4755,6 +4755,112 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '走', pinyin: 'zǒu', french: 'partir, marcher, aller', role: 'Verbe' },
     ]
   },
+  {
+    id: 'dialogue_voyage_pekin',
+    titleFr: 'Voyager à Pékin',
+    titleZh: '去北京旅游',
+    titlePinyin: 'Qù Běijīng Lǚyóu',
+    type: 'dialogues',
+    level: 'HSK 2',
+    duration: '1 min 30',
+    description: 'Espoir et Lily discutent de la meilleure destination en Chine et choisissent d’aller explorer les merveilles de Pékin ensemble.',
+    imageUrl: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=800&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#0288D1] to-[#01579B]',
+    characters: [
+      {
+        name: 'Espoir',
+        nameZh: '苏波',
+        pinyin: 'Sūbō',
+        role: 'Voyageur',
+        description: 'Passionné de découverte, il demande conseil pour son voyage en Chine et propose de partir ensemble.',
+        color: 'violet'
+      },
+      {
+        name: 'Lily',
+        nameZh: '丽丽',
+        pinyin: 'Lìli',
+        role: 'Amie',
+        description: 'Recommande chaleureusement la capitale pour ses paysages magnifiques et accepte l’invitation.',
+        color: 'turquoise'
+      }
+    ],
+    sentences: [
+      {
+        id: 'dvp_1',
+        speaker: 'Espoir',
+        speakerRole: 'Voyageur',
+        speakerColor: 'violet',
+        hanzi: '我想去中国旅游，你觉得去哪儿最好？',
+        pinyin: 'Wǒ xiǎng qù Zhōngguó lǚyóu, nǐ juéde qù nǎr zuì hǎo?',
+        french: 'J’ai envie d’aller voyager en Chine, où penses-tu que c’est le mieux d’aller ?',
+      },
+      {
+        id: 'dvp_2',
+        speaker: 'Lily',
+        speakerRole: 'Amie',
+        speakerColor: 'turquoise',
+        hanzi: '我觉得北京最好。',
+        pinyin: 'Wǒ juéde Běijīng zuì hǎo.',
+        french: 'Je pense que Pékin est le meilleur choix.',
+      },
+      {
+        id: 'dvp_3',
+        speaker: 'Espoir',
+        speakerRole: 'Voyageur',
+        speakerColor: 'violet',
+        hanzi: '为什么？',
+        pinyin: 'Wèishénme?',
+        french: 'Pourquoi ?',
+      },
+      {
+        id: 'dvp_4',
+        speaker: 'Lily',
+        speakerRole: 'Amie',
+        speakerColor: 'turquoise',
+        hanzi: '北京有很多漂亮的地方。',
+        pinyin: 'Běijīng yǒu hěn duō piàoliang de dìfang.',
+        french: 'Pékin a beaucoup d’endroits magnifiques.',
+      },
+      {
+        id: 'dvp_5',
+        speaker: 'Espoir',
+        speakerRole: 'Voyageur',
+        speakerColor: 'violet',
+        hanzi: '我也觉得北京最好。',
+        pinyin: 'Wǒ yě juéde Běijīng zuì hǎo.',
+        french: 'Je pense aussi que Pékin est le mieux.',
+      },
+      {
+        id: 'dvp_6',
+        speaker: 'Lily',
+        speakerRole: 'Amie',
+        speakerColor: 'turquoise',
+        hanzi: '那我们一起去北京旅游，怎么样？',
+        pinyin: 'Nà wǒmen yìqǐ qù Běijīng lǚyóu, zěnmeyàng?',
+        french: 'Dans ce cas, et si nous allions voyager à Pékin ensemble ?',
+      },
+      {
+        id: 'dvp_7',
+        speaker: 'Espoir',
+        speakerRole: 'Voyageur',
+        speakerColor: 'violet',
+        hanzi: '好啊。',
+        pinyin: 'Hǎo a.',
+        french: 'D’accord !',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '旅游', pinyin: 'lǚyóu', french: 'voyager, faire du tourisme', role: 'Verbe / Nom' },
+      { hanzi: '觉得', pinyin: 'juéde', french: 'penser, trouver, avoir l’impression', role: 'Verbe' },
+      { hanzi: '最', pinyin: 'zuì', french: 'le plus (superlatif absolu)', role: 'Adverbe' },
+      { hanzi: '为什么', pinyin: 'wèishénme', french: 'pourquoi', role: 'Pronom interrogatif' },
+      { hanzi: '漂亮', pinyin: 'piàoliang', french: 'beau, joli, magnifique', role: 'Adjectif' },
+      { hanzi: '地方', pinyin: 'dìfang', french: 'endroit, lieu', role: 'Nom commun' },
+      { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
+      { hanzi: '怎么样', pinyin: 'zěnmeyàng', french: 'comment, qu’en dis-tu ?', role: 'Pronom interrogatif' },
+      { hanzi: '好啊', pinyin: 'hǎo a', french: 'd’accord, super, bonne idée !', role: 'Expression' },
+    ]
+  },
 
   // ================= 4. CHANSONS CHINOISES CLASSIQUES & LYRICS COMPLETS (HSK 1 ➔ HSK 3) =================
   
