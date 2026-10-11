@@ -87,11 +87,13 @@
       5. **Narrateur 5** : **Hua Feng** (`rtRocV7drsrJFSQPxlD3`)
     - *Histoires indépendantes* : Rotation circulaire stricte entre les 5 narrateurs (Histoire 1 = Narratrice 1 Anna Su ➔ Histoire 2 = Narrateur 2 Ethan ➔ Histoire 3 = Narratrice 3 Siqi ➔ Histoire 4 = Narratrice 4 Sage ➔ Histoire 5 = Narrateur 5 Hua Feng ➔ Histoire 6 = retour à la Narratrice 1 Anna Su...).
     - *Séries d'histoires (plusieurs épisodes liés)* : UN SEUL narrateur lit toute la série du début à la fin (la rotation ne s'applique qu'entre séries différentes).
-11. **Traitement des Débuts/Fins de Segments Audio (Anti-Glitch, Anti-Cut & Padding)** :
-    - Supprimer tout silence brut ou artefact de coupure en tout début et toute fin de segment avant l'assemblage.
-    - Appliquer systématiquement un léger micro fade-in (20 à 30ms) au début et un fade-out (30 à 40ms) à la fin de chaque segment pour éliminer tout clic ou coupure nette audible.
-    - Lors de l'assemblage de dialogues multi-locuteurs, ne jamais coller les segments bord à bord : appliquer le fade-out/fade-in et une pause naturelle fluide de 350ms avec normalisation du volume (`loudnorm`).
-    - Conserver un padding de fin naturel (+80ms) pour garantir qu'aucune consonne finale ou respiration ne soit tronquée. S'applique à tous les types de contenu : histoires, articles, dialogues, vocabulaire.
+11. **Règle Permanente Anti-Glitch & Douceur des Transitions (Zéro Cut Abrupt & Respect des Respirations)** :
+    - **Préservation de la dynamique native ElevenLabs** : Ne jamais appliquer de filtre de compression destructive (`loudnorm` agressif) ni de micro-fade artificiel qui tronque les attaques ou étouffe les respirations naturelles et résonances de fin de phrase. Conserver la pureté studio du buffer natif ElevenLabs v3.
+    - **Alignement technique parfait des flux (Zéro Glitch / Zéro Clic)** : Les segments générés par ElevenLabs étant en MP3 44100Hz mono 128k, tout silence d'espacement inséré entre les répliques DOIT être généré rigoureusement sous les mêmes paramètres (`anullsrc=r=44100:cl=mono -c:a libmp3lame -b:a 128k -ar 44100`). Tout décalage mono/stéréo ou de fréquence est banni pour éliminer tout clic, pop ou artefact numérique à la jonction.
+    - **Pauses contextuelles naturelles et fluides** :
+      - Pause standard entre deux répliques : **500ms**.
+      - Pause après une question interrogative (`？`, `吗`, `呢`) ou moment de réflexion : **650ms**.
+    - **Rythme et tempo posés pour les voix masculines** : Bannir les débits précipités ou trop rapides à vitesse 1x normale. Utiliser des voix masculines posées, calmes et distinctement articulées (ex. **Guan Tao Bao** `MQkiCZS3mnl44caDtxkJ`), offrant un confort d'écoute parfait pour les apprenants.
 12. **Règle Permanente de Non-Collision et Différenciation des Voix dans les Dialogues** :
     - **Interdiction absolue d'associer la voix de Mr Chen (`cwzmKSYMCC9Aym1ymCnt`) et la voix de Jin (`vZZLclMx4wouUtKBRfZn`) dans un même dialogue** (à 2 ou 3 personnages), en raison de leur trop grande ressemblance de timbre et de tessiture.
     - Dans tout dialogue impliquant le professeur Li (`Mr Chen`), utiliser obligatoirement pour l'étudiant une voix jeune et nettement contrastée (ex. **Adrian** `agczkAUlHLowaNnL72Cc` pour les voix masculines ou voix féminines). Même règle stricte pour tout dialogue à 3 personnages.
