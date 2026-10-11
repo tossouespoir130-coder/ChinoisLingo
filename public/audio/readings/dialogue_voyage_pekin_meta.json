@@ -8,7 +8,7 @@
   "sentences": [
     {
       "sentenceId": "dvp_1",
-      "speaker": "Espoir",
+      "speaker": "小明",
       "text": "我想去中国旅游，你觉得去哪儿最好？",
       "startMs": 0,
       "endMs": 2660,
@@ -17,7 +17,7 @@
     },
     {
       "sentenceId": "dvp_2",
-      "speaker": "Lily",
+      "speaker": "小丽",
       "text": "我觉得北京最好。",
       "startMs": 3110,
       "endMs": 5150,
@@ -26,7 +26,7 @@
     },
     {
       "sentenceId": "dvp_3",
-      "speaker": "Espoir",
+      "speaker": "小明",
       "text": "为什么？",
       "startMs": 5600,
       "endMs": 7230,
@@ -35,7 +35,7 @@
     },
     {
       "sentenceId": "dvp_4",
-      "speaker": "Lily",
+      "speaker": "小丽",
       "text": "北京有很多漂亮的地方。",
       "startMs": 7680,
       "endMs": 10440,
@@ -44,7 +44,7 @@
     },
     {
       "sentenceId": "dvp_5",
-      "speaker": "Espoir",
+      "speaker": "小明",
       "text": "我也觉得北京最好。",
       "startMs": 10890,
       "endMs": 12040,
@@ -53,7 +53,7 @@
     },
     {
       "sentenceId": "dvp_6",
-      "speaker": "Lily",
+      "speaker": "小丽",
       "text": "那我们一起去北京旅游，怎么样？",
       "startMs": 12490,
       "endMs": 15250,
@@ -62,11 +62,11 @@
     },
     {
       "sentenceId": "dvp_7",
-      "speaker": "Espoir",
+      "speaker": "小明",
       "text": "好啊。",
       "startMs": 15700,
-      "endMs": 16370,
-      "durationMs": 670,
+      "endMs": 16180,
+      "durationMs": 480,
       "audioUrl": "/audio/readings/dialogue_voyage_pekin_dvp_7.mp3"
     }
   ]

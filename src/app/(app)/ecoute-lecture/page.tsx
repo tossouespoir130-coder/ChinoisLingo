@@ -4763,32 +4763,32 @@ export const readingCatalog: ReadingItem[] = [
     type: 'dialogues',
     level: 'HSK 2',
     duration: '1 min 30',
-    description: 'Espoir et Lily discutent de la meilleure destination en Chine et choisissent d’aller explorer les merveilles de Pékin ensemble.',
+    description: 'Xiaoming et Xiaoli discutent de la meilleure destination en Chine et décident d’aller explorer les merveilles de Pékin ensemble.',
     imageUrl: 'https://images.unsplash.com/photo-1584646098378-0874589d76b1?w=800&auto=format&fit=crop&q=80',
     iconBg: 'from-[#0288D1] to-[#01579B]',
     characters: [
       {
-        name: 'Espoir',
-        nameZh: '苏波',
-        pinyin: 'Sūbō',
-        role: 'Voyageur',
-        description: 'Passionné de découverte, il demande conseil pour son voyage en Chine et propose de partir ensemble.',
+        name: '小明',
+        nameZh: '小明',
+        pinyin: 'Xiǎomíng',
+        role: 'Ami',
+        description: 'Souhaite partir en voyage et demande conseil pour choisir la destination idéale.',
         color: 'violet'
       },
       {
-        name: 'Lily',
-        nameZh: '丽丽',
-        pinyin: 'Lìli',
+        name: '小丽',
+        nameZh: '小丽',
+        pinyin: 'Xiǎolì',
         role: 'Amie',
-        description: 'Recommande chaleureusement la capitale pour ses paysages magnifiques et accepte l’invitation.',
+        description: 'Recommande chaleureusement Pékin pour la beauté de ses monuments et paysages.',
         color: 'turquoise'
       }
     ],
     sentences: [
       {
         id: 'dvp_1',
-        speaker: 'Espoir',
-        speakerRole: 'Voyageur',
+        speaker: '小明',
+        speakerRole: 'Ami',
         speakerColor: 'violet',
         hanzi: '我想去中国旅游，你觉得去哪儿最好？',
         pinyin: 'Wǒ xiǎng qù Zhōngguó lǚyóu, nǐ juéde qù nǎr zuì hǎo?',
@@ -4796,7 +4796,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_2',
-        speaker: 'Lily',
+        speaker: '小丽',
         speakerRole: 'Amie',
         speakerColor: 'turquoise',
         hanzi: '我觉得北京最好。',
@@ -4805,8 +4805,8 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_3',
-        speaker: 'Espoir',
-        speakerRole: 'Voyageur',
+        speaker: '小明',
+        speakerRole: 'Ami',
         speakerColor: 'violet',
         hanzi: '为什么？',
         pinyin: 'Wèishénme?',
@@ -4814,7 +4814,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_4',
-        speaker: 'Lily',
+        speaker: '小丽',
         speakerRole: 'Amie',
         speakerColor: 'turquoise',
         hanzi: '北京有很多漂亮的地方。',
@@ -4823,8 +4823,8 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_5',
-        speaker: 'Espoir',
-        speakerRole: 'Voyageur',
+        speaker: '小明',
+        speakerRole: 'Ami',
         speakerColor: 'violet',
         hanzi: '我也觉得北京最好。',
         pinyin: 'Wǒ yě juéde Běijīng zuì hǎo.',
@@ -4832,7 +4832,7 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_6',
-        speaker: 'Lily',
+        speaker: '小丽',
         speakerRole: 'Amie',
         speakerColor: 'turquoise',
         hanzi: '那我们一起去北京旅游，怎么样？',
@@ -4841,8 +4841,8 @@ export const readingCatalog: ReadingItem[] = [
       },
       {
         id: 'dvp_7',
-        speaker: 'Espoir',
-        speakerRole: 'Voyageur',
+        speaker: '小明',
+        speakerRole: 'Ami',
         speakerColor: 'violet',
         hanzi: '好啊。',
         pinyin: 'Hǎo a.',
