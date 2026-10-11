@@ -907,6 +907,97 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '好朋友', pinyin: 'hǎo péngyou', french: 'bon ami, meilleur ami', role: 'Nom commun' },
     ]
   },
+  {
+    id: 'article_premiere_fois_nouilles',
+    titleFr: 'Mes premières nouilles maison',
+    titleZh: '第一次做面条',
+    titlePinyin: 'Dì Yī Cì Zuò Miàntiáo',
+    type: 'articles',
+    level: 'HSK 1',
+    duration: '1 min 30',
+    description: 'Le récit simple et émouvant d’une première préparation de nouilles aux œufs à la maison, avec le bonheur d’en cuisiner bientôt pour sa maman.',
+    imageUrl: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#E65100] to-[#BF360C]',
+    sentences: [
+      {
+        id: 'art_pfn_1',
+        hanzi: '昨天，我第一次做面条。',
+        pinyin: 'Zuótiān, wǒ dì yī cì zuò miàntiáo.',
+        french: 'Hier, j’ai cuisiné des nouilles pour la première fois.',
+      },
+      {
+        id: 'art_pfn_2',
+        hanzi: '我觉得很简单。',
+        pinyin: 'Wǒ juéde hěn jiǎndān.',
+        french: 'J’ai trouvé que c’était très simple.',
+      },
+      {
+        id: 'art_pfn_3',
+        hanzi: '我去商店买了面条和鸡蛋。',
+        pinyin: 'Wǒ qù shāngdiàn mǎi le miàntiáo hé jīdàn.',
+        french: 'Je suis allé au magasin acheter des nouilles et des œufs.',
+      },
+      {
+        id: 'art_pfn_4',
+        hanzi: '回家以后，我在家做面条。',
+        pinyin: 'Huíjiā yǐhòu, wǒ zài jiā zuò miàntiáo.',
+        french: 'Après être rentré à la maison, j’ai préparé les nouilles chez moi.',
+      },
+      {
+        id: 'art_pfn_5',
+        hanzi: '我放了一些水，然后放面条。',
+        pinyin: 'Wǒ fàng le yìxiē shuǐ, ránhòu fàng miàntiáo.',
+        french: 'J’ai mis un peu d’eau, puis j’ai plongé les nouilles.',
+      },
+      {
+        id: 'art_pfn_6',
+        hanzi: '五分钟以后，我放鸡蛋。',
+        pinyin: 'Wǔ fēnzhōng yǐhòu, wǒ fàng jīdàn.',
+        french: 'Cinq minutes plus tard, j’ai ajouté les œufs.',
+      },
+      {
+        id: 'art_pfn_7',
+        hanzi: '面条做好了。',
+        pinyin: 'Miàntiáo zuò hǎo le.',
+        french: 'Les nouilles étaient prêtes.',
+      },
+      {
+        id: 'art_pfn_8',
+        hanzi: '我吃了一口，觉得很好吃。',
+        pinyin: 'Wǒ chī le yì kǒu, juéde hěn hǎochī.',
+        french: 'J’en ai goûté une bouchée, et j’ai trouvé ça délicieux.',
+      },
+      {
+        id: 'art_pfn_9',
+        hanzi: '我很高兴，因为我会做面条了。',
+        pinyin: 'Wǒ hěn gāoxìng, yīnwèi wǒ huì zuò miàntiáo le.',
+        french: 'J’étais très content, car je sais désormais faire des nouilles.',
+      },
+      {
+        id: 'art_pfn_10',
+        hanzi: '以后我可以做给妈妈吃。',
+        pinyin: 'Yǐhòu wǒ kěyǐ zuò gěi māma chī.',
+        french: 'Plus tard, je pourrai en cuisiner pour ma maman.',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '第一次', pinyin: 'dì yī cì', french: 'pour la première fois', role: 'Expression' },
+      { hanzi: '做', pinyin: 'zuò', french: 'faire, cuisiner, préparer', role: 'Verbe' },
+      { hanzi: '面条', pinyin: 'miàntiáo', french: 'nouilles', role: 'Nom commun' },
+      { hanzi: '觉得', pinyin: 'juéde', french: 'trouver, penser', role: 'Verbe' },
+      { hanzi: '简单', pinyin: 'jiǎndān', french: 'simple, facile', role: 'Adjectif' },
+      { hanzi: '商店', pinyin: 'shāngdiàn', french: 'magasin, boutique', role: 'Nom commun' },
+      { hanzi: '鸡蛋', pinyin: 'jīdàn', french: 'œuf', role: 'Nom commun' },
+      { hanzi: '回家', pinyin: 'huíjiā', french: 'rentrer à la maison', role: 'Locution verbale' },
+      { hanzi: '以后', pinyin: 'yǐhòu', french: 'après, plus tard', role: 'Locatif' },
+      { hanzi: '放', pinyin: 'fàng', french: 'mettre, déposer, ajouter', role: 'Verbe' },
+      { hanzi: '然后', pinyin: 'ránhòu', french: 'ensuite, puis', role: 'Conjonction' },
+      { hanzi: '分钟', pinyin: 'fēnzhōng', french: 'minute', role: 'Nom / Classificateur' },
+      { hanzi: '好吃', pinyin: 'hǎochī', french: 'délicieux, bon', role: 'Adjectif' },
+      { hanzi: '高兴', pinyin: 'gāoxìng', french: 'content, heureux', role: 'Adjectif' },
+      { hanzi: '妈妈', pinyin: 'māma', french: 'maman', role: 'Nom commun' },
+    ]
+  },
 
   // ---------- NIVEAU HSK 4 ----------
   {

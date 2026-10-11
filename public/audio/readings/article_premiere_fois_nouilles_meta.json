@@ -1,0 +1,97 @@
+{
+  "contentId": "article_premiere_fois_nouilles",
+  "title": "Mes premières nouilles maison (第一次做面条)",
+  "type": "article",
+  "narrator": "Anna Su (Narratrice 1)",
+  "model": "eleven_v3",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_premiere_fois_nouilles.mp3",
+  "totalDurationMs": 26780,
+  "sentences": [
+    {
+      "sentenceId": "art_pfn_1",
+      "text": "昨天，我第一次做面条。",
+      "startMs": 0,
+      "endMs": 2770,
+      "durationMs": 2770,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_1.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_2",
+      "text": "我觉得很简单。",
+      "startMs": 3270,
+      "endMs": 4340,
+      "durationMs": 1070,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_2.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_3",
+      "text": "我去商店买了面条和鸡蛋。",
+      "startMs": 4840,
+      "endMs": 7530,
+      "durationMs": 2690,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_3.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_4",
+      "text": "回家以后，我在家做面条。",
+      "startMs": 8030,
+      "endMs": 10800,
+      "durationMs": 2770,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_4.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_5",
+      "text": "我放了一些水，然后放面条。",
+      "startMs": 11300,
+      "endMs": 13890,
+      "durationMs": 2590,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_5.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_6",
+      "text": "五分钟以后，我放鸡蛋。",
+      "startMs": 14390,
+      "endMs": 16660,
+      "durationMs": 2270,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_6.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_7",
+      "text": "面条做好了。",
+      "startMs": 17160,
+      "endMs": 18470,
+      "durationMs": 1310,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_7.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_8",
+      "text": "我吃了一口，觉得很好吃。",
+      "startMs": 18970,
+      "endMs": 21090,
+      "durationMs": 2120,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_8.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_9",
+      "text": "我很高兴，因为我会做面条了。",
+      "startMs": 21590,
+      "endMs": 24830,
+      "durationMs": 3240,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_9.mp3"
+    },
+    {
+      "sentenceId": "art_pfn_10",
+      "text": "以后我可以做给妈妈吃。",
+      "startMs": 25330,
+      "endMs": 27130,
+      "durationMs": 1800,
+      "audioUrl": "/audio/readings/article_premiere_fois_nouilles_art_pfn_10.mp3"
+    }
+  ]
+}
