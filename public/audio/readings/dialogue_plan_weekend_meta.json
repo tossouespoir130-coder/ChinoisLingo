@@ -1,0 +1,70 @@
+{
+  "contentId": "dialogue_plan_weekend",
+  "fullAudioUrl": "/audio/readings/dialogue_plan_weekend.mp3",
+  "totalDurationMs": 29990,
+  "sentences": [
+    {
+      "sentenceId": "dpw_1",
+      "speaker": "小明",
+      "text": "这个周末我想去公园走走，你觉得怎么样？",
+      "startMs": 0,
+      "endMs": 3320,
+      "durationMs": 3320,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_1.mp3"
+    },
+    {
+      "sentenceId": "dpw_2",
+      "speaker": "小丽",
+      "text": "好啊，但是天气有点冷，我们下午去吧。",
+      "startMs": 3970,
+      "endMs": 7680,
+      "durationMs": 3710,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_2.mp3"
+    },
+    {
+      "sentenceId": "dpw_3",
+      "speaker": "小明",
+      "text": "可以，那我们在公园门口见，两点怎么样？",
+      "startMs": 8180,
+      "endMs": 12150,
+      "durationMs": 3970,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_3.mp3"
+    },
+    {
+      "sentenceId": "dpw_4",
+      "speaker": "小丽",
+      "text": "没问题。对了，我们可以带点吃的和喝的。",
+      "startMs": 12800,
+      "endMs": 17080,
+      "durationMs": 4280,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_4.mp3"
+    },
+    {
+      "sentenceId": "dpw_5",
+      "speaker": "小明",
+      "text": "好主意，我买一些水果和面包，你带水吧。",
+      "startMs": 17580,
+      "endMs": 21050,
+      "durationMs": 3470,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_5.mp3"
+    },
+    {
+      "sentenceId": "dpw_6",
+      "speaker": "小丽",
+      "text": "行。我还可以带我的猫一起去，它很喜欢外面。",
+      "startMs": 21550,
+      "endMs": 26300,
+      "durationMs": 4750,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_6.mp3"
+    },
+    {
+      "sentenceId": "dpw_7",
+      "speaker": "小明",
+      "text": "真的吗？那太好了，我也喜欢猫。",
+      "startMs": 26800,
+      "endMs": 30200,
+      "durationMs": 3400,
+      "audioUrl": "/audio/readings/dialogue_plan_weekend_dpw_7.mp3"
+    }
+  ]
+}
