@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_dialogue_plan_weekend',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouveau dialogue HSK 2 : Projets pour le week-end\n周末计划 💬',
+    message: 'Envie d’une pause au grand air ? Découvre ce dialogue chaleureux entre Xiaoming et Xiaoli sur une sortie au parc avec un pique-nique et la compagnie d’un chat !',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_plan_weekend',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'notif_dialogue_voyage_pekin',
     source: 'founder',
     founderName: 'Espoir Chinois',

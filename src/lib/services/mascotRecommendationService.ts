@@ -110,6 +110,15 @@ const RECOMMENDED_CATALOGUE: MascotRecommendation[] = [
     actionLabel: 'Écouter le dialogue'
   },
   {
+    id: 'dialogue_plan_weekend',
+    title: 'Dialogue : Projets pour le week-end (周末计划)',
+    categoryLabel: 'Dialogue Quotidien 🌳',
+    level: 'HSK 2',
+    description: 'Rejoins Xiaoming et Xiaoli pour une promenade vivifiante au parc avec pique-nique et chat.',
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_plan_weekend',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'chanson_shaonian',
     title: 'Chanson : L’Éternel Adolescent (少年)',
     categoryLabel: 'Chanson Énergique 🎵',
