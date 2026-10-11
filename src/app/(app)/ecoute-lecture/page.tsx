@@ -907,13 +907,15 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '好朋友', pinyin: 'hǎo péngyou', french: 'bon ami, meilleur ami', role: 'Nom commun' },
     ]
   },
+
+  // ---------- NIVEAU HSK 2 ----------
   {
     id: 'article_premiere_fois_nouilles',
     titleFr: 'Mes premières nouilles maison',
     titleZh: '第一次做面条',
     titlePinyin: 'Dì yí cì zuò miàntiáo',
     type: 'articles',
-    level: 'HSK 1',
+    level: 'HSK 2',
     duration: '1 min 30',
     description: 'Le récit simple et émouvant d’une première préparation de nouilles aux œufs à la maison, avec le bonheur d’en cuisiner bientôt pour sa maman.',
     imageUrl: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800&auto=format&fit=crop&q=80',
