@@ -101,6 +101,15 @@ const RECOMMENDED_CATALOGUE: MascotRecommendation[] = [
     actionLabel: 'Écouter le dialogue'
   },
   {
+    id: 'dialogue_voyage_pekin',
+    title: 'Dialogue : Voyager à Pékin (去北京旅游)',
+    categoryLabel: 'Dialogue Voyage ✈️',
+    level: 'HSK 2',
+    description: 'Rejoins Xiaoming et Xiaoli pour planifier une aventure inoubliable à Pékin en mandarin.',
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_voyage_pekin',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'chanson_shaonian',
     title: 'Chanson : L’Éternel Adolescent (少年)',
     categoryLabel: 'Chanson Énergique 🎵',

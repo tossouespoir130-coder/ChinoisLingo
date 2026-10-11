@@ -18,6 +18,20 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: 'notif_dialogue_voyage_pekin',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouveau dialogue HSK 2 : Voyager à Pékin\n去北京旅游 💬',
+    message: 'Envie de t’évader ? Découvre ce tout nouveau dialogue immersif entre Xiaoming et Xiaoli sur les préparatifs de voyage à Pékin, avec un tempo calme et une prononciation ultra-précise.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=dialogues&id=dialogue_voyage_pekin',
+    actionLabel: 'Écouter le dialogue'
+  },
+  {
     id: 'notif_exercices_hsk_lancement',
     source: 'founder',
     founderName: 'Espoir Chinois',
