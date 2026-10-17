@@ -98,9 +98,9 @@ function getFlashcardVerifiedExample(word?: VocabularyWord) {
 type FaceAvant = 'hanzi' | 'pinyin' | 'french';
 
 const INDICE_RETOURNEMENT: Record<FaceAvant, string> = {
-  hanzi: 'Touchez pour voir le pinyin et la traduction',
-  pinyin: 'Touchez pour voir le caractère et la traduction',
-  french: 'Touchez pour voir le caractère et le pinyin',
+  hanzi: 'Touche pour voir le pinyin et la traduction',
+  pinyin: 'Touche pour voir le caractère et la traduction',
+  french: 'Touche pour voir le caractère et le pinyin',
 };
 
 const BOUTONS_NOTES: { note: Note; libelle: string; classes: string }[] = [
@@ -591,7 +591,7 @@ export function FlashcardSession({ words, themeTitle, onFinish }: FlashcardSessi
 
             {/* Bottom Flip Hint */}
             <div className="flex items-center justify-center text-[10px] font-bold text-[#757575] dark:text-[#9E9E9E] opacity-70">
-              <span>Touchez pour retourner</span>
+              <span>Touche pour retourner</span>
             </div>
           </div>
         </div>

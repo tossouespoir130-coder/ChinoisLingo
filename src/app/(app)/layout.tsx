@@ -14,29 +14,43 @@ import { Sun, Moon } from 'lucide-react';
 
 function ContainerThemeSwitch() {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="hidden xl:flex items-center justify-end mt-2 pt-1" suppressHydrationWarning>
+        <div className="h-8 w-28 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] bg-[#FAFAFA] dark:bg-[#1E1E1E] opacity-50" />
+      </div>
+    );
+  }
 
   return (
-    <div className="hidden xl:flex items-center justify-end mt-2 pt-1">
+    <div className="hidden xl:flex items-center justify-end mt-2 pt-1" suppressHydrationWarning>
       <button
         onClick={toggleTheme}
         type="button"
         aria-label={theme === 'light' ? 'Activer mode sombre' : 'Activer mode clair'}
         className="px-3.5 py-1.5 rounded-full border border-[#E0E0E0] dark:border-[#2D2D2D] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-xs font-semibold text-[#757575] hover:text-[#212121] dark:text-[#A0A0A0] dark:hover:text-white bg-[#FAFAFA] dark:bg-[#1E1E1E] shadow-2xs"
         title={theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'}
+        suppressHydrationWarning
       >
         {theme === 'light' ? (
           <>
             <div className="w-5 h-5 rounded-full bg-[#FFC107]/20 text-[#B78103] flex items-center justify-center">
               <Sun className="w-3 h-3" />
             </div>
-            <span>Mode Clair</span>
+            <span suppressHydrationWarning>Mode Clair</span>
           </>
         ) : (
           <>
             <div className="w-5 h-5 rounded-full bg-[#03DAC5]/20 text-[#03DAC5] flex items-center justify-center">
               <Moon className="w-3 h-3" />
             </div>
-            <span>Mode Sombre</span>
+            <span suppressHydrationWarning>Mode Sombre</span>
           </>
         )}
       </button>

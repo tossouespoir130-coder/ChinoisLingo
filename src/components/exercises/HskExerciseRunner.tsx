@@ -652,10 +652,10 @@ export function HskExerciseRunner({
           </h2>
           <p className="text-sm sm:text-base text-[#757575] dark:text-[#A0A0A0] mt-1 max-w-md mx-auto">
             {finalResult.percentage === 100
-              ? 'Score parfait ! Votre compréhension auditive sur cette série est irréprochable.'
+              ? 'Score parfait ! Ta compréhension auditive sur cette série est irréprochable.'
               : finalResult.isSucceed
-              ? 'Vous avez réussi cette série (au moins deux tiers des points). Continuez ainsi !'
-              : 'Prenez le temps d’écouter et d’analyser les répliques manquées pour progresser.'}
+              ? 'Tu as réussi cette série (au moins deux tiers des points). Continue ainsi !'
+              : 'Prends le temps d’écouter et d’analyser les répliques manquées pour progresser.'}
           </p>
 
           {/* Grand Score Display */}
@@ -827,10 +827,10 @@ export function HskExerciseRunner({
                   </div>
                   <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                     {isPlayingAudio
-                      ? 'Écoutez attentivement...'
+                      ? 'Écoute attentivement...'
                       : isAudioPreparing
-                      ? '🎧 Préparez-vous, l’audio va commencer...'
-                      : '🎧 Cliquez sur le bouton audio pour écouter.'}
+                      ? '🎧 Prépare-toi, l’audio va commencer...'
+                      : '🎧 Clique sur le bouton audio pour écouter.'}
                   </p>
                 </div>
               </div>
@@ -931,7 +931,7 @@ export function HskExerciseRunner({
                 Partie 2 — Association Images & Dialogues
               </span>
               <h3 className="font-display font-bold text-base sm:text-lg text-[#212121] dark:text-[#F5F5F5]">
-                {currentQuestion.promptFr || 'Écoutez chaque dialogue et associez-le à la bonne image.'}
+                {currentQuestion.promptFr || 'Écoute chaque dialogue et associe-le à la bonne image.'}
               </h3>
               <p className="text-xs text-[#757575] dark:text-[#A0A0A0]">
                 Chaque image ne peut être associée qu’à un seul dialogue. 1 point si les 3 correspondances sont exactes.
@@ -973,10 +973,10 @@ export function HskExerciseRunner({
                   </div>
                   <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                     {isPlayingAudio
-                      ? 'Écoutez attentivement chaque dialogue dans l’ordre (1 ➔ 2 ➔ 3).'
+                      ? 'Écoute attentivement chaque dialogue dans l’ordre (1 ➔ 2 ➔ 3).'
                       : isAudioPreparing
-                      ? '🎧 Préparez-vous, la séquence audio va commencer...'
-                      : '🎧 Cliquez pour lancer la séquence complète des 3 dialogues.'}
+                      ? '🎧 Prépare-toi, la séquence audio va commencer...'
+                      : '🎧 Clique pour lancer la séquence complète des 3 dialogues.'}
                   </p>
                 </div>
               </div>
@@ -1093,7 +1093,7 @@ export function HskExerciseRunner({
                           )}
                         </span>
                         <span className="text-xs text-[#757575] dark:text-[#A0A0A0]">
-                          {isThisPlaying ? '🔊 Lecture en cours...' : 'Cliquez pour écouter'}
+                          {isThisPlaying ? '🔊 Lecture en cours...' : 'Clique pour écouter'}
                         </span>
                       </div>
                     </div>
@@ -1178,11 +1178,11 @@ export function HskExerciseRunner({
                   <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                     {isPlayingAudio
                       ? estDoubleEcoute(exercise.level)
-                        ? 'Écoutez attentivement le cycle complet (répété 2 fois).'
-                        : 'Écoutez attentivement le cycle complet.'
+                        ? 'Écoute attentivement le cycle complet (répété 2 fois).'
+                        : 'Écoute attentivement le cycle complet.'
                       : isAudioPreparing
-                      ? '🎧 Préparez-vous, le dialogue va commencer...'
-                      : '🎧 Cliquez sur le bouton audio pour lancer l’écoute.'}
+                      ? '🎧 Prépare-toi, le dialogue va commencer...'
+                      : '🎧 Clique sur le bouton audio pour lancer l’écoute.'}
                   </p>
                 </div>
               </div>

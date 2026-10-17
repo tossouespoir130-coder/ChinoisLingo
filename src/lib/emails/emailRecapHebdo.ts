@@ -146,8 +146,8 @@ export function construireEmailRecapHebdo(params: ParamsRecapHebdo): { sujet: st
   const rappel = params.mode === 'rappel';
   const sujet = params.sujetPersonnalise?.trim()
     || (rappel
-      ? `Cette semaine sur ChinoisLingo : à (re)découvrir (« Le chinois devient facile »)`
-      : `Nouveautés de la semaine sur ChinoisLingo (« Le chinois devient facile »)`);
+      ? `Cette semaine sur ChinoisLingo : à (re)découvrir`
+      : `Nouveautés de la semaine sur ChinoisLingo`);
   const message = params.messagePersonnel?.trim() || '';
   const messageHtml = message
     ? `<p class="texte-corps" style="font-size: 15px; line-height: 1.6; color: #424242; margin: 0 0 24px 0;">${echapper(message).replace(/\n/g, '<br />')}</p>`

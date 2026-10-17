@@ -153,3 +153,39 @@ Tous les modals (Guides, À Propos, Ajout de mot, SRS) doivent obligatoirement :
 2. **En-tête Mobile & Desktop Épuré** : Le titre bilingue (`Titre Français (Hanzi)`) est positionné à gauche avec son sous-titre Pinyin, et les boutons d'action rapide `[👁 Pinyin]` et `[🌐 Traduction]` sont en **micro-pills ultra-compacts** (`text-[10px] sm:text-[11px] px-2.5 py-1 rounded-full`) alignés à droite sur une seule ligne.
 3. **Lecteur Vidéo 1-Clic Direct (`ChinoisLingoVideoPlayer`)** : Pré-initialisation de l'iframe YouTube dès le montage (`autoplay: 0`), permettant un lancement immédiat au 1er tap sur mobile sans latence ni multi-clics.
 
+---
+
+## 8. Règle Principale d'Uniformisation Absolue & Zéro Composant Divergent
+
+1. **Principe directeur d'uniformisation** :
+   - Dès qu'une nouvelle rubrique, sous-catégorie ou fonctionnalité apporte un élément déjà présent ailleurs sur le site (boutons d'action, bouton terminé, lecteurs audio, onglets, sélecteurs, modales, badges, cartes), il est **obligatoire de réutiliser et d'uniformiser rigoureusement le design et le comportement avec les standards établis de la plateforme**.
+   - Interdiction formelle d'inventer une variante isolée, un style ad-hoc ou un composant qui sort du cadre visuel ou fonctionnel.
+
+2. **Standardisation stricte du Bouton de Validation / Terminé** :
+   - **État non terminé (bouton violet)** :
+     - Fond violet officiel : `bg-[#6200EE] hover:bg-[#5000CC] text-white shadow-lg shadow-[#6200EE]/25`.
+     - Intitulé textuel propre : **`Marquer comme terminé`**.
+     - **Strictement AUCUNE icône ni coche de validation devant** (`Check`, `✓`, etc.).
+   - **État validé / terminé (bouton rouge)** :
+     - Fond rouge/corail officiel : `bg-[#E53935] hover:bg-[#D32F2F] text-white shadow-lg shadow-[#E53935]/25`.
+     - **Une SEULE et unique icône de validation** : `<Check className="w-5 h-5 stroke-[3]" />` suivie du texte `Terminé` (rendu visuel `✓ Terminé`).
+     - **Interdiction absolue du doublon `✓ ✓`** (icône Check + coche dans le texte).
+     - Déclenchement automatique de l'animation de confettis et paillettes (`confetti({ ... })`).
+     - Possibilité de re-cliquer proprement pour inverser l'état.
+
+3. **Standardisation des Boutons de Lecture & Audio** :
+   - Forme capsule arrondie : `rounded-full`.
+   - Icône normalisée : `Volume2`.
+   - Palette : Vert émeraude `#00897B` / `#03DAC5` ou violet `#6200EE`.
+   - Micro-interaction : `.btn-press`.
+
+4. **Standardisation des Boutons Aléatoires** :
+   - Utilisation **exclusive de l'icône de croisement de flèches `Shuffle`** (bannissement définitif de l'émoji dé 🎲).
+
+5. **Harmonisation des Cartes & Conteneurs** :
+   - Classe de base `nixtio-card`.
+   - Arrondis : `rounded-2xl` (cartes internes) / `rounded-3xl` (cartes maîtresses, hub, bannières).
+   - Bordures : `#E0E0E0` (clair) / `#2D2D2D` (sombre).
+   - Typographie : `font-display font-black` pour les titres, `font-sans` pour le texte.
+
+

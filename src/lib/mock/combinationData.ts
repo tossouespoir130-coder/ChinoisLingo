@@ -5,32 +5,28 @@ import hsk4Data from '@/content/vocabulaire-hsk4.json';
 import hsk5Data from '@/content/vocabulaire-hsk5.json';
 import hsk6Data from '@/content/vocabulaire-hsk6.json';
 
-export interface CombinatoryOption {
-  id: string;
-  hanzi: string;
-  pinyin: string;
-  french: string;
-  verbConjugations?: Record<string, string>;
-}
+import {
+  CombinatoryOption,
+  CombinatorySlot,
+  DynamicCombinatoryPattern,
+  BuiltSentenceResult,
+  buildDynamicSentence,
+  calculateCombinationsCount,
+  buildSingleMobileSlotSelections,
+} from '@/lib/combination/combinationEngine';
 
-export interface CombinatorySlot {
-  id: string;
-  slotNumber: number;
-  label: string; // e.g. "1. Sujet / Acteur", "2. Verbe & Modalité", "3. Complément / Destination", "2. Adverbe & Adjectif"
-  colorTheme: 'purple' | 'emerald' | 'amber' | 'blue' | 'rose';
-  options: CombinatoryOption[];
-}
+export type {
+  CombinatoryOption,
+  CombinatorySlot,
+  DynamicCombinatoryPattern,
+  BuiltSentenceResult,
+};
 
-export interface DynamicCombinatoryPattern {
-  id: string;
-  pivotWord: string;
-  pivotPinyin: string;
-  pivotMeaning: string;
-  grammaticalCategory: string;
-  structureDescription: string;
-  slots: CombinatorySlot[];
-  isOfficialHsk: boolean;
-}
+export {
+  buildDynamicSentence,
+  calculateCombinationsCount,
+  buildSingleMobileSlotSelections,
+};
 
 export interface CombinatoryAnalysisResult {
   success: boolean;
@@ -378,86 +374,7 @@ export function sanitizeFrenchTranslation(rawFrench: string): string {
     .trim();
 }
 
-// Helper to assemble full sentence with grammatically natural French translation
-export function buildDynamicSentence(
-  slots: CombinatorySlot[],
-  selectedOptionIds: Record<string, string>
-) {
-  const selectedOptions = slots.map((slot) => {
-    const optId = selectedOptionIds[slot.id] || slot.options[0].id;
-    return slot.options.find((o) => o.id === optId) || slot.options[0];
-  });
-
-  // Hanzi assembly
-  const hanzi = selectedOptions.map((o) => o.hanzi).join('');
-
-  // Pinyin assembly
-  const pinyinParts = selectedOptions
-    .map((o, idx) => {
-      // If the option is a Latin name in the first slot (e.g. Espoir Chinois), omit from Chinese Pinyin line
-      if (idx === 0 && o.hanzi === o.french) return '';
-      return o.pinyin;
-    })
-    .filter(Boolean);
-  const pinyin = pinyinParts.join(' ');
-
-  // French assembly
-  let french = '';
-  if (selectedOptions.length === 3) {
-    const sub = selectedOptions[0];
-    const verb = selectedOptions[1];
-    const comp = selectedOptions[2];
-
-    let frenchVerb = verb.french;
-    if (verb.verbConjugations) {
-      if (verb.verbConjugations[sub.id]) {
-        frenchVerb = verb.verbConjugations[sub.id];
-      } else if (verb.verbConjugations['sub_ta']) {
-        frenchVerb = verb.verbConjugations['sub_ta'];
-      }
-    }
-
-    let frenchSub = sub.french;
-    if (frenchSub === 'Je' && /^[aeiouéèêâîïôûh]/i.test(frenchVerb)) {
-      frenchSub = 'J’';
-    } else {
-      frenchSub = frenchSub + ' ';
-    }
-    french = `${frenchSub}${frenchVerb} ${comp.french}.`;
-  } else if (selectedOptions.length === 2) {
-    const slot1 = selectedOptions[0];
-    const slot2 = selectedOptions[1];
-
-    let frenchAction = slot2.french;
-    if (slot2.verbConjugations) {
-      if (slot2.verbConjugations[slot1.id]) {
-        frenchAction = slot2.verbConjugations[slot1.id];
-      } else if (slot2.verbConjugations['sub_ta']) {
-        frenchAction = slot2.verbConjugations['sub_ta'];
-      }
-    }
-
-    let frenchSubject = slot1.french;
-    if (frenchSubject === 'Je' && /^[aeiouéèêâîïôûh]/i.test(frenchAction)) {
-      frenchSubject = 'J’';
-    } else {
-      frenchSubject = frenchSubject + ' ';
-    }
-    french = `${frenchSubject}${frenchAction}.`;
-  } else {
-    french = selectedOptions.map((o) => o.french).join(' ') + '.';
-  }
-
-  // 1. Contrôle Automatique Point 1 : Traduction 100% Française sans aucun caractère chinois résiduel
-  const sanitizedFrench = sanitizeFrenchTranslation(french);
-
-  return {
-    hanzi,
-    pinyin,
-    french: sanitizedFrench,
-    selectedOptions,
-  };
-}
+// Note: buildDynamicSentence est importé et ré-exporté depuis @/lib/combination/combinationEngine
 
 // 2. Base prédéfinie des 3 modèles pivots
 const PREDEFINED_PATTERNS: Record<string, DynamicCombinatoryPattern> = {

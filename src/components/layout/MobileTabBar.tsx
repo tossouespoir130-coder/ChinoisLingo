@@ -52,7 +52,9 @@ export function MobileTabBar() {
               >
                 <Icon className="w-4 h-4 shrink-0" />
               </div>
-              <span className={`text-[9.5px] sm:text-[10px] whitespace-nowrap tracking-tight leading-none text-center block ${
+              <span 
+                suppressHydrationWarning
+                className={`text-[9.5px] sm:text-[10px] whitespace-nowrap tracking-tight leading-none text-center block ${
                 isActive ? 'font-black' : 'font-semibold'
               }`}>
                 {tab.name}
