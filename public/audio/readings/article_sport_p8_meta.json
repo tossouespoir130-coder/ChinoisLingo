@@ -1,0 +1,107 @@
+{
+  "contentId": "article_sport_p8",
+  "title": "第八部分：独自运动还是结伴同行？",
+  "titleFr": "Partie 8 : S’entraîner seul ou entre amis ?",
+  "type": "articles",
+  "narrator": "Anna Su (Narratrice Principale)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_sport_p8.mp3",
+  "totalDurationMs": 52510,
+  "sentences": [
+    {
+      "sentenceId": "sp8_1",
+      "text": "有的人喜欢一个人运动，有的人喜欢和朋友一起运动。",
+      "startMs": 0,
+      "endMs": 5000,
+      "durationMs": 5000,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_1.mp3"
+    },
+    {
+      "sentenceId": "sp8_2",
+      "text": "这两种方法都很好，但是感觉不一样。",
+      "startMs": 5000,
+      "endMs": 9360,
+      "durationMs": 4360,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_2.mp3"
+    },
+    {
+      "sentenceId": "sp8_3",
+      "text": "一个人运动的时候，你可以自己选时间，自己选地方，非常自由。",
+      "startMs": 9360,
+      "endMs": 15680,
+      "durationMs": 6320,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_3.mp3"
+    },
+    {
+      "sentenceId": "sp8_4",
+      "text": "比如，你晚上睡不着，就可以一个人去外面走走。",
+      "startMs": 15680,
+      "endMs": 20080,
+      "durationMs": 4400,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_4.mp3"
+    },
+    {
+      "sentenceId": "sp8_5",
+      "text": "但是，一个人运动有时候会觉得没有意思，可能不容易坚持。",
+      "startMs": 20080,
+      "endMs": 26640,
+      "durationMs": 6560,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_5.mp3"
+    },
+    {
+      "sentenceId": "sp8_6",
+      "text": "和朋友一起运动，会比较开心。",
+      "startMs": 26640,
+      "endMs": 29600,
+      "durationMs": 2960,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_6.mp3"
+    },
+    {
+      "sentenceId": "sp8_7",
+      "text": "大家可以说说话，时间会过得很快。",
+      "startMs": 29600,
+      "endMs": 33400,
+      "durationMs": 3800,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_7.mp3"
+    },
+    {
+      "sentenceId": "sp8_8",
+      "text": "而且，如果朋友在等你，你就一定会去。",
+      "startMs": 33400,
+      "endMs": 37920,
+      "durationMs": 4520,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_8.mp3"
+    },
+    {
+      "sentenceId": "sp8_9",
+      "text": "这样，你就更容易坚持。",
+      "startMs": 37920,
+      "endMs": 40800,
+      "durationMs": 2880,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_9.mp3"
+    },
+    {
+      "sentenceId": "sp8_10",
+      "text": "其实，不管是自己运动，还是和朋友一起，只要你喜欢，就是最好的。",
+      "startMs": 40800,
+      "endMs": 47760,
+      "durationMs": 6960,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_10.mp3"
+    },
+    {
+      "sentenceId": "sp8_11",
+      "text": "你可以今天自己跑步，明天和朋友打球。",
+      "startMs": 47760,
+      "endMs": 52480,
+      "durationMs": 4720,
+      "audioUrl": "/audio/readings/article_sport_p8_sp8_11.mp3"
+    }
+  ]
+}

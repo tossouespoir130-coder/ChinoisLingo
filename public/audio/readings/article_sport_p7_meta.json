@@ -1,0 +1,91 @@
+{
+  "contentId": "article_sport_p7",
+  "title": "第七部分：天气与运动",
+  "titleFr": "Partie 7 : La météo et le sport",
+  "type": "articles",
+  "narrator": "Anna Su (Narratrice Principale)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_sport_p7.mp3",
+  "totalDurationMs": 39310,
+  "sentences": [
+    {
+      "sentenceId": "sp7_1",
+      "text": "天气对运动有很大的影响。",
+      "startMs": 0,
+      "endMs": 3200,
+      "durationMs": 3200,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_1.mp3"
+    },
+    {
+      "sentenceId": "sp7_2",
+      "text": "夏天的时候，天气很热。",
+      "startMs": 3200,
+      "endMs": 5627,
+      "durationMs": 2427,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_2.mp3"
+    },
+    {
+      "sentenceId": "sp7_3",
+      "text": "如果在外面跑步，身体可能会不舒服。",
+      "startMs": 5627,
+      "endMs": 9840,
+      "durationMs": 4213,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_3.mp3"
+    },
+    {
+      "sentenceId": "sp7_4",
+      "text": "你可以选择早上或者晚上去运动，也可以去游泳。",
+      "startMs": 9840,
+      "endMs": 16560,
+      "durationMs": 6720,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_4.mp3"
+    },
+    {
+      "sentenceId": "sp7_5",
+      "text": "冬天的时候，天气很冷，很多人不想出门。",
+      "startMs": 16560,
+      "endMs": 21520,
+      "durationMs": 4960,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_5.mp3"
+    },
+    {
+      "sentenceId": "sp7_6",
+      "text": "其实，在家里也可以做运动。",
+      "startMs": 21520,
+      "endMs": 24720,
+      "durationMs": 3200,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_6.mp3"
+    },
+    {
+      "sentenceId": "sp7_7",
+      "text": "你可以在网上找一些简单的运动，跟着做。",
+      "startMs": 24720,
+      "endMs": 29440,
+      "durationMs": 4720,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_7.mp3"
+    },
+    {
+      "sentenceId": "sp7_8",
+      "text": "不管天气怎么样，只要你想运动，就一定能找到办法。",
+      "startMs": 29440,
+      "endMs": 35840,
+      "durationMs": 6400,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_8.mp3"
+    },
+    {
+      "sentenceId": "sp7_9",
+      "text": "所以，不要因为天气不好，就不运动。",
+      "startMs": 35840,
+      "endMs": 39280,
+      "durationMs": 3440,
+      "audioUrl": "/audio/readings/article_sport_p7_sp7_9.mp3"
+    }
+  ]
+}

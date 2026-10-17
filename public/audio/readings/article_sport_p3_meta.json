@@ -1,0 +1,99 @@
+{
+  "contentId": "article_sport_p3",
+  "title": "第三部分：运动与心情",
+  "titleFr": "Partie 3 : Le sport et l’humeur",
+  "type": "articles",
+  "narrator": "Anna Su (Narratrice Principale)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_sport_p3.mp3",
+  "totalDurationMs": 46030,
+  "sentences": [
+    {
+      "sentenceId": "sp3_1",
+      "text": "运动不仅对身体好，对心情也很好。",
+      "startMs": 0,
+      "endMs": 3680,
+      "durationMs": 3680,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_1.mp3"
+    },
+    {
+      "sentenceId": "sp3_2",
+      "text": "现在很多人每天都很忙，容易觉得累，或者心情不好。",
+      "startMs": 3680,
+      "endMs": 8667,
+      "durationMs": 4987,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_2.mp3"
+    },
+    {
+      "sentenceId": "sp3_3",
+      "text": "如果有这种问题，可以去运动。",
+      "startMs": 8667,
+      "endMs": 12240,
+      "durationMs": 3573,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_3.mp3"
+    },
+    {
+      "sentenceId": "sp3_4",
+      "text": "运动的时候，人可以忘记不高兴的事。",
+      "startMs": 12240,
+      "endMs": 16240,
+      "durationMs": 4000,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_4.mp3"
+    },
+    {
+      "sentenceId": "sp3_5",
+      "text": "运动以后，身体会很舒服，心情也会变好。",
+      "startMs": 16240,
+      "endMs": 21520,
+      "durationMs": 5280,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_5.mp3"
+    },
+    {
+      "sentenceId": "sp3_6",
+      "text": "医生发现，常常运动的人，不容易担心，精神也会更好。",
+      "startMs": 21520,
+      "endMs": 28000,
+      "durationMs": 6480,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_6.mp3"
+    },
+    {
+      "sentenceId": "sp3_7",
+      "text": "所以，运动是一种很好的放松方法。",
+      "startMs": 28000,
+      "endMs": 31627,
+      "durationMs": 3627,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_7.mp3"
+    },
+    {
+      "sentenceId": "sp3_8",
+      "text": "如果你觉得心情不好，不要一个人在家里坐着。",
+      "startMs": 31627,
+      "endMs": 36720,
+      "durationMs": 5093,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_8.mp3"
+    },
+    {
+      "sentenceId": "sp3_9",
+      "text": "去外面跑跑步，或者和朋友打打球。",
+      "startMs": 36720,
+      "endMs": 40800,
+      "durationMs": 4080,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_9.mp3"
+    },
+    {
+      "sentenceId": "sp3_10",
+      "text": "你会发现，运动以后，你的心情会好很多。",
+      "startMs": 40800,
+      "endMs": 46000,
+      "durationMs": 5200,
+      "audioUrl": "/audio/readings/article_sport_p3_sp3_10.mp3"
+    }
+  ]
+}

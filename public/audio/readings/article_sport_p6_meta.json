@@ -1,0 +1,107 @@
+{
+  "contentId": "article_sport_p6",
+  "title": "第六部分：运动与饮食",
+  "titleFr": "Partie 6 : Le sport et l’alimentation",
+  "type": "articles",
+  "narrator": "Anna Su (Narratrice Principale)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_sport_p6.mp3",
+  "totalDurationMs": 56190,
+  "sentences": [
+    {
+      "sentenceId": "sp6_1",
+      "text": "很多人在运动的时候，只想着怎么跑、怎么打，但是忘记了吃的东西也很重要。",
+      "startMs": 0,
+      "endMs": 8160,
+      "durationMs": 8160,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_1.mp3"
+    },
+    {
+      "sentenceId": "sp6_2",
+      "text": "运动以前和运动以后，我们需要吃不同的东西。",
+      "startMs": 8160,
+      "endMs": 13680,
+      "durationMs": 5520,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_2.mp3"
+    },
+    {
+      "sentenceId": "sp6_3",
+      "text": "运动以前，不要吃太多。",
+      "startMs": 13680,
+      "endMs": 16240,
+      "durationMs": 2560,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_3.mp3"
+    },
+    {
+      "sentenceId": "sp6_4",
+      "text": "如果吃太多，运动的时候肚子会不舒服。",
+      "startMs": 16240,
+      "endMs": 21120,
+      "durationMs": 4880,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_4.mp3"
+    },
+    {
+      "sentenceId": "sp6_5",
+      "text": "你可以吃一点水果，喝一点水。",
+      "startMs": 21120,
+      "endMs": 24640,
+      "durationMs": 3520,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_5.mp3"
+    },
+    {
+      "sentenceId": "sp6_6",
+      "text": "这样，运动的时候，你的身体会很有精神。",
+      "startMs": 24640,
+      "endMs": 29840,
+      "durationMs": 5200,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_6.mp3"
+    },
+    {
+      "sentenceId": "sp6_7",
+      "text": "运动以后，身体会很累，也会很热。",
+      "startMs": 29840,
+      "endMs": 33760,
+      "durationMs": 3920,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_7.mp3"
+    },
+    {
+      "sentenceId": "sp6_8",
+      "text": "这时候，一定要多喝水。",
+      "startMs": 33760,
+      "endMs": 37120,
+      "durationMs": 3360,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_8.mp3"
+    },
+    {
+      "sentenceId": "sp6_9",
+      "text": "你也可以吃一些鸡蛋或者牛奶，它们对身体很好。",
+      "startMs": 37120,
+      "endMs": 43840,
+      "durationMs": 6720,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_9.mp3"
+    },
+    {
+      "sentenceId": "sp6_10",
+      "text": "好的运动习惯，加上好的吃饭习惯，可以让身体越来越健康。",
+      "startMs": 43840,
+      "endMs": 51200,
+      "durationMs": 7360,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_10.mp3"
+    },
+    {
+      "sentenceId": "sp6_11",
+      "text": "所以，下次去运动的时候，千万别忘了带水。",
+      "startMs": 51200,
+      "endMs": 56160,
+      "durationMs": 4960,
+      "audioUrl": "/audio/readings/article_sport_p6_sp6_11.mp3"
+    }
+  ]
+}
