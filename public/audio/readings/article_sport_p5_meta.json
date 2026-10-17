@@ -13,78 +13,78 @@
     "use_speaker_boost": true
   },
   "fullAudioUrl": "/audio/readings/article_sport_p5.mp3",
-  "totalDurationMs": 46030,
+  "totalDurationMs": 50210,
   "sentences": [
     {
       "sentenceId": "sp5_1",
       "text": "很多人不知道，运动对睡觉也有很大的帮助。",
       "startMs": 0,
-      "endMs": 4320,
-      "durationMs": 4320,
+      "endMs": 4640,
+      "durationMs": 4640,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_1.mp3"
     },
     {
       "sentenceId": "sp5_2",
       "text": "常常运动的人，晚上很容易睡着，而且睡得非常好。",
-      "startMs": 4320,
-      "endMs": 9560,
-      "durationMs": 5240,
+      "startMs": 4640,
+      "endMs": 10000,
+      "durationMs": 5360,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_2.mp3"
     },
     {
       "sentenceId": "sp5_3",
       "text": "但是，运动的时间很重要。",
-      "startMs": 9560,
-      "endMs": 12907,
-      "durationMs": 3347,
+      "startMs": 10000,
+      "endMs": 13627,
+      "durationMs": 3627,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_3.mp3"
     },
     {
       "sentenceId": "sp5_4",
       "text": "如果你晚上很晚才运动，可能会睡不着。",
-      "startMs": 12907,
-      "endMs": 17440,
-      "durationMs": 4533,
+      "startMs": 13627,
+      "endMs": 18640,
+      "durationMs": 5013,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_4.mp3"
     },
     {
       "sentenceId": "sp5_5",
       "text": "因为运动以后，身体会变得很精神。",
-      "startMs": 17440,
-      "endMs": 21280,
-      "durationMs": 3840,
+      "startMs": 18640,
+      "endMs": 22960,
+      "durationMs": 4320,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_5.mp3"
     },
     {
       "sentenceId": "sp5_6",
       "text": "所以，最好在白天或者下午运动。",
-      "startMs": 21280,
-      "endMs": 24907,
-      "durationMs": 3627,
+      "startMs": 22960,
+      "endMs": 26933,
+      "durationMs": 3973,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_6.mp3"
     },
     {
       "sentenceId": "sp5_7",
       "text": "如果你有睡觉的问题，可以试试每天下午去跑步。",
-      "startMs": 24907,
-      "endMs": 31200,
-      "durationMs": 6293,
+      "startMs": 26933,
+      "endMs": 33280,
+      "durationMs": 6347,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_7.mp3"
     },
     {
       "sentenceId": "sp5_8",
       "text": "坚持几个星期以后，你会发现睡觉变简单了。",
-      "startMs": 31200,
-      "endMs": 37200,
-      "durationMs": 6000,
+      "startMs": 33280,
+      "endMs": 39440,
+      "durationMs": 6160,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_8.mp3"
     },
     {
       "sentenceId": "sp5_9",
       "text": "好的睡觉习惯对身体很重要，加上每天运动，你的身体和精神都会越来越好。",
-      "startMs": 37200,
-      "endMs": 46000,
-      "durationMs": 8800,
+      "startMs": 39440,
+      "endMs": 48160,
+      "durationMs": 8720,
       "audioUrl": "/audio/readings/article_sport_p5_sp5_9.mp3"
     }
   ]

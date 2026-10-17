@@ -13,78 +13,78 @@
     "use_speaker_boost": true
   },
   "fullAudioUrl": "/audio/readings/article_sport_p4.mp3",
-  "totalDurationMs": 47070,
+  "totalDurationMs": 50910,
   "sentences": [
     {
       "sentenceId": "sp4_1",
       "text": "很多人想运动，但是不知道选什么运动。",
       "startMs": 0,
-      "endMs": 4240,
-      "durationMs": 4240,
+      "endMs": 3760,
+      "durationMs": 3760,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_1.mp3"
     },
     {
       "sentenceId": "sp4_2",
       "text": "其实，怎么选择运动很简单。",
-      "startMs": 4240,
-      "endMs": 7840,
-      "durationMs": 3600,
+      "startMs": 3760,
+      "endMs": 7680,
+      "durationMs": 3920,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_2.mp3"
     },
     {
       "sentenceId": "sp4_3",
       "text": "第一，你要选择自己喜欢的运动。",
-      "startMs": 7840,
-      "endMs": 11227,
-      "durationMs": 3387,
+      "startMs": 7680,
+      "endMs": 11333,
+      "durationMs": 3653,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_3.mp3"
     },
     {
       "sentenceId": "sp4_4",
       "text": "如果你喜欢在外面，可以去跑步或者打球；如果你喜欢在家，可以游泳或者做简单的运动。",
-      "startMs": 11227,
-      "endMs": 21440,
-      "durationMs": 10213,
+      "startMs": 11333,
+      "endMs": 22000,
+      "durationMs": 10667,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_4.mp3"
     },
     {
       "sentenceId": "sp4_5",
       "text": "喜欢的运动，才容易坚持。",
-      "startMs": 21440,
-      "endMs": 24960,
-      "durationMs": 3520,
+      "startMs": 22000,
+      "endMs": 25920,
+      "durationMs": 3920,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_5.mp3"
     },
     {
       "sentenceId": "sp4_6",
       "text": "第二，你要看看自己的身体。",
-      "startMs": 24960,
-      "endMs": 28320,
-      "durationMs": 3360,
+      "startMs": 25920,
+      "endMs": 29520,
+      "durationMs": 3600,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_6.mp3"
     },
     {
       "sentenceId": "sp4_7",
       "text": "身体好的人，可以做很累的运动；身体不太好的人，可以慢慢来。",
-      "startMs": 28320,
-      "endMs": 36000,
-      "durationMs": 7680,
+      "startMs": 29520,
+      "endMs": 37360,
+      "durationMs": 7840,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_7.mp3"
     },
     {
       "sentenceId": "sp4_8",
       "text": "最好的运动，不是你做得多好，而是你可以一直做。",
-      "startMs": 36000,
-      "endMs": 42240,
-      "durationMs": 6240,
+      "startMs": 37360,
+      "endMs": 44240,
+      "durationMs": 6880,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_8.mp3"
     },
     {
       "sentenceId": "sp4_9",
       "text": "所以，找一个适合自己的运动，今天就开始吧。",
-      "startMs": 42240,
-      "endMs": 47040,
-      "durationMs": 4800,
+      "startMs": 44240,
+      "endMs": 48880,
+      "durationMs": 4640,
       "audioUrl": "/audio/readings/article_sport_p4_sp4_9.mp3"
     }
   ]

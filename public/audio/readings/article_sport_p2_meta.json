@@ -13,93 +13,93 @@
     "use_speaker_boost": true
   },
   "fullAudioUrl": "/audio/readings/article_sport_p2.mp3",
-  "totalDurationMs": 53710,
+  "totalDurationMs": 53160,
   "sentences": [
     {
       "sentenceId": "sp2_1",
       "text": "虽然大家都知道运动很重要，但是很多人还是不运动。",
       "startMs": 0,
-      "endMs": 5920,
-      "durationMs": 5920,
+      "endMs": 5600,
+      "durationMs": 5600,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_1.mp3"
     },
     {
       "sentenceId": "sp2_2",
       "text": "他们说工作太忙，或者觉得很累。",
-      "startMs": 5920,
-      "endMs": 10080,
-      "durationMs": 4160,
+      "startMs": 5600,
+      "endMs": 9680,
+      "durationMs": 4080,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_2.mp3"
     },
     {
       "sentenceId": "sp2_3",
       "text": "其实，运动不需要花很多时间。",
-      "startMs": 10080,
-      "endMs": 13600,
-      "durationMs": 3520,
+      "startMs": 9680,
+      "endMs": 13000,
+      "durationMs": 3320,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_3.mp3"
     },
     {
       "sentenceId": "sp2_4",
       "text": "你可以从简单的运动开始。",
-      "startMs": 13600,
-      "endMs": 16880,
-      "durationMs": 3280,
+      "startMs": 13000,
+      "endMs": 15920,
+      "durationMs": 2920,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_4.mp3"
     },
     {
       "sentenceId": "sp2_5",
       "text": "比如，走路去上班，或者在楼下跑十分钟。",
-      "startMs": 16880,
-      "endMs": 22800,
-      "durationMs": 5920,
+      "startMs": 15920,
+      "endMs": 21520,
+      "durationMs": 5600,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_5.mp3"
     },
     {
       "sentenceId": "sp2_6",
       "text": "只要你喜欢这个运动，就容易坚持。",
-      "startMs": 22800,
-      "endMs": 27200,
-      "durationMs": 4400,
+      "startMs": 21520,
+      "endMs": 25600,
+      "durationMs": 4080,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_6.mp3"
     },
     {
       "sentenceId": "sp2_7",
       "text": "另外，和朋友一起运动也是一个好办法。",
-      "startMs": 27200,
-      "endMs": 31360,
-      "durationMs": 4160,
+      "startMs": 25600,
+      "endMs": 29640,
+      "durationMs": 4040,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_7.mp3"
     },
     {
       "sentenceId": "sp2_8",
       "text": "你可以参加一个运动小组，这样可以认识别人，也不会觉得无聊。",
-      "startMs": 31360,
-      "endMs": 39040,
-      "durationMs": 7680,
+      "startMs": 29640,
+      "endMs": 37040,
+      "durationMs": 7400,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_8.mp3"
     },
     {
       "sentenceId": "sp2_9",
       "text": "运动是一种好习惯。",
-      "startMs": 39040,
-      "endMs": 41547,
-      "durationMs": 2507,
+      "startMs": 37040,
+      "endMs": 39307,
+      "durationMs": 2267,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_9.mp3"
     },
     {
       "sentenceId": "sp2_10",
       "text": "如果每天做一点，几个月以后，你会发现自己的身体越来越好。",
-      "startMs": 41547,
-      "endMs": 49200,
-      "durationMs": 7653,
+      "startMs": 39307,
+      "endMs": 46640,
+      "durationMs": 7333,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_10.mp3"
     },
     {
       "sentenceId": "sp2_11",
       "text": "所以，不要等明天，今天就开始运动吧。",
-      "startMs": 49200,
-      "endMs": 53680,
+      "startMs": 46640,
+      "endMs": 51120,
       "durationMs": 4480,
       "audioUrl": "/audio/readings/article_sport_p2_sp2_11.mp3"
     }

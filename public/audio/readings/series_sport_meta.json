@@ -13,7 +13,7 @@
     "use_speaker_boost": true
   },
   "fullAudioUrl": "/audio/readings/series_sport.mp3",
-  "totalDurationMs": 49240,
+  "totalDurationMs": 52040,
   "sentences": [
     {
       "sentenceId": "sp1_1",
@@ -27,88 +27,88 @@
       "sentenceId": "sp1_2",
       "text": "现在很多人的生活很忙，也很累。",
       "startMs": 2560,
-      "endMs": 5813,
-      "durationMs": 3253,
+      "endMs": 5787,
+      "durationMs": 3227,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_2.mp3"
     },
     {
       "sentenceId": "sp1_3",
       "text": "如果常常运动，身体就会更健康，心情也会更好。",
-      "startMs": 5813,
-      "endMs": 12400,
-      "durationMs": 6587,
+      "startMs": 5787,
+      "endMs": 12080,
+      "durationMs": 6293,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_3.mp3"
     },
     {
       "sentenceId": "sp1_4",
       "text": "运动对身体很好。",
-      "startMs": 12400,
-      "endMs": 14640,
-      "durationMs": 2240,
+      "startMs": 12080,
+      "endMs": 14240,
+      "durationMs": 2160,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_4.mp3"
     },
     {
       "sentenceId": "sp1_5",
       "text": "常常运动的人不容易生病，睡觉也很好。",
-      "startMs": 14640,
-      "endMs": 19280,
-      "durationMs": 4640,
+      "startMs": 14240,
+      "endMs": 19200,
+      "durationMs": 4960,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_5.mp3"
     },
     {
       "sentenceId": "sp1_6",
       "text": "医生说，每个星期要运动三次。",
-      "startMs": 19280,
-      "endMs": 23200,
-      "durationMs": 3920,
+      "startMs": 19200,
+      "endMs": 23040,
+      "durationMs": 3840,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_6.mp3"
     },
     {
       "sentenceId": "sp1_7",
       "text": "除了跑步，游泳、打球也很好。",
-      "startMs": 23200,
+      "startMs": 23040,
       "endMs": 27600,
-      "durationMs": 4400,
+      "durationMs": 4560,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_7.mp3"
     },
     {
       "sentenceId": "sp1_8",
       "text": "运动以后，人会觉得舒服。",
       "startMs": 27600,
-      "endMs": 30240,
-      "durationMs": 2640,
+      "endMs": 30680,
+      "durationMs": 3080,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_8.mp3"
     },
     {
       "sentenceId": "sp1_9",
       "text": "不管多忙，都应该找时间运动。",
-      "startMs": 30240,
-      "endMs": 34160,
-      "durationMs": 3920,
+      "startMs": 30680,
+      "endMs": 34880,
+      "durationMs": 4200,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_9.mp3"
     },
     {
       "sentenceId": "sp1_10",
       "text": "只要常常运动，身体就会很好。",
-      "startMs": 34160,
-      "endMs": 38160,
-      "durationMs": 4000,
+      "startMs": 34880,
+      "endMs": 38640,
+      "durationMs": 3760,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_10.mp3"
     },
     {
       "sentenceId": "sp1_11",
       "text": "所以，大家应该找自己喜欢的运动，每天运动三十分钟。",
-      "startMs": 38160,
-      "endMs": 44720,
-      "durationMs": 6560,
+      "startMs": 38640,
+      "endMs": 45600,
+      "durationMs": 6960,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_11.mp3"
     },
     {
       "sentenceId": "sp1_12",
       "text": "时间长了，运动就会变成一种好习惯。",
-      "startMs": 44720,
-      "endMs": 49200,
-      "durationMs": 4480,
+      "startMs": 45600,
+      "endMs": 50000,
+      "durationMs": 4400,
       "audioUrl": "/audio/readings/article_sport_p1_sp1_12.mp3"
     }
   ]

@@ -13,94 +13,94 @@
     "use_speaker_boost": true
   },
   "fullAudioUrl": "/audio/readings/article_sport_p9.mp3",
-  "totalDurationMs": 71000,
+  "totalDurationMs": 67000,
   "sentences": [
     {
       "sentenceId": "sp9_1",
       "text": "很多年轻人觉得，自己身体很好，不用去运动。",
       "startMs": 0,
-      "endMs": 4920,
-      "durationMs": 4920,
+      "endMs": 4480,
+      "durationMs": 4480,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_1.mp3"
     },
     {
       "sentenceId": "sp9_2",
       "text": "但是，随着年纪越来越大，身体会发生很多变化。",
-      "startMs": 4920,
-      "endMs": 10760,
-      "durationMs": 5840,
+      "startMs": 4480,
+      "endMs": 10040,
+      "durationMs": 5560,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_2.mp3"
     },
     {
       "sentenceId": "sp9_3",
       "text": "这时候，你才会发现运动有多么重要。",
-      "startMs": 10760,
-      "endMs": 16720,
-      "durationMs": 5960,
+      "startMs": 10040,
+      "endMs": 15040,
+      "durationMs": 5000,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_3.mp3"
     },
     {
       "sentenceId": "sp9_4",
       "text": "运动是一辈子的事。",
-      "startMs": 16720,
-      "endMs": 19240,
-      "durationMs": 2520,
+      "startMs": 15040,
+      "endMs": 17240,
+      "durationMs": 2200,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_4.mp3"
     },
     {
       "sentenceId": "sp9_5",
       "text": "不管是年轻人，还是年纪大的人，每个人都可以运动。",
-      "startMs": 19240,
-      "endMs": 25760,
-      "durationMs": 6520,
+      "startMs": 17240,
+      "endMs": 23280,
+      "durationMs": 6040,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_5.mp3"
     },
     {
       "sentenceId": "sp9_6",
       "text": "只不过，年轻的时候，可以选择很累的运动；年纪大了以后，要选择适合自己的运动，比如走路、游泳或者打太极拳。",
-      "startMs": 25760,
-      "endMs": 41120,
-      "durationMs": 15360,
+      "startMs": 23280,
+      "endMs": 37680,
+      "durationMs": 14400,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_6.mp3"
     },
     {
       "sentenceId": "sp9_7",
       "text": "要保持运动的习惯，不能只在高兴的时候才运动。",
-      "startMs": 41120,
-      "endMs": 46880,
-      "durationMs": 5760,
+      "startMs": 37680,
+      "endMs": 43120,
+      "durationMs": 5440,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_7.mp3"
     },
     {
       "sentenceId": "sp9_8",
       "text": "只要你每天都坚持，你的精神就会越来越好，也不容易生病。",
-      "startMs": 46880,
-      "endMs": 54320,
-      "durationMs": 7440,
+      "startMs": 43120,
+      "endMs": 49840,
+      "durationMs": 6720,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_8.mp3"
     },
     {
       "sentenceId": "sp9_9",
       "text": "所以，不要等到身体不好了才去运动。",
-      "startMs": 54320,
-      "endMs": 59120,
-      "durationMs": 4800,
+      "startMs": 49840,
+      "endMs": 54160,
+      "durationMs": 4320,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_9.mp3"
     },
     {
       "sentenceId": "sp9_10",
       "text": "从今天开始，把运动变成生活的一部分。",
-      "startMs": 59120,
-      "endMs": 64880,
-      "durationMs": 5760,
+      "startMs": 54160,
+      "endMs": 59360,
+      "durationMs": 5200,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_10.mp3"
     },
     {
       "sentenceId": "sp9_11",
       "text": "只要你保持运动的习惯，你就一定会有一辈子的健康。",
-      "startMs": 64880,
-      "endMs": 70960,
-      "durationMs": 6080,
+      "startMs": 59360,
+      "endMs": 64960,
+      "durationMs": 5600,
       "audioUrl": "/audio/readings/article_sport_p9_sp9_11.mp3"
     }
   ]
