@@ -1,0 +1,107 @@
+{
+  "contentId": "series_acheter_chapeau",
+  "title": "第一部分：在商店里",
+  "titleFr": "Partie 1 : Dans le magasin",
+  "type": "histoire",
+  "narrator": "Siqi Liu (Narratrice 3)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/series_acheter_chapeau.mp3",
+  "totalDurationMs": 40590,
+  "sentences": [
+    {
+      "sentenceId": "hcp1_1",
+      "text": "昨天我去商店买帽子。",
+      "startMs": 0,
+      "endMs": 2960,
+      "durationMs": 2960,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_1.mp3"
+    },
+    {
+      "sentenceId": "hcp1_2",
+      "text": "商店里的帽子很多。",
+      "startMs": 2960,
+      "endMs": 4960,
+      "durationMs": 2000,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_2.mp3"
+    },
+    {
+      "sentenceId": "hcp1_3",
+      "text": "我看见红色的、黑色的和白色的。",
+      "startMs": 4960,
+      "endMs": 10000,
+      "durationMs": 5040,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_3.mp3"
+    },
+    {
+      "sentenceId": "hcp1_4",
+      "text": "红色的很好看，但是有点贵。",
+      "startMs": 10000,
+      "endMs": 13520,
+      "durationMs": 3520,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_4.mp3"
+    },
+    {
+      "sentenceId": "hcp1_5",
+      "text": "黑色的很便宜，但是我不喜欢。",
+      "startMs": 13520,
+      "endMs": 18080,
+      "durationMs": 4560,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_5.mp3"
+    },
+    {
+      "sentenceId": "hcp1_6",
+      "text": "白色的也可以，但是太小了。",
+      "startMs": 18080,
+      "endMs": 21720,
+      "durationMs": 3640,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_6.mp3"
+    },
+    {
+      "sentenceId": "hcp1_7",
+      "text": "我不知道买哪一个。",
+      "startMs": 21720,
+      "endMs": 24480,
+      "durationMs": 2760,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_7.mp3"
+    },
+    {
+      "sentenceId": "hcp1_8",
+      "text": "这时候，我的朋友来了。",
+      "startMs": 24480,
+      "endMs": 27480,
+      "durationMs": 3000,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_8.mp3"
+    },
+    {
+      "sentenceId": "hcp1_9",
+      "text": "他问我：“你喜欢什么颜色的？”",
+      "startMs": 27480,
+      "endMs": 31840,
+      "durationMs": 4360,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_9.mp3"
+    },
+    {
+      "sentenceId": "hcp1_10",
+      "text": "我说：“我喜欢红色，但是太贵了。”",
+      "startMs": 31840,
+      "endMs": 36400,
+      "durationMs": 4560,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_10.mp3"
+    },
+    {
+      "sentenceId": "hcp1_11",
+      "text": "他说：“那边还有蓝色的，你去看看。”",
+      "startMs": 36400,
+      "endMs": 40560,
+      "durationMs": 4160,
+      "audioUrl": "/audio/readings/histoire_chapeau_p1_hcp1_11.mp3"
+    }
+  ]
+}

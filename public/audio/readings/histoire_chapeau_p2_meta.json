@@ -1,0 +1,99 @@
+{
+  "contentId": "histoire_chapeau_p2",
+  "title": "第二部分：买帽子",
+  "titleFr": "Partie 2 : Acheter le chapeau",
+  "type": "histoire",
+  "narrator": "Siqi Liu (Narratrice 3)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_chapeau_p2.mp3",
+  "totalDurationMs": 31240,
+  "sentences": [
+    {
+      "sentenceId": "hcp2_1",
+      "text": "我去看蓝色的帽子。",
+      "startMs": 0,
+      "endMs": 2560,
+      "durationMs": 2560,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_1.mp3"
+    },
+    {
+      "sentenceId": "hcp2_2",
+      "text": "蓝色的帽子很好看，也不贵。",
+      "startMs": 2560,
+      "endMs": 5480,
+      "durationMs": 2920,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_2.mp3"
+    },
+    {
+      "sentenceId": "hcp2_3",
+      "text": "我试了试，很合适。",
+      "startMs": 5480,
+      "endMs": 7840,
+      "durationMs": 2360,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_3.mp3"
+    },
+    {
+      "sentenceId": "hcp2_4",
+      "text": "我问服务员：“这个帽子多少钱？”",
+      "startMs": 7840,
+      "endMs": 12080,
+      "durationMs": 4240,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_4.mp3"
+    },
+    {
+      "sentenceId": "hcp2_5",
+      "text": "服务员说：“五十块。”",
+      "startMs": 12080,
+      "endMs": 14800,
+      "durationMs": 2720,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_5.mp3"
+    },
+    {
+      "sentenceId": "hcp2_6",
+      "text": "我觉得可以，就买了。",
+      "startMs": 14800,
+      "endMs": 17600,
+      "durationMs": 2800,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_6.mp3"
+    },
+    {
+      "sentenceId": "hcp2_7",
+      "text": "我的朋友说：“这个帽子真好看。”",
+      "startMs": 17600,
+      "endMs": 21520,
+      "durationMs": 3920,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_7.mp3"
+    },
+    {
+      "sentenceId": "hcp2_8",
+      "text": "我很高兴。",
+      "startMs": 21520,
+      "endMs": 22960,
+      "durationMs": 1440,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_8.mp3"
+    },
+    {
+      "sentenceId": "hcp2_9",
+      "text": "虽然红色帽子也很好看，但是蓝色的更便宜。",
+      "startMs": 22960,
+      "endMs": 28720,
+      "durationMs": 5760,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_9.mp3"
+    },
+    {
+      "sentenceId": "hcp2_10",
+      "text": "所以，我买了蓝色的帽子。",
+      "startMs": 28720,
+      "endMs": 31200,
+      "durationMs": 2480,
+      "audioUrl": "/audio/readings/histoire_chapeau_p2_hcp2_10.mp3"
+    }
+  ]
+}

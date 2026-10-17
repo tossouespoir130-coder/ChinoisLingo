@@ -27,7 +27,8 @@ import {
   Layers,
   Languages,
   X,
-  ArrowUp
+  ArrowUp,
+  Mic
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { usePreferences } from '@/context/PreferencesContext';
@@ -41,8 +42,11 @@ import { Portal } from '@/components/ui/Portal';
 import { recordOpenedActivity } from '@/lib/services/activityTrackingService';
 import { HskExercisesHub } from '@/components/exercises/HskExercisesHub';
 import { fetchExercisesCatalogApi } from '@/lib/services/exerciseClientService';
+import { SpokenExercisesHub } from '@/components/spoken-exercises/SpokenExercisesHub';
+import { ALL_SPOKEN_MODELS } from '@/lib/spoken-exercises/hsk1Model1';
+import { SPOKEN_EXERCISES_LABEL, SPOKEN_EXERCISES_TAB_ID } from '@/lib/spoken-exercises/config';
 
-export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts' | 'exercices';
+export type ContentType = 'chansons' | 'videos' | 'articles' | 'histoires' | 'dialogues' | 'podcasts' | 'exercices' | 'exercices-parles';
 
 export interface DialogueCharacter {
   name: string;
@@ -1587,297 +1591,6 @@ export const readingCatalog: ReadingItem[] = [
     ]
   },
   {
-    id: 'series_je_suis_xiaobai',
-    titleFr: 'Je suis Xiaobai',
-    titleZh: '我是小白',
-    titlePinyin: 'Wǒ shì Xiǎobái',
-    type: 'histoires',
-    level: 'HSK 1',
-    duration: '5 parties',
-    description: 'Suivez les aventures du petit chat Xiaobai : sa vie en Chine, son meilleur ami Xiaohua, sa maman Li Yue et son amour pour le poisson.',
-    imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
-    iconBg: 'from-[#00897B] to-[#004D40]',
-    characters: [
-      {
-        name: 'Xiaobai',
-        nameZh: '小白',
-        pinyin: 'Xiǎobái',
-        role: 'Chaton blanc (1 an)',
-        description: 'Petit chat blanc curieux et joueur qui aime manger du poisson et habiter en Chine.',
-        color: 'amber'
-      },
-      {
-        name: 'Xiaohua',
-        nameZh: '小花',
-        pinyin: 'Xiǎohuā',
-        role: 'Ami chat (2 ans)',
-        description: 'Meilleur ami de Xiaobai avec qui il joue, regarde la télévision et fait des siestes.',
-        color: 'turquoise'
-      },
-      {
-        name: 'Li Yue',
-        nameZh: '李月',
-        pinyin: 'Lǐ Yuè',
-        role: 'Maman de Xiaobai (23 ans)',
-        description: 'Jeune femme attentionnée travaillant à l’hôpital qui prend soin de Xiaobai.',
-        color: 'pink'
-      }
-    ],
-    seriesEpisodes: [
-      {
-        id: 'je_suis_xiaobai_ep1',
-        episodeNumber: 1,
-        titleFr: 'Partie 1 : Je suis un chat',
-        titleZh: '第一篇：我是猫',
-        titlePinyin: 'Dì yī piān: Wǒ shì māo',
-        duration: '1 min',
-        level: 'HSK 1',
-        description: 'Xiaobai se présente : son âge, ses goûts, son lieu de vie en Chine et ses nombreux amis.',
-        imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
-        characters: [
-          {
-            name: 'Xiaobai',
-            nameZh: '小白',
-            pinyin: 'Xiǎobái',
-            role: 'Chaton blanc (1 an)',
-            description: 'Petit chat blanc curieux et joueur qui aime le poisson.',
-            color: 'amber'
-          }
-        ],
-        sentences: [
-          { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
-          { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
-          { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
-          { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
-          { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
-          { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
-          { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
-        ],
-        vocabulary: [
-          { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
-          { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
-          { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
-          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
-          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
-          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
-          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
-          { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
-          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
-          { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
-          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
-        ]
-      },
-      {
-        id: 'je_suis_xiaobai_ep2',
-        episodeNumber: 2,
-        titleFr: 'Partie 2 : Mon ami',
-        titleZh: '第二篇：我的朋友',
-        titlePinyin: 'Dì èr piān: Wǒ de péngyou',
-        duration: '1 min',
-        level: 'HSK 1',
-        description: 'Xiaobai présente son grand ami Xiaohua, un chat de deux ans qui vit lui aussi en Chine.',
-        imageUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=600&auto=format&fit=crop&q=80',
-        characters: [
-          {
-            name: 'Xiaobai',
-            nameZh: '小白',
-            pinyin: 'Xiǎobái',
-            role: 'Chaton blanc',
-            description: 'Présente son ami avec enthousiasme.',
-            color: 'amber'
-          },
-          {
-            name: 'Xiaohua',
-            nameZh: '小花',
-            pinyin: 'Xiǎohuā',
-            role: 'Ami chat (2 ans)',
-            description: 'Un autre chat qui aime manger du poisson.',
-            color: 'turquoise'
-          }
-        ],
-        sentences: [
-          { id: 'jsx_e2_1', hanzi: '我有一个朋友。', pinyin: 'Wǒ yǒu yí gè péngyou.', french: 'J’ai un ami.' },
-          { id: 'jsx_e2_2', hanzi: '他也是一只猫。', pinyin: 'Tā yě shì yì zhī māo.', french: 'C’est aussi un chat.' },
-          { id: 'jsx_e2_3', hanzi: '他叫小花。', pinyin: 'Tā jiào Xiǎohuā.', french: 'Il s’appelle Xiaohua.' },
-          { id: 'jsx_e2_4', hanzi: '他两岁。', pinyin: 'Tā liǎng suì.', french: 'Il a deux ans.' },
-          { id: 'jsx_e2_5', hanzi: '他也喜欢吃鱼。', pinyin: 'Tā yě xǐhuan chī yú.', french: 'Il aime aussi manger du poisson.' },
-          { id: 'jsx_e2_6', hanzi: '他也住在中国。', pinyin: 'Tā yě zhù zài Zhōngguó.', french: 'Il habite aussi en Chine.' },
-        ],
-        vocabulary: [
-          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
-          { hanzi: '也', pinyin: 'yě', french: 'aussi, également', role: 'Adverbe' },
-          { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour animaux', role: 'Classificateur' },
-          { hanzi: '两', pinyin: 'liǎng', french: 'deux (quantité)', role: 'Nombre' },
-          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
-          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
-          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
-          { hanzi: '住', pinyin: 'zhù', french: 'habiter', role: 'Verbe' },
-          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
-        ]
-      },
-      {
-        id: 'je_suis_xiaobai_ep3',
-        episodeNumber: 3,
-        titleFr: 'Partie 3 : Moi et mon ami',
-        titleZh: '第三篇：我和我的朋友',
-        titlePinyin: 'Dì sān piān: Wǒ hé wǒ de péngyou',
-        duration: '1 min',
-        level: 'HSK 1',
-        description: 'Découvrez toutes les activités que Xiaobai et Xiaohua partagent ensemble chaque jour.',
-        imageUrl: 'https://images.unsplash.com/photo-1568607689150-17e625c1586e?w=600&auto=format&fit=crop&q=80',
-        characters: [
-          {
-            name: 'Xiaobai',
-            nameZh: '小白',
-            pinyin: 'Xiǎobái',
-            role: 'Chaton blanc',
-            description: 'Joue et dort avec son meilleur ami.',
-            color: 'amber'
-          },
-          {
-            name: 'Xiaohua',
-            nameZh: '小花',
-            pinyin: 'Xiǎohuā',
-            role: 'Ami chat',
-            description: 'Partage ses repas et ses siestes avec Xiaobai.',
-            color: 'turquoise'
-          }
-        ],
-        sentences: [
-          { id: 'jsx_e3_1', hanzi: '我和小花是朋友。', pinyin: 'Wǒ hé Xiǎohuā shì péngyou.', french: 'Xiaohua et moi sommes amis.' },
-          { id: 'jsx_e3_2', hanzi: '我们一起玩。', pinyin: 'Wǒmen yìqǐ wán.', french: 'Nous jouons ensemble.' },
-          { id: 'jsx_e3_3', hanzi: '我们一起吃鱼。', pinyin: 'Wǒmen yìqǐ chī yú.', french: 'Nous mangeons du poisson ensemble.' },
-          { id: 'jsx_e3_4', hanzi: '我们一起喝水。', pinyin: 'Wǒmen yìqǐ hē shuǐ.', french: 'Nous buvons de l’eau ensemble.' },
-          { id: 'jsx_e3_5', hanzi: '我们一起看电视。', pinyin: 'Wǒmen yìqǐ kàn diànshì.', french: 'Nous regardons la télévision ensemble.' },
-          { id: 'jsx_e3_6', hanzi: '我们一起睡觉。', pinyin: 'Wǒmen yìqǐ shuìjiào.', french: 'Nous dormons ensemble.' },
-          { id: 'jsx_e3_7', hanzi: '我们是好朋友。', pinyin: 'Wǒmen shì hǎo péngyou.', french: 'Nous sommes de bons amis.' },
-        ],
-        vocabulary: [
-          { hanzi: '和', pinyin: 'hé', french: 'et, avec', role: 'Conjonction' },
-          { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
-          { hanzi: '玩', pinyin: 'wán', french: 'jouer, s’amuser', role: 'Verbe' },
-          { hanzi: '喝', pinyin: 'hē', french: 'boire', role: 'Verbe' },
-          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
-          { hanzi: '看', pinyin: 'kàn', french: 'regarder, voir', role: 'Verbe' },
-          { hanzi: '电视', pinyin: 'diànshì', french: 'télévision', role: 'Nom commun' },
-          { hanzi: '睡觉', pinyin: 'shuìjiào', french: 'dormir', role: 'Verbe' },
-          { hanzi: '好', pinyin: 'hǎo', french: 'bon, bien', role: 'Adjectif' },
-        ]
-      },
-      {
-        id: 'je_suis_xiaobai_ep4',
-        episodeNumber: 4,
-        titleFr: 'Partie 4 : Ma maman',
-        titleZh: '第四篇：我的妈妈',
-        titlePinyin: 'Dì sì piān: Wǒ de māma',
-        duration: '1 min',
-        level: 'HSK 1',
-        description: 'Xiaobai nous présente sa maman humaine Li Yue, qui travaille à l’hôpital et cuisine de délicieux plats chinois.',
-        imageUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&auto=format&fit=crop&q=80',
-        characters: [
-          {
-            name: 'Xiaobai',
-            nameZh: '小白',
-            pinyin: 'Xiǎobái',
-            role: 'Chaton',
-            description: 'Aime profondément sa maman Li Yue.',
-            color: 'amber'
-          },
-          {
-            name: 'Li Yue',
-            nameZh: '李月',
-            pinyin: 'Lǐ Yuè',
-            role: 'Maman (23 ans)',
-            description: 'Professionnelle de santé à l’hôpital qui adore son chat Xiaobai.',
-            color: 'pink'
-          }
-        ],
-        sentences: [
-          { id: 'jsx_e4_1', hanzi: '我的妈妈叫李月。', pinyin: 'Wǒ de māma jiào Lǐ Yuè.', french: 'Ma maman s’appelle Li Yue.' },
-          { id: 'jsx_e4_2', hanzi: '她今年二十三岁。', pinyin: 'Tā jīnnián èrshísān suì.', french: 'Elle a vingt-trois ans cette année.' },
-          { id: 'jsx_e4_3', hanzi: '她在医院工作。', pinyin: 'Tā zài yīyuàn gōngzuò.', french: 'Elle travaille à l’hôpital.' },
-          { id: 'jsx_e4_4', hanzi: '她喜欢吃中国菜。', pinyin: 'Tā xǐhuan chī Zhōngguócài.', french: 'Elle aime manger de la cuisine chinoise.' },
-          { id: 'jsx_e4_5', hanzi: '她是中国人。', pinyin: 'Tā shì Zhōngguórén.', french: 'Elle est chinoise.' },
-          { id: 'jsx_e4_6', hanzi: '我很喜欢我的妈妈。', pinyin: 'Wǒ hěn xǐhuan wǒ de māma.', french: 'J’aime beaucoup ma maman.' },
-        ],
-        vocabulary: [
-          { hanzi: '妈妈', pinyin: 'māma', french: 'maman, mère', role: 'Nom commun' },
-          { hanzi: '今年', pinyin: 'jīnnián', french: 'cette année', role: 'Nom temporel' },
-          { hanzi: '医院', pinyin: 'yīyuàn', french: 'hôpital', role: 'Nom commun' },
-          { hanzi: '工作', pinyin: 'gōngzuò', french: 'travailler, travail', role: 'Verbe / Nom' },
-          { hanzi: '中国菜', pinyin: 'Zhōngguócài', french: 'cuisine chinoise', role: 'Nom commun' },
-          { hanzi: '中国人', pinyin: 'Zhōngguórén', french: 'Chinois(e)', role: 'Nom de nationalité' },
-        ]
-      },
-      {
-        id: 'je_suis_xiaobai_ep5',
-        episodeNumber: 5,
-        titleFr: 'Partie 5 : Je veux manger du poisson',
-        titleZh: '第五篇：我想吃鱼',
-        titlePinyin: 'Dì wǔ piān: Wǒ xiǎng chī yú',
-        duration: '1 min',
-        level: 'HSK 1',
-        description: 'Xiaobai réclame son plat favori mais sa maman n’a qu’une pomme à lui offrir...',
-        imageUrl: 'https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80',
-        characters: [
-          {
-            name: 'Xiaobai',
-            nameZh: '小白',
-            pinyin: 'Xiǎobái',
-            role: 'Chaton gourmand',
-            description: 'Refuse la pomme et ne rêve que de bon poisson frais.',
-            color: 'amber'
-          },
-          {
-            name: 'Li Yue',
-            nameZh: '李月',
-            pinyin: 'Lǐ Yuè',
-            role: 'Maman de Xiaobai',
-            description: 'Propose gentiment une pomme à son chat.',
-            color: 'pink'
-          }
-        ],
-        sentences: [
-          { id: 'jsx_e5_1', hanzi: '我想吃鱼。', pinyin: 'Wǒ xiǎng chī yú.', french: 'Je veux manger du poisson.' },
-          { id: 'jsx_e5_2', hanzi: '家里没有鱼。', pinyin: 'Jiā lǐ méiyǒu yú.', french: 'Il n’y a pas de poisson à la maison.' },
-          { id: 'jsx_e5_3', hanzi: '妈妈没有买鱼。', pinyin: 'Māma méiyǒu mǎi yú.', french: 'Maman n’a pas acheté de poisson.' },
-          { id: 'jsx_e5_4', hanzi: '妈妈给我一个苹果。', pinyin: 'Māma gěi wǒ yí gè píngguǒ.', french: 'Maman me donne une pomme.' },
-          { id: 'jsx_e5_5', hanzi: '我不想吃苹果。', pinyin: 'Wǒ bù xiǎng chī píngguǒ.', french: 'Je ne veux pas manger de pomme.' },
-          { id: 'jsx_e5_6', hanzi: '我不喜欢苹果。', pinyin: 'Wǒ bù xǐhuan píngguǒ.', french: 'Je n’aime pas les pommes.' },
-        ],
-        vocabulary: [
-          { hanzi: '想', pinyin: 'xiǎng', french: 'vouloir, avoir envie de', role: 'Verbe auxiliaire' },
-          { hanzi: '家里', pinyin: 'jiā lǐ', french: 'à la maison, chez soi', role: 'Locution de lieu' },
-          { hanzi: '没有', pinyin: 'méiyǒu', french: 'ne pas avoir, il n’y a pas', role: 'Verbe de négation' },
-          { hanzi: '给', pinyin: 'gěi', french: 'donner à', role: 'Verbe' },
-          { hanzi: '苹果', pinyin: 'píngguǒ', french: 'pomme', role: 'Nom commun' },
-        ]
-      }
-    ],
-    sentences: [
-      { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
-      { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
-      { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
-      { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
-      { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
-      { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
-      { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
-    ],
-    vocabulary: [
-      { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
-      { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
-      { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
-      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
-      { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
-      { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
-      { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
-      { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
-      { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
-      { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
-      { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
-    ]
-  },
-  {
     id: 'series_vie_chine_business',
     titleFr: 'Vie en Chine : Business',
     titleZh: '中国生活：商务',
@@ -2975,6 +2688,297 @@ export const readingCatalog: ReadingItem[] = [
     ]
   },
   {
+    id: 'series_je_suis_xiaobai',
+    titleFr: 'Je suis Xiaobai',
+    titleZh: '我是小白',
+    titlePinyin: 'Wǒ shì Xiǎobái',
+    type: 'histoires',
+    level: 'HSK 1',
+    duration: '5 parties',
+    description: 'Suivez les aventures du petit chat Xiaobai : sa vie en Chine, son meilleur ami Xiaohua, sa maman Li Yue et son amour pour le poisson.',
+    imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: 'Xiaobai',
+        nameZh: '小白',
+        pinyin: 'Xiǎobái',
+        role: 'Chaton blanc (1 an)',
+        description: 'Petit chat blanc curieux et joueur qui aime manger du poisson et habiter en Chine.',
+        color: 'amber'
+      },
+      {
+        name: 'Xiaohua',
+        nameZh: '小花',
+        pinyin: 'Xiǎohuā',
+        role: 'Ami chat (2 ans)',
+        description: 'Meilleur ami de Xiaobai avec qui il joue, regarde la télévision et fait des siestes.',
+        color: 'turquoise'
+      },
+      {
+        name: 'Li Yue',
+        nameZh: '李月',
+        pinyin: 'Lǐ Yuè',
+        role: 'Maman de Xiaobai (23 ans)',
+        description: 'Jeune femme attentionnée travaillant à l’hôpital qui prend soin de Xiaobai.',
+        color: 'pink'
+      }
+    ],
+    seriesEpisodes: [
+      {
+        id: 'je_suis_xiaobai_ep1',
+        episodeNumber: 1,
+        titleFr: 'Partie 1 : Je suis un chat',
+        titleZh: '第一篇：我是猫',
+        titlePinyin: 'Dì yī piān: Wǒ shì māo',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai se présente : son âge, ses goûts, son lieu de vie en Chine et ses nombreux amis.',
+        imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc (1 an)',
+            description: 'Petit chat blanc curieux et joueur qui aime le poisson.',
+            color: 'amber'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
+          { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
+          { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
+          { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
+          { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
+          { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
+          { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
+        ],
+        vocabulary: [
+          { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+          { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+          { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+          { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
+          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+          { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep2',
+        episodeNumber: 2,
+        titleFr: 'Partie 2 : Mon ami',
+        titleZh: '第二篇：我的朋友',
+        titlePinyin: 'Dì èr piān: Wǒ de péngyou',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai présente son grand ami Xiaohua, un chat de deux ans qui vit lui aussi en Chine.',
+        imageUrl: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc',
+            description: 'Présente son ami avec enthousiasme.',
+            color: 'amber'
+          },
+          {
+            name: 'Xiaohua',
+            nameZh: '小花',
+            pinyin: 'Xiǎohuā',
+            role: 'Ami chat (2 ans)',
+            description: 'Un autre chat qui aime manger du poisson.',
+            color: 'turquoise'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e2_1', hanzi: '我有一个朋友。', pinyin: 'Wǒ yǒu yí gè péngyou.', french: 'J’ai un ami.' },
+          { id: 'jsx_e2_2', hanzi: '他也是一只猫。', pinyin: 'Tā yě shì yì zhī māo.', french: 'C’est aussi un chat.' },
+          { id: 'jsx_e2_3', hanzi: '他叫小花。', pinyin: 'Tā jiào Xiǎohuā.', french: 'Il s’appelle Xiaohua.' },
+          { id: 'jsx_e2_4', hanzi: '他两岁。', pinyin: 'Tā liǎng suì.', french: 'Il a deux ans.' },
+          { id: 'jsx_e2_5', hanzi: '他也喜欢吃鱼。', pinyin: 'Tā yě xǐhuan chī yú.', french: 'Il aime aussi manger du poisson.' },
+          { id: 'jsx_e2_6', hanzi: '他也住在中国。', pinyin: 'Tā yě zhù zài Zhōngguó.', french: 'Il habite aussi en Chine.' },
+        ],
+        vocabulary: [
+          { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+          { hanzi: '也', pinyin: 'yě', french: 'aussi, également', role: 'Adverbe' },
+          { hanzi: '只', pinyin: 'zhī', french: 'classificateur pour animaux', role: 'Classificateur' },
+          { hanzi: '两', pinyin: 'liǎng', french: 'deux (quantité)', role: 'Nombre' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer', role: 'Verbe' },
+          { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+          { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+          { hanzi: '住', pinyin: 'zhù', french: 'habiter', role: 'Verbe' },
+          { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep3',
+        episodeNumber: 3,
+        titleFr: 'Partie 3 : Moi et mon ami',
+        titleZh: '第三篇：我和我的朋友',
+        titlePinyin: 'Dì sān piān: Wǒ hé wǒ de péngyou',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Découvrez toutes les activités que Xiaobai et Xiaohua partagent ensemble chaque jour.',
+        imageUrl: 'https://images.unsplash.com/photo-1568607689150-17e625c1586e?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton blanc',
+            description: 'Joue et dort avec son meilleur ami.',
+            color: 'amber'
+          },
+          {
+            name: 'Xiaohua',
+            nameZh: '小花',
+            pinyin: 'Xiǎohuā',
+            role: 'Ami chat',
+            description: 'Partage ses repas et ses siestes avec Xiaobai.',
+            color: 'turquoise'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e3_1', hanzi: '我和小花是朋友。', pinyin: 'Wǒ hé Xiǎohuā shì péngyou.', french: 'Xiaohua et moi sommes amis.' },
+          { id: 'jsx_e3_2', hanzi: '我们一起玩。', pinyin: 'Wǒmen yìqǐ wán.', french: 'Nous jouons ensemble.' },
+          { id: 'jsx_e3_3', hanzi: '我们一起吃鱼。', pinyin: 'Wǒmen yìqǐ chī yú.', french: 'Nous mangeons du poisson ensemble.' },
+          { id: 'jsx_e3_4', hanzi: '我们一起喝水。', pinyin: 'Wǒmen yìqǐ hē shuǐ.', french: 'Nous buvons de l’eau ensemble.' },
+          { id: 'jsx_e3_5', hanzi: '我们一起看电视。', pinyin: 'Wǒmen yìqǐ kàn diànshì.', french: 'Nous regardons la télévision ensemble.' },
+          { id: 'jsx_e3_6', hanzi: '我们一起睡觉。', pinyin: 'Wǒmen yìqǐ shuìjiào.', french: 'Nous dormons ensemble.' },
+          { id: 'jsx_e3_7', hanzi: '我们是好朋友。', pinyin: 'Wǒmen shì hǎo péngyou.', french: 'Nous sommes de bons amis.' },
+        ],
+        vocabulary: [
+          { hanzi: '和', pinyin: 'hé', french: 'et, avec', role: 'Conjonction' },
+          { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
+          { hanzi: '玩', pinyin: 'wán', french: 'jouer, s’amuser', role: 'Verbe' },
+          { hanzi: '喝', pinyin: 'hē', french: 'boire', role: 'Verbe' },
+          { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+          { hanzi: '看', pinyin: 'kàn', french: 'regarder, voir', role: 'Verbe' },
+          { hanzi: '电视', pinyin: 'diànshì', french: 'télévision', role: 'Nom commun' },
+          { hanzi: '睡觉', pinyin: 'shuìjiào', french: 'dormir', role: 'Verbe' },
+          { hanzi: '好', pinyin: 'hǎo', french: 'bon, bien', role: 'Adjectif' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep4',
+        episodeNumber: 4,
+        titleFr: 'Partie 4 : Ma maman',
+        titleZh: '第四篇：我的妈妈',
+        titlePinyin: 'Dì sì piān: Wǒ de māma',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai nous présente sa maman humaine Li Yue, qui travaille à l’hôpital et cuisine de délicieux plats chinois.',
+        imageUrl: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton',
+            description: 'Aime profondément sa maman Li Yue.',
+            color: 'amber'
+          },
+          {
+            name: 'Li Yue',
+            nameZh: '李月',
+            pinyin: 'Lǐ Yuè',
+            role: 'Maman (23 ans)',
+            description: 'Professionnelle de santé à l’hôpital qui adore son chat Xiaobai.',
+            color: 'pink'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e4_1', hanzi: '我的妈妈叫李月。', pinyin: 'Wǒ de māma jiào Lǐ Yuè.', french: 'Ma maman s’appelle Li Yue.' },
+          { id: 'jsx_e4_2', hanzi: '她今年二十三岁。', pinyin: 'Tā jīnnián èrshísān suì.', french: 'Elle a vingt-trois ans cette année.' },
+          { id: 'jsx_e4_3', hanzi: '她在医院工作。', pinyin: 'Tā zài yīyuàn gōngzuò.', french: 'Elle travaille à l’hôpital.' },
+          { id: 'jsx_e4_4', hanzi: '她喜欢吃中国菜。', pinyin: 'Tā xǐhuan chī Zhōngguócài.', french: 'Elle aime manger de la cuisine chinoise.' },
+          { id: 'jsx_e4_5', hanzi: '她是中国人。', pinyin: 'Tā shì Zhōngguórén.', french: 'Elle est chinoise.' },
+          { id: 'jsx_e4_6', hanzi: '我很喜欢我的妈妈。', pinyin: 'Wǒ hěn xǐhuan wǒ de māma.', french: 'J’aime beaucoup ma maman.' },
+        ],
+        vocabulary: [
+          { hanzi: '妈妈', pinyin: 'māma', french: 'maman, mère', role: 'Nom commun' },
+          { hanzi: '今年', pinyin: 'jīnnián', french: 'cette année', role: 'Nom temporel' },
+          { hanzi: '医院', pinyin: 'yīyuàn', french: 'hôpital', role: 'Nom commun' },
+          { hanzi: '工作', pinyin: 'gōngzuò', french: 'travailler, travail', role: 'Verbe / Nom' },
+          { hanzi: '中国菜', pinyin: 'Zhōngguócài', french: 'cuisine chinoise', role: 'Nom commun' },
+          { hanzi: '中国人', pinyin: 'Zhōngguórén', french: 'Chinois(e)', role: 'Nom de nationalité' },
+        ]
+      },
+      {
+        id: 'je_suis_xiaobai_ep5',
+        episodeNumber: 5,
+        titleFr: 'Partie 5 : Je veux manger du poisson',
+        titleZh: '第五篇：我想吃鱼',
+        titlePinyin: 'Dì wǔ piān: Wǒ xiǎng chī yú',
+        duration: '1 min',
+        level: 'HSK 1',
+        description: 'Xiaobai réclame son plat favori mais sa maman n’a qu’une pomme à lui offrir...',
+        imageUrl: 'https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=600&auto=format&fit=crop&q=80',
+        characters: [
+          {
+            name: 'Xiaobai',
+            nameZh: '小白',
+            pinyin: 'Xiǎobái',
+            role: 'Chaton gourmand',
+            description: 'Refuse la pomme et ne rêve que de bon poisson frais.',
+            color: 'amber'
+          },
+          {
+            name: 'Li Yue',
+            nameZh: '李月',
+            pinyin: 'Lǐ Yuè',
+            role: 'Maman de Xiaobai',
+            description: 'Propose gentiment une pomme à son chat.',
+            color: 'pink'
+          }
+        ],
+        sentences: [
+          { id: 'jsx_e5_1', hanzi: '我想吃鱼。', pinyin: 'Wǒ xiǎng chī yú.', french: 'Je veux manger du poisson.' },
+          { id: 'jsx_e5_2', hanzi: '家里没有鱼。', pinyin: 'Jiā lǐ méiyǒu yú.', french: 'Il n’y a pas de poisson à la maison.' },
+          { id: 'jsx_e5_3', hanzi: '妈妈没有买鱼。', pinyin: 'Māma méiyǒu mǎi yú.', french: 'Maman n’a pas acheté de poisson.' },
+          { id: 'jsx_e5_4', hanzi: '妈妈给我一个苹果。', pinyin: 'Māma gěi wǒ yí gè píngguǒ.', french: 'Maman me donne une pomme.' },
+          { id: 'jsx_e5_5', hanzi: '我不想吃苹果。', pinyin: 'Wǒ bù xiǎng chī píngguǒ.', french: 'Je ne veux pas manger de pomme.' },
+          { id: 'jsx_e5_6', hanzi: '我不喜欢苹果。', pinyin: 'Wǒ bù xǐhuan píngguǒ.', french: 'Je n’aime pas les pommes.' },
+        ],
+        vocabulary: [
+          { hanzi: '想', pinyin: 'xiǎng', french: 'vouloir, avoir envie de', role: 'Verbe auxiliaire' },
+          { hanzi: '家里', pinyin: 'jiā lǐ', french: 'à la maison, chez soi', role: 'Locution de lieu' },
+          { hanzi: '没有', pinyin: 'méiyǒu', french: 'ne pas avoir, il n’y a pas', role: 'Verbe de négation' },
+          { hanzi: '给', pinyin: 'gěi', french: 'donner à', role: 'Verbe' },
+          { hanzi: '苹果', pinyin: 'píngguǒ', french: 'pomme', role: 'Nom commun' },
+        ]
+      }
+    ],
+    sentences: [
+      { id: 'jsx_e1_1', hanzi: '我是猫。', pinyin: 'Wǒ shì māo.', french: 'Je suis un chat.' },
+      { id: 'jsx_e1_2', hanzi: '我叫小白。', pinyin: 'Wǒ jiào Xiǎobái.', french: 'Je m’appelle Xiaobai.' },
+      { id: 'jsx_e1_3', hanzi: '我一岁。', pinyin: 'Wǒ yí suì.', french: 'J’ai un an.' },
+      { id: 'jsx_e1_4', hanzi: '我喜欢吃鱼。', pinyin: 'Wǒ xǐhuan chī yú.', french: 'J’aime manger du poisson.' },
+      { id: 'jsx_e1_5', hanzi: '我不喜欢水。', pinyin: 'Wǒ bù xǐhuan shuǐ.', french: 'Je n’aime pas l’eau.' },
+      { id: 'jsx_e1_6', hanzi: '我住在中国。', pinyin: 'Wǒ zhù zài Zhōngguó.', french: 'J’habite en Chine.' },
+      { id: 'jsx_e1_7', hanzi: '我有很多朋友。', pinyin: 'Wǒ yǒu hěn duō péngyou.', french: 'J’ai beaucoup d’amis.' },
+    ],
+    vocabulary: [
+      { hanzi: '猫', pinyin: 'māo', french: 'chat', role: 'Nom commun' },
+      { hanzi: '叫', pinyin: 'jiào', french: 's’appeler', role: 'Verbe' },
+      { hanzi: '岁', pinyin: 'suì', french: 'an(s) (âge)', role: 'Classificateur / Nom' },
+      { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+      { hanzi: '吃', pinyin: 'chī', french: 'manger', role: 'Verbe' },
+      { hanzi: '鱼', pinyin: 'yú', french: 'poisson', role: 'Nom commun' },
+      { hanzi: '水', pinyin: 'shuǐ', french: 'eau', role: 'Nom commun' },
+      { hanzi: '住', pinyin: 'zhù', french: 'habiter, résider', role: 'Verbe' },
+      { hanzi: '中国', pinyin: 'Zhōngguó', french: 'Chine', role: 'Nom propre' },
+      { hanzi: '很多', pinyin: 'hěn duō', french: 'beaucoup de', role: 'Adjectif / Quantité' },
+      { hanzi: '朋友', pinyin: 'péngyou', french: 'ami', role: 'Nom commun' },
+    ]
+  },
+  {
     id: 'histoire_journee_wang_ming',
     titleFr: 'La journée bien remplie de Wang Ming',
     titleZh: '王明的一天',
@@ -3433,6 +3437,282 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '怕', pinyin: 'pà', french: 'avoir peur, craindre', role: 'Verbe' },
       { hanzi: '衣服', pinyin: 'yīfu', french: 'vêtement, habit', role: 'Nom commun' },
       { hanzi: '件', pinyin: 'jiàn', french: 'spécificateur pour vêtements', role: 'Spécificateur' },
+    ]
+  },
+  {
+    id: 'series_acheter_chapeau',
+    titleFr: 'Acheter un chapeau',
+    titleZh: '买帽子',
+    titlePinyin: 'Mǎi màozi',
+    type: 'histoires',
+    level: 'HSK 2',
+    duration: '2 parties',
+    description: 'Une charmante histoire du quotidien pour apprendre à faire des achats, comparer les couleurs et les prix, et essayer un vêtement en chinois.',
+    imageUrl: '/images/readings/chapeau_series_cover.jpg',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    seriesEpisodes: [
+      {
+        id: 'histoire_chapeau_p1',
+        episodeNumber: 1,
+        titleFr: 'Partie 1 : Dans le magasin',
+        titleZh: '第一部分：在商店里',
+        titlePinyin: 'Dì yī bùfen: Zài shāngdiàn lǐ',
+        duration: '1 min 30',
+        level: 'HSK 2',
+        description: 'En quête du chapeau idéal dans un grand magasin, face à l’embarras du choix entre couleurs, tailles et prix.',
+        imageUrl: '/images/readings/chapeau_partie1.jpg',
+        sentences: [
+          {
+            id: 'hcp1_1',
+            hanzi: '昨天我去商店买帽子。',
+            pinyin: 'Zuótiān wǒ qù shāngdiàn mǎi màozi.',
+            french: 'Hier, je suis allé au magasin pour acheter un chapeau.',
+          },
+          {
+            id: 'hcp1_2',
+            hanzi: '商店里的帽子很多。',
+            pinyin: 'Shāngdiàn lǐ de màozi hěn duō.',
+            french: 'Il y a beaucoup de chapeaux dans le magasin.',
+          },
+          {
+            id: 'hcp1_3',
+            hanzi: '我看见红色的、黑色的和白色的。',
+            pinyin: 'Wǒ kànjiàn hóngsè de, hēisè de hé báisè de.',
+            french: 'J’ai vu des rouges, des noirs et des blancs.',
+          },
+          {
+            id: 'hcp1_4',
+            hanzi: '红色的很好看，但是有点贵。',
+            pinyin: 'Hóngsè de hěn hǎokàn, dànshì yǒudiǎn guì.',
+            french: 'Le rouge est très beau, mais il est un peu cher.',
+          },
+          {
+            id: 'hcp1_5',
+            hanzi: '黑色的很便宜，但是我不喜欢。',
+            pinyin: 'Hēisè de hěn piányi, dànshì wǒ bù xǐhuan.',
+            french: 'Le noir est très bon marché, mais je ne l’aime pas.',
+          },
+          {
+            id: 'hcp1_6',
+            hanzi: '白色的也可以，但是太小了。',
+            pinyin: 'Báisè de yě kěyǐ, dànshì tài xiǎo le.',
+            french: 'Le blanc pourrait aller aussi, mais il est trop petit.',
+          },
+          {
+            id: 'hcp1_7',
+            hanzi: '我不知道买哪一个。',
+            pinyin: 'Wǒ bù zhīdào mǎi nǎ yí gè.',
+            french: 'Je ne sais pas lequel acheter.',
+          },
+          {
+            id: 'hcp1_8',
+            hanzi: '这时候，我的朋友来了。',
+            pinyin: 'Zhè shíhou, wǒ de péngyou lái le.',
+            french: 'À ce moment-là, mon ami est arrivé.',
+          },
+          {
+            id: 'hcp1_9',
+            hanzi: '他问我：“你喜欢什么颜色的？”',
+            pinyin: 'Tā wèn wǒ: “Nǐ xǐhuan shénme yánsè de?”',
+            french: 'Il m’a demandé : « Quelle couleur aimes-tu ? »',
+          },
+          {
+            id: 'hcp1_10',
+            hanzi: '我说：“我喜欢红色，但是太贵了。”',
+            pinyin: 'Wǒ shuō: “Wǒ xǐhuan hóngsè, dànshì tài guì le.”',
+            french: 'J’ai répondu : « J’aime le rouge, mais c’est trop cher. »',
+          },
+          {
+            id: 'hcp1_11',
+            hanzi: '他说：“那边还有蓝色的，你去看看。”',
+            pinyin: 'Tā shuō: “Nàbiān hái yǒu lánsè de, nǐ qù kànkan.”',
+            french: 'Il a dit : « Là-bas, il y en a aussi des bleus, va jeter un coup d’œil. »',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '商店', pinyin: 'shāngdiàn', french: 'magasin, boutique', role: 'Nom commun' },
+          { hanzi: '买', pinyin: 'mǎi', french: 'acheter', role: 'Verbe' },
+          { hanzi: '帽子', pinyin: 'màozi', french: 'chapeau, casquette', role: 'Nom commun' },
+          { hanzi: '看见', pinyin: 'kànjiàn', french: 'voir, apercevoir', role: 'Verbe' },
+          { hanzi: '红色', pinyin: 'hóngsè', french: 'rouge, couleur rouge', role: 'Nom / Adjectif' },
+          { hanzi: '黑色', pinyin: 'hēisè', french: 'noir, couleur noire', role: 'Nom / Adjectif' },
+          { hanzi: '白色', pinyin: 'báisè', french: 'blanc, couleur blanche', role: 'Nom / Adjectif' },
+          { hanzi: '贵', pinyin: 'guì', french: 'cher, coûteux', role: 'Adjectif' },
+          { hanzi: '便宜', pinyin: 'piányi', french: 'bon marché, pas cher', role: 'Adjectif' },
+          { hanzi: '喜欢', pinyin: 'xǐhuan', french: 'aimer, apprécier', role: 'Verbe' },
+          { hanzi: '哪一个', pinyin: 'nǎ yí gè', french: 'lequel', role: 'Pronom' },
+          { hanzi: '这时候', pinyin: 'zhè shíhou', french: 'à ce moment-là', role: 'Locution temporelle' },
+          { hanzi: '颜色', pinyin: 'yánsè', french: 'couleur', role: 'Nom commun' },
+          { hanzi: '那边', pinyin: 'nàbiān', french: 'là-bas, de ce côté-là', role: 'Nom de lieu' },
+          { hanzi: '蓝色', pinyin: 'lánsè', french: 'bleu, couleur bleue', role: 'Nom / Adjectif' },
+        ],
+      },
+      {
+        id: 'histoire_chapeau_p2',
+        episodeNumber: 2,
+        titleFr: 'Partie 2 : Acheter le chapeau',
+        titleZh: '第二部分：买帽子',
+        titlePinyin: 'Dì èr bùfen: Mǎi màozi',
+        duration: '1 min 30',
+        level: 'HSK 2',
+        description: 'Sur les conseils avisés de son ami, essayage du chapeau bleu et échange avec le vendeur pour conclure l’achat.',
+        imageUrl: '/images/readings/chapeau_partie2.jpg',
+        sentences: [
+          {
+            id: 'hcp2_1',
+            hanzi: '我去看蓝色的帽子。',
+            pinyin: 'Wǒ qù kàn lánsè de màozi.',
+            french: 'Je suis allé voir les chapeaux bleus.',
+          },
+          {
+            id: 'hcp2_2',
+            hanzi: '蓝色的帽子很好看，也不贵。',
+            pinyin: 'Lánsè de màozi hěn hǎokàn, yě bú guì.',
+            french: 'Le chapeau bleu est très joli et pas cher non plus.',
+          },
+          {
+            id: 'hcp2_3',
+            hanzi: '我试了试，很合适。',
+            pinyin: 'Wǒ shì le shi, hěn héshì.',
+            french: 'Je l’ai essayé, il me va très bien.',
+          },
+          {
+            id: 'hcp2_4',
+            hanzi: '我问服务员：“这个帽子多少钱？”',
+            pinyin: 'Wǒ wèn fúwùyuán: “Zhè ge màozi duōshao qián?”',
+            french: 'J’ai demandé au vendeur : « Combien coûte ce chapeau ? »',
+          },
+          {
+            id: 'hcp2_5',
+            hanzi: '服务员说：“五十块。”',
+            pinyin: 'Fúwùyuán shuō: “Wǔshí kuài.”',
+            french: 'Le vendeur a répondu : « Cinquante yuans. »',
+          },
+          {
+            id: 'hcp2_6',
+            hanzi: '我觉得可以，就买了。',
+            pinyin: 'Wǒ juéde kěyǐ, jiù mǎi le.',
+            french: 'J’ai trouvé que c’était convenable, alors je l’ai acheté.',
+          },
+          {
+            id: 'hcp2_7',
+            hanzi: '我的朋友说：“这个帽子真好看。”',
+            pinyin: 'Wǒ de péngyou shuō: “Zhè ge màozi zhēn hǎokàn.”',
+            french: 'Mon ami m’a dit : « Ce chapeau est vraiment beau. »',
+          },
+          {
+            id: 'hcp2_8',
+            hanzi: '我很高兴。',
+            pinyin: 'Wǒ hěn gāoxìng.',
+            french: 'J’étais très content.',
+          },
+          {
+            id: 'hcp2_9',
+            hanzi: '虽然红色帽子也很好看，但是蓝色的更便宜。',
+            pinyin: 'Suīrán hóngsè màozi yě hěn hǎokàn, dànshì lánsè de gèng piányi.',
+            french: 'Bien que le chapeau rouge soit aussi très beau, le bleu est plus économique.',
+          },
+          {
+            id: 'hcp2_10',
+            hanzi: '所以，我买了蓝色的帽子。',
+            pinyin: 'Suǒyǐ, wǒ mǎi le lánsè de màozi.',
+            french: 'C’est pourquoi j’ai acheté le chapeau bleu.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '试', pinyin: 'shì', french: 'essayer, tester', role: 'Verbe' },
+          { hanzi: '合适', pinyin: 'héshì', french: 'adapté, seyant, convenable', role: 'Adjectif' },
+          { hanzi: '服务员', pinyin: 'fúwùyuán', french: 'vendeur, serveur, employé', role: 'Nom commun' },
+          { hanzi: '多少钱', pinyin: 'duōshao qián', french: 'combien ça coûte', role: 'Expression' },
+          { hanzi: '块', pinyin: 'kuài', french: 'yuan, pièce de monnaie', role: 'Spécificateur' },
+          { hanzi: '觉得', pinyin: 'juéde', french: 'trouver, penser', role: 'Verbe' },
+          { hanzi: '真', pinyin: 'zhēn', french: 'vraiment, véritablement', role: 'Adverbe' },
+          { hanzi: '虽然', pinyin: 'suīrán', french: 'bien que, quoique', role: 'Conjonction' },
+          { hanzi: '更', pinyin: 'gèng', french: 'encore plus, davantage', role: 'Adverbe' },
+          { hanzi: '所以', pinyin: 'suǒyǐ', french: 'c’est pourquoi, donc', role: 'Conjonction' },
+        ],
+      },
+    ],
+    sentences: [
+      {
+        id: 'hcp1_1',
+        hanzi: '昨天我去商店买帽子。',
+        pinyin: 'Zuótiān wǒ qù shāngdiàn mǎi màozi.',
+        french: 'Hier, je suis allé au magasin pour acheter un chapeau.',
+      },
+      {
+        id: 'hcp1_2',
+        hanzi: '商店里的帽子很多。',
+        pinyin: 'Shāngdiàn lǐ de màozi hěn duō.',
+        french: 'Il y a beaucoup de chapeaux dans le magasin.',
+      },
+      {
+        id: 'hcp1_3',
+        hanzi: '我看见红色的、黑色的和白色的。',
+        pinyin: 'Wǒ kànjiàn hóngsè de, hēisè de hé báisè de.',
+        french: 'J’ai vu des rouges, des noirs et des blancs.',
+      },
+      {
+        id: 'hcp1_4',
+        hanzi: '红色的很好看，但是有点贵。',
+        pinyin: 'Hóngsè de hěn hǎokàn, dànshì yǒudiǎn guì.',
+        french: 'Le rouge est très beau, mais il est un peu cher.',
+      },
+      {
+        id: 'hcp1_5',
+        hanzi: '黑色的很便宜，但是我不喜欢。',
+        pinyin: 'Hēisè de hěn piányi, dànshì wǒ bù xǐhuan.',
+        french: 'Le noir est très bon marché, mais je ne l’aime pas.',
+      },
+      {
+        id: 'hcp1_6',
+        hanzi: '白色的也可以，但是太小了。',
+        pinyin: 'Báisè de yě kěyǐ, dànshì tài xiǎo le.',
+        french: 'Le blanc pourrait aller aussi, mais il est trop petit.',
+      },
+      {
+        id: 'hcp1_7',
+        hanzi: '我不知道买哪一个。',
+        pinyin: 'Wǒ bù zhīdào mǎi nǎ yí gè.',
+        french: 'Je ne sais pas lequel acheter.',
+      },
+      {
+        id: 'hcp1_8',
+        hanzi: '这时候，我的朋友来了。',
+        pinyin: 'Zhè shíhou, wǒ de péngyou lái le.',
+        french: 'À ce moment-là, mon ami est arrivé.',
+      },
+      {
+        id: 'hcp1_9',
+        hanzi: '他问我：“你喜欢什么颜色的？”',
+        pinyin: 'Tā wèn wǒ: “Nǐ xǐhuan shénme yánsè de?”',
+        french: 'Il m’a demandé : « Quelle couleur aimes-tu ? »',
+      },
+      {
+        id: 'hcp1_10',
+        hanzi: '我说：“我喜欢红色，但是太贵了。”',
+        pinyin: 'Wǒ shuō: “Wǒ xǐhuan hóngsè, dànshì tài guì le.”',
+        french: 'J’ai répondu : « J’aime le rouge, mais c’est trop cher. »',
+      },
+      {
+        id: 'hcp1_11',
+        hanzi: '他说：“那边还有蓝色的，你去看看。”',
+        pinyin: 'Tā shuō: “Nàbiān hái yǒu lánsè de, nǐ qù kànkan.”',
+        french: 'Il a dit : « Là-bas, il y en a aussi des bleus, va jeter un coup d’œil. »',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '商店', pinyin: 'shāngdiàn', french: 'magasin, boutique', role: 'Nom commun' },
+      { hanzi: '买', pinyin: 'mǎi', french: 'acheter', role: 'Verbe' },
+      { hanzi: '帽子', pinyin: 'màozi', french: 'chapeau, casquette', role: 'Nom commun' },
+      { hanzi: '红色', pinyin: 'hóngsè', french: 'rouge', role: 'Nom / Adjectif' },
+      { hanzi: '黑色', pinyin: 'hēisè', french: 'noir', role: 'Nom / Adjectif' },
+      { hanzi: '白色', pinyin: 'báisè', french: 'blanc', role: 'Nom / Adjectif' },
+      { hanzi: '蓝色', pinyin: 'lánsè', french: 'bleu', role: 'Nom / Adjectif' },
+      { hanzi: '贵', pinyin: 'guì', french: 'cher, coûteux', role: 'Adjectif' },
+      { hanzi: '便宜', pinyin: 'piányi', french: 'bon marché, pas cher', role: 'Adjectif' },
+      { hanzi: '合适', pinyin: 'héshì', french: 'adapté, seyant', role: 'Adjectif' },
+      { hanzi: '服务员', pinyin: 'fúwùyuán', french: 'vendeur, serveur', role: 'Nom commun' },
     ]
   },
 
@@ -4673,7 +4953,7 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 2',
     duration: '1 min 30',
     description: 'Xiaoming cherche activement son passeport avec l’aide de Xiaohong avant de partir pour l’aéroport.',
-    imageUrl: 'https://images.unsplash.com/photo-1578852612716-854e527abf2e?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/images/readings/passeport_voyage.jpg',
     iconBg: 'from-[#0288D1] to-[#01579B]',
     characters: [
       {
@@ -6217,9 +6497,9 @@ export const readingCatalog: ReadingItem[] = [
     level: 'HSK 4',
     duration: '4 min 10',
     artist: 'Chuanzi',
-    youtubeId: 'uPfhib9zHtc',
+    youtubeId: 'D3XDx74A1yE',
     description: 'Une puissante ballade folk sur la fraternité, la fidélité et le partage des épreuves de la vie, rendue célèbre par la voix rauque et authentique de Chuanzi.',
-    imageUrl: 'https://img.youtube.com/vi/uPfhib9zHtc/hqdefault.jpg',
+    imageUrl: 'https://img.youtube.com/vi/D3XDx74A1yE/hqdefault.jpg',
     iconBg: 'from-[#3F51B5] to-[#1A237E]',
     sentences: [
       { id: 'jsy_1', section: 'Couplet 1', hanzi: '我们今生有缘在路上', pinyin: 'Wǒmen jīnshēng yǒu yuán zài lù shàng', french: 'Dans cette vie, le destin nous a réunis sur le même chemin' },
@@ -6860,7 +7140,7 @@ function EcouteLectureContent() {
     const directType = (urlParams.get('type') || searchParams.get('type')) as ContentType | null;
     const directEpParam = urlParams.get('ep') || searchParams.get('ep') || urlParams.get('episode') || searchParams.get('episode');
 
-    if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos', 'exercices'].includes(directType)) {
+    if (directType && ['chansons', 'articles', 'histoires', 'dialogues', 'podcasts', 'videos', 'exercices', 'exercices-parles'].includes(directType)) {
       setActiveCategory(directType);
     } else if (!directId) {
       setActiveCategory('chansons');
@@ -6916,7 +7196,7 @@ function EcouteLectureContent() {
       const type = params.get('type') as ContentType | null;
       const epParam = params.get('ep') || params.get('episode');
 
-      if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts', 'exercices'].includes(type)) {
+      if (type && ['chansons', 'videos', 'articles', 'dialogues', 'histoires', 'podcasts', 'exercices', 'exercices-parles'].includes(type)) {
         setActiveCategory(type);
       }
 
@@ -8259,6 +8539,7 @@ function EcouteLectureContent() {
               { id: 'podcasts', label: 'Podcasts', icon: Radio, count: readingCatalog.filter(r => r.type === 'podcasts' && estContenuPublie(r)).length },
               { id: 'videos', label: 'Vidéos', icon: Video, count: readingCatalog.filter(r => r.type === 'videos' && estContenuPublie(r)).length },
               { id: 'exercices', label: 'Exercices HSK', icon: ListChecks, count: nbSeriesExercices },
+              { id: SPOKEN_EXERCISES_TAB_ID, label: SPOKEN_EXERCISES_LABEL, icon: Mic, count: ALL_SPOKEN_MODELS.length },
             ].map((sub) => {
               const Icon = sub.icon;
               const isActive = activeCategory === sub.id;
@@ -8293,6 +8574,8 @@ function EcouteLectureContent() {
           {/* If Exercices tab is active */}
           {activeCategory === 'exercices' ? (
             <HskExercisesHub />
+          ) : activeCategory === SPOKEN_EXERCISES_TAB_ID ? (
+            <SpokenExercisesHub />
           ) : activeCategory === 'podcasts' && filteredCatalog.length === 0 ? (
             <div className="nixtio-card p-12 text-center bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl space-y-4">
               <div className="w-16 h-16 rounded-3xl bg-[#00897B]/10 text-[#00796B] dark:text-[#03DAC5] flex items-center justify-center mx-auto shadow-inner">
