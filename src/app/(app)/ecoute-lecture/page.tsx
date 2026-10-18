@@ -8358,22 +8358,29 @@ function EcouteLectureContent() {
     const fallbackId = activeReading?.id;
     const cleanWord = text.trim();
 
-    // Priority list of pre-generated ElevenLabs v3 HD audio clips
+    // Priority list of pre-generated ElevenLabs v3 HD audio clips with cache-busting parameter
+    const vParam = '?v=20261019a';
     const candidateUrls: string[] = [];
     if (primaryId && id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3${vParam}`);
       candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
     }
     if (fallbackId && fallbackId !== primaryId && id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3${vParam}`);
       candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
     }
     if (id.startsWith('voc_') || cleanWord.length <= 6) {
+      candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3${vParam}`);
+      candidateUrls.push(`/audio/vocab/${cleanWord}.mp3${vParam}`);
       candidateUrls.push(`/audio/vocab/${encodeURIComponent(cleanWord)}.mp3`);
       candidateUrls.push(`/audio/vocab/${cleanWord}.mp3`);
     }
     if (primaryId && !id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3${vParam}`);
       candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3`);
     }
     if (fallbackId && fallbackId !== primaryId && !id.startsWith('voc_')) {
+      candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3${vParam}`);
       candidateUrls.push(`/audio/readings/${fallbackId}_${id}.mp3`);
     }
 
