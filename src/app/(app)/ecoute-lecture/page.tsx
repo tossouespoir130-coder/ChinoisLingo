@@ -8359,7 +8359,7 @@ function EcouteLectureContent() {
     const cleanWord = text.trim();
 
     // Priority list of pre-generated ElevenLabs v3 HD audio clips with cache-busting parameter
-    const vParam = '?v=20261019a';
+    const vParam = '?v=20261019c';
     const candidateUrls: string[] = [];
     if (primaryId && id.startsWith('voc_')) {
       candidateUrls.push(`/audio/readings/${primaryId}_${id}.mp3${vParam}`);
