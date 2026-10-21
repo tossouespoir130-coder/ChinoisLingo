@@ -78,8 +78,8 @@ export function StreakFreezeWidget({ userId, compact = false }: StreakFreezeWidg
               </div>
               <p className="text-xs text-[#757575] dark:text-[#A0A0A0] mt-0.5">
                 {status.isActive
-                  ? 'Protège automatiquement votre flamme en cas d’oubli d’une journée.'
-                  : 'Votre bouclier a été utilisé ce mois-ci et se réactivera le 1er du mois prochain.'}
+                  ? 'Protège automatiquement ta flamme en cas d’oubli d’une journée.'
+                  : 'Ton bouclier a été utilisé ce mois-ci et se réactivera le 1er du mois prochain.'}
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ function StreakFreezeModal({ status, onClose }: { status: StreakFreezeStatus; on
                 <h3 className="font-display font-black text-base text-[#212121] dark:text-[#F5F5F5]">
                   Protection Gel de Série ❄️
                 </h3>
-                <span className="text-xs text-[#757575] dark:text-[#A0A0A0]">Tranquillité d’esprit pour votre série</span>
+                <span className="text-xs text-[#757575] dark:text-[#A0A0A0]">Tranquillité d’esprit pour ta série</span>
               </div>
             </div>
             <button
@@ -132,12 +132,12 @@ function StreakFreezeModal({ status, onClose }: { status: StreakFreezeStatus; on
             <div className="p-3.5 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-800 dark:text-cyan-200">
               <p className="font-bold flex items-center gap-1.5 mb-1 text-xs">
                 <Zap className="w-4 h-4 text-cyan-500" />
-                Statut actuel de votre bouclier
+                Statut actuel de ton bouclier
               </p>
               <p>
                 {status.isActive
-                  ? '✅ Vous disposez de 1 bouclier actif pour ce mois civil. Si un imprévu vous empêche de réviser un jour, votre série de flamme restera préservée !'
-                  : '⏳ Votre bouclier a été consommé ce mois-ci. Il sera automatiquement rechargé le 1er du mois prochain.'}
+                  ? '✅ Tu disposes de 1 bouclier actif pour ce mois civil. Si un imprévu t’empêche d’étudier un jour, ta série de flamme restera préservée !'
+                  : '⏳ Ton bouclier a été consommé ce mois-ci. Il sera automatiquement rechargé le 1er du mois prochain.'}
               </p>
             </div>
 
@@ -148,15 +148,15 @@ function StreakFreezeModal({ status, onClose }: { status: StreakFreezeStatus; on
               <ul className="space-y-2 list-none">
                 <li className="flex items-start gap-2">
                   <span className="text-cyan-500 font-black">1.</span>
-                  <span><strong>1 Gel offert chaque mois :</strong> Chaque apprenant reçoit automatiquement 1 bouclier gratuit au début de chaque mois calendaire.</span>
+                  <span><strong>1 Gel offert chaque mois :</strong> Tu reçois automatiquement 1 bouclier gratuit au début de chaque mois calendaire.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-cyan-500 font-black">2.</span>
-                  <span><strong>Déclenchement automatique :</strong> Aucune action requise. Si vous manquez 1 journée d’apprentissage, le bouclier gèle votre série sans la remettre à zéro.</span>
+                  <span><strong>Déclenchement automatique :</strong> Aucune action requise. Si tu manques 1 journée d’apprentissage, le bouclier gèle ta série sur ce jour manqué sans la remettre à zéro.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-cyan-500 font-black">3.</span>
-                  <span><strong>Reprise fluide :</strong> Dès votre connexion le lendemain, votre série continue de grimper sans perte de record.</span>
+                  <span><strong>Reprise fluide :</strong> Dès ta reconnexion, ta journée active reprend sa flamme et ta série continue de grimper sans perte de record.</span>
                 </li>
               </ul>
             </div>

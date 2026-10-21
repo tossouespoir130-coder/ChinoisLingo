@@ -3,6 +3,7 @@
 ## Règles Globales
 - Toujours s'adresser à l'utilisateur sous le nom : **Espoir Chinois**.
 - Demander confirmation avant toute publication ou déploiement en ligne.
+- **Règle Permanente de Diffusion Automatique & Instantanée des Notifications lors de Chaque Mise en Ligne** : Dès qu'Espoir Chinois valide la mise en ligne ou le déploiement d'un nouveau contenu (histoire, article, podcast, dialogue, chanson, formation, exercice), la notification officielle in-app dans Supabase (table `notifications` avec `user_id: null` pour tous les utilisateurs) DOIT obligatoirement et immédiatement être envoyée, et le contenu doit être inscrit dans la table `nouveaux_contenus` pour la newsletter hebdomadaire, de façon instantanée et sans jamais attendre ni être oublié.
 - Ne pas hésiter à proposer des idées constructives et innovantes.
 - Slogan officiel de la marque : **« Le chinois devient facile »** (ou *« Avec ChinoisLingo, le chinois devient facile »*).
 - **Règle Permanente de Salutation Officielle (`Nǐhǎo`)** : La formule de salutation officielle en pinyin sur TOUTE la plateforme (emails de bienvenue, récapitulatifs hebdomadaires, onboarding, notifications, messages et interface) s'écrit obligatoirement et exclusivement **`Nǐhǎo`** (attaché en un seul mot avec le 3ème ton `ǐ` sur le i).
@@ -57,6 +58,13 @@
 - **Règle d'Ergonomie Mobile Plein Écran & Anti-Zoom iOS sur les Formulaires** : Sur smartphone, la page de connexion / inscription s'ajuste pour tenir **intégralement sur un seul écran sans aucun défilement** (`min-h-[100dvh]`).
   - **Mode Connexion** : Sur mobile, le volet violet affiche uniquement l'en-tête (Logo ChinoisLingo + Slogan + « Maîtrisez le mandarin par immersion active » + court sous-titre) au-dessus du formulaire de connexion compact, masquant les 3 highlights pour garantir zéro scroll.
   - **Mode Création de Compte** : Sur mobile, le volet violet est entièrement masqué au profit du formulaire d'inscription complet (Pseudo, Email, Mot de passe, Confirmation) avec un mini-header épuré, permettant à tous les champs de tenir confortablement sur un seul écran sans défilement.
+- **Règle Fondamentale Permanente du Gel de Série (`Streak Freeze ❄️`)** :
+  - **Attribution exclusive sur le jour qui suit la dernière session active (`last_active_date + 1 jour`)** : Le gel de série est obligatoirement et exclusivement appliqué sur le jour qui suit directement la dernière journée active de l'apprenant (`shiftDateStringWAT(lastActive, 1)`).
+  - **Le jour d'absence manqué n'est pas obligatoirement hier** : Si un apprenant se connecte pendant 10 jours consécutifs puis oublie de se connecter pendant 10 jours, le bouclier est consommé automatiquement pour le 11ème jour (le jour qui suit directement sa dernière présence active) ; les jours d'absence suivants restent non connectés ; et le jour de sa reconnexion est un jour actif affichant sa flamme 🔥.
+  - **Impact sur la série (`streak`)** :
+    1. *Absence d'un seul jour (`diffDays === 2`)* : Le gel protège ce jour d'absence unique (`lastActive + 1 jour`) et la série continue sans interruption (`newStreak = streak + 1`).
+    2. *Absence prolongée (> 1 jour)* : Le gel protège le premier jour d'absence qui suit la série (`lastActive + 1 jour`), les jours d'absence suivants restent non connectés, et la nouvelle série recommence à 1 le jour de la reconnexion.
+  - **Priorité absolue de présence** : Le jour d'aujourd'hui (où l'apprenant est connecté) et tout jour ayant enregistré une activité affichent TOUJOURS la flamme 🔥 et ne peuvent jamais être marqués ni affichés comme gelés.
 - **Règle Permanente de Contrôle & Checking Audio Obligatoire avant Déploiement** : Pour TOUT contenu ajouté ou modifié sur la plateforme (histoire, article, dialogue, chanson, podcast, formation, vocabulaire), exécuter obligatoirement un contrôle final complet (*checking*) :
   1. Vérifier la présence effective et la conformité de toutes les pistes audio générées avec la voix attribuée (**Narrateur n°1** `narrator_1` pour les histoires et articles, voix dédiées pour les personnages).
   2. Vérifier la conformité stricte du fichier de métadonnées `_meta.json` (`contentId`, `fullAudioUrl`, tableau `sentences` avec `sentenceId`, `startMs`, `endMs`, `durationMs`, `audioUrl`).

@@ -28,6 +28,26 @@ export function getDateStringWAT(date: Date = new Date()): string {
   }
 }
 
+/**
+ * Retourne la date de la veille au format `YYYY-MM-DD` en UTC+1.
+ */
+export function getYesterdayStringWAT(date: Date = new Date()): string {
+  const todayStr = getDateStringWAT(date);
+  return shiftDateStringWAT(todayStr, -1);
+}
+
+/**
+ * Décale une date YYYY-MM-DD d'un nombre de jours entiers.
+ */
+export function shiftDateStringWAT(dateStr: string, daysShift: number): string {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const shifted = new Date(Date.UTC(year, month - 1, day + daysShift, 12, 0, 0));
+  const y = shifted.getUTCFullYear();
+  const m = String(shifted.getUTCMonth() + 1).padStart(2, '0');
+  const d = String(shifted.getUTCDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
 export interface WeekRangeWAT {
   lundiStr: string; // Ex: '2026-09-28'
   dimancheStr: string; // Ex: '2026-10-04'

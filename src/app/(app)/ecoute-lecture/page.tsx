@@ -28,7 +28,12 @@ import {
   Languages,
   X,
   ArrowUp,
-  Mic
+  ArrowRight,
+  Mic,
+  RotateCcw,
+  RotateCw,
+  SkipBack,
+  SkipForward
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { usePreferences } from '@/context/PreferencesContext';
@@ -89,6 +94,8 @@ export interface ArticleEpisode {
   level?: string;
   characters?: DialogueCharacter[];
   vocabulary?: VocabularyWord[];
+  correspondingArticleId?: string;
+  correspondingPodcastId?: string;
   sentences: ReadingSentence[];
 }
 
@@ -110,6 +117,8 @@ export interface ReadingItem {
   seriesEpisodes?: ArticleEpisode[]; // Série d'articles regroupés (3 articles complets)
   characters?: DialogueCharacter[]; // Liste des personnages du dialogue ou de l'histoire
   vocabulary?: VocabularyWord[]; // Nouveaux mots (生词) de la leçon ou vidéo
+  correspondingArticleId?: string;
+  correspondingPodcastId?: string;
   sentences: ReadingSentence[];
 }
 
@@ -1017,6 +1026,7 @@ export const readingCatalog: ReadingItem[] = [
     description: 'Une grande série de 9 articles pour explorer l’importance du sport au quotidien, ses bienfaits sur le moral et le sommeil, la nutrition sportive et les habitudes pour une vitalité durable.',
     imageUrl: '/images/readings/series_sport_cover.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
+    correspondingPodcastId: 'podcast_sport',
     seriesEpisodes: [
       {
         id: 'article_sport_p1',
@@ -1215,9 +1225,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p3',
         episodeNumber: 3,
-        titleFr: 'Partie 3 : Le sport et l’humeur',
-        titleZh: '第三部分：运动与心情',
-        titlePinyin: 'Dì sān bùfen: Yùndòng yǔ xīnqíng',
+        titleFr: 'Épisode 3 : Le sport et l’humeur',
+        titleZh: '第三集：运动与心情',
+        titlePinyin: 'Dì sān jí: Yùndòng yǔ xīnqíng',
         duration: '1 min 35',
         level: 'HSK 3',
         description: 'Découvre comment l’exercice physique libère les tensions de l’esprit, apaise l’anxiété et recharge l’énergie positive.',
@@ -1300,9 +1310,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p4',
         episodeNumber: 4,
-        titleFr: 'Partie 4 : Comment choisir son sport',
-        titleZh: '第四部分：怎么选择运动',
-        titlePinyin: 'Dì sì bùfen: Zěnme xuǎnzé yùndòng',
+        titleFr: 'Épisode 4 : Comment choisir son sport',
+        titleZh: '第四集：怎么选择运动',
+        titlePinyin: 'Dì sì jí: Zěnme xuǎnzé yùndòng',
         duration: '1 min 40',
         level: 'HSK 3',
         description: 'Conseils pour trouver la discipline adaptée à ses goûts, à son cadre de vie et à sa condition physique afin de durer dans le temps.',
@@ -1378,9 +1388,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p5',
         episodeNumber: 5,
-        titleFr: 'Partie 5 : Le sport et le sommeil',
-        titleZh: '第五部分：运动与睡眠',
-        titlePinyin: 'Dì wǔ bùfen: Yùndòng yǔ shuìmián',
+        titleFr: 'Épisode 5 : Le sport et le sommeil',
+        titleZh: '第五集：运动与睡眠',
+        titlePinyin: 'Dì wǔ jí: Yùndòng yǔ shuìmián',
         duration: '1 min 45',
         level: 'HSK 3',
         description: 'Comprendre comment caler ses séances au bon moment de la journée pour s’endormir facilement et profiter d’un sommeil réparateur.',
@@ -1459,9 +1469,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p6',
         episodeNumber: 6,
-        titleFr: 'Partie 6 : Le sport et l’alimentation',
-        titleZh: '第六部分：运动与饮食',
-        titlePinyin: 'Dì liù bùfen: Yùndòng yǔ yǐnshí',
+        titleFr: 'Épisode 6 : Le sport et l’alimentation',
+        titleZh: '第六集：运动与饮食',
+        titlePinyin: 'Dì liù jí: Yùndòng yǔ yǐnshí',
         duration: '1 min 55',
         level: 'HSK 3',
         description: 'Ce qu’il faut manger et boire avant et après l’exercice pour préserver sa digestion, bien s’hydrater et optimiser sa récupération.',
@@ -1553,9 +1563,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p7',
         episodeNumber: 7,
-        titleFr: 'Partie 7 : La météo et le sport',
-        titleZh: '第七部分：天气与运动',
-        titlePinyin: 'Dì qī bùfen: Tiānqì yǔ yùndòng',
+        titleFr: 'Épisode 7 : La météo et le sport',
+        titleZh: '第七集：天气与运动',
+        titlePinyin: 'Dì qī jí: Tiānqì yǔ yùndòng',
         duration: '1 min 30',
         level: 'HSK 3',
         description: 'Comment s’adapter à la chaleur estivale ou au froid de l’hiver pour continuer à bouger toute l’année, dedans comme dehors.',
@@ -1637,8 +1647,8 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p8',
         episodeNumber: 8,
-        titleFr: 'Partie 8 : S’entraîner seul ou entre amis ?',
-        titleZh: '第八部分：独自运动还是结伴同行？',
+        titleFr: 'Épisode 8 : S’entraîner seul ou entre amis ?',
+        titleZh: '第八集：独自运动还是结伴同行？',
         titlePinyin: 'Dì bā bùfen: Dúzì yùndòng háishì jiébàn tóngxíng?',
         duration: '1 min 50',
         level: 'HSK 3',
@@ -1732,9 +1742,9 @@ export const readingCatalog: ReadingItem[] = [
       {
         id: 'article_sport_p9',
         episodeNumber: 9,
-        titleFr: 'Partie 9 : Une habitude pour toute la vie',
-        titleZh: '第九部分：一辈子的运动习惯',
-        titlePinyin: 'Dì jiǔ bùfen: Yí bèizi de yùndòng xíguàn',
+        titleFr: 'Épisode 9 : Une habitude pour toute la vie',
+        titleZh: '第九集：一辈子的运动习惯',
+        titlePinyin: 'Dì jiǔ jí: Yí bèizi de yùndòng xíguàn',
         duration: '2 min 10',
         level: 'HSK 3',
         description: 'De la jeunesse aux années de sagesse, adapter sa pratique au fil de l’âge pour préserver sa vitalité et son épanouissement durable.',
@@ -1917,6 +1927,141 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '变成', pinyin: 'biànchéng', french: 'se transformer en, devenir', role: 'Verbe' },
       { hanzi: '习惯', pinyin: 'xíguàn', french: 'habitude', role: 'Nom commun' },
     ],
+  },
+
+  // ---------- 1ER PODCAST IMMERSIF HSK 3 ----------
+  {
+    id: 'podcast_sport',
+    titleFr: 'Le Sport et la Santé',
+    titleZh: '运动与健康',
+    titlePinyin: 'Yùndòng yǔ jiànkāng',
+    type: 'podcasts',
+    level: 'HSK 3',
+    duration: '9 épisodes',
+    description: 'Le premier grand podcast immersif HSK 3 de ChinoisLingo : 9 épisodes pour explorer l’importance du sport au quotidien, ses bienfaits sur le moral et le sommeil, la nutrition sportive et les habitudes pour une vitalité durable.',
+    imageUrl: '/images/readings/podcast_sport_cover.jpg',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    correspondingArticleId: 'series_sport',
+    seriesEpisodes: [
+      {
+        id: 'article_sport_p1',
+        episodeNumber: 1,
+        titleFr: 'Épisode 1 : L’importance de l’activité physique',
+        titleZh: '第一集：运动的重要性',
+        titlePinyin: 'Dì yī jí: Yùndòng de zhòngyàoxìng',
+        duration: '1 min 45',
+        level: 'HSK 3',
+        description: 'Découvre pourquoi faire du sport régulièrement transforme le quotidien, protège la santé et améliore l’humeur.',
+        imageUrl: '/images/readings/sport_partie1.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p2',
+        episodeNumber: 2,
+        titleFr: 'Épisode 2 : Comment commencer à bouger',
+        titleZh: '第二集：怎么开始运动',
+        titlePinyin: 'Dì èr jí: Zěnme kāishǐ yùndòng',
+        duration: '1 min 50',
+        level: 'HSK 3',
+        description: 'Des conseils simples et pratiques pour surmonter le manque de temps et intégrer le sport en douceur dans son rythme quotidien.',
+        imageUrl: '/images/readings/sport_partie2.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p3',
+        episodeNumber: 3,
+        titleFr: 'Épisode 3 : Le sport et l’humeur',
+        titleZh: '第三集：运动与心情',
+        titlePinyin: 'Dì sān jí: Yùndòng yǔ xīnqíng',
+        duration: '1 min 48',
+        level: 'HSK 3',
+        description: 'Comment l’activité physique aide à se détendre, dissiper la fatigue mentale et retrouver la bonne humeur.',
+        imageUrl: '/images/readings/sport_partie3.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p4',
+        episodeNumber: 4,
+        titleFr: 'Épisode 4 : Comment choisir son sport',
+        titleZh: '第四集：怎么选择运动',
+        titlePinyin: 'Dì sì jí: Zěnme xuǎnzé yùndòng',
+        duration: '1 min 45',
+        level: 'HSK 3',
+        description: 'Trouver l’activité qui correspond à ses goûts, ses besoins et son emploi du temps pour rester motivé durablement.',
+        imageUrl: '/images/readings/sport_partie4.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p5',
+        episodeNumber: 5,
+        titleFr: 'Épisode 5 : Le sport et le sommeil',
+        titleZh: '第五集：运动与睡眠',
+        titlePinyin: 'Dì wǔ jí: Yùndòng yǔ shuìmián',
+        duration: '1 min 52',
+        level: 'HSK 3',
+        description: 'Les clés pour mieux dormir grâce au sport et comprendre le rôle du repos dans la récupération.',
+        imageUrl: '/images/readings/sport_partie4.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p6',
+        episodeNumber: 6,
+        titleFr: 'Épisode 6 : Le sport et l’alimentation',
+        titleZh: '第六集：运动与饮食',
+        titlePinyin: 'Dì liù jí: Yùndòng yǔ yǐnshí',
+        duration: '1 min 46',
+        level: 'HSK 3',
+        description: 'Mieux manger pour avoir plus d’énergie au quotidien et optimiser les bienfaits de l’effort physique.',
+        imageUrl: '/images/readings/sport_partie6.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p7',
+        episodeNumber: 7,
+        titleFr: 'Épisode 7 : La météo et le sport',
+        titleZh: '第七集：天气与运动',
+        titlePinyin: 'Dì qī jí: Tiānqì yǔ yùndòng',
+        duration: '1 min 48',
+        level: 'HSK 3',
+        description: 'Comment continuer à bouger qu’il fasse chaud, froid ou qu’il pleuve, sans perdre sa motivation.',
+        imageUrl: '/images/readings/sport_partie7.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p8',
+        episodeNumber: 8,
+        titleFr: 'Épisode 8 : Faire du sport avec d’autres personnes',
+        titleZh: '第八集：和别人一起运动',
+        titlePinyin: 'Dì bā jí: Hé biérén yìqǐ yùndòng',
+        duration: '1 min 50',
+        level: 'HSK 3',
+        description: 'Le plaisir et la force du groupe : comment courir ou jouer à plusieurs renforce la persévérance et crée des liens.',
+        imageUrl: '/images/readings/sport_partie8.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+      {
+        id: 'article_sport_p9',
+        episodeNumber: 9,
+        titleFr: 'Épisode 9 : Faire du sport une habitude pour la vie',
+        titleZh: '第九集：让运动变成一辈子的习惯',
+        titlePinyin: 'Dì jiǔ jí: Ràng yùndòng biànchéng yíbèizi de xíguàn',
+        duration: '1 min 55',
+        level: 'HSK 3',
+        description: 'Bilan et vision à long terme : intégrer l’activité physique pour toujours dans son style de vie avec sérénité et régularité.',
+        imageUrl: '/images/readings/sport_partie9.jpg',
+        correspondingArticleId: 'series_sport',
+        sentences: [],
+      },
+    ],
+    sentences: [],
   },
 
   // ---------- NIVEAU HSK 4 ----------
@@ -7799,6 +7944,15 @@ function EcouteLectureContent() {
   const setCurrentSentenceIndex = currentSentenceIndexState[1];
   const [playingSentenceId, setPlayingSentenceId] = useState<string | null>(null);
   const activeAudioRef = useRef<HTMLAudioElement | null>(null);
+  const [audioCurrentTime, setAudioCurrentTime] = useState(0);
+  const [audioDuration, setAudioDuration] = useState(0);
+
+  const formatAudioTime = (sec: number) => {
+    if (!sec || isNaN(sec) || sec < 0) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
   
   // Local display toggles
   const [localPinyinOverride, setLocalPinyinOverride] = useState<boolean | null>(null);
@@ -7813,6 +7967,75 @@ function EcouteLectureContent() {
   const [completedItemIds, setCompletedItemIds] = useState<Set<string>>(
     new Set<string>()
   );
+
+  // Corresponding Article or Podcast linking
+  const correspondingArticle = useMemo(() => {
+    if (!activeReading) return null;
+    if (activeReading.correspondingArticleId) {
+      return readingCatalog.find((r) => r.id === activeReading.correspondingArticleId) || null;
+    }
+    if (activeReading.type === 'podcasts') {
+      return (
+        readingCatalog.find(
+          (r) =>
+            r.type === 'articles' &&
+            (r.titleZh === activeReading.titleZh ||
+              r.id === activeReading.id.replace(/^podcast_/, 'series_') ||
+              r.id === activeReading.id.replace(/_podcast$/, ''))
+        ) || null
+      );
+    }
+    return null;
+  }, [activeReading]);
+
+  const correspondingPodcast = useMemo(() => {
+    if (!activeReading) return null;
+    if (activeReading.correspondingPodcastId) {
+      return readingCatalog.find((r) => r.id === activeReading.correspondingPodcastId) || null;
+    }
+    if (activeReading.type === 'articles') {
+      return (
+        readingCatalog.find(
+          (r) =>
+            r.type === 'podcasts' &&
+            (r.titleZh === activeReading.titleZh ||
+              r.id === `podcast_${activeReading.id.replace(/^series_/, '')}` ||
+              r.id === `${activeReading.id}_podcast`)
+        ) || null
+      );
+    }
+    return null;
+  }, [activeReading]);
+
+  const handleNavigateToCorrespondingArticle = () => {
+    if (!correspondingArticle) return;
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAll(false);
+    setAudioCurrentTime(0);
+    setAudioDuration(0);
+    openReading(correspondingArticle, activeEpisodeIndex);
+  };
+
+  const handleNavigateToCorrespondingPodcast = () => {
+    if (!correspondingPodcast) return;
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAll(false);
+    setAudioCurrentTime(0);
+    setAudioDuration(0);
+    openReading(correspondingPodcast, activeEpisodeIndex);
+  };
 
   // Computed fields for multi-episode series vs single article/song
   const currentEpisode = activeReading?.seriesEpisodes?.[activeEpisodeIndex] || null;
@@ -8081,6 +8304,11 @@ function EcouteLectureContent() {
           const epIdx = matched.seriesEpisodes.findIndex((ep) => ep.id === directEpParam);
           if (epIdx !== -1) targetEp = epIdx;
         }
+      }
+
+      if (directType === 'podcasts' && directId === 'series_sport') {
+        const pod = readingCatalog.find((item) => item.id === 'podcast_sport');
+        if (pod) matched = pod;
       }
 
       if (matched) {
@@ -8491,6 +8719,8 @@ function EcouteLectureContent() {
     setIsPlayingAll(false);
     setPlayingSentenceId(null);
     setCurrentSentenceIndex(0);
+    setAudioCurrentTime(0);
+    setAudioDuration(0);
   }, [activeReading?.id, activeEpisodeIndex]);
 
   // Fallback: Web Speech sequential synthesis if no audio master track
@@ -8566,7 +8796,12 @@ function EcouteLectureContent() {
     }
 
     const onTimeUpdate = () => {
-      const currentMs = audio.currentTime * 1000;
+      const curSec = audio.currentTime;
+      setAudioCurrentTime(curSec);
+      if (audio.duration && !isNaN(audio.duration) && audio.duration > 0) {
+        setAudioDuration(audio.duration);
+      }
+      const currentMs = curSec * 1000;
       if (readingAudioMeta?.sentences) {
         let matched: typeof readingAudioMeta.sentences[0] | null = null;
         for (let i = 0; i < readingAudioMeta.sentences.length; i++) {
@@ -8585,10 +8820,17 @@ function EcouteLectureContent() {
       }
     };
 
+    const onLoadedMetadata = () => {
+      if (audio.duration && !isNaN(audio.duration)) {
+        setAudioDuration(audio.duration);
+      }
+    };
+
     const onEnded = () => {
       setIsPlayingAll(false);
       setPlayingSentenceId(null);
       setCurrentSentenceIndex(0);
+      setAudioCurrentTime(0);
       activeAudioRef.current = null;
     };
 
@@ -8598,6 +8840,7 @@ function EcouteLectureContent() {
         activeAudioRef.current = fallbackAudio;
         fallbackAudio.playbackRate = parseFloat(audioSpeed) || 1.0;
         fallbackAudio.addEventListener('timeupdate', onTimeUpdate);
+        fallbackAudio.addEventListener('loadedmetadata', onLoadedMetadata);
         fallbackAudio.addEventListener('ended', onEnded);
         fallbackAudio.play().catch(() => playSequenceWebSpeech(0));
       } else {
@@ -8606,6 +8849,7 @@ function EcouteLectureContent() {
     };
 
     audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
     audio.addEventListener('ended', onEnded);
     audio.addEventListener('error', onError);
 
@@ -8614,6 +8858,121 @@ function EcouteLectureContent() {
     audio.play().catch(() => {
       onError();
     });
+  };
+
+  const skipAudio = (seconds: number) => {
+    if (activeAudioRef.current) {
+      const maxDur = activeAudioRef.current.duration || audioDuration || 9999;
+      const newT = Math.max(0, Math.min(maxDur, activeAudioRef.current.currentTime + seconds));
+      activeAudioRef.current.currentTime = newT;
+      setAudioCurrentTime(newT);
+
+      if (readingAudioMeta?.sentences) {
+        const currentMs = newT * 1000;
+        let matched: typeof readingAudioMeta.sentences[0] | null = null;
+        for (let i = 0; i < readingAudioMeta.sentences.length; i++) {
+          const s = readingAudioMeta.sentences[i];
+          if (currentMs >= s.startMs) {
+            matched = s;
+          }
+        }
+        if (matched) {
+          setPlayingSentenceId(matched.sentenceId);
+          const idx = displayedSentences.findIndex((s) => s.id === matched.sentenceId);
+          if (idx !== -1 && idx !== currentSentenceIndex) {
+            setCurrentSentenceIndex(idx);
+          }
+        }
+      }
+    } else {
+      handleTogglePlayAll();
+    }
+  };
+
+  const handleAudioSeek = (newTime: number) => {
+    setAudioCurrentTime(newTime);
+    if (activeAudioRef.current) {
+      activeAudioRef.current.currentTime = newTime;
+      if (readingAudioMeta?.sentences) {
+        const currentMs = newTime * 1000;
+        let matched: typeof readingAudioMeta.sentences[0] | null = null;
+        for (let i = 0; i < readingAudioMeta.sentences.length; i++) {
+          const s = readingAudioMeta.sentences[i];
+          if (currentMs >= s.startMs) {
+            matched = s;
+          }
+        }
+        if (matched) {
+          setPlayingSentenceId(matched.sentenceId);
+          const idx = displayedSentences.findIndex((s) => s.id === matched.sentenceId);
+          if (idx !== -1 && idx !== currentSentenceIndex) {
+            setCurrentSentenceIndex(idx);
+          }
+        }
+      }
+    }
+  };
+
+  const handlePrevEpisode = () => {
+    if (activeReading?.seriesEpisodes && activeEpisodeIndex > 0) {
+      const prevIdx = activeEpisodeIndex - 1;
+      if (activeAudioRef.current) {
+        activeAudioRef.current.pause();
+        activeAudioRef.current = null;
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      setAudioCurrentTime(0);
+      setAudioDuration(0);
+      setActiveEpisodeIndex(prevIdx);
+      setCurrentSentenceIndex(0);
+      setIsPlayingAll(false);
+      setPlayingSentenceId(null);
+      if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        url.searchParams.set('ep', String(prevIdx));
+        window.history.pushState({ readingId: activeReading.id, episodeIdx: prevIdx }, '', url.toString());
+        try {
+          sessionStorage.setItem('chinoislingo_active_ep_idx', String(prevIdx));
+        } catch {
+          // ignore
+        }
+      }
+    }
+  };
+
+  const handleNextEpisode = () => {
+    if (activeReading?.seriesEpisodes && activeEpisodeIndex < activeReading.seriesEpisodes.length - 1) {
+      const nextIdx = activeEpisodeIndex + 1;
+      if (!estEpisodeAccessible(activeReading, nextIdx)) {
+        setItemVerrouille(activeReading);
+        return;
+      }
+      if (activeAudioRef.current) {
+        activeAudioRef.current.pause();
+        activeAudioRef.current = null;
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      setAudioCurrentTime(0);
+      setAudioDuration(0);
+      setActiveEpisodeIndex(nextIdx);
+      setCurrentSentenceIndex(0);
+      setIsPlayingAll(false);
+      setPlayingSentenceId(null);
+      if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        url.searchParams.set('ep', String(nextIdx));
+        window.history.pushState({ readingId: activeReading.id, episodeIdx: nextIdx }, '', url.toString());
+        try {
+          sessionStorage.setItem('chinoislingo_active_ep_idx', String(nextIdx));
+        } catch {
+          // ignore
+        }
+      }
+    }
   };
 
   // Auto-scroll synchronized with audio reading sequence
@@ -8664,87 +9023,338 @@ function EcouteLectureContent() {
         </div>
       ) : activeReading && lectureAutorisee ? (
         <div className="space-y-6 animate-fadeIn">
-          {/* Top Bar: Back Button, Multi-line Title (L1: French, L2: Hanzi, L3: Pinyin), Audio Action Buttons at Top Right */}
-          <div className={`flex items-start justify-between gap-3 p-3.5 sm:p-5 ${avecVideo ? 'lg:py-3' : ''} rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm`}>
-            <div className="flex items-start gap-2.5 sm:gap-3.5 min-w-0 flex-1">
-              <button
-                onClick={closeReading}
-                type="button"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer mt-0.5"
-                title="Retour au catalogue Écoute & Lecture"
-              >
-                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
+          {/* DÉDIÉ : GRAND LECTEUR PODCAST IMMERSIF HERO OU BARRE CLASSIQUE */}
+          {activeReading.type === 'podcasts' ? (
+            <div className="nixtio-card p-5 sm:p-7 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm relative overflow-hidden space-y-5">
+              {/* Halos & Glows atmosphériques */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-[#00897B]/15 via-[#00897B]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-              <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
-                {/* Ligne 1 : Titre complet en français (H1) */}
-                <h1 className="font-display font-black text-sm sm:text-lg lg:text-xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-snug">
-                  {displayedTitleFr}
-                </h1>
+              {/* Barre supérieure du lecteur podcast : Retour + Badges + Toggles Pinyin / Traduction */}
+              <div className="flex items-center justify-between gap-3 relative z-10">
+                <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                  <button
+                    onClick={closeReading}
+                    type="button"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer"
+                    title="Retour aux podcasts"
+                  >
+                    <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
 
-                {/* Ligne 2 : Titre en Caractères Chinois (Hanzi) */}
-                {displayedTitleZh && (
-                  <div className="font-hanzi text-sm sm:text-base font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
-                    {displayedTitleZh}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/25 text-[#00897B] dark:text-[#03DAC5] text-[11px] font-black uppercase tracking-wider">
+                    <Radio className="w-3.5 h-3.5" />
+                    <span>Podcast Immersif HSK 3</span>
                   </div>
-                )}
 
-                {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
-                {isPinyinVisible && displayedTitlePinyin && (
-                  <div className="font-pinyin text-xs sm:text-sm font-semibold text-[#00796B] dark:text-[#03DAC5] leading-snug">
-                    {displayedTitlePinyin}
+                  {activeReading.seriesEpisodes && (
+                    <span className="text-xs font-bold text-[#757575] dark:text-[#A0A0A0]">
+                      Épisode {activeEpisodeIndex + 1} sur {activeReading.seriesEpisodes.length}
+                    </span>
+                  )}
+                </div>
+
+                {/* Badge Immersion 100% Audio & Bouton vers l'article correspondant */}
+                <div className="flex items-center gap-2 flex-wrap shrink-0">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/25 text-[#00897B] dark:text-[#03DAC5] text-[10.5px] font-bold">
+                    <Headphones className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Immersion Orale • 100% Audio</span>
+                    <span className="sm:hidden">100% Audio</span>
                   </div>
-                )}
 
-                {activeReading.artist && (
-                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
-                    Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
-                  </p>
-                )}
+                  {correspondingArticle && (
+                    <button
+                      onClick={handleNavigateToCorrespondingArticle}
+                      type="button"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#6200EE]/10 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:bg-[#6200EE]/20 dark:hover:bg-[#6200EE] dark:text-[#BB86FC] dark:hover:text-white border border-[#6200EE]/30 transition-all text-xs font-bold btn-press shadow-2xs cursor-pointer group shrink-0"
+                      title="Lire l'article correspondant avec le texte intégral, pinyin, français et vocabulaire"
+                    >
+                      <BookOpen className="w-3.5 h-3.5 text-[#6200EE] group-hover:text-white dark:text-[#BB86FC]" />
+                      <span>Lire l’article</span>
+                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                    </button>
+                  )}
+                </div>
+              </div>
 
-                {activeReading.author && (
-                  <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
-                    Par <span className="font-bold text-[#6200EE] dark:text-[#BB86FC]">{activeReading.author}</span>
-                  </p>
-                )}
+              {/* Corps Hero du Podcast */}
+              <div className="flex flex-col md:flex-row items-center md:items-stretch gap-6 relative z-10 pt-1">
+                {/* Artwork officiel de l'épisode */}
+                <div className="relative w-44 h-44 sm:w-52 sm:h-52 md:w-48 md:h-48 lg:w-56 lg:h-56 shrink-0 rounded-2xl overflow-hidden shadow-lg border border-[#E0E0E0] dark:border-[#333333] group bg-[#FAFAFA] dark:bg-[#252525]">
+                  <img
+                    src={displayedImageUrl}
+                    alt={displayedTitleFr}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Badge Narratrice ElevenLabs v3 */}
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 px-2.5 py-1 rounded-xl bg-black/65 backdrop-blur-md border border-white/10 text-white flex items-center justify-between text-[10px] font-medium">
+                    <span className="flex items-center gap-1">
+                      <Mic className="w-3 h-3 text-[#03DAC5]" />
+                      <span>Anna Su</span>
+                    </span>
+                    <span className="font-bold text-[#03DAC5] uppercase tracking-wider text-[9px]">HSK 3</span>
+                  </div>
+
+                  {/* Badge Live / En écoute */}
+                  {isPlayingAll && (
+                    <div className="absolute top-2.5 right-2.5 px-2 py-1 rounded-lg bg-[#E53935] text-white text-[10px] font-bold flex items-center gap-1 shadow-md animate-pulse">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-white" />
+                      <span>ON AIR</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Métadonnées + Scrubber interactif + Boutons audio */}
+                <div className="flex-1 min-w-0 flex flex-col justify-between space-y-4 w-full">
+                  <div className="space-y-1 text-center md:text-left">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5]">
+                      {activeReading.titleFr} • {activeReading.titleZh}
+                    </div>
+                    <h1 className="font-display font-black text-lg sm:text-2xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-snug">
+                      {displayedTitleFr}
+                    </h1>
+                    {displayedTitleZh && (
+                      <div className="font-hanzi text-base sm:text-lg font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
+                        <span>{displayedTitleZh}</span>
+                        {displayedTitlePinyin && (
+                          <span className="font-pinyin font-medium text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] ml-2 font-sans">
+                            ({displayedTitlePinyin})
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {displayedDescription && (
+                      <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] leading-relaxed pt-1 line-clamp-2 md:line-clamp-3">
+                        {displayedDescription}
+                      </p>
+                    )}
+
+                    {/* Raccourci vers l'article correspondant si existant sur la plateforme */}
+                    {correspondingArticle && (
+                      <div className="pt-2">
+                        <button
+                          onClick={handleNavigateToCorrespondingArticle}
+                          type="button"
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/15 hover:bg-[#6200EE]/12 dark:hover:bg-[#6200EE]/25 border border-[#6200EE]/20 hover:border-[#6200EE]/40 text-[#6200EE] dark:text-[#BB86FC] transition-all text-xs font-bold btn-press cursor-pointer group"
+                        >
+                          <BookOpen className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC]" />
+                          <span>Lire l’article correspondant de cet épisode (texte, pinyin & vocabulaire)</span>
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Timeline / Scrubber interactif */}
+                  <div className="space-y-1.5 pt-1 w-full">
+                    <div className="relative flex items-center">
+                      <input
+                        type="range"
+                        min={0}
+                        max={audioDuration > 0 ? audioDuration : 100}
+                        step={0.1}
+                        value={audioCurrentTime}
+                        onChange={(e) => handleAudioSeek(parseFloat(e.target.value))}
+                        className="w-full h-2 bg-[#E0E0E0] dark:bg-[#333333] rounded-lg appearance-none cursor-pointer accent-[#00897B]"
+                        aria-label="Progression du podcast"
+                      />
+                    </div>
+                    <div className="flex justify-between items-center text-[11px] font-mono font-bold text-[#757575] dark:text-[#A0A0A0]">
+                      <span className="text-[#00897B] dark:text-[#03DAC5]">{formatAudioTime(audioCurrentTime)}</span>
+                      <span className="text-[10px] uppercase font-sans tracking-wider font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                        {isPlayingAll ? '• Lecture en cours' : '• En pause'}
+                      </span>
+                      <span>{formatAudioTime(audioDuration || (activeAudioRef.current?.duration ?? 0))}</span>
+                    </div>
+                  </div>
+
+                  {/* Commandes du Podcast (Play/Pause, -10s, +10s, Précédent, Suivant, Vitesse) */}
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+                    {/* Groupe de boutons principaux */}
+                    <div className="flex items-center gap-2 sm:gap-3.5">
+                      {/* Épisode Précédent */}
+                      <button
+                        onClick={handlePrevEpisode}
+                        disabled={activeEpisodeIndex === 0}
+                        type="button"
+                        title="Épisode précédent"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] disabled:opacity-30 disabled:cursor-not-allowed transition-all btn-press cursor-pointer"
+                      >
+                        <SkipBack className="w-4 h-4" />
+                      </button>
+
+                      {/* Reculer de 10 secondes */}
+                      <button
+                        onClick={() => skipAudio(-10)}
+                        type="button"
+                        title="Reculer de 10 secondes"
+                        className="flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer text-xs font-bold"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00897B] dark:text-[#03DAC5]" />
+                        <span>-10s</span>
+                      </button>
+
+                      {/* Bouton Play/Pause Principal */}
+                      <button
+                        onClick={handleTogglePlayAll}
+                        type="button"
+                        title={isPlayingAll ? 'Pause' : 'Écouter'}
+                        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all shadow-md btn-press cursor-pointer ${
+                          isPlayingAll
+                            ? 'bg-[#E53935] text-white hover:bg-[#D32F2F] shadow-[#E53935]/30 ring-4 ring-[#E53935]/20 animate-pulse'
+                            : 'bg-[#00897B] text-white hover:bg-[#00796B] shadow-[#00897B]/30 ring-4 ring-[#00897B]/20 hover:scale-105'
+                        }`}
+                      >
+                        {isPlayingAll ? (
+                          <Pause className="w-5 h-5 sm:w-6 sm:h-6 fill-white" />
+                        ) : (
+                          <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white ml-0.5" />
+                        )}
+                      </button>
+
+                      {/* Avancer de 10 secondes */}
+                      <button
+                        onClick={() => skipAudio(10)}
+                        type="button"
+                        title="Avancer de 10 secondes"
+                        className="flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer text-xs font-bold"
+                      >
+                        <span>+10s</span>
+                        <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00897B] dark:text-[#03DAC5]" />
+                      </button>
+
+                      {/* Épisode Suivant */}
+                      <button
+                        onClick={handleNextEpisode}
+                        disabled={!activeReading.seriesEpisodes || activeEpisodeIndex >= activeReading.seriesEpisodes.length - 1}
+                        type="button"
+                        title="Épisode suivant"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] disabled:opacity-30 disabled:cursor-not-allowed transition-all btn-press cursor-pointer"
+                      >
+                        <SkipForward className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Vitesse de lecture */}
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0]">Vitesse :</span>
+                      <div className="inline-flex items-center p-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-[10.5px] font-bold">
+                        {(['0.75', '1.0', '1.25'] as const).map((speed) => (
+                          <button
+                            key={speed}
+                            onClick={() => setAudioSpeed(speed)}
+                            type="button"
+                            className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                              audioSpeed === speed
+                                ? 'bg-[#00897B] text-white shadow-2xs'
+                                : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                            }`}
+                          >
+                            {speed}x
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          ) : (
+            /* Top Bar standard pour les autres types de contenus */
+            <div className={`flex items-start justify-between gap-3 p-3.5 sm:p-5 ${avecVideo ? 'lg:py-3' : ''} rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm`}>
+              <div className="flex items-start gap-2.5 sm:gap-3.5 min-w-0 flex-1">
+                <button
+                  onClick={closeReading}
+                  type="button"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#FAFAFA] dark:bg-[#252525] border border-[#E0E0E0] dark:border-[#333333] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B] hover:text-white transition-colors btn-press shrink-0 shadow-2xs cursor-pointer mt-0.5"
+                  title="Retour au catalogue Écoute & Lecture"
+                >
+                  <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
 
-            {/* Quick Action Toggles: Compact Icon-only Buttons on Mobile, Text on Desktop */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 pt-0.5">
-              {/* Bouton Pinyin : Icône seule sur mobile, Icône + Texte sur PC */}
-              <button
-                onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
-                type="button"
-                className={`inline-flex items-center justify-center gap-1 w-8 h-8 sm:w-auto sm:h-auto sm:px-2.5 sm:py-1 rounded-full border text-[10px] sm:text-[11px] font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0 ${
-                  isPinyinVisible
-                    ? 'bg-[#00897B] text-white border-[#00897B]'
-                    : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
-                }`}
-                title={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
-                aria-label={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
-              >
-                {isPinyinVisible ? <Eye className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" /> : <EyeOff className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" />}
-                <span className="hidden sm:inline">Pinyin</span>
-              </button>
+                <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
+                  {/* Ligne 1 : Titre complet en français (H1) */}
+                  <h1 className="font-display font-black text-sm sm:text-lg lg:text-xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-snug">
+                    {displayedTitleFr}
+                  </h1>
 
-              {/* Bouton Traduction : Icône seule sur mobile, Icône + Texte sur PC */}
-              <button
-                onClick={() => setLocalFrenchOverride(!isFrenchVisible)}
-                type="button"
-                className={`inline-flex items-center justify-center gap-1 w-8 h-8 sm:w-auto sm:h-auto sm:px-2.5 sm:py-1 rounded-full border text-[10px] sm:text-[11px] font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0 ${
-                  isFrenchVisible
-                    ? 'bg-[#6200EE] text-white border-[#6200EE]'
-                    : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
-                }`}
-                title={isFrenchVisible ? 'Masquer la traduction française' : 'Afficher la traduction française'}
-                aria-label={isFrenchVisible ? 'Masquer la traduction française' : 'Afficher la traduction française'}
-              >
-                <Languages className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" />
-                <span className="hidden sm:inline">Traduction</span>
-              </button>
+                  {/* Ligne 2 : Titre en Caractères Chinois (Hanzi) */}
+                  {displayedTitleZh && (
+                    <div className="font-hanzi text-sm sm:text-base font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
+                      {displayedTitleZh}
+                    </div>
+                  )}
+
+                  {/* Ligne 3 : Transcription Phonétique (Pinyin) (obéit au bouton Pinyin) */}
+                  {isPinyinVisible && displayedTitlePinyin && (
+                    <div className="font-pinyin text-xs sm:text-sm font-semibold text-[#00796B] dark:text-[#03DAC5] leading-snug">
+                      {displayedTitlePinyin}
+                    </div>
+                  )}
+
+                  {activeReading.artist && (
+                    <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
+                      Artiste : <span className="font-bold text-[#00796B] dark:text-[#03DAC5]">{activeReading.artist}</span>
+                    </p>
+                  )}
+
+                  {activeReading.author && (
+                    <p className="text-[10px] sm:text-xs font-semibold text-[#757575] dark:text-[#A0A0A0] pt-0.5">
+                      Par <span className="font-bold text-[#6200EE] dark:text-[#BB86FC]">{activeReading.author}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Action Toggles: Compact Icon-only Buttons on Mobile, Text on Desktop */}
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 pt-0.5">
+                {/* Bouton vers le podcast correspondant si existant */}
+                {correspondingPodcast && (
+                  <button
+                    onClick={handleNavigateToCorrespondingPodcast}
+                    type="button"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00897B] hover:text-white dark:bg-[#00897B]/20 dark:hover:bg-[#00897B] dark:text-[#03DAC5] dark:hover:text-white border border-[#00897B]/30 transition-all text-[11px] font-bold btn-press shadow-2xs cursor-pointer group shrink-0 mr-1"
+                    title="Écouter cet épisode en version podcast (mode immersion 100% audio)"
+                  >
+                    <Radio className="w-3.5 h-3.5 text-[#00897B] group-hover:text-white dark:text-[#03DAC5]" />
+                    <span className="hidden sm:inline">Écouter en podcast</span>
+                    <span className="sm:hidden">Podcast</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                  </button>
+                )}
+                {/* Bouton Pinyin : Icône seule sur mobile, Icône + Texte sur PC */}
+                <button
+                  onClick={() => setLocalPinyinOverride(!isPinyinVisible)}
+                  type="button"
+                  className={`inline-flex items-center justify-center gap-1 w-8 h-8 sm:w-auto sm:h-auto sm:px-2.5 sm:py-1 rounded-full border text-[10px] sm:text-[11px] font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0 ${
+                    isPinyinVisible
+                      ? 'bg-[#00897B] text-white border-[#00897B]'
+                      : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
+                  }`}
+                  title={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
+                  aria-label={isPinyinVisible ? 'Masquer le pinyin' : 'Afficher le pinyin'}
+                >
+                  {isPinyinVisible ? <Eye className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" /> : <EyeOff className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" />}
+                  <span className="hidden sm:inline">Pinyin</span>
+                </button>
+
+                {/* Bouton Traduction : Icône seule sur mobile, Icône + Texte sur PC */}
+                <button
+                  onClick={() => setLocalFrenchOverride(!isFrenchVisible)}
+                  type="button"
+                  className={`inline-flex items-center justify-center gap-1 w-8 h-8 sm:w-auto sm:h-auto sm:px-2.5 sm:py-1 rounded-full border text-[10px] sm:text-[11px] font-bold transition-all btn-press shadow-2xs cursor-pointer shrink-0 ${
+                    isFrenchVisible
+                      ? 'bg-[#6200EE] text-white border-[#6200EE]'
+                      : 'bg-[#FAFAFA] dark:bg-[#1E1E1E] text-[#757575] border-[#E0E0E0] dark:border-[#2D2D2D]'
+                  }`}
+                  title={isFrenchVisible ? 'Masquer la traduction française' : 'Afficher la traduction française'}
+                  aria-label={isFrenchVisible ? 'Masquer la traduction française' : 'Afficher la traduction française'}
+                >
+                  <Languages className="w-3.5 h-3.5 sm:w-3 sm:h-3 pointer-events-none" />
+                  <span className="hidden sm:inline">Traduction</span>
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           {/*
             Lecteur vidéo 100 % ChinoisLingo, visible pendant toute la lecture
@@ -8792,6 +9402,11 @@ function EcouteLectureContent() {
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
                       <span>Parties :</span>
                     </>
+                  ) : activeReading.type === 'podcasts' ? (
+                    <>
+                      <Radio className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
+                      <span>Épisodes du podcast :</span>
+                    </>
                   ) : (
                     <>
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
@@ -8802,7 +9417,7 @@ function EcouteLectureContent() {
                 {activeReading.seriesEpisodes.map((ep, eIdx) => {
                   const isCurrent = activeEpisodeIndex === eIdx;
                   const episodeVerrouille = !estEpisodeAccessible(activeReading, eIdx);
-                  const labelPrefix = activeReading.type === 'videos' 
+                  const labelPrefix = activeReading.type === 'videos' || activeReading.type === 'podcasts'
                     ? `Épisode ${ep.episodeNumber}` 
                     : activeReading.type === 'histoires' 
                     ? `Partie ${ep.episodeNumber}` 
@@ -8860,25 +9475,36 @@ function EcouteLectureContent() {
             </div>
           )}
 
-          {/* Continuous Description & Timer Banner (Couleur principale violette ChinoisLingo) */}
-          <div className={`w-full p-4 sm:p-5 ${avecVideo ? 'lg:hidden' : ''} rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs`}>
-            <p className="flex-1 mr-4 leading-relaxed font-medium">
-              {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
-            </p>
-            <div className="flex items-center gap-1.5 font-bold text-[#6200EE] dark:text-[#BB86FC] shrink-0 bg-[#6200EE]/10 dark:bg-[#6200EE]/20 px-3 py-1.5 rounded-full border border-[#6200EE]/25">
-              <Clock className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC]" />
-              <span>{displayedDuration}</span>
+          {/* Continuous Description & Timer Banner (Masqué si podcast car déjà affiché dans le Grand Lecteur Hero) */}
+          {activeReading.type !== 'podcasts' && (
+            <div className={`w-full p-4 sm:p-5 ${avecVideo ? 'lg:hidden' : ''} rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/10 border border-[#6200EE]/20 flex items-center justify-between text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] shadow-xs`}>
+              <p className="flex-1 mr-4 leading-relaxed font-medium">
+                {activeReading.type === 'chansons' ? '🎶' : activeReading.type === 'videos' ? '🎬' : '📖'} {displayedDescription}
+              </p>
+              <div className="flex items-center gap-1.5 font-bold text-[#6200EE] dark:text-[#BB86FC] shrink-0 bg-[#6200EE]/10 dark:bg-[#6200EE]/20 px-3 py-1.5 rounded-full border border-[#6200EE]/25">
+                <Clock className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC]" />
+                <span>{displayedDuration}</span>
+              </div>
             </div>
-          </div>
+          )}
 
 
-          {/* LYRICS & TEXT COMPONENT (Hanzi + Pinyin + French Translation) */}
+          {/* LYRICS & TEXT COMPONENT (Masqué pour les podcasts : immersion 100% listening) */}
+          {activeReading.type !== 'podcasts' && (
           <div className="nixtio-card p-5 sm:p-8 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm">
             {/* Header: Title + Transparent Interactive Audio Controller with Speed Control */}
             <div className="pb-4 mb-2 border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#00796B] dark:text-[#03DAC5] flex items-center gap-2">
-                {activeReading.type === 'chansons' ? <Music className="w-4 h-4" /> : <BookOpen className="w-4 h-4" />}
-                <span>{activeReading.type === 'chansons' ? 'Paroles & Traduction (Lyrics)' : 'Texte & Transcription Synchronisée'}</span>
+                {activeReading.type === 'chansons' ? (
+                  <Music className="w-4 h-4" />
+                ) : (
+                  <BookOpen className="w-4 h-4" />
+                )}
+                <span>
+                  {activeReading.type === 'chansons'
+                    ? 'Paroles & Traduction (Lyrics)'
+                    : 'Texte & Transcription Synchronisée'}
+                </span>
               </h3>
 
               {/* Single Transparent Audio Controller */}
@@ -8901,6 +9527,16 @@ function EcouteLectureContent() {
                   ))}
                 </div>
 
+                {/* Reculer 10s */}
+                <button
+                  onClick={() => skipAudio(-10)}
+                  type="button"
+                  title="Reculer de 10s"
+                  className="w-8 h-8 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer"
+                >
+                  <RotateCcw className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
+                </button>
+
                 {/* Main Play / Pause Audio Button */}
                 <button
                   onClick={handleTogglePlayAll}
@@ -8922,6 +9558,16 @@ function EcouteLectureContent() {
                       <span>Écouter l’Audio</span>
                     </>
                   )}
+                </button>
+
+                {/* Avancer 10s */}
+                <button
+                  onClick={() => skipAudio(10)}
+                  type="button"
+                  title="Avancer de 10s"
+                  className="w-8 h-8 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] flex items-center justify-center hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer"
+                >
+                  <RotateCw className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
                 </button>
               </div>
             </div>
@@ -9075,11 +9721,12 @@ function EcouteLectureContent() {
               </p>
             )}
           </div>
+          )}
 
           {/* ========================================================================= */}
           {/* SECTION 📝 生词 — NOUVEAUX MOTS & VOCABULAIRE CLÉ (EN BAS DE L'HISTOIRE) */}
           {/* ========================================================================= */}
-          {displayedVocabulary && displayedVocabulary.length > 0 && (
+          {displayedVocabulary && displayedVocabulary.length > 0 && activeReading.type !== 'podcasts' && (
             <div className="nixtio-card p-5 sm:p-7 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-sm space-y-4">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5] flex items-center gap-2">
@@ -9140,7 +9787,7 @@ function EcouteLectureContent() {
           {/* ========================================================================= */}
           {/* SECTION LES PERSONNAGES (PLACÉE EN BAS AVANT LA VALIDATION)               */}
           {/* ========================================================================= */}
-          {displayedCharacters && displayedCharacters.length > 0 && (
+          {displayedCharacters && displayedCharacters.length > 0 && activeReading.type !== 'podcasts' && (
             <div className="nixtio-card p-5 sm:p-6 bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] rounded-3xl shadow-xs space-y-3.5">
               <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
                 <h3 className="font-display font-black text-xs sm:text-sm uppercase tracking-wider text-[#6200EE] dark:text-[#BB86FC] flex items-center gap-2">
@@ -9323,12 +9970,49 @@ function EcouteLectureContent() {
                 {/* Sous-titre indicatif */}
                 <p className="text-[11px] sm:text-xs text-[#757575] dark:text-[#A0A0A0] truncate">
                   {activeSeries.type === 'videos' 
-                    ? 'Sélectionnez un épisode pour commencer à regarder' 
+                    ? 'Sélectionne un épisode pour commencer à regarder' 
                     : activeSeries.type === 'histoires'
-                    ? 'Sélectionnez une partie pour commencer votre lecture'
-                    : 'Sélectionnez un article pour commencer votre lecture'}
+                    ? 'Sélectionne une partie pour commencer ta lecture'
+                    : activeSeries.type === 'podcasts'
+                    ? 'Sélectionne un épisode pour lancer l’écoute du podcast'
+                    : 'Sélectionne un article pour commencer ta lecture'}
                 </p>
               </div>
+
+              {/* Bouton de bascule rapide vers l'autre format si existant */}
+              {activeSeries.type === 'podcasts' && activeSeries.correspondingArticleId && (
+                <button
+                  onClick={() => {
+                    const art = readingCatalog.find((r) => r.id === activeSeries.correspondingArticleId);
+                    if (art) setActiveSeries(art);
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#6200EE]/10 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:bg-[#6200EE]/20 dark:hover:bg-[#6200EE] dark:text-[#BB86FC] dark:hover:text-white border border-[#6200EE]/30 transition-all text-xs font-bold btn-press shadow-2xs cursor-pointer shrink-0"
+                  title="Voir la série sous forme d'articles avec texte, pinyin et vocabulaire"
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Lire la série d’articles</span>
+                  <span className="sm:hidden">Articles</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              )}
+
+              {activeSeries.type === 'articles' && activeSeries.correspondingPodcastId && (
+                <button
+                  onClick={() => {
+                    const pod = readingCatalog.find((r) => r.id === activeSeries.correspondingPodcastId);
+                    if (pod) setActiveSeries(pod);
+                  }}
+                  type="button"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00897B] hover:text-white dark:bg-[#00897B]/20 dark:hover:bg-[#00897B] dark:text-[#03DAC5] dark:hover:text-white border border-[#00897B]/30 transition-all text-xs font-bold btn-press shadow-2xs cursor-pointer shrink-0"
+                  title="Écouter la série sous forme de podcast (immersion 100% audio)"
+                >
+                  <Radio className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Écouter en podcast</span>
+                  <span className="sm:hidden">Podcast</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -9407,6 +10091,11 @@ function EcouteLectureContent() {
                           <>
                             <Play className="w-3 h-3 fill-current" />
                             <span>Regarder</span>
+                          </>
+                        ) : activeSeries.type === 'podcasts' ? (
+                          <>
+                            <Radio className="w-3 h-3" />
+                            <span>Écouter</span>
                           </>
                         ) : (
                           <>
@@ -9570,11 +10259,17 @@ function EcouteLectureContent() {
                       {hasSeriesEpisodes ? (
                         <span className="absolute bottom-2.5 left-2.5 text-[9.5px] font-bold px-2 py-0.5 rounded-md bg-black/65 backdrop-blur-md text-white border border-white/15 flex items-center gap-1.5 shadow-sm">
                           <span className="text-[#03DAC5] font-black">
-                            {item.type === 'videos' ? 'Série de vidéos' : item.type === 'histoires' ? 'Série d’histoires' : 'Série d’articles'}
+                            {item.type === 'videos'
+                              ? 'Série de vidéos'
+                              : item.type === 'histoires'
+                              ? 'Série d’histoires'
+                              : item.type === 'podcasts'
+                              ? 'Podcast immersif'
+                              : 'Série d’articles'}
                           </span>
                           <span className="text-white/40">•</span>
                           <span>
-                            {item.type === 'videos'
+                            {item.type === 'videos' || item.type === 'podcasts'
                               ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'épisodes' : 'épisode'}`
                               : item.type === 'histoires'
                               ? `${item.seriesEpisodes?.length || 0} ${item.seriesEpisodes?.length && item.seriesEpisodes.length > 1 ? 'parties' : 'partie'}`

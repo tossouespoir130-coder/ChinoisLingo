@@ -23,7 +23,7 @@ export const QUOTA_GRATUIT: Record<ContentTypeAcces, number> = {
   articles: 3,
   histoires: 3,
   dialogues: 3,
-  podcasts: 0,
+  podcasts: 1,
   videos: 0,
   exercices: 3,
 };

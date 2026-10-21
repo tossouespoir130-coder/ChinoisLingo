@@ -78,19 +78,34 @@ export async function recordDailyActivity(minutesToAdd: number = 0): Promise<Pro
       if (diffDays === 1) {
         // Connexion le lendemain consécutif : série + 1
         newStreak = (profile.streak_days || 0) + 1;
-      } else if (diffDays === 2) {
-        // 1 jour manqué : activation du Gel de Série ❄️ si disponible ce mois-ci
+      } else if (diffDays >= 2) {
+        // Au moins 1 jour d'absence : déclenchement automatique du Gel de Série ❄️
+        // 🛡️ Règle Fondamentale Permanente (Espoir Chinois) :
+        // Le gel protège TOUJOURS le jour qui suit directement la dernière connexion active (lastActive + 1 jour).
+        // Il ne s'applique jamais arbitrairement à "hier" lorsque l'absence dure plusieurs jours.
+        const { shiftDateStringWAT } = await import('@/lib/dateUtils');
+        const dayFollowingLastActive = shiftDateStringWAT(lastActive, 1);
+
         const { getStreakFreezeStatus, consumeStreakFreeze } = await import('@/lib/gamification/streakFreezeService');
         const freezeStatus = getStreakFreezeStatus(user.id);
+
         if (freezeStatus.isAvailable) {
-          consumeStreakFreeze(user.id);
-          newStreak = (profile.streak_days || 1) + 1;
+          // Utilise automatiquement le bouclier sur le jour qui suit la dernière session active
+          consumeStreakFreeze(user.id, dayFollowingLastActive);
+
+          if (diffDays === 2) {
+            // Absence d'un seul jour : le bouclier sauve la série qui continue de grimper !
+            newStreak = (profile.streak_days || 1) + 1;
+          } else {
+            // Absence prolongée (> 1 jour, ex: 10 jours) : le bouclier a protégé le jour qui suivait
+            // directement la série active, les autres jours d'absence restent non connectés,
+            // et la nouvelle série repart à 1 aujourd'hui.
+            newStreak = 1;
+          }
         } else {
+          // Aucun bouclier disponible ce mois-ci : la série recommence à 1
           newStreak = 1;
         }
-      } else if (diffDays > 2) {
-        // Absence prolongée : la série recommence à 1
-        newStreak = 1;
       }
     }
   } else {

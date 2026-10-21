@@ -96,7 +96,7 @@ export function AnimatedStreakBanner() {
           onClick={triggerConfetti}
           type="button"
           className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white flex items-center justify-center shadow-lg shadow-[#FF9800]/40 hover:scale-105 active:scale-95 transition-all duration-200 shrink-0 btn-press relative overflow-hidden cursor-pointer"
-          title="Cliquez pour célébrer votre série !"
+          title="Touche pour célébrer ta série !"
         >
           <Flame className="w-6 h-6 fill-[#FFE082] text-[#FF3D00] flame-burn-vivid" />
         </button>
@@ -130,19 +130,21 @@ export function AnimatedStreakBanner() {
             const isToday = dateStr === todayStr;
             const isFuture = dateStr > todayStr;
             const isActive = activeDaysSet.has(dateStr);
-            const isFrozen = frozenDaysSet.has(dateStr);
+            // 🛡️ Règle Absolue : Le gel protège exclusivement la journée d'absence manquée (passé, non actif).
+            // Le jour d'aujourd'hui et tout jour actif affichent toujours la flamme active !
+            const isFrozen = frozenDaysSet.has(dateStr) && !isActive && !isToday && !isFuture;
 
             let pillBg = 'bg-[#E0E0E0] dark:bg-[#2D2D2D] text-[#9E9E9E] dark:text-[#757575]';
             let tooltip = `${day.label} : Non complété`;
 
-            if (isFrozen) {
-              // ❄️ Gel de Série : Bouclier Bleu / Cyan
+            if (isActive) {
+              // 🔥 Jour Actif : Flamme Orange / Jaune (priorité absolue à la présence réelle)
+              pillBg = 'bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white shadow-md shadow-[#FF9800]/50 scale-100';
+              tooltip = isToday ? `${day.label} : Aujourd'hui (validé 🔥)` : `${day.label} : Jour validé 🔥`;
+            } else if (isFrozen) {
+              // ❄️ Gel de Série : Bouclier Bleu / Cyan sur la journée manquée d'hier
               pillBg = 'bg-gradient-to-tr from-cyan-400 via-sky-500 to-blue-600 text-white shadow-md shadow-cyan-500/40 ring-1 ring-cyan-300 scale-100';
               tooltip = `${day.label} : Protégé par le Gel de Série ❄️`;
-            } else if (isActive) {
-              // 🔥 Jour Actif : Flamme Orange / Jaune
-              pillBg = 'bg-gradient-to-tr from-[#FFC107] via-[#FF9800] to-[#FF3D00] text-white shadow-md shadow-[#FF9800]/50 scale-100';
-              tooltip = `${day.label} : Jour validé 🔥`;
             } else if (isFuture) {
               pillBg = 'bg-[#E0E0E0]/50 dark:bg-[#2D2D2D]/50 text-transparent';
               tooltip = `${day.label} : À venir`;
@@ -155,10 +157,10 @@ export function AnimatedStreakBanner() {
                   className={`text-[10px] sm:text-[11px] transition-colors duration-300 ${
                     isToday
                       ? 'text-[#FF3D00] dark:text-[#FF8A65] font-black'
-                      : isFrozen
-                      ? 'text-cyan-600 dark:text-cyan-400 font-bold'
                       : isActive
                       ? 'text-[#FF9800] dark:text-[#FFB74D] font-bold'
+                      : isFrozen
+                      ? 'text-cyan-600 dark:text-cyan-400 font-bold'
                       : 'text-[#9E9E9E] dark:text-[#616161] font-medium'
                   }`}
                 >
@@ -171,10 +173,10 @@ export function AnimatedStreakBanner() {
                     isToday ? 'ring-2 ring-[#FF3D00] ring-offset-1 dark:ring-offset-[#181818]' : ''
                   }`}
                 >
-                  {isFrozen ? (
-                    <Snowflake className="w-3.5 h-3.5 text-white animate-spin-slow drop-shadow-xs" />
-                  ) : isActive ? (
+                  {isActive ? (
                     <Flame className="w-3.5 h-3.5 fill-[#FFE082] text-[#FF3D00] flame-burn-vivid drop-shadow-sm" />
+                  ) : isFrozen ? (
+                    <Snowflake className="w-3.5 h-3.5 text-white animate-spin-slow drop-shadow-xs" />
                   ) : (
                     <span className="w-1.5 h-1.5 rounded-full bg-[#9E9E9E]/40 dark:bg-[#616161]/40" />
                   )}
