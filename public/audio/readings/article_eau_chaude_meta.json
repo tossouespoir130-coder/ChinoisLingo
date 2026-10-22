@@ -1,0 +1,114 @@
+{
+  "contentId": "article_eau_chaude",
+  "title": "Pourquoi les Chinois boivent-ils de l’eau chaude ? (中国人为什么喝热水？)",
+  "type": "article",
+  "narrator": "Anna Su (Narratrice 1)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_eau_chaude.mp3",
+  "totalDurationMs": 47570,
+  "sentences": [
+    {
+      "sentenceId": "art_ec_1",
+      "text": "在中国，很多人喜欢喝热水。",
+      "startMs": 0,
+      "endMs": 3440,
+      "durationMs": 3440,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_1.mp3"
+    },
+    {
+      "sentenceId": "art_ec_2",
+      "text": "早上喝，晚上也喝。",
+      "startMs": 3440,
+      "endMs": 6480,
+      "durationMs": 3040,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_2.mp3"
+    },
+    {
+      "sentenceId": "art_ec_3",
+      "text": "去饭店吃饭，你可以要一杯热水。",
+      "startMs": 6480,
+      "endMs": 10480,
+      "durationMs": 4000,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_3.mp3"
+    },
+    {
+      "sentenceId": "art_ec_4",
+      "text": "很多中国人每天喝热水。",
+      "startMs": 10480,
+      "endMs": 14240,
+      "durationMs": 3760,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_4.mp3"
+    },
+    {
+      "sentenceId": "art_ec_5",
+      "text": "为什么中国人爱喝热水？",
+      "startMs": 14240,
+      "endMs": 17600,
+      "durationMs": 3360,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_5.mp3"
+    },
+    {
+      "sentenceId": "art_ec_6",
+      "text": "因为热水对身体好。",
+      "startMs": 17600,
+      "endMs": 20960,
+      "durationMs": 3360,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_6.mp3"
+    },
+    {
+      "sentenceId": "art_ec_7",
+      "text": "喝热水，身体会很舒服。",
+      "startMs": 20960,
+      "endMs": 24240,
+      "durationMs": 3280,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_7.mp3"
+    },
+    {
+      "sentenceId": "art_ec_8",
+      "text": "身体不好的时候，多喝热水，会好得快。",
+      "startMs": 24240,
+      "endMs": 29120,
+      "durationMs": 4880,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_8.mp3"
+    },
+    {
+      "sentenceId": "art_ec_9",
+      "text": "所以，中国人觉得，热水是好东西。",
+      "startMs": 29120,
+      "endMs": 33760,
+      "durationMs": 4640,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_9.mp3"
+    },
+    {
+      "sentenceId": "art_ec_10",
+      "text": "在中国，很多人说：“多喝热水”。",
+      "startMs": 33760,
+      "endMs": 39120,
+      "durationMs": 5360,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_10.mp3"
+    },
+    {
+      "sentenceId": "art_ec_11",
+      "text": "现在你知道为什么了。",
+      "startMs": 39120,
+      "endMs": 41840,
+      "durationMs": 2720,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_11.mp3"
+    },
+    {
+      "sentenceId": "art_ec_12",
+      "text": "下次不舒服的时候，你可以喝一杯热水，看看好不好。",
+      "startMs": 41840,
+      "endMs": 47520,
+      "durationMs": 5680,
+      "audioUrl": "/audio/readings/article_eau_chaude_art_ec_12.mp3"
+    }
+  ]
+}

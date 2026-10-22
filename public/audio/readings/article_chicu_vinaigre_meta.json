@@ -1,0 +1,82 @@
+{
+  "contentId": "article_chicu_vinaigre",
+  "title": "Que signifie « manger du vinaigre » ? (“吃醋”是什么意思？)",
+  "type": "article",
+  "narrator": "Anna Su (Narratrice 1)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.55,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/article_chicu_vinaigre.mp3",
+  "totalDurationMs": 34270,
+  "sentences": [
+    {
+      "sentenceId": "art_cc_1",
+      "text": "在汉语里，有一个很有意思的词：“吃醋”。",
+      "startMs": 0,
+      "endMs": 5160,
+      "durationMs": 5160,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_1.mp3"
+    },
+    {
+      "sentenceId": "art_cc_2",
+      "text": "“吃醋”不是真的吃醋。",
+      "startMs": 5160,
+      "endMs": 7920,
+      "durationMs": 2760,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_2.mp3"
+    },
+    {
+      "sentenceId": "art_cc_3",
+      "text": "它的意思是：看到你爱的人对别人好，你不高兴。",
+      "startMs": 7920,
+      "endMs": 13600,
+      "durationMs": 5680,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_3.mp3"
+    },
+    {
+      "sentenceId": "art_cc_4",
+      "text": "比如，一个女人看到她的男朋友和别的女人说话，她不高兴。",
+      "startMs": 13600,
+      "endMs": 20880,
+      "durationMs": 7280,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_4.mp3"
+    },
+    {
+      "sentenceId": "art_cc_5",
+      "text": "她“吃醋”了。",
+      "startMs": 20880,
+      "endMs": 23520,
+      "durationMs": 2640,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_5.mp3"
+    },
+    {
+      "sentenceId": "art_cc_6",
+      "text": "所以，“吃醋”就是嫉妒。",
+      "startMs": 23520,
+      "endMs": 27200,
+      "durationMs": 3680,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_6.mp3"
+    },
+    {
+      "sentenceId": "art_cc_7",
+      "text": "如果男人吃醋了，是因为他很爱你。",
+      "startMs": 27200,
+      "endMs": 31400,
+      "durationMs": 4200,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_7.mp3"
+    },
+    {
+      "sentenceId": "art_cc_8",
+      "text": "你也不要每天都吃醋哦！",
+      "startMs": 31400,
+      "endMs": 34240,
+      "durationMs": 2840,
+      "audioUrl": "/audio/readings/article_chicu_vinaigre_art_cc_8.mp3"
+    }
+  ]
+}

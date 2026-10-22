@@ -33,7 +33,8 @@ import {
   RotateCcw,
   RotateCw,
   SkipBack,
-  SkipForward
+  SkipForward,
+  ChevronDown
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { usePreferences } from '@/context/PreferencesContext';
@@ -63,6 +64,7 @@ export interface DialogueCharacter {
 }
 
 export interface VocabularyWord {
+  id?: string;
   hanzi: string;
   pinyin: string;
   french: string;
@@ -1013,6 +1015,103 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '一口', pinyin: 'yì kǒu', french: 'une bouchée', role: 'Classificateur / Expression' },
     ]
   },
+  {
+    id: 'article_eau_chaude',
+    titleFr: 'Pourquoi les Chinois boivent-ils de l’eau chaude ?',
+    titleZh: '中国人为什么喝热水？',
+    titlePinyin: 'Zhōngguó rén wèishénme hē rèshuǐ?',
+    type: 'articles',
+    level: 'HSK 2',
+    duration: '1 min 30',
+    description: 'Une plongée captivante au cœur d’une des habitudes les plus célèbres de Chine : pourquoi l’eau chaude est-elle considérée comme un trésor pour la santé et le bien-être ?',
+    imageUrl: '/images/readings/article_eau_chaude.jpg',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    sentences: [
+      {
+        id: 'art_ec_1',
+        hanzi: '在中国，很多人喜欢喝热水。',
+        pinyin: 'Zài Zhōngguó, hěn duō rén xǐhuan hē rèshuǐ.',
+        french: 'En Chine, beaucoup de gens aiment boire de l’eau chaude.',
+      },
+      {
+        id: 'art_ec_2',
+        hanzi: '早上喝，晚上也喝。',
+        pinyin: 'Zǎoshang hē, wǎnshang yě hē.',
+        french: 'Ils en boivent le matin, et en boivent aussi le soir.',
+      },
+      {
+        id: 'art_ec_3',
+        hanzi: '去饭店吃饭，你可以要一杯热水。',
+        pinyin: 'Qù fàndiàn chīfàn, nǐ kěyǐ yào yì bēi rèshuǐ.',
+        french: 'Quand tu vas manger au restaurant, tu peux demander un verre d’eau chaude.',
+      },
+      {
+        id: 'art_ec_4',
+        hanzi: '很多中国人每天喝热水。',
+        pinyin: 'Hěn duō Zhōngguórén měitiān hē rèshuǐ.',
+        french: 'Beaucoup de Chinois boivent de l’eau chaude tous les jours.',
+      },
+      {
+        id: 'art_ec_5',
+        hanzi: '为什么中国人爱喝热水？',
+        pinyin: 'Wèishénme Zhōngguórén ài hē rèshuǐ?',
+        french: 'Pourquoi les Chinois aiment-ils boire de l’eau chaude ?',
+      },
+      {
+        id: 'art_ec_6',
+        hanzi: '因为热水对身体好。',
+        pinyin: 'Yīnwèi rèshuǐ duì shēntǐ hǎo.',
+        french: 'Parce que l’eau chaude est bonne pour la santé.',
+      },
+      {
+        id: 'art_ec_7',
+        hanzi: '喝热水，身体会很舒服。',
+        pinyin: 'Hē rèshuǐ, shēntǐ huì hěn shūfu.',
+        french: 'Boire de l’eau chaude procure une agréable sensation de bien-être au corps.',
+      },
+      {
+        id: 'art_ec_8',
+        hanzi: '身体不好的时候，多喝热水，会好得快。',
+        pinyin: 'Shēntǐ bù hǎo de shíhou, duō hē rèshuǐ, huì hǎo de kuài.',
+        french: 'Quand on ne se sent pas bien, boire beaucoup d’eau chaude aide à guérir plus vite.',
+      },
+      {
+        id: 'art_ec_9',
+        hanzi: '所以，中国人觉得，热水是好东西。',
+        pinyin: 'Suǒyǐ, Zhōngguórén juéde, rèshuǐ shì hǎo dōngxi.',
+        french: 'C’est pourquoi les Chinois considèrent que l’eau chaude est une excellente chose.',
+      },
+      {
+        id: 'art_ec_10',
+        hanzi: '在中国，很多人说：“多喝热水”。',
+        pinyin: 'Zài Zhōngguó, hěn duō rén shuō: “Duō hē rèshuǐ”.',
+        french: 'En Chine, beaucoup de gens disent : « Bois beaucoup d’eau chaude ».',
+      },
+      {
+        id: 'art_ec_11',
+        hanzi: '现在你知道为什么了。',
+        pinyin: 'Xiànzài nǐ zhīdào wèishénme le.',
+        french: 'Maintenant, tu sais pourquoi.',
+      },
+      {
+        id: 'art_ec_12',
+        hanzi: '下次不舒服的时候，你可以喝一杯热水，看看好不好。',
+        pinyin: 'Xià cì bù shūfu de shíhou, nǐ kěyǐ hē yì bēi rèshuǐ, kànkan hǎo bù hǎo.',
+        french: 'La prochaine fois que tu ne te sens pas bien, tu peux boire un verre d’eau chaude pour voir si tu te sens mieux.',
+      },
+    ],
+    vocabulary: [
+      { id: 'voc_ec_1', hanzi: '饭店', pinyin: 'fàndiàn', french: 'restaurant, hôtel', role: 'Nom commun' },
+      { id: 'voc_ec_2', hanzi: '舒服', pinyin: 'shūfu', french: 'agréable, confortable, à l’aise', role: 'Adjectif' },
+      { id: 'voc_ec_3', hanzi: '身体', pinyin: 'shēntǐ', french: 'corps, santé', role: 'Nom commun' },
+      { id: 'voc_ec_4', hanzi: '觉得', pinyin: 'juéde', french: 'penser, trouver, ressentir', role: 'Verbe' },
+      { id: 'voc_ec_5', hanzi: '为什么', pinyin: 'wèishénme', french: 'pourquoi', role: 'Pronom interrogatif' },
+      { id: 'voc_ec_6', hanzi: '快', pinyin: 'kuài', french: 'rapide, vite', role: 'Adjectif / Adverbe' },
+      { id: 'voc_ec_7', hanzi: '下次', pinyin: 'xià cì', french: 'la prochaine fois', role: 'Nom / Expression' },
+      { id: 'voc_ec_8', hanzi: '知道', pinyin: 'zhīdào', french: 'savoir, connaître', role: 'Verbe' },
+      { id: 'voc_ec_9', hanzi: '现在', pinyin: 'xiànzài', french: 'maintenant, actuellement', role: 'Nom / Adverbe' },
+    ],
+  },
 
   // ---------- NIVEAU HSK 3 ----------
   {
@@ -1926,6 +2025,78 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '只要', pinyin: 'zhǐyào', french: 'pourvu que, tant que, à condition que', role: 'Conjonction' },
       { hanzi: '变成', pinyin: 'biànchéng', french: 'se transformer en, devenir', role: 'Verbe' },
       { hanzi: '习惯', pinyin: 'xíguàn', french: 'habitude', role: 'Nom commun' },
+    ],
+  },
+  {
+    id: 'article_chicu_vinaigre',
+    titleFr: 'Que signifie « manger du vinaigre » ?',
+    titleZh: '“吃醋”是什么意思？',
+    titlePinyin: '“Chī cù” shì shénme yìsi?',
+    type: 'articles',
+    level: 'HSK 3',
+    duration: '1 min 30',
+    description: 'Découvre l’origine et la saveur de l’une des métaphores amoureuses les plus populaires de la langue chinoise : pourquoi dit-on « manger du vinaigre » pour parler de jalousie ?',
+    imageUrl: '/images/readings/article_chicu_vinaigre.jpg',
+    iconBg: 'from-[#E65100] to-[#BF360C]',
+    sentences: [
+      {
+        id: 'art_cc_1',
+        hanzi: '在汉语里，有一个很有意思的词：“吃醋”。',
+        pinyin: 'Zài Hànyǔ lǐ, yǒu yí gè hěn yǒu yìsi de cí: “chī cù”.',
+        french: 'En chinois, il existe une expression très intéressante : « manger du vinaigre » (chī cù).',
+      },
+      {
+        id: 'art_cc_2',
+        hanzi: '“吃醋”不是真的吃醋。',
+        pinyin: '“Chī cù” bú shì zhēn de chī cù.',
+        french: '« Manger du vinaigre » ne signifie pas réellement consommer du vinaigre.',
+      },
+      {
+        id: 'art_cc_3',
+        hanzi: '它的意思是：看到你爱的人对别人好，你不高兴。',
+        pinyin: 'Tā de yìsi shì: kàndào nǐ ài de rén duì biérén hǎo, nǐ bù gāoxìng.',
+        french: 'Son sens est le suivant : voir la personne que tu aimes être attentionnée avec quelqu’un d’autre te déplaît.',
+      },
+      {
+        id: 'art_cc_4',
+        hanzi: '比如，一个女人看到她的男朋友和别的女人说话，她不高兴。',
+        pinyin: 'Bǐrú, yí gè nǚrén kàndào tā de nánpéngyou hé bié de nǚrén shuōhuà, tā bù gāoxìng.',
+        french: 'Par exemple, si une femme voit son petit ami parler avec une autre femme, cela la contrarie.',
+      },
+      {
+        id: 'art_cc_5',
+        hanzi: '她“吃醋”了。',
+        pinyin: 'Tā “chī cù” le.',
+        french: 'Elle « mange du vinaigre » (elle est jalouse).',
+      },
+      {
+        id: 'art_cc_6',
+        hanzi: '所以，“吃醋”就是嫉妒。',
+        pinyin: 'Suǒyǐ, “chī cù” jiù shì jídù.',
+        french: 'Ainsi, « manger du vinaigre » signifie tout simplement être jaloux (jídù).',
+      },
+      {
+        id: 'art_cc_7',
+        hanzi: '如果男人吃醋了，是因为他很爱你。',
+        pinyin: 'Rúguǒ nánrén chī cù le, shì yīnwèi tā hěn ài nǐ.',
+        french: 'Si un homme est jaloux, c’est parce qu’il t’aime profondément.',
+      },
+      {
+        id: 'art_cc_8',
+        hanzi: '你也不要每天都吃醋哦！',
+        pinyin: 'Nǐ yě bú yào měitiān dōu chī cù o!',
+        french: 'Mais ne sois pas jaloux tous les jours non plus !',
+      },
+    ],
+    vocabulary: [
+      { id: 'voc_cc_1', hanzi: '词', pinyin: 'cí', french: 'mot, terme', role: 'Nom commun' },
+      { id: 'voc_cc_2', hanzi: '吃醋', pinyin: 'chī cù', french: 'être jaloux / jalouser (litt. « manger du vinaigre »)', role: 'Locution verbale' },
+      { id: 'voc_cc_3', hanzi: '醋', pinyin: 'cù', french: 'vinaigre', role: 'Nom commun' },
+      { id: 'voc_cc_4', hanzi: '嫉妒', pinyin: 'jídù', french: 'être jaloux, jalouser, jalousie', role: 'Verbe / Nom' },
+      { id: 'voc_cc_5', hanzi: '比如', pinyin: 'bǐrú', french: 'par exemple', role: 'Conjonction' },
+      { id: 'voc_cc_6', hanzi: '别人', pinyin: 'biérén', french: 'les autres, autrui', role: 'Pronom' },
+      { id: 'voc_cc_7', hanzi: '如果', pinyin: 'rúguǒ', french: 'si, au cas où', role: 'Conjonction' },
+      { id: 'voc_cc_8', hanzi: '哦', pinyin: 'o', french: 'particule modale amicale', role: 'Particule' },
     ],
   },
 
@@ -8333,6 +8504,11 @@ function EcouteLectureContent() {
   const [activeSeries, setActiveSeries] = useState<ReadingItem | null>(null);
   const [activeEpisodeIndex, setActiveEpisodeIndex] = useState(0);
 
+  // État accordéon pour dérouler les épisodes d'une série de podcast
+  const [expandedPodcastIds, setExpandedPodcastIds] = useState<Record<string, boolean>>({
+    podcast_sport: true,
+  });
+
   // Lecture dont la vidéo a été lancée : elle reste alors fixée en haut de
   // l'écran pendant qu'on fait défiler les paroles (mobile).
   const [videoLanceePour, setVideoLanceePour] = useState<string | null>(null);
@@ -8654,10 +8830,35 @@ function EcouteLectureContent() {
 
   const handleCategoryChange = (newCat: ContentType) => {
     setActiveCategory(newCat);
+    if (newCat === 'podcasts') {
+      if (!activeReading || activeReading.type !== 'podcasts') {
+        const firstPod = readingCatalog.find((r) => r.type === 'podcasts' && estContenuPublie(r));
+        if (firstPod) {
+          if (activeAudioRef.current) {
+            activeAudioRef.current.pause();
+            activeAudioRef.current = null;
+          }
+          setActiveReading(firstPod);
+          setActiveSeries(null);
+          setActiveEpisodeIndex(0);
+          setCurrentSentenceIndex(0);
+          setIsPlayingAll(false);
+          setAudioCurrentTime(0);
+          setAudioDuration(0);
+        }
+      }
+    } else if (activeReading?.type === 'podcasts') {
+      setActiveReading(null);
+      setIsPlayingAll(false);
+      if (activeAudioRef.current) {
+        activeAudioRef.current.pause();
+        activeAudioRef.current = null;
+      }
+    }
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
       url.searchParams.set('type', newCat);
-      if (!activeReading) {
+      if (!activeReading || newCat !== 'podcasts') {
         url.searchParams.delete('id');
         url.searchParams.delete('ep');
       }
@@ -8680,7 +8881,22 @@ function EcouteLectureContent() {
       setActiveCategory('chansons');
     }
 
-    if (directId) {
+    if (directType === 'podcasts' && !directId) {
+      const firstPod = readingCatalog.find((item) => item.type === 'podcasts' && estContenuPublie(item));
+      if (firstPod) {
+        setActiveReading(firstPod);
+        let targetEp = 0;
+        if (directEpParam && firstPod.seriesEpisodes) {
+          const parsedNum = parseInt(directEpParam, 10);
+          if (!isNaN(parsedNum) && parsedNum >= 0 && parsedNum < firstPod.seriesEpisodes.length) {
+            targetEp = parsedNum;
+          }
+        }
+        setActiveEpisodeIndex(targetEp);
+        setCurrentSentenceIndex(0);
+        setIsPlayingAll(false);
+      }
+    } else if (directId) {
       let matched = readingCatalog.find((item) => item.id === directId);
       let targetEp = 0;
 
@@ -9171,7 +9387,7 @@ function EcouteLectureContent() {
       return;
     }
 
-    if (displayedSentences.length === 0) return;
+    if (displayedSentences.length === 0 && activeReading?.type !== 'podcasts') return;
 
     const primaryId = currentEpisode?.id || activeReading?.id;
     const fallbackId = activeReading?.id;
@@ -9421,7 +9637,7 @@ function EcouteLectureContent() {
             </button>
           </div>
         </div>
-      ) : activeReading && lectureAutorisee ? (
+      ) : activeReading && lectureAutorisee && activeCategory !== 'podcasts' ? (
         <div className="space-y-6 animate-fadeIn">
           {/* DÉDIÉ : GRAND LECTEUR PODCAST IMMERSIF HERO OU BARRE CLASSIQUE */}
           {activeReading.type === 'podcasts' ? (
@@ -9453,26 +9669,11 @@ function EcouteLectureContent() {
                   )}
                 </div>
 
-                {/* Badge Immersion 100% Audio & Bouton vers l'article correspondant */}
-                <div className="flex items-center gap-2 flex-wrap shrink-0">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/25 text-[#00897B] dark:text-[#03DAC5] text-[10.5px] font-bold">
-                    <Headphones className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Immersion Orale • 100% Audio</span>
-                    <span className="sm:hidden">100% Audio</span>
-                  </div>
-
-                  {correspondingArticle && (
-                    <button
-                      onClick={handleNavigateToCorrespondingArticle}
-                      type="button"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#6200EE]/10 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:bg-[#6200EE]/20 dark:hover:bg-[#6200EE] dark:text-[#BB86FC] dark:hover:text-white border border-[#6200EE]/30 transition-all text-xs font-bold btn-press shadow-2xs cursor-pointer group shrink-0"
-                      title="Lire l'article correspondant avec le texte intégral, pinyin, français et vocabulaire"
-                    >
-                      <BookOpen className="w-3.5 h-3.5 text-[#6200EE] group-hover:text-white dark:text-[#BB86FC]" />
-                      <span>Lire l’article</span>
-                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-                    </button>
-                  )}
+                {/* Badge Immersion 100% Audio */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/25 text-[#00897B] dark:text-[#03DAC5] text-[10.5px] font-bold shrink-0">
+                  <Headphones className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Immersion Orale • 100% Audio</span>
+                  <span className="sm:hidden">100% Audio</span>
                 </div>
               </div>
 
@@ -9534,10 +9735,11 @@ function EcouteLectureContent() {
                         <button
                           onClick={handleNavigateToCorrespondingArticle}
                           type="button"
-                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-[#6200EE]/5 dark:bg-[#6200EE]/15 hover:bg-[#6200EE]/12 dark:hover:bg-[#6200EE]/25 border border-[#6200EE]/20 hover:border-[#6200EE]/40 text-[#6200EE] dark:text-[#BB86FC] transition-all text-xs font-bold btn-press cursor-pointer group"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6200EE]/10 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:bg-[#6200EE]/20 dark:hover:bg-[#6200EE] dark:text-[#BB86FC] dark:hover:text-white border border-[#6200EE]/30 transition-all text-xs font-bold btn-press cursor-pointer group shadow-2xs"
+                          title="Lire l’article complet correspondant à cet épisode"
                         >
-                          <BookOpen className="w-4 h-4 text-[#6200EE] dark:text-[#BB86FC]" />
-                          <span>Lire l’article correspondant de cet épisode (texte, pinyin & vocabulaire)</span>
+                          <BookOpen className="w-4 h-4 text-[#6200EE] group-hover:text-white dark:text-[#BB86FC]" />
+                          <span>Lire l’article</span>
                           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                         </button>
                       </div>
@@ -9788,7 +9990,7 @@ function EcouteLectureContent() {
           )}
 
           {/* SÉLECTEUR RAPIDE D'ÉPISODES DANS LE LECTEUR (POUR LES SÉRIES) */}
-          {activeReading.seriesEpisodes && activeReading.seriesEpisodes.length > 1 && (
+          {activeReading.type !== 'podcasts' && activeReading.seriesEpisodes && activeReading.seriesEpisodes.length > 1 && (
             <div className="w-full p-2.5 sm:p-3.5 rounded-2xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-xs">
               <div className="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth py-1 px-1 touch-pan-x">
                 <span className="text-[11px] sm:text-xs font-bold text-[#757575] dark:text-[#A0A0A0] shrink-0 mr-1 flex items-center gap-1">
@@ -9802,11 +10004,6 @@ function EcouteLectureContent() {
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
                       <span>Parties :</span>
                     </>
-                  ) : activeReading.type === 'podcasts' ? (
-                    <>
-                      <Radio className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
-                      <span>Épisodes du podcast :</span>
-                    </>
                   ) : (
                     <>
                       <BookOpen className="w-3.5 h-3.5 text-[#6200EE] dark:text-[#BB86FC]" />
@@ -9817,7 +10014,7 @@ function EcouteLectureContent() {
                 {activeReading.seriesEpisodes.map((ep, eIdx) => {
                   const isCurrent = activeEpisodeIndex === eIdx;
                   const episodeVerrouille = !estEpisodeAccessible(activeReading, eIdx);
-                  const labelPrefix = activeReading.type === 'videos' || activeReading.type === 'podcasts'
+                  const labelPrefix = activeReading.type === 'videos'
                     ? `Épisode ${ep.episodeNumber}` 
                     : activeReading.type === 'histoires' 
                     ? `Partie ${ep.episodeNumber}` 
@@ -10156,7 +10353,7 @@ function EcouteLectureContent() {
                           </span>
                           <button
                             type="button"
-                            onClick={() => playSentenceAudio(`voc_${vIdx}`, vocab.hanzi)}
+                            onClick={() => playSentenceAudio(vocab.id || `voc_${vIdx}`, vocab.hanzi)}
                             className="w-6 h-6 rounded-full bg-[#00897B]/10 hover:bg-[#00897B] text-[#00796B] hover:text-white flex items-center justify-center transition-colors btn-press cursor-pointer"
                             title="Écouter la prononciation"
                           >
@@ -10339,7 +10536,7 @@ function EcouteLectureContent() {
             </div>
           </div>
         </div>
-      ) : activeSeries ? (
+      ) : (activeSeries && activeCategory !== 'podcasts') ? (
         /* ========================================================================= */
         /* VIEW B: SERIES HUB WITH 3 INDIVIDUAL ARTICLE FRAMES / CARDS               */
         /* ========================================================================= */
@@ -10592,6 +10789,415 @@ function EcouteLectureContent() {
                 <p className="text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] mt-1 leading-relaxed">
                   De nouveaux épisodes de podcast exclusifs animés par <strong>Espoir Chinois</strong> arrivent très bientôt pour perfectionner votre écoute active.
                 </p>
+              </div>
+            </div>
+          ) : activeCategory === 'podcasts' ? (
+            <div className="space-y-6 animate-fadeIn">
+              {/* LAYOUT 2 COLONNES : LECTEUR STYLE APPLICATION DE MUSIQUE (GAUCHE) + LISTE DES PODCASTS DÉROULABLE (DROITE) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                {/* COLONNE GAUCHE (7 cols) : LECTEUR DE PODCAST IMMERSIF */}
+                <div className="lg:col-span-7 xl:col-span-7 space-y-4">
+                  {(() => {
+                    const podItem = (activeReading && activeReading.type === 'podcasts') ? activeReading : (filteredCatalog[0] || null);
+                    if (!podItem) return null;
+                    const epItem = podItem.seriesEpisodes?.[activeEpisodeIndex] || null;
+                    const titleFr = epItem ? epItem.titleFr : podItem.titleFr;
+                    const titleZh = epItem ? epItem.titleZh : podItem.titleZh;
+                    const titlePinyin = epItem ? epItem.titlePinyin : podItem.titlePinyin;
+                    const desc = epItem ? epItem.description : podItem.description;
+                    const img = epItem?.imageUrl || podItem.imageUrl || '';
+                    const totalEpisodes = podItem.seriesEpisodes?.length || 1;
+                    const isCompleted = completedItemIds.has(epItem?.id || podItem.id);
+
+                    return (
+                      <div className="nixtio-card p-5 sm:p-7 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm relative overflow-hidden space-y-6">
+                        {/* Halos & Glows atmosphériques */}
+                        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-[#00897B]/15 via-[#00897B]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+                        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[#6200EE]/10 via-transparent to-transparent rounded-full blur-2xl pointer-events-none" />
+
+                        {/* Barre supérieure : Badge Immersion Orale + Épisode + Narratrice (ZÉRO bouton Lire l'article ici) */}
+                        <div className="flex items-center justify-between gap-3 relative z-10 flex-wrap">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/25 text-[#00897B] dark:text-[#03DAC5] text-[11px] font-bold">
+                              <Headphones className="w-3.5 h-3.5" />
+                              <span>Immersion Orale • 100% Audio</span>
+                            </div>
+                            {podItem.seriesEpisodes && (
+                              <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
+                                Épisode {activeEpisodeIndex + 1} sur {totalEpisodes} • {podItem.level}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Corps Hero : Pochette / Artwork + Métadonnées de l'épisode */}
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 relative z-10">
+                          {/* Artwork de l'épisode */}
+                          <div className="relative w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52 shrink-0 rounded-3xl overflow-hidden shadow-xl border border-[#E0E0E0] dark:border-[#333333] group bg-[#FAFAFA] dark:bg-[#252525]">
+                            <img
+                              src={img}
+                              alt={titleFr}
+                              className={`w-full h-full object-cover transition-transform duration-700 ${isPlayingAll ? 'scale-105' : 'group-hover:scale-105'}`}
+                            />
+                            {/* Badge Live / En écoute */}
+                            {isPlayingAll ? (
+                              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#E53935] text-white text-[10px] font-black flex items-center gap-1.5 shadow-lg animate-pulse tracking-wider">
+                                <span className="inline-block w-1.5 h-1.5 rounded-full bg-white" />
+                                <span>EN LECTURE</span>
+                              </div>
+                            ) : (
+                              <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[9.5px] font-bold">
+                                PODCAST
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Titres & Description */}
+                          <div className="flex-1 min-w-0 space-y-2 text-center sm:text-left">
+                            <div className="text-[11px] font-black uppercase tracking-wider text-[#00897B] dark:text-[#03DAC5]">
+                              {podItem.titleFr} • {podItem.titleZh}
+                            </div>
+                            <h2 className="font-display font-black text-xl sm:text-2xl text-[#212121] dark:text-[#F5F5F5] tracking-tight leading-tight">
+                              {titleFr}
+                            </h2>
+                            {titleZh && (
+                              <div className="font-hanzi text-base sm:text-lg font-bold text-[#00796B] dark:text-[#03DAC5] leading-snug">
+                                <span>{titleZh}</span>
+                                {titlePinyin && (
+                                  <span className="font-pinyin font-medium text-xs sm:text-sm text-[#757575] dark:text-[#A0A0A0] ml-2 font-sans">
+                                    ({titlePinyin})
+                                  </span>
+                                )}
+                              </div>
+                            )}
+
+                            {desc && (
+                              <p className="text-xs sm:text-sm text-[#757575] dark:text-[#CCCCCC] leading-relaxed pt-1 line-clamp-3">
+                                {desc}
+                              </p>
+                            )}
+
+                            {/* Bouton simplifié [Lire l'article ->] DIRECTEMENT SOUS LA DESCRIPTION */}
+                            {correspondingArticle && (
+                              <div className="pt-2 flex justify-center sm:justify-start">
+                                <button
+                                  onClick={handleNavigateToCorrespondingArticle}
+                                  type="button"
+                                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#6200EE]/10 hover:bg-[#6200EE] text-[#6200EE] hover:text-white dark:bg-[#6200EE]/20 dark:hover:bg-[#6200EE] dark:text-[#BB86FC] dark:hover:text-white border border-[#6200EE]/30 transition-all text-xs font-bold btn-press shadow-2xs cursor-pointer group"
+                                  title="Lire l’article complet correspondant à cet épisode"
+                                >
+                                  <BookOpen className="w-4 h-4 text-[#6200EE] group-hover:text-white dark:text-[#BB86FC]" />
+                                  <span>Lire l’article</span>
+                                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Scrubber / Timeline interactif */}
+                        <div className="space-y-1.5 pt-2 relative z-10">
+                          <div className="relative flex items-center">
+                            <input
+                              type="range"
+                              min={0}
+                              max={audioDuration > 0 ? audioDuration : 100}
+                              step={0.1}
+                              value={audioCurrentTime}
+                              onChange={(e) => handleAudioSeek(parseFloat(e.target.value))}
+                              className="w-full h-2 bg-[#E0E0E0] dark:bg-[#333333] rounded-lg appearance-none cursor-pointer accent-[#00897B]"
+                              aria-label="Progression du podcast"
+                            />
+                          </div>
+                          <div className="flex justify-between items-center text-[11px] font-mono font-bold text-[#757575] dark:text-[#A0A0A0]">
+                            <span className="text-[#00897B] dark:text-[#03DAC5]">{formatAudioTime(audioCurrentTime)}</span>
+                            <span className="text-[10px] uppercase font-sans tracking-wider font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                              {isPlayingAll ? '• Lecture en cours' : '• En pause'}
+                            </span>
+                            <span>{formatAudioTime(audioDuration || (activeAudioRef.current?.duration ?? 0))}</span>
+                          </div>
+                        </div>
+
+                        {/* Commandes du Lecteur de Podcasts (Aérées, centrées et légères) */}
+                        <div className="space-y-4 pt-1 relative z-10">
+                          {/* 1. Commandes de transport audio (Centrées avec respiration style app musicale) */}
+                          <div className="flex items-center justify-center gap-3 sm:gap-5">
+                            {/* Épisode Précédent */}
+                            <button
+                              onClick={handlePrevEpisode}
+                              disabled={activeEpisodeIndex === 0}
+                              type="button"
+                              title="Épisode précédent"
+                              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] disabled:opacity-30 disabled:cursor-not-allowed transition-all btn-press cursor-pointer shrink-0"
+                            >
+                              <SkipBack className="w-4 h-4" />
+                            </button>
+
+                            {/* Reculer de 15 secondes */}
+                            <button
+                              onClick={() => skipAudio(-15)}
+                              type="button"
+                              title="Reculer de 15 secondes"
+                              className="flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer text-xs font-bold shrink-0"
+                            >
+                              <RotateCcw className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
+                              <span>-15s</span>
+                            </button>
+
+                            {/* Bouton Play/Pause Central Hero */}
+                            <button
+                              onClick={() => {
+                                if (!activeReading || activeReading.id !== podItem.id) {
+                                  setActiveReading(podItem);
+                                }
+                                handleTogglePlayAll();
+                              }}
+                              type="button"
+                              title={isPlayingAll ? 'Mettre en pause' : 'Lancer l’écoute'}
+                              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all shadow-lg btn-press cursor-pointer shrink-0 ${
+                                isPlayingAll
+                                  ? 'bg-[#E53935] text-white hover:bg-[#D32F2F] shadow-[#E53935]/35 ring-4 ring-[#E53935]/20 animate-pulse'
+                                  : 'bg-[#00897B] text-white hover:bg-[#00796B] shadow-[#00897B]/35 ring-4 ring-[#00897B]/20 hover:scale-105'
+                              }`}
+                            >
+                              {isPlayingAll ? (
+                                <Pause className="w-6 h-6 sm:w-7 sm:h-7 fill-white" />
+                              ) : (
+                                <Play className="w-6 h-6 sm:w-7 sm:h-7 fill-white ml-1" />
+                              )}
+                            </button>
+
+                            {/* Avancer de 15 secondes */}
+                            <button
+                              onClick={() => skipAudio(15)}
+                              type="button"
+                              title="Avancer de 15 secondes"
+                              className="flex items-center gap-1 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] transition-all btn-press cursor-pointer text-xs font-bold shrink-0"
+                            >
+                              <span>+15s</span>
+                              <RotateCw className="w-3.5 h-3.5 text-[#00897B] dark:text-[#03DAC5]" />
+                            </button>
+
+                            {/* Épisode Suivant */}
+                            <button
+                              onClick={handleNextEpisode}
+                              disabled={!podItem.seriesEpisodes || activeEpisodeIndex >= podItem.seriesEpisodes.length - 1}
+                              type="button"
+                              title="Épisode suivant"
+                              className="w-10 h-10 rounded-full flex items-center justify-center border border-[#E0E0E0] dark:border-[#333333] bg-[#FAFAFA] dark:bg-[#252525] text-[#212121] dark:text-[#F5F5F5] hover:bg-[#00897B]/10 hover:text-[#00897B] disabled:opacity-30 disabled:cursor-not-allowed transition-all btn-press cursor-pointer shrink-0"
+                            >
+                              <SkipForward className="w-4 h-4" />
+                            </button>
+                          </div>
+
+                          {/* 2. Barre d'outils secondaire légère : Vitesse (gauche) & Bouton Terminé (droite) */}
+                          <div className="flex items-center justify-between gap-3 pt-3 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D]">
+                            {/* Sélecteur de vitesse épuré */}
+                            <div className="inline-flex items-center p-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-[11px] font-bold">
+                              {(['0.75', '1.0', '1.25'] as const).map((speed) => (
+                                <button
+                                  key={speed}
+                                  onClick={() => setAudioSpeed(speed)}
+                                  type="button"
+                                  className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                                    audioSpeed === speed
+                                      ? 'bg-[#00897B] text-white shadow-2xs'
+                                      : 'text-[#757575] hover:text-[#212121] dark:hover:text-white'
+                                  }`}
+                                >
+                                  {speed}x
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* Bouton Universel Terminé (Net, aéré, non tronqué) */}
+                            <button
+                              onClick={() => {
+                                const idToComplete = epItem?.id || podItem.id;
+                                toggleCompleteItem(idToComplete);
+                              }}
+                              type="button"
+                              className={`px-4 py-2 rounded-full font-bold text-xs transition-all btn-press shadow-sm flex items-center gap-1.5 cursor-pointer text-white shrink-0 ${
+                                isCompleted
+                                  ? 'bg-[#E53935] shadow-[#E53935]/25 hover:bg-[#D32F2F]'
+                                  : 'bg-[#6200EE] shadow-[#6200EE]/25 hover:bg-[#5000D6]'
+                              }`}
+                            >
+                              {isCompleted ? (
+                                <>
+                                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                                  <span>Terminé</span>
+                                </>
+                              ) : (
+                                <span>Marquer comme terminé</span>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* COLONNE DROITE (5 cols) : LISTE DES PODCASTS DÉROULABLE */}
+                <div className="lg:col-span-5 xl:col-span-5 space-y-4">
+                  <div className="nixtio-card p-5 rounded-3xl bg-white dark:bg-[#1E1E1E] border border-[#E0E0E0] dark:border-[#2D2D2D] shadow-sm space-y-3.5">
+                    <div className="flex items-center justify-between border-b border-[#E0E0E0]/60 dark:border-[#2D2D2D] pb-3">
+                      <div className="flex items-center gap-2">
+                        <Radio className="w-4 h-4 text-[#00897B] dark:text-[#03DAC5]" />
+                        <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#212121] dark:text-[#F5F5F5]">
+                          Podcasts Disponibles
+                        </h3>
+                      </div>
+                      <span className="text-[11px] font-bold text-[#757575] dark:text-[#A0A0A0] bg-black/5 dark:bg-white/5 px-2.5 py-0.5 rounded-full">
+                        {filteredCatalog.length} série{filteredCatalog.length > 1 ? 's' : ''}
+                      </span>
+                    </div>
+
+                    {/* Liste des podcasts avec accordéon déroulable */}
+                    <div className="space-y-3">
+                      {filteredCatalog.map((podcast) => {
+                        const isSelectedSeries = (activeReading?.id === podcast.id) || (filteredCatalog.indexOf(podcast) === 0 && (!activeReading || activeReading.type !== 'podcasts'));
+                        const isExpanded = expandedPodcastIds[podcast.id] ?? isSelectedSeries;
+                        const totalEps = podcast.seriesEpisodes?.length || 1;
+
+                        return (
+                          <div
+                            key={podcast.id}
+                            className="rounded-2xl border border-[#E0E0E0] dark:border-[#333333] overflow-hidden bg-[#FAFAFA] dark:bg-[#252525] transition-all"
+                          >
+                            {/* En-tête de la série (Déclencheur accordéon) */}
+                            <div
+                              onClick={() => {
+                                setExpandedPodcastIds((prev) => ({
+                                  ...prev,
+                                  [podcast.id]: !isExpanded,
+                                }));
+                                if (!isSelectedSeries) {
+                                  setActiveReading(podcast);
+                                  setActiveEpisodeIndex(0);
+                                  setIsPlayingAll(false);
+                                  setAudioCurrentTime(0);
+                                  setAudioDuration(0);
+                                }
+                              }}
+                              className="p-3.5 flex items-center justify-between gap-3 cursor-pointer hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors group"
+                            >
+                              <div className="flex items-center gap-3 min-w-0">
+                                <img
+                                  src={podcast.imageUrl}
+                                  alt={podcast.titleFr}
+                                  className="w-12 h-12 rounded-xl object-cover border border-[#E0E0E0] dark:border-[#333333] shrink-0"
+                                />
+                                <div className="min-w-0">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-[10px] font-black uppercase px-2 py-0.2 rounded-md bg-[#00897B]/10 dark:bg-[#00897B]/20 text-[#00897B] dark:text-[#03DAC5]">
+                                      {podcast.level}
+                                    </span>
+                                    <span className="text-[11px] font-semibold text-[#757575] dark:text-[#A0A0A0]">
+                                      {totalEps} épisodes
+                                    </span>
+                                  </div>
+                                  <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate mt-0.5">
+                                    {podcast.titleFr}
+                                  </h4>
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                <ChevronDown
+                                  className={`w-4 h-4 text-[#757575] dark:text-[#A0A0A0] transition-transform duration-300 ${
+                                    isExpanded ? 'rotate-180 text-[#00897B]' : ''
+                                  }`}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Liste déroulée de tous les épisodes */}
+                            {isExpanded && podcast.seriesEpisodes && (
+                              <div className="border-t border-[#E0E0E0]/60 dark:border-[#333333] p-2 space-y-1.5 max-h-[420px] overflow-y-auto scrollbar-thin">
+                                {podcast.seriesEpisodes.map((ep, eIdx) => {
+                                  const isCurrent = isSelectedSeries && activeEpisodeIndex === eIdx;
+                                  const isEpCompleted = completedItemIds.has(ep.id);
+
+                                  return (
+                                    <button
+                                      key={ep.id}
+                                      onClick={() => {
+                                        if (activeAudioRef.current) {
+                                          activeAudioRef.current.pause();
+                                          activeAudioRef.current = null;
+                                        }
+                                        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+                                          window.speechSynthesis.cancel();
+                                        }
+                                        setIsPlayingAll(false);
+                                        setAudioCurrentTime(0);
+                                        setAudioDuration(0);
+                                        setActiveReading(podcast);
+                                        setActiveEpisodeIndex(eIdx);
+                                        setCurrentSentenceIndex(0);
+
+                                        if (typeof window !== 'undefined') {
+                                          const url = new URL(window.location.href);
+                                          url.searchParams.set('type', 'podcasts');
+                                          url.searchParams.set('id', podcast.id);
+                                          url.searchParams.set('ep', String(eIdx));
+                                          window.history.pushState({ readingId: podcast.id, episodeIdx: eIdx }, '', url.toString());
+                                          try {
+                                            sessionStorage.setItem('chinoislingo_active_ep_idx', String(eIdx));
+                                          } catch {}
+                                        }
+                                      }}
+                                      type="button"
+                                      className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center justify-between gap-2.5 btn-press cursor-pointer ${
+                                        isCurrent
+                                          ? 'bg-[#00897B]/10 dark:bg-[#00897B]/20 border border-[#00897B]/40 text-[#00897B] dark:text-[#03DAC5] shadow-xs'
+                                          : 'hover:bg-black/5 dark:hover:bg-white/5 text-[#212121] dark:text-[#F5F5F5] border border-transparent'
+                                      }`}
+                                    >
+                                      <div className="flex items-center gap-2.5 min-w-0">
+                                        {/* Numéro ou icône de lecture */}
+                                        <div
+                                          className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-[11px] shrink-0 ${
+                                            isCurrent
+                                              ? 'bg-[#00897B] text-white shadow-2xs'
+                                              : 'bg-black/5 dark:bg-white/5 text-[#757575] dark:text-[#A0A0A0]'
+                                          }`}
+                                        >
+                                          {isCurrent && isPlayingAll ? (
+                                            <Volume2 className="w-3.5 h-3.5 animate-pulse" />
+                                          ) : (
+                                            String(eIdx + 1).padStart(2, '0')
+                                          )}
+                                        </div>
+
+                                        <div className="min-w-0">
+                                          <p className={`text-xs font-bold truncate ${isCurrent ? 'text-[#00897B] dark:text-[#03DAC5]' : ''}`}>
+                                            {ep.titleFr.replace(/^Épisode\s*\d+\s*:\s*/i, '')}
+                                          </p>
+                                          <p className="text-[10px] font-hanzi text-[#757575] dark:text-[#A0A0A0] truncate">
+                                            {ep.titleZh}
+                                          </p>
+                                        </div>
+                                      </div>
+
+                                      <div className="flex items-center gap-1.5 shrink-0 text-[10.5px] font-mono text-[#757575] dark:text-[#A0A0A0]">
+                                        <span>{ep.duration}</span>
+                                        {isEpCompleted && <Check className="w-3.5 h-3.5 text-[#E53935] stroke-[3]" />}
+                                      </div>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
