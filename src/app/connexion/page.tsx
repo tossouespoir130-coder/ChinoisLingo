@@ -213,18 +213,18 @@ export default function ConnexionPage() {
                 <span className="font-display font-black text-xl text-white tracking-tight block leading-tight">
                   ChinoisLingo
                 </span>
-                <span className="text-[10px] font-bold text-[#03DAC5] uppercase tracking-wider block">
-                  « Le chinois devient facile »
+                <span className="text-[10px] font-bold text-[#03DAC5] uppercase tracking-wider block whitespace-nowrap">
+                  «&nbsp;Le chinois devient facile&nbsp;»
                 </span>
               </div>
             </div>
 
             <div className="pt-2">
               <h1 className="font-display font-black text-xl sm:text-2xl text-white leading-snug">
-                Heureux de vous revoir !
+                Heureux de te revoir !
               </h1>
               <p className="text-xs text-white/80 mt-1 leading-relaxed">
-                Reprenez vos histoires, dialogues et révisions de vocabulaire là où vous vous étiez arrêté.
+                Reprends tes histoires, dialogues et révisions de vocabulaire là où tu t&apos;étais arrêté.
               </p>
             </div>
           </div>

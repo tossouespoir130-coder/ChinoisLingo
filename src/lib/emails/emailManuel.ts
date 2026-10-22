@@ -36,10 +36,10 @@ export async function envoyerEmailManuel(params: ParamsEmailManuel): Promise<{ o
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(98, 0, 238, 0.06); border: 1px solid #EAEAEA;">
           <!-- En-tête Violet Signature -->
           <tr>
-            <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 30px; text-align: center;">
+            <td style="background: linear-gradient(135deg, #6200EE 0%, #4A00B4 100%); padding: 30px 20px; text-align: center;">
               <h1 style="color: #FFFFFF; font-size: 24px; font-weight: 800; margin: 0;">ChinoisLingo</h1>
-              <p style="color: #03DAC5; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 6px 0 0 0;">
-                « Le chinois devient facile »
+              <p style="color: #03DAC5; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 6px 0 0 0; white-space: nowrap !important; display: inline-block; line-height: 1.2; word-break: keep-all;">
+                «&nbsp;Le&nbsp;chinois&nbsp;devient&nbsp;facile&nbsp;»
               </p>
             </td>
           </tr>

@@ -40,7 +40,7 @@ export const FOND_VIOLET =
 
 /** Protège un texte clair (blanc, turquoise) posé sur un fond violet contre l'inversion de Gmail. */
 export function texteClairProtege(contenu: string): string {
-  return `<span class="gmail-ecran"><span class="gmail-difference">${contenu}</span></span>`;
+  return `<span class="gmail-ecran" style="white-space: nowrap !important; display: inline-block;"><span class="gmail-difference" style="white-space: nowrap !important; display: inline-block;">${contenu}</span></span>`;
 }
 
 /** Bouton d'action principal (pilule violette, texte blanc) compatible mode sombre. */
@@ -66,16 +66,17 @@ export function boutonPrincipal(lien: string, libelle: string): string {
 /**
  * En-tête violet commun : logo blanc (avec texte de remplacement lisible
  * quand la messagerie bloque les images) et slogan turquoise.
+ * Le slogan et ses guillemets restent obligatoirement et strictement sur une seule et même ligne.
  */
 export function enTeteMarque(siteUrl: string): string {
   return `
           <tr>
-            <td bgcolor="#6200EE" style="${FOND_VIOLET} padding: 35px 30px; text-align: center;">
+            <td bgcolor="#6200EE" style="${FOND_VIOLET} padding: 32px 20px; text-align: center;">
               <a href="${siteUrl}" target="_blank" style="text-decoration: none; display: inline-block;">
                 <img src="${siteUrl}/logo-white.png" alt="ChinoisLingo" width="180" style="display: block; margin: 0 auto 10px auto; max-width: 180px; height: auto; border: 0; color: #FFFFFF; font-size: 26px; font-weight: 800; line-height: 1.2;" />
               </a>
-              <p style="color: #03DAC5; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin: 0;">
-                ${texteClairProtege('« Le chinois devient facile »')}
+              <p style="color: #03DAC5; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0; white-space: nowrap !important; display: inline-block; line-height: 1.2; word-break: keep-all;">
+                ${texteClairProtege('«&nbsp;Le&nbsp;chinois&nbsp;devient&nbsp;facile&nbsp;»')}
               </p>
             </td>
           </tr>`;

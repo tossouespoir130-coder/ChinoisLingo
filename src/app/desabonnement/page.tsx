@@ -62,8 +62,8 @@ function DesabonnementContent() {
             <span className="font-display font-black text-lg text-[#212121] dark:text-[#F5F5F5] block leading-tight">
               ChinoisLingo
             </span>
-            <span className="text-[10px] font-bold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider">
-              « Le chinois devient facile »
+            <span className="text-[10px] font-bold text-[#6200EE] dark:text-[#BB86FC] uppercase tracking-wider block whitespace-nowrap">
+              «&nbsp;Le chinois devient facile&nbsp;»
             </span>
           </div>
         </div>
