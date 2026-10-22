@@ -106,6 +106,31 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
     return true;
   });
 
+  const renderCleanTitle = (rawTitle: string, variant: 'founder' | 'mascot' | 'system') => {
+    if (!rawTitle) return null;
+    const clean = rawTitle.replace(/\\n/g, '\n');
+    const lines = clean.split('\n').map((l) => l.trim()).filter(Boolean);
+
+    if (lines.length <= 1) {
+      return <span className="block">{lines[0] || clean}</span>;
+    }
+
+    const subtitleColor = variant === 'founder'
+      ? 'text-[#6200EE]/85 dark:text-[#BB86FC]/90'
+      : variant === 'mascot'
+        ? 'text-[#00897B]/90 dark:text-[#03DAC5]/90'
+        : 'text-[#616161] dark:text-[#A0A0A0]';
+
+    return (
+      <span className="block space-y-0.5">
+        <span className="block">{lines[0]}</span>
+        <span className={`block text-[11.5px] font-medium tracking-wide ${subtitleColor}`}>
+          {lines.slice(1).join(' ')}
+        </span>
+      </span>
+    );
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -254,6 +279,14 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                           <img
                             src={mascotImage}
                             alt={notif.mascotName || 'Xiao Li (小李)'}
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              if (target.src.indexOf('/images/onboarding/xiao-li-avatar.png') === -1) {
+                                target.src = '/images/onboarding/xiao-li-avatar.png';
+                              } else if (target.src.indexOf('/images/mascot/xiao-li.png') === -1) {
+                                target.src = '/images/mascot/xiao-li.png';
+                              }
+                            }}
                             className="w-10 h-10 rounded-full object-contain p-0.5 bg-white dark:bg-[#252525] ring-2 ring-[#00897B]/30 dark:ring-[#03DAC5]/40 shadow-xs shrink-0"
                           />
                           <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#00897B] dark:bg-[#03DAC5] text-white dark:text-black flex items-center justify-center text-[9px] shadow-xs">
@@ -284,8 +317,8 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
                     {/* Subject & Message Body */}
                     <div className="space-y-1 pl-12">
-                      <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] whitespace-pre-line leading-snug">
-                        {notif.title}
+                      <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] leading-snug">
+                        {renderCleanTitle(notif.title, 'mascot')}
                       </h4>
                       <p className="text-xs text-[#555555] dark:text-[#CCCCCC] leading-relaxed">
                         {notif.message}
@@ -324,6 +357,12 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
                           <img
                             src={founderImage}
                             alt={notif.founderName}
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              if (target.src.indexOf('/espoir-chinois.jpg') === -1) {
+                                target.src = '/espoir-chinois.jpg';
+                              }
+                            }}
                             className="w-10 h-10 rounded-full object-cover ring-2 ring-[#6200EE]/30 shadow-xs shrink-0"
                           />
                           <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#6200EE] text-white flex items-center justify-center text-[9px] shadow-xs">
@@ -354,12 +393,18 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
                     {/* Subject & Message Body */}
                     <div className="space-y-1 pl-12">
-                      <h4 className="font-display font-extrabold text-xs sm:text-sm text-[#6200EE] dark:text-[#BB86FC] whitespace-pre-line leading-snug">
-                        {notif.title}
+                      <h4 className="font-display font-extrabold text-xs sm:text-sm text-[#6200EE] dark:text-[#BB86FC] leading-snug">
+                        {renderCleanTitle(notif.title, 'founder')}
                       </h4>
                       <p className="text-xs text-[#212121] dark:text-[#E0E0E0] leading-relaxed">
                         {notif.message}
                       </p>
+                      {notif.actionLabel && (
+                        <div className="pt-1.5 flex items-center gap-1 text-xs font-bold text-[#6200EE] dark:text-[#BB86FC] group-hover:translate-x-0.5 transition-transform">
+                          <span>{notif.actionLabel}</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -418,8 +463,8 @@ export function NotificationsModal({ isOpen, onClose, onNotificationsChange }: N
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-1.5">
-                      <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5] truncate">
-                        {notif.title}
+                      <h4 className="font-display font-bold text-xs sm:text-sm text-[#212121] dark:text-[#F5F5F5]">
+                        {renderCleanTitle(notif.title, 'system')}
                       </h4>
                       <div className="flex items-center gap-1 text-[10px] text-[#9E9E9E] shrink-0">
                         <Clock className="w-2.5 h-2.5" />
