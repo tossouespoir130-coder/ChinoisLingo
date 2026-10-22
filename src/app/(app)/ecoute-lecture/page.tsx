@@ -178,8 +178,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Xiǎo Lǐ Lìxiǎnjì Xìliè',
     type: 'videos',
     level: 'HSK 1',
-    duration: '2 épisodes',
-    description: 'Suivez les aventures animées et amusantes de Xiao Li, un chat curieux qui vit à Pékin et apprend le chinois pas à pas avec ses amis.',
+    duration: '1 min',
+    description: 'Suis les aventures animées de Xiao Li qui apprend le chinois pas à pas à Pékin.',
     imageUrl: 'https://img.youtube.com/vi/8cZ20QY948A/hqdefault.jpg',
     iconBg: 'from-[#6200EE] to-[#3700B3]',
     seriesEpisodes: [
@@ -826,7 +826,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 1',
     duration: '1 min 30',
-    description: 'Une immersion dans la grandeur de la Chine, sa capitale Pékin, sa langue et ses riches traditions culinaires.',
+    description: 'Découvre la grandeur de la Chine, sa capitale Pékin, sa langue et ses traditions culinaires.',
     imageUrl: 'https://images.unsplash.com/photo-1598890777032-bde835ba27c2?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     sentences: [
@@ -878,7 +878,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 1',
     duration: '1 min 30',
-    description: 'Le portrait chaleureux d’une belle amitié avec Wang Ming, autour d’une tasse de thé et de l’apprentissage des caractères.',
+    description: 'Découvre une belle amitié avec Wang Ming autour du thé et des caractères chinois.',
     imageUrl: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     sentences: [
@@ -932,7 +932,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 2',
     duration: '1 min 30',
-    description: 'Le récit simple et émouvant d’une première préparation de nouilles aux œufs à la maison, avec le bonheur d’en cuisiner bientôt pour sa maman.',
+    description: 'Un récit touchant sur la préparation de délicieuses nouilles maison pour sa maman.',
     imageUrl: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800&auto=format&fit=crop&q=80',
     iconBg: 'from-[#E65100] to-[#BF360C]',
     sentences: [
@@ -1023,7 +1023,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 2',
     duration: '1 min 30',
-    description: 'Une plongée captivante au cœur d’une des habitudes les plus célèbres de Chine : pourquoi l’eau chaude est-elle considérée comme un trésor pour la santé et le bien-être ?',
+    description: 'Découvre pourquoi boire de l’eau chaude est une habitude essentielle pour la santé en Chine.',
     imageUrl: '/images/readings/article_eau_chaude.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
     sentences: [
@@ -1121,8 +1121,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Yùndòng yǔ jiànkāng',
     type: 'articles',
     level: 'HSK 3',
-    duration: '9 articles',
-    description: 'Une grande série de 9 articles pour explorer l’importance du sport au quotidien, ses bienfaits sur le moral et le sommeil, la nutrition sportive et les habitudes pour une vitalité durable.',
+    duration: '16 min',
+    description: 'Une série captivante pour explorer les bienfaits du sport, le sommeil et la vitalité au quotidien.',
     imageUrl: '/images/readings/series_sport_cover.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
     correspondingPodcastId: 'podcast_sport',
@@ -2035,7 +2035,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 3',
     duration: '1 min 30',
-    description: 'Découvre l’origine et la saveur de l’une des métaphores amoureuses les plus populaires de la langue chinoise : pourquoi dit-on « manger du vinaigre » pour parler de jalousie ?',
+    description: 'Découvre l’origine amusante de l’expression « manger du vinaigre » pour parler de jalousie.',
     imageUrl: '/images/readings/article_chicu_vinaigre.jpg',
     iconBg: 'from-[#E65100] to-[#BF360C]',
     sentences: [
@@ -2108,8 +2108,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Yùndòng yǔ jiànkāng',
     type: 'podcasts',
     level: 'HSK 3',
-    duration: '9 épisodes',
-    description: 'Le premier grand podcast immersif HSK 3 de ChinoisLingo : 9 épisodes pour explorer l’importance du sport au quotidien, ses bienfaits sur le moral et le sommeil, la nutrition sportive et les habitudes pour une vitalité durable.',
+    duration: '16 min',
+    description: 'Explore les bienfaits du sport sur le corps, le moral et le sommeil dans ce podcast immersif.',
     imageUrl: '/images/readings/podcast_sport_cover.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
     correspondingArticleId: 'series_sport',
@@ -2244,7 +2244,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 4',
     duration: '2 min 30',
-    description: 'Pourquoi le 8, le 6 et le 4 ont une signification si particulière dans la culture et les affaires chinoises.',
+    description: 'Découvre la signification secrète du 8, du 6 et du 4 dans la culture et les affaires.',
     imageUrl: 'https://images.unsplash.com/photo-1512418490979-92798cec1380?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#3F51B5] to-[#1A237E]',
     sentences: [
@@ -2293,7 +2293,7 @@ export const readingCatalog: ReadingItem[] = [
     type: 'articles',
     level: 'HSK 4',
     duration: '2 min 30',
-    description: 'Découvrez la tradition millénaire du thé en Chine et son rôle central dans l’accueil des clients et la visite d’usines.',
+    description: 'Découvre la tradition millénaire du thé en Chine et son rôle clé dans les affaires.',
     imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#3F51B5] to-[#1A237E]',
     sentences: [
@@ -2338,8 +2338,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Zhōngguó shāngwù bǎodiǎn',
     type: 'articles',
     level: 'HSK 4',
-    duration: '1 article',
-    description: 'Maîtrisez les codes, règles d’étiquette et notions essentielles pour réussir vos négociations et partenariats commerciaux en Chine.',
+    duration: '3 min',
+    description: 'Maîtrise les codes et règles d’étiquette pour réussir tes partenariats commerciaux en Chine.',
     imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#3F51B5] to-[#1A237E]',
     seriesEpisodes: [
@@ -2423,8 +2423,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Wǒ de māo',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '9 parties',
-    description: 'Une adorable série d’histoires simples et douces pour débutant absolu (HSK 1) : suivez les journées de Wang Xiaoming et de son petit chat Xiaobai.',
+    duration: '9 min',
+    description: 'Suis les adorables journées du petit Wang Xiaoming et de son chat Xiaobai.',
     imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
@@ -2827,8 +2827,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Zhōngguó Shēnghuó: Shāngwù',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '8 parties',
-    description: 'Suivez les péripéties et premiers pas de Brice, Anthony et Katia dans le monde des affaires en Chine.',
+    duration: '10 min',
+    description: 'Suis les premiers pas de Brice, Anthony et Katia dans les affaires en Chine.',
     imageUrl: 'https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
@@ -3924,8 +3924,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Wǒ shì Xiǎobái',
     type: 'histoires',
     level: 'HSK 1',
-    duration: '5 parties',
-    description: 'Suivez les aventures du petit chat Xiaobai : sa vie en Chine, son meilleur ami Xiaohua, sa maman Li Yue et son amour pour le poisson.',
+    duration: '6 min',
+    description: 'Suis les aventures du chaton Xiaobai, de son ami Xiaohua et de sa vie en Chine.',
     imageUrl: 'https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=600&auto=format&fit=crop&q=80',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
@@ -4676,8 +4676,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Mǎi màozi',
     type: 'histoires',
     level: 'HSK 2',
-    duration: '2 parties',
-    description: 'Une charmante histoire du quotidien pour apprendre à faire des achats, comparer les couleurs et les prix, et essayer un vêtement en chinois.',
+    duration: '3 min',
+    description: 'Apprends à faire des achats, comparer les couleurs et essayer un vêtement en chinois.',
     imageUrl: '/images/readings/chapeau_series_cover.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
     seriesEpisodes: [
@@ -4952,8 +4952,8 @@ export const readingCatalog: ReadingItem[] = [
     titlePinyin: 'Xǐhuan yùndòng de jiějie',
     type: 'histoires',
     level: 'HSK 2',
-    duration: '5 parties',
-    description: 'Suivez le quotidien dynamique et inspirant d’une grande sœur passionnée de course à pied, d’alimentation saine et d’énergie communicative.',
+    duration: '8 min',
+    description: 'Suis le quotidien dynamique d’une grande sœur passionnée de course et d’énergie positive.',
     imageUrl: '/images/readings/soeur_sport_series_cover.jpg',
     iconBg: 'from-[#00897B] to-[#004D40]',
     characters: [
@@ -11210,6 +11210,30 @@ function EcouteLectureContent() {
                 const hasSeriesEpisodes = !!(item.seriesEpisodes && item.seriesEpisodes.length > 0);
                 const verrouille = !estAccessible(item);
 
+                // Durée estimée réelle affichée à côté de l'horloge (toujours en temps, jamais en nombre d'articles/épisodes)
+                let cardDuration = item.duration;
+                if (!cardDuration || /(article|épisode|partie)/i.test(cardDuration)) {
+                  if (item.seriesEpisodes && item.seriesEpisodes.length > 0) {
+                    let totalSec = 0;
+                    for (const ep of item.seriesEpisodes) {
+                      const durStr = ep.duration || '';
+                      const minMatch = durStr.match(/(\d+)\s*min/i);
+                      const secMatch = durStr.match(/(\d+)\s*s/i);
+                      const m = minMatch ? parseInt(minMatch[1], 10) : 0;
+                      const s = secMatch ? parseInt(secMatch[1], 10) : 0;
+                      if (m > 0 || s > 0) {
+                        totalSec += m * 60 + s;
+                      } else {
+                        const numOnly = parseInt(durStr, 10);
+                        if (!isNaN(numOnly)) totalSec += numOnly * 60;
+                      }
+                    }
+                    cardDuration = totalSec > 0 ? `${Math.round(totalSec / 60)} min` : '15 min';
+                  } else {
+                    cardDuration = '2 min';
+                  }
+                }
+
                 return (
                   <div
                     key={item.id}
@@ -11314,7 +11338,7 @@ function EcouteLectureContent() {
                       <div className="pt-2.5 border-t border-[#E0E0E0]/60 dark:border-[#2D2D2D] flex items-center justify-between gap-2">
                         <div className="flex items-center gap-1.5 text-[10px] text-[#757575] dark:text-[#A0A0A0] font-semibold">
                           <Clock className={`w-3 h-3 ${hasSeriesEpisodes ? 'text-[#6200EE] dark:text-[#BB86FC]' : 'text-[#00897B] dark:text-[#03DAC5]'}`} />
-                          <span>{item.duration}</span>
+                          <span>{cardDuration}</span>
                         </div>
 
                         {isCompleted ? (
@@ -11332,17 +11356,17 @@ function EcouteLectureContent() {
                             {item.type === 'videos' ? (
                               <>
                                 <Play className="w-3 h-3 fill-white" />
-                                <span>Épisodes ({item.seriesEpisodes?.length || 0})</span>
+                                <span>Regarder</span>
                               </>
-                            ) : item.type === 'histoires' ? (
+                            ) : item.type === 'chansons' || item.type === 'podcasts' ? (
                               <>
-                                <BookOpen className="w-3 h-3" />
-                                <span>Parties ({item.seriesEpisodes?.length || 0})</span>
+                                <Play className="w-3 h-3 fill-white" />
+                                <span>Écouter</span>
                               </>
                             ) : (
                               <>
                                 <BookOpen className="w-3 h-3" />
-                                <span>Articles ({item.seriesEpisodes?.length || 0})</span>
+                                <span>Lire</span>
                               </>
                             )}
                           </button>
