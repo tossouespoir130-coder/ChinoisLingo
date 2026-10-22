@@ -1,0 +1,51 @@
+{
+  "contentId": "histoire_soeur_sport_p1",
+  "title": "第一部分：我的姐姐",
+  "titleFr": "Partie 1 : Ma grande sœur",
+  "type": "histoire",
+  "narrator": "Ethan Zhang (Narrateur 2)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_soeur_sport_p1.mp3",
+  "totalDurationMs": 13400,
+  "sentences": [
+    {
+      "sentenceId": "hsp1_1",
+      "text": "我有一个姐姐。",
+      "startMs": 0,
+      "endMs": 1400,
+      "durationMs": 1400,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p1_hsp1_1.mp3"
+    },
+    {
+      "sentenceId": "hsp1_2",
+      "text": "她今年二十五岁，很高。",
+      "startMs": 1400,
+      "endMs": 4560,
+      "durationMs": 3160,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p1_hsp1_2.mp3"
+    },
+    {
+      "sentenceId": "hsp1_3",
+      "text": "她喜欢笑，每天都很高兴。",
+      "startMs": 4560,
+      "endMs": 7840,
+      "durationMs": 3280,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p1_hsp1_3.mp3"
+    },
+    {
+      "sentenceId": "hsp1_4",
+      "text": "她常常对我说：“多运动，身体好。”",
+      "startMs": 7840,
+      "endMs": 13360,
+      "durationMs": 5520,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p1_hsp1_4.mp3"
+    }
+  ]
+}

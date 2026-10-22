@@ -1,0 +1,51 @@
+{
+  "contentId": "histoire_soeur_sport_p3",
+  "title": "第三部分：运动的时间",
+  "titleFr": "Partie 3 : Toujours du temps pour le sport",
+  "type": "histoire",
+  "narrator": "Ethan Zhang (Narrateur 2)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_soeur_sport_p3.mp3",
+  "totalDurationMs": 12590,
+  "sentences": [
+    {
+      "sentenceId": "hsp3_1",
+      "text": "除了跑步，她还喜欢去公园走路。",
+      "startMs": 0,
+      "endMs": 3600,
+      "durationMs": 3600,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p3_hsp3_1.mp3"
+    },
+    {
+      "sentenceId": "hsp3_2",
+      "text": "她的工作很忙，但是她总是能找到时间去运动。",
+      "startMs": 3600,
+      "endMs": 8800,
+      "durationMs": 5200,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p3_hsp3_2.mp3"
+    },
+    {
+      "sentenceId": "hsp3_3",
+      "text": "周末，她还去游泳。",
+      "startMs": 8800,
+      "endMs": 10400,
+      "durationMs": 1600,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p3_hsp3_3.mp3"
+    },
+    {
+      "sentenceId": "hsp3_4",
+      "text": "她也常常叫我和她一起去。",
+      "startMs": 10400,
+      "endMs": 12560,
+      "durationMs": 2160,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p3_hsp3_4.mp3"
+    }
+  ]
+}

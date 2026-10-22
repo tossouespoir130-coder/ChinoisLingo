@@ -13,6 +13,7 @@ import {
 } from '@/components/admin/ModalesAbonnement';
 import { ModaleDetailUtilisateur, type DetailUtilisateur } from '@/components/admin/ModaleDetailUtilisateur';
 import { useApiAdmin, formaterDate, formaterDateHeure } from '@/lib/admin/useApiAdmin';
+import { AnalyticsProfilsOnboarding } from '@/components/admin/AnalyticsProfilsOnboarding';
 
 interface Utilisateur {
   id: string;
@@ -579,6 +580,9 @@ export default function UtilisateursPage() {
           </div>
         )}
       </div>
+
+      {/* Analytics Détaillés des Profils & Motivations d'Onboarding */}
+      <AnalyticsProfilsOnboarding />
 
       {/* Modale de fiche détaillée d'un apprenant */}
       {utilisateurDetail && (

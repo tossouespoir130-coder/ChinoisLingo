@@ -1,0 +1,59 @@
+{
+  "contentId": "histoire_soeur_sport_p4",
+  "title": "第四部分：健康的生活",
+  "titleFr": "Partie 4 : Une vie saine et équilibrée",
+  "type": "histoire",
+  "narrator": "Ethan Zhang (Narrateur 2)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_soeur_sport_p4.mp3",
+  "totalDurationMs": 14990,
+  "sentences": [
+    {
+      "sentenceId": "hsp4_1",
+      "text": "姐姐吃得很简单。",
+      "startMs": 0,
+      "endMs": 1520,
+      "durationMs": 1520,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p4_hsp4_1.mp3"
+    },
+    {
+      "sentenceId": "hsp4_2",
+      "text": "她每天吃很多菜和水果，多喝水，少吃肉。",
+      "startMs": 1520,
+      "endMs": 6080,
+      "durationMs": 4560,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p4_hsp4_2.mp3"
+    },
+    {
+      "sentenceId": "hsp4_3",
+      "text": "她早睡早起。",
+      "startMs": 6080,
+      "endMs": 7920,
+      "durationMs": 1840,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p4_hsp4_3.mp3"
+    },
+    {
+      "sentenceId": "hsp4_4",
+      "text": "因为她喜欢运动，也吃得好，所以很少生病。",
+      "startMs": 7920,
+      "endMs": 12027,
+      "durationMs": 4107,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p4_hsp4_4.mp3"
+    },
+    {
+      "sentenceId": "hsp4_5",
+      "text": "如果工作很累，她就会好好休息。",
+      "startMs": 12027,
+      "endMs": 14960,
+      "durationMs": 2933,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p4_hsp4_5.mp3"
+    }
+  ]
+}

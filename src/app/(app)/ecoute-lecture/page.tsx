@@ -4774,6 +4774,396 @@ export const readingCatalog: ReadingItem[] = [
       { hanzi: '服务员', pinyin: 'fúwùyuán', french: 'vendeur, serveur', role: 'Nom commun' },
     ]
   },
+  {
+    id: 'series_soeur_sport',
+    titleFr: 'Ma grande sœur aime le sport',
+    titleZh: '喜欢运动的姐姐',
+    titlePinyin: 'Xǐhuan yùndòng de jiějie',
+    type: 'histoires',
+    level: 'HSK 2',
+    duration: '5 parties',
+    description: 'Suivez le quotidien dynamique et inspirant d’une grande sœur passionnée de course à pied, d’alimentation saine et d’énergie communicative.',
+    imageUrl: '/images/readings/soeur_sport_series_cover.jpg',
+    iconBg: 'from-[#00897B] to-[#004D40]',
+    characters: [
+      {
+        name: '姐姐',
+        nameZh: '姐姐',
+        pinyin: 'Jiějie',
+        role: 'Grande sœur (25 ans)',
+        description: 'Jeune femme active et joyeuse, passionnée de course à pied, de natation et d’un mode de vie équilibré.',
+        color: 'turquoise'
+      },
+      {
+        name: '我',
+        nameZh: '我',
+        pinyin: 'Wǒ',
+        role: 'Frère cadet (Narrateur)',
+        description: 'Admiratif de l’énergie de sa grande sœur, il commence à l’accompagner au parc et à aimer le sport.',
+        color: 'violet'
+      }
+    ],
+    seriesEpisodes: [
+      {
+        id: 'histoire_soeur_sport_p1',
+        episodeNumber: 1,
+        titleFr: 'Partie 1 : Ma grande sœur',
+        titleZh: '第一部分：我的姐姐',
+        titlePinyin: 'Dì yī bùfen: Wǒ de jiějie',
+        duration: '1 min',
+        level: 'HSK 2',
+        description: 'Faites la connaissance d’une grande sœur de vingt-cinq ans toujours souriante, dont la devise est : « Plus de sport, une meilleure santé. »',
+        imageUrl: '/images/readings/soeur_sport_p1.jpg',
+        characters: [
+          {
+            name: '姐姐',
+            nameZh: '姐姐',
+            pinyin: 'Jiějie',
+            role: 'Grande sœur (25 ans)',
+            description: 'Jeune femme active et joyeuse, passionnée de course à pied et d’un mode de vie équilibré.',
+            color: 'turquoise'
+          },
+          {
+            name: '我',
+            nameZh: '我',
+            pinyin: 'Wǒ',
+            role: 'Frère cadet (Narrateur)',
+            description: 'Admiratif de sa grande sœur qui lui transmet de précieux conseils de santé.',
+            color: 'violet'
+          }
+        ],
+        sentences: [
+          {
+            id: 'hsp1_1',
+            hanzi: '我有一个姐姐。',
+            pinyin: 'Wǒ yǒu yí gè jiějie.',
+            french: 'J’ai une grande sœur.',
+          },
+          {
+            id: 'hsp1_2',
+            hanzi: '她今年二十五岁，很高。',
+            pinyin: 'Tā jīnnián èrshíwǔ suì, hěn gāo.',
+            french: 'Elle a vingt-cinq ans cette année et elle est très grande.',
+          },
+          {
+            id: 'hsp1_3',
+            hanzi: '她喜欢笑，每天都很高兴。',
+            pinyin: 'Tā xǐhuan xiào, měitiān dōu hěn gāoxìng.',
+            french: 'Elle aime sourire et elle est joyeuse tous les jours.',
+          },
+          {
+            id: 'hsp1_4',
+            hanzi: '她常常对我说：“多运动，身体好。”',
+            pinyin: 'Tā chángcháng duì wǒ shuō: “Duō yùndòng, shēntǐ hǎo.”',
+            french: 'Elle me dit souvent : « Fais plus de sport, c’est bon pour la santé. »',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '运动', pinyin: 'yùndòng', french: 'faire du sport / le sport', role: 'Verbe / Nom' },
+          { hanzi: '身体', pinyin: 'shēntǐ', french: 'santé, corps', role: 'Nom commun' },
+          { hanzi: '常常', pinyin: 'chángcháng', french: 'souvent, fréquemment', role: 'Adverbe' },
+          { hanzi: '笑', pinyin: 'xiào', french: 'rire, sourire', role: 'Verbe' },
+          { hanzi: '高', pinyin: 'gāo', french: 'grand(e), élancé(e)', role: 'Adjectif' },
+        ],
+      },
+      {
+        id: 'histoire_soeur_sport_p2',
+        episodeNumber: 2,
+        titleFr: 'Partie 2 : La course à pied',
+        titleZh: '第二部分：最喜欢跑步',
+        titlePinyin: 'Dì èr bùfen: Zuì xǐhuan pǎobù',
+        duration: '1 min 30',
+        level: 'HSK 2',
+        description: 'Debout dès l’aube à six heures du matin, découvrez sa passion inébranlable pour la course à pied, qu’il pleuve ou qu’il fasse froid.',
+        imageUrl: '/images/readings/soeur_sport_p2.jpg',
+        characters: [
+          {
+            name: '姐姐',
+            nameZh: '姐姐',
+            pinyin: 'Jiějie',
+            role: 'Grande sœur (25 ans)',
+            description: 'Coureuse matinale infatigable qui s’entraîne par tous les temps.',
+            color: 'turquoise'
+          },
+          {
+            name: '我',
+            nameZh: '我',
+            pinyin: 'Wǒ',
+            role: 'Frère cadet (Narrateur)',
+            description: 'Vite essoufflé par rapport à l’endurance impressionnante de sa sœur.',
+            color: 'violet'
+          }
+        ],
+        sentences: [
+          {
+            id: 'hsp2_1',
+            hanzi: '她最喜欢跑步。',
+            pinyin: 'Tā zuì xǐhuan pǎobù.',
+            french: 'Ce qu’elle préfère par-dessus tout, c’est courir.',
+          },
+          {
+            id: 'hsp2_2',
+            hanzi: '每天早上六点，她就起床去跑步。',
+            pinyin: 'Měitiān zǎoshang liù diǎn, tā jiù qǐchuáng qù pǎobù.',
+            french: 'Tous les matins à six heures, elle se lève déjà pour aller courir.',
+          },
+          {
+            id: 'hsp2_3',
+            hanzi: '有时候天气很冷，或者下雨，她也去。',
+            pinyin: 'Yǒu shíhou tiānqì hěn lěng, huòzhě xià yǔ, tā yě qù.',
+            french: 'Parfois, même s’il fait très froid ou qu’il pleut, elle y va quand même.',
+          },
+          {
+            id: 'hsp2_4',
+            hanzi: '我跑一会儿就累了，但是她跑完以后，还想再跑。',
+            pinyin: 'Wǒ pǎo yíhuìr jiù lèi le, dànshì tā pǎo wán yǐhòu, hái xiǎng zài pǎo.',
+            french: 'Moi, après avoir couru un petit moment je suis déjà fatigué, mais elle, après avoir fini de courir, elle veut encore continuer.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '跑步', pinyin: 'pǎobù', french: 'courir, faire du jogging', role: 'Verbe / Nom' },
+          { hanzi: '起床', pinyin: 'qǐchuáng', french: 'se lever du lit', role: 'Verbe' },
+          { hanzi: '或者', pinyin: 'huòzhě', french: 'ou bien, ou', role: 'Conjonction' },
+          { hanzi: '但是', pinyin: 'dànshì', french: 'mais, cependant', role: 'Conjonction' },
+          { hanzi: '完', pinyin: 'wán', french: 'finir, terminer', role: 'Verbe / Complément' },
+          { hanzi: '累', pinyin: 'lèi', french: 'fatigué(e)', role: 'Adjectif' },
+          { hanzi: '以后', pinyin: 'yǐhòu', french: 'après, plus tard', role: 'Nom temporel' },
+        ],
+      },
+      {
+        id: 'histoire_soeur_sport_p3',
+        episodeNumber: 3,
+        titleFr: 'Partie 3 : Toujours du temps pour le sport',
+        titleZh: '第三部分：运动的时间',
+        titlePinyin: 'Dì sān bùfen: Yùndòng de shíjiān',
+        duration: '1 min 30',
+        level: 'HSK 2',
+        description: 'Même avec un rythme professionnel chargé, elle trouve toujours un moment pour marcher au parc et nager le week-end.',
+        imageUrl: '/images/readings/soeur_sport_p3.jpg',
+        characters: [
+          {
+            name: '姐姐',
+            nameZh: '姐姐',
+            pinyin: 'Jiějie',
+            role: 'Grande sœur (25 ans)',
+            description: 'Organisée et dynamique, elle concilie travail prenant et activités physiques variées.',
+            color: 'turquoise'
+          },
+          {
+            name: '我',
+            nameZh: '我',
+            pinyin: 'Wǒ',
+            role: 'Frère cadet (Narrateur)',
+            description: 'Régulièrement invité par sa sœur à partager ses sorties sportives.',
+            color: 'violet'
+          }
+        ],
+        sentences: [
+          {
+            id: 'hsp3_1',
+            hanzi: '除了跑步，她还喜欢去公园走路。',
+            pinyin: 'Chúle pǎobù, tā hái xǐhuan qù gōngyuán zǒulù.',
+            french: 'En plus de la course à pied, elle aime aussi aller marcher dans le parc.',
+          },
+          {
+            id: 'hsp3_2',
+            hanzi: '她的工作很忙，但是她总是能找到时间去运动。',
+            pinyin: 'Tā de gōngzuò hěn máng, dànshì tā zǒngshì néng zhǎodào shíjiān qù yùndòng.',
+            french: 'Son travail est très prenant, mais elle réussit toujours à trouver du temps pour faire du sport.',
+          },
+          {
+            id: 'hsp3_3',
+            hanzi: '周末，她还去游泳。',
+            pinyin: 'Zhōumò, tā hái qù yóuyǒng.',
+            french: 'Le week-end, elle va aussi nager.',
+          },
+          {
+            id: 'hsp3_4',
+            hanzi: '她也常常叫我和她一起去。',
+            pinyin: 'Tā yě chángcháng jiào wǒ hé tā yìqǐ qù.',
+            french: 'Elle m’invite aussi souvent à venir avec elle.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '公园', pinyin: 'gōngyuán', french: 'parc public, jardin', role: 'Nom commun' },
+          { hanzi: '走路', pinyin: 'zǒulù', french: 'marcher, aller à pied', role: 'Verbe' },
+          { hanzi: '总是', pinyin: 'zǒngshì', french: 'toujours, systématiquement', role: 'Adverbe' },
+          { hanzi: '找到', pinyin: 'zhǎodào', french: 'trouver, réussir à trouver', role: 'Verbe' },
+          { hanzi: '周末', pinyin: 'zhōumò', french: 'week-end, fin de semaine', role: 'Nom commun' },
+          { hanzi: '游泳', pinyin: 'yóuyǒng', french: 'nager, faire de la natation', role: 'Verbe' },
+          { hanzi: '一起', pinyin: 'yìqǐ', french: 'ensemble', role: 'Adverbe' },
+        ],
+      },
+      {
+        id: 'histoire_soeur_sport_p4',
+        episodeNumber: 4,
+        titleFr: 'Partie 4 : Une vie saine et équilibrée',
+        titleZh: '第四部分：健康的生活',
+        titlePinyin: 'Dì sì bùfen: Jiànkāng de shēnghuó',
+        duration: '1 min 30',
+        level: 'HSK 2',
+        description: 'Repas simples et riches en légumes, hydratation, sommeil régulier : les fondements de son bien-être et de sa forme olympique.',
+        imageUrl: '/images/readings/soeur_sport_p4.jpg',
+        characters: [
+          {
+            name: '姐姐',
+            nameZh: '姐姐',
+            pinyin: 'Jiějie',
+            role: 'Grande sœur (25 ans)',
+            description: 'Adepte d’une alimentation saine et de bonnes nuits de repos réparateur.',
+            color: 'turquoise'
+          },
+          {
+            name: '我',
+            nameZh: '我',
+            pinyin: 'Wǒ',
+            role: 'Frère cadet (Narrateur)',
+            description: 'Observe avec attention les habitudes de vie exemplaires de sa sœur.',
+            color: 'violet'
+          }
+        ],
+        sentences: [
+          {
+            id: 'hsp4_1',
+            hanzi: '姐姐吃得很简单。',
+            pinyin: 'Jiějie chī de hěn jiǎndān.',
+            french: 'Ma grande sœur mange très simplement.',
+          },
+          {
+            id: 'hsp4_2',
+            hanzi: '她每天吃很多菜和水果，多喝水，少吃肉。',
+            pinyin: 'Tā měitiān chī hěn duō cài hé shuǐguǒ, duō hē shuǐ, shǎo chī ròu.',
+            french: 'Chaque jour, elle mange beaucoup de légumes et de fruits, boit beaucoup d’eau et mange peu de viande.',
+          },
+          {
+            id: 'hsp4_3',
+            hanzi: '她早睡早起。',
+            pinyin: 'Tā zǎo shuì zǎo qǐ.',
+            french: 'Elle se couche tôt et se lève tôt.',
+          },
+          {
+            id: 'hsp4_4',
+            hanzi: '因为她喜欢运动，也吃得好，所以很少生病。',
+            pinyin: 'Yīnwèi tā xǐhuan yùndòng, yě chī de hǎo, suǒyǐ hěn shǎo shēngbìng.',
+            french: 'Comme elle aime faire du sport et mange sainement, elle tombe très rarement malade.',
+          },
+          {
+            id: 'hsp4_5',
+            hanzi: '如果工作很累，她就会好好休息。',
+            pinyin: 'Rúguǒ gōngzuò hěn lèi, tā jiù huì hǎohāo xiūxi.',
+            french: 'Si le travail est fatiguant, elle se repose alors bien comme il faut.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '简单', pinyin: 'jiǎndān', french: 'simple, sobre', role: 'Adjectif' },
+          { hanzi: '水果', pinyin: 'shuǐguǒ', french: 'fruits', role: 'Nom commun' },
+          { hanzi: '生病', pinyin: 'shēngbìng', french: 'tomber malade', role: 'Verbe' },
+          { hanzi: '如果', pinyin: 'rúguǒ', french: 'si, au cas où', role: 'Conjonction' },
+          { hanzi: '休息', pinyin: 'xiūxi', french: 'se reposer, faire une pause', role: 'Verbe / Nom' },
+          { hanzi: '早睡早起', pinyin: 'zǎo shuì zǎo qǐ', french: 'se coucher tôt et se lever tôt', role: 'Locution' },
+        ],
+      },
+      {
+        id: 'histoire_soeur_sport_p5',
+        episodeNumber: 5,
+        titleFr: 'Partie 5 : Courir ensemble',
+        titleZh: '第五部分：我也喜欢运动了',
+        titlePinyin: 'Dì wǔ bùfen: Wǒ yě xǐhuan yùndòng le',
+        duration: '1 min',
+        level: 'HSK 2',
+        description: 'L’enthousiasme est contagieux : après avoir marché ensemble le week-end, le frère cadet adopte lui aussi le plaisir du sport au quotidien.',
+        imageUrl: '/images/readings/soeur_sport_p5.jpg',
+        characters: [
+          {
+            name: '姐姐',
+            nameZh: '姐姐',
+            pinyin: 'Jiějie',
+            role: 'Grande sœur (25 ans)',
+            description: 'Heureuse d’avoir inspiré son frère à adopter le sport et la marche.',
+            color: 'turquoise'
+          },
+          {
+            name: '我',
+            nameZh: '我',
+            pinyin: 'Wǒ',
+            role: 'Frère cadet (Narrateur)',
+            description: 'Désormais conquis par le sport, prêt à s’entraîner chaque jour.',
+            color: 'violet'
+          }
+        ],
+        sentences: [
+          {
+            id: 'hsp5_1',
+            hanzi: '周末，她常常叫我和她一起去公园走路。',
+            pinyin: 'Zhōumò, tā chángcháng jiào wǒ hé tā yìqǐ qù gōngyuán zǒulù.',
+            french: 'Le week-end, elle m’invite souvent à aller marcher avec elle dans le parc.',
+          },
+          {
+            id: 'hsp5_2',
+            hanzi: '现在，我也喜欢运动了。',
+            pinyin: 'Xiànzài, wǒ yě xǐhuan yùndòng le.',
+            french: 'Désormais, j’aime le sport moi aussi.',
+          },
+          {
+            id: 'hsp5_3',
+            hanzi: '我也想像她一样，每天都运动。',
+            pinyin: 'Wǒ yě xiǎng xiàng tā yíyàng, měitiān dōu yùndòng.',
+            french: 'J’ai envie d’être comme elle et de faire du sport tous les jours.',
+          },
+        ],
+        vocabulary: [
+          { hanzi: '现在', pinyin: 'xiànzài', french: 'maintenant, désormais', role: 'Nom temporel' },
+          { hanzi: '像...一样', pinyin: 'xiàng... yíyàng', french: 'comme, à l’instar de', role: 'Locution' },
+          { hanzi: '每天', pinyin: 'měitiān', french: 'chaque jour, tous les jours', role: 'Nom temporel' },
+          { hanzi: '公园', pinyin: 'gōngyuán', french: 'parc public', role: 'Nom commun' },
+          { hanzi: '运动', pinyin: 'yùndòng', french: 'faire du sport, activité sportive', role: 'Verbe / Nom' },
+        ],
+      },
+    ],
+    sentences: [
+      {
+        id: 'hsp1_1',
+        hanzi: '我有一个姐姐。',
+        pinyin: 'Wǒ yǒu yí gè jiějie.',
+        french: 'J’ai une grande sœur.',
+      },
+      {
+        id: 'hsp1_2',
+        hanzi: '她今年二十五岁，很高。',
+        pinyin: 'Tā jīnnián èrshíwǔ suì, hěn gāo.',
+        french: 'Elle a vingt-cinq ans cette année et elle est très grande.',
+      },
+      {
+        id: 'hsp1_3',
+        hanzi: '她喜欢笑，每天都很高兴。',
+        pinyin: 'Tā xǐhuan xiào, měitiān dōu hěn gāoxìng.',
+        french: 'Elle aime sourire et elle est joyeuse tous les jours.',
+      },
+      {
+        id: 'hsp1_4',
+        hanzi: '她常常对我说：“多运动，身体好。”',
+        pinyin: 'Tā chángcháng duì wǒ shuō: “Duō yùndòng, shēntǐ hǎo.”',
+        french: 'Elle me dit souvent : « Fais plus de sport, c’est bon pour la santé. »',
+      },
+    ],
+    vocabulary: [
+      { hanzi: '运动', pinyin: 'yùndòng', french: 'faire du sport / le sport', role: 'Verbe / Nom' },
+      { hanzi: '身体', pinyin: 'shēntǐ', french: 'corps, santé', role: 'Nom commun' },
+      { hanzi: '常常', pinyin: 'chángcháng', french: 'souvent, fréquemment', role: 'Adverbe' },
+      { hanzi: '笑', pinyin: 'xiào', french: 'rire, sourire', role: 'Verbe' },
+      { hanzi: '高', pinyin: 'gāo', french: 'grand(e), élancé(e)', role: 'Adjectif' },
+      { hanzi: '跑步', pinyin: 'pǎobù', french: 'courir, faire du jogging', role: 'Verbe / Nom' },
+      { hanzi: '起床', pinyin: 'qǐchuáng', french: 'se lever du lit', role: 'Verbe' },
+      { hanzi: '或者', pinyin: 'huòzhě', french: 'ou bien, ou', role: 'Conjonction' },
+      { hanzi: '公园', pinyin: 'gōngyuán', french: 'parc public, jardin', role: 'Nom commun' },
+      { hanzi: '走路', pinyin: 'zǒulù', french: 'marcher, aller à pied', role: 'Verbe' },
+      { hanzi: '游泳', pinyin: 'yóuyǒng', french: 'nager, faire de la natation', role: 'Verbe' },
+      { hanzi: '简单', pinyin: 'jiǎndān', french: 'simple, sobre', role: 'Adjectif' },
+      { hanzi: '水果', pinyin: 'shuǐguǒ', french: 'fruits', role: 'Nom commun' },
+      { hanzi: '生病', pinyin: 'shēngbìng', french: 'tomber malade', role: 'Verbe' },
+      { hanzi: '休息', pinyin: 'xiūxi', french: 'se reposer, faire une pause', role: 'Verbe / Nom' },
+    ]
+  },
 
   // ================= 3. DIALOGUES AVEC PERSONNAGES DÉTAILLÉS & COULEURS DISTINCTES =================
   {
@@ -5311,7 +5701,7 @@ export const readingCatalog: ReadingItem[] = [
     titleZh: '初次拜访供应商',
     titlePinyin: 'Chūcì bàifǎng gōngyìngshāng',
     type: 'dialogues',
-    level: 'HSK 1',
+    level: 'HSK 2',
     duration: '2 min 00',
     description: 'Arrivée d’Espoir chez un fournisseur chinois et premier échange chaleureux avec le Directeur Wang.',
     imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format&fit=crop&q=80',
@@ -5805,6 +6195,16 @@ export const readingCatalog: ReadingItem[] = [
         french: 'Environ quinze minutes et nous y serons.',
       },
     ],
+    vocabulary: [
+      { hanzi: '出租车', pinyin: 'chūzūchē', french: 'taxi', role: 'Nom commun' },
+      { hanzi: '酒店', pinyin: 'jiǔdiàn', french: 'hôtel', role: 'Nom commun' },
+      { hanzi: '师傅', pinyin: 'shīfu', french: 'chauffeur, monsieur (formule d’adresse polie)', role: 'Nom d’adresse' },
+      { hanzi: '上车', pinyin: 'shàng chē', french: 'monter en voiture', role: 'Locution verbale' },
+      { hanzi: '安全带', pinyin: 'ānquándài', french: 'ceinture de sécurité', role: 'Nom commun' },
+      { hanzi: '系好', pinyin: 'jì hǎo', french: 'bien attacher, boucler', role: 'Verbe + Complément' },
+      { hanzi: '大概', pinyin: 'dàgài', french: 'environ, à peu près', role: 'Adverbe' },
+      { hanzi: '分钟', pinyin: 'fēnzhōng', french: 'minute (durée)', role: 'Nom d’unité' },
+    ]
   },
   {
     id: 'dialogue_appel_telephonique',
@@ -9962,9 +10362,6 @@ function EcouteLectureContent() {
                   <h1 className="font-display font-black text-sm sm:text-lg text-[#212121] dark:text-[#F5F5F5] tracking-tight truncate leading-snug">
                     {activeSeries.titleFr}
                   </h1>
-                  <span className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow-2xs ${getLevelBadgeStyle(activeSeries.level)}`}>
-                    {activeSeries.level}
-                  </span>
                 </div>
 
                 {/* Sous-titre indicatif */}

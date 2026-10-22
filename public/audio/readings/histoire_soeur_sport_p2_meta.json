@@ -1,0 +1,51 @@
+{
+  "contentId": "histoire_soeur_sport_p2",
+  "title": "第二部分：最喜欢跑步",
+  "titleFr": "Partie 2 : La course à pied",
+  "type": "histoire",
+  "narrator": "Ethan Zhang (Narrateur 2)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_soeur_sport_p2.mp3",
+  "totalDurationMs": 15150,
+  "sentences": [
+    {
+      "sentenceId": "hsp2_1",
+      "text": "她最喜欢跑步。",
+      "startMs": 0,
+      "endMs": 2240,
+      "durationMs": 2240,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p2_hsp2_1.mp3"
+    },
+    {
+      "sentenceId": "hsp2_2",
+      "text": "每天早上六点，她就起床去跑步。",
+      "startMs": 2240,
+      "endMs": 6160,
+      "durationMs": 3920,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p2_hsp2_2.mp3"
+    },
+    {
+      "sentenceId": "hsp2_3",
+      "text": "有时候天气很冷，或者下雨，她也去。",
+      "startMs": 6160,
+      "endMs": 9840,
+      "durationMs": 3680,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p2_hsp2_3.mp3"
+    },
+    {
+      "sentenceId": "hsp2_4",
+      "text": "我跑一会儿就累了，但是她跑完以后，还想再跑。",
+      "startMs": 9840,
+      "endMs": 15120,
+      "durationMs": 5280,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p2_hsp2_4.mp3"
+    }
+  ]
+}

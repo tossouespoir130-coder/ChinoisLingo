@@ -1,0 +1,43 @@
+{
+  "contentId": "histoire_soeur_sport_p5",
+  "title": "第五部分：我也喜欢运动了",
+  "titleFr": "Partie 5 : Courir ensemble",
+  "type": "histoire",
+  "narrator": "Ethan Zhang (Narrateur 2)",
+  "model": "eleven_v3",
+  "generationMode": "single_block_with_timestamps",
+  "voiceSettings": {
+    "stability": 0.5,
+    "similarity_boost": 0.85,
+    "style": 0,
+    "use_speaker_boost": true
+  },
+  "fullAudioUrl": "/audio/readings/histoire_soeur_sport_p5.mp3",
+  "totalDurationMs": 9330,
+  "sentences": [
+    {
+      "sentenceId": "hsp5_1",
+      "text": "周末，她常常叫我和她一起去公园走路。",
+      "startMs": 0,
+      "endMs": 3840,
+      "durationMs": 3840,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p5_hsp5_1.mp3"
+    },
+    {
+      "sentenceId": "hsp5_2",
+      "text": "现在，我也喜欢运动了。",
+      "startMs": 3840,
+      "endMs": 6360,
+      "durationMs": 2520,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p5_hsp5_2.mp3"
+    },
+    {
+      "sentenceId": "hsp5_3",
+      "text": "我也想像她一样，每天都运动。",
+      "startMs": 6360,
+      "endMs": 9280,
+      "durationMs": 2920,
+      "audioUrl": "/audio/readings/histoire_soeur_sport_p5_hsp5_3.mp3"
+    }
+  ]
+}
