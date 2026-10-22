@@ -137,12 +137,21 @@ const RECOMMENDED_CATALOGUE: MascotRecommendation[] = [
     actionLabel: 'Écouter la chanson'
   },
   {
-    id: 'article_la_cite_interdite',
-    title: 'Article : La Cité Interdite (故宫)',
-    categoryLabel: 'Lecture Culturelle 🏛️',
+    id: 'article_eau_chaude',
+    title: 'Article : Pourquoi les Chinois boivent-ils de l’eau chaude ? (中国人为什么喝热水？)',
+    categoryLabel: 'Culture & Santé 🍵',
     level: 'HSK 2',
-    description: 'Voyage au cœur de l’histoire impériale de Pékin avec lecture audio guidée.',
-    actionUrl: '/ecoute-lecture?type=articles&id=article_la_cite_interdite',
+    description: 'Découvre pourquoi l’eau chaude est une institution en Chine pour la santé avec audio immersif.',
+    actionUrl: '/ecoute-lecture?type=articles&id=article_eau_chaude',
+    actionLabel: 'Lire l’article'
+  },
+  {
+    id: 'article_chicu_vinaigre',
+    title: 'Article : Que signifie « manger du vinaigre » ? (“吃醋”是什么意思？)',
+    categoryLabel: 'Expression Populaire 🍋',
+    level: 'HSK 3',
+    description: 'Découvre l’origine amusante de cette célèbre métaphore amoureuse sur la jalousie en chinois.',
+    actionUrl: '/ecoute-lecture?type=articles&id=article_chicu_vinaigre',
     actionLabel: 'Lire l’article'
   }
 ];

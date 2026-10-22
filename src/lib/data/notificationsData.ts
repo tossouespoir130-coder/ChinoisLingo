@@ -18,6 +18,34 @@ export interface NotificationItem {
 
 export const initialNotifications: NotificationItem[] = [
   {
+    id: '2e451ba5-0d0b-48ab-8384-dae3fb4f3dfa',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouvel article HSK 3 : Que signifie « manger du vinaigre » ?\n“吃醋”是什么意思？ 🍋',
+    message: 'Découvre l’origine amusante de la célèbre métaphore « manger du vinaigre » (吃醋) pour parler de jalousie amoureuse ! Audio immersif et vocabulaire bilingue.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=articles&id=article_chicu_vinaigre',
+    actionLabel: 'Lire l’article'
+  },
+  {
+    id: 'b47345db-a16c-4fe6-8389-d8193435fade',
+    source: 'founder',
+    founderName: 'Espoir Chinois',
+    founderRole: 'Fondateur de ChinoisLingo',
+    founderAvatar: '/espoir-chinois.jpg',
+    type: 'audio',
+    title: 'Nouvel article HSK 2 : Pourquoi les Chinois boivent-ils de l’eau chaude ?\n中国人为什么喝热水？ 🍵',
+    message: 'Découvre pourquoi boire de l’eau chaude est une habitude essentielle pour la santé en Chine ! Un article captivant avec audio immersif et vocabulaire bilingue.',
+    timestamp: 'Nouveau',
+    isRead: false,
+    actionUrl: '/ecoute-lecture?type=articles&id=article_eau_chaude',
+    actionLabel: 'Lire l’article'
+  },
+  {
     id: 'notif_dialogue_plan_weekend',
     source: 'founder',
     founderName: 'Espoir Chinois',

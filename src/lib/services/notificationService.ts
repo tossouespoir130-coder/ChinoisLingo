@@ -65,24 +65,35 @@ export async function fetchMergedNotifications(userId?: string | null): Promise<
   const dbIds = new Set(initialNotifications.map(n => n.id));
   const additionalNotifs: NotificationItem[] = dbNotifs
     .filter(n => !dbIds.has(n.id))
-    .map((n) => ({
-      id: n.id,
-      source: (n.source === 'founder' ? 'founder' : n.source === 'mascot' ? 'mascot' : 'system') as 'founder' | 'mascot' | 'system',
-      founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
-      founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
-      founderAvatar: '/espoir-chinois.jpg',
-      mascotName: n.source === 'mascot' ? 'Xiao Li (小李)' : undefined,
-      mascotRole: n.source === 'mascot' ? 'Mascotte ChinoisLingo 🐾' : undefined,
-      mascotAvatar: '/icons/xiaoli.png',
-      title: n.title,
-      message: n.message,
-      timestamp: 'Récemment',
-      isRead: !!n.is_read || readIds.includes(n.id),
-      actionUrl: n.action_url || '/mon-compte',
-      actionLabel: 'Voir mes trophées',
-    }));
+    .map((n) => {
+      let actionLabel = 'Découvrir';
+      if (n.action_url?.includes('type=articles')) actionLabel = 'Lire l’article';
+      else if (n.action_url?.includes('type=dialogues')) actionLabel = 'Écouter le dialogue';
+      else if (n.action_url?.includes('type=histoires')) actionLabel = 'Lire l’histoire';
+      else if (n.action_url?.includes('type=chansons') || n.action_url?.includes('type=podcasts')) actionLabel = 'Écouter';
+      else if (n.action_url?.includes('type=videos')) actionLabel = 'Regarder la vidéo';
+      else if (n.action_url?.includes('type=exercices')) actionLabel = 'S’entraîner';
 
-  const all = [...initialNotifications, ...additionalNotifs].map((n) => ({
+      return {
+        id: n.id,
+        source: (n.source === 'founder' ? 'founder' : n.source === 'mascot' ? 'mascot' : 'system') as 'founder' | 'mascot' | 'system',
+        founderName: n.source === 'founder' ? 'Espoir Chinois' : undefined,
+        founderRole: n.source === 'founder' ? 'Fondateur de ChinoisLingo' : undefined,
+        founderAvatar: '/espoir-chinois.jpg',
+        mascotName: n.source === 'mascot' ? 'Xiao Li (小李)' : undefined,
+        mascotRole: n.source === 'mascot' ? 'Mascotte ChinoisLingo 🐾' : undefined,
+        mascotAvatar: '/icons/xiaoli.png',
+        title: n.title,
+        message: n.message,
+        timestamp: 'Nouveau',
+        isRead: !!n.is_read || readIds.includes(n.id),
+        actionUrl: n.action_url || '/mon-compte',
+        actionLabel,
+      };
+    });
+
+  // Les notifications de la base de données sont les plus récentes, elles passent en tête
+  const all = [...additionalNotifs, ...initialNotifications].map((n) => ({
     ...n,
     isRead: n.isRead || readIds.includes(n.id),
   }));
